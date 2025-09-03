@@ -1,0 +1,252 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2025, the Sphinx developers
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-03 20:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../tutorial/automatic-doc-generation.rst:2
+msgid "Automatic documentation generation from code"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:4
+msgid ""
+"In the :ref:`previous section <tutorial-describing-objects>` of the tutorial "
+"you manually documented a Python function in Sphinx. However, the "
+"description was out of sync with the code itself, since the function "
+"signature was not the same. Besides, it would be nice to reuse :pep:`Python "
+"docstrings <257#what-is-a-docstring>` in the documentation, rather than "
+"having to write the information in two places."
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:11
+msgid ""
+"Fortunately, :doc:`the autodoc extension </usage/extensions/autodoc>` "
+"provides this functionality."
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:15
+msgid "Reusing signatures and docstrings with autodoc"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:17
+msgid "To use autodoc, first add it to the list of enabled extensions:"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:19
+#: ../../../tutorial/automatic-doc-generation.rst:101
+msgid "docs/source/conf.py"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:19
+msgid ""
+"extensions = [\n"
+"    'sphinx.ext.duration',\n"
+"    'sphinx.ext.doctest',\n"
+"    'sphinx.ext.autodoc',\n"
+"]"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:29
+msgid ""
+"Next, move the content of the ``.. py:function`` directive to the function "
+"docstring in the original Python file, as follows:"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:32
+#: ../../../tutorial/automatic-doc-generation.rst:68
+msgid "lumache.py"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:32
+msgid ""
+"def get_random_ingredients(kind=None):\n"
+"    \"\"\"\n"
+"    Return a list of random ingredients as strings.\n"
+"\n"
+"    :param kind: Optional \"kind\" of ingredients.\n"
+"    :type kind: list[str] or None\n"
+"    :raise lumache.InvalidKindError: If the kind is invalid.\n"
+"    :return: The ingredients list.\n"
+"    :rtype: list[str]\n"
+"\n"
+"    \"\"\"\n"
+"    return [\"shells\", \"gorgonzola\", \"parsley\"]"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:49
+msgid ""
+"Finally, replace the ``.. py:function`` directive from the Sphinx "
+"documentation with :rst:dir:`autofunction`:"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:52
+#: ../../../tutorial/automatic-doc-generation.rst:78
+msgid "docs/source/usage.rst"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:52
+msgid ""
+"you can use the ``lumache.get_random_ingredients()`` function:\n"
+"\n"
+".. autofunction:: lumache.get_random_ingredients"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:60
+msgid ""
+"If you now build the HTML documentation, the output will be the same! With "
+"the advantage that it is generated from the code itself. Sphinx took the "
+"reStructuredText from the docstring and included it, also generating proper "
+"cross-references."
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:65
+msgid ""
+"You can also autogenerate documentation from other objects. For example, add "
+"the code for the ``InvalidKindError`` exception:"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:68
+msgid ""
+"class InvalidKindError(Exception):\n"
+"    \"\"\"Raised if the kind is invalid.\"\"\"\n"
+"    pass"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:75
+msgid ""
+"And replace the ``.. py:exception`` directive with :rst:dir:`autoexception` "
+"as follows:"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:78
+msgid ""
+"or ``\"veggies\"``. Otherwise, :py:func:`lumache.get_random_ingredients`\n"
+"will raise an exception.\n"
+"\n"
+".. autoexception:: lumache.InvalidKindError"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:87
+msgid ""
+"And again, after running ``make html``, the output will be the same as "
+"before."
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:90
+msgid "Generating comprehensive API references"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:92
+msgid ""
+"While using ``sphinx.ext.autodoc`` makes keeping the code and the "
+"documentation in sync much easier, it still requires you to write an "
+"``auto*`` directive for every object you want to document. Sphinx provides "
+"yet another level of automation: the :doc:`autosummary </usage/extensions/"
+"autosummary>` extension."
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:97
+msgid ""
+"The :rst:dir:`autosummary` directive generates documents that contain all "
+"the necessary ``autodoc`` directives. To use it, first enable the "
+"autosummary extension:"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:101
+msgid ""
+"extensions = [\n"
+"   'sphinx.ext.duration',\n"
+"   'sphinx.ext.doctest',\n"
+"   'sphinx.ext.autodoc',\n"
+"   'sphinx.ext.autosummary',\n"
+"]"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:112
+msgid "Next, create a new ``api.rst`` file with these contents:"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:114
+msgid "docs/source/api.rst"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:114
+msgid ""
+"API\n"
+"===\n"
+"\n"
+".. autosummary::\n"
+"   :toctree: generated\n"
+"\n"
+"   lumache"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:125
+msgid "Remember to include the new document in the root toctree:"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:127
+msgid "docs/source/index.rst"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:127
+msgid ""
+"Contents\n"
+"--------\n"
+"\n"
+".. toctree::\n"
+"\n"
+"   usage\n"
+"   api"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:139
+msgid ""
+"Finally, after you build the HTML documentation running ``make html``, it "
+"will contain two new pages:"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:142
+msgid ""
+"``api.html``, corresponding to ``docs/source/api.rst`` and containing a "
+"table with the objects you included in the ``autosummary`` directive (in "
+"this case, only one)."
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:145
+msgid ""
+"``generated/lumache.html``, corresponding to a newly created "
+"reStructuredText file ``generated/lumache.rst`` and containing a summary of "
+"members of the module, in this case one function and one exception."
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:149
+#: ../../../tutorial/automatic-doc-generation.rst:154
+msgid "Summary page created by autosummary"
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:156
+msgid ""
+"Each of the links in the summary page will take you to the places where you "
+"originally used the corresponding ``autodoc`` directive, in this case in the "
+"``usage.rst`` document."
+msgstr ""
+
+#: ../../../tutorial/automatic-doc-generation.rst:162
+msgid ""
+"The generated files are based on `Jinja2 templates <https://jinja."
+"palletsprojects.com/>`_ that :ref:`can be customized <autosummary-"
+"customizing-templates>`, but that is out of scope for this tutorial."
+msgstr ""
