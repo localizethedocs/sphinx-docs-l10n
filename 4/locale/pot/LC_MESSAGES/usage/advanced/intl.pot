@@ -1,0 +1,554 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2022, Georg Brandl and the Sphinx team
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-03 20:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../usage/advanced/intl.rst:4
+msgid "Internationalization"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:8
+msgid ""
+"Complementary to translations provided for Sphinx-generated messages such as "
+"navigation bars, Sphinx provides mechanisms facilitating the translation of "
+"*documents*.  See the :ref:`intl-options` for details on configuration."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:15
+msgid ""
+"Workflow visualization of translations in Sphinx.  (The figure is created by "
+"`plantuml <https://plantuml.com>`_.)"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:22
+msgid "Sphinx internationalization details"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:24
+msgid ""
+"**gettext** [1]_ is an established standard for internationalization and "
+"localization.  It naively maps messages in a program to a translated string. "
+"Sphinx uses these facilities to translate whole documents."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:28
+msgid ""
+"Initially project maintainers have to collect all translatable strings (also "
+"referred to as *messages*) to make them known to translators.  Sphinx "
+"extracts these through invocation of ``sphinx-build -b gettext``."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:32
+msgid ""
+"Every single element in the doctree will end up in a single message which "
+"results in lists being equally split into different chunks while large "
+"paragraphs will remain as coarsely-grained as they were in the original "
+"document.  This grants seamless document updates while still providing a "
+"little bit of context for translators in free-text passages.  It is the "
+"maintainer's task to split up paragraphs which are too large as there is no "
+"sane automated way to do that."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:40
+msgid ""
+"After Sphinx successfully ran the :class:`~sphinx.builders.gettext."
+"MessageCatalogBuilder` you will find a collection of ``.pot`` files in your "
+"output directory.  These are **catalog templates** and contain messages in "
+"your original language *only*."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:45
+msgid ""
+"They can be delivered to translators which will transform them to ``.po`` "
+"files --- so called **message catalogs** --- containing a mapping from the "
+"original messages to foreign-language strings."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:49
+msgid ""
+"*gettext* compiles them into a binary format known as **binary catalogs** "
+"through :program:`msgfmt` for efficiency reasons.  If you make these files "
+"discoverable with :confval:`locale_dirs` for your :confval:`language`, "
+"Sphinx will pick them up automatically."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:54
+msgid ""
+"An example: you have a document ``usage.rst`` in your Sphinx project.  The "
+"*gettext* builder will put its messages into ``usage.pot``.  Imagine you "
+"have Spanish translations [2]_ stored in ``usage.po`` --- for your builds to "
+"be translated you need to follow these instructions:"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:59
+msgid ""
+"Compile your message catalog to a locale directory, say ``locale``, so it "
+"ends up in ``./locale/es/LC_MESSAGES/usage.mo`` in your source directory "
+"(where ``es`` is the language code for Spanish.) ::"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:63
+msgid "msgfmt \"usage.po\" -o \"locale/es/LC_MESSAGES/usage.mo\""
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:65
+msgid "Set :confval:`locale_dirs` to ``[\"locale/\"]``."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:66
+msgid ""
+"Set :confval:`language` to ``es`` (also possible via :option:`-D <sphinx-"
+"build -D>`)."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:68
+msgid "Run your desired build."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:71
+msgid ""
+"In order to protect against mistakes, a warning is emitted if cross-"
+"references in the translated paragraph do not match those from the "
+"original.  This can be turned off globally using the :confval:"
+"`suppress_warnings` configuration variable.  Alternatively, to turn it off "
+"for one message only, end the message with ``#noqa`` like this::"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:78
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse\n"
+"risus tortor, luctus id ultrices at. #noqa"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:81
+msgid ""
+"(Write ``\\#noqa`` in case you want to have \"#noqa\" literally in the "
+"text.  This does not apply to code blocks, where ``#noqa`` is ignored "
+"because code blocks do not contain references anyway.)"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:85
+msgid "The ``#noqa`` mechanism."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:90
+msgid "Translating with sphinx-intl"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:93
+msgid "Quick guide"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:95
+msgid ""
+"`sphinx-intl`_ is a useful tool to work with Sphinx translation flow.  This "
+"section describe an easy way to translate with *sphinx-intl*."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:98
+msgid "Install `sphinx-intl`_."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:100
+msgid "$ pip install sphinx-intl"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:104
+msgid "Add configurations to ``conf.py``."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:108
+msgid ""
+"locale_dirs = ['locale/']   # path is example but recommended.\n"
+"gettext_compact = False     # optional."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:111
+msgid ""
+"This case-study assumes that BUILDDIR is set to ``_build``, :confval:"
+"`locale_dirs` is set to ``locale/`` and :confval:`gettext_compact` is set to "
+"``False`` (the Sphinx document is already configured as such)."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:115
+msgid "Extract translatable messages into pot files."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:117
+msgid "$ make gettext"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:121
+msgid ""
+"The generated pot files will be placed in the ``_build/gettext`` directory."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:123
+msgid "Generate po files."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:125
+msgid "We'll use the pot files generated in the above step."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:127
+msgid "$ sphinx-intl update -p _build/gettext -l de -l ja"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:131
+msgid ""
+"Once completed, the generated po files will be placed in the below "
+"directories:"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:134
+msgid "``./locale/de/LC_MESSAGES/``"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:135
+msgid "``./locale/ja/LC_MESSAGES/``"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:137
+msgid "Translate po files."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:139
+msgid ""
+"As noted above, these are located in the ``./locale/<lang>/LC_MESSAGES`` "
+"directory.  An example of one such file, from Sphinx, ``builders.po``, is "
+"given below."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:143
+msgid ""
+"# a5600c3d2e3d48fc8c261ea0284db79b\n"
+"#: ../../builders.rst:4\n"
+"msgid \"Available builders\"\n"
+"msgstr \"<FILL HERE BY TARGET LANGUAGE>\""
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:150
+msgid ""
+"Another case, msgid is multi-line text and contains reStructuredText syntax:"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:152
+msgid ""
+"# 302558364e1d41c69b3277277e34b184\n"
+"#: ../../builders.rst:9\n"
+"msgid \"\"\n"
+"\"These are the built-in Sphinx builders. More builders can be added by \"\n"
+"\":ref:`extensions <extensions>`.\"\n"
+"msgstr \"\"\n"
+"\"FILL HERE BY TARGET LANGUAGE FILL HERE BY TARGET LANGUAGE FILL HERE \"\n"
+"\"BY TARGET LANGUAGE :ref:`EXTENSIONS <extensions>` FILL HERE.\""
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:163
+msgid ""
+"Please be careful not to break reST notation.  Most po-editors will help you "
+"with that."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:166
+msgid "Build translated document."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:168
+msgid ""
+"You need a :confval:`language` parameter in ``conf.py`` or you may also "
+"specify the parameter on the command line."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:171
+msgid "For for BSD/GNU make, run:"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:173 ../../../usage/advanced/intl.rst:305
+msgid "$ make -e SPHINXOPTS=\"-D language='de'\" html"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:177
+msgid "For Windows :command:`cmd.exe`, run:"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:179
+msgid ""
+"> set SPHINXOPTS=-D language=de\n"
+"> .\\make.bat html"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:184
+msgid "For PowerShell, run:"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:186
+msgid ""
+"> Set-Item env:SPHINXOPTS \"-D language=de\"\n"
+"> .\\make.bat html"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:191
+msgid ""
+"Congratulations! You got the translated documentation in the ``_build/html`` "
+"directory."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:196
+msgid ""
+":program:`sphinx-build` that is invoked by make command will build po files "
+"into mo files."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:199
+msgid ""
+"If you are using 1.2.x or earlier, please invoke :command:`sphinx-intl "
+"build` command before :command:`make` command."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:203
+msgid "Translating"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:206
+msgid "Update your po files by new pot files"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:208
+msgid ""
+"If a document is updated, it is necessary to generate updated pot files and "
+"to apply differences to translated po files.  In order to apply the updates "
+"from a pot file to the po file, use the :command:`sphinx-intl update` "
+"command."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:212
+msgid "$ sphinx-intl update -p _build/gettext"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:218
+msgid "Using Transifex service for team translation"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:220
+msgid ""
+"Transifex_ is one of several services that allow collaborative translation "
+"via a web interface.  It has a nifty Python-based command line client that "
+"makes it easy to fetch and push translations."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:227
+msgid "Install `transifex-client`_."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:229
+msgid "You need :command:`tx` command to upload resources (pot files)."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:231
+msgid "$ pip install transifex-client"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:235
+msgid "`Transifex Client documentation`_"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:237
+msgid ""
+"Create your transifex_ account and create new project for your document."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:239
+msgid ""
+"Currently, transifex does not allow for a translation project to have more "
+"than one version of the document, so you'd better include a version number "
+"in your project name."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:243
+msgid "For example:"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:0
+msgid "Project ID"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:245
+msgid "``sphinx-document-test_1_0``"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:0
+msgid "Project URL"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:246
+msgid "``https://www.transifex.com/projects/p/sphinx-document-test_1_0/``"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:248
+msgid "Create config files for :command:`tx` command."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:250
+msgid ""
+"This process will create ``.tx/config`` in the current directory, as well as "
+"a ``~/.transifexrc`` file that includes auth information."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:253
+msgid ""
+"$ tx init\n"
+"Creating .tx folder...\n"
+"Transifex instance [https://www.transifex.com]:\n"
+"...\n"
+"Please enter your transifex username: <transifex-username>\n"
+"Password: <transifex-password>\n"
+"...\n"
+"Done."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:264
+msgid "Upload pot files to transifex service."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:266
+msgid "Register pot files to ``.tx/config`` file:"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:268
+msgid ""
+"$ cd /your/document/root\n"
+"$ sphinx-intl update-txconfig-resources --pot-dir _build/locale \\\n"
+"  --transifex-project-name sphinx-document-test_1_0"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:274
+msgid "and upload pot files:"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:276
+msgid ""
+"$ tx push -s\n"
+"Pushing translations for resource sphinx-document-test_1_0.builders:\n"
+"Pushing source file (locale/pot/builders.pot)\n"
+"Resource does not exist.  Creating...\n"
+"...\n"
+"Done."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:285
+msgid "Forward the translation on transifex."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:289
+msgid "Pull translated po files and make translated HTML."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:291
+msgid ""
+"Get translated catalogs and build mo files. For example, to build mo files "
+"for German (de):"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:294
+msgid ""
+"$ cd /your/document/root\n"
+"$ tx pull -l de\n"
+"Pulling translations for resource sphinx-document-test_1_0.builders (...)\n"
+" -> de: locale/de/LC_MESSAGES/builders.po\n"
+"...\n"
+"Done."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:303
+msgid "Invoke :command:`make html` (for BSD/GNU make):"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:309
+msgid "That's all!"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:311
+msgid "Translating locally and on Transifex"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:313
+msgid ""
+"If you want to push all language's po files, you can be done by using :"
+"command:`tx push -t` command.  Watch out! This operation overwrites "
+"translations in transifex."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:317
+msgid ""
+"In other words, if you have updated each in the service and local po files, "
+"it would take much time and effort to integrate them."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:322
+msgid "Contributing to Sphinx reference translation"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:324
+msgid ""
+"The recommended way for new contributors to translate Sphinx reference is to "
+"join the translation team on Transifex."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:327
+msgid ""
+"There is a `sphinx translation page`_ for Sphinx (master) documentation."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:329
+msgid "Login to transifex_ service."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:330
+msgid "Go to `sphinx translation page`_."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:331
+msgid "Click ``Request language`` and fill form."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:332
+msgid "Wait acceptance by transifex sphinx translation maintainers."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:333
+msgid "(After acceptance) Translate on transifex."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:335
+msgid ""
+"Detail is here: https://docs.transifex.com/getting-started-1/translators"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:338
+msgid "Footnotes"
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:339
+msgid ""
+"See the `GNU gettext utilities <https://www.gnu.org/software/gettext/manual/"
+"gettext.html#Introduction>`_ for details on that software suite."
+msgstr ""
+
+#: ../../../usage/advanced/intl.rst:342
+msgid "Because nobody expects the Spanish Inquisition!"
+msgstr ""
