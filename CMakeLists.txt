@@ -135,8 +135,8 @@ set(PROJ_OUT_BUILDER_DIR            "${PROJ_OUT_DIR}/${SPHINX_BUILDER}")
 set(PROJ_L10N_DIR                   "${PROJ_SOURCE_DIR}/l10n")
 set(PROJ_L10N_VERSION_DIR           "${PROJ_L10N_DIR}/${VERSION}")
 set(PROJ_L10N_VERSION_LOCALE_DIR    "${PROJ_L10N_VERSION_DIR}/locale")
+set(PROJ_L10N_VERSION_SINGLE_DIR    "${PROJ_L10N_VERSION_DIR}/.single")
 set(PROJ_L10N_VERSION_CROWDIN_DIR   "${PROJ_L10N_VERSION_DIR}/.crowdin")
-set(PROJ_L10N_VERSION_COMPEND_DIR   "${PROJ_L10N_VERSION_DIR}/.compend")
 
 #[============================================================[
 # Configuration Files.
@@ -404,6 +404,7 @@ message(STATUS "PROJ_OUT_BUILDER_DIR            = ${PROJ_OUT_BUILDER_DIR}")
 message(STATUS "PROJ_L10N_DIR                   = ${PROJ_L10N_DIR}")
 message(STATUS "PROJ_L10N_VERSION_DIR           = ${PROJ_L10N_VERSION_DIR}")
 message(STATUS "PROJ_L10N_VERSION_LOCALE_DIR    = ${PROJ_L10N_VERSION_LOCALE_DIR}")
+message(STATUS "PROJ_L10N_VERSION_SINGLE_DIR    = ${PROJ_L10N_VERSION_SINGLE_DIR}")
 message(STATUS "PROJ_L10N_VERSION_CROWDIN_DIR   = ${PROJ_L10N_VERSION_CROWDIN_DIR}")
 message(STATUS "---------- Configuration Files ----------")
 message(STATUS "LANGUAGES_JSON_PATH             = ${LANGUAGES_JSON_PATH}")
