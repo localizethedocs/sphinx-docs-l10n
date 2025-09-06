@@ -30,7 +30,7 @@ msgstr ""
 
 #: ../../../development/tutorials/autodoc_ext.rst:11
 msgid "Overview"
-msgstr ""
+msgstr "概覽"
 
 #: ../../../development/tutorials/autodoc_ext.rst:13
 msgid ""
@@ -88,10 +88,16 @@ msgid ""
 "    ├── index.rst\n"
 "    └── my_enums.py"
 msgstr ""
+"└── source\n"
+"    ├── _ext\n"
+"    │   └── autodoc_intenum.py\n"
+"    ├── conf.py\n"
+"    ├── index.rst\n"
+"    └── my_enums.py"
 
 #: ../../../development/tutorials/autodoc_ext.rst:49
 msgid "Writing the extension"
-msgstr ""
+msgstr "編寫擴充套件"
 
 #: ../../../development/tutorials/autodoc_ext.rst:51
 msgid "Start with ``setup`` function for the extension."
@@ -186,6 +192,46 @@ msgid ""
 "source_name)\n"
 "            self.add_line('', source_name)\n"
 msgstr ""
+"class IntEnumDocumenter(ClassDocumenter):\n"
+"    objtype = 'intenum'\n"
+"    directivetype = ClassDocumenter.objtype\n"
+"    priority = 10 + ClassDocumenter.priority\n"
+"    option_spec = dict(ClassDocumenter.option_spec)\n"
+"    option_spec['hex'] = bool_option\n"
+"\n"
+"    @classmethod\n"
+"    def can_document_member(\n"
+"        cls, member: Any, membername: str, isattr: bool, parent: Any\n"
+"    ) -> bool:\n"
+"        try:\n"
+"            return issubclass(member, IntEnum)\n"
+"        except TypeError:\n"
+"            return False\n"
+"\n"
+"    def add_directive_header(self, sig: str) -> None:\n"
+"        super().add_directive_header(sig)\n"
+"        self.add_line('   :final:', self.get_sourcename())\n"
+"\n"
+"    def add_content(\n"
+"        self,\n"
+"        more_content: StringList | None,\n"
+"    ) -> None:\n"
+"        super().add_content(more_content)\n"
+"\n"
+"        source_name = self.get_sourcename()\n"
+"        enum_object: IntEnum = self.props._obj\n"
+"        use_hex = self.options.hex\n"
+"        self.add_line('', source_name)\n"
+"\n"
+"        for the_member_name, enum_member in enum_object.__members__."
+"items():  # type: ignore[attr-defined]\n"
+"            the_member_value = enum_member.value\n"
+"            if use_hex:\n"
+"                the_member_value = hex(the_member_value)\n"
+"\n"
+"            self.add_line(f'**{the_member_name}**: {the_member_value}', "
+"source_name)\n"
+"            self.add_line('', source_name)\n"
 
 #: ../../../development/tutorials/autodoc_ext.rst:85
 msgid "Important attributes of the new class:"
@@ -267,7 +313,7 @@ msgstr ""
 
 #: ../../../development/tutorials/autodoc_ext.rst:121
 msgid "Using the extension"
-msgstr ""
+msgstr "使用擴充套件"
 
 #: ../../../development/tutorials/autodoc_ext.rst:123
 msgid "You can now use the new autodoc directive to document any ``IntEnum``."
@@ -305,7 +351,7 @@ msgstr ""
 
 #: ../../../development/tutorials/autodoc_ext.rst:146
 msgid "Further reading"
-msgstr ""
+msgstr "延伸閱讀"
 
 #: ../../../development/tutorials/autodoc_ext.rst:148
 msgid ""

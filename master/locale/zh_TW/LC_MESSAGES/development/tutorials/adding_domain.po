@@ -36,7 +36,7 @@ msgstr ""
 
 #: ../../../development/tutorials/adding_domain.rst:19
 msgid "Overview"
-msgstr ""
+msgstr "概覽"
 
 #: ../../../development/tutorials/adding_domain.rst:21
 msgid "We want the extension to add the following to Sphinx:"
@@ -102,10 +102,15 @@ msgid ""
 "    ├── conf.py\n"
 "    └── index.rst"
 msgstr ""
+"└── source\n"
+"    ├── _ext\n"
+"    │   └── recipe.py\n"
+"    ├── conf.py\n"
+"    └── index.rst"
 
 #: ../../../development/tutorials/adding_domain.rst:63
 msgid "Writing the extension"
-msgstr ""
+msgstr "編寫擴充套件"
 
 #: ../../../development/tutorials/adding_domain.rst:65
 msgid ""
@@ -312,7 +317,7 @@ msgstr ""
 
 #: ../../../development/tutorials/adding_domain.rst:76
 msgid "The directive class"
-msgstr ""
+msgstr "指示詞類別"
 
 #: ../../../development/tutorials/adding_domain.rst:77
 msgid "The first thing to examine is the ``RecipeDirective`` directive:"
@@ -342,6 +347,27 @@ msgid ""
 "            recipes = self.env.get_domain('recipe')\n"
 "            recipes.add_recipe(sig, ingredients)\n"
 msgstr ""
+"class RecipeDirective(ObjectDescription):\n"
+"    \"\"\"A custom directive that describes a recipe.\"\"\"\n"
+"\n"
+"    has_content = True\n"
+"    required_arguments = 1\n"
+"    option_spec = {\n"
+"        'contains': directives.unchanged_required,\n"
+"    }\n"
+"\n"
+"    def handle_signature(self, sig, signode):\n"
+"        signode += addnodes.desc_name(text=sig)\n"
+"        return sig\n"
+"\n"
+"    def add_target_and_index(self, name_cls, sig, signode):\n"
+"        signode['ids'].append('recipe' + '-' + sig)\n"
+"        if 'contains' in self.options:\n"
+"            ingredients = [x.strip() for x in self.options.get('contains')."
+"split(',')]\n"
+"\n"
+"            recipes = self.env.get_domain('recipe')\n"
+"            recipes.add_recipe(sig, ingredients)\n"
 
 #: ../../../development/tutorials/adding_domain.rst:84
 msgid ""
@@ -369,7 +395,7 @@ msgstr ""
 
 #: ../../../development/tutorials/adding_domain.rst:104
 msgid "The index classes"
-msgstr ""
+msgstr "索引類別"
 
 #: ../../../development/tutorials/adding_domain.rst:107
 msgid "Todo"
@@ -600,7 +626,7 @@ msgstr ""
 
 #: ../../../development/tutorials/adding_domain.rst:173
 msgid "The ``setup`` function"
-msgstr ""
+msgstr "``setup`` 函式"
 
 #: ../../../development/tutorials/adding_domain.rst:176
 msgid ""
@@ -633,7 +659,7 @@ msgstr ""
 
 #: ../../../development/tutorials/adding_domain.rst:195
 msgid "Using the extension"
-msgstr ""
+msgstr "使用擴充套件"
 
 #: ../../../development/tutorials/adding_domain.rst:197
 msgid "You can now use the extension throughout your project. For example:"
@@ -680,7 +706,7 @@ msgstr ""
 
 #: ../../../development/tutorials/adding_domain.rst:229
 msgid "Further reading"
-msgstr ""
+msgstr "延伸閱讀"
 
 #: ../../../development/tutorials/adding_domain.rst:231
 msgid ""
