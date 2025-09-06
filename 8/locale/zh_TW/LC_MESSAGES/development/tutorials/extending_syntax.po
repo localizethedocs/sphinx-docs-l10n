@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_syntax.rst:7
 msgid "Overview"
-msgstr ""
+msgstr "概覽"
 
 #: ../../../development/tutorials/extending_syntax.rst:9
 msgid ""
@@ -93,7 +93,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_syntax.rst:47
 msgid "Writing the extension"
-msgstr ""
+msgstr "編寫擴充套件"
 
 #: ../../../development/tutorials/extending_syntax.rst:49
 msgid "Open :file:`helloworld.py` and paste the following code in it:"
@@ -146,7 +146,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_syntax.rst:58
 msgid "The role class"
-msgstr ""
+msgstr "角色類別"
 
 #: ../../../development/tutorials/extending_syntax.rst:60
 msgid "Our new role is declared in the ``HelloRole`` class."
@@ -161,6 +161,12 @@ msgid ""
 "        node = nodes.inline(text=f'Hello {self.text}!')\n"
 "        return [node], []\n"
 msgstr ""
+"class HelloRole(SphinxRole):\n"
+"    \"\"\"A role to say hello!\"\"\"\n"
+"\n"
+"    def run(self) -> tuple[list[nodes.Node], list[nodes.system_message]]:\n"
+"        node = nodes.inline(text=f'Hello {self.text}!')\n"
+"        return [node], []\n"
 
 #: ../../../development/tutorials/extending_syntax.rst:67
 msgid ""
@@ -179,7 +185,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_syntax.rst:77
 msgid "The directive class"
-msgstr ""
+msgstr "指示詞類別"
 
 #: ../../../development/tutorials/extending_syntax.rst:79
 msgid "Our new directive is declared in the ``HelloDirective`` class."
@@ -253,7 +259,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_syntax.rst:128
 msgid "The ``setup`` function"
-msgstr ""
+msgstr "``setup`` 函式"
 
 #: ../../../development/tutorials/extending_syntax.rst:130
 msgid ""
@@ -273,6 +279,15 @@ msgid ""
 "        'parallel_write_safe': True,\n"
 "    }\n"
 msgstr ""
+"def setup(app: Sphinx) -> ExtensionMetadata:\n"
+"    app.add_role('hello', HelloRole())\n"
+"    app.add_directive('hello', HelloDirective)\n"
+"\n"
+"    return {\n"
+"        'version': '0.1',\n"
+"        'parallel_read_safe': True,\n"
+"        'parallel_write_safe': True,\n"
+"    }\n"
 
 #: ../../../development/tutorials/extending_syntax.rst:137
 msgid ""
@@ -302,7 +317,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_syntax.rst:157
 msgid "Using the extension"
-msgstr ""
+msgstr "使用擴充套件"
 
 #: ../../../development/tutorials/extending_syntax.rst:159
 msgid ""
@@ -362,7 +377,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_syntax.rst:207
 msgid "Further reading"
-msgstr ""
+msgstr "延伸閱讀"
 
 #: ../../../development/tutorials/extending_syntax.rst:209
 msgid ""
