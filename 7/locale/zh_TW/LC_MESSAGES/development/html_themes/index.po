@@ -51,7 +51,7 @@ msgstr ""
 
 #: ../../../development/html_themes/index.rst:30
 msgid "Creating themes"
-msgstr ""
+msgstr "建立主題"
 
 #: ../../../development/html_themes/index.rst:32
 msgid ""
@@ -249,7 +249,7 @@ msgstr ""
 
 #: ../../../development/html_themes/index.rst:158
 msgid "sidebar settings"
-msgstr ""
+msgstr "側邊條設定"
 
 #: ../../../development/html_themes/index.rst:163
 msgid "The stylesheet setting accepts multiple CSS filenames"
@@ -269,7 +269,7 @@ msgstr ""
 
 #: ../../../development/html_themes/index.rst:173
 msgid "$ python -m sphinx.theming conf_to_toml [THEME DIRECTORY PATH]"
-msgstr ""
+msgstr "$ python -m sphinx.theming conf_to_toml [THEME DIRECTORY PATH]"
 
 #: ../../../development/html_themes/index.rst:177
 msgid ""
@@ -439,6 +439,9 @@ msgid ""
 "    {{ meta.get(\"mykey\") }}\n"
 "{%- endif %}"
 msgstr ""
+"{%- if meta is mapping %}\n"
+"    {{ meta.get(\"mykey\") }}\n"
+"{%- endif %}"
 
 #: ../../../development/html_themes/index.rst:304
 msgid ""
@@ -533,6 +536,9 @@ msgid ""
 "{{ my_func(\"some string\") }}\n"
 "</div>"
 msgstr ""
+"<div>\n"
+"{{ my_func(\"some string\") }}\n"
+"</div>"
 
 #: ../../../development/html_themes/index.rst:366
 msgid "Add your own static files to the build assets"
@@ -598,6 +604,10 @@ msgid ""
 "│   └── myjsfile.js_t\n"
 "└── mymodule.py"
 msgstr ""
+"mymodule/\n"
+"├── _static\n"
+"│   └── myjsfile.js_t\n"
+"└── mymodule.py"
 
 #: ../../../development/html_themes/index.rst:412
 msgid ""
@@ -611,6 +621,10 @@ msgid ""
 "    └── _static\n"
 "        └── myjsfile.js"
 msgstr ""
+"_build/\n"
+"└── html\n"
+"    └── _static\n"
+"        └── myjsfile.js"
 
 #: ../../../development/html_themes/index.rst:421
 msgid "See :ref:`theming-static-templates` for more information."
