@@ -51,7 +51,7 @@ msgstr ""
 
 #: ../../../development/theming.rst:28
 msgid "Creating themes"
-msgstr ""
+msgstr "建立主題"
 
 #: ../../../development/theming.rst:30
 msgid ""
@@ -142,7 +142,7 @@ msgstr ""
 
 #: ../../../development/theming.rst:82
 msgid "sidebar settings"
-msgstr ""
+msgstr "側邊條設定"
 
 #: ../../../development/theming.rst:89
 msgid "Distribute your theme as a Python package"
@@ -285,6 +285,9 @@ msgid ""
 "    {{ meta.get(\"mykey\") }}\n"
 "{%- endif %}"
 msgstr ""
+"{%- if meta is mapping %}\n"
+"    {{ meta.get(\"mykey\") }}\n"
+"{%- endif %}"
 
 #: ../../../development/theming.rst:187
 msgid ""
@@ -379,6 +382,9 @@ msgid ""
 "{{ my_func(\"some string\") }}\n"
 "</div>"
 msgstr ""
+"<div>\n"
+"{{ my_func(\"some string\") }}\n"
+"</div>"
 
 #: ../../../development/theming.rst:249
 msgid "Add your own static files to the build assets"
@@ -444,6 +450,10 @@ msgid ""
 "│   └── myjsfile.js_t\n"
 "└── mymodule.py"
 msgstr ""
+"mymodule/\n"
+"├── _static\n"
+"│   └── myjsfile.js_t\n"
+"└── mymodule.py"
 
 #: ../../../development/theming.rst:295
 msgid ""
@@ -457,6 +467,10 @@ msgid ""
 "    └── _static\n"
 "        └── myjsfile.js"
 msgstr ""
+"_build/\n"
+"└── html\n"
+"    └── _static\n"
+"        └── myjsfile.js"
 
 #: ../../../development/theming.rst:304
 msgid "See :ref:`theming-static-templates` for more information."
