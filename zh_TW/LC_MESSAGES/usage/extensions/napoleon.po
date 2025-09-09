@@ -1,0 +1,821 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2025, the Sphinx developers
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 7\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-03 20:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../usage/extensions/napoleon.rst:2
+msgid ""
+":mod:`sphinx.ext.napoleon` -- Support for NumPy and Google style docstrings"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:12
+msgid "Overview"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:16
+msgid "Are you tired of writing docstrings that look like this::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:18
+msgid ""
+":param path: The path of the file to wrap\n"
+":type path: str\n"
+":param field_storage: The :class:`FileStorage` instance to wrap\n"
+":type field_storage: FileStorage\n"
+":param temporary: Whether or not to delete the file when the File\n"
+"   instance is destructed\n"
+":type temporary: bool\n"
+":returns: A buffered writable file descriptor\n"
+":rtype: BufferedFileStorage"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:28
+msgid ""
+"`reStructuredText`_ is great, but it creates visually dense, hard to read :"
+"pep:`docstrings <287>`. Compare the jumble above to the same thing rewritten "
+"according to the `Google Python Style Guide`_::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:32
+msgid ""
+"Args:\n"
+"    path (str): The path of the file to wrap\n"
+"    field_storage (FileStorage): The :class:`FileStorage` instance to wrap\n"
+"    temporary (bool): Whether or not to delete the file when the File\n"
+"       instance is destructed\n"
+"\n"
+"Returns:\n"
+"    BufferedFileStorage: A buffered writable file descriptor"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:41
+msgid "Much more legible, no?"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:43
+msgid ""
+"Napoleon is a :term:`extension` that enables Sphinx to parse both `NumPy`_ "
+"and `Google`_ style docstrings - the style recommended by `Khan Academy`_."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:46
+msgid ""
+"Napoleon is a pre-processor that parses `NumPy`_ and `Google`_ style "
+"docstrings and converts them to reStructuredText before Sphinx attempts to "
+"parse them. This happens in an intermediate step while Sphinx is processing "
+"the documentation, so it doesn't modify any of the docstrings in your actual "
+"source code files."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:63
+msgid "Getting Started"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:65
+msgid ""
+"After :doc:`setting up Sphinx </usage/quickstart>` to build your docs, "
+"enable napoleon in the Sphinx ``conf.py`` file::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:68
+msgid ""
+"# conf.py\n"
+"\n"
+"# Add napoleon to the extensions list\n"
+"extensions = ['sphinx.ext.napoleon']"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:73
+msgid "Use ``sphinx-apidoc`` to build your API documentation::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:75
+msgid "$ sphinx-apidoc -f -o docs/source projectdir"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:79
+msgid "Docstrings"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:81
+msgid ""
+"Napoleon interprets every docstring that :mod:`autodoc <sphinx.ext.autodoc>` "
+"can find, including docstrings on: ``modules``, ``classes``, ``attributes``, "
+"``methods``, ``functions``, and ``variables``. Inside each docstring, "
+"specially formatted `Sections`_ are parsed and converted to reStructuredText."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:87
+msgid "All standard reStructuredText formatting still works as expected."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:93
+msgid "Docstring Sections"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:95
+msgid "All of the following section headers are supported:"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:97
+msgid "``Args`` *(alias of Parameters)*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:98
+msgid "``Arguments`` *(alias of Parameters)*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:99
+msgid "``Attention``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:100
+msgid "``Attributes``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:101
+msgid "``Caution``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:102
+msgid "``Danger``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:103
+msgid "``Error``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:104
+msgid "``Example``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:105
+msgid "``Examples``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:106
+msgid "``Hint``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:107
+msgid "``Important``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:108
+msgid "``Keyword Args`` *(alias of Keyword Arguments)*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:109
+msgid "``Keyword Arguments``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:110
+msgid "``Methods``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:111
+msgid "``Note``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:112
+msgid "``Notes``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:113
+msgid "``Other Parameters``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:114
+msgid "``Parameters``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:115
+msgid "``Return`` *(alias of Returns)*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:116
+msgid "``Returns``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:117
+msgid "``Raise`` *(alias of Raises)*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:118
+msgid "``Raises``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:119
+msgid "``References``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:120
+msgid "``See Also``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:121
+msgid "``Tip``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:122
+msgid "``Todo``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:123
+msgid "``Warning``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:124
+msgid "``Warnings`` *(alias of Warning)*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:125
+msgid "``Warn`` *(alias of Warns)*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:126
+msgid "``Warns``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:127
+msgid "``Yield`` *(alias of Yields)*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:128
+msgid "``Yields``"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:131
+msgid "Google vs NumPy"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:133
+msgid ""
+"Napoleon supports two styles of docstrings: `Google`_ and `NumPy`_. The main "
+"difference between the two styles is that Google uses indentation to "
+"separate sections, whereas NumPy uses underlines."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:137
+msgid "Google style:"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:139
+msgid ""
+"def func(arg1, arg2):\n"
+"    \"\"\"Summary line.\n"
+"\n"
+"    Extended description of function.\n"
+"\n"
+"    Args:\n"
+"        arg1 (int): Description of arg1\n"
+"        arg2 (str): Description of arg2\n"
+"\n"
+"    Returns:\n"
+"        bool: Description of return value\n"
+"\n"
+"    \"\"\"\n"
+"    return True"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:156
+msgid "NumPy style:"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:158
+msgid ""
+"def func(arg1, arg2):\n"
+"    \"\"\"Summary line.\n"
+"\n"
+"    Extended description of function.\n"
+"\n"
+"    Parameters\n"
+"    ----------\n"
+"    arg1 : int\n"
+"        Description of arg1\n"
+"    arg2 : str\n"
+"        Description of arg2\n"
+"\n"
+"    Returns\n"
+"    -------\n"
+"    bool\n"
+"        Description of return value\n"
+"\n"
+"    \"\"\"\n"
+"    return True"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:180
+msgid ""
+"NumPy style tends to require more vertical space, whereas Google style tends "
+"to use more horizontal space. Google style tends to be easier to read for "
+"short and simple docstrings, whereas NumPy style tends be easier to read for "
+"long and in-depth docstrings."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:185
+msgid ""
+"The choice between styles is largely aesthetic, but the two styles should "
+"not be mixed. Choose one style for your project and be consistent with it."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:190
+msgid "For complete examples:"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:192
+msgid ":ref:`example_google`"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:193
+msgid ":ref:`example_numpy`"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:197
+msgid "Type Annotations"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:199
+msgid ""
+":pep:`484` introduced a standard way to express types in Python code. This "
+"is an alternative to expressing types directly in docstrings. One benefit of "
+"expressing types according to :pep:`484` is that type checkers and IDEs can "
+"take advantage of them for static code analysis. :pep:`484` was then "
+"extended by :pep:`526` which introduced a similar way to annotate variables "
+"(and attributes)."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:206
+msgid "Google style with Python 3 type annotations::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:208
+msgid ""
+"def func(arg1: int, arg2: str) -> bool:\n"
+"    \"\"\"Summary line.\n"
+"\n"
+"    Extended description of function.\n"
+"\n"
+"    Args:\n"
+"        arg1: Description of arg1\n"
+"        arg2: Description of arg2\n"
+"\n"
+"    Returns:\n"
+"        Description of return value\n"
+"\n"
+"    \"\"\"\n"
+"    return True\n"
+"\n"
+"class Class:\n"
+"    \"\"\"Summary line.\n"
+"\n"
+"    Extended description of class\n"
+"\n"
+"    Attributes:\n"
+"        attr1: Description of attr1\n"
+"        attr2: Description of attr2\n"
+"    \"\"\"\n"
+"\n"
+"    attr1: int\n"
+"    attr2: str"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:236
+msgid "Google style with types in docstrings::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:238
+msgid ""
+"def func(arg1, arg2):\n"
+"    \"\"\"Summary line.\n"
+"\n"
+"    Extended description of function.\n"
+"\n"
+"    Args:\n"
+"        arg1 (int): Description of arg1\n"
+"        arg2 (str): Description of arg2\n"
+"\n"
+"    Returns:\n"
+"        bool: Description of return value\n"
+"\n"
+"    \"\"\"\n"
+"    return True\n"
+"\n"
+"class Class:\n"
+"    \"\"\"Summary line.\n"
+"\n"
+"    Extended description of class\n"
+"\n"
+"    Attributes:\n"
+"        attr1 (int): Description of attr1\n"
+"        attr2 (str): Description of attr2\n"
+"    \"\"\""
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:264
+msgid ""
+"`Python 2/3 compatible annotations`_ aren't currently supported by Sphinx "
+"and won't show up in the docs."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:271
+msgid "Configuration"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:273
+msgid ""
+"Listed below are all the settings used by napoleon and their default values. "
+"These settings can be changed in the Sphinx ``conf.py`` file. Make sure that "
+"\"sphinx.ext.napoleon\" is enabled in ``conf.py``::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:277
+msgid ""
+"# conf.py\n"
+"\n"
+"# Add any Sphinx extension module names here, as strings\n"
+"extensions = ['sphinx.ext.napoleon']\n"
+"\n"
+"# Napoleon settings\n"
+"napoleon_google_docstring = True\n"
+"napoleon_numpy_docstring = True\n"
+"napoleon_include_init_with_doc = False\n"
+"napoleon_include_private_with_doc = False\n"
+"napoleon_include_special_with_doc = True\n"
+"napoleon_use_admonition_for_examples = False\n"
+"napoleon_use_admonition_for_notes = False\n"
+"napoleon_use_admonition_for_references = False\n"
+"napoleon_use_ivar = False\n"
+"napoleon_use_param = True\n"
+"napoleon_use_rtype = True\n"
+"napoleon_preprocess_types = False\n"
+"napoleon_type_aliases = None\n"
+"napoleon_attr_annotations = True"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:305
+msgid ""
+"True to parse `Google style`_ docstrings. False to disable support for "
+"Google style docstrings. *Defaults to True.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:310
+msgid ""
+"True to parse `NumPy style`_ docstrings. False to disable support for NumPy "
+"style docstrings. *Defaults to True.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:315
+msgid ""
+"True to list ``__init___`` docstrings separately from the class docstring. "
+"False to fall back to Sphinx's default behavior, which considers the "
+"``__init___`` docstring as part of the class documentation. *Defaults to "
+"False.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:320
+#: ../../../usage/extensions/napoleon.rst:336
+#: ../../../usage/extensions/napoleon.rst:354
+#: ../../../usage/extensions/napoleon.rst:379
+#: ../../../usage/extensions/napoleon.rst:425
+#: ../../../usage/extensions/napoleon.rst:453
+#: ../../../usage/extensions/napoleon.rst:495
+msgid "**If True**::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:322
+msgid ""
+"def __init__(self):\n"
+"    \"\"\"\n"
+"    This will be included in the docs because it has a docstring\n"
+"    \"\"\"\n"
+"\n"
+"def __init__(self):\n"
+"    # This will NOT be included in the docs"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:332
+msgid ""
+"True to include private members (like ``_membername``) with docstrings in "
+"the documentation. False to fall back to Sphinx's default behavior. "
+"*Defaults to False.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:338
+msgid ""
+"def _included(self):\n"
+"    \"\"\"\n"
+"    This will be included in the docs because it has a docstring\n"
+"    \"\"\"\n"
+"    pass\n"
+"\n"
+"def _skipped(self):\n"
+"    # This will NOT be included in the docs\n"
+"    pass"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:350
+msgid ""
+"True to include special members (like ``__membername__``) with docstrings in "
+"the documentation. False to fall back to Sphinx's default behavior. "
+"*Defaults to True.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:356
+msgid ""
+"def __str__(self):\n"
+"    \"\"\"\n"
+"    This will be included in the docs because it has a docstring\n"
+"    \"\"\"\n"
+"    return unicode(self).encode('utf-8')\n"
+"\n"
+"def __unicode__(self):\n"
+"    # This will NOT be included in the docs\n"
+"    return unicode(self.__class__.__name__)"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:368
+msgid ""
+"True to use the ``.. admonition::`` directive for the **Example** and "
+"**Examples** sections. False to use the ``.. rubric::`` directive instead. "
+"One may look better than the other depending on what HTML theme is used. "
+"*Defaults to False.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:373
+#: ../../../usage/extensions/napoleon.rst:418
+#: ../../../usage/extensions/napoleon.rst:444
+#: ../../../usage/extensions/napoleon.rst:488
+msgid "This `NumPy style`_ snippet will be converted as follows::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:375
+msgid ""
+"Example\n"
+"-------\n"
+"This is just a quick example"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:381
+msgid ""
+".. admonition:: Example\n"
+"\n"
+"   This is just a quick example"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:385
+#: ../../../usage/extensions/napoleon.rst:430
+#: ../../../usage/extensions/napoleon.rst:460
+#: ../../../usage/extensions/napoleon.rst:500
+msgid "**If False**::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:387
+msgid ""
+".. rubric:: Example\n"
+"\n"
+"This is just a quick example"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:393
+msgid ""
+"True to use the ``.. admonition::`` directive for **Notes** sections. False "
+"to use the ``.. rubric::`` directive instead. *Defaults to False.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:396
+msgid ""
+"The singular **Note** section will always be converted to a ``.. note::`` "
+"directive."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:401
+#: ../../../usage/extensions/napoleon.rst:411
+msgid ":confval:`napoleon_use_admonition_for_examples`"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:405
+msgid ""
+"True to use the ``.. admonition::`` directive for **References** sections. "
+"False to use the ``.. rubric::`` directive instead. *Defaults to False.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:415
+msgid ""
+"True to use the ``:ivar:`` role for instance variables. False to use the "
+"``.. attribute::`` directive instead. *Defaults to False.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:420
+msgid ""
+"Attributes\n"
+"----------\n"
+"attr1 : int\n"
+"    Description of `attr1`"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:427
+msgid ""
+":ivar attr1: Description of `attr1`\n"
+":vartype attr1: int"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:432
+msgid ""
+".. attribute:: attr1\n"
+"\n"
+"   Description of `attr1`\n"
+"\n"
+"   :type: int"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:440
+msgid ""
+"True to use a ``:param:`` role for each function parameter. False to use a "
+"single ``:parameters:`` role for all the parameters. *Defaults to True.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:446
+msgid ""
+"Parameters\n"
+"----------\n"
+"arg1 : str\n"
+"    Description of `arg1`\n"
+"arg2 : int, optional\n"
+"    Description of `arg2`, defaults to 0"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:455
+msgid ""
+":param arg1: Description of `arg1`\n"
+":type arg1: str\n"
+":param arg2: Description of `arg2`, defaults to 0\n"
+":type arg2: :class:`int`, *optional*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:462
+msgid ""
+":parameters: * **arg1** (*str*) --\n"
+"               Description of `arg1`\n"
+"             * **arg2** (*int, optional*) --\n"
+"               Description of `arg2`, defaults to 0"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:469
+msgid ""
+"True to use a ``:keyword:`` role for each function keyword argument. False "
+"to use a single ``:keyword arguments:`` role for all the keywords. *Defaults "
+"to True.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:474
+msgid ""
+"This behaves similarly to :confval:`napoleon_use_param`. Note unlike "
+"docutils, ``:keyword:`` and ``:param:`` will not be treated the same way - "
+"there will be a separate \"Keyword Arguments\" section, rendered in the same "
+"fashion as \"Parameters\" section (type links created if possible)"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:481
+msgid ":confval:`napoleon_use_param`"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:485
+msgid ""
+"True to use the ``:rtype:`` role for the return type. False to output the "
+"return type inline with the description. *Defaults to True.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:490
+msgid ""
+"Returns\n"
+"-------\n"
+"bool\n"
+"    True if successful, False otherwise"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:497
+msgid ""
+":returns: True if successful, False otherwise\n"
+":rtype: bool"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:502
+msgid ":returns: *bool* -- True if successful, False otherwise"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:506
+msgid ""
+"True to convert the type definitions in the docstrings as references. "
+"Defaults to *False*."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:512
+msgid "Do preprocess the Google style docstrings also."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:516
+msgid ""
+"A mapping to translate type names to other names or references. Works only "
+"when ``napoleon_use_param = True``. *Defaults to None.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:519
+msgid "With::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:521
+msgid ""
+"napoleon_type_aliases = {\n"
+"    \"CustomType\": \"mypackage.CustomType\",\n"
+"    \"dict-like\": \":term:`dict-like <mapping>`\",\n"
+"}"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:526
+msgid "This `NumPy style`_ snippet::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:528
+msgid ""
+"Parameters\n"
+"----------\n"
+"arg1 : CustomType\n"
+"    Description of `arg1`\n"
+"arg2 : dict-like\n"
+"    Description of `arg2`"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:535
+msgid "becomes::"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:537
+msgid ""
+":param arg1: Description of `arg1`\n"
+":type arg1: mypackage.CustomType\n"
+":param arg2: Description of `arg2`\n"
+":type arg2: :term:`dict-like <mapping>`"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:546
+msgid ""
+"True to allow using :pep:`526` attributes annotations in classes. If an "
+"attribute is documented in the docstring without a type and has an "
+"annotation in the class body, that type is used."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:554
+msgid ""
+"Add a list of custom sections to include, expanding the list of parsed "
+"sections. *Defaults to None.*"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:557
+msgid ""
+"The entries can either be strings or tuples, depending on the intention:"
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:559
+msgid "To create a custom \"generic\" section, just pass a string."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:560
+msgid ""
+"To create an alias for an existing section, pass a tuple containing the "
+"alias name and the original, in that order."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:562
+msgid ""
+"To create a custom section that displays like the parameters or returns "
+"section, pass a tuple containing the custom section name and a string value, "
+"\"params_style\" or \"returns_style\"."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:566
+msgid ""
+"If an entry is just a string, it is interpreted as a header for a generic "
+"section. If the entry is a tuple/list/indexed container, the first entry is "
+"the name of the section, the second is the section key to emulate. If the "
+"second entry value is \"params_style\" or \"returns_style\", the custom "
+"section will be displayed like the parameters section or returns section."
+msgstr ""
+
+#: ../../../usage/extensions/napoleon.rst:573
+msgid "Support ``params_style`` and ``returns_style``"
+msgstr ""
