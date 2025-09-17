@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_TW">
+  <head>
+    <meta charset="utf-8" />
+    <title>sphinxcontrib.devhelp &#8212; Sphinx 2.4.5 說明文件</title>
+    <link rel="stylesheet" href="../../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/_modules/sphinxcontrib/devhelp.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx 2.4.5 說明文件 中搜尋"
+          href="../../_static/opensearch.xml"/>
+
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../search.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/_modules/sphinxcontrib/devhelp.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../usage/installation.html">Get it</a></li>
+    <li><a href="../../contents.html">Docs</a></li>
+    <li><a href="../../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../../index.html">
+      <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">模組原始碼</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="搜" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>sphinxcontrib.devhelp 的原始碼</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    sphinxcontrib.devhelp</span>
+<span class="sd">    ~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">    Build HTML documentation and Devhelp_ support files.</span>
+
+<span class="sd">    .. _Devhelp: https://wiki.gnome.org/Apps/Devhelp</span>
+
+<span class="sd">    :copyright: Copyright 2007-2019 by the Sphinx team, see README.</span>
+<span class="sd">    :license: BSD, see LICENSE for details.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">from</span> <span class="nn">docutils</span> <span class="kn">import</span> <span class="n">nodes</span>
+<span class="kn">from</span> <span class="nn">sphinx</span> <span class="kn">import</span> <span class="n">addnodes</span>
+<span class="kn">from</span> <span class="nn">sphinx.application</span> <span class="kn">import</span> <span class="n">Sphinx</span>
+<span class="kn">from</span> <span class="nn">sphinx.builders.html</span> <span class="kn">import</span> <span class="n">StandaloneHTMLBuilder</span>
+<span class="kn">from</span> <span class="nn">sphinx.environment.adapters.indexentries</span> <span class="kn">import</span> <span class="n">IndexEntries</span>
+<span class="kn">from</span> <span class="nn">sphinx.locale</span> <span class="kn">import</span> <span class="n">get_translation</span>
+<span class="kn">from</span> <span class="nn">sphinx.util</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">sphinx.util.nodes</span> <span class="kn">import</span> <span class="n">NodeMatcher</span>
+<span class="kn">from</span> <span class="nn">sphinx.util.osutil</span> <span class="kn">import</span> <span class="n">make_filename</span>
+
+<span class="kn">from</span> <span class="nn">sphinxcontrib.devhelp.version</span> <span class="kn">import</span> <span class="n">__version__</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">etree</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">lxml.etree</span> <span class="k">as</span> <span class="nn">etree</span>  <span class="c1"># type: ignore</span>
+
+
+<span class="k">if</span> <span class="kc">False</span><span class="p">:</span>
+    <span class="c1"># For type annotation</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>  <span class="c1"># NOQA</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">__</span> <span class="o">=</span> <span class="n">get_translation</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;console&#39;</span><span class="p">)</span>
+
+<span class="n">package_dir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="DevhelpBuilder"><a class="viewcode-back" href="../../usage/builders/index.html#sphinxcontrib.devhelp.DevhelpBuilder">[文件]</a><span class="k">class</span> <span class="nc">DevhelpBuilder</span><span class="p">(</span><span class="n">StandaloneHTMLBuilder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builder that also outputs GNOME Devhelp file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;devhelp&#39;</span>
+    <span class="n">epilog</span> <span class="o">=</span> <span class="n">__</span><span class="p">(</span><span class="s1">&#39;To view the help file:</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="s1">&#39;$ mkdir -p $HOME/.local/share/devhelp/books</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="s1">&#39;$ ln -s $PWD/</span><span class="si">%(outdir)s</span><span class="s1"> $HOME/.local/share/devhelp/books/</span><span class="si">%(project)s</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="s1">&#39;$ devhelp&#39;</span><span class="p">)</span>
+
+    <span class="c1"># don&#39;t copy the reST source</span>
+    <span class="n">copysource</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">supported_image_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;image/png&#39;</span><span class="p">,</span> <span class="s1">&#39;image/gif&#39;</span><span class="p">,</span> <span class="s1">&#39;image/jpeg&#39;</span><span class="p">]</span>
+
+    <span class="c1"># don&#39;t add links</span>
+    <span class="n">add_permalinks</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="c1"># don&#39;t add sidebar etc.</span>
+    <span class="n">embedded</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># type: () -&gt; None</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_suffix</span> <span class="o">=</span> <span class="s1">&#39;.html&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link_suffix</span> <span class="o">=</span> <span class="s1">&#39;.html&#39;</span>
+
+    <span class="k">def</span> <span class="nf">handle_finish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># type: () -&gt; None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_devhelp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outdir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">devhelp_basename</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">build_devhelp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outdir</span><span class="p">,</span> <span class="n">outname</span><span class="p">):</span>
+        <span class="c1"># type: (str, str) -&gt; None</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;dumping devhelp index...&#39;</span><span class="p">))</span>
+
+        <span class="c1"># Basic info</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s1">&#39;book&#39;</span><span class="p">,</span>
+                             <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">html_title</span><span class="p">,</span>
+                             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">project</span><span class="p">,</span>
+                             <span class="n">link</span><span class="o">=</span><span class="s2">&quot;index.html&quot;</span><span class="p">,</span>
+                             <span class="n">version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+
+        <span class="c1"># TOC</span>
+        <span class="n">chapters</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s1">&#39;chapters&#39;</span><span class="p">)</span>
+
+        <span class="n">tocdoc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">get_and_resolve_doctree</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">master_doc</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">prune_toctrees</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">write_toc</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+            <span class="c1"># type: (nodes.Node, etree.Element) -&gt; None</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">addnodes</span><span class="o">.</span><span class="n">compact_paragraph</span><span class="p">)</span> <span class="ow">or</span> \
+               <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">bullet_list</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">subnode</span> <span class="ow">in</span> <span class="n">node</span><span class="p">:</span>
+                    <span class="n">write_toc</span><span class="p">(</span><span class="n">subnode</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">list_item</span><span class="p">):</span>
+                <span class="n">item</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="s1">&#39;sub&#39;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">subnode</span> <span class="ow">in</span> <span class="n">node</span><span class="p">:</span>
+                    <span class="n">write_toc</span><span class="p">(</span><span class="n">subnode</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">reference</span><span class="p">):</span>
+                <span class="n">parent</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;refuri&#39;</span><span class="p">]</span>
+                <span class="n">parent</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">astext</span><span class="p">()</span>
+
+        <span class="n">matcher</span> <span class="o">=</span> <span class="n">NodeMatcher</span><span class="p">(</span><span class="n">addnodes</span><span class="o">.</span><span class="n">compact_paragraph</span><span class="p">,</span> <span class="n">toctree</span><span class="o">=</span><span class="n">Any</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">tocdoc</span><span class="o">.</span><span class="n">traverse</span><span class="p">(</span><span class="n">matcher</span><span class="p">):</span>  <span class="c1"># type: addnodes.compact_paragraph</span>
+            <span class="n">write_toc</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">chapters</span><span class="p">)</span>
+
+        <span class="c1"># Index</span>
+        <span class="n">functions</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s1">&#39;functions&#39;</span><span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">IndexEntries</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">)</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">write_index</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">refs</span><span class="p">,</span> <span class="n">subitems</span><span class="p">):</span>
+            <span class="c1"># type: (str, List[Any], Any) -&gt; None</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">refs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">refs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">functions</span><span class="p">,</span> <span class="s1">&#39;function&#39;</span><span class="p">,</span>
+                                 <span class="n">name</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">link</span><span class="o">=</span><span class="n">refs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ref</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">refs</span><span class="p">):</span>
+                    <span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">functions</span><span class="p">,</span> <span class="s1">&#39;function&#39;</span><span class="p">,</span>
+                                     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;[</span><span class="si">%d</span><span class="s2">] </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">title</span><span class="p">),</span>
+                                     <span class="n">link</span><span class="o">=</span><span class="n">ref</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="k">if</span> <span class="n">subitems</span><span class="p">:</span>
+                <span class="n">parent_title</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s*\(.*\)\s*$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">subitem</span> <span class="ow">in</span> <span class="n">subitems</span><span class="p">:</span>
+                    <span class="n">write_index</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">parent_title</span><span class="p">,</span> <span class="n">subitem</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                                <span class="n">subitem</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[])</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span> <span class="ow">in</span> <span class="n">index</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="p">(</span><span class="n">refs</span><span class="p">,</span> <span class="n">subitems</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+                <span class="n">write_index</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">refs</span><span class="p">,</span> <span class="n">subitems</span><span class="p">)</span>
+
+        <span class="c1"># Dump the XML file</span>
+        <span class="n">xmlfile</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="n">outname</span> <span class="o">+</span> <span class="s1">&#39;.devhelp.gz&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">tree</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">setup_extension</span><span class="p">(</span><span class="s1">&#39;sphinx.builders.html&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_builder</span><span class="p">(</span><span class="n">DevhelpBuilder</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_message_catalog</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">package_dir</span><span class="p">,</span> <span class="s1">&#39;locales&#39;</span><span class="p">))</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;devhelp_basename&#39;</span><span class="p">,</span>
+                         <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="n">make_filename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="p">),</span>
+                         <span class="s1">&#39;devhelp&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="n">__version__</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >模組原始碼</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2019, Georg Brandl and the Sphinx team。
+      使用 <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5 創建。
+    </div>
+  </body>
+</html>

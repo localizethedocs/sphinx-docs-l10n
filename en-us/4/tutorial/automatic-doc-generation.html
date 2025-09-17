@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Automatic documentation generation from code &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/tutorial/automatic-doc-generation.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Appendix: Deploying a Sphinx project online" href="deploying.html" />
+    <link rel="prev" title="Describing code in Sphinx" href="describing-code.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="deploying.html" title="Appendix: Deploying a Sphinx project online"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="describing-code.html" title="Describing code in Sphinx"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Sphinx tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Automatic documentation generation from code</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Automatic documentation generation from code</a><ul>
+<li><a class="reference internal" href="#reusing-signatures-and-docstrings-with-autodoc">Reusing signatures and docstrings with autodoc</a></li>
+<li><a class="reference internal" href="#generating-comprehensive-api-references">Generating comprehensive API references</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="describing-code.html"
+                          title="previous chapter">Describing code in Sphinx</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="deploying.html"
+                          title="next chapter">Appendix: Deploying a Sphinx project online</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/automatic-doc-generation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="automatic-documentation-generation-from-code">
+<h1>Automatic documentation generation from code<a class="headerlink" href="#automatic-documentation-generation-from-code" title="Permalink to this headline">¶</a></h1>
+<p>In the <a class="reference internal" href="describing-code.html#tutorial-describing-objects"><span class="std std-ref">previous section</span></a> of the tutorial
+you manually documented a Python function in Sphinx. However, the description
+was out of sync with the code itself, since the function signature was not
+the same. Besides, it would be nice to reuse <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-0257/#what-is-a-docstring"><strong>Python docstrings</strong></a> in the documentation, rather than having to write
+the information in two places.</p>
+<p>Fortunately, <a class="reference internal" href="../usage/extensions/autodoc.html"><span class="doc">the autodoc extension</span></a> provides this
+functionality.</p>
+<section id="reusing-signatures-and-docstrings-with-autodoc">
+<h2>Reusing signatures and docstrings with autodoc<a class="headerlink" href="#reusing-signatures-and-docstrings-with-autodoc" title="Permalink to this headline">¶</a></h2>
+<p>To use autodoc, first add it to the list of enabled extensions:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">docs/source/conf.py</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinx.ext.duration&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.doctest&#39;</span><span class="p">,</span>
+<span class="hll">    <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
+</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Next, move the content of the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:function</span></code> directive to the function
+docstring in the original Python file, as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">lumache.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_random_ingredients</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="hll"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span class="hll"><span class="sd">    Return a list of random ingredients as strings.</span>
+</span><span class="hll">
+</span><span class="hll"><span class="sd">    :param kind: Optional &quot;kind&quot; of ingredients.</span>
+</span><span class="hll"><span class="sd">    :type kind: list[str] or None</span>
+</span><span class="hll"><span class="sd">    :raise lumache.InvalidKindError: If the kind is invalid.</span>
+</span><span class="hll"><span class="sd">    :return: The ingredients list.</span>
+</span><span class="hll"><span class="sd">    :rtype: list[str]</span>
+</span><span class="hll">
+</span><span class="hll"><span class="sd">    &quot;&quot;&quot;</span>
+</span>    <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;shells&quot;</span><span class="p">,</span> <span class="s2">&quot;gorgonzola&quot;</span><span class="p">,</span> <span class="s2">&quot;parsley&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Finally, replace the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:function</span></code> directive from the Sphinx documentation
+with <a class="reference internal" href="../usage/extensions/autodoc.html#directive-autofunction" title="autofunction directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autofunction</span></code></a>:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">docs/source/usage.rst</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>you can use the <span class="s">``lumache.get_random_ingredients()``</span> function:
+
+<span class="hll"><span class="p">..</span> <span class="ow">autofunction</span><span class="p">::</span> lumache.get_random_ingredients
+</span></pre></div>
+</div>
+</div>
+<p>If you now build the HTML documentation, the output will be the same!
+With the advantage that it is generated from the code itself.
+Sphinx took the reStructuredText from the docstring and included it,
+also generating proper cross-references.</p>
+<p>You can also autogenerate documentation from other objects. For example, add
+the code for the <code class="docutils literal notranslate"><span class="pre">InvalidKindError</span></code> exception:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">lumache.py</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">InvalidKindError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised if the kind is invalid.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<p>And replace the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:exception</span></code> directive with <a class="reference internal" href="../usage/extensions/autodoc.html#directive-autoexception" title="autoexception directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autoexception</span></code></a>
+as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">docs/source/usage.rst</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>or <span class="s">``&quot;veggies&quot;``</span>. Otherwise, <span class="na">:py:func:</span><span class="nv">`lumache.get_random_ingredients`</span>
+will raise an exception.
+
+<span class="hll"><span class="p">..</span> <span class="ow">autoexception</span><span class="p">::</span> lumache.InvalidKindError
+</span></pre></div>
+</div>
+</div>
+<p>And again, after running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>, the output will be the same as before.</p>
+</section>
+<section id="generating-comprehensive-api-references">
+<h2>Generating comprehensive API references<a class="headerlink" href="#generating-comprehensive-api-references" title="Permalink to this headline">¶</a></h2>
+<p>While using <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> makes keeping the code and the documentation
+in sync much easier, it still requires you to write an <code class="docutils literal notranslate"><span class="pre">auto*</span></code> directive
+for every object you want to document. Sphinx provides yet another level of
+automation: the <a class="reference internal" href="../usage/extensions/autosummary.html"><span class="doc">autosummary</span></a> extension.</p>
+<p>The <a class="reference internal" href="../usage/extensions/autosummary.html#directive-autosummary" title="autosummary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autosummary</span></code></a> directive generates documents that contain all the
+necessary <code class="docutils literal notranslate"><span class="pre">autodoc</span></code> directives. To use it, first enable the autosummary
+extension:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">docs/source/conf.py</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="s1">&#39;sphinx.ext.duration&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;sphinx.ext.doctest&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
+<span class="hll">   <span class="s1">&#39;sphinx.ext.autosummary&#39;</span><span class="p">,</span>
+</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Next, create a new <code class="docutils literal notranslate"><span class="pre">api.rst</span></code> file with these contents:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">docs/source/api.rst</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">API</span>
+<span class="gh">===</span>
+
+<span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
+   <span class="nc">:toctree:</span> generated
+
+   lumache
+</pre></div>
+</div>
+</div>
+<p>Remember to include the new document in the root toctree:</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">docs/source/index.rst</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Contents</span>
+<span class="gh">--------</span>
+
+<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+
+   usage
+<span class="hll">   api
+</span></pre></div>
+</div>
+</div>
+<p>Finally, after you build the HTML documentation running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>, it will
+contain two new pages:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">api.html</span></code>, corresponding to <code class="docutils literal notranslate"><span class="pre">docs/source/api.rst</span></code> and containing a table
+with the objects you included in the <code class="docutils literal notranslate"><span class="pre">autosummary</span></code> directive (in this case,
+only one).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">generated/lumache.html</span></code>, corresponding to a newly created reST file
+<code class="docutils literal notranslate"><span class="pre">generated/lumache.rst</span></code> and containing a summary of members of the module,
+in this case one function and one exception.</p></li>
+</ul>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="../_images/lumache-autosummary.png"><img alt="Summary page created by autosummary" src="../_images/lumache-autosummary.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-text">Summary page created by autosummary</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Each of the links in the summary page will take you to the places where you
+originally used the corresponding <code class="docutils literal notranslate"><span class="pre">autodoc</span></code> directive, in this case in the
+<code class="docutils literal notranslate"><span class="pre">usage.rst</span></code> document.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The generated files are based on <a class="reference external" href="https://jinja2docs.readthedocs.io/">Jinja2
+templates</a> that
+<a class="reference internal" href="../usage/extensions/autosummary.html#autosummary-customizing-templates"><span class="std std-ref">can be customized</span></a>,
+but that is out of scope for this tutorial.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="deploying.html" title="Appendix: Deploying a Sphinx project online"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="describing-code.html" title="Describing code in Sphinx"
+             >previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Sphinx tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Automatic documentation generation from code</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2022, Georg Brandl and the Sphinx team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>
