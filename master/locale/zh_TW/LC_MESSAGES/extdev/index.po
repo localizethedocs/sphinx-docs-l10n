@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sphinx master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-27 08:44+0000\n"
+"POT-Creation-Date: 2025-12-22 09:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,21 +100,15 @@ msgstr ""
 #: ../../../extdev/index.rst:51
 msgid ""
 "The application object (usually called ``app``) is an instance of :class:`."
-"Sphinx`.  It controls most high-level functionality, such as the setup of "
-"extensions, event dispatching and producing output (logging)."
+"Sphinx`. It controls most high-level functionality, such as loading config, "
+"initialising the environment, and the setup of extensions."
 msgstr ""
 
-#: ../../../extdev/index.rst:55
-msgid ""
-"If you have the environment object, the application is available as ``env."
-"app``."
-msgstr ""
-
-#: ../../../extdev/index.rst:58
+#: ../../../extdev/index.rst:56
 msgid "**Environment**"
 msgstr ""
 
-#: ../../../extdev/index.rst:59
+#: ../../../extdev/index.rst:57
 msgid ""
 "The build environment object (usually called ``env``) is an instance of :"
 "class:`.BuildEnvironment`.  It is responsible for parsing the source "
@@ -122,17 +116,19 @@ msgid ""
 "serialized to disk after each build."
 msgstr ""
 
-#: ../../../extdev/index.rst:64
+#: ../../../extdev/index.rst:62
 msgid ""
 "Its API provides methods to do with access to metadata, resolving "
 "references, etc.  It can also be used by extensions to cache information "
 "that should persist for incremental rebuilds."
 msgstr ""
 
-#: ../../../extdev/index.rst:68
+#: ../../../extdev/index.rst:66
 msgid ""
 "If you have the application or builder object, the environment is available "
-"as ``app.env`` or ``builder.env``."
+"as ``app.env`` or ``builder.env``. In :class:`.SphinxDirective`, :class:`."
+"SphinxRole`, or :class:`.SphinxTransform` subclasses, the environment is "
+"available as ``self.env``."
 msgstr ""
 
 #: ../../../extdev/index.rst:71
@@ -165,30 +161,49 @@ msgid ""
 msgstr ""
 
 #: ../../../extdev/index.rst:85
-msgid "The config is available as ``app.config`` or ``env.config``."
+msgid ""
+"The config is available as ``env.config``, ``builder.config``, or ``app."
+"config``. In :class:`.SphinxDirective`, :class:`.SphinxRole`, or :class:`."
+"SphinxTransform` subclasses, the environment is available as ``self.config``."
 msgstr ""
 
-#: ../../../extdev/index.rst:87
+#: ../../../extdev/index.rst:89
+msgid "**Events**"
+msgstr ""
+
+#: ../../../extdev/index.rst:90
+msgid ""
+"The event manager object (usually called ``events``) manages and dispatches "
+"Sphinx's events system. It is an instance of :class:`.EventManager`."
+msgstr ""
+
+#: ../../../extdev/index.rst:94
+msgid ""
+"The event manager is available as ``env.events``, ``builder.events``, or "
+"``app.events``."
+msgstr ""
+
+#: ../../../extdev/index.rst:97
 msgid ""
 "To see an example of use of these objects, refer to :ref:`the tutorials "
 "<extension-tutorials-index>`."
 msgstr ""
 
-#: ../../../extdev/index.rst:93 ../../../extdev/index.rst:98
+#: ../../../extdev/index.rst:103 ../../../extdev/index.rst:108
 msgid "Build phases"
 msgstr "建置階段"
 
-#: ../../../extdev/index.rst:95
+#: ../../../extdev/index.rst:105
 msgid ""
 "One thing that is vital in order to understand extension mechanisms is the "
 "way in which a Sphinx project is built: this works in several phases."
 msgstr ""
 
-#: ../../../extdev/index.rst:101
+#: ../../../extdev/index.rst:111
 msgid "**Phase 0: Initialization**"
 msgstr "**階段 0：初始化**"
 
-#: ../../../extdev/index.rst:103
+#: ../../../extdev/index.rst:113
 msgid ""
 "In this phase, almost nothing of interest to us happens.  The source "
 "directory is searched for source files, and extensions are initialized. "
@@ -196,11 +211,11 @@ msgid ""
 "is created."
 msgstr ""
 
-#: ../../../extdev/index.rst:108
+#: ../../../extdev/index.rst:118
 msgid "**Phase 1: Reading**"
 msgstr "**階段 1：讀取**"
 
-#: ../../../extdev/index.rst:110
+#: ../../../extdev/index.rst:120
 msgid ""
 "In Phase 1, all source files (and on subsequent builds, those that are new "
 "or changed) are read and parsed.  This is the phase where directives and "
@@ -210,14 +225,14 @@ msgid ""
 "existing files are read, temporary nodes are created."
 msgstr ""
 
-#: ../../../extdev/index.rst:117
+#: ../../../extdev/index.rst:127
 msgid ""
 "There are nodes provided by docutils, which are documented `in the docutils "
 "documentation <https://docutils.sourceforge.io/docs/ref/doctree.html>`__. "
 "Additional nodes are provided by Sphinx and :ref:`documented here <nodes>`."
 msgstr ""
 
-#: ../../../extdev/index.rst:121
+#: ../../../extdev/index.rst:131
 msgid ""
 "During reading, the build environment is updated with all meta- and cross "
 "reference data of the read documents, such as labels, the names of headings, "
@@ -225,25 +240,25 @@ msgid ""
 "replace the temporary nodes."
 msgstr ""
 
-#: ../../../extdev/index.rst:126
+#: ../../../extdev/index.rst:136
 msgid ""
 "The parsed doctrees are stored on the disk, because it is not possible to "
 "hold all of them in memory."
 msgstr ""
 
-#: ../../../extdev/index.rst:129
+#: ../../../extdev/index.rst:139
 msgid "**Phase 2: Consistency checks**"
 msgstr ""
 
-#: ../../../extdev/index.rst:131
+#: ../../../extdev/index.rst:141
 msgid "Some checking is done to ensure no surprises in the built documents."
 msgstr ""
 
-#: ../../../extdev/index.rst:133
+#: ../../../extdev/index.rst:143
 msgid "**Phase 3: Resolving**"
 msgstr ""
 
-#: ../../../extdev/index.rst:135
+#: ../../../extdev/index.rst:145
 msgid ""
 "Now that the metadata and cross-reference data of all existing documents is "
 "known, all temporary nodes are replaced by nodes that can be converted into "
@@ -252,44 +267,44 @@ msgid ""
 "those that don't."
 msgstr ""
 
-#: ../../../extdev/index.rst:141
+#: ../../../extdev/index.rst:151
 msgid "**Phase 4: Writing**"
 msgstr ""
 
-#: ../../../extdev/index.rst:143
+#: ../../../extdev/index.rst:153
 msgid ""
 "This phase converts the resolved doctrees to the desired output format, such "
 "as HTML or LaTeX.  This happens via a so-called docutils writer that visits "
 "the individual nodes of each doctree and produces some output in the process."
 msgstr ""
 
-#: ../../../extdev/index.rst:149
+#: ../../../extdev/index.rst:159
 msgid ""
 "Some builders deviate from this general build plan, for example, the builder "
 "that checks external links does not need anything more than the parsed "
 "doctrees and therefore does not have phases 2--4."
 msgstr ""
 
-#: ../../../extdev/index.rst:153
+#: ../../../extdev/index.rst:163
 msgid ""
 "To see an example of application, refer to :ref:`tutorial-extend-build`."
 msgstr ""
 
-#: ../../../extdev/index.rst:158
+#: ../../../extdev/index.rst:168
 msgid "Extension metadata"
 msgstr ""
 
-#: ../../../extdev/index.rst:162
+#: ../../../extdev/index.rst:172
 msgid ""
 "The ``setup()`` function should return a dictionary. This is treated by "
 "Sphinx as metadata of the extension. Metadata keys currently recognized are:"
 msgstr ""
 
-#: ../../../extdev/index.rst:166
+#: ../../../extdev/index.rst:176
 msgid "``'version'``"
 msgstr ""
 
-#: ../../../extdev/index.rst:167
+#: ../../../extdev/index.rst:177
 msgid ""
 "A string that identifies the extension version. It is used for extension "
 "version requirement checking (see :confval:`needs_extensions`) and "
@@ -297,23 +312,23 @@ msgid ""
 "version'`` is used by default."
 msgstr ""
 
-#: ../../../extdev/index.rst:172
+#: ../../../extdev/index.rst:182
 msgid "``'env_version'``"
 msgstr ""
 
-#: ../../../extdev/index.rst:173
+#: ../../../extdev/index.rst:183
 msgid ""
 "A non-zero positive integer integer that records the version of data stored "
 "in the environment by the extension."
 msgstr ""
 
-#: ../../../extdev/index.rst:177
+#: ../../../extdev/index.rst:187
 msgid ""
 "If ``'env_version'`` is not set, the extension **must not** store any data "
 "or state directly on the environment object  (``env``)."
 msgstr ""
 
-#: ../../../extdev/index.rst:180
+#: ../../../extdev/index.rst:190
 msgid ""
 "This key must be defined if the extension uses the ``env`` object to store "
 "data. The version number must be incremented whenever the type, structure,  "
@@ -321,11 +336,11 @@ msgid ""
 "invalid data from a cached environment."
 msgstr ""
 
-#: ../../../extdev/index.rst:187
+#: ../../../extdev/index.rst:197
 msgid "``'parallel_read_safe'``"
 msgstr "``'parallel_read_safe'``"
 
-#: ../../../extdev/index.rst:188
+#: ../../../extdev/index.rst:198
 msgid ""
 "A boolean that specifies if parallel reading of source files can be used "
 "when the extension is loaded. It defaults to ``False``, meaning that you "
@@ -333,53 +348,53 @@ msgid ""
 "after checking that it is."
 msgstr ""
 
-#: ../../../extdev/index.rst:195
+#: ../../../extdev/index.rst:205
 msgid ""
 "When *parallel-read-safe* is ``True``, the extension must satisfy the "
 "following conditions:"
 msgstr ""
 
-#: ../../../extdev/index.rst:198
+#: ../../../extdev/index.rst:208
 msgid ""
 "The core logic of the extension is parallelly executable during the reading "
 "phase."
 msgstr ""
 
-#: ../../../extdev/index.rst:200
+#: ../../../extdev/index.rst:210
 msgid ""
 "It has event handlers for :event:`env-merge-info` and :event:`env-purge-doc` "
 "events if it stores data to the build environment object (``env``) during "
 "the reading phase."
 msgstr ""
 
-#: ../../../extdev/index.rst:204
+#: ../../../extdev/index.rst:214
 msgid "``'parallel_write_safe'``"
 msgstr "``'parallel_write_safe'``"
 
-#: ../../../extdev/index.rst:205
+#: ../../../extdev/index.rst:215
 msgid ""
 "A boolean that specifies if parallel writing of output files can be used "
 "when the extension is loaded. Since extensions usually don't negatively "
 "influence the process, this defaults to ``True``."
 msgstr ""
 
-#: ../../../extdev/index.rst:212
+#: ../../../extdev/index.rst:222
 msgid ""
 "When *parallel-write-safe* is ``True``, the extension must satisfy the "
 "following conditions:"
 msgstr ""
 
-#: ../../../extdev/index.rst:215
+#: ../../../extdev/index.rst:225
 msgid ""
 "The core logic of the extension is parallelly executable during the writing "
 "phase."
 msgstr ""
 
-#: ../../../extdev/index.rst:220
+#: ../../../extdev/index.rst:230
 msgid "APIs used for writing extensions"
 msgstr "用於編寫擴充套件的 API"
 
-#: ../../../extdev/index.rst:222
+#: ../../../extdev/index.rst:232
 msgid ""
 "These sections provide a more complete description of the tools at your "
 "disposal when developing Sphinx extensions. Some are core to Sphinx (such as "

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sphinx master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-27 08:44+0000\n"
+"POT-Creation-Date: 2025-12-22 09:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -279,7 +279,7 @@ msgid ""
 msgstr ""
 
 #: ../../../tutorial/deploying.rst:177
-msgid ".github/workflows/"
+msgid ".github/workflows/sphinx.yml"
 msgstr ""
 
 #: ../../../tutorial/deploying.rst:177
@@ -321,7 +321,7 @@ msgstr ""
 msgid "Checkout the code."
 msgstr ""
 
-#: ../../../tutorial/deploying.rst:210 ../../../tutorial/deploying.rst:268
+#: ../../../tutorial/deploying.rst:210 ../../../tutorial/deploying.rst:269
 msgid "Build the HTML documentation using Sphinx."
 msgstr ""
 
@@ -354,42 +354,43 @@ msgstr "furo==2021.11.16"
 
 #: ../../../tutorial/deploying.rst:225
 msgid ""
-"And finally, you are ready to `enable GitHub Pages on your repository`_. For "
+"And finally, you are ready to `publish GitHub Pages from a branch`_. For "
 "that, go to :guilabel:`Settings`, then :guilabel:`Pages` on the left "
-"sidebar, select the ``gh-pages`` branch in the \"Source\" dropdown menu, and "
+"sidebar, select the ``Deploy from a branch`` item in the \"Source\" dropdown "
+"menu, select the ``gh-page`` branch in the \"Branch\" dropdown menu, and "
 "click :guilabel:`Save`. After a few minutes, you should be able to see your "
 "HTML at the designated URL."
 msgstr ""
 
-#: ../../../tutorial/deploying.rst:234
+#: ../../../tutorial/deploying.rst:235
 msgid "GitLab Pages"
 msgstr ""
 
-#: ../../../tutorial/deploying.rst:236
+#: ../../../tutorial/deploying.rst:237
 msgid ""
 "`GitLab Pages`_, on the other hand, requires you to :ref:`publish your "
 "sources <publishing-sources>` on `GitLab`_. When you are ready, you can "
 "automate the process of running ``make html`` using `GitLab CI`_."
 msgstr ""
 
-#: ../../../tutorial/deploying.rst:240
+#: ../../../tutorial/deploying.rst:241
 msgid ""
 "After you have published your sources on GitLab, create a file named ``."
 "gitlab-ci.yml`` in your repository with these contents:"
 msgstr ""
 
-#: ../../../tutorial/deploying.rst:243
+#: ../../../tutorial/deploying.rst:244
 msgid ".gitlab-ci.yml"
 msgstr ""
 
-#: ../../../tutorial/deploying.rst:243
+#: ../../../tutorial/deploying.rst:244
 msgid ""
 "stages:\n"
 "  - deploy\n"
 "\n"
 "pages:\n"
 "  stage: deploy\n"
-"  image: python:3.12-slim\n"
+"  image: python:3.14-slim\n"
 "  before_script:\n"
 "    - apt-get update && apt-get install make --no-install-recommends -y\n"
 "    - python -m pip install sphinx furo\n"
@@ -404,25 +405,25 @@ msgid ""
 "    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH"
 msgstr ""
 
-#: ../../../tutorial/deploying.rst:265
+#: ../../../tutorial/deploying.rst:266
 msgid "This contains a GitLab CI workflow with one job of several steps:"
 msgstr ""
 
-#: ../../../tutorial/deploying.rst:267
+#: ../../../tutorial/deploying.rst:268
 msgid "Install the necessary dependencies."
 msgstr ""
 
-#: ../../../tutorial/deploying.rst:269
+#: ../../../tutorial/deploying.rst:270
 msgid "Move the output to a known artifacts location."
 msgstr ""
 
-#: ../../../tutorial/deploying.rst:272
+#: ../../../tutorial/deploying.rst:273
 msgid ""
 "You will need to `validate your account`_ by entering a payment method (you "
 "will be charged a small amount that will then be reimbursed)."
 msgstr ""
 
-#: ../../../tutorial/deploying.rst:277
+#: ../../../tutorial/deploying.rst:278
 msgid ""
 "After that, if the pipeline is successful, you should be able to see your "
 "HTML at the designated URL."
