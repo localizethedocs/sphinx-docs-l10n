@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../faq.rst:4
 msgid "Sphinx FAQ"
-msgstr ""
+msgstr "Sphinx 常見問題集"
 
 #: ../../../faq.rst:6
 msgid ""
@@ -29,7 +29,7 @@ msgstr ""
 
 #: ../../../faq.rst:10
 msgid "How do I..."
-msgstr ""
+msgstr "我要如何..."
 
 #: ../../../faq.rst:12
 msgid "... create PDF files without LaTeX?"
@@ -57,7 +57,7 @@ msgstr ""
 
 #: ../../../faq.rst:23
 msgid "Use themes, see :doc:`/usage/theming`."
-msgstr ""
+msgstr "使用主題，請參見 :doc:`usage/theming`\\ 。"
 
 #: ../../../faq.rst:25
 msgid "... add global substitutions or includes?"
@@ -80,11 +80,11 @@ msgstr ""
 
 #: ../../../faq.rst:32
 msgid "... write my own extension?"
-msgstr ""
+msgstr "... 編寫我自己的擴充套件？"
 
 #: ../../../faq.rst:33
 msgid "See the :ref:`extension-tutorials-index`."
-msgstr ""
+msgstr "請參見 :ref:`extension-tutorials-index`。"
 
 #: ../../../faq.rst:35
 msgid "... convert from my existing docs using MoinMoin markup?"
@@ -220,10 +220,39 @@ msgid ""
 "</div>\n"
 "{% endblock %}"
 msgstr ""
+"{% extends \"!layout.html\" %}\n"
+"\n"
+"{%- block extrahead %}\n"
+"{{ super() }}\n"
+"<script>\n"
+"  var _gaq = _gaq || [];\n"
+"  _gaq.push(['_setAccount', 'XXX account number XXX']);\n"
+"  _gaq.push(['_trackPageview']);\n"
+"</script>\n"
+"{% endblock %}\n"
+"\n"
+"{% block footer %}\n"
+"{{ super() }}\n"
+"<div class=\"footer\">This page uses <a href=\"https://analytics.google.com/"
+"\">\n"
+"Google Analytics</a> to collect statistics. You can disable it by blocking\n"
+"the JavaScript coming from www.google-analytics.com.\n"
+"<script>\n"
+"  (function() {\n"
+"    var ga = document.createElement('script');\n"
+"    ga.src = ('https:' == document.location.protocol ?\n"
+"              'https://ssl' : 'https://www') + '.google-analytics.com/ga."
+"js';\n"
+"    ga.setAttribute('async', 'true');\n"
+"    document.documentElement.firstChild.appendChild(ga);\n"
+"  })();\n"
+"</script>\n"
+"</div>\n"
+"{% endblock %}"
 
 #: ../../../faq.rst:119
 msgid "Google Search"
-msgstr ""
+msgstr "Google 搜尋"
 
 #: ../../../faq.rst:120
 msgid ""
@@ -264,7 +293,7 @@ msgstr ""
 #: ../../../faq.rst:146
 msgid ""
 "Add ``searchbox.html`` to the :confval:`html_sidebars` configuration value."
-msgstr ""
+msgstr "將 ``searchbox.html`` 增添到 :confval:`html_sidebars` 組態值。"
 
 #: ../../../faq.rst:154
 msgid "Sphinx vs. Docutils"
@@ -389,6 +418,8 @@ msgid ""
 "$ make epub\n"
 "$ kindlegen _build/epub/yourdoc.epub"
 msgstr ""
+"$ make epub\n"
+"$ kindlegen _build/epub/yourdoc.epub"
 
 #: ../../../faq.rst:244
 msgid ""
@@ -408,6 +439,15 @@ msgid ""
 "Section After Toc Tree\n"
 "======================"
 msgstr ""
+"Section Title\n"
+"=============\n"
+"\n"
+".. toctree::\n"
+"\n"
+"   subdocument\n"
+"\n"
+"Section After Toc Tree\n"
+"======================"
 
 #: ../../../faq.rst:259
 msgid ""
@@ -417,7 +457,7 @@ msgstr ""
 
 #: ../../../faq.rst:262
 msgid "``parent.xhtml`` -> ``child.xhtml`` -> ``parent.xhtml``"
-msgstr ""
+msgstr "``parent.xhtml`` -> ``child.xhtml`` -> ``parent.xhtml``"
 
 #: ../../../faq.rst:264
 msgid "If you get the following error, fix your document structure:"

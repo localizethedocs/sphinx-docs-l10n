@@ -41,7 +41,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_build.rst:20
 msgid "Overview"
-msgstr ""
+msgstr "概覽"
 
 #: ../../../development/tutorials/extending_build.rst:23
 msgid ""
@@ -140,10 +140,19 @@ msgid ""
 "    ├── somefile.rst\n"
 "    └── someotherfile.rst"
 msgstr ""
+"└── source\n"
+"    ├── _ext\n"
+"    │   └── todo.py\n"
+"    ├── _static\n"
+"    ├── conf.py\n"
+"    ├── somefolder\n"
+"    ├── index.rst\n"
+"    ├── somefile.rst\n"
+"    └── someotherfile.rst"
 
 #: ../../../development/tutorials/extending_build.rst:84
 msgid "Writing the extension"
-msgstr ""
+msgstr "編寫擴充套件"
 
 #: ../../../development/tutorials/extending_build.rst:86
 msgid ""
@@ -307,7 +316,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_build.rst:99
 msgid "The node classes"
-msgstr ""
+msgstr "節點類別"
 
 #: ../../../development/tutorials/extending_build.rst:100
 msgid "Let's start with the node classes:"
@@ -330,6 +339,20 @@ msgid ""
 "\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"class todo(nodes.Admonition, nodes.Element):\n"
+"    pass\n"
+"\n"
+"\n"
+"class todolist(nodes.General, nodes.Element):\n"
+"    pass\n"
+"\n"
+"\n"
+"def visit_todo_node(self, node):\n"
+"    self.visit_admonition(node)\n"
+"\n"
+"\n"
 
 #: ../../../development/tutorials/extending_build.rst:107
 msgid ""
@@ -360,19 +383,19 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_build.rst:129
 msgid "https://github.com/sphinx-doc/sphinx/issues/6751"
-msgstr ""
+msgstr "https://github.com/sphinx-doc/sphinx/issues/6751"
 
 #: ../../../development/tutorials/extending_build.rst:130
 msgid "https://github.com/sphinx-doc/sphinx/issues/1493"
-msgstr ""
+msgstr "https://github.com/sphinx-doc/sphinx/issues/1493"
 
 #: ../../../development/tutorials/extending_build.rst:131
 msgid "https://github.com/sphinx-doc/sphinx/issues/1424"
-msgstr ""
+msgstr "https://github.com/sphinx-doc/sphinx/issues/1424"
 
 #: ../../../development/tutorials/extending_build.rst:134
 msgid "The directive classes"
-msgstr ""
+msgstr "指示詞類別"
 
 #: ../../../development/tutorials/extending_build.rst:135
 msgid ""
@@ -485,6 +508,19 @@ msgid ""
 "     | ...                |\n"
 "     +--------------------+"
 msgstr ""
+"+--------------------+\n"
+"| target node        |\n"
+"+--------------------+\n"
+"+--------------------+\n"
+"| todo node          |\n"
+"+--------------------+\n"
+"  \\__+--------------------+\n"
+"     | admonition title   |\n"
+"     +--------------------+\n"
+"     | paragraph          |\n"
+"     +--------------------+\n"
+"     | ...                |\n"
+"     +--------------------+"
 
 #: ../../../development/tutorials/extending_build.rst:202
 msgid "The event handlers"
@@ -618,7 +654,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_build.rst:259
 msgid "The ``setup`` function"
-msgstr ""
+msgstr "``setup`` 函式"
 
 #: ../../../development/tutorials/extending_build.rst:262
 msgid ""
@@ -654,6 +690,29 @@ msgid ""
 "        'parallel_write_safe': True,\n"
 "    }\n"
 msgstr ""
+"def setup(app: Sphinx) -> ExtensionMetadata:\n"
+"    app.add_config_value('todo_include_todos', False, 'html')\n"
+"\n"
+"    app.add_node(todolist)\n"
+"    app.add_node(\n"
+"        todo,\n"
+"        html=(visit_todo_node, depart_todo_node),\n"
+"        latex=(visit_todo_node, depart_todo_node),\n"
+"        text=(visit_todo_node, depart_todo_node),\n"
+"    )\n"
+"\n"
+"    app.add_directive('todo', TodoDirective)\n"
+"    app.add_directive('todolist', TodolistDirective)\n"
+"    app.connect('doctree-resolved', process_todo_nodes)\n"
+"    app.connect('env-purge-doc', purge_todos)\n"
+"    app.connect('env-merge-info', merge_todos)\n"
+"\n"
+"    return {\n"
+"        'version': '0.1',\n"
+"        'env_version': 1,\n"
+"        'parallel_read_safe': True,\n"
+"        'parallel_write_safe': True,\n"
+"    }\n"
 
 #: ../../../development/tutorials/extending_build.rst:272
 msgid ""
@@ -703,7 +762,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_build.rst:299
 msgid "Using the extension"
-msgstr ""
+msgstr "使用擴充套件"
 
 #: ../../../development/tutorials/extending_build.rst:301
 msgid ""
@@ -731,7 +790,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_build.rst:313
 msgid "For example:"
-msgstr ""
+msgstr "例如："
 
 #: ../../../development/tutorials/extending_build.rst:315
 msgid ""
@@ -751,7 +810,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_build.rst:328
 msgid "index.rst"
-msgstr ""
+msgstr "index.rst"
 
 #: ../../../development/tutorials/extending_build.rst:328
 msgid ""
@@ -766,10 +825,20 @@ msgid ""
 "\n"
 ".. todolist::"
 msgstr ""
+"Hello, world\n"
+"============\n"
+"\n"
+".. toctree::\n"
+"   somefile.rst\n"
+"   someotherfile.rst\n"
+"\n"
+"Hello world. Below is the list of TODOs.\n"
+"\n"
+".. todolist::"
 
 #: ../../../development/tutorials/extending_build.rst:342
 msgid "somefile.rst"
-msgstr ""
+msgstr "somefile.rst"
 
 #: ../../../development/tutorials/extending_build.rst:342
 msgid ""
@@ -780,10 +849,16 @@ msgid ""
 "\n"
 ".. todo:: Fix this"
 msgstr ""
+"foo\n"
+"===\n"
+"\n"
+"Some intro text here...\n"
+"\n"
+".. todo:: Fix this"
 
 #: ../../../development/tutorials/extending_build.rst:352
 msgid "someotherfile.rst"
-msgstr ""
+msgstr "someotherfile.rst"
 
 #: ../../../development/tutorials/extending_build.rst:352
 msgid ""
@@ -794,6 +869,12 @@ msgid ""
 "\n"
 ".. todo:: Fix that"
 msgstr ""
+"bar\n"
+"===\n"
+"\n"
+"Some more text here...\n"
+"\n"
+".. todo:: Fix that"
 
 #: ../../../development/tutorials/extending_build.rst:362
 msgid ""
@@ -805,7 +886,7 @@ msgstr ""
 
 #: ../../../development/tutorials/extending_build.rst:369
 msgid "Further reading"
-msgstr ""
+msgstr "延伸閱讀"
 
 #: ../../../development/tutorials/extending_build.rst:371
 msgid ""
