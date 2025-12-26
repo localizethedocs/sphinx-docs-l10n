@@ -261,7 +261,7 @@ endif()
 if     (VERSION MATCHES "^master$")
     set(VERSION_OF_PYTHON   "3.13")
 elseif (VERSION MATCHES "^([0-9]+)$")
-    if     (VERSION VERSION_LESS_EQUAL    "8" AND
+    if     (VERSION VERSION_LESS_EQUAL    "9" AND
             VERSION VERSION_GREATER_EQUAL "7")
         set(VERSION_OF_PYTHON   "3.13")
     elseif (VERSION VERSION_LESS_EQUAL    "6" AND
