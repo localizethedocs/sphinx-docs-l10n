@@ -1,0 +1,842 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_TW">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Developing extensions for Sphinx &#8212; Sphinx 1.8.6 說明文件</title>
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/index.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx 1.8.6 說明文件 中搜尋"
+          href="../_static/opensearch.xml"/>
+
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="Tutorial: Writing a simple extension" href="tutorial.html" />
+    <link rel="prev" title="LaTeX customization" href="../latex.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/extdev/index.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script type="text/javascript">
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial: Writing a simple extension"
+             accesskey="N">下一頁</a> |</li>
+        <li class="right" >
+          <a href="../latex.html" title="LaTeX customization"
+             accesskey="P">上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Developing extensions for Sphinx</a><ul>
+<li><a class="reference internal" href="#discovery-of-builders-by-entry-point">Discovery of builders by entry point</a></li>
+<li><a class="reference internal" href="#extension-metadata">Extension metadata</a></li>
+<li><a class="reference internal" href="#apis-used-for-writing-extensions">用於編寫擴充套件的 API</a></li>
+<li><a class="reference internal" href="#deprecated-apis">Deprecated APIs</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上個主題</h4>
+  <p class="topless"><a href="../latex.html"
+                        title="上一章">LaTeX customization</a></p>
+  <h4>下個主題</h4>
+  <p class="topless"><a href="tutorial.html"
+                        title="下一章">Tutorial: Writing a simple extension</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本頁</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/extdev/index.rst.txt"
+            rel="nofollow">顯示原始碼</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="搜" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="developing-extensions-for-sphinx">
+<span id="dev-extensions"></span><h1>Developing extensions for Sphinx<a class="headerlink" href="#developing-extensions-for-sphinx" title="本標題的永久連結">¶</a></h1>
+<p>Since many projects will need special features in their documentation, Sphinx is
+designed to be extensible on several levels.</p>
+<p>This is what you can do in an extension: First, you can add new
+<a class="reference internal" href="../glossary.html#term-builder"><span class="xref std std-term">builder</span></a>s to support new output formats or actions on the parsed
+documents.  Then, it is possible to register custom reStructuredText roles and
+directives, extending the markup.  And finally, there are so-called 「hook
+points」 at strategic places throughout the build process, where an extension can
+register a hook and run specialized code.</p>
+<p>An extension is simply a Python module.  When an extension is loaded, Sphinx
+imports this module and executes its <code class="docutils literal notranslate"><span class="pre">setup()</span></code> function, which in turn
+notifies Sphinx of everything the extension offers – see the extension tutorial
+for examples.</p>
+<p>The configuration file itself can be treated as an extension if it contains a
+<code class="docutils literal notranslate"><span class="pre">setup()</span></code> function.  All other extensions to load must be listed in the
+<a class="reference internal" href="../usage/configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">extensions</span></code></a> configuration value.</p>
+<div class="section" id="discovery-of-builders-by-entry-point">
+<h2>Discovery of builders by entry point<a class="headerlink" href="#discovery-of-builders-by-entry-point" title="本標題的永久連結">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">1.6 版新加入.</span></p>
+</div>
+<p><a class="reference internal" href="../glossary.html#term-builder"><span class="xref std std-term">Builder</span></a> extensions can be discovered by means of <a class="reference external" href="https://setuptools.readthedocs.io/en/latest/setuptools.html#dynamic-discovery-of-services-and-plugins">entry points</a> so
+that they do not have to be listed in the <a class="reference internal" href="../usage/configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">extensions</span></code></a> configuration
+value.</p>
+<p>Builder extensions should define an entry point in the <code class="docutils literal notranslate"><span class="pre">sphinx.builders</span></code>
+group. The name of the entry point needs to match your builder’s
+<a class="reference internal" href="builderapi.html#sphinx.builders.Builder.name" title="sphinx.builders.Builder.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a> attribute, which is the name passed to the
+<a class="reference internal" href="../man/sphinx-build.html#cmdoption-sphinx-build-b"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-b</span></code></a> option. The entry point value should equal the
+dotted name of the extension module. Here is an example of how an entry point
+for 『mybuilder』 can be defined in the extension’s <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setup</span><span class="p">(</span>
+    <span class="c1"># ...</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;sphinx.builders&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;mybuilder = my.extension.module&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that it is still necessary to register the builder using
+<a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_builder" title="sphinx.application.Sphinx.add_builder"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_builder()</span></code></a> in the extension’s <code class="xref py py-func docutils literal notranslate"><span class="pre">setup()</span></code> function.</p>
+</div>
+<div class="section" id="extension-metadata">
+<span id="ext-metadata"></span><h2>Extension metadata<a class="headerlink" href="#extension-metadata" title="本標題的永久連結">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">1.3 版新加入.</span></p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">setup()</span></code> function can return a dictionary.  This is treated by Sphinx
+as metadata of the extension.  Metadata keys currently recognized are:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">'version'</span></code>: a string that identifies the extension version.  It is used for
+extension version requirement checking (see <a class="reference internal" href="../usage/configuration.html#confval-needs_extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">needs_extensions</span></code></a>) and
+informational purposes.  If not given, <code class="docutils literal notranslate"><span class="pre">&quot;unknown</span> <span class="pre">version&quot;</span></code> is substituted.</li>
+<li><code class="docutils literal notranslate"><span class="pre">'env_version'</span></code>: an integer that identifies the version of env data
+structure if the extension stores any data to environment.  It is used to
+detect the data structure has been changed from last build.  The extensions
+have to increment the version when data structure has changed.  If not given,
+Sphinx considers the extension does not stores any data to environment.</li>
+<li><code class="docutils literal notranslate"><span class="pre">'parallel_read_safe'</span></code>: a boolean that specifies if parallel reading of
+source files can be used when the extension is loaded.  It defaults to
+<code class="docutils literal notranslate"><span class="pre">False</span></code>, i.e. you have to explicitly specify your extension to be
+parallel-read-safe after checking that it is.</li>
+<li><code class="docutils literal notranslate"><span class="pre">'parallel_write_safe'</span></code>: a boolean that specifies if parallel writing of
+output files can be used when the extension is loaded.  Since extensions
+usually don’t negatively influence the process, this defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="apis-used-for-writing-extensions">
+<h2>用於編寫擴充套件的 API<a class="headerlink" href="#apis-used-for-writing-extensions" title="本標題的永久連結">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial: Writing a simple extension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#important-objects">Important objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#build-phases">Build Phases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#extension-design">Extension Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#the-setup-function">The Setup Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#the-node-classes">The Node Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#the-directive-classes">The Directive Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#the-event-handlers">The Event Handlers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="appapi.html">Application API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#extension-setup">Extension setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#emitting-events">Emitting events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#producing-messages-logging">Producing messages / logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#sphinx-runtime-information">Sphinx runtime information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#sphinx-core-events">Sphinx core events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#checking-the-sphinx-version">Checking the Sphinx version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#the-config-object">The Config object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#the-template-bridge">The template bridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#exceptions">Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="envapi.html">Build environment API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builderapi.html">建置器 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collectorapi.html">Environment Collector API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markupapi.html">Docutils markup API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="markupapi.html#roles">角色</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markupapi.html#directives">指示詞</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="markupapi.html#viewlists">ViewLists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="markupapi.html#parsing-directive-content-as-rest">Parsing directive content as ReST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="domainapi.html">領域 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parserapi.html">Parser API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodes.html">Doctree node classes added by Sphinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#nodes-for-domain-specific-object-descriptions">Nodes for domain-specific object descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#new-admonition-like-constructs">New admonition-like constructs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#other-paragraph-level-nodes">Other paragraph-level nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#new-inline-nodes">New inline nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#special-nodes">Special nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="i18n.html">國際化 API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#base-classes-for-components">Base classes for components</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="deprecated-apis">
+<h2>Deprecated APIs<a class="headerlink" href="#deprecated-apis" title="本標題的永久連結">¶</a></h2>
+<p>On developing Sphinx, we are always careful to the compatibility of our APIs.
+But, sometimes, the change of interface are needed for some reasons.  In such
+cases, we’ve marked them as deprecated. And they are kept during the two
+major versions (for more details, please see <a class="reference internal" href="../devguide.html#deprecation-policy"><span class="std std-ref">Deprecation policy</span></a>).</p>
+<p>The following is a list of deprecated interfaces.</p>
+<table border="1" class="colwidths-given deprecated docutils" id="id1">
+<caption><span class="caption-text">deprecated APIs</span><a class="headerlink" href="#id1" title="本表格的永久連結">¶</a></caption>
+<colgroup>
+<col width="40%" />
+<col width="10%" />
+<col width="10%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Target</th>
+<th class="head">Deprecated</th>
+<th class="head">(will&nbsp;be) Removed</th>
+<th class="head">Alternatives</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">highlightlang</span></code></td>
+<td>1.8</td>
+<td>4.0</td>
+<td><a class="reference internal" href="../usage/restructuredtext/directives.html#directive-highlight" title="highlight directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">highlight</span></code></a></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stylesheet()</span></code></td>
+<td>1.8</td>
+<td>4.0</td>
+<td><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_css_file" title="sphinx.application.Sphinx.add_css_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_css_file()</span></code></a></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_javascript()</span></code></td>
+<td>1.8</td>
+<td>4.0</td>
+<td><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_js_file" title="sphinx.application.Sphinx.add_js_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_js_file()</span></code></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../usage/extensions/autodoc.html#confval-autodoc_default_flags"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autodoc_default_flags</span></code></a></td>
+<td>1.8</td>
+<td>4.0</td>
+<td><a class="reference internal" href="../usage/extensions/autodoc.html#confval-autodoc_default_options"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autodoc_default_options</span></code></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">content</span></code> arguments of <code class="docutils literal notranslate"><span class="pre">sphinx.util.image.guess_mimetype()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">gettext_compact</span></code> arguments of
+<code class="docutils literal notranslate"><span class="pre">sphinx.util.i18n.find_catalog_source_files()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxI18nReader.set_lineno_for_reporter()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxI18nReader.line</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.VersionChanges</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.domains.changeset.VersionChanges</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.highlighting.PygmentsBridge.unhighlight()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">trim_doctest_flags</span></code> arguments of
+<code class="docutils literal notranslate"><span class="pre">sphinx.highlighting.PygmentsBridge</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.MathDomain</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.domains.math.MathDomain</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.MathDirective</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.directives.patches.MathDirective</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.math_role()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">docutils.parsers.rst.roles.math_role()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.setup_math()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_html_math_renderer" title="sphinx.application.Sphinx.add_html_math_renderer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_html_math_renderer()</span></code></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.is_in_section_title()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.get_node_equation_number()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.util.math.get_node_equation_number()</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.wrap_displaymath()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.util.math.wrap_displaymath()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.math</span></code> (node)</td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">docutils.nodes.math</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.displaymath</span></code> (node)</td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">docutils.nodes.math_block</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.eqref</span></code> (node)</td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.builders.latex.nodes.math_reference</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">viewcode_import</span></code> (config value)</td>
+<td>1.8</td>
+<td>3.0</td>
+<td><a class="reference internal" href="../usage/extensions/viewcode.html#confval-viewcode_follow_imported_members"><code class="xref std std-confval docutils literal notranslate"><span class="pre">viewcode_follow_imported_members</span></code></a></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.Table.caption_footnotetexts</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.Table.header_footnotetexts</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.footnotestack</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.in_container_literal_block</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.next_section_ids</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.next_hyperlink_ids</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.restrict_footnote()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.unrestrict_footnote()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.push_hyperlink_ids()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.pop_hyperlink_ids()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.bibitems</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.hlsettingstack</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.ExtBabel.get_shorthandoff()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html.HTMLTranslator.highlightlang()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html.HTMLTranslator.highlightlang_base()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html.HTMLTranslator.highlightlangopts()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html.HTMLTranslator.highlightlinenothreshold()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html5.HTMLTranslator.highlightlang()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html5.HTMLTranslator.highlightlang_base()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html5.HTMLTranslator.highlightlangopts()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html5.HTMLTranslator.highlightlinenothreshold()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.check_latex_elements()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>Nothing</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.application.CONFIG_FILENAME</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.config.CONFIG_FILENAME</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Config.check_unicode()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.config.check_unicode()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Config.check_types()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.config.check_confval_types()</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">dirname</span></code>, <code class="docutils literal notranslate"><span class="pre">filename</span></code> and <code class="docutils literal notranslate"><span class="pre">tags</span></code> arguments of
+<code class="docutils literal notranslate"><span class="pre">Config.__init__()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">Config.read()</span></code></td>
+</tr>
+<tr class="row-odd"><td>The value of <a class="reference internal" href="../usage/configuration.html#confval-html_search_options"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_search_options</span></code></a></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>see <a class="reference internal" href="../usage/configuration.html#confval-html_search_options"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_search_options</span></code></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.versioning.prepare()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.versioning.UIDTransform</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Sphinx.override_domain()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_domain" title="sphinx.application.Sphinx.add_domain"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_domain()</span></code></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Sphinx.import_object()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.util.import_object()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">suffix</span></code> argument of
+<a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_source_parser" title="sphinx.application.Sphinx.add_source_parser"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_source_parser()</span></code></a></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_source_suffix" title="sphinx.application.Sphinx.add_source_suffix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_source_suffix()</span></code></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.load()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">pickle.load()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.loads()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">pickle.loads()</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.frompickle()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">pickle.load()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.dump()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">pickle.dump()</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.dumps()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">pickle.dumps()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.topickle()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">pickle.dump()</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment._nitpick_ignore</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><a class="reference internal" href="../usage/configuration.html#confval-nitpick_ignore"><code class="xref std std-confval docutils literal notranslate"><span class="pre">nitpick_ignore</span></code></a></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.versionchanges</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.update()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">Builder.read()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.read_doc()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">Builder.read_doc()</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment._read_serial()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">Builder.read()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment._read_parallel()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">Builder.read()</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.write_doctree()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">Builder.write_doctree()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.note_versionchange()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">ChangesDomain.note_changeset()</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">warn()</span></code> (template helper function)</td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">warning()</span></code></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../usage/configuration.html#confval-source_parsers"><code class="xref std std-confval docutils literal notranslate"><span class="pre">source_parsers</span></code></a></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_source_parser" title="sphinx.application.Sphinx.add_source_parser"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_source_parser()</span></code></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.util.docutils.directive_helper()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">Directive</span></code> class of docutils</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.cmdline</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.cmd.build</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.make_mode</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.cmd.make_mode</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.locale.l_()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><a class="reference internal" href="i18n.html#sphinx.locale._" title="sphinx.locale._"><code class="xref py py-func docutils literal notranslate"><span class="pre">sphinx.locale._()</span></code></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.locale.lazy_gettext()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><a class="reference internal" href="i18n.html#sphinx.locale._" title="sphinx.locale._"><code class="xref py py-func docutils literal notranslate"><span class="pre">sphinx.locale._()</span></code></a></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.locale.mygettext()</span></code></td>
+<td>1.8</td>
+<td>3.0</td>
+<td><a class="reference internal" href="i18n.html#sphinx.locale._" title="sphinx.locale._"><code class="xref py py-func docutils literal notranslate"><span class="pre">sphinx.locale._()</span></code></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.util.copy_static_entry()</span></code></td>
+<td>1.5</td>
+<td>3.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.util.fileutil.copy_asset()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.build_main()</span></code></td>
+<td>1.7</td>
+<td>2.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.cmd.build.build_main()</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx.debug()</span></code></td>
+<td>1.7</td>
+<td>2.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx.inspect_main()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.format_annotation()</span></code></td>
+<td>1.7</td>
+<td>2.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.Signature</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.formatargspec()</span></code></td>
+<td>1.7</td>
+<td>2.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.Signature</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.AutodocReporter</span></code></td>
+<td>1.7</td>
+<td>2.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.util.docutils.switch_source_input()</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.add_documenter()</span></code></td>
+<td>1.7</td>
+<td>2.0</td>
+<td><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_autodocumenter" title="sphinx.application.Sphinx.add_autodocumenter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_autodocumenter()</span></code></a></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.AutoDirective._register</span></code></td>
+<td>1.7</td>
+<td>2.0</td>
+<td><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_autodocumenter" title="sphinx.application.Sphinx.add_autodocumenter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_autodocumenter()</span></code></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">AutoDirective._special_attrgetters</span></code></td>
+<td>1.7</td>
+<td>2.0</td>
+<td><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_autodoc_attrgetter" title="sphinx.application.Sphinx.add_autodoc_attrgetter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_autodoc_attrgetter()</span></code></a></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Sphinx.warn()</span></code>, <code class="docutils literal notranslate"><span class="pre">Sphinx.info()</span></code></td>
+<td>1.6</td>
+<td>2.0</td>
+<td><a class="reference internal" href="logging.html#logging-api"><span class="std std-ref">Logging API</span></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.set_warnfunc()</span></code></td>
+<td>1.6</td>
+<td>2.0</td>
+<td><a class="reference internal" href="logging.html#logging-api"><span class="std std-ref">Logging API</span></a></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.note_toctree()</span></code></td>
+<td>1.6</td>
+<td>2.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">Toctree.note()</span></code> (in <code class="docutils literal notranslate"><span class="pre">sphinx.environment.adapters.toctree</span></code>)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.get_toc_for()</span></code></td>
+<td>1.6</td>
+<td>2.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">Toctree.get_toc_for()</span></code> (in <code class="docutils literal notranslate"><span class="pre">sphinx.environment.adapters.toctree</span></code>)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.get_toctree_for()</span></code></td>
+<td>1.6</td>
+<td>2.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">Toctree.get_toctree_for()</span></code> (in <code class="docutils literal notranslate"><span class="pre">sphinx.environment.adapters.toctree</span></code>)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.create_index()</span></code></td>
+<td>1.6</td>
+<td>2.0</td>
+<td><code class="docutils literal notranslate"><span class="pre">IndexEntries.create_index()</span></code> (in <code class="docutils literal notranslate"><span class="pre">sphinx.environment.adapters.indexentries</span></code>)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.websupport</span></code></td>
+<td>1.6</td>
+<td>2.0</td>
+<td><a class="reference external" href="https://pypi.org/project/sphinxcontrib-websupport/">sphinxcontrib-websupport</a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">StandaloneHTMLBuilder.css_files</span></code></td>
+<td>1.6</td>
+<td>2.0</td>
+<td><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stylesheet()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">document.settings.gettext_compact</span></code></td>
+<td>1.8</td>
+<td>1.8</td>
+<td><a class="reference internal" href="../usage/configuration.html#confval-gettext_compact"><code class="xref std std-confval docutils literal notranslate"><span class="pre">gettext_compact</span></code></a></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Sphinx.status_iterator()</span></code></td>
+<td>1.6</td>
+<td>1.7</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.util.status_iterator()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Sphinx.old_status_iterator()</span></code></td>
+<td>1.6</td>
+<td>1.7</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.util.old_status_iterator()</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Sphinx._directive_helper()</span></code></td>
+<td>1.6</td>
+<td>1.7</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.util.docutils.directive_helper()</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sphinx.util.compat.Directive</span></code></td>
+<td>1.6</td>
+<td>1.7</td>
+<td><code class="docutils literal notranslate"><span class="pre">docutils.parsers.rst.Directive</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sphinx.util.compat.docutils_version</span></code></td>
+<td>1.6</td>
+<td>1.7</td>
+<td><code class="docutils literal notranslate"><span class="pre">sphinx.util.docutils.__version_info__</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">On deprecating on public APIs (internal functions and classes),
+we also follow the policy as much as possible.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial: Writing a simple extension"
+             >下一頁</a> |</li>
+        <li class="right" >
+          <a href="../latex.html" title="LaTeX customization"
+             >上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2019, Georg Brandl and the Sphinx team。
+      使用 <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.6 創建。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML 主題開發 &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/development/theming.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="Man Pages" href="../man/index.html" />
+    <link rel="prev" title="組態建置器" href="builders.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="../man/index.html" title="Man Pages"
+             accesskey="N">下一頁</a> |</li>
+        <li class="right" >
+          <a href="builders.html" title="組態建置器"
+             accesskey="P">上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">擴充 Sphinx</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">HTML 主題開發</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">目次表</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">HTML 主題開發</a><ul>
+<li><a class="reference internal" href="#creating-themes">建立主題</a></li>
+<li><a class="reference internal" href="#distribute-your-theme-as-a-python-package">Distribute your theme as a Python package</a></li>
+<li><a class="reference internal" href="#templating">Templating</a><ul>
+<li><a class="reference internal" href="#static-templates">Static templates</a></li>
+<li><a class="reference internal" href="#use-custom-page-metadata-in-html-templates">Use custom page metadata in HTML templates</a></li>
+<li><a class="reference internal" href="#defining-custom-template-functions">Defining custom template functions</a></li>
+<li><a class="reference internal" href="#add-your-own-static-files-to-the-build-assets">Add your own static files to the build assets</a></li>
+<li><a class="reference internal" href="#inject-javascript-based-on-user-configuration">Inject JavaScript based on user configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>上個主題</h4>
+  <p class="topless"><a href="builders.html"
+                        title="上一章">組態建置器</a></p>
+  <h4>下個主題</h4>
+  <p class="topless"><a href="../man/index.html"
+                        title="下一章">Man Pages</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本頁</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/development/theming.rst.txt"
+            rel="nofollow">顯示原始碼</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="搜" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="html-theme-development">
+<h1>HTML 主題開發<a class="headerlink" href="#html-theme-development" title="本標題的永久連結">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">0.6 版新加入.</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>This document provides information about creating your own theme. If you
+simply wish to use a pre-existing HTML themes, refer to
+<a class="reference internal" href="../usage/theming.html"><span class="doc">HTML Theming</span></a>.</p>
+</div>
+<p>Sphinx supports changing the appearance of its HTML output via <em>themes</em>.  A
+theme is a collection of HTML templates, stylesheet(s) and other static files.
+Additionally, it has a configuration file which specifies from which theme to
+inherit, which highlighting style to use, and what options exist for customizing
+the theme’s look and feel.</p>
+<p>Themes are meant to be project-unaware, so they can be used for different
+projects without change.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>See <a class="reference internal" href="../extdev/index.html#dev-extensions"><span class="std std-ref">Developing extensions for Sphinx</span></a> for more information that may
+be helpful in developing themes.</p>
+</div>
+<div class="section" id="creating-themes">
+<h2>建立主題<a class="headerlink" href="#creating-themes" title="本標題的永久連結">¶</a></h2>
+<p>Themes take the form of either a directory or a zipfile (whose name is the
+theme name), containing the following:</p>
+<ul class="simple">
+<li><p>A <code class="file docutils literal notranslate"><span class="pre">theme.conf</span></code> file.</p></li>
+<li><p>HTML templates, if needed.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">static/</span></code> directory containing any static files that will be copied to the
+output static directory on build.  These can be images, styles, script files.</p></li>
+</ul>
+<p>The <code class="file docutils literal notranslate"><span class="pre">theme.conf</span></code> file is in INI format <a class="footnote-reference brackets" href="#id2" id="id1">1</a> (readable by the standard
+Python <code class="xref py py-mod docutils literal notranslate"><span class="pre">ConfigParser</span></code> module) and has the following structure:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[theme]</span>
+<span class="na">inherit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">base theme</span>
+<span class="na">stylesheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">main CSS name</span>
+<span class="na">pygments_style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">stylename</span>
+<span class="na">sidebars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localtoc.html, relations.html, sourcelink.html, searchbox.html</span>
+
+<span class="k">[options]</span>
+<span class="na">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">default value</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The <strong>inherit</strong> setting gives the name of a 「base theme」, or <code class="docutils literal notranslate"><span class="pre">none</span></code>.  The
+base theme will be used to locate missing templates (most themes will not have
+to supply most templates if they use <code class="docutils literal notranslate"><span class="pre">basic</span></code> as the base theme), its options
+will be inherited, and all of its static files will be used as well. If you
+want to also inherit the stylesheet, include it via CSS』 <code class="docutils literal notranslate"><span class="pre">&#64;import</span></code> in your
+own.</p></li>
+<li><p>The <strong>stylesheet</strong> setting gives the name of a CSS file which will be
+referenced in the HTML header.  If you need more than one CSS file, either
+include one from the other via CSS』 <code class="docutils literal notranslate"><span class="pre">&#64;import</span></code>, or use a custom HTML template
+that adds <code class="docutils literal notranslate"><span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;&gt;</span></code> tags as necessary.  Setting the
+<a class="reference internal" href="../usage/configuration.html#confval-html_style"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_style</span></code></a> config value will override this setting.</p></li>
+<li><p>The <strong>pygments_style</strong> setting gives the name of a Pygments style to use for
+highlighting.  This can be overridden by the user in the
+<a class="reference internal" href="../usage/configuration.html#confval-pygments_style"><code class="xref std std-confval docutils literal notranslate"><span class="pre">pygments_style</span></code></a> config value.</p></li>
+<li><p>The <strong>pygments_dark_style</strong> setting gives the name of a Pygments style to use
+for highlighting when the CSS media query <code class="docutils literal notranslate"><span class="pre">(prefers-color-scheme:</span> <span class="pre">dark)</span></code>
+evaluates to true. It is injected into the page using
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">add_css_file()</span></code>.</p></li>
+<li><p>The <strong>sidebars</strong> setting gives the comma separated list of sidebar templates
+for constructing sidebars.  This can be overridden by the user in the
+<a class="reference internal" href="../usage/configuration.html#confval-html_sidebars"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_sidebars</span></code></a> config value.</p></li>
+<li><p>The <strong>options</strong> section contains pairs of variable names and default values.
+These options can be overridden by the user in <a class="reference internal" href="../usage/configuration.html#confval-html_theme_options"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_theme_options</span></code></a>
+and are accessible from all templates as <code class="docutils literal notranslate"><span class="pre">theme_&lt;name&gt;</span></code>.</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">1.7 版新加入: </span>側邊條設定</p>
+</div>
+</div>
+<div class="section" id="distribute-your-theme-as-a-python-package">
+<span id="distribute-your-theme"></span><h2>Distribute your theme as a Python package<a class="headerlink" href="#distribute-your-theme-as-a-python-package" title="本標題的永久連結">¶</a></h2>
+<p>As a way to distribute your theme, you can use Python package.  Python package
+brings to users easy setting up ways.</p>
+<p>To distribute your theme as a Python package, please define an entry point
+called <code class="docutils literal notranslate"><span class="pre">sphinx.html_themes</span></code> in your <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file, and write a <code class="docutils literal notranslate"><span class="pre">setup()</span></code>
+function to register your themes using <code class="docutils literal notranslate"><span class="pre">add_html_theme()</span></code> API in it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># &#39;setup.py&#39;</span>
+<span class="n">setup</span><span class="p">(</span>
+    <span class="o">...</span>
+    <span class="n">entry_points</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;sphinx.html_themes&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;name_of_theme = your_package&#39;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+
+<span class="c1"># &#39;your_package.py&#39;</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_html_theme</span><span class="p">(</span><span class="s1">&#39;name_of_theme&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>If your theme package contains two or more themes, please call
+<code class="docutils literal notranslate"><span class="pre">add_html_theme()</span></code> twice or more.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.2 版新加入: </span>『sphinx_themes』 entry_points feature.</p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">1.6 版後已棄用: </span><code class="docutils literal notranslate"><span class="pre">sphinx_themes</span></code> entry_points has been deprecated.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">1.6 版新加入: </span><code class="docutils literal notranslate"><span class="pre">sphinx.html_themes</span></code> entry_points feature.</p>
+</div>
+</div>
+<div class="section" id="templating">
+<h2>Templating<a class="headerlink" href="#templating" title="本標題的永久連結">¶</a></h2>
+<p>The <a class="reference internal" href="../templating.html"><span class="doc">guide to templating</span></a> is helpful if you want to write your
+own templates.  What is important to keep in mind is the order in which Sphinx
+searches for templates:</p>
+<ul class="simple">
+<li><p>First, in the user’s <code class="docutils literal notranslate"><span class="pre">templates_path</span></code> directories.</p></li>
+<li><p>Then, in the selected theme.</p></li>
+<li><p>Then, in its base theme, its base’s base theme, etc.</p></li>
+</ul>
+<p>When extending a template in the base theme with the same name, use the theme
+name as an explicit directory: <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">extends</span> <span class="pre">&quot;basic/layout.html&quot;</span> <span class="pre">%}</span></code>.  From a
+user <code class="docutils literal notranslate"><span class="pre">templates_path</span></code> template, you can still use the 「exclamation mark」
+syntax as described in the templating document.</p>
+<div class="section" id="static-templates">
+<span id="theming-static-templates"></span><h3>Static templates<a class="headerlink" href="#static-templates" title="本標題的永久連結">¶</a></h3>
+<p>Since theme options are meant for the user to configure a theme more easily,
+without having to write a custom stylesheet, it is necessary to be able to
+template static files as well as HTML files.  Therefore, Sphinx supports
+so-called 「static templates」, like this:</p>
+<p>If the name of a file in the <code class="docutils literal notranslate"><span class="pre">static/</span></code> directory of a theme (or in the user’s
+static path, for that matter) ends with <code class="docutils literal notranslate"><span class="pre">_t</span></code>, it will be processed by the
+template engine.  The <code class="docutils literal notranslate"><span class="pre">_t</span></code> will be left from the final file name.  For
+example, the <em>classic</em> theme has a file <code class="docutils literal notranslate"><span class="pre">static/classic.css_t</span></code> which uses
+templating to put the color options into the stylesheet.  When a documentation
+is built with the classic theme, the output directory will contain a
+<code class="docutils literal notranslate"><span class="pre">_static/classic.css</span></code> file where all template tags have been processed.</p>
+</div>
+<div class="section" id="use-custom-page-metadata-in-html-templates">
+<h3>Use custom page metadata in HTML templates<a class="headerlink" href="#use-custom-page-metadata-in-html-templates" title="本標題的永久連結">¶</a></h3>
+<p>Any key / value pairs in <a class="reference internal" href="../usage/restructuredtext/field-lists.html"><span class="doc">field lists</span></a>
+that are placed <em>before</em> the page’s title will be available to the Jinja
+template when building the page within the <a class="reference internal" href="../templating.html#meta" title="meta"><code class="xref py py-data docutils literal notranslate"><span class="pre">meta</span></code></a> attribute. For example,
+if a page had the following text before its first title:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:mykey:</span> My value
+
+<span class="gh">My first title</span>
+<span class="gh">--------------</span>
+</pre></div>
+</div>
+<p>Then it could be accessed within a Jinja template like so:</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span>- <span class="k">if</span> <span class="nv">meta</span> <span class="k">is</span> <span class="nf">mapping</span> <span class="cp">%}</span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">meta.get</span><span class="o">(</span><span class="s2">&quot;mykey&quot;</span><span class="o">)</span> <span class="cp">}}</span>
+<span class="cp">{%</span>- <span class="k">endif</span> <span class="cp">%}</span>
+</pre></div>
+</div>
+<p>Note the check that <code class="docutils literal notranslate"><span class="pre">meta</span></code> is a dictionary (「mapping」 in Jinja
+terminology) to ensure that using it in this way is valid.</p>
+</div>
+<div class="section" id="defining-custom-template-functions">
+<h3>Defining custom template functions<a class="headerlink" href="#defining-custom-template-functions" title="本標題的永久連結">¶</a></h3>
+<p>Sometimes it is useful to define your own function in Python that you wish to
+then use in a template. For example, if you’d like to insert a template value
+with logic that depends on the user’s configuration in the project, or if you’d
+like to include non-trivial checks and provide friendly error messages for
+incorrect configuration in the template.</p>
+<p>To define your own template function, you’ll need to define two functions
+inside your module:</p>
+<ul class="simple">
+<li><p>A <strong>page context event handler</strong> (or <strong>registration</strong>) function. This is
+connected to the <a class="reference internal" href="../extdev/appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a> application via an event callback.</p></li>
+<li><p>A <strong>template function</strong> that you will use in your Jinja template.</p></li>
+</ul>
+<p>First, define the registration function, which accepts the arguments for
+<a class="reference internal" href="../extdev/appapi.html#event-html-page-context"><code class="xref std std-event docutils literal notranslate"><span class="pre">html-page-context</span></code></a>.</p>
+<p>Within the registration function, define the template function that you’d like to use
+within Jinja. The template function should return a string or Python objects (lists,
+dictionaries) with strings inside that Jinja uses in the templating process</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>The template function will have access to all of the variables that
+are passed to the registration function.</p>
+</div>
+<p>At the end of the registration function, add the template function to the
+Sphinx application’s context with <code class="docutils literal notranslate"><span class="pre">context['template_func']</span> <span class="pre">=</span> <span class="pre">template_func</span></code>.</p>
+<p>Finally, in your extension’s <code class="docutils literal notranslate"><span class="pre">setup()</span></code> function, add your registration
+function as a callback for <a class="reference internal" href="../extdev/appapi.html#event-html-page-context"><code class="xref std std-event docutils literal notranslate"><span class="pre">html-page-context</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The registration function</span>
+ <span class="k">def</span> <span class="nf">setup_my_func</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">pagename</span><span class="p">,</span> <span class="n">templatename</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">doctree</span><span class="p">):</span>
+     <span class="c1"># The template function</span>
+     <span class="k">def</span> <span class="nf">my_func</span><span class="p">(</span><span class="n">mystring</span><span class="p">):</span>
+         <span class="k">return</span> <span class="s2">&quot;Your string is </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mystring</span>
+     <span class="c1"># Add it to the page&#39;s context</span>
+     <span class="n">context</span><span class="p">[</span><span class="s1">&#39;my_func&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_func</span>
+
+ <span class="c1"># Your extension&#39;s setup function</span>
+ <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+     <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;html-page-context&quot;</span><span class="p">,</span> <span class="n">setup_my_func</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, you will have access to this function in jinja like so:</p>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="x">&lt;div&gt;</span>
+<span class="cp">{{</span> <span class="nv">my_func</span><span class="o">(</span><span class="s2">&quot;some string&quot;</span><span class="o">)</span> <span class="cp">}}</span>
+<span class="x">&lt;/div&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-your-own-static-files-to-the-build-assets">
+<h3>Add your own static files to the build assets<a class="headerlink" href="#add-your-own-static-files-to-the-build-assets" title="本標題的永久連結">¶</a></h3>
+<p>If you are packaging your own build assets with an extension
+(e.g., a CSS or JavaScript file), you need to ensure that they are placed
+in the <code class="docutils literal notranslate"><span class="pre">_static/</span></code> folder of HTML outputs. To do so, you may copy them directly
+into a build’s <code class="docutils literal notranslate"><span class="pre">_static/</span></code> folder at build time, generally via an event hook.
+Here is some sample code to accomplish this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">copy_custom_files</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">exc</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="n">staticdir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">outdir</span><span class="p">,</span> <span class="s1">&#39;_static&#39;</span><span class="p">)</span>
+        <span class="n">copy_asset_file</span><span class="p">(</span><span class="s1">&#39;path/to/myextension/_static/myjsfile.js&#39;</span><span class="p">,</span> <span class="n">staticdir</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;builder-inited&#39;</span><span class="p">,</span> <span class="n">copy_custom_files</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="inject-javascript-based-on-user-configuration">
+<h3>Inject JavaScript based on user configuration<a class="headerlink" href="#inject-javascript-based-on-user-configuration" title="本標題的永久連結">¶</a></h3>
+<p>If your extension makes use of JavaScript, it can be useful to allow users
+to control its behavior using their Sphinx configuration. However, this can
+be difficult to do if your JavaScript comes in the form of a static library
+(which will not be built with Jinja).</p>
+<p>There are two ways to inject variables into the JavaScript space based on user
+configuration.</p>
+<p>First, you may append <code class="docutils literal notranslate"><span class="pre">_t</span></code> to the end of any static files included with your
+extension. This will cause Sphinx to process these files with the templating
+engine, allowing you to embed variables and control behavior.</p>
+<p>For example, the following JavaScript structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mymodule/
+├──<span class="w"> </span>_static
+│<span class="w">   </span>└──<span class="w"> </span>myjsfile.js_t
+└──<span class="w"> </span>mymodule.py
+</pre></div>
+</div>
+<p>Will result in the following static file placed in your HTML’s build output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>_build/
+└──<span class="w"> </span>html
+<span class="w">    </span>└──<span class="w"> </span>_static
+<span class="w">        </span>└──<span class="w"> </span>myjsfile.js
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#theming-static-templates"><span class="std std-ref">Static templates</span></a> for more information.</p>
+<p>Second, you may use the <code class="xref py py-meth docutils literal notranslate"><span class="pre">Sphinx.add_js_file()</span></code> method without pointing it
+to a file. Normally, this method is used to insert a new JavaScript file
+into your site. However, if you do <em>not</em> pass a file path, but instead pass
+a string to the 「body」 argument, then this text will be inserted as JavaScript
+into your site’s head. This allows you to insert variables into your project’s
+JavaScript from Python.</p>
+<p>For example, the following code will read in a user-configured value and then
+insert this value as a JavaScript variable, which your extension’s JavaScript
+code may use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This function reads in a variable and inserts it into JavaScript</span>
+<span class="k">def</span> <span class="nf">add_js_variable</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="c1"># This is a configuration that you&#39;ve specified for users in `conf.py`</span>
+    <span class="n">js_variable</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;my_javascript_variable&#39;</span><span class="p">]</span>
+    <span class="n">js_text</span> <span class="o">=</span> <span class="s2">&quot;var my_variable = &#39;</span><span class="si">%s</span><span class="s2">&#39;;&quot;</span> <span class="o">%</span> <span class="n">js_variable</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_js_file</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">js_text</span><span class="p">)</span>
+<span class="c1"># We connect this function to the step after the builder is initialized</span>
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="c1"># Tell Sphinx about this configuration variable</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;my_javascript_variable&#39;</span><span class="p">)</span>
+    <span class="c1"># Run the function after the builder is initialized</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;builder-inited&#39;</span><span class="p">,</span> <span class="n">add_js_variable</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As a result, in your theme you can use code that depends on the presence of
+this variable. Users can control the variable’s value by defining it in their
+<code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> file.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>It is not an executable Python file, as opposed to <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>,
+because that would pose an unnecessary security risk if themes are
+shared.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="../man/index.html" title="Man Pages"
+             >下一頁</a> |</li>
+        <li class="right" >
+          <a href="builders.html" title="組態建置器"
+             >上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >擴充 Sphinx</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">HTML 主題開發</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2021, Georg Brandl and the Sphinx team。
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+  </body>
+</html>
