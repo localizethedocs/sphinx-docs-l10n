@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sphinx 行為守則 &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/internals/code-of-conduct.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="Sphinx 作者群" href="authors.html" />
+    <link rel="prev" title="Organization of the Sphinx project" href="organization.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="authors.html" title="Sphinx 作者群"
+             accesskey="N">下一頁</a> |</li>
+        <li class="right" >
+          <a href="organization.html" title="Organization of the Sphinx project"
+             accesskey="P">上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Sphinx internals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Sphinx 行為守則</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>上個主題</h4>
+  <p class="topless"><a href="organization.html"
+                        title="上一章">Organization of the Sphinx project</a></p>
+  <h4>下個主題</h4>
+  <p class="topless"><a href="authors.html"
+                        title="下一章">Sphinx 作者群</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本頁</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/internals/code-of-conduct.rst.txt"
+            rel="nofollow">顯示原始碼</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="搜" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sphinx-code-of-conduct">
+<span id="code-of-conduct"></span><h1>Sphinx 行為守則<a class="headerlink" href="#sphinx-code-of-conduct" title="本標題的永久連結">¶</a></h1>
+<p>Like the technical community as a whole, the Sphinx team and community is made
+up of volunteers from all over the world.
+Diversity is a strength, but it can also lead to communication issues and
+unhappiness. To that end, we have a few ground rules that we ask people to
+adhere to.</p>
+<ul class="simple">
+<li><p><strong>Be friendly and patient.</strong></p></li>
+<li><p><strong>Be welcoming.</strong>
+We strive to be a community that welcomes and supports people of all
+backgrounds and identities. This includes, but is not limited to members of
+any race, ethnicity, culture, national origin, colour, immigration status,
+social and economic class, educational level, sex, sexual orientation, gender
+identity and expression, age, size, family status, political belief, religion,
+and mental and physical ability.</p></li>
+<li><p><strong>Be considerate.</strong>
+Your work will be used by other people, and you in turn will depend on the
+work of others. Any decision you take will affect users and colleagues, and
+you should take those consequences into account when making decisions.
+Remember that we’re a world-wide community, so you might not be communicating
+in someone else’s primary language.</p></li>
+<li><p><strong>Be respectful.</strong>
+Not all of us will agree all the time, but disagreement is no excuse for poor
+behavior and poor manners. We might all experience some frustration now and
+then, but we cannot allow that frustration to turn into a personal attack.
+It’s important to remember that a community where people feel uncomfortable or
+threatened is not a productive one. Members of the Sphinx community should be
+respectful when dealing with other members as well as with people outside the
+Sphinx community.</p></li>
+<li><p><strong>Be careful in the words that you choose.</strong>
+We are a community of professionals, and we conduct ourselves professionally.
+Be kind to others. Do not insult or put down other participants. Harassment
+and other exclusionary behavior aren’t acceptable. This includes, but is not
+limited to:</p>
+<ul>
+<li><p>Violent threats or language directed against another person.</p></li>
+<li><p>Discriminatory jokes and language.</p></li>
+<li><p>Posting sexually explicit or violent material.</p></li>
+<li><p>Posting (or threatening to post) other people’s personally identifying
+information (「doxing」).</p></li>
+<li><p>Personal insults, especially those using racist or sexist terms.</p></li>
+<li><p>Unwelcome sexual attention.</p></li>
+<li><p>Advocating for, or encouraging, any of the above behavior.</p></li>
+<li><p>Repeated harassment of others. In general, if someone asks you to stop, then
+stop.</p></li>
+</ul>
+</li>
+<li><p><strong>When we disagree, try to understand why.</strong>
+Disagreements, both social and technical, happen all the time and Sphinx is no
+exception. It is important that we resolve disagreements and differing views
+constructively. Remember that we’re different. Different people have different
+perspectives on issues. Being unable to understand why someone holds a
+viewpoint doesn’t mean that they’re wrong. Don’t forget that it is human to
+err and blaming each other doesn’t get us anywhere. Instead, focus on helping
+to resolve issues and learning from mistakes.</p></li>
+</ul>
+<p>This isn’t an exhaustive list of things that you can’t do.
+Rather, take it in the spirit in which it’s intended - a guide to make it easier
+to enrich all of us and the technical communities in which we participate.
+This code of conduct applies to all spaces of the Sphinx community.</p>
+<p class="rubric">Attribution</p>
+<p>Original text courtesy of the Speak Up! project:
+<a class="reference external" href="http://web.archive.org/web/20141109123859/http://speakup.io/coc.html">http://web.archive.org/web/20141109123859/http://speakup.io/coc.html</a>.</p>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="authors.html" title="Sphinx 作者群"
+             >下一頁</a> |</li>
+        <li class="right" >
+          <a href="organization.html" title="Organization of the Sphinx project"
+             >上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Sphinx internals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Sphinx 行為守則</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2021, Georg Brandl and the Sphinx team。
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+  </body>
+</html>
