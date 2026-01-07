@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sphinx 9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 07:14+0000\n"
+"POT-Creation-Date: 2026-01-06 10:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -956,6 +956,7 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
 #: of sphinx.application.Sphinx.add_css_file:13
 #: sphinx.application.Sphinx.add_js_file:20
+#: sphinx.application.Sphinx.add_static_dir:16
 msgid "Example::"
 msgstr ""
 
@@ -1019,20 +1020,26 @@ msgid ""
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_js_file:48
+#: of sphinx.application.Sphinx.add_css_file:42
+#: sphinx.application.Sphinx.add_js_file:47
+msgid ":meth:`add_static_dir` for copying static files to the output directory"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
+#: of sphinx.application.Sphinx.add_js_file:51
 msgid ""
 "Renamed from ``app.add_javascript()``. And it allows keyword arguments as "
 "attributes of script tag."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_js_file:52
+#: of sphinx.application.Sphinx.add_js_file:55
 msgid ""
 "Take priority argument.  Allow to add a JavaScript file to the specific page."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_js_file:54
+#: of sphinx.application.Sphinx.add_js_file:57
 msgid ""
 "Take loading_method argument.  Allow to change the loading method of the "
 "JavaScript file."
@@ -1103,7 +1110,7 @@ msgid ""
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:43
+#: of sphinx.application.Sphinx.add_css_file:46
 msgid ""
 "Optional ``alternate`` and/or ``title`` attributes can be supplied with the "
 "arguments *alternate* (a Boolean) and *title* (a string). The default is no "
@@ -1112,15 +1119,60 @@ msgid ""
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:50
+#: of sphinx.application.Sphinx.add_css_file:53
 msgid ""
 "Renamed from ``app.add_stylesheet()``. And it allows keyword arguments as "
 "attributes of link tag."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:54
+#: of sphinx.application.Sphinx.add_css_file:57
 msgid "Take priority argument.  Allow to add a CSS file to the specific page."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
+#: of sphinx.application.Sphinx.add_static_dir:1
+msgid "Register a static directory to include in HTML output."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
+#: of sphinx.application.Sphinx.add_static_dir:3
+msgid ""
+"The given directory's contents will be copied to the ``_static`` directory "
+"during an HTML build. Files from extension static directories are copied "
+"after theme static files and before any directories from the user-configured "
+"``html_static_path`` setting."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
+#: of sphinx.application.Sphinx.add_static_dir:8
+msgid ""
+"Sphinx has built-in support for ``static/`` directories in themes; theme "
+"developers should only use this method to register further directories to be "
+"copied."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
+#: of sphinx.application.Sphinx.add_static_dir:12
+msgid ""
+"The path to a directory containing static files. This is typically relative "
+"to the extension's package directory."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
+#: of sphinx.application.Sphinx.add_static_dir:18
+msgid ""
+"from pathlib import Path\n"
+"\n"
+"def setup(app):\n"
+"    # All files in this directory are copied to _static/,\n"
+"    # preserving the subdirectory structure\n"
+"    app.add_static_dir(Path(__file__).parent / 'static')\n"
+"\n"
+"    # Add JavaScript and CSS files to HTML pages,\n"
+"    # the paths are relative to _static/\n"
+"    app.add_js_file('js/my_extension.js')\n"
+"    app.add_css_file('css/my_extension.css')"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
@@ -1346,17 +1398,17 @@ msgstr ""
 msgid "per_page: include the assets only in pages where they are used"
 msgstr ""
 
-#: ../../../extdev/appapi.rst:102
+#: ../../../extdev/appapi.rst:104
 msgid ""
 "All these methods raise this exception if something went wrong with the "
 "extension API."
 msgstr ""
 
-#: ../../../extdev/appapi.rst:107
+#: ../../../extdev/appapi.rst:109
 msgid "Emitting events"
 msgstr ""
 
-#: ../../../extdev/appapi.rst:111
+#: ../../../extdev/appapi.rst:113
 msgid ""
 "Extension developers should prefer using the event manager (``events``) "
 "object directly, via :meth:`.EventManager.emit` and :meth:`.EventManager."
@@ -1405,31 +1457,31 @@ msgstr ""
 msgid "Return the result of the first callback that doesn't return ``None``."
 msgstr ""
 
-#: ../../../extdev/appapi.rst:125
+#: ../../../extdev/appapi.rst:127
 msgid "Sphinx runtime information"
 msgstr ""
 
-#: ../../../extdev/appapi.rst:127
+#: ../../../extdev/appapi.rst:129
 msgid "The application object also provides runtime information as attributes."
 msgstr ""
 
-#: ../../../extdev/appapi.rst:131
+#: ../../../extdev/appapi.rst:133
 msgid "Target project.  See :class:`.Project`."
 msgstr ""
 
-#: ../../../extdev/appapi.rst:135
+#: ../../../extdev/appapi.rst:137
 msgid "Source directory."
 msgstr ""
 
-#: ../../../extdev/appapi.rst:139
+#: ../../../extdev/appapi.rst:141
 msgid "Directory containing ``conf.py``."
 msgstr ""
 
-#: ../../../extdev/appapi.rst:143
+#: ../../../extdev/appapi.rst:145
 msgid "Directory for storing pickled doctrees."
 msgstr ""
 
-#: ../../../extdev/appapi.rst:147
+#: ../../../extdev/appapi.rst:149
 msgid "Directory for storing built document."
 msgstr ""
 
@@ -1440,19 +1492,19 @@ msgid ""
 "None if the environment has not been initialised yet."
 msgstr ""
 
-#: ../../../extdev/appapi.rst:152
+#: ../../../extdev/appapi.rst:154
 msgid "Sphinx core events"
 msgstr ""
 
-#: ../../../extdev/appapi.rst:154
+#: ../../../extdev/appapi.rst:156
 msgid "Moved to :ref:`events`."
 msgstr ""
 
-#: ../../../extdev/appapi.rst:157
+#: ../../../extdev/appapi.rst:159
 msgid "Checking the Sphinx version"
 msgstr ""
 
-#: ../../../extdev/appapi.rst:161
+#: ../../../extdev/appapi.rst:163
 msgid "Use this to adapt your extension to API changes in Sphinx."
 msgstr ""
 
@@ -1474,7 +1526,7 @@ msgstr ""
 msgid "Before version 1.2, check the string ``sphinx.__version__``."
 msgstr ""
 
-#: ../../../extdev/appapi.rst:167
+#: ../../../extdev/appapi.rst:169
 msgid "The Config object"
 msgstr ""
 
@@ -1499,7 +1551,7 @@ msgid ""
 "``app.config.language`` or ``env.config.language``."
 msgstr ""
 
-#: ../../../extdev/appapi.rst:180
+#: ../../../extdev/appapi.rst:182
 msgid "The template bridge"
 msgstr ""
 
@@ -1551,7 +1603,7 @@ msgid ""
 "specified context (a Python dictionary)."
 msgstr ""
 
-#: ../../../extdev/appapi.rst:191
+#: ../../../extdev/appapi.rst:193
 msgid "Exceptions"
 msgstr ""
 
