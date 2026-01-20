@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../development/tutorials/autodoc_ext.rst:4
 msgid "Developing autodoc extensions"
-msgstr ""
+msgstr "開發 autodoc 擴充功能"
 
 #: ../../../development/tutorials/autodoc_ext.rst:6
 msgid ""
@@ -113,6 +113,13 @@ msgid ""
 "        'parallel_read_safe': True,\n"
 "    }\n"
 msgstr ""
+"def setup(app: Sphinx) -> ExtensionMetadata:\n"
+"    app.setup_extension('sphinx.ext.autodoc')  # 需要 autodoc 擴充功能\n"
+"    app.add_autodocumenter(IntEnumDocumenter)\n"
+"    return {\n"
+"        'version': '1',\n"
+"        'parallel_read_safe': True,\n"
+"    }\n"
 
 #: ../../../development/tutorials/autodoc_ext.rst:59
 msgid ""
@@ -296,6 +303,12 @@ msgid ""
 "    GREEN = 2\n"
 "    BLUE = 3"
 msgstr ""
+"class Colors(IntEnum):\n"
+"    \"\"\"Colors enumerator\"\"\"\n"
+"    NONE = 0\n"
+"    RED = 1\n"
+"    GREEN = 2\n"
+"    BLUE = 3"
 
 #: ../../../development/tutorials/autodoc_ext.rst:138
 msgid "This will be the documentation file with auto-documentation directive:"
