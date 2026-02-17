@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sphinx.transforms &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../../_static/documentation_options.js?v=bae23c90"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=cbf116e0"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/_modules/sphinx/transforms.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../search.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../index.html">
+      <img src="../../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">模組原始碼</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">sphinx.transforms</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">基礎知識</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">開始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">建置您的第一個專案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使用者指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">使用 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">擴充 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx 常見問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx 作者群</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/configuration.html">組態</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/extensions/index.html">擴充功能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes/index.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <h1>sphinx.transforms 的原始碼</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Docutils transforms used by Sphinx when reading documents.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">cast</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">nodes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils.transforms</span><span class="w"> </span><span class="kn">import</span> <span class="n">Transform</span><span class="p">,</span> <span class="n">Transformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils.transforms.parts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContentsFilter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils.transforms.references</span><span class="w"> </span><span class="kn">import</span> <span class="n">Footnotes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils.transforms.universal</span><span class="w"> </span><span class="kn">import</span> <span class="n">SmartQuotes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_language_tag</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils.utils.smartquotes</span><span class="w"> </span><span class="kn">import</span> <span class="n">smartchars</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx</span><span class="w"> </span><span class="kn">import</span> <span class="n">addnodes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.locale</span><span class="w"> </span><span class="kn">import</span> <span class="n">_</span><span class="p">,</span> <span class="n">__</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.docutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">new_document</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.i18n</span><span class="w"> </span><span class="kn">import</span> <span class="n">format_date</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.nodes</span><span class="w"> </span><span class="kn">import</span> <span class="n">apply_source_workaround</span><span class="p">,</span> <span class="n">is_smartquotable</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterator</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">TypeAlias</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">docutils.nodes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">Text</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeIs</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.application</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sphinx</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">Config</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.domains.std</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardDomain</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.environment</span><span class="w"> </span><span class="kn">import</span> <span class="n">BuildEnvironment</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtensionMetadata</span>
+
+    <span class="n">_DEFAULT_SUBSTITUTION_NAMES</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">[</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;release&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;today&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;translation progress&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">_DEFAULT_SUBSTITUTIONS</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">({</span>
+    <span class="s1">&#39;version&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;release&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;today&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;translation progress&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+
+
+<div class="viewcode-block" id="SphinxTransform">
+<a class="viewcode-back" href="../../extdev/utils.html#sphinx.transforms.SphinxTransform">[文件]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SphinxTransform</span><span class="p">(</span><span class="n">Transform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A base class of Transforms.</span>
+
+<span class="sd">    Compared with ``docutils.transforms.Transform``, this class improves accessibility to</span>
+<span class="sd">    Sphinx APIs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">app</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sphinx</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reference to the :class:`.Sphinx` object.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">app</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">env</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BuildEnvironment</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reference to the :class:`.BuildEnvironment` object.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">env</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reference to the :class:`.Config` object.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">config</span></div>
+
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SphinxTransformer</span><span class="p">(</span><span class="n">Transformer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A transformer for Sphinx.&quot;&quot;&quot;</span>
+
+    <span class="n">document</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">document</span>
+    <span class="n">env</span><span class="p">:</span> <span class="n">BuildEnvironment</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">BuildEnvironment</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_transforms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">document</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">settings</span><span class="p">,</span> <span class="s1">&#39;env&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span>
+
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">apply_transforms</span><span class="p">()</span>  <span class="c1"># type: ignore[misc]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># wrap the target node by document node during transforming</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">document</span> <span class="o">=</span> <span class="n">new_document</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">:</span>
+                    <span class="n">document</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span>
+                <span class="n">document</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">document</span> <span class="o">=</span> <span class="n">document</span>
+                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">apply_transforms</span><span class="p">()</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">document</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DefaultSubstitutions</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Replace some substitutions if they aren&#39;t defined in the document.&quot;&quot;&quot;</span>
+
+    <span class="c1"># run before the default Substitutions</span>
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">210</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># only handle those not otherwise defined in the document</span>
+        <span class="n">to_handle</span> <span class="o">=</span> <span class="n">_DEFAULT_SUBSTITUTIONS</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">substitution_defs</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">substitution_reference</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="o">:=</span> <span class="n">ref</span><span class="p">[</span><span class="s1">&#39;refname&#39;</span><span class="p">])</span> <span class="ow">in</span> <span class="n">to_handle</span><span class="p">:</span>
+                <span class="n">ref</span><span class="o">.</span><span class="n">replace_self</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_handle_default_substitution</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_default_substitution</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">_DEFAULT_SUBSTITUTION_NAMES</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Text</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;translation progress&#39;</span><span class="p">:</span>
+            <span class="c1"># special handling: calculate translation progress</span>
+            <span class="k">return</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">_calculate_translation_progress</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;today&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">text</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">today</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+            <span class="c1"># special handling: can also specify a strftime format</span>
+            <span class="n">today_fmt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">today_fmt</span> <span class="ow">or</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;%b </span><span class="si">%d</span><span class="s1">, %Y&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">format_date</span><span class="p">(</span><span class="n">today_fmt</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">language</span><span class="p">))</span>
+        <span class="c1"># config.version and config.release</span>
+        <span class="k">return</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_calculate_translation_progress</span><span class="p">(</span><span class="n">document</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">document</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">translation_progress</span> <span class="o">=</span> <span class="n">document</span><span class="p">[</span><span class="s1">&#39;translation_progress&#39;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;could not calculate translation progress!&#39;</span><span class="p">)</span>
+
+    <span class="n">total</span> <span class="o">=</span> <span class="n">translation_progress</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span>
+    <span class="n">translated</span> <span class="o">=</span> <span class="n">translation_progress</span><span class="p">[</span><span class="s1">&#39;translated&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">total</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;no translated elements!&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">translated</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total</span><span class="si">:</span><span class="s1">.2%</span><span class="si">}</span><span class="s1">&#39;</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MoveModuleTargets</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Move module targets that are the first thing in a section to the section</span>
+<span class="sd">    title.</span>
+
+<span class="sd">    XXX Python specific</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">210</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">target</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">]:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="s1">&#39;ismod&#39;</span> <span class="ow">in</span> <span class="n">node</span>
+                <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span> <span class="ow">is</span> <span class="n">nodes</span><span class="o">.</span><span class="n">section</span>
+                <span class="c1"># index 0: section title node</span>
+                <span class="c1"># index 1: index node</span>
+                <span class="c1"># index 2: target node</span>
+                <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+            <span class="p">):</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">]</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HandleCodeBlocks</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Several code block related transformations.&quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">210</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># move doctest blocks out of blockquotes</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">block_quote</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">doctest_block</span><span class="p">)</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">):</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">replace_self</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+        <span class="c1"># combine successive doctest blocks</span>
+        <span class="c1"># for node in self.document.findall(nodes.doctest_block):</span>
+        <span class="c1">#    if node not in node.parent.children:</span>
+        <span class="c1">#        continue</span>
+        <span class="c1">#    parindex = node.parent.index(node)</span>
+        <span class="c1">#    while len(node.parent) &gt; parindex+1 and \</span>
+        <span class="c1">#            isinstance(node.parent[parindex+1], nodes.doctest_block):</span>
+        <span class="c1">#        node[0] = nodes.Text(node[0] + &#39;\n\n&#39; +</span>
+        <span class="c1">#                             node.parent[parindex+1][0])</span>
+        <span class="c1">#        del node.parent[parindex+1]</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">AutoNumbering</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Register IDs of tables, figures and literal_blocks to assign numbers.&quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">210</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">domain</span><span class="p">:</span> <span class="n">StandardDomain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">domains</span><span class="o">.</span><span class="n">standard_domain</span>
+
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Element</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">domain</span><span class="o">.</span><span class="n">is_enumerable_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="n">domain</span><span class="o">.</span><span class="n">get_numfig_title</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="p">[]</span>
+            <span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">note_implicit_target</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SortIds</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sort section IDs so that the &quot;id[0-9]+&quot; one comes last.&quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">261</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">section</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">):</span>
+                <span class="n">node</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="p">[</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+
+
+<span class="n">TRANSLATABLE_NODES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;literal-block&#39;</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">literal_block</span><span class="p">,</span>
+    <span class="s1">&#39;doctest-block&#39;</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">doctest_block</span><span class="p">,</span>
+    <span class="s1">&#39;raw&#39;</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">raw</span><span class="p">,</span>
+    <span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="n">addnodes</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="s1">&#39;image&#39;</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">image</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ApplySourceWorkaround</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update source and rawsource attributes&quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">10</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">TextElement</span> <span class="o">|</span> <span class="n">nodes</span><span class="o">.</span><span class="n">image</span> <span class="o">|</span> <span class="n">nodes</span><span class="o">.</span><span class="n">topic</span><span class="p">):</span>
+                <span class="n">apply_source_workaround</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">AutoIndexUpgrader</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Detect old style (4 column based indices) and automatically upgrade to new style.&quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">210</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">addnodes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;entries&#39;</span> <span class="ow">in</span> <span class="n">node</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;entries&#39;</span><span class="p">]):</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">__</span><span class="p">(</span>
+                        <span class="s1">&#39;4 column based index found. &#39;</span>
+                        <span class="s1">&#39;It might be a bug of extensions you use: </span><span class="si">%r</span><span class="s1">&#39;</span>
+                    <span class="p">)</span>
+                    <span class="o">%</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;entries&#39;</span><span class="p">]</span>
+                <span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;entries&#39;</span><span class="p">]):</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                        <span class="n">node</span><span class="p">[</span><span class="s1">&#39;entries&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">entry</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ExtraTranslatableNodes</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Make nodes translatable&quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">10</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">targets</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gettext_additional_targets</span><span class="p">)</span>
+        <span class="n">target_nodes</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">TRANSLATABLE_NODES</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">targets</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">target_nodes</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">is_translatable_node</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeIs</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">Element</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">target_nodes</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">is_translatable_node</span><span class="p">):</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;translatable&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UnreferencedFootnotesDetector</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Detect unreferenced footnotes and emit warnings&quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="n">Footnotes</span><span class="o">.</span><span class="n">default_priority</span> <span class="o">+</span> <span class="mi">2</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">footnotes</span><span class="p">:</span>
+            <span class="c1"># note we do not warn on duplicate footnotes here</span>
+            <span class="c1"># (i.e. where the name has been moved to dupnames)</span>
+            <span class="c1"># since this is already reported by docutils</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;backrefs&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;names&#39;</span><span class="p">]:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="n">__</span><span class="p">(</span><span class="s1">&#39;Footnote [</span><span class="si">%s</span><span class="s1">] is not referenced.&#39;</span><span class="p">),</span>
+                    <span class="n">node</span><span class="p">[</span><span class="s1">&#39;names&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;names&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;dupnames&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ref&#39;</span><span class="p">,</span>
+                    <span class="n">subtype</span><span class="o">=</span><span class="s1">&#39;footnote&#39;</span><span class="p">,</span>
+                    <span class="n">location</span><span class="o">=</span><span class="n">node</span><span class="p">,</span>
+                <span class="p">)</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">symbol_footnotes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;backrefs&#39;</span><span class="p">]:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="n">__</span><span class="p">(</span><span class="s1">&#39;Footnote [*] is not referenced.&#39;</span><span class="p">),</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ref&#39;</span><span class="p">,</span>
+                    <span class="n">subtype</span><span class="o">=</span><span class="s1">&#39;footnote&#39;</span><span class="p">,</span>
+                    <span class="n">location</span><span class="o">=</span><span class="n">node</span><span class="p">,</span>
+                <span class="p">)</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">autofootnotes</span><span class="p">:</span>
+            <span class="c1"># note we do not warn on duplicate footnotes here</span>
+            <span class="c1"># (i.e. where the name has been moved to dupnames)</span>
+            <span class="c1"># since this is already reported by docutils</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;backrefs&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;names&#39;</span><span class="p">]:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="n">__</span><span class="p">(</span><span class="s1">&#39;Footnote [#] is not referenced.&#39;</span><span class="p">),</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ref&#39;</span><span class="p">,</span>
+                    <span class="n">subtype</span><span class="o">=</span><span class="s1">&#39;footnote&#39;</span><span class="p">,</span>
+                    <span class="n">location</span><span class="o">=</span><span class="n">node</span><span class="p">,</span>
+                <span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DoctestTransform</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set &quot;doctest&quot; style to each doctest_block node&quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">500</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">doctest_block</span><span class="p">):</span>
+            <span class="n">node</span><span class="p">[</span><span class="s1">&#39;classes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;doctest&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FilterSystemMessages</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter system messages from a doctree.&quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">999</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">filterlevel</span> <span class="o">=</span> <span class="mi">2</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">keep_warnings</span> <span class="k">else</span> <span class="mi">5</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">system_message</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">filterlevel</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> [filtered system message]&#39;</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">astext</span><span class="p">())</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SphinxContentsFilter</span><span class="p">(</span><span class="n">ContentsFilter</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Used with BuildEnvironment.add_toc_from() to discard cross-file links</span>
+<span class="sd">    within table-of-contents link nodes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">visit_pending_xref</span> <span class="o">=</span> <span class="n">ContentsFilter</span><span class="o">.</span><span class="n">ignore_node_but_process_children</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">visit_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">image</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">nodes</span><span class="o">.</span><span class="n">SkipNode</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SphinxSmartQuotes</span><span class="p">(</span><span class="n">SmartQuotes</span><span class="p">,</span> <span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Customized SmartQuotes to avoid transform for some extra node types.</span>
+
+<span class="sd">    refs: sphinx.parsers.RSTParser</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">750</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+            <span class="k">return</span>
+
+        <span class="c1"># override default settings with :confval:`smartquotes_action`</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">smartquotes_action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">smartquotes_action</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>  <span class="c1"># type: ignore[no-untyped-call]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_available</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">builders</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">smartquotes_excludes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;builders&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">languages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">smartquotes_excludes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;languages&#39;</span><span class="p">,</span> <span class="p">[])</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">smart_quotes</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="c1"># disabled by 3rd party extension (workaround)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">smartquotes</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="c1"># disabled by confval smartquotes</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">builders</span><span class="p">:</span>
+            <span class="c1"># disabled by confval smartquotes_excludes[&#39;builders&#39;]</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">language</span> <span class="ow">in</span> <span class="n">languages</span><span class="p">:</span>
+            <span class="c1"># disabled by confval smartquotes_excludes[&#39;languages&#39;]</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="c1"># confirm selected language supports smart_quotes or not</span>
+        <span class="n">language</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;language_code&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">tag</span> <span class="ow">in</span> <span class="n">smartchars</span><span class="o">.</span><span class="n">quotes</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">normalize_language_tag</span><span class="p">(</span><span class="n">language</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">txtnodes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Text</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+        <span class="c1"># A generator that yields ``(texttype, nodetext)`` tuples for a list</span>
+        <span class="c1"># of &quot;Text&quot; nodes (interface to ``smartquotes.educate_tokens()``).</span>
+        <span class="k">for</span> <span class="n">txtnode</span> <span class="ow">in</span> <span class="n">txtnodes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">is_smartquotable</span><span class="p">(</span><span class="n">txtnode</span><span class="p">):</span>
+                <span class="c1"># SmartQuotes uses backslash escapes instead of null-escapes</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;=\x00)([-</span><span class="se">\\\&#39;</span><span class="s1">&quot;.`])&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">\1&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">txtnode</span><span class="p">))</span>
+                <span class="k">yield</span> <span class="s1">&#39;plain&#39;</span><span class="p">,</span> <span class="n">text</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># skip smart quotes</span>
+                <span class="k">yield</span> <span class="s1">&#39;literal&#39;</span><span class="p">,</span> <span class="n">txtnode</span><span class="o">.</span><span class="n">astext</span><span class="p">()</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DoctreeReadEvent</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Emit :event:`doctree-read` event.&quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">880</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="s1">&#39;doctree-read&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GlossarySorter</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sort glossaries that have the ``sorted`` flag.&quot;&quot;&quot;</span>
+
+    <span class="c1"># This must be done after i18n, therefore not right</span>
+    <span class="c1"># away in the glossary directive.</span>
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">500</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">glossary</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">addnodes</span><span class="o">.</span><span class="n">glossary</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">glossary</span><span class="p">[</span><span class="s1">&#39;sorted&#39;</span><span class="p">]:</span>
+                <span class="n">definition_list</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s1">&#39;nodes.definition_list&#39;</span><span class="p">,</span> <span class="n">glossary</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">definition_list</span><span class="p">[:]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+                    <span class="n">definition_list</span><span class="p">,</span>
+                    <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span>
+                        <span class="s1">&#39;NFD&#39;</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="s1">&#39;nodes.term&#39;</span><span class="p">,</span> <span class="n">item</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astext</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                    <span class="p">),</span>
+                <span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ReorderConsecutiveTargetAndIndexNodes</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Index nodes interspersed between target nodes prevent other</span>
+<span class="sd">    Transformations from combining those target nodes,</span>
+<span class="sd">    e.g. ``PropagateTargets``.  This transformation reorders them:</span>
+
+<span class="sd">    Given the following ``document`` as input::</span>
+
+<span class="sd">        &lt;document&gt;</span>
+<span class="sd">            &lt;target ids=&quot;id1&quot; ...&gt;</span>
+<span class="sd">            &lt;index entries=&quot;...1...&quot;&gt;</span>
+<span class="sd">            &lt;target ids=&quot;id2&quot; ...&gt;</span>
+<span class="sd">            &lt;target ids=&quot;id3&quot; ...&gt;</span>
+<span class="sd">            &lt;index entries=&quot;...2...&quot;&gt;</span>
+<span class="sd">            &lt;target ids=&quot;id4&quot; ...&gt;</span>
+
+<span class="sd">    The transformed result will be::</span>
+
+<span class="sd">        &lt;document&gt;</span>
+<span class="sd">            &lt;index entries=&quot;...1...&quot;&gt;</span>
+<span class="sd">            &lt;index entries=&quot;...2...&quot;&gt;</span>
+<span class="sd">            &lt;target ids=&quot;id1&quot; ...&gt;</span>
+<span class="sd">            &lt;target ids=&quot;id2&quot; ...&gt;</span>
+<span class="sd">            &lt;target ids=&quot;id3&quot; ...&gt;</span>
+<span class="sd">            &lt;target ids=&quot;id4&quot; ...&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># This transform MUST run before ``PropagateTargets``.</span>
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">220</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">target</span><span class="p">):</span>
+            <span class="n">_reorder_index_target_nodes</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_reorder_index_target_nodes</span><span class="p">(</span><span class="n">start_node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">target</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sort target and index nodes.</span>
+
+<span class="sd">    Find all consecutive target and index nodes starting from ``start_node``,</span>
+<span class="sd">    and move all index nodes to before the first target node.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nodes_to_reorder</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">target</span> <span class="o">|</span> <span class="n">addnodes</span><span class="o">.</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Note that we cannot use &#39;condition&#39; to filter,</span>
+    <span class="c1"># as we want *consecutive* target &amp; index nodes.</span>
+    <span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Node</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">start_node</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">descend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">siblings</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">target</span> <span class="o">|</span> <span class="n">addnodes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
+            <span class="n">nodes_to_reorder</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">break</span>  <span class="c1"># must be a consecutive run of target or index nodes</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_to_reorder</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span>  <span class="c1"># Nothing to reorder</span>
+
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">nodes_to_reorder</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">parent</span>
+    <span class="k">if</span> <span class="n">parent</span> <span class="o">==</span> <span class="n">nodes_to_reorder</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+        <span class="n">first_idx</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">nodes_to_reorder</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">last_idx</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">nodes_to_reorder</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">first_idx</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes_to_reorder</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">last_idx</span><span class="p">:</span>
+            <span class="n">parent</span><span class="p">[</span><span class="n">first_idx</span> <span class="p">:</span> <span class="n">last_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nodes_to_reorder</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">_sort_key</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_sort_key</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="c1"># Must be a stable sort.</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">addnodes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">target</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;_sort_key called with unexpected node type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">node</span><span class="p">)</span><span class="si">!r}</span><span class="s1">&#39;</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtensionMetadata</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">ApplySourceWorkaround</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">ExtraTranslatableNodes</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">DefaultSubstitutions</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">MoveModuleTargets</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">HandleCodeBlocks</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">SortIds</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">DoctestTransform</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">AutoNumbering</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">AutoIndexUpgrader</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">FilterSystemMessages</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">UnreferencedFootnotesDetector</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">SphinxSmartQuotes</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">DoctreeReadEvent</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">GlossarySorter</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_transform</span><span class="p">(</span><span class="n">ReorderConsecutiveTargetAndIndexNodes</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;builtin&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    
+    <div></div>
+    
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版權所有 2007-2026, the Sphinx developers.
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3 建立。
+</div>
+  </body>
+</html>

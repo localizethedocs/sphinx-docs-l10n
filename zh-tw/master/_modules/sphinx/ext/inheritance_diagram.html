@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sphinx.ext.inheritance_diagram &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../../../_static/documentation_options.js?v=8bd269de"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/translations.js?v=cbf116e0"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/_modules/sphinx/ext/inheritance_diagram.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../../search.html" />
+
+ 
+
+<script type="text/javascript" src="../../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../../index.html">
+      <img src="../../../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">模組原始碼</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">sphinx.ext.inheritance_diagram</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">基礎知識</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">開始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">建置您的第一個專案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使用者指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">使用 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">擴充 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Sphinx 常見問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Sphinx 作者群</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../man/index.html">命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/configuration.html">組態</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/extensions/index.html">擴充功能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes/index.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <h1>sphinx.ext.inheritance_diagram 的原始碼</h1><div class="highlight"><pre>
+<span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Defines a docutils directive for inserting inheritance diagrams.</span>
+
+<span class="sd">Provide the directive with one or more classes or modules (separated</span>
+<span class="sd">by whitespace).  For modules, all of the classes in that module will</span>
+<span class="sd">be used.</span>
+
+<span class="sd">Example::</span>
+
+<span class="sd">   Given the following classes:</span>
+
+<span class="sd">   class A: pass</span>
+<span class="sd">   class B(A): pass</span>
+<span class="sd">   class C(A): pass</span>
+<span class="sd">   class D(B, C): pass</span>
+<span class="sd">   class E(B): pass</span>
+
+<span class="sd">   .. inheritance-diagram: D E</span>
+
+<span class="sd">   Produces a graph like the following:</span>
+
+<span class="sd">               A</span>
+<span class="sd">              / \</span>
+<span class="sd">             B   C</span>
+<span class="sd">            / \ /</span>
+<span class="sd">           E   D</span>
+
+<span class="sd">The graph is inserted as a PNG+image map into HTML and a PDF in</span>
+<span class="sd">LaTeX.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">builtins</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">import_module</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">cast</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">nodes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils.parsers.rst</span><span class="w"> </span><span class="kn">import</span> <span class="n">directives</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">sphinx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.ext.graphviz</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">figure_wrapper</span><span class="p">,</span>
+    <span class="n">graphviz</span><span class="p">,</span>
+    <span class="n">render_dot_html</span><span class="p">,</span>
+    <span class="n">render_dot_latex</span><span class="p">,</span>
+    <span class="n">render_dot_texinfo</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.docutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">SphinxDirective</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Set</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Final</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">docutils.nodes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx</span><span class="w"> </span><span class="kn">import</span> <span class="n">addnodes</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.application</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sphinx</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">Config</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.environment</span><span class="w"> </span><span class="kn">import</span> <span class="n">BuildEnvironment</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtensionMetadata</span><span class="p">,</span> <span class="n">OptionSpec</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.writers.html5</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML5Translator</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.writers.latex</span><span class="w"> </span><span class="kn">import</span> <span class="n">LaTeXTranslator</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.writers.texinfo</span><span class="w"> </span><span class="kn">import</span> <span class="n">TexinfoTranslator</span>
+
+<span class="n">module_sig_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;^</span>
+<span class="sd">    (?:([\w.]*)\.)?  # module names</span>
+<span class="sd">    (\w+)  \s* $     # class/final module name</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">PY_BUILTINS</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">,</span> <span class="nb">vars</span><span class="p">(</span><span class="n">builtins</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">try_import</span><span class="p">(</span><span class="n">objname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a object or module using *name* and *currentmodule*.</span>
+<span class="sd">    *name* should be a relative name from *currentmodule* or</span>
+<span class="sd">    a fully-qualified name.</span>
+
+<span class="sd">    Returns imported object or module.  If failed, returns None value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">import_module</span><span class="p">(</span><span class="n">objname</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="c1"># Relative import</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="n">matched</span> <span class="o">=</span> <span class="n">module_sig_re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">objname</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">matched</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">modname</span><span class="p">,</span> <span class="n">attrname</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">modname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">module</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="n">modname</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">import_classes</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">currmodule</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">type</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import a class using its fully-qualified *name*.&quot;&quot;&quot;</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># import class or module using currmodule</span>
+    <span class="k">if</span> <span class="n">currmodule</span><span class="p">:</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">try_import</span><span class="p">(</span><span class="n">currmodule</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="c1"># import class or module without currmodule</span>
+    <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">try_import</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InheritanceException</span><span class="p">(</span>
+            <span class="s1">&#39;Could not import class or module </span><span class="si">%r</span><span class="s1"> specified for &#39;</span>
+            <span class="s1">&#39;inheritance diagram&#39;</span> <span class="o">%</span> <span class="n">name</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+        <span class="c1"># If imported object is a class, just return it</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">target</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">inspect</span><span class="o">.</span><span class="n">ismodule</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+        <span class="c1"># If imported object is a module, return classes defined on it</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="bp">cls</span>
+            <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">target</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="p">]</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s1"> specified for inheritance diagram is not a class or module&#39;</span>
+    <span class="k">raise</span> <span class="n">InheritanceException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InheritanceException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InheritanceGraph</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Given a list of classes, determines the set of classes that they inherit</span>
+<span class="sd">    from all the way to the root &quot;object&quot;, and then is able to generate a</span>
+<span class="sd">    graphviz dot graph from them.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">class_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">currmodule</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">show_builtins</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">private_bases</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">parts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">aliases</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">top_classes</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(),</span>
+        <span class="n">include_subclasses</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;*class_names* is a list of child classes to show bases from.</span>
+
+<span class="sd">        If *show_builtins* is True, then Python builtins will be shown</span>
+<span class="sd">        in the graph.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="n">class_names</span>
+        <span class="n">classes</span><span class="p">:</span> <span class="n">Collection</span><span class="p">[</span><span class="nb">type</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_import_classes</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="n">currmodule</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">include_subclasses</span><span class="p">:</span>
+            <span class="n">classes_set</span> <span class="o">=</span> <span class="p">{</span><span class="o">*</span><span class="n">classes</span><span class="p">}</span>
+            <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">classes_set</span><span class="p">):</span>
+                <span class="n">classes_set</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">_subclasses</span><span class="p">(</span><span class="bp">cls</span><span class="p">))</span>
+            <span class="n">classes</span> <span class="o">=</span> <span class="n">classes_set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_class_info</span><span class="p">(</span>
+            <span class="n">classes</span><span class="p">,</span> <span class="n">show_builtins</span><span class="p">,</span> <span class="n">private_bases</span><span class="p">,</span> <span class="n">parts</span><span class="p">,</span> <span class="n">aliases</span><span class="p">,</span> <span class="n">top_classes</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_info</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;No classes found for inheritance diagram&#39;</span>
+            <span class="k">raise</span> <span class="n">InheritanceException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_import_classes</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">currmodule</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">type</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Import a list of classes.&quot;&quot;&quot;</span>
+        <span class="n">classes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">type</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">class_names</span><span class="p">:</span>
+            <span class="n">classes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">import_classes</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">currmodule</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">classes</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_class_info</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">classes</span><span class="p">:</span> <span class="n">Collection</span><span class="p">[</span><span class="nb">type</span><span class="p">[</span><span class="n">Any</span><span class="p">]],</span>
+        <span class="n">show_builtins</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">private_bases</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">parts</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">aliases</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">top_classes</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return name and bases for all classes that are ancestors of</span>
+<span class="sd">        *classes*.</span>
+
+<span class="sd">        *parts* gives the number of dotted name parts to include in the</span>
+<span class="sd">        displayed node names, from right to left. If given as a negative, the</span>
+<span class="sd">        number of parts to drop from the left. A value of 0 displays the full</span>
+<span class="sd">        dotted name. E.g. ``sphinx.ext.inheritance_diagram.InheritanceGraph``</span>
+<span class="sd">        with ``parts=2`` or ``parts=-2`` gets displayed as</span>
+<span class="sd">        ``inheritance_diagram.InheritanceGraph``, and as</span>
+<span class="sd">        ``ext.inheritance_diagram.InheritanceGraph`` with ``parts=3`` or</span>
+<span class="sd">        ``parts=-1``.</span>
+
+<span class="sd">        *top_classes* gives the name(s) of the top most ancestor class to</span>
+<span class="sd">        traverse to. Multiple names can be specified separated by comma.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">all_classes</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">recurse</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">show_builtins</span> <span class="ow">and</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">PY_BUILTINS</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">private_bases</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">):</span>
+                <span class="k">return</span>
+
+            <span class="n">nodename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">parts</span><span class="p">,</span> <span class="n">aliases</span><span class="p">)</span>
+            <span class="n">fullname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">aliases</span><span class="p">)</span>
+
+            <span class="c1"># Use first line of docstring as tooltip, if available</span>
+            <span class="n">tooltip</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">:</span>
+                    <span class="n">doc</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__doc__</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">doc</span><span class="p">:</span>
+                        <span class="n">tooltip</span> <span class="o">=</span> <span class="s1">&#39;&quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">doc</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># might raise AttributeError for strange classes</span>
+                <span class="k">pass</span>
+
+            <span class="n">baselist</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">all_classes</span><span class="p">[</span><span class="bp">cls</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">nodename</span><span class="p">,</span> <span class="n">fullname</span><span class="p">,</span> <span class="n">baselist</span><span class="p">,</span> <span class="n">tooltip</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">fullname</span> <span class="ow">in</span> <span class="n">top_classes</span><span class="p">:</span>
+                <span class="k">return</span>
+
+            <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__bases__</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">show_builtins</span> <span class="ow">and</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">PY_BUILTINS</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">private_bases</span> <span class="ow">and</span> <span class="n">base</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">):</span>
+                    <span class="k">continue</span>
+                <span class="n">baselist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_name</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">parts</span><span class="p">,</span> <span class="n">aliases</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">base</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_classes</span><span class="p">:</span>
+                    <span class="n">recurse</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>
+            <span class="n">recurse</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">cls_name</span><span class="p">,</span> <span class="n">fullname</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">bases</span><span class="p">),</span> <span class="n">tooltip</span><span class="p">)</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">cls_name</span><span class="p">,</span> <span class="n">fullname</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">tooltip</span><span class="p">)</span> <span class="ow">in</span> <span class="n">all_classes</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">class_name</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">parts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">aliases</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Given a class object, return a fully-qualified name.</span>
+
+<span class="sd">        This works for things I&#39;ve tested in matplotlib so far, but may not be</span>
+<span class="sd">        completely general.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">module</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__module__</span>
+        <span class="k">if</span> <span class="n">module</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;__builtin__&#39;</span><span class="p">,</span> <span class="s1">&#39;builtins&#39;</span><span class="p">}:</span>
+            <span class="n">fullname</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fullname</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">module</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__qualname__</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="n">parts</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">fullname</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">name_parts</span> <span class="o">=</span> <span class="n">fullname</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">name_parts</span><span class="p">[</span><span class="o">-</span><span class="n">parts</span><span class="p">:])</span>
+        <span class="k">if</span> <span class="n">aliases</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">aliases</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">aliases</span><span class="p">[</span><span class="n">result</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_all_class_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get all of the class names involved in the graph.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">fullname</span> <span class="k">for</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">fullname</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_info</span><span class="p">]</span>
+
+    <span class="c1"># These are the default attrs for graphviz</span>
+    <span class="n">default_graph_attrs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;rankdir&#39;</span><span class="p">:</span> <span class="s1">&#39;LR&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;8.0, 12.0&quot;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;bgcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;transparent&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">default_node_attrs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="s1">&#39;box&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
+        <span class="s1">&#39;fontname&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;style&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;setlinewidth(0.5),filled&quot;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fillcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">default_edge_attrs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;arrowsize&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="s1">&#39;style&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;setlinewidth(0.5)&quot;&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_format_node_attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_format_graph_attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_dot</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">urls</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">env</span><span class="p">:</span> <span class="n">BuildEnvironment</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">graph_attrs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">node_attrs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">edge_attrs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">config</span> <span class="k">if</span> <span class="n">env</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_dot</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span> <span class="n">urls</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">graph_attrs</span><span class="p">,</span> <span class="n">node_attrs</span><span class="p">,</span> <span class="n">edge_attrs</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_dot</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">urls</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Config</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">graph_attrs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">node_attrs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">edge_attrs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a graphviz dot graph from the classes that were passed in</span>
+<span class="sd">        to __init__.</span>
+
+<span class="sd">        *name* is the name of the graph.</span>
+
+<span class="sd">        *urls* is a dictionary mapping class names to HTTP URLs.</span>
+
+<span class="sd">        *graph_attrs*, *node_attrs*, *edge_attrs* are dictionaries containing</span>
+<span class="sd">        key/value pairs to pass on as graphviz properties.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">urls</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">urls</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">g_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_graph_attrs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">n_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_node_attrs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">e_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_edge_attrs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">graph_attrs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">g_attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">graph_attrs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node_attrs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">node_attrs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">edge_attrs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">e_attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">edge_attrs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">config</span><span class="p">:</span>
+            <span class="n">g_attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">inheritance_graph_attrs</span><span class="p">)</span>
+            <span class="n">n_attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">inheritance_node_attrs</span><span class="p">)</span>
+            <span class="n">e_attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">inheritance_edge_attrs</span><span class="p">)</span>
+
+        <span class="n">res</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s1">&#39;digraph </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> </span><span class="se">{{\n</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_format_graph_attrs</span><span class="p">(</span><span class="n">g_attrs</span><span class="p">),</span>
+        <span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">cls_name</span><span class="p">,</span> <span class="n">fullname</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">tooltip</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_info</span><span class="p">):</span>
+            <span class="c1"># Write the node</span>
+            <span class="n">this_node_attrs</span> <span class="o">=</span> <span class="n">n_attrs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">fullname</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+                <span class="n">this_node_attrs</span><span class="p">[</span><span class="s1">&#39;URL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">urls</span><span class="p">[</span><span class="n">fullname</span><span class="p">]</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
+                <span class="n">this_node_attrs</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&quot;_top&quot;&#39;</span>
+            <span class="k">if</span> <span class="n">tooltip</span><span class="p">:</span>
+                <span class="n">this_node_attrs</span><span class="p">[</span><span class="s1">&#39;tooltip&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tooltip</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;  &quot;</span><span class="si">{</span><span class="n">cls_name</span><span class="si">}</span><span class="s1">&quot; [</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_format_node_attrs</span><span class="p">(</span><span class="n">this_node_attrs</span><span class="p">)</span><span class="si">}</span><span class="s1">];</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Write the edges</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;  &quot;</span><span class="si">{</span><span class="n">base_name</span><span class="si">}</span><span class="s1">&quot; -&gt; &quot;</span><span class="si">{</span><span class="n">cls_name</span><span class="si">}</span><span class="s1">&quot; [</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_format_node_attrs</span><span class="p">(</span><span class="n">e_attrs</span><span class="p">)</span><span class="si">}</span><span class="s1">];</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="k">for</span> <span class="n">base_name</span> <span class="ow">in</span> <span class="n">bases</span>
+            <span class="p">)</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">inheritance_diagram</span><span class="p">(</span><span class="n">graphviz</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A docutils node to use as a placeholder for the inheritance diagram.&quot;&quot;&quot;</span>
+
+    <span class="k">pass</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InheritanceDiagram</span><span class="p">(</span><span class="n">SphinxDirective</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run when the inheritance_diagram directive is first encountered.&quot;&quot;&quot;</span>
+
+    <span class="n">has_content</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">required_arguments</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">optional_arguments</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">final_argument_whitespace</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">option_spec</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">OptionSpec</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;parts&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="s1">&#39;private-bases&#39;</span><span class="p">:</span> <span class="n">directives</span><span class="o">.</span><span class="n">flag</span><span class="p">,</span>
+        <span class="s1">&#39;caption&#39;</span><span class="p">:</span> <span class="n">directives</span><span class="o">.</span><span class="n">unchanged</span><span class="p">,</span>
+        <span class="s1">&#39;top-classes&#39;</span><span class="p">:</span> <span class="n">directives</span><span class="o">.</span><span class="n">unchanged_required</span><span class="p">,</span>
+        <span class="s1">&#39;include-subclasses&#39;</span><span class="p">:</span> <span class="n">directives</span><span class="o">.</span><span class="n">flag</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Node</span><span class="p">]:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">inheritance_diagram</span><span class="p">()</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">document</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">document</span>
+        <span class="n">class_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="n">class_role</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">domains</span><span class="o">.</span><span class="n">python_domain</span><span class="o">.</span><span class="n">role</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">)</span>
+        <span class="c1"># Store the original content for use as a hash</span>
+        <span class="n">node</span><span class="p">[</span><span class="s1">&#39;parts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;parts&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">node</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span>
+        <span class="n">node</span><span class="p">[</span><span class="s1">&#39;top-classes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">({</span>
+            <span class="n">cls_stripped</span>
+            <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;top-classes&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">cls_stripped</span> <span class="o">:=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="p">})</span>
+
+        <span class="c1"># Create a graph starting with the list of classes</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">graph</span> <span class="o">=</span> <span class="n">InheritanceGraph</span><span class="p">(</span>
+                <span class="n">class_names</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">ref_context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;py:module&#39;</span><span class="p">),</span>  <span class="c1"># type: ignore[arg-type]</span>
+                <span class="n">parts</span><span class="o">=</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;parts&#39;</span><span class="p">],</span>
+                <span class="n">private_bases</span><span class="o">=</span><span class="s1">&#39;private-bases&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span>
+                <span class="n">aliases</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">inheritance_alias</span><span class="p">,</span>
+                <span class="n">top_classes</span><span class="o">=</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;top-classes&#39;</span><span class="p">],</span>
+                <span class="n">include_subclasses</span><span class="o">=</span><span class="s1">&#39;include-subclasses&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">InheritanceException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">node</span><span class="o">.</span><span class="n">document</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">reporter</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lineno</span><span class="p">)]</span>
+
+        <span class="c1"># Create xref nodes for each target of the graph&#39;s image map and</span>
+        <span class="c1"># add them to the doc tree so that Sphinx can resolve the</span>
+        <span class="c1"># references to real URLs later.  These nodes will eventually be</span>
+        <span class="c1"># removed from the doctree after we&#39;re done with them.</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_all_class_names</span><span class="p">():</span>
+            <span class="n">refnodes</span><span class="p">,</span> <span class="n">_x</span> <span class="o">=</span> <span class="n">class_role</span><span class="p">(</span>  <span class="c1"># type: ignore[misc]</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;:class:`</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">`&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">inliner</span>
+            <span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">refnodes</span><span class="p">)</span>
+        <span class="c1"># Store the graph object so we can use it to generate the</span>
+        <span class="c1"># dot file later</span>
+        <span class="n">node</span><span class="p">[</span><span class="s1">&#39;graph&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">graph</span>
+
+        <span class="k">if</span> <span class="s1">&#39;caption&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_name</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">node</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">figure</span> <span class="o">=</span> <span class="n">figure_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;caption&#39;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_name</span><span class="p">(</span><span class="n">figure</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">figure</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_subclasses</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">type</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
+    <span class="k">yield</span> <span class="bp">cls</span>
+    <span class="k">for</span> <span class="n">sub_cls</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">():</span>
+        <span class="k">yield from</span> <span class="n">_subclasses</span><span class="p">(</span><span class="n">sub_cls</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_graph_hash</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">inheritance_diagram</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">encoded</span> <span class="o">=</span> <span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;parts&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">encoded</span><span class="p">,</span> <span class="n">usedforsecurity</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">html_visit_inheritance_diagram</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">HTML5Translator</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">inheritance_diagram</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Output the graph for HTML.  This will insert a PNG with clickable</span>
+<span class="sd">    image map.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;graph&#39;</span><span class="p">]</span>
+
+    <span class="n">graph_hash</span> <span class="o">=</span> <span class="n">get_graph_hash</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;inheritance</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">graph_hash</span>
+
+    <span class="c1"># Create a mapping from fully-qualified class names to URLs.</span>
+    <span class="n">graphviz_output_format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">graphviz_output_format</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">current_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">current_docname</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">out_suffix</span>
+    <span class="p">)</span>
+    <span class="n">urls</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">pending_xrefs</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s1">&#39;Iterable[addnodes.pending_xref]&#39;</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">pending_xrefs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;refuri&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Construct the name from the URI if the reference is external via intersphinx</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;internal&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+                <span class="n">refname</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="s1">&#39;refuri&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">refname</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="s1">&#39;reftitle&#39;</span><span class="p">]</span>
+
+            <span class="n">urls</span><span class="p">[</span><span class="n">refname</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;refuri&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;refid&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">graphviz_output_format</span> <span class="o">==</span> <span class="s1">&#39;SVG&#39;</span><span class="p">:</span>
+                <span class="n">urls</span><span class="p">[</span><span class="n">child</span><span class="p">[</span><span class="s1">&#39;reftitle&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">current_filename</span> <span class="o">+</span> <span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;refid&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">urls</span><span class="p">[</span><span class="n">child</span><span class="p">[</span><span class="s1">&#39;reftitle&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="n">child</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;refid&#39;</span><span class="p">)</span>
+
+    <span class="n">dotcode</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">_generate_dot</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">urls</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">render_dot_html</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">node</span><span class="p">,</span>
+        <span class="n">dotcode</span><span class="p">,</span>
+        <span class="p">{},</span>
+        <span class="s1">&#39;inheritance&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;inheritance&#39;</span><span class="p">,</span>
+        <span class="n">alt</span><span class="o">=</span><span class="s1">&#39;Inheritance diagram of &#39;</span> <span class="o">+</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">nodes</span><span class="o">.</span><span class="n">SkipNode</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">latex_visit_inheritance_diagram</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">LaTeXTranslator</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">inheritance_diagram</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Output the graph for LaTeX.  This will insert a PDF.&quot;&quot;&quot;</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;graph&#39;</span><span class="p">]</span>
+
+    <span class="n">graph_hash</span> <span class="o">=</span> <span class="n">get_graph_hash</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;inheritance</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">graph_hash</span>
+
+    <span class="n">dotcode</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">_generate_dot</span><span class="p">(</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">graph_attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;6.0,6.0&quot;&#39;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">render_dot_latex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">dotcode</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;inheritance&#39;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="n">nodes</span><span class="o">.</span><span class="n">SkipNode</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">texinfo_visit_inheritance_diagram</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">TexinfoTranslator</span><span class="p">,</span>
+    <span class="n">node</span><span class="p">:</span> <span class="n">inheritance_diagram</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Output the graph for Texinfo.  This will insert a PNG.&quot;&quot;&quot;</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;graph&#39;</span><span class="p">]</span>
+
+    <span class="n">graph_hash</span> <span class="o">=</span> <span class="n">get_graph_hash</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;inheritance</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">graph_hash</span>
+
+    <span class="n">dotcode</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">_generate_dot</span><span class="p">(</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">graph_attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;6.0,6.0&quot;&#39;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">render_dot_texinfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">dotcode</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;inheritance&#39;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="n">nodes</span><span class="o">.</span><span class="n">SkipNode</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">NodeVisitor</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">inheritance_diagram</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="n">nodes</span><span class="o">.</span><span class="n">SkipNode</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtensionMetadata</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">setup_extension</span><span class="p">(</span><span class="s1">&#39;sphinx.ext.graphviz&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span>
+        <span class="n">inheritance_diagram</span><span class="p">,</span>
+        <span class="n">latex</span><span class="o">=</span><span class="p">(</span><span class="n">latex_visit_inheritance_diagram</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">=</span><span class="p">(</span><span class="n">html_visit_inheritance_diagram</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">text</span><span class="o">=</span><span class="p">(</span><span class="n">skip</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">man</span><span class="o">=</span><span class="p">(</span><span class="n">skip</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="n">texinfo</span><span class="o">=</span><span class="p">(</span><span class="n">texinfo_visit_inheritance_diagram</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_directive</span><span class="p">(</span><span class="s1">&#39;inheritance-diagram&#39;</span><span class="p">,</span> <span class="n">InheritanceDiagram</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;inheritance_graph_attrs&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">dict</span><span class="p">}))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;inheritance_node_attrs&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">dict</span><span class="p">}))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;inheritance_edge_attrs&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">dict</span><span class="p">}))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;inheritance_alias&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">dict</span><span class="p">}))</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="n">sphinx</span><span class="o">.</span><span class="n">__display_version__</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    
+    <div></div>
+    
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版權所有 2007-2026, the Sphinx developers.
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0 建立。
+</div>
+  </body>
+</html>

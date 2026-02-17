@@ -1,0 +1,1483 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>LaTeX customization &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx13.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/latex.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="_static/favicon.svg"/>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="Developing extensions for Sphinx" href="extdev/index.html" />
+    <link rel="prev" title="Templating" href="templating.html" />
+
+ 
+
+<script type="text/javascript" src="ltd-provenance.js"></script>
+<script type="text/javascript" src="ltd-current.js"></script>
+<script type="text/javascript" src="../../ltd-config.js"></script>
+<script type="text/javascript" src="../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="index.html">
+  <img src="_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>导航</h3>
+  <ul>
+    <li><a href="index.html">Documentation</a> &raquo;</li>
+    <li class="nav-item nav-item-this"><a href="">LaTeX customization</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">LaTeX customization</a><ul>
+<li><a class="reference internal" href="#the-latex-elements-configuration-setting">The <code class="docutils literal notranslate"><span class="pre">latex_elements</span></code> configuration setting</a></li>
+<li><a class="reference internal" href="#the-sphinxsetup-configuration-setting">The <code class="docutils literal notranslate"><span class="pre">sphinxsetup</span></code> configuration setting</a></li>
+<li><a class="reference internal" href="#additional-css-like-sphinxsetup-keys">Additional  CSS-like <code class="docutils literal notranslate"><span class="pre">'sphinxsetup'</span></code> keys</a></li>
+<li><a class="reference internal" href="#latex-macros-and-environments">LaTeX macros and environments</a><ul>
+<li><a class="reference internal" href="#macros">Macros</a></li>
+<li><a class="reference internal" href="#environments">Environments</a></li>
+<li><a class="reference internal" href="#miscellany">Miscellany</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templating.html">Templating</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extdev/index.html">Developing extensions for Sphinx</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Sphinx FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="module-latex">
+<span id="latex-customization"></span><h1>LaTeX customization<a class="headerlink" href="#module-latex" title="此标题的永久链接">¶</a></h1>
+<p>Unlike <a class="reference internal" href="usage/theming.html#html-themes"><span class="std std-ref">the HTML builders</span></a>, the <code class="docutils literal notranslate"><span class="pre">latex</span></code> builder does not
+benefit from prepared themes. The <a class="reference internal" href="usage/configuration.html#latex-options"><span class="std std-ref">Options for LaTeX output</span></a>, and particularly the
+<a class="reference internal" href="#latex-elements-confval"><span class="std std-ref">latex_elements</span></a> variable, provides much of the
+interface for customization. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># inside conf.py</span>
+<span class="n">latex_engine</span> <span class="o">=</span> <span class="s1">&#39;xelatex&#39;</span>
+<span class="n">latex_elements</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;fontpkg&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">\setmainfont{DejaVu Serif}</span>
+<span class="s1">\setsansfont{DejaVu Sans}</span>
+<span class="s1">\setmonofont{DejaVu Sans Mono}</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;preamble&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">\usepackage[titles]</span><span class="si">{tocloft}</span>
+<span class="s1">\cftsetpnumwidth </span><span class="si">{1.25cm}</span><span class="s1">\cftsetrmarg</span><span class="si">{1.5cm}</span>
+<span class="s1">\setlength{\cftchapnumwidth}</span><span class="si">{0.75cm}</span>
+<span class="s1">\setlength{\cftsecindent}{\cftchapnumwidth}</span>
+<span class="s1">\setlength{\cftsecnumwidth}</span><span class="si">{1.25cm}</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fncychap&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\usepackage[Bjornstrup]</span><span class="si">{fncychap}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;printindex&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\footnotesize\raggedright\printindex&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">latex_show_urls</span> <span class="o">=</span> <span class="s1">&#39;footnote&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Keep in mind that backslashes must be doubled in Python string literals to
+avoid interpretation as escape sequences. Alternatively, you may use raw
+strings as is done above.</p>
+</div>
+<section id="the-latex-elements-configuration-setting">
+<span id="latex-elements-confval"></span><h2>The <code class="docutils literal notranslate"><span class="pre">latex_elements</span></code> configuration setting<a class="headerlink" href="#the-latex-elements-configuration-setting" title="此标题的永久链接">¶</a></h2>
+<p>A dictionary that contains LaTeX snippets overriding those Sphinx usually puts
+into the generated <code class="docutils literal notranslate"><span class="pre">.tex</span></code> files.  Its <code class="docutils literal notranslate"><span class="pre">'sphinxsetup'</span></code> key is described
+<a class="reference internal" href="#latexsphinxsetup"><span class="std std-ref">separately</span></a>.  It allows also local configurations
+inserted in generated files, via <code class="xref rst rst-dir docutils literal notranslate"><span class="pre">raw</span></code> directives.  For example, in
+the PDF documentation this chapter is styled especially, as will be described
+later.</p>
+<p>Keys that you may want to override include:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'papersize'</span></code></dt><dd><p>Paper size option of the document class (<code class="docutils literal notranslate"><span class="pre">'a4paper'</span></code> or
+<code class="docutils literal notranslate"><span class="pre">'letterpaper'</span></code>)</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'letterpaper'</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'pointsize'</span></code></dt><dd><p>Point size option of the document class (<code class="docutils literal notranslate"><span class="pre">'10pt'</span></code>, <code class="docutils literal notranslate"><span class="pre">'11pt'</span></code> or
+<code class="docutils literal notranslate"><span class="pre">'12pt'</span></code>)</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'10pt'</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'pxunit'</span></code></dt><dd><p>The value of the <code class="docutils literal notranslate"><span class="pre">px</span></code> when used in image attributes <code class="docutils literal notranslate"><span class="pre">width</span></code> and
+<code class="docutils literal notranslate"><span class="pre">height</span></code>. The default value is <code class="docutils literal notranslate"><span class="pre">'0.75bp'</span></code> which achieves
+<code class="docutils literal notranslate"><span class="pre">96px=1in</span></code> (in TeX <code class="docutils literal notranslate"><span class="pre">1in</span> <span class="pre">=</span> <span class="pre">72bp</span> <span class="pre">=</span> <span class="pre">72.27pt</span></code>.) To obtain for
+example <code class="docutils literal notranslate"><span class="pre">100px=1in</span></code> use <code class="docutils literal notranslate"><span class="pre">'0.01in'</span></code> or <code class="docutils literal notranslate"><span class="pre">'0.7227pt'</span></code> (the latter
+leads to TeX computing a more precise value, due to the smaller unit
+used in the specification); for <code class="docutils literal notranslate"><span class="pre">72px=1in</span></code>, simply use <code class="docutils literal notranslate"><span class="pre">'1bp'</span></code>; for
+<code class="docutils literal notranslate"><span class="pre">90px=1in</span></code>, use <code class="docutils literal notranslate"><span class="pre">'0.8bp'</span></code> or <code class="docutils literal notranslate"><span class="pre">'0.803pt'</span></code>.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'0.75bp'</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'passoptionstopackages'</span></code></dt><dd><p>A string which will be positioned early in the preamble, designed to
+contain <code class="docutils literal notranslate"><span class="pre">\\PassOptionsToPackage{options}{foo}</span></code> commands.</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>It may be also used for loading LaTeX packages very early in the
+preamble.  For example package <code class="docutils literal notranslate"><span class="pre">fancybox</span></code> is incompatible with
+being loaded via the <code class="docutils literal notranslate"><span class="pre">'preamble'</span></code> key, it must be loaded earlier.</p>
+</div>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.4 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'babel'</span></code></dt><dd><p>“babel” package inclusion, default <code class="docutils literal notranslate"><span class="pre">'\\usepackage{babel}'</span></code> (the
+suitable document language string is passed as class option, and
+<code class="docutils literal notranslate"><span class="pre">english</span></code> is used if no language.) For Japanese documents, the
+default is the empty string.</p>
+<p>With XeLaTeX and LuaLaTeX, Sphinx configures the LaTeX document to use
+<a class="reference external" href="https://ctan.org/pkg/polyglossia">polyglossia</a>, but one should be aware that current <a class="reference external" href="https://ctan.org/pkg/babel">babel</a> has
+improved its support for Unicode engines in recent years and for some
+languages it may make sense to prefer <code class="docutils literal notranslate"><span class="pre">babel</span></code> over <code class="docutils literal notranslate"><span class="pre">polyglossia</span></code>.</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>After modifiying a core LaTeX key like this one, clean up the LaTeX
+build repertory before next PDF build, else left-over auxiliary
+files are likely to break the build.</p>
+</div>
+<p>Default:  <code class="docutils literal notranslate"><span class="pre">'\\usepackage{babel}'</span></code> (<code class="docutils literal notranslate"><span class="pre">''</span></code> for Japanese documents)</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5 版本发生变更: </span>For <a class="reference internal" href="usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> set to <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code>, the default
+is <code class="docutils literal notranslate"><span class="pre">'\\usepackage{polyglossia}\n\\setmainlanguage{&lt;language&gt;}'</span></code>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.6 版本发生变更: </span><code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code> uses same default setting as <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.7.6 版本发生变更: </span>For French, <code class="docutils literal notranslate"><span class="pre">xelatex</span></code> and <code class="docutils literal notranslate"><span class="pre">lualatex</span></code> default to using
+<code class="docutils literal notranslate"><span class="pre">babel</span></code>, not <code class="docutils literal notranslate"><span class="pre">polyglossia</span></code>.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'fontpkg'</span></code></dt><dd><p>Font package inclusion. The default is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;\usepackage{tgtermes}</span>
+<span class="sd">\usepackage{tgheros}</span>
+<span class="sd">\renewcommand\ttdefault{txtt}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code> and <code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code> however the default is to use
+the GNU FreeFont.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.2 版本发生变更: </span>Defaults to <code class="docutils literal notranslate"><span class="pre">''</span></code> when the <a class="reference internal" href="usage/configuration.html#confval-language"><code class="xref std std-confval docutils literal notranslate"><span class="pre">language</span></code></a> uses the Cyrillic
+script.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 2.0 版本发生变更: </span>Incorporates some font substitution commands to help support occasional
+Greek or Cyrillic in a document using <code class="docutils literal notranslate"><span class="pre">'pdflatex'</span></code> engine.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 4.0.0 版本发生变更: </span></p>
+<ul class="simple">
+<li><p>The font substitution commands added at <code class="docutils literal notranslate"><span class="pre">2.0</span></code> have been moved
+to the <code class="docutils literal notranslate"><span class="pre">'fontsubstitution'</span></code> key, as their presence here made
+it complicated for user to customize the value of <code class="docutils literal notranslate"><span class="pre">'fontpkg'</span></code>.</p></li>
+<li><p>The default font setting has changed: it still uses Times and
+Helvetica clones for serif and sans serif, but via better, more
+complete TeX fonts and associated LaTeX packages.  The
+monospace font has been changed to better match the Times clone.</p></li>
+</ul>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'fncychap'</span></code></dt><dd><p>Inclusion of the “fncychap” package (which makes fancy chapter titles),
+default <code class="docutils literal notranslate"><span class="pre">'\\usepackage[Bjarne]{fncychap}'</span></code> for English documentation
+(this option is slightly customized by Sphinx),
+<code class="docutils literal notranslate"><span class="pre">'\\usepackage[Sonny]{fncychap}'</span></code> for internationalized docs (because
+the “Bjarne” style uses numbers spelled out in English).  Other
+“fncychap” styles you can try are “Lenny”, “Glenn”, “Conny”, “Rejne” and
+“Bjornstrup”.  You can also set this to <code class="docutils literal notranslate"><span class="pre">''</span></code> to disable fncychap.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'\\usepackage[Bjarne]{fncychap}'</span></code> for English documents,
+<code class="docutils literal notranslate"><span class="pre">'\\usepackage[Sonny]{fncychap}'</span></code> for internationalized documents, and
+<code class="docutils literal notranslate"><span class="pre">''</span></code> for Japanese documents.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'preamble'</span></code></dt><dd><p>Additional preamble content.  One may move all needed macros into some file
+<code class="file docutils literal notranslate"><span class="pre">mystyle.tex.txt</span></code> of the project source repertory, and get LaTeX to
+import it at run time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;preamble&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\input</span><span class="si">{mystyle.tex.txt}</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="c1"># or, if the \ProvidesPackage LaTeX macro is used in a file mystyle.sty</span>
+<span class="s1">&#39;preamble&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\usepackage</span><span class="si">{mystyle}</span><span class="s1">&#39;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>It is then needed to set appropriately <a class="reference internal" href="usage/configuration.html#confval-latex_additional_files"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_additional_files</span></code></a>,
+for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">latex_additional_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mystyle.sty&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'figure_align'</span></code></dt><dd><p>Latex figure float alignment. Whenever an image doesn’t fit into the current
+page, it will be ‘floated’ into the next page but may be preceded by any
+other text.  If you don’t like this behavior, use ‘H’ which will disable
+floating and position figures strictly in the order they appear in the
+source.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'htbp'</span></code> (here, top, bottom, page)</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.3 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'atendofbody'</span></code></dt><dd><p>Additional document content (right before the indices).</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'extrapackages'</span></code></dt><dd><p>Additional LaTeX packages.  For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">latex_elements</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;extrapackages&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\usepackage</span><span class="si">{isodate}</span><span class="s1">&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The specified LaTeX packages will be loaded before
+hyperref package and packages loaded from Sphinx extensions.</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>If you’d like to load additional LaTeX packages after hyperref, use
+<code class="docutils literal notranslate"><span class="pre">'preamble'</span></code> key instead.</p>
+</div>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 2.3 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'footer'</span></code></dt><dd><p>Additional footer content (before the indices).</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">自 1.5 版本弃用: </span>Use <code class="docutils literal notranslate"><span class="pre">'atendofbody'</span></code> key instead.</p>
+</div>
+</dd>
+</dl>
+<p>Keys that don’t need to be overridden unless in special cases are:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">'extraclassoptions'</span></code></dt><dd><p>The default is the empty string. Example: <code class="docutils literal notranslate"><span class="pre">'extraclassoptions':</span>
+<span class="pre">'openany'</span></code> will allow chapters (for documents of the <code class="docutils literal notranslate"><span class="pre">'manual'</span></code>
+type) to start on any page.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.2 版本加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.6 版本发生变更: </span>Added this documentation.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'maxlistdepth'</span></code></dt><dd><p>LaTeX allows by default at most 6 levels for nesting list and
+quote-like environments, with at most 4 enumerated lists, and 4 bullet
+lists. Setting this key for example to <code class="docutils literal notranslate"><span class="pre">'10'</span></code> (as a string) will
+allow up to 10 nested levels (of all sorts). Leaving it to the empty
+string means to obey the LaTeX default.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<ul class="simple">
+<li><p>Using this key may prove incompatible with some LaTeX packages
+or special document classes which do their own list customization.</p></li>
+<li><p>The key setting is silently <em>ignored</em> if <code class="docutils literal notranslate"><span class="pre">\usepackage{enumitem}</span></code>
+is executed inside the document preamble. Use then rather the
+dedicated commands of this LaTeX package.</p></li>
+</ul>
+</div>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">6</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'inputenc'</span></code></dt><dd><p>“inputenc” package inclusion.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'\\usepackage[utf8]{inputenc}'</span></code> when using pdflatex, else
+<code class="docutils literal notranslate"><span class="pre">''</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>If using <code class="docutils literal notranslate"><span class="pre">utf8x</span></code> in place of <code class="docutils literal notranslate"><span class="pre">utf8</span></code> it is mandatory to extend the
+LaTeX preamble with suitable <code class="docutils literal notranslate"><span class="pre">\PreloadUnicodePage{&lt;number&gt;}</span></code> commands,
+as per the <code class="docutils literal notranslate"><span class="pre">utf8x</span></code> documentation (<code class="docutils literal notranslate"><span class="pre">texdoc</span> <span class="pre">ucs</span></code> on a TeXLive based
+TeX installation).  Else, unexpected and possibly hard-to-spot problems
+(i.e. not causing a build crash) may arise in the PDF, in particular
+regarding hyperlinks.</p>
+<p>Even if these precautions are taken, PDF build via <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> engine
+may crash due to upstream LaTeX not being fully compatible with
+<code class="docutils literal notranslate"><span class="pre">utf8x</span></code>.  For example, in certain circumstances related to
+code-blocks, or attempting to include images whose filenames contain
+Unicode characters.  Indeed, starting in 2015, upstream LaTeX with
+<code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> engine has somewhat enhanced native support for Unicode and
+is becoming more and more incompatible with <code class="docutils literal notranslate"><span class="pre">utf8x</span></code>.  In particular,
+since the October 2019 LaTeX release, filenames can use Unicode
+characters, and even spaces.  At Sphinx level this means e.g. that the
+<a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#image">image</a> and <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#figure">figure</a> directives are now compatible with
+such filenames for PDF via LaTeX output.  But this is broken if
+<code class="docutils literal notranslate"><span class="pre">utf8x</span></code> is in use.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.4.3 版本发生变更: </span>Previously <code class="docutils literal notranslate"><span class="pre">'\\usepackage[utf8]{inputenc}'</span></code> was used for all
+compilers.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'cmappkg'</span></code></dt><dd><p>“cmap” package inclusion.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'\\usepackage{cmap}'</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.2 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'fontenc'</span></code></dt><dd><p>Customize this from its default <code class="docutils literal notranslate"><span class="pre">'\\usepackage[T1]{fontenc}'</span></code> to:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'\\usepackage[X2,T1]{fontenc}'</span></code> if you need occasional
+Cyrillic letters (физика частиц),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'\\usepackage[LGR,T1]{fontenc}'</span></code> if you need occasional
+Greek letters (Σωματιδιακή φυσική).</p></li>
+</ul>
+<p>Use <code class="docutils literal notranslate"><span class="pre">[LGR,X2,T1]</span></code> rather if both are needed.</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<ul class="simple">
+<li><p>Do not use this key for a <a class="reference internal" href="usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> other than
+<code class="docutils literal notranslate"><span class="pre">'pdflatex'</span></code>.</p></li>
+<li><p>If Greek is main language, do not use this key.  Since Sphinx 2.2.1,
+<code class="docutils literal notranslate"><span class="pre">xelatex</span></code> will be used automatically as <a class="reference internal" href="usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a>.</p></li>
+<li><p>The TeX installation may need some extra packages. For example,
+on Ubuntu xenial, packages <code class="docutils literal notranslate"><span class="pre">texlive-lang-greek</span></code> and <code class="docutils literal notranslate"><span class="pre">cm-super</span></code>
+are needed for <code class="docutils literal notranslate"><span class="pre">LGR</span></code> to work. And <code class="docutils literal notranslate"><span class="pre">texlive-lang-cyrillic</span></code> and
+<code class="docutils literal notranslate"><span class="pre">cm-super</span></code> are needed for support of Cyrillic.</p></li>
+</ul>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5 版本发生变更: </span>Defaults to <code class="docutils literal notranslate"><span class="pre">'\\usepackage{fontspec}'</span></code> when
+<a class="reference internal" href="usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> is <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.6 版本发生变更: </span><code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code> uses <code class="docutils literal notranslate"><span class="pre">fontspec</span></code> per default like <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 2.0 版本发生变更: </span><code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code> executes
+<code class="docutils literal notranslate"><span class="pre">\defaultfontfeatures[\rmfamily,\sffamily]{}</span></code> to disable TeX
+ligatures transforming <cite>&lt;&lt;</cite> and <cite>&gt;&gt;</cite> as escaping working with
+<code class="docutils literal notranslate"><span class="pre">pdflatex/xelatex</span></code> failed with <code class="docutils literal notranslate"><span class="pre">lualatex</span></code>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 2.0 版本发生变更: </span>Detection of <code class="docutils literal notranslate"><span class="pre">LGR</span></code>, <code class="docutils literal notranslate"><span class="pre">T2A</span></code>, <code class="docutils literal notranslate"><span class="pre">X2</span></code> to trigger support of
+occasional Greek or Cyrillic letters (<code class="docutils literal notranslate"><span class="pre">'pdflatex'</span></code>).</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 2.3.0 版本发生变更: </span><code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code> executes
+<code class="docutils literal notranslate"><span class="pre">\defaultfontfeatures[\rmfamily,\sffamily]{}</span></code> in order to avoid
+contractions of <code class="docutils literal notranslate"><span class="pre">--</span></code> into en-dash or transforms of straight quotes
+into curly ones in PDF (in non-literal text paragraphs) despite
+<a class="reference internal" href="usage/configuration.html#confval-smartquotes"><code class="xref std std-confval docutils literal notranslate"><span class="pre">smartquotes</span></code></a> being set to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'fontsubstitution'</span></code></dt><dd><p>Ignored if <code class="docutils literal notranslate"><span class="pre">'fontenc'</span></code> was not configured to use <code class="docutils literal notranslate"><span class="pre">LGR</span></code> or <code class="docutils literal notranslate"><span class="pre">X2</span></code> (or
+<code class="docutils literal notranslate"><span class="pre">T2A</span></code>).  In case <code class="docutils literal notranslate"><span class="pre">'fontpkg'</span></code> key is configured for usage with some
+TeX fonts known to be available in the <code class="docutils literal notranslate"><span class="pre">LGR</span></code> or <code class="docutils literal notranslate"><span class="pre">X2</span></code> encodings, set
+this one to be the empty string.  Else leave to its default.</p>
+<p>Ignored with <a class="reference internal" href="usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> other than <code class="docutils literal notranslate"><span class="pre">'pdflatex'</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 4.0.0 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'textgreek'</span></code></dt><dd><p>For the support of occasional Greek letters.</p>
+<p>It is ignored with <code class="docutils literal notranslate"><span class="pre">'platex'</span></code>, <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code> or <code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code> as
+<a class="reference internal" href="usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> and defaults to either the empty string or
+to <code class="docutils literal notranslate"><span class="pre">'\\usepackage{textalpha}'</span></code> for <code class="docutils literal notranslate"><span class="pre">'pdflatex'</span></code> depending on
+whether the <code class="docutils literal notranslate"><span class="pre">'fontenc'</span></code> key was used with <code class="docutils literal notranslate"><span class="pre">LGR</span></code> or not.  Only
+expert LaTeX users may want to customize this key.</p>
+<p>It can also be used as <code class="docutils literal notranslate"><span class="pre">r'\usepackage{textalpha,alphabeta}'</span></code> to let
+<code class="docutils literal notranslate"><span class="pre">'pdflatex'</span></code> support Greek Unicode input in <a class="reference internal" href="usage/restructuredtext/directives.html#directive-math" title="math directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">math</span></code></a> context.
+For example <code class="docutils literal notranslate"><span class="pre">:math:`α`</span></code> (U+03B1) will render as <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'\\usepackage{textalpha}'</span></code> or <code class="docutils literal notranslate"><span class="pre">''</span></code> if <code class="docutils literal notranslate"><span class="pre">fontenc</span></code> does not
+include the <code class="docutils literal notranslate"><span class="pre">LGR</span></code> option.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 2.0 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'geometry'</span></code></dt><dd><p>“geometry” package inclusion, the default definition is:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>&#39;<span class="k">\\</span>usepackage<span class="nb">{</span>geometry<span class="nb">}</span>&#39;
+</pre></div>
+</div>
+<p>with an additional <code class="docutils literal notranslate"><span class="pre">[dvipdfm]</span></code> for Japanese documents.
+The Sphinx LaTeX style file executes:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\PassOptionsToPackage</span><span class="nb">{</span>hmargin=1in,vmargin=1in,marginpar=0.5in<span class="nb">}{</span>geometry<span class="nb">}</span>
+</pre></div>
+</div>
+<p>which can be customized via corresponding <a class="reference internal" href="#latexsphinxsetup"><span class="std std-ref">‘sphinxsetup’ options</span></a>.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'\\usepackage{geometry}'</span></code> (or
+<code class="docutils literal notranslate"><span class="pre">'\\usepackage[dvipdfm]{geometry}'</span></code> for Japanese documents)</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版本加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5.2 版本发生变更: </span><code class="docutils literal notranslate"><span class="pre">dvipdfm</span></code> option if <a class="reference internal" href="usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> is <code class="docutils literal notranslate"><span class="pre">'platex'</span></code>.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5.3 版本加入: </span>The <a class="reference internal" href="#latexsphinxsetuphmargin"><span class="std std-ref">‘sphinxsetup’ keys for the margins</span></a>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5.3 版本发生变更: </span>The location in the LaTeX file has been moved to after
+<code class="docutils literal notranslate"><span class="pre">\usepackage{sphinx}</span></code> and <code class="docutils literal notranslate"><span class="pre">\sphinxsetup{..}</span></code>, hence also after
+insertion of <code class="docutils literal notranslate"><span class="pre">'fontpkg'</span></code> key. This is in order to handle the paper
+layout options in a special way for Japanese documents: the text
+width will be set to an integer multiple of the <em>zenkaku</em> width, and
+the text height to an integer multiple of the baseline. See the
+<a class="reference internal" href="#latexsphinxsetuphmargin"><span class="std std-ref">hmargin</span></a> documentation for more.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'hyperref'</span></code></dt><dd><p>“hyperref” package inclusion; also loads package “hypcap” and issues
+<code class="docutils literal notranslate"><span class="pre">\urlstyle{same}</span></code>. This is done after <code class="file docutils literal notranslate"><span class="pre">sphinx.sty</span></code> file is
+loaded and before executing the contents of <code class="docutils literal notranslate"><span class="pre">'preamble'</span></code> key.</p>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>Loading of packages “hyperref” and “hypcap” is mandatory.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版本加入: </span>Previously this was done from inside <code class="file docutils literal notranslate"><span class="pre">sphinx.sty</span></code>.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'maketitle'</span></code></dt><dd><p>“maketitle” call. Override if you want to generate a differently styled
+title page.</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>If the key value is set to
+<code class="docutils literal notranslate"><span class="pre">r'\newcommand\sphinxbackoftitlepage{&lt;Extra</span>
+<span class="pre">material&gt;}\sphinxmaketitle'</span></code>, then <code class="docutils literal notranslate"><span class="pre">&lt;Extra</span> <span class="pre">material&gt;</span></code> will be
+typeset on back of title page (<code class="docutils literal notranslate"><span class="pre">'manual'</span></code> docclass only).</p>
+</div>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'\\sphinxmaketitle'</span></code></p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.8.3 版本发生变更: </span>Original <code class="docutils literal notranslate"><span class="pre">\maketitle</span></code> from document class is not overwritten,
+hence is re-usable as part of some custom setting for this key.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.8.3 版本加入: </span><code class="docutils literal notranslate"><span class="pre">\sphinxbackoftitlepage</span></code> optional macro.  It can also be defined
+inside <code class="docutils literal notranslate"><span class="pre">'preamble'</span></code> key rather than this one.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'releasename'</span></code></dt><dd><p>Value that prefixes <code class="docutils literal notranslate"><span class="pre">'release'</span></code> element on title page.  As for <em>title</em> and
+<em>author</em> used in the tuples of <a class="reference internal" href="usage/configuration.html#confval-latex_documents"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_documents</span></code></a>, it is inserted as
+LaTeX markup.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'Release'</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'tableofcontents'</span></code></dt><dd><p>“tableofcontents” call. The default of <code class="docutils literal notranslate"><span class="pre">'\\sphinxtableofcontents'</span></code> is a
+wrapper of unmodified <code class="docutils literal notranslate"><span class="pre">\tableofcontents</span></code>, which may itself be customized
+by user loaded packages. Override if you want to generate a different table
+of contents or put content between the title page and the TOC.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'\\sphinxtableofcontents'</span></code></p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5 版本发生变更: </span>Previously the meaning of <code class="docutils literal notranslate"><span class="pre">\tableofcontents</span></code> itself was modified
+by Sphinx. This created an incompatibility with dedicated packages
+modifying it also such as “tocloft” or “etoc”.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'transition'</span></code></dt><dd><p>Commands used to display transitions. Override if you want to display
+transitions differently.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'\n\n\\bigskip\\hrule\\bigskip\n\n'</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.2 版本加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.6 版本发生变更: </span>Remove unneeded <code class="docutils literal notranslate"><span class="pre">{}</span></code> after <code class="docutils literal notranslate"><span class="pre">\\hrule</span></code>.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'makeindex'</span></code></dt><dd><p>“makeindex” call, the last thing before <code class="docutils literal notranslate"><span class="pre">\begin{document}</span></code>. With
+<code class="docutils literal notranslate"><span class="pre">'\\usepackage[columns=1]{idxlayout}\\makeindex'</span></code> the index will use
+only one column. You may have to install <code class="docutils literal notranslate"><span class="pre">idxlayout</span></code> LaTeX package.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'\\makeindex'</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'printindex'</span></code></dt><dd><p>“printindex” call, the last thing in the file. Override if you want to
+generate the index differently, append some content after the index, or
+change the font. As LaTeX uses two-column mode for the index it is
+often advisable to set this key to
+<code class="docutils literal notranslate"><span class="pre">'\\footnotesize\\raggedright\\printindex'</span></code>. Or, to obtain a one-column
+index, use <code class="docutils literal notranslate"><span class="pre">'\\def\\twocolumn[#1]{#1}\\printindex'</span></code> (this trick may fail
+if using a custom document class; then try the <code class="docutils literal notranslate"><span class="pre">idxlayout</span></code> approach
+described in the documentation of the <code class="docutils literal notranslate"><span class="pre">'makeindex'</span></code> key).</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'\\printindex'</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">'fvset'</span></code></dt><dd><p>Customization of <code class="docutils literal notranslate"><span class="pre">fancyvrb</span></code> LaTeX package.</p>
+<p>The default value is <code class="docutils literal notranslate"><span class="pre">'\\fvset{fontsize=auto}'</span></code> which means that the
+font size will adjust correctly if a code-block ends up in a footnote.
+You may need to modify this if you use custom fonts:
+<code class="docutils literal notranslate"><span class="pre">'\\fvset{fontsize=\\small}'</span></code> if the monospace font is Courier-like.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">'\\fvset{fontsize=auto}'</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.8 版本加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 2.0 版本发生变更: </span>For <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code> and <code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code> defaults to
+<code class="docutils literal notranslate"><span class="pre">'\\fvset{fontsize=\\small}'</span></code> as this
+is adapted to the relative widths of the FreeFont family.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 4.0.0 版本发生变更: </span>Changed default for <code class="docutils literal notranslate"><span class="pre">'pdflatex'</span></code>. Previously it was using
+<code class="docutils literal notranslate"><span class="pre">'\\fvset{fontsize=\\small}'</span></code>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 4.1.0 版本发生变更: </span>Changed default for Chinese documents to
+<code class="docutils literal notranslate"><span class="pre">'\\fvset{fontsize=\\small,formatcom=\\xeCJKVerbAddon}'</span></code></p>
+</div>
+</dd>
+</dl>
+<p>Keys that are set by other options and therefore should not be overridden are:</p>
+<p><code class="docutils literal notranslate"><span class="pre">'docclass'</span></code>
+<code class="docutils literal notranslate"><span class="pre">'classoptions'</span></code>
+<code class="docutils literal notranslate"><span class="pre">'title'</span></code>
+<code class="docutils literal notranslate"><span class="pre">'release'</span></code>
+<code class="docutils literal notranslate"><span class="pre">'author'</span></code></p>
+</section>
+<section id="the-sphinxsetup-configuration-setting">
+<span id="latexsphinxsetup"></span><h2>The <code class="docutils literal notranslate"><span class="pre">sphinxsetup</span></code> configuration setting<a class="headerlink" href="#the-sphinxsetup-configuration-setting" title="此标题的永久链接">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版本加入.</span></p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">'sphinxsetup'</span></code> key of <a class="reference internal" href="#latex-elements-confval"><span class="std std-ref">latex_elements</span></a>
+provides a LaTeX-type customization interface:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">latex_elements</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;sphinxsetup&#39;</span><span class="p">:</span> <span class="s1">&#39;key1=value1, key2=value2, ...&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It defaults to empty.  If non-empty, it will be passed as argument to the
+<code class="docutils literal notranslate"><span class="pre">\sphinxsetup</span></code> macro inside the document preamble, like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">usepackage</span><span class="p">{</span><span class="n">sphinx</span><span class="p">}</span>
+\<span class="n">sphinxsetup</span><span class="p">{</span><span class="n">key1</span><span class="o">=</span><span class="n">value1</span><span class="p">,</span> <span class="n">key2</span><span class="o">=</span><span class="n">value2</span><span class="p">,</span><span class="o">...</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The colors used in the above are provided by the <code class="docutils literal notranslate"><span class="pre">svgnames</span></code> option of the
+“xcolor” package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">latex_elements</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;passoptionstopackages&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\PassOptionsToPackage</span><span class="si">{svgnames}{xcolor}</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It is possible to insert further uses of the <code class="docutils literal notranslate"><span class="pre">\sphinxsetup</span></code> LaTeX macro
+directly into the body of the document, via the help of the <code class="docutils literal notranslate"><span class="pre">raw</span></code>
+directive. This chapter is styled in the PDF output using the following at the
+start of the chapter (which uses keys described later in <a class="reference internal" href="#additionalcss"><span class="std std-ref">Additional  CSS-like 'sphinxsetup' keys</span></a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">raw</span><span class="p">::</span> <span class="n">latex</span>
+
+   \<span class="n">begingroup</span>
+   \<span class="n">sphinxsetup</span><span class="p">{</span><span class="o">%</span>
+       <span class="n">TitleColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">DarkGoldenrod</span><span class="p">},</span>
+       <span class="o">%</span> <span class="n">pre_border</span><span class="o">-</span><span class="n">width</span> <span class="ow">is</span> <span class="mf">5.1.0</span> <span class="n">alias</span> <span class="k">for</span> <span class="n">verbatimborder</span>
+       <span class="n">pre_border</span><span class="o">-</span><span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="n">pt</span><span class="p">,</span>
+       <span class="o">%</span> <span class="n">pre_padding</span> <span class="ow">is</span> <span class="mf">5.1.0</span> <span class="n">alias</span> <span class="k">for</span> <span class="n">verbatimsep</span>
+       <span class="n">pre_padding</span><span class="o">=</span><span class="mi">5</span><span class="n">pt</span><span class="p">,</span>
+       <span class="o">%</span> <span class="n">rounded</span> <span class="n">boxes</span> <span class="n">are</span> <span class="n">new</span> <span class="n">at</span> <span class="mf">5.1.0</span>
+       <span class="n">pre_border</span><span class="o">-</span><span class="n">radius</span><span class="o">=</span><span class="mi">5</span><span class="n">pt</span><span class="p">,</span>
+       <span class="o">%</span> <span class="n">TeXcolor</span> <span class="n">means</span> <span class="n">syntax</span> <span class="n">must</span> <span class="n">be</span> <span class="k">as</span> <span class="k">for</span> <span class="n">LaTeX</span> \<span class="n">definecolor</span>
+       <span class="n">pre_background</span><span class="o">-</span><span class="n">TeXcolor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">OldLace</span><span class="p">},</span>
+       <span class="n">pre_border</span><span class="o">-</span><span class="n">TeXcolor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Gold</span><span class="p">},</span>
+       <span class="o">%</span>
+       <span class="o">%</span> <span class="mf">5.1.0</span> <span class="n">alias</span> <span class="k">for</span> <span class="n">warningborder</span>
+       <span class="n">div</span><span class="o">.</span><span class="n">warning_border</span><span class="o">-</span><span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="n">pt</span><span class="p">,</span>
+       <span class="n">div</span><span class="o">.</span><span class="n">warning_padding</span><span class="o">=</span><span class="mi">6</span><span class="n">pt</span><span class="p">,</span>
+       <span class="n">div</span><span class="o">.</span><span class="n">warning_padding</span><span class="o">-</span><span class="n">right</span><span class="o">=</span><span class="mi">18</span><span class="n">pt</span><span class="p">,</span>
+       <span class="n">div</span><span class="o">.</span><span class="n">warning_padding</span><span class="o">-</span><span class="n">bottom</span><span class="o">=</span><span class="mi">18</span><span class="n">pt</span><span class="p">,</span>
+       <span class="n">div</span><span class="o">.</span><span class="n">warning_border</span><span class="o">-</span><span class="n">TeXcolor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">DarkCyan</span><span class="p">},</span>
+       <span class="n">div</span><span class="o">.</span><span class="n">warning_background</span><span class="o">-</span><span class="n">TeXcolor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">LightCyan</span><span class="p">},</span>
+       <span class="n">div</span><span class="o">.</span><span class="n">warning_box</span><span class="o">-</span><span class="n">shadow</span><span class="o">=-</span><span class="mi">12</span><span class="n">pt</span> <span class="o">-</span><span class="mi">12</span><span class="n">pt</span> <span class="n">inset</span><span class="p">,</span>
+       <span class="n">div</span><span class="o">.</span><span class="n">warning_box</span><span class="o">-</span><span class="n">shadow</span><span class="o">-</span><span class="n">TeXcolor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Cyan</span><span class="p">},</span>
+       <span class="o">%</span>
+       <span class="o">%</span> <span class="mf">5.1.0</span> <span class="n">new</span> <span class="n">name</span> <span class="n">would</span> <span class="n">be</span> <span class="n">div</span><span class="o">.</span><span class="n">attention_border</span><span class="o">-</span><span class="n">width</span>
+       <span class="n">attentionborder</span><span class="o">=</span><span class="mi">3</span><span class="n">pt</span><span class="p">,</span>
+       <span class="o">%</span> <span class="n">same</span> <span class="k">as</span> <span class="n">div</span><span class="o">.</span><span class="n">attention_border</span><span class="o">-</span><span class="n">TeXcolor</span>
+       <span class="n">attentionBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Crimson</span><span class="p">},</span>
+       <span class="o">%</span> <span class="n">same</span> <span class="k">as</span> <span class="n">div</span><span class="o">.</span><span class="n">attention_background</span><span class="o">-</span><span class="n">TeXcolor</span>
+       <span class="n">attentionBgColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">FloralWhite</span><span class="p">},</span>
+       <span class="o">%</span>
+       <span class="o">%</span> <span class="n">no</span> <span class="n">CSS</span><span class="o">-</span><span class="n">like</span> <span class="n">names</span> <span class="n">yet</span> <span class="n">at</span> <span class="mf">5.1.0</span> <span class="k">for</span> <span class="n">note</span><span class="o">-</span><span class="nb">type</span> <span class="n">admonitions</span>
+       <span class="n">noteborder</span><span class="o">=</span><span class="mi">2</span><span class="n">pt</span><span class="p">,</span>
+       <span class="n">noteBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">Olive</span><span class="p">},</span>
+       <span class="n">hintBorderColor</span><span class="o">=</span><span class="p">{</span><span class="n">named</span><span class="p">}{</span><span class="n">LightCoral</span><span class="p">}</span><span class="o">%</span>
+   <span class="p">}</span>
+</pre></div>
+</div>
+<p>And this is placed at the end of the chapter source to end the scope of
+the configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">raw</span><span class="p">::</span> <span class="n">latex</span>
+
+   \<span class="n">endgroup</span>
+</pre></div>
+</div>
+<p>LaTeX syntax for boolean keys requires <em>lowercase</em> <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>
+e.g <code class="docutils literal notranslate"><span class="pre">'sphinxsetup':</span> <span class="pre">&quot;verbatimwrapslines=false&quot;</span></code>.  If setting the
+boolean key to <code class="docutils literal notranslate"><span class="pre">true</span></code>, <code class="docutils literal notranslate"><span class="pre">=true</span></code> is optional.
+Spaces around the commas and equal signs are ignored, spaces inside LaTeX
+macros may be significant.
+Do not use quotes to enclose values, whether numerical or strings.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">bookmarksdepth</span></code></dt><dd><p>Controls the depth of the collapsible bookmarks panel in the PDF.
+May be either a number (e.g. <code class="docutils literal notranslate"><span class="pre">3</span></code>) or a LaTeX sectioning name (e.g.
+<code class="docutils literal notranslate"><span class="pre">subsubsection</span></code>, i.e. without backslash).
+For details, refer to the <code class="docutils literal notranslate"><span class="pre">hyperref</span></code> LaTeX docs.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">5</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 4.0.0 版本加入.</span></p>
+</div>
+</dd>
+</dl>
+<dl id="latexsphinxsetuphmargin">
+<dt><code class="docutils literal notranslate"><span class="pre">hmargin,</span> <span class="pre">vmargin</span></code></dt><dd><p>The dimensions of the horizontal (resp. vertical) margins, passed as
+<code class="docutils literal notranslate"><span class="pre">hmargin</span></code> (resp. <code class="docutils literal notranslate"><span class="pre">vmargin</span></code>) option to the <code class="docutils literal notranslate"><span class="pre">geometry</span></code> package.
+Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;sphinxsetup&#39;</span><span class="p">:</span> <span class="s1">&#39;hmargin={2in,1.5in}, vmargin={1.5in,2in}, marginpar=1in&#39;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>Japanese documents currently accept only the one-dimension format for
+these parameters. The <code class="docutils literal notranslate"><span class="pre">geometry</span></code> package is then passed suitable options
+to get the text width set to an exact multiple of the <em>zenkaku</em> width, and
+the text height set to an integer multiple of the baselineskip, with the
+closest fit for the margins.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">1in</span></code> (equivalent to <code class="docutils literal notranslate"><span class="pre">{1in,1in}</span></code>)</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>For Japanese <code class="docutils literal notranslate"><span class="pre">'manual'</span></code> docclass with pointsize <code class="docutils literal notranslate"><span class="pre">11pt</span></code> or <code class="docutils literal notranslate"><span class="pre">12pt</span></code>,
+use the <code class="docutils literal notranslate"><span class="pre">nomag</span></code> extra document class option (cf.
+<code class="docutils literal notranslate"><span class="pre">'extraclassoptions'</span></code> key of <a class="reference internal" href="usage/configuration.html#confval-latex_elements"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_elements</span></code></a>) or so-called
+TeX “true” units:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;sphinxsetup&#39;</span><span class="p">:</span> <span class="s1">&#39;hmargin=1.5truein, vmargin=1.5truein, marginpar=5zw&#39;</span><span class="p">,</span>
+</pre></div>
+</div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5.3 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">marginpar</span></code></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">\marginparwidth</span></code> LaTeX dimension. For Japanese documents, the value
+is modified to be the closest integer multiple of the <em>zenkaku</em> width.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">0.5in</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5.3 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">verbatimwithframe</span></code></dt><dd><p>Boolean to specify if <a class="reference internal" href="usage/restructuredtext/directives.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">code-block</span></code></a>s and literal includes are
+framed. Setting it to <code class="docutils literal notranslate"><span class="pre">false</span></code> does not deactivate use of package
+“framed”, because it is still in use for the optional background colour.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">verbatimwrapslines</span></code></dt><dd><p>Boolean to specify if long lines in <a class="reference internal" href="usage/restructuredtext/directives.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">code-block</span></code></a>‘s contents are
+wrapped.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, line breaks may happen at spaces (the last space before the
+line break will be rendered using a special symbol), and at ascii
+punctuation characters (i.e. not at letters or digits). Whenever a long
+string has no break points, it is moved to next line. If its length is
+longer than the line width it will overflow.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+</dd>
+</dl>
+<dl id="latexsphinxsetupforcewraps">
+<dt><code class="docutils literal notranslate"><span class="pre">verbatimforcewraps</span></code></dt><dd><p>Boolean to specify if long lines in <a class="reference internal" href="usage/restructuredtext/directives.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">code-block</span></code></a>‘s contents
+should be forcefully wrapped to never overflow due to long strings.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>It is assumed that the <a class="reference external" href="https://pygments.org/">Pygments</a> LaTeXFormatter has not been used with
+its <code class="docutils literal notranslate"><span class="pre">texcomments</span></code> or similar options which allow additional
+(arbitrary) LaTeX mark-up.</p>
+<p>Also, in case of <a class="reference internal" href="usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> set to <code class="docutils literal notranslate"><span class="pre">'pdflatex'</span></code>, only
+the default LaTeX handling of Unicode code points, i.e. <code class="docutils literal notranslate"><span class="pre">utf8</span></code> not
+<code class="docutils literal notranslate"><span class="pre">utf8x</span></code> is allowed.</p>
+</div>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.5.0 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">verbatimmaxoverfull</span></code></dt><dd><p>A number. If an unbreakable long string has length larger than the total
+linewidth plus this number of characters, and if <code class="docutils literal notranslate"><span class="pre">verbatimforcewraps</span></code>
+mode is on, the input line will be reset using the forceful algorithm
+which applies breakpoints at each character.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">3</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.5.0 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">verbatimmaxunderfull</span></code></dt><dd><p>A number. If <code class="docutils literal notranslate"><span class="pre">verbatimforcewraps</span></code> mode applies, and if after applying
+the line wrapping at spaces and punctuation, the first part of the split
+line is lacking at least that number of characters to fill the available
+width, then the input line will be reset using the forceful algorithm.</p>
+<p>As the default is set to a high value, the forceful algorithm is triggered
+only in overfull case, i.e. in presence of a string longer than full
+linewidth. Set this to <code class="docutils literal notranslate"><span class="pre">0</span></code> to force all input lines to be hard wrapped
+at the current available linewidth:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">latex_elements</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;sphinxsetup&#39;</span><span class="p">:</span> <span class="s2">&quot;verbatimforcewraps, verbatimmaxunderfull=0&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This can be done locally for a given code-block via the use of raw latex
+directives to insert suitable <code class="docutils literal notranslate"><span class="pre">\sphinxsetup</span></code> (before and after) into the
+latex file.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">100</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.5.0 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">verbatimhintsturnover</span></code></dt><dd><p>Boolean to specify if code-blocks display “continued on next page” and
+“continued from previous page” hints in case of pagebreaks.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.6.3 版本加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.7 版本发生变更: </span>the default changed from <code class="docutils literal notranslate"><span class="pre">false</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">verbatimcontinuedalign</span></code>, <code class="docutils literal notranslate"><span class="pre">verbatimcontinuesalign</span></code></dt><dd><p>Horizontal position relative to the framed contents: either <code class="docutils literal notranslate"><span class="pre">l</span></code> (left
+aligned), <code class="docutils literal notranslate"><span class="pre">r</span></code> (right aligned) or <code class="docutils literal notranslate"><span class="pre">c</span></code> (centered).</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">r</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.7 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">parsedliteralwraps</span></code></dt><dd><p>Boolean to specify if long lines in <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#parsed-literal">parsed-literal</a>‘s contents
+should wrap.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5.2 版本加入: </span>set this option value to <code class="docutils literal notranslate"><span class="pre">false</span></code> to recover former behaviour.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">inlineliteralwraps</span></code></dt><dd><p>Boolean to specify if line breaks are allowed inside inline literals: but
+extra potential break-points (additionally to those allowed by LaTeX at
+spaces or for hyphenation) are currently inserted only after the characters
+<code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">,</span> <span class="pre">;</span> <span class="pre">?</span> <span class="pre">!</span> <span class="pre">/</span></code> and <code class="docutils literal notranslate"><span class="pre">\</span></code>. Due to TeX internals, white space in the line
+will be stretched (or shrunk) in order to accommodate the linebreak.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版本加入: </span>set this option value to <code class="docutils literal notranslate"><span class="pre">false</span></code> to recover former behaviour.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 2.3.0 版本发生变更: </span>added potential breakpoint at <code class="docutils literal notranslate"><span class="pre">\</span></code> characters.</p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">verbatimvisiblespace</span></code></dt><dd><p>When a long code line is split, the last space character from the source
+code line right before the linebreak location is typeset using this.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">\textcolor{red}{\textvisiblespace}</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">verbatimcontinued</span></code></dt><dd><p>A LaTeX macro inserted at start of continuation code lines. Its
+(complicated…) default typesets a small red hook pointing to the right:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\makebox[2\fontcharwd\font`\x][r]{\textcolor{red}{\tiny$\hookrightarrow$}}
+</pre></div>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5 版本发生变更: </span>The breaking of long code lines was added at 1.4.2. The default
+definition of the continuation symbol was changed at 1.5 to accommodate
+various font sizes (e.g. code-blocks can be in footnotes).</p>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Values for colour keys must either:</p>
+<ul class="simple">
+<li><p>obey the syntax of the <code class="docutils literal notranslate"><span class="pre">\definecolor</span></code> LaTeX command, e.g. something
+such as <code class="docutils literal notranslate"><span class="pre">VerbatimColor={rgb}{0.2,0.3,0.5}</span></code> or <code class="docutils literal notranslate"><span class="pre">{RGB}{37,23,255}</span></code> or
+<code class="docutils literal notranslate"><span class="pre">{gray}{0.75}</span></code> or (only with package <code class="docutils literal notranslate"><span class="pre">xcolor</span></code>) <code class="docutils literal notranslate"><span class="pre">{HTML}{808080}</span></code> or
+…</p></li>
+<li><p>or obey the syntax of the <code class="docutils literal notranslate"><span class="pre">\colorlet</span></code> command from package <code class="docutils literal notranslate"><span class="pre">xcolor</span></code>
+(which then must exist in the LaTeX installation),
+e.g. <code class="docutils literal notranslate"><span class="pre">VerbatimColor=red!10</span></code> or <code class="docutils literal notranslate"><span class="pre">red!50!green</span></code> or <code class="docutils literal notranslate"><span class="pre">-red!75</span></code> or
+<code class="docutils literal notranslate"><span class="pre">MyPreviouslyDefinedColour</span></code> or… Refer to <a class="reference external" href="https://ctan.org/pkg/xcolor">xcolor</a> documentation for
+this syntax.</p></li>
+</ul>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 5.3.0 版本发生变更: </span>Formerly only the <code class="docutils literal notranslate"><span class="pre">\definecolor</span></code> syntax was accepted.</p>
+</div>
+</div>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">TitleColor</span></code></dt><dd><p>The colour for titles (as configured via use of package “titlesec”.)</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{rgb}{0.126,0.263,0.361}</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">InnerLinkColor</span></code></dt><dd><p>A colour passed to <code class="docutils literal notranslate"><span class="pre">hyperref</span></code> as value of <code class="docutils literal notranslate"><span class="pre">linkcolor</span></code>  and
+<code class="docutils literal notranslate"><span class="pre">citecolor</span></code>.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{rgb}{0.208,0.374,0.486}</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">OuterLinkColor</span></code></dt><dd><p>A colour passed to <code class="docutils literal notranslate"><span class="pre">hyperref</span></code> as value of <code class="docutils literal notranslate"><span class="pre">filecolor</span></code>, <code class="docutils literal notranslate"><span class="pre">menucolor</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">urlcolor</span></code>.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{rgb}{0.216,0.439,0.388}</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">VerbatimColor</span></code></dt><dd><p>The background colour for <a class="reference internal" href="usage/restructuredtext/directives.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">code-block</span></code></a>s.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{rgb}{1,1,1}</span></code> (white)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">VerbatimBorderColor</span></code></dt><dd><p>The frame color.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{rgb}{0,0,0}</span></code> (black)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">VerbatimHighlightColor</span></code></dt><dd><p>The color for highlighted lines.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{rgb}{0.878,1,1}</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.6.6 版本加入.</span></p>
+</div>
+</dd>
+</dl>
+<dl id="tablecolors">
+<dt><code class="docutils literal notranslate"><span class="pre">TableRowColorHeader</span></code></dt><dd><p>Sets the background colour for (all) the header rows of tables.</p>
+<p>It will have an effect only if either the <a class="reference internal" href="usage/configuration.html#confval-latex_table_style"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_table_style</span></code></a>
+contains <code class="docutils literal notranslate"><span class="pre">'colorrows'</span></code> or if the table is assigned the <code class="docutils literal notranslate"><span class="pre">colorrows</span></code>
+class.  It is ignored for tables with <code class="docutils literal notranslate"><span class="pre">nocolorrows</span></code> class.</p>
+<p>As for the other <code class="docutils literal notranslate"><span class="pre">'sphinxsetup'</span></code> keys, it can also be set or modified
+from a <code class="docutils literal notranslate"><span class="pre">\sphinxsetup{...}</span></code> LaTeX command inserted via the <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#raw">raw</a>
+directive, or also from a LaTeX environment associated to a <a class="reference internal" href="#latexcontainer">container
+class</a> and using such <code class="docutils literal notranslate"><span class="pre">\sphinxsetup{...}</span></code>.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{gray}{0.86}</span></code></p>
+<p>There is also <code class="docutils literal notranslate"><span class="pre">TableMergeColorHeader</span></code>.  If used, sets a specific colour
+for merged single-row cells in the header.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 5.3.0 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">TableRowColorOdd</span></code></dt><dd><p>Sets the background colour for odd rows in tables (the row count starts at
+<code class="docutils literal notranslate"><span class="pre">1</span></code> at the first non-header row).  Has an effect only if the
+<a class="reference internal" href="usage/configuration.html#confval-latex_table_style"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_table_style</span></code></a> contains <code class="docutils literal notranslate"><span class="pre">'colorrows'</span></code> or for specific
+tables assigned the <code class="docutils literal notranslate"><span class="pre">colorrows</span></code> class.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{gray}{0.92}</span></code></p>
+<p>There is also <code class="docutils literal notranslate"><span class="pre">TableMergeColorOdd</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 5.3.0 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">TableRowColorEven</span></code></dt><dd><p>Sets the background colour for even rows in tables.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">{gray}{0.98}</span></code></p>
+<p>There is also <code class="docutils literal notranslate"><span class="pre">TableMergeColorEven</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 5.3.0 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">verbatimsep</span></code></dt><dd><p>The separation between code lines and the frame.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">\fboxsep</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">verbatimborder</span></code></dt><dd><p>The width of the frame around <a class="reference internal" href="usage/restructuredtext/directives.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">code-block</span></code></a>s.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">\fboxrule</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shadowsep</span></code></dt><dd><p>The separation between contents and frame for <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#contents">contents</a> and
+<a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#topic">topic</a> boxes.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">5pt</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shadowsize</span></code></dt><dd><p>The width of the lateral “shadow” to the right and bottom.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">4pt</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">shadowrule</span></code></dt><dd><p>The width of the frame around <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#topic">topic</a> boxes.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">\fboxrule</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">noteBorderColor</span></code>, <code class="docutils literal notranslate"><span class="pre">hintBorderColor</span></code>,
+<code class="docutils literal notranslate"><span class="pre">importantBorderColor</span></code>, <code class="docutils literal notranslate"><span class="pre">tipBorderColor</span></code></dt><dd><p>The colour for the two horizontal rules used by Sphinx in LaTeX for styling
+a <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#note">note</a> type admonition.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{rgb}{0,0,0}</span></code> (black)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">noteborder</span></code>, <code class="docutils literal notranslate"><span class="pre">hintborder</span></code>, <code class="docutils literal notranslate"><span class="pre">importantborder</span></code>, <code class="docutils literal notranslate"><span class="pre">tipborder</span></code></dt><dd><p>The width of the two horizontal rules.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">0.5pt</span></code></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">warningBorderColor</span></code>, <code class="docutils literal notranslate"><span class="pre">cautionBorderColor</span></code>,
+<code class="docutils literal notranslate"><span class="pre">attentionBorderColor</span></code>, <code class="docutils literal notranslate"><span class="pre">dangerBorderColor</span></code>,
+<code class="docutils literal notranslate"><span class="pre">errorBorderColor</span></code></dt><dd><p>The colour for the admonition frame.</p>
+</dd>
+</dl>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{rgb}{0,0,0}</span></code> (black)</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">warningBgColor</span></code>, <code class="docutils literal notranslate"><span class="pre">cautionBgColor</span></code>,
+<code class="docutils literal notranslate"><span class="pre">attentionBgColor</span></code>, <code class="docutils literal notranslate"><span class="pre">dangerBgColor</span></code>,
+<code class="docutils literal notranslate"><span class="pre">errorBgColor</span></code></dt><dd><p>The background colours for the respective admonitions.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{rgb}{1,1,1}</span></code> (white)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">warningborder</span></code>, <code class="docutils literal notranslate"><span class="pre">cautionborder</span></code>,
+<code class="docutils literal notranslate"><span class="pre">attentionborder</span></code>, <code class="docutils literal notranslate"><span class="pre">dangerborder</span></code>,
+<code class="docutils literal notranslate"><span class="pre">errorborder</span></code></dt><dd><p>The width of the frame.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">1pt</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">AtStartFootnote</span></code></dt><dd><p>LaTeX macros inserted at the start of the footnote text at bottom of page,
+after the footnote number.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">\mbox{</span> <span class="pre">}</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">BeforeFootnote</span></code></dt><dd><p>LaTeX macros inserted before the footnote mark. The default removes
+possible space before it (else, TeX could insert a line break there).</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">\leavevmode\unskip</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版本加入.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">HeaderFamily</span></code></dt><dd><p>default <code class="docutils literal notranslate"><span class="pre">\sffamily\bfseries</span></code>. Sets the font used by headings.</p>
+</dd>
+</dl>
+</section>
+<section id="additional-css-like-sphinxsetup-keys">
+<span id="additionalcss"></span><h2>Additional  CSS-like <code class="docutils literal notranslate"><span class="pre">'sphinxsetup'</span></code> keys<a class="headerlink" href="#additional-css-like-sphinxsetup-keys" title="此标题的永久链接">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">在 5.1.0 版本加入.</span></p>
+</div>
+<p>At <code class="docutils literal notranslate"><span class="pre">5.1.0</span></code> the LaTeX styling possibilities have been significantly enhanced.
+Code-blocks, topic directives, and the five warning-type directives each now
+possess:</p>
+<ul class="simple">
+<li><p>four border-widths parameters,</p></li>
+<li><p>four padding parameters,</p></li>
+<li><p>four radius parameters (only circular arcs) for the corners,</p></li>
+<li><p>optional shadow, with x-offset and y-offset being possibly negative,
+and the shadow possibly inset,</p></li>
+<li><p>colors for background, border and shadow.</p></li>
+</ul>
+<p>All those options have been named in a CSS-like way.  Indeed, in future it is
+envisioned to allow these settings to be specified either in an external file,
+or in a string variable which would be parsed to extract from CSS the
+selectors and properties which are understood.</p>
+<p>Currently though this is added via a bunch of new <code class="docutils literal notranslate"><span class="pre">'sphinxsetup'</span></code> keys
+whose names will be given now.</p>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>Low-level LaTeX errors causing a build failure can happen if
+the input syntax is not respected.  In particular properties for colours,
+whose names end with <code class="docutils literal notranslate"><span class="pre">TeXcolor</span></code>, must be input as for the other colour
+related options previously described, i.e. for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...&lt;</span><span class="n">other</span> <span class="n">options</span><span class="o">&gt;</span>
+<span class="n">div</span><span class="o">.</span><span class="n">warning_border</span><span class="o">-</span><span class="n">TeXcolor</span><span class="o">=</span><span class="p">{</span><span class="n">rgb</span><span class="p">}{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span><span class="o">%</span>
+<span class="o">...&lt;</span><span class="n">other</span> <span class="n">options</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>A colon will not be accepted in place of the equal sign which is
+expected by the LaTeX syntax.
+Do not insert spaces in the input.  With the exception of the
+<code class="docutils literal notranslate"><span class="pre">box-shadow</span></code> all dimensional parameters expect a unique dimension
+not a space separated list of dimensions.</p>
+</div>
+<p>Options for code-blocks:</p>
+<ul>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_border-top-width</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_border-right-width</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_border-bottom-width</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_border-left-width</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_border-width</span></code>, beware that this is a <em>single</em> dimension.  Its
+default, and the ones of the separate widths is the setting of
+<code class="docutils literal notranslate"><span class="pre">\fboxrule</span></code> in the preamble, i.e. normally <code class="docutils literal notranslate"><span class="pre">0.4pt</span></code>.</div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pre_box-decoration-break</span></code> can be set to <code class="docutils literal notranslate"><span class="pre">clone</span></code> or <code class="docutils literal notranslate"><span class="pre">slice</span></code>, default
+is <code class="docutils literal notranslate"><span class="pre">clone</span></code> for backwards compatibility.</p></li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_padding-top</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_padding-right</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_padding-bottom</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_padding-left</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_padding</span></code>, again this is a single dimension.  Its default is the
+setting of <code class="docutils literal notranslate"><span class="pre">\fboxsep</span></code> i.e. normally <code class="docutils literal notranslate"><span class="pre">3pt</span></code>.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_border-top-left-radius</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_border-top-right-radius</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_border-bottom-right-radius</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_border-bottom-left-radius</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_border-radius</span></code>, are all single dimensions (rounded corners are
+circular arcs only), which default to <code class="docutils literal notranslate"><span class="pre">0pt</span></code>.</div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pre_box-shadow</span></code> is special in so far as it may be the <code class="docutils literal notranslate"><span class="pre">none</span></code> keyword,
+or a single dimension
+which will be assigned to both x-offset and y-offset, or two dimensions, or
+two dimensions followed by the word <code class="docutils literal notranslate"><span class="pre">inset</span></code>.  The x-offset and y-offset
+may be negative.  The defaults is <code class="docutils literal notranslate"><span class="pre">none</span></code>.</p></li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_border-TeXcolor</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_background-TeXcolor</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pre_box-shadow-TeXcolor</span></code>.</div>
+</div>
+<p>They must all be of the format as accepted by LaTeX <code class="docutils literal notranslate"><span class="pre">\definecolor</span></code>.  They
+default to <code class="docutils literal notranslate"><span class="pre">{rgb}{0,0,0}</span></code>, <code class="docutils literal notranslate"><span class="pre">{rgb}{1,1,1}</span></code> and <code class="docutils literal notranslate"><span class="pre">{rgb}{0,0,0}</span></code>
+respectively.</p>
+</li>
+</ul>
+<p>If one of the radius parameters is positive, the separate border widths will
+be ignored and only the value set by <code class="docutils literal notranslate"><span class="pre">pre_border-width</span></code> will be used.  Also,
+if a shadow is present and is inset, the box will be rendered with straight
+corners.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Rounded boxes are done using the <a class="reference external" href="https://ctan.org/pkg/pict2e">pict2e</a> interface to some basic PDF
+graphics operations.  If this LaTeX package can not be found the build will
+proceed and render all boxes with straight corners.</p>
+</div>
+<p>Options for topic boxes:</p>
+<ul>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_border-top-width</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_border-right-width</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_border-bottom-width</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_border-left-width</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_border-width</span></code>, beware that this is a <em>single</em> dimension.  Its
+default, and the ones of the separate widths is the setting of
+<code class="docutils literal notranslate"><span class="pre">\fboxrule</span></code> in the preamble, i.e. normally <code class="docutils literal notranslate"><span class="pre">0.4pt</span></code>.</div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">div.topic_box-decoration-break</span></code> is currently ignored.</p></li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_padding-top</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_padding-right</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_padding-bottom</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_padding-left</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_padding</span></code>,
+again this is a single dimension.  Its default is <code class="docutils literal notranslate"><span class="pre">5pt</span></code>.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_border-top-left-radius</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_border-top-right-radius</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_border-bottom-right-radius</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_border-bottom-left-radius</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_border-radius</span></code>.</div>
+</div>
+<p>They all are single dimensions which default to <code class="docutils literal notranslate"><span class="pre">0pt</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">div.topic_box-shadow</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">4pt</span> <span class="pre">4pt</span></code>.</p></li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_border-TeXcolor</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_background-TeXcolor</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.topic_box-shadow-TeXcolor</span></code>.</div>
+</div>
+<p>They  must all be of the format as accepted by
+LaTeX <code class="docutils literal notranslate"><span class="pre">\definecolor</span></code>.  They default to <code class="docutils literal notranslate"><span class="pre">{rgb}{0,0,0}</span></code>, <code class="docutils literal notranslate"><span class="pre">{rgb}{1,1,1}</span></code>
+and <code class="docutils literal notranslate"><span class="pre">{rgb}{0,0,0}</span></code> respectively.</p>
+</li>
+</ul>
+<p>Options for <code class="docutils literal notranslate"><span class="pre">warning</span></code> (and similarly for  <code class="docutils literal notranslate"><span class="pre">caution</span></code>, <code class="docutils literal notranslate"><span class="pre">attention</span></code>,
+<code class="docutils literal notranslate"><span class="pre">danger</span></code>, <code class="docutils literal notranslate"><span class="pre">error</span></code>) directive:</p>
+<ul>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_border-top-width</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_border-right-width</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_border-bottom-width</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_border-left-width</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_border-width</span></code>,
+beware that this is a <em>single</em> dimension.  Its
+default, and the ones of the separate widths is <code class="docutils literal notranslate"><span class="pre">1pt</span></code>.</div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">div.warning_box-decoration-break</span></code> is currently ignored.</p></li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_padding-top</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_padding-right</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_padding-bottom</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_padding-left</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_padding</span></code>, again this is a single dimension.</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>Prior to <code class="docutils literal notranslate"><span class="pre">5.1.0</span></code> there was no separate customizability of
+padding for warning-type boxes in PDF via LaTeX output.  The sum of
+padding and border-width (as set by <code class="docutils literal notranslate"><span class="pre">warningborder</span></code>, now also named
+<code class="docutils literal notranslate"><span class="pre">div.warning_border-width</span></code>) was kept to a certain constant value (and
+this limited the border-width to small values else the border could
+overlap the text contents).  This behaviour is kept as default.  Using
+the <code class="docutils literal notranslate"><span class="pre">div.warning_padding</span></code> key will cancel for all four paddings the
+legacy behaviour, but using only one of the four padding keys leaves the
+three other paddings behave as formerly.</p>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_border-top-left-radius</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_border-top-right-radius</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_border-bottom-right-radius</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_border-bottom-left-radius</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_border-radius</span></code>.</div>
+</div>
+<p>They are all single dimensions which default to <code class="docutils literal notranslate"><span class="pre">0pt</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">div.warning_box-shadow</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">none</span></code>.</p></li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_border-TeXcolor</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_background-TeXcolor</span></code>,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">div.warning_box-shadow-TeXcolor</span></code>.</div>
+</div>
+<p>They  must all be of the format as accepted by
+LaTeX <code class="docutils literal notranslate"><span class="pre">\definecolor</span></code>.  They default to <code class="docutils literal notranslate"><span class="pre">{rgb}{0,0,0}</span></code>, <code class="docutils literal notranslate"><span class="pre">{rgb}{1,1,1}</span></code>
+and <code class="docutils literal notranslate"><span class="pre">{rgb}{0,0,0}</span></code> respectively.</p>
+</li>
+</ul>
+<p>In the above replace <code class="docutils literal notranslate"><span class="pre">warning</span></code> by one of <code class="docutils literal notranslate"><span class="pre">caution</span></code>, <code class="docutils literal notranslate"><span class="pre">attention</span></code>,
+<code class="docutils literal notranslate"><span class="pre">danger</span></code>, <code class="docutils literal notranslate"><span class="pre">error</span></code> to style the respective directives.</p>
+<p>The following legacy behaviour of the PDF layout is currently not
+customizable:</p>
+<ul class="simple">
+<li><p>for code-blocks, padding and border-width and shadow (if one adds one) will
+go into the margin; the code lines remain at the same place independently of
+the values of the padding and border-width, except for being shifted
+vertically of course to not overwrite other text.</p></li>
+<li><p>for topic boxes and warning-type notices only the shadows will go into page
+margin, the borders are kept within the text area.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contents</span></code> and <code class="docutils literal notranslate"><span class="pre">topic</span></code> directive are styled the same way.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">note</span></code>-style admonition directives admit no such customization
+interface at this stage.</p>
+</div>
+<p>Here is a random example (not especially recommended!):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">latex_elements</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;sphinxsetup&#39;</span><span class="p">:</span> <span class="s2">&quot;&quot;&quot;%</span>
+<span class="s2">pre_background-TeXcolor=</span><span class="si">{RGB}</span><span class="s2">{242,242,242},</span><span class="si">% a</span><span class="s2">lias of VerbatimColor</span>
+<span class="s2">pre_border-TeXcolor=</span><span class="si">{RGB}</span><span class="s2">{32,32,32},%</span>
+<span class="s2">pre_box-decoration-break=slice,</span>
+<span class="s2">% pre_border-top-width=5pt,% will be ignored due to non-zero radii</span>
+<span class="s2">% pre_border-right-width=10pt,</span>
+<span class="s2">% pre_border-bottom-width=15pt,</span>
+<span class="s2">% pre_border-left-width=20pt,</span>
+<span class="s2">pre_border-width=3pt,</span><span class="si">% s</span><span class="s2">ets equally the four border-widths,</span>
+<span class="s2">%                      needed for rounded corners</span>
+<span class="s2">pre_border-top-left-radius=20pt,</span>
+<span class="s2">pre_border-top-right-radius=0pt,</span>
+<span class="s2">pre_border-bottom-right-radius=20pt,</span>
+<span class="s2">pre_border-bottom-left-radius=0pt,</span>
+<span class="s2">pre_box-shadow=10pt 10pt,</span>
+<span class="s2">pre_box-shadow-TeXcolor=</span><span class="si">{RGB}</span><span class="s2">{192,192,192},</span>
+<span class="s2">%</span>
+<span class="s2">div.topic_border-TeXcolor=</span><span class="si">{RGB}</span><span class="s2">{102,102,102},%</span>
+<span class="s2">div.topic_box-shadow-TeXcolor=</span><span class="si">{RGB}</span><span class="s2">{187,187,187},%</span>
+<span class="s2">div.topic_background-TeXcolor=</span><span class="si">{RGB}</span><span class="s2">{238,238,255},%</span>
+<span class="s2">div.topic_border-bottom-right-radius=10pt,%</span>
+<span class="s2">div.topic_border-top-right-radius=10pt,%</span>
+<span class="s2">div.topic_border-width=2pt,%</span>
+<span class="s2">div.topic_box-shadow=10pt 10pt,%</span>
+<span class="s2">%</span>
+<span class="s2">div.danger_border-width=10pt,%</span>
+<span class="s2">div.danger_padding=6pt,% (see Important notice above)</span>
+<span class="s2">div.danger_background-TeXcolor=</span><span class="si">{rgb}</span><span class="s2">{0.6,.8,0.8},%</span>
+<span class="s2">div.danger_border-TeXcolor=</span><span class="si">{RGB}</span><span class="s2">{64,64,64},%</span>
+<span class="s2">div.danger_box-shadow=-7pt 7pt,%</span>
+<span class="s2">div.danger_box-shadow-TeXcolor=</span><span class="si">{RGB}</span><span class="s2">{192,192,192},%</span>
+<span class="s2">div.danger_border-bottom-left-radius=15pt%</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In future, it is hoped to add further CSS properties such as <code class="docutils literal notranslate"><span class="pre">font</span></code> or
+<code class="docutils literal notranslate"><span class="pre">color</span></code>.</p>
+</section>
+<section id="latex-macros-and-environments">
+<h2>LaTeX macros and environments<a class="headerlink" href="#latex-macros-and-environments" title="此标题的永久链接">¶</a></h2>
+<p>The “LaTeX package” file <code class="file docutils literal notranslate"><span class="pre">sphinx.sty</span></code> loads various components
+providing support macros (aka commands), and environments, which are used in
+the mark-up produced on output from the <code class="docutils literal notranslate"><span class="pre">latex</span></code> builder, before conversion
+to <code class="docutils literal notranslate"><span class="pre">pdf</span></code> via the LaTeX toolchain.  Also the “LaTeX class” files
+<code class="file docutils literal notranslate"><span class="pre">sphinxhowto.cls</span></code> and <code class="file docutils literal notranslate"><span class="pre">sphinxmanual.cls</span></code> define or customize some
+environments.  All of these files can be found in the latex build repertory.</p>
+<p>Some of these provide facilities not available from pre-existing LaTeX
+packages and work around LaTeX limitations with lists, table cells, verbatim
+rendering, footnotes, etc…</p>
+<p>Others simply define macros with public names to make overwriting their
+defaults easy via user-added contents to the preamble.  We will survey most of
+those public names here, but defaults have to be looked at in their respective
+definition files.</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>Sphinx LaTeX support code is split across multiple smaller-sized files.
+Rather than adding code to the preamble via
+<a class="reference internal" href="#latex-elements-confval">latex_elements</a>[<code class="docutils literal notranslate"><span class="pre">'preamble'</span></code>] it is
+also possible to replace entirely one of the component files of Sphinx
+LaTeX code with a custom version, simply by including a modified copy in
+the project source and adding the filename to the
+<a class="reference internal" href="usage/configuration.html#confval-latex_additional_files"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_additional_files</span></code></a> list.  Check the LaTeX build repertory
+for the filenames and contents.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 4.0.0 版本发生变更: </span>split of <code class="file docutils literal notranslate"><span class="pre">sphinx.sty</span></code> into multiple smaller units, to facilitate
+customization of many aspects simultaneously.</p>
+</div>
+<section id="macros">
+<span id="latex-macros"></span><h3>Macros<a class="headerlink" href="#macros" title="此标题的永久链接">¶</a></h3>
+<ul>
+<li><p>Text styling commands:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstrong</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxbfcode</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxemail</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxtablecontinued</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxtitleref</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxmenuselection</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxaccelerator</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxcrossref</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxtermref</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxoptional</span></code>.</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.4.5 版本加入: </span>Use of <code class="docutils literal notranslate"><span class="pre">\sphinx</span></code> prefixed macro names to limit possibilities of conflict
+with LaTeX packages.</p>
+</div>
+</li>
+<li><p>More text styling:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstyleindexentry</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstyleindexextra</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstyleindexpageref</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstyletopictitle</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstylesidebartitle</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstyleothertitle</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstylesidebarsubtitle</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstyletheadfamily</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstyleemphasis</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstyleliteralemphasis</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstylestrong</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstyleliteralstrong</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstyleabbreviation</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstyleliteralintitle</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstylecodecontinued</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxstylecodecontinues</span></code>.</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版本加入: </span>These macros were formerly hard-coded as non customizable <code class="docutils literal notranslate"><span class="pre">\texttt</span></code>,
+<code class="docutils literal notranslate"><span class="pre">\emph</span></code>, etc…</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.6 版本加入: </span><code class="docutils literal notranslate"><span class="pre">\sphinxstyletheadfamily</span></code> which defaults to <code class="docutils literal notranslate"><span class="pre">\sffamily</span></code> and allows
+multiple paragraphs in header cells of tables.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.6.3 版本加入: </span><code class="docutils literal notranslate"><span class="pre">\sphinxstylecodecontinued</span></code> and <code class="docutils literal notranslate"><span class="pre">\sphinxstylecodecontinues</span></code>.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.0 版本加入: </span><code class="docutils literal notranslate"><span class="pre">\sphinxkeyboard</span></code></p>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxtableofcontents</span></code>: A wrapper (defined differently in
+<code class="file docutils literal notranslate"><span class="pre">sphinxhowto.cls</span></code> and in <code class="file docutils literal notranslate"><span class="pre">sphinxmanual.cls</span></code>) of standard
+<code class="docutils literal notranslate"><span class="pre">\tableofcontents</span></code>.  The macro <code class="docutils literal notranslate"><span class="pre">\sphinxtableofcontentshook</span></code> is executed
+during its expansion right before <code class="docutils literal notranslate"><span class="pre">\tableofcontents</span></code> itself.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5 版本发生变更: </span>Formerly, the meaning of <code class="docutils literal notranslate"><span class="pre">\tableofcontents</span></code> was modified by Sphinx.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 2.0 版本发生变更: </span>Hard-coded redefinitions of <code class="docutils literal notranslate"><span class="pre">\l&#64;section</span></code> and <code class="docutils literal notranslate"><span class="pre">\l&#64;subsection</span></code> formerly
+done during loading of <code class="docutils literal notranslate"><span class="pre">'manual'</span></code> docclass are now executed later via
+<code class="docutils literal notranslate"><span class="pre">\sphinxtableofcontentshook</span></code>.  This macro is also executed by the
+<code class="docutils literal notranslate"><span class="pre">'howto'</span></code> docclass, but defaults to empty with it.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>If adding to preamble the loading of <code class="docutils literal notranslate"><span class="pre">tocloft</span></code> package, also add to
+preamble <code class="docutils literal notranslate"><span class="pre">\renewcommand\sphinxtableofcontentshook{}</span></code> else it will reset
+<code class="docutils literal notranslate"><span class="pre">\l&#64;section</span></code> and <code class="docutils literal notranslate"><span class="pre">\l&#64;subsection</span></code> cancelling <code class="docutils literal notranslate"><span class="pre">tocloft</span></code> customization.</p>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxmaketitle</span></code>: Used as the default setting of the <code class="docutils literal notranslate"><span class="pre">'maketitle'</span></code>
+<a class="reference internal" href="usage/configuration.html#confval-latex_elements"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_elements</span></code></a> key.
+Defined in the class files <code class="file docutils literal notranslate"><span class="pre">sphinxmanual.cls</span></code> and
+<code class="file docutils literal notranslate"><span class="pre">sphinxhowto.cls</span></code>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.8.3 版本发生变更: </span>Formerly, <code class="docutils literal notranslate"><span class="pre">\maketitle</span></code> from LaTeX document class was modified by
+Sphinx.</p>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxbackoftitlepage</span></code>: For <code class="docutils literal notranslate"><span class="pre">'manual'</span></code> docclass, and if it is
+defined, it gets executed at end of <code class="docutils literal notranslate"><span class="pre">\sphinxmaketitle</span></code>, before the final
+<code class="docutils literal notranslate"><span class="pre">\clearpage</span></code>.  Use either the <code class="docutils literal notranslate"><span class="pre">'maketitle'</span></code> key or the <code class="docutils literal notranslate"><span class="pre">'preamble'</span></code> key
+of <a class="reference internal" href="usage/configuration.html#confval-latex_elements"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_elements</span></code></a> to add a custom definition of
+<code class="docutils literal notranslate"><span class="pre">\sphinxbackoftitlepage</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.8.3 版本加入.</span></p>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\sphinxcite</span></code>: A wrapper of standard <code class="docutils literal notranslate"><span class="pre">\cite</span></code> for citation references.</p></li>
+</ul>
+</section>
+<section id="environments">
+<h3>Environments<a class="headerlink" href="#environments" title="此标题的永久链接">¶</a></h3>
+<ul>
+<li><p>A <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#figure">figure</a> may have an optional legend with arbitrary body
+elements: they are rendered in a <code class="docutils literal notranslate"><span class="pre">sphinxlegend</span></code> environment. The default
+definition issues <code class="docutils literal notranslate"><span class="pre">\small</span></code>, and ends with <code class="docutils literal notranslate"><span class="pre">\par</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5.6 版本加入: </span>Formerly, the <code class="docutils literal notranslate"><span class="pre">\small</span></code> was hardcoded in LaTeX writer and the ending
+<code class="docutils literal notranslate"><span class="pre">\par</span></code> was lacking.</p>
+</div>
+</li>
+<li><p>Environments associated with admonitions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinxnote</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinxhint</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinximportant</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinxtip</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinxwarning</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinxcaution</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinxattention</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinxdanger</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinxerror</span></code>.</p></li>
+</ul>
+<p>They may be <code class="docutils literal notranslate"><span class="pre">\renewenvironment</span></code>
+‘d individually, and must then be defined with one argument (it is the heading
+of the notice, for example <code class="docutils literal notranslate"><span class="pre">Warning:</span></code> for <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#warning">warning</a> directive, if
+English is the document language). Their default definitions use either the
+<em>sphinxheavybox</em> (for the last 5 ones) or the <em>sphinxlightbox</em>
+environments, configured to use the parameters (colours, border thickness)
+specific to each type, which can be set via <code class="docutils literal notranslate"><span class="pre">'sphinxsetup'</span></code> string.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5 版本发生变更: </span>Use of public environment names, separate customizability of the
+parameters, such as <code class="docutils literal notranslate"><span class="pre">noteBorderColor</span></code>, <code class="docutils literal notranslate"><span class="pre">noteborder</span></code>,
+<code class="docutils literal notranslate"><span class="pre">warningBgColor</span></code>, <code class="docutils literal notranslate"><span class="pre">warningBorderColor</span></code>, <code class="docutils literal notranslate"><span class="pre">warningborder</span></code>, …</p>
+</div>
+</li>
+<li><p>The <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#contents">contents</a> directive (with <code class="docutils literal notranslate"><span class="pre">:local:</span></code> option) and the
+<a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#topic">topic</a> directive are implemented by environment <code class="docutils literal notranslate"><span class="pre">sphinxShadowBox</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.4.2 版本加入: </span>Former code refactored into an environment allowing page breaks.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5 版本发生变更: </span>Options <code class="docutils literal notranslate"><span class="pre">shadowsep</span></code>, <code class="docutils literal notranslate"><span class="pre">shadowsize</span></code>,  <code class="docutils literal notranslate"><span class="pre">shadowrule</span></code>.</p>
+</div>
+</li>
+<li><p>The literal blocks (via <code class="docutils literal notranslate"><span class="pre">::</span></code> or <a class="reference internal" href="usage/restructuredtext/directives.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">code-block</span></code></a>), are
+implemented using <code class="docutils literal notranslate"><span class="pre">sphinxVerbatim</span></code> environment which is a wrapper of
+<code class="docutils literal notranslate"><span class="pre">Verbatim</span></code> environment from package <code class="docutils literal notranslate"><span class="pre">fancyvrb.sty</span></code>. It adds the handling
+of the top caption and the wrapping of long lines, and a frame which allows
+pagebreaks. Inside tables the used
+environment is <code class="docutils literal notranslate"><span class="pre">sphinxVerbatimintable</span></code> (it does not draw a frame, but
+allows a caption).</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5 版本发生变更: </span><code class="docutils literal notranslate"><span class="pre">Verbatim</span></code> keeps exact same meaning as in <code class="docutils literal notranslate"><span class="pre">fancyvrb.sty</span></code> (also
+under the name <code class="docutils literal notranslate"><span class="pre">OriginalVerbatim</span></code>); <code class="docutils literal notranslate"><span class="pre">sphinxVerbatimintable</span></code> is used
+inside tables.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版本加入: </span>Options <code class="docutils literal notranslate"><span class="pre">verbatimwithframe</span></code>, <code class="docutils literal notranslate"><span class="pre">verbatimwrapslines</span></code>,
+<code class="docutils literal notranslate"><span class="pre">verbatimsep</span></code>, <code class="docutils literal notranslate"><span class="pre">verbatimborder</span></code>.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.6.6 版本加入: </span>Support for <code class="docutils literal notranslate"><span class="pre">:emphasize-lines:</span></code> option</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.6.6 版本加入: </span>Easier customizability of the formatting via exposed to user LaTeX macros
+such as <code class="docutils literal notranslate"><span class="pre">\sphinxVerbatimHighlightLine</span></code>.</p>
+</div>
+</li>
+<li><p>The bibliography uses <code class="docutils literal notranslate"><span class="pre">sphinxthebibliography</span></code> and the Python Module index
+as well as the general index both use <code class="docutils literal notranslate"><span class="pre">sphinxtheindex</span></code>; these environments
+are wrappers of the <code class="docutils literal notranslate"><span class="pre">thebibliography</span></code> and respectively <code class="docutils literal notranslate"><span class="pre">theindex</span></code>
+environments as provided by the document class (or packages).</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5 版本发生变更: </span>Formerly, the original environments were modified by Sphinx.</p>
+</div>
+</li>
+</ul>
+</section>
+<section id="miscellany">
+<h3>Miscellany<a class="headerlink" href="#miscellany" title="此标题的永久链接">¶</a></h3>
+<ul>
+<li><p>Every text paragraph in document body starts with <code class="docutils literal notranslate"><span class="pre">\sphinxAtStartPar</span></code>.
+Currently, this is used to insert a zero width horizontal skip which
+is a trick to allow TeX hyphenation of the first word of a paragraph
+in a narrow context (like a table cell). For <code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code> which
+does not need the trick, the <code class="docutils literal notranslate"><span class="pre">\sphinxAtStartPar</span></code> does nothing.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.5.0 版本加入.</span></p>
+</div>
+</li>
+<li><p>The section, subsection, … headings are set using  <em>titlesec</em>’s
+<code class="docutils literal notranslate"><span class="pre">\titleformat</span></code> command.</p></li>
+<li><p>For the <code class="docutils literal notranslate"><span class="pre">'manual'</span></code> docclass, the chapter headings can be customized using
+<em>fncychap</em>’s commands <code class="docutils literal notranslate"><span class="pre">\ChNameVar</span></code>, <code class="docutils literal notranslate"><span class="pre">\ChNumVar</span></code>, <code class="docutils literal notranslate"><span class="pre">\ChTitleVar</span></code>. File
+<code class="file docutils literal notranslate"><span class="pre">sphinx.sty</span></code> has custom re-definitions in case of <em>fncychap</em>
+option <code class="docutils literal notranslate"><span class="pre">Bjarne</span></code>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5 版本发生变更: </span>Formerly, use of <em>fncychap</em> with other styles than <code class="docutils literal notranslate"><span class="pre">Bjarne</span></code> was
+dysfunctional.</p>
+</div>
+</li>
+</ul>
+<ul id="latexcontainer">
+<li><p>Docutils <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#container">container</a> directives are supported in LaTeX output: to
+let a container class with name <code class="docutils literal notranslate"><span class="pre">foo</span></code> influence the final PDF via LaTeX,
+it is only needed to define in the preamble an environment
+<code class="docutils literal notranslate"><span class="pre">sphinxclassfoo</span></code>.  A simple example would be:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\newenvironment</span><span class="nb">{</span>sphinxclassred<span class="nb">}{</span><span class="k">\color</span><span class="nb">{</span>red<span class="nb">}}{}</span>
+</pre></div>
+</div>
+<p>Currently the class names must contain only ascii characters and avoid
+characters special to LaTeX such as <code class="docutils literal notranslate"><span class="pre">\</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 4.1.0 版本加入.</span></p>
+</div>
+</li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p>As an experimental feature, Sphinx can use user-defined template file for
+LaTeX source if you have a file named <code class="docutils literal notranslate"><span class="pre">_templates/latex.tex_t</span></code> in your
+project.</p>
+<p>Additional files <code class="docutils literal notranslate"><span class="pre">longtable.tex_t</span></code>, <code class="docutils literal notranslate"><span class="pre">tabulary.tex_t</span></code> and
+<code class="docutils literal notranslate"><span class="pre">tabular.tex_t</span></code> can be added to <code class="docutils literal notranslate"><span class="pre">_templates/</span></code> to configure some aspects
+of table rendering (such as the caption position).</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.6 版本加入: </span>currently all template variables are unstable and undocumented.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="copyright.html"> 版权所有</a> 2007-2026, the Sphinx developers.
+  由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0创建。
+</div>
+  </body>
+</html>
