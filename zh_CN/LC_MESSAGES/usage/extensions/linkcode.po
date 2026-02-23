@@ -1,0 +1,125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2025, the Sphinx developers
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-27 08:44+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../usage/extensions/linkcode.rst:2
+msgid ":mod:`sphinx.ext.linkcode` -- Add external links to source code"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:13
+msgid ""
+"This extension looks at your object descriptions (``.. class::``, ``.. "
+"function::`` etc.) and adds external links to code hosted somewhere on the "
+"web. The intent is similar to the ``sphinx.ext.viewcode`` extension, but "
+"assumes the source code can be found somewhere on the Internet."
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:19
+msgid ""
+"In your configuration, you need to specify a :confval:`linkcode_resolve` "
+"function that returns an URL based on the object."
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:24
+msgid "Configuration"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:0
+msgid "Type"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:0
+msgid "Default"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:30
+msgid ""
+"This is a function ``linkcode_resolve(domain, info)``, which should return "
+"the URL to source code corresponding to the object in given domain with "
+"given information."
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:34
+msgid "The function should return ``None`` if no link is to be added."
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:36
+msgid ""
+"The argument ``domain`` specifies the language domain the object is in. "
+"``info`` is a dictionary with the following keys guaranteed to be present "
+"(dependent on the domain):"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:40
+msgid ""
+"``py``: ``module`` (name of the module), ``fullname`` (name of the object)"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:41
+msgid "``c``: ``names`` (list of names for the object)"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:42
+msgid "``cpp``: ``names`` (list of names for the object)"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:43
+msgid ""
+"``javascript``: ``object`` (name of the object), ``fullname`` (name of the "
+"item)"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:46
+msgid "Example:"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:48
+msgid ""
+"def linkcode_resolve(domain, info):\n"
+"    if domain != 'py':\n"
+"        return None\n"
+"    if not info['module']:\n"
+"        return None\n"
+"    filename = info['module'].replace('.', '/')\n"
+"    return \"https://somesite/sourcerepo/%s.py\" % filename"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:60
+msgid "Third-party domains"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:62
+msgid ""
+"Support for other domains can be added by extensions with :py:func:`."
+"add_linkcode_domain()`. For example, a Sphinx extension that provides a "
+"``php`` domain could use the following code to support :mod:`~sphinx.ext."
+"linkcode`:"
+msgstr ""
+
+#: ../../../usage/extensions/linkcode.rst:67
+msgid ""
+"from sphinx.ext.linkcode import add_linkcode_domain\n"
+"\n"
+"def setup(app):\n"
+"    add_linkcode_domain('php', ['namespace', 'class', 'fullname'])"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/ext/linkcode.py:docstring
+#: of sphinx.ext.linkcode.add_linkcode_domain:1
+msgid "Register a new list of keys to use for a domain."
+msgstr ""
