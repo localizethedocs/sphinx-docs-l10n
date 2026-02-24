@@ -1,0 +1,330 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2025, the Sphinx developers
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 9\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-06 10:32+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../extdev/builderapi.rst:4
+msgid "Builder API"
+msgstr "建置器 API"
+
+#: ../../../extdev/builderapi.rst:10
+msgid "This is the base class for all builders."
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:12
+msgid "It follows this basic workflow:"
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:14
+msgid "Call graph for the standard Sphinx build workflow"
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:18
+msgid "Overridable Attributes"
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:19
+msgid "These class attributes should be set on builder sub-classes:"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.name:1
+msgid ""
+"The builder's name. This is the value used to select builders on the command "
+"line."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.format:1
+msgid ""
+"The builder's output format, or '' if no document output is produced. This "
+"is commonly the file extension, e.g. \"html\", though any string value is "
+"accepted. The builder's format string can be used by various components such "
+"as :class:`.SphinxPostTransform` or extensions to determine their "
+"compatibility with the builder."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.epilog:1
+msgid ""
+"The message emitted upon successful build completion. This can be a printf-"
+"style template string with the following keys: ``outdir``, ``project``"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.allow_parallel:1
+msgid "Whether it is safe to make parallel :meth:`~.Builder.write_doc` calls."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.supported_image_types:1
+msgid ""
+"The list of MIME types of image formats supported by the builder. Image "
+"files are searched in the order in which they appear here."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.supported_remote_images:1
+msgid ""
+"The builder can produce output documents that may fetch external images when "
+"opened."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.supported_data_uri_images:1
+msgid ""
+"The file format produced by the builder allows images to be embedded using "
+"data-URIs."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/ext/autodoc/_sentinels.py:docstring
+#: of sphinx.builders.Builder.default_translator_class:1
+msgid ""
+"default translator class for the builder.  This can be overridden by :py:"
+"meth:`~sphinx.application.Sphinx.set_translator`."
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:31
+msgid "Core Methods"
+msgstr "核心方法"
+
+#: ../../../extdev/builderapi.rst:32
+msgid ""
+"These methods define the core build workflow and must not be overridden:"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.build_all:1
+msgid "Build all source files."
+msgstr "建置所有的來源檔。"
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.build_specific:1
+msgid "Only rebuild as much as needed for changes in the *filenames*."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.build_update:1
+msgid "Only rebuild what was changed or added since last build."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.build:1
+msgid "Main build method, usually called by a specific ``build_*`` method."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.build:3
+msgid "First updates the environment, and then calls :meth:`!write`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.read:1
+msgid "(Re-)read all files new or changed since last update."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.read:3
+msgid ""
+"Store all environment docnames in the canonical format (ie using SEP as a "
+"separator in place of os.path.sep)."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.read_doc:1
+msgid "Parse a file and add/update inventory entries for the doctree."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.write_doctree:1
+msgid "Write the doctree to a file, to be used as a cache by re-builds."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.write:1
+msgid "Write builder specific output files."
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:44
+msgid "Abstract Methods"
+msgstr "抽象方法"
+
+#: ../../../extdev/builderapi.rst:45
+msgid "These must be implemented in builder sub-classes:"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.get_outdated_docs:1
+msgid ""
+"Return an iterable of output files that are outdated, or a string describing "
+"what an update build will build."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.get_outdated_docs:4
+msgid ""
+"If the builder does not output individual files corresponding to source "
+"files, return a string here.  If it does, return an iterable of those files "
+"that need to be written."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.write_doc:1
+msgid "Write the output file for the document"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.write_doc:0
+msgid "Parameters"
+msgstr "參數"
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.write_doc:3
+msgid "the :term:`docname <document name>`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.write_doc:4
+msgid "defines the content to be written."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.write_doc:6
+msgid ""
+"The output filename must be determined within this method, typically by "
+"calling :meth:`~.Builder.get_target_uri` or :meth:`~.Builder."
+"get_relative_uri`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.get_target_uri:1
+msgid "Return the target URI for a document name."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.get_target_uri:3
+msgid ""
+"*typ* can be used to qualify the link characteristic for individual builders."
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:52
+msgid "Overridable Methods"
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:53
+msgid "These methods can be overridden in builder sub-classes:"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.init:1
+msgid ""
+"Load necessary templates and perform initialization.  The default "
+"implementation does nothing."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.write_documents:1
+msgid "Write all documents in *docnames*."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.write_documents:3
+msgid ""
+"This method can be overridden if a builder does not create output files for "
+"each document."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.prepare_writing:1
+msgid "A place where you can add logic before :meth:`write_doc` is run"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.copy_assets:1
+msgid "Where assets (images, static files, etc) are copied before writing"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.get_relative_uri:1
+msgid "Return a relative URI between two source filenames."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.get_relative_uri:0
+msgid "raises"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.get_relative_uri:3
+msgid ":exc:`!NoUri` if there's no way to return a sensible URI."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.finish:1
+msgid "Finish the building process."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/builders/__init__.py:docstring
+#: of sphinx.builders.Builder.finish:3
+msgid "The default implementation does nothing."
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:63
+msgid "Attributes"
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:64
+msgid "Attributes that are callable from the builder instance:"
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:68
+msgid "An :class:`.EventManager` object."
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:71
+msgid "Overridable Attributes (extensions)"
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:72
+msgid ""
+"Builder sub-classes can set these attributes to support built-in extensions:"
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:77
+msgid ""
+"By default, the :mod:`linkcode <sphinx.ext.linkcode>` extension will only "
+"inject references for an ``html`` builder. The ``supported_linkcode`` class "
+"attribute can be defined in a non-HTML builder to support managing "
+"references generated by linkcode. The expected value for this attribute is "
+"an expression which is compatible with :rst:dir:`only`."
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:84
+msgid ""
+"For example, if a builder was named ``custom-builder``, the following can be "
+"used:"
+msgstr ""
+
+#: ../../../extdev/builderapi.rst:87
+msgid ""
+"class CustomBuilder(Builder):\n"
+"    supported_linkcode = 'custom-builder'\n"
+"    ..."
+msgstr ""
+"class CustomBuilder(Builder):\n"
+"    supported_linkcode = 'custom-builder'\n"
+"    ..."
