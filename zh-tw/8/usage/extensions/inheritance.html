@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sphinx.ext.inheritance_diagram -- Include inheritance diagrams &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../../_static/documentation_options.js?v=bae23c90"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=cbf116e0"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/inheritance.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../search.html" />
+    <link rel="next" title="sphinx.ext.intersphinx -- 連結至其他專案的文件" href="intersphinx.html" />
+    <link rel="prev" title="sphinx.ext.imgconverter -- A reference image converter using Imagemagick" href="imgconverter.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../index.html">
+      <img src="../../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >使用 Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">擴充功能</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> -- Include inheritance diagrams</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> -- Include inheritance diagrams</a><ul>
+<li><a class="reference internal" href="#directive-inheritance-diagram"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">inheritance-diagram::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-inheritance-diagram-include-subclasses"><code class="docutils literal notranslate"><span class="pre">:include-subclasses:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples">範例</a></li>
+<li><a class="reference internal" href="#configuration">組態</a><ul>
+<li><a class="reference internal" href="#confval-inheritance_graph_attrs"><code class="docutils literal notranslate"><span class="pre">inheritance_graph_attrs</span></code></a></li>
+<li><a class="reference internal" href="#confval-inheritance_node_attrs"><code class="docutils literal notranslate"><span class="pre">inheritance_node_attrs</span></code></a></li>
+<li><a class="reference internal" href="#confval-inheritance_edge_attrs"><code class="docutils literal notranslate"><span class="pre">inheritance_edge_attrs</span></code></a></li>
+<li><a class="reference internal" href="#confval-inheritance_alias"><code class="docutils literal notranslate"><span class="pre">inheritance_alias</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">基礎知識</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">開始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">建置您的第一個專案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使用者指南</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">使用 Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencing.html">交叉參照</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">組態</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">建置器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../domains/index.html">領域</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">擴充功能</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="apidoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.apidoc</span></code> -- 從 Python 軟體包生成 API 文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> -- Include documentation from docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> -- Allow referencing sections by their title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> -- Generate autodoc summaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> -- Collect doc coverage stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> -- Test snippets in the documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> -- Measure durations of Sphinx processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> -- Markup to shorten external links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> -- 在 GitHub Pages 中發布 HTML 文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> -- Add Graphviz graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> -- Include content based on configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> -- A reference image converter using Imagemagick</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> -- Include inheritance diagrams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intersphinx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> -- 連結至其他專案的文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> -- Add external links to source code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="math.html">Math support for HTML outputs in Sphinx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="napoleon.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> -- Support for NumPy and Google style docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> -- Support for todo items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> -- Add links to highlighted source code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML 主題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">國際化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">擴充 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx 常見問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx 作者群</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">組態</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">擴充功能</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="apidoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.apidoc</span></code> -- 從 Python 軟體包生成 API 文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> -- Include documentation from docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> -- Allow referencing sections by their title</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> -- Generate autodoc summaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> -- Collect doc coverage stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> -- Test snippets in the documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> -- Measure durations of Sphinx processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> -- Markup to shorten external links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> -- 在 GitHub Pages 中發布 HTML 文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphviz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> -- Add Graphviz graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> -- Include content based on configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> -- A reference image converter using Imagemagick</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> -- Include inheritance diagrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intersphinx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> -- 連結至其他專案的文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> -- Add external links to source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">Math support for HTML outputs in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="napoleon.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> -- Support for NumPy and Google style docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> -- Support for todo items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> -- Add links to highlighted source code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes/index.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="module-sphinx.ext.inheritance_diagram">
+<span id="sphinx-ext-inheritance-diagram-include-inheritance-diagrams"></span><h1><a class="reference internal" href="#module-sphinx.ext.inheritance_diagram" title="sphinx.ext.inheritance_diagram: Support for displaying inheritance diagrams via graphviz."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code></a> -- Include inheritance diagrams<a class="headerlink" href="#module-sphinx.ext.inheritance_diagram" title="連結到這個標頭">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">在 0.6 版被加入.</span></p>
+</div>
+<p>This extension allows you to include inheritance diagrams, rendered via the
+<a class="reference internal" href="graphviz.html#module-sphinx.ext.graphviz" title="sphinx.ext.graphviz: Support for Graphviz graphs."><code class="xref py py-mod docutils literal notranslate"><span class="pre">Graphviz</span> <span class="pre">extension</span></code></a>.</p>
+<p>It adds this directive:</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-inheritance-diagram">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">inheritance-diagram::</span></span><a class="headerlink" href="#directive-inheritance-diagram" title="連結到這個定義">¶</a></dt>
+<dd><p>This directive has one or more arguments, each giving a module or class
+name.  Class names can be unqualified; in that case they are taken to exist
+in the currently described module (see <a class="reference internal" href="../domains/python.html#directive-py-module" title="py:module directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:module</span></code></a>).</p>
+<p>For each given class, and each class in each given module, the base classes
+are determined.  Then, from all classes and their base classes, a graph is
+generated which is then rendered via the graphviz extension to a directed
+graph.</p>
+<p>This directive supports an option called <code class="docutils literal notranslate"><span class="pre">parts</span></code> that, if given, must be an
+integer, advising the directive to keep that many dot-separated parts
+in the displayed names (from right to left). For example, <code class="docutils literal notranslate"><span class="pre">parts=1</span></code> will
+only display class names, without the names of the modules that contain
+them.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 2.0 版的變更: </span>The value of for <code class="docutils literal notranslate"><span class="pre">parts</span></code> can also be negative, indicating how many
+parts to drop from the left.  For example, if all your class names start
+with <code class="docutils literal notranslate"><span class="pre">lib.</span></code>, you can give <code class="docutils literal notranslate"><span class="pre">:parts:</span> <span class="pre">-1</span></code> to remove that prefix from the
+displayed node names.</p>
+</div>
+<p>The directive also supports a <code class="docutils literal notranslate"><span class="pre">private-bases</span></code> flag option; if given,
+private base classes (those whose name starts with <code class="docutils literal notranslate"><span class="pre">_</span></code>) will be included.</p>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">caption</span></code> option to give a caption to the diagram.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.1 版的變更: </span>Added <code class="docutils literal notranslate"><span class="pre">private-bases</span></code> option; previously, all bases were always
+included.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.5 版的變更: </span>Added <code class="docutils literal notranslate"><span class="pre">caption</span></code> option</p>
+</div>
+<p>It also supports a <code class="docutils literal notranslate"><span class="pre">top-classes</span></code> option which requires one or more class
+names separated by comma. If specified inheritance traversal will stop at the
+specified class names. Given the following Python module:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+       A
+      / \
+     B   C
+    / \ / \
+   E   D   F
+&quot;&quot;&quot;
+
+class A:
+    pass
+
+class B(A):
+    pass
+
+class C(A):
+    pass
+
+class D(B, C):
+    pass
+
+class E(B):
+    pass
+
+class F(C):
+    pass
+</pre></div>
+</div>
+<p>If you have specified a module in the inheritance diagram like this:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">inheritance-diagram</span><span class="p">::</span> dummy.test
+   <span class="nc">:top-classes:</span> dummy.test.B, dummy.test.C
+</pre></div>
+</div>
+<p>any base classes which are ancestors to <code class="docutils literal notranslate"><span class="pre">top-classes</span></code> and are also defined
+in the same module will be rendered as stand alone nodes. In this example
+class A will be rendered as stand alone node in the graph. This is a known
+issue due to how this extension works internally.</p>
+<p>If you don't want class A (or any other ancestors) to be visible then specify
+only the classes you would like to generate the diagram for like this:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">inheritance-diagram</span><span class="p">::</span> dummy.test.D dummy.test.E dummy.test.F
+   <span class="nc">:top-classes:</span> dummy.test.B, dummy.test.C
+</pre></div>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.7 版的變更: </span>Added <code class="docutils literal notranslate"><span class="pre">top-classes</span></code> option to limit the scope of inheritance graphs.</p>
+</div>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-inheritance-diagram-include-subclasses">
+<span class="sig-name descname"><span class="pre">:include-subclasses:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-inheritance-diagram-include-subclasses" title="連結到這個定義">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">在 8.2 版被加入.</span></p>
+</div>
+<p>If given, any subclass of the classes will be added to the diagram too.</p>
+<p>Given the Python module from above, you can specify
+your inheritance diagram like this:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">inheritance-diagram</span><span class="p">::</span> dummy.test.A
+   <span class="nc">:include-subclasses:</span>
+</pre></div>
+</div>
+<p>This will include the classes A, B, C, D, E and F in the inheritance diagram
+but no other classes in the module <code class="docutils literal notranslate"><span class="pre">dummy.test</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples">
+<h2>範例<a class="headerlink" href="#examples" title="連結到這個標頭">¶</a></h2>
+<p>The following are different inheritance diagrams for the internal
+<code class="docutils literal notranslate"><span class="pre">InheritanceDiagram</span></code> class that implements the directive.</p>
+<p>With full names:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">inheritance-diagram</span><span class="p">::</span> sphinx.ext.inheritance_diagram.InheritanceDiagram
+</pre></div>
+</div>
+digraph inheritance02ef59160f {
+bgcolor=transparent;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;docutils.parsers.rst.Directive&quot; [URL=&quot;../../extdev/markupapi.html#docutils.parsers.rst.Directive&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Base class for reStructuredText directives.&quot;];
+  &quot;sphinx.ext.inheritance_diagram.InheritanceDiagram&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Run when the inheritance_diagram directive is first encountered.&quot;];
+  &quot;sphinx.util.docutils.SphinxDirective&quot; -&gt; &quot;sphinx.ext.inheritance_diagram.InheritanceDiagram&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;sphinx.util.docutils.SphinxDirective&quot; [URL=&quot;../../extdev/utils.html#sphinx.util.docutils.SphinxDirective&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;A base class for Sphinx directives.&quot;];
+  &quot;docutils.parsers.rst.Directive&quot; -&gt; &quot;sphinx.util.docutils.SphinxDirective&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}
+<p>Showing class names only:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">inheritance-diagram</span><span class="p">::</span> sphinx.ext.inheritance_diagram.InheritanceDiagram
+   <span class="nc">:parts:</span> 1
+</pre></div>
+</div>
+digraph inheritanceec46a4ed0d {
+bgcolor=transparent;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;Directive&quot; [URL=&quot;../../extdev/markupapi.html#docutils.parsers.rst.Directive&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Base class for reStructuredText directives.&quot;];
+  &quot;InheritanceDiagram&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Run when the inheritance_diagram directive is first encountered.&quot;];
+  &quot;SphinxDirective&quot; -&gt; &quot;InheritanceDiagram&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;SphinxDirective&quot; [URL=&quot;../../extdev/utils.html#sphinx.util.docutils.SphinxDirective&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;A base class for Sphinx directives.&quot;];
+  &quot;Directive&quot; -&gt; &quot;SphinxDirective&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}
+<p>Stopping the diagram at <a class="reference internal" href="../../extdev/utils.html#sphinx.util.docutils.SphinxDirective" title="sphinx.util.docutils.SphinxDirective"><code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.util.docutils.SphinxDirective</span></code></a> (the
+highest superclass still part of Sphinx), and dropping the common left-most
+part (<code class="docutils literal notranslate"><span class="pre">sphinx</span></code>) from all names:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">inheritance-diagram</span><span class="p">::</span> sphinx.ext.inheritance_diagram.InheritanceDiagram
+   <span class="nc">:top-classes:</span> sphinx.util.docutils.SphinxDirective
+   <span class="nc">:parts:</span> -1
+</pre></div>
+</div>
+digraph inheritance834ccf9cfa {
+bgcolor=transparent;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;ext.inheritance_diagram.InheritanceDiagram&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Run when the inheritance_diagram directive is first encountered.&quot;];
+  &quot;util.docutils.SphinxDirective&quot; -&gt; &quot;ext.inheritance_diagram.InheritanceDiagram&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;util.docutils.SphinxDirective&quot; [URL=&quot;../../extdev/utils.html#sphinx.util.docutils.SphinxDirective&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;A base class for Sphinx directives.&quot;];
+}
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.ext.inheritance_diagram.sphinx.ext.inheritance_diagram.InheritanceDiagram">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.ext.inheritance_diagram.</span></span><span class="sig-name descname"><span class="pre">InheritanceDiagram</span></span><a class="headerlink" href="#sphinx.ext.inheritance_diagram.sphinx.ext.inheritance_diagram.InheritanceDiagram" title="連結到這個定義">¶</a></dt>
+<dd><p>The internal class that implements the <code class="docutils literal notranslate"><span class="pre">inheritance-diagram</span></code> directive.</p>
+</dd></dl>
+
+</section>
+<section id="configuration">
+<h2>組態<a class="headerlink" href="#configuration" title="連結到這個標頭">¶</a></h2>
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-inheritance_graph_attrs">
+<span class="sig-name descname"><span class="pre">inheritance_graph_attrs</span></span><a class="headerlink" href="#confval-inheritance_graph_attrs" title="連結到這個定義">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">型別<span class="colon">:</span></dt>
+<dd class="field-odd"><code class="code highlight code-py Python docutils literal highlight-Python"><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">bool</span><span class="p">]</span></code></dd>
+<dt class="field-even">預設值<span class="colon">:</span></dt>
+<dd class="field-even"><code class="code highlight code-py Python docutils literal highlight-Python"><span class="p">{}</span></code></dd>
+</dl>
+<p>A dictionary of graphviz graph attributes for inheritance diagrams.</p>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>inheritance_graph_attrs = dict(rankdir=&quot;LR&quot;, size=&#39;&quot;6.0, 8.0&quot;&#39;,
+                               fontsize=14, ratio=&#39;compress&#39;)
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-inheritance_node_attrs">
+<span class="sig-name descname"><span class="pre">inheritance_node_attrs</span></span><a class="headerlink" href="#confval-inheritance_node_attrs" title="連結到這個定義">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">型別<span class="colon">:</span></dt>
+<dd class="field-odd"><code class="code highlight code-py Python docutils literal highlight-Python"><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">bool</span><span class="p">]</span></code></dd>
+<dt class="field-even">預設值<span class="colon">:</span></dt>
+<dd class="field-even"><code class="code highlight code-py Python docutils literal highlight-Python"><span class="p">{}</span></code></dd>
+</dl>
+<p>A dictionary of graphviz node attributes for inheritance diagrams.</p>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>inheritance_node_attrs = dict(shape=&#39;ellipse&#39;, fontsize=14, height=0.75,
+                              color=&#39;dodgerblue1&#39;, style=&#39;filled&#39;)
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-inheritance_edge_attrs">
+<span class="sig-name descname"><span class="pre">inheritance_edge_attrs</span></span><a class="headerlink" href="#confval-inheritance_edge_attrs" title="連結到這個定義">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">型別<span class="colon">:</span></dt>
+<dd class="field-odd"><code class="code highlight code-py Python docutils literal highlight-Python"><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">bool</span><span class="p">]</span></code></dd>
+<dt class="field-even">預設值<span class="colon">:</span></dt>
+<dd class="field-even"><code class="code highlight code-py Python docutils literal highlight-Python"><span class="p">{}</span></code></dd>
+</dl>
+<p>A dictionary of graphviz edge attributes for inheritance diagrams.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-inheritance_alias">
+<span class="sig-name descname"><span class="pre">inheritance_alias</span></span><a class="headerlink" href="#confval-inheritance_alias" title="連結到這個定義">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">型別<span class="colon">:</span></dt>
+<dd class="field-odd"><code class="code highlight code-py Python docutils literal highlight-Python"><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span></code></dd>
+<dt class="field-even">預設值<span class="colon">:</span></dt>
+<dd class="field-even"><code class="code highlight code-py Python docutils literal highlight-Python"><span class="p">{}</span></code></dd>
+</dl>
+<p>Allows mapping the full qualified name of the class to custom values
+(useful when exposing the underlying path of a class is not desirable,
+e.g. it's a private class and should not be instantiated by the user).</p>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>inheritance_alias = {&#39;_pytest.Magic&#39;: &#39;pytest.Magic&#39;}
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="imgconverter.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> -- A reference image converter using Imagemagick</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="intersphinx.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> -- 連結至其他專案的文件</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版權所有 2007-2026, the Sphinx developers.
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3 建立。
+</div>
+  </body>
+</html>

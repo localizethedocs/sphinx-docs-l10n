@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Web Support Quick Start &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css?v=fb9458d3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx13.css?v=4e502a7e" />
+    <script src="../../../_static/documentation_options.js?v=f906b030"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/translations.js?v=f1e884e3"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/advanced/websupport/quickstart.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../../search.html" />
+    <link rel="next" title="The WebSupport Class" href="api.html" />
+    <link rel="prev" title="Sphinx Web Support" href="index.html" />
+
+ 
+
+<script type="text/javascript" src="../../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../../index.html">
+      <img src="../../../_static/sphinx-logo.svg" alt="logo" />
+    </a>
+    <h1>Sphinx</h1>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../../index.html" >使用 Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Sphinx Web Support</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Web Support Quick Start</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Web Support Quick Start</a><ul>
+<li><a class="reference internal" href="#building-documentation-data">Building Documentation Data</a></li>
+<li><a class="reference internal" href="#integrating-sphinx-documents-into-your-webapp">Integrating Sphinx Documents Into Your Webapp</a><ul>
+<li><a class="reference internal" href="#authentication">Authentication</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#performing-searches">Performing Searches</a></li>
+<li><a class="reference internal" href="#comments-proposals">Comments &amp; Proposals</a></li>
+<li><a class="reference internal" href="#comment-moderation">Comment Moderation</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">基礎知識</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">建置您的第一個專案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">使用 Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../referencing.html">Cross-referencing syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration.html">組態</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../builders/index.html">建置器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../domains/index.html">領域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extensions/index.html">擴充功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theming.html">HTML Theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intl.html">國際化</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Sphinx Web Support</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Web Support Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html">The WebSupport Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="searchadapters.html">Search Adapters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="storagebackends.html">Storage Backends</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">擴充 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Sphinx 常見問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Sphinx 作者群</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration.html">組態</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extensions/index.html">擴充功能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="web-support-quick-start">
+<span id="websupportquickstart"></span><h1>Web Support Quick Start<a class="headerlink" href="#web-support-quick-start" title="連結到這個標頭">¶</a></h1>
+<section id="building-documentation-data">
+<h2>Building Documentation Data<a class="headerlink" href="#building-documentation-data" title="連結到這個標頭">¶</a></h2>
+<p>To make use of the web support package in your application you’ll need to build
+the data it uses.  This data includes pickle files representing documents,
+search indices, and node data that is used to track where comments and other
+things are in a document.  To do this you will need to create an instance of the
+<a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport" title="sphinxcontrib.websupport.WebSupport"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebSupport</span></code></a> class and call its <a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport.build" title="sphinxcontrib.websupport.WebSupport.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">build()</span></code></a> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinxcontrib.websupport</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebSupport</span>
+
+<span class="n">support</span> <span class="o">=</span> <span class="n">WebSupport</span><span class="p">(</span><span class="n">srcdir</span><span class="o">=</span><span class="s1">&#39;/path/to/rst/sources/&#39;</span><span class="p">,</span>
+                     <span class="n">builddir</span><span class="o">=</span><span class="s1">&#39;/path/to/build/outdir&#39;</span><span class="p">,</span>
+                     <span class="n">search</span><span class="o">=</span><span class="s1">&#39;xapian&#39;</span><span class="p">)</span>
+
+<span class="n">support</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This will read reStructuredText sources from <code class="docutils literal notranslate"><span class="pre">srcdir</span></code> and place the necessary
+data in <code class="docutils literal notranslate"><span class="pre">builddir</span></code>.  The <code class="docutils literal notranslate"><span class="pre">builddir</span></code> will contain two subdirectories: one
+named 「data」 that contains all the data needed to display documents, search
+through documents, and add comments to documents.  The other directory will be
+called 「static」 and contains static files that should be served from 「/static」.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>If you wish to serve static files from a path other than 「/static」, you can
+do so by providing the <em>staticdir</em> keyword argument when creating the
+<a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport" title="sphinxcontrib.websupport.WebSupport"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebSupport</span></code></a> object.</p>
+</div>
+</section>
+<section id="integrating-sphinx-documents-into-your-webapp">
+<h2>Integrating Sphinx Documents Into Your Webapp<a class="headerlink" href="#integrating-sphinx-documents-into-your-webapp" title="連結到這個標頭">¶</a></h2>
+<p>Now that the data is built, it’s time to do something useful with it.  Start off
+by creating a <a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport" title="sphinxcontrib.websupport.WebSupport"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebSupport</span></code></a> object for your application:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinxcontrib.websupport</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebSupport</span>
+
+<span class="n">support</span> <span class="o">=</span> <span class="n">WebSupport</span><span class="p">(</span><span class="n">datadir</span><span class="o">=</span><span class="s1">&#39;/path/to/the/data&#39;</span><span class="p">,</span>
+                     <span class="n">search</span><span class="o">=</span><span class="s1">&#39;xapian&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You’ll only need one of these for each set of documentation you will be working
+with.  You can then call its <a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport.get_document" title="sphinxcontrib.websupport.WebSupport.get_document"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_document()</span></code></a> method to access
+individual documents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">contents</span> <span class="o">=</span> <span class="n">support</span><span class="o">.</span><span class="n">get_document</span><span class="p">(</span><span class="s1">&#39;contents&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will return a dictionary containing the following items:</p>
+<ul class="simple">
+<li><p><strong>body</strong>: The main body of the document as HTML</p></li>
+<li><p><strong>sidebar</strong>: The sidebar of the document as HTML</p></li>
+<li><p><strong>relbar</strong>: A div containing links to related documents</p></li>
+<li><p><strong>title</strong>: The title of the document</p></li>
+<li><p><strong>css</strong>: Links to CSS files used by Sphinx</p></li>
+<li><p><strong>script</strong>: JavaScript containing comment options</p></li>
+</ul>
+<p>This dict can then be used as context for templates.  The goal is to be easy to
+integrate with your existing templating system.  An example using <a class="reference external" href="https://jinja.palletsprojects.com/">Jinja2</a> is:</p>
+<div class="highlight-html+jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span>- <span class="k">extends</span> <span class="s2">&quot;layout.html&quot;</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span>- <span class="k">block</span> <span class="nv">title</span> <span class="cp">%}</span>
+    <span class="cp">{{</span> <span class="nv">document.title</span> <span class="cp">}}</span>
+<span class="cp">{%</span>- <span class="k">endblock</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">css</span> <span class="cp">%}</span>
+    <span class="cp">{{</span> <span class="nb">super</span><span class="o">()</span> <span class="cp">}}</span>
+    <span class="cp">{{</span> <span class="nv">document.css</span><span class="o">|</span><span class="nf">safe</span> <span class="cp">}}</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/static/websupport-custom.css&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span>- <span class="k">block</span> <span class="nv">script</span> <span class="cp">%}</span>
+    <span class="cp">{{</span> <span class="nb">super</span><span class="o">()</span> <span class="cp">}}</span>
+    <span class="cp">{{</span> <span class="nv">document.script</span><span class="o">|</span><span class="nf">safe</span> <span class="cp">}}</span>
+<span class="cp">{%</span>- <span class="k">endblock</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span>- <span class="k">block</span> <span class="nv">relbar</span> <span class="cp">%}</span>
+    <span class="cp">{{</span> <span class="nv">document.relbar</span><span class="o">|</span><span class="nf">safe</span> <span class="cp">}}</span>
+<span class="cp">{%</span>- <span class="k">endblock</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span>- <span class="k">block</span> <span class="nv">body</span> <span class="cp">%}</span>
+    <span class="cp">{{</span> <span class="nv">document.body</span><span class="o">|</span><span class="nf">safe</span> <span class="cp">}}</span>
+<span class="cp">{%</span>- <span class="k">endblock</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span>- <span class="k">block</span> <span class="nv">sidebar</span> <span class="cp">%}</span>
+    <span class="cp">{{</span> <span class="nv">document.sidebar</span><span class="o">|</span><span class="nf">safe</span> <span class="cp">}}</span>
+<span class="cp">{%</span>- <span class="k">endblock</span> <span class="cp">%}</span>
+</pre></div>
+</div>
+<section id="authentication">
+<h3>Authentication<a class="headerlink" href="#authentication" title="連結到這個標頭">¶</a></h3>
+<p>To use certain features such as voting, it must be possible to authenticate
+users.  The details of the authentication are left to your application.  Once a
+user has been authenticated you can pass the user’s details to certain
+<a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport" title="sphinxcontrib.websupport.WebSupport"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebSupport</span></code></a> methods using the <em>username</em> and <em>moderator</em> keyword
+arguments.  The web support package will store the username with comments and
+votes.  The only caveat is that if you allow users to change their username you
+must update the websupport package’s data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">support</span><span class="o">.</span><span class="n">update_username</span><span class="p">(</span><span class="n">old_username</span><span class="p">,</span> <span class="n">new_username</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>username</em> should be a unique string which identifies a user, and <em>moderator</em>
+should be a boolean representing whether the user has moderation privileges.
+The default value for <em>moderator</em> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>An example <a class="reference external" href="https://flask.palletsprojects.com/">Flask</a> function that checks
+whether a user is logged in and then retrieves a document is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinxcontrib.websupport.errors</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&lt;path:docname&gt;&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">doc</span><span class="p">(</span><span class="n">docname</span><span class="p">):</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">moderator</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">moderator</span> <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">document</span> <span class="o">=</span> <span class="n">support</span><span class="o">.</span><span class="n">get_document</span><span class="p">(</span><span class="n">docname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">moderator</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">DocumentNotFoundError</span><span class="p">:</span>
+        <span class="n">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;doc.html&#39;</span><span class="p">,</span> <span class="n">document</span><span class="o">=</span><span class="n">document</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first thing to notice is that the <em>docname</em> is just the request path.  This
+makes accessing the correct document easy from a single view.  If the user is
+authenticated, then the username and moderation status are passed along with the
+docname to <a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport.get_document" title="sphinxcontrib.websupport.WebSupport.get_document"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_document()</span></code></a>.  The web support package will then
+add this data to the <code class="docutils literal notranslate"><span class="pre">COMMENT_OPTIONS</span></code> that are used in the template.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>This only works if your documentation is served from your
+document root. If it is served from another directory, you will
+need to prefix the url route with that directory, and give the <em>docroot</em>
+keyword argument when creating the web support object:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">support</span> <span class="o">=</span> <span class="n">WebSupport</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">docroot</span><span class="o">=</span><span class="s1">&#39;docs&#39;</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/docs/&lt;path:docname&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="performing-searches">
+<h2>Performing Searches<a class="headerlink" href="#performing-searches" title="連結到這個標頭">¶</a></h2>
+<p>To use the search form built-in to the Sphinx sidebar, create a function to
+handle requests to the URL 『search』 relative to the documentation root.  The
+user’s search query will be in the GET parameters, with the key <code class="docutils literal notranslate"><span class="pre">q</span></code>.  Then use
+the <a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport.get_search_results" title="sphinxcontrib.websupport.WebSupport.get_search_results"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_search_results()</span></code></a> method to
+retrieve search results. In <a class="reference external" href="https://flask.palletsprojects.com/">Flask</a> that
+would be like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/search&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">():</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+    <span class="n">document</span> <span class="o">=</span> <span class="n">support</span><span class="o">.</span><span class="n">get_search_results</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;doc.html&#39;</span><span class="p">,</span> <span class="n">document</span><span class="o">=</span><span class="n">document</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that we used the same template to render our search results as we did to
+render our documents.  That’s because <a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport.get_search_results" title="sphinxcontrib.websupport.WebSupport.get_search_results"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_search_results()</span></code></a>
+returns a context dict in the same format that <a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport.get_document" title="sphinxcontrib.websupport.WebSupport.get_document"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_document()</span></code></a>
+does.</p>
+</section>
+<section id="comments-proposals">
+<h2>Comments &amp; Proposals<a class="headerlink" href="#comments-proposals" title="連結到這個標頭">¶</a></h2>
+<p>Now that this is done it’s time to define the functions that handle the AJAX
+calls from the script.  You will need three functions.  The first function is
+used to add a new comment, and will call the web support method
+<a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport.add_comment" title="sphinxcontrib.websupport.WebSupport.add_comment"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_comment()</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/docs/add_comment&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_comment</span><span class="p">():</span>
+    <span class="n">parent_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;parent&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">node_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">proposal</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;proposal&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;Anonymous&#39;</span>
+    <span class="n">comment</span> <span class="o">=</span> <span class="n">support</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">node_id</span><span class="o">=</span><span class="s1">&#39;node_id&#39;</span><span class="p">,</span>
+                                  <span class="n">parent_id</span><span class="o">=</span><span class="s1">&#39;parent_id&#39;</span><span class="p">,</span>
+                                  <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">proposal</span><span class="o">=</span><span class="n">proposal</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You’ll notice that both a <code class="docutils literal notranslate"><span class="pre">parent_id</span></code> and <code class="docutils literal notranslate"><span class="pre">node_id</span></code> are sent with the
+request. If the comment is being attached directly to a node, <code class="docutils literal notranslate"><span class="pre">parent_id</span></code>
+will be empty. If the comment is a child of another comment, then <code class="docutils literal notranslate"><span class="pre">node_id</span></code>
+will be empty. Then next function handles the retrieval of comments for a
+specific node, and is aptly named
+<a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport.get_data" title="sphinxcontrib.websupport.WebSupport.get_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_data()</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/docs/get_comments&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_comments</span><span class="p">():</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">moderator</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">moderator</span> <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="n">node_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">support</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">moderator</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The final function that is needed will call <a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport.process_vote" title="sphinxcontrib.websupport.WebSupport.process_vote"><code class="xref py py-meth docutils literal notranslate"><span class="pre">process_vote()</span></code></a>,
+and will handle user votes on comments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/docs/process_vote&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_vote</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">abort</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+    <span class="n">comment_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;comment_id&#39;</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">comment_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">abort</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+    <span class="n">support</span><span class="o">.</span><span class="n">process_vote</span><span class="p">(</span><span class="n">comment_id</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;success&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="comment-moderation">
+<h2>Comment Moderation<a class="headerlink" href="#comment-moderation" title="連結到這個標頭">¶</a></h2>
+<p>By default, all comments added through <a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport.add_comment" title="sphinxcontrib.websupport.WebSupport.add_comment"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_comment()</span></code></a> are
+automatically displayed.  If you wish to have some form of moderation, you can
+pass the <code class="docutils literal notranslate"><span class="pre">displayed</span></code> keyword argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">comment</span> <span class="o">=</span> <span class="n">support</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">node_id</span><span class="o">=</span><span class="s1">&#39;node_id&#39;</span><span class="p">,</span>
+                              <span class="n">parent_id</span><span class="o">=</span><span class="s1">&#39;parent_id&#39;</span><span class="p">,</span>
+                              <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">proposal</span><span class="o">=</span><span class="n">proposal</span><span class="p">,</span>
+                              <span class="n">displayed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can then create a new view to handle the moderation of comments.  It
+will be called when a moderator decides a comment should be accepted and
+displayed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/docs/accept_comment&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">accept_comment</span><span class="p">():</span>
+    <span class="n">moderator</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">moderator</span> <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="n">comment_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+    <span class="n">support</span><span class="o">.</span><span class="n">accept_comment</span><span class="p">(</span><span class="n">comment_id</span><span class="p">,</span> <span class="n">moderator</span><span class="o">=</span><span class="n">moderator</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;OK&#39;</span>
+</pre></div>
+</div>
+<p>Rejecting comments happens via comment deletion.</p>
+<p>To perform a custom action (such as emailing a moderator) when a new comment is
+added but not displayed, you can pass callable to the <a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport" title="sphinxcontrib.websupport.WebSupport"><code class="xref py py-class docutils literal notranslate"><span class="pre">WebSupport</span></code></a>
+class when instantiating your support object:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">moderation_callback</span><span class="p">(</span><span class="n">comment</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Do something...&quot;&quot;&quot;</span>
+
+<span class="n">support</span> <span class="o">=</span> <span class="n">WebSupport</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">moderation_callback</span><span class="o">=</span><span class="n">moderation_callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The moderation callback must take one argument, which will be the same comment
+dict that is returned by <a class="reference internal" href="api.html#sphinxcontrib.websupport.WebSupport.add_comment" title="sphinxcontrib.websupport.WebSupport.add_comment"><code class="xref py py-meth docutils literal notranslate"><span class="pre">WebSupport.add_comment()</span></code></a>.</p>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="index.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Sphinx Web Support</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="api.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">The WebSupport Class</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版權所有 2007-2026, the Sphinx developers.
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7 建立。
+</div>
+  </body>
+</html>

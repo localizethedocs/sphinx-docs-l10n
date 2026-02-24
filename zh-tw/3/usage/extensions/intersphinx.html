@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sphinx.ext.intersphinx – 連結至其他專案的文件 &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/intersphinx.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../search.html" />
+    <link rel="next" title="sphinx.ext.linkcode – Add external links to source code" href="linkcode.html" />
+    <link rel="prev" title="sphinx.ext.inheritance_diagram – Include inheritance diagrams" href="inheritance.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../installation.html">Get it</a></li>
+    <li><a href="../../contents.html">Docs</a></li>
+    <li><a href="../../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../../index.html">
+      <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="linkcode.html" title="sphinx.ext.linkcode – Add external links to source code"
+             accesskey="N">下一頁</a> |</li>
+        <li class="right" >
+          <a href="inheritance.html" title="sphinx.ext.inheritance_diagram – Include inheritance diagrams"
+             accesskey="P">上一頁</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >使用 Sphinx</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">擴充功能</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – 連結至其他專案的文件</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">目次表</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – 連結至其他專案的文件</a><ul>
+<li><a class="reference internal" href="#configuration">組態</a></li>
+<li><a class="reference internal" href="#showing-all-links-of-an-intersphinx-mapping-file">Showing all links of an Intersphinx mapping file</a></li>
+<li><a class="reference internal" href="#using-intersphinx-with-inventory-file-under-basic-authorization">Using Intersphinx with inventory file under Basic Authorization</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上個主題</h4>
+  <p class="topless"><a href="inheritance.html"
+                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a></p>
+  <h4>下個主題</h4>
+  <p class="topless"><a href="linkcode.html"
+                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> – Add external links to source code</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本頁</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/usage/extensions/intersphinx.rst.txt"
+            rel="nofollow">顯示原始碼</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="搜" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-sphinx.ext.intersphinx">
+<span id="sphinx-ext-intersphinx-link-to-other-projects-documentation"></span><h1><a class="reference internal" href="#module-sphinx.ext.intersphinx" title="sphinx.ext.intersphinx: Link to other Sphinx documentation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code></a> – 連結至其他專案的文件<a class="headerlink" href="#module-sphinx.ext.intersphinx" title="本標題的永久連結">¶</a></h1>
+<div class="versionadded" id="index-0">
+<p><span class="versionmodified added">0.5 版新加入.</span></p>
+</div>
+<p>This extension can generate automatic links to the documentation of objects in
+other projects.</p>
+<p>Usage is simple: whenever Sphinx encounters a cross-reference that has no
+matching target in the current documentation set, it looks for targets in the
+documentation sets configured in <a class="reference internal" href="#confval-intersphinx_mapping"><code class="xref std std-confval docutils literal notranslate"><span class="pre">intersphinx_mapping</span></code></a>.  A reference
+like <code class="docutils literal notranslate"><span class="pre">:py:class:`zipfile.ZipFile`</span></code> can then link to the Python documentation
+for the ZipFile class, without you having to specify where it is located
+exactly.</p>
+<p>When using the 「new」 format (see below), you can even force lookup in a foreign
+set by prefixing the link target appropriately.  A link like <code class="docutils literal notranslate"><span class="pre">:ref:`comparison</span>
+<span class="pre">manual</span> <span class="pre">&lt;python:comparisons&gt;`</span></code> will then link to the label 「comparisons」 in the
+doc set 「python」, if it exists.</p>
+<p>Behind the scenes, this works as follows:</p>
+<ul class="simple">
+<li><p>Each Sphinx HTML build creates a file named <code class="file docutils literal notranslate"><span class="pre">objects.inv</span></code> that contains
+a mapping from object names to URIs relative to the HTML set’s root.</p></li>
+<li><p>Projects using the Intersphinx extension can specify the location of such
+mapping files in the <a class="reference internal" href="#confval-intersphinx_mapping"><code class="xref std std-confval docutils literal notranslate"><span class="pre">intersphinx_mapping</span></code></a> config value.  The mapping
+will then be used to resolve otherwise missing references to objects into
+links to the other documentation.</p></li>
+<li><p>By default, the mapping file is assumed to be at the same location as the rest
+of the documentation; however, the location of the mapping file can also be
+specified individually, e.g. if the docs should be buildable without Internet
+access.</p></li>
+</ul>
+<div class="section" id="configuration">
+<h2>組態<a class="headerlink" href="#configuration" title="本標題的永久連結">¶</a></h2>
+<p>To use Intersphinx linking, add <code class="docutils literal notranslate"><span class="pre">'sphinx.ext.intersphinx'</span></code> to your
+<a class="reference internal" href="../configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">extensions</span></code></a> config value, and use these config values to activate
+linking:</p>
+<dl class="std confval">
+<dt id="confval-intersphinx_mapping">
+<code class="sig-name descname"><span class="pre">intersphinx_mapping</span></code><a class="headerlink" href="#confval-intersphinx_mapping" title="本定義的永久連結">¶</a></dt>
+<dd><p>This config value contains the locations and names of other projects that
+should be linked to in this documentation.</p>
+<p>Relative local paths for target locations are taken as relative to the base
+of the built documentation, while relative local paths for inventory
+locations are taken as relative to the source directory.</p>
+<p>When fetching remote inventory files, proxy settings will be read from
+the <code class="docutils literal notranslate"><span class="pre">$HTTP_PROXY</span></code> environment variable.</p>
+<p><strong>Old format for this config value</strong></p>
+<p>This is the format used before Sphinx 1.0.  It is still recognized.</p>
+<p>A dictionary mapping URIs to either <code class="docutils literal notranslate"><span class="pre">None</span></code> or an URI.  The keys are the
+base URI of the foreign Sphinx documentation sets and can be local paths or
+HTTP URIs.  The values indicate where the inventory file can be found: they
+can be <code class="docutils literal notranslate"><span class="pre">None</span></code> (at the same location as the base URI) or another local or
+HTTP URI.</p>
+<p><strong>New format for this config value</strong></p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.0 版新加入.</span></p>
+</div>
+<p>A dictionary mapping unique identifiers to a tuple <code class="docutils literal notranslate"><span class="pre">(target,</span> <span class="pre">inventory)</span></code>.
+Each <code class="docutils literal notranslate"><span class="pre">target</span></code> is the base URI of a foreign Sphinx documentation set and can
+be a local path or an HTTP URI.  The <code class="docutils literal notranslate"><span class="pre">inventory</span></code> indicates where the
+inventory file can be found: it can be <code class="docutils literal notranslate"><span class="pre">None</span></code> (an <code class="file docutils literal notranslate"><span class="pre">objects.inv</span></code> file
+at the same location as the base URI) or another local file path or a full
+HTTP URI to an inventory file.</p>
+<p>The unique identifier can be used to prefix cross-reference targets, so that
+it is clear which intersphinx set the target belongs to.  A link like
+<code class="docutils literal notranslate"><span class="pre">:ref:`comparison</span> <span class="pre">manual</span> <span class="pre">&lt;python:comparisons&gt;`</span></code> will link to the label
+「comparisons」 in the doc set 「python」, if it exists.</p>
+<p><strong>範例</strong></p>
+<p>To add links to modules and objects in the Python standard library
+documentation, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;python&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://docs.python.org/3&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>This will download the corresponding <code class="file docutils literal notranslate"><span class="pre">objects.inv</span></code> file from the
+Internet and generate links to the pages under the given URI.  The downloaded
+inventory is cached in the Sphinx environment, so it must be re-downloaded
+whenever you do a full rebuild.</p>
+<p>A second example, showing the meaning of a non-<code class="docutils literal notranslate"><span class="pre">None</span></code> value of the second
+tuple item:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;python&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://docs.python.org/3&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;python-inv.txt&#39;</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>This will read the inventory from <code class="file docutils literal notranslate"><span class="pre">python-inv.txt</span></code> in the source
+directory, but still generate links to the pages under
+<code class="docutils literal notranslate"><span class="pre">https://docs.python.org/3</span></code>.  It is up to you to update the inventory file
+as new objects are added to the Python documentation.</p>
+<p><strong>Multiple targets for the inventory</strong></p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.3 版新加入.</span></p>
+</div>
+<p>Alternative files can be specified for each inventory. One can give a
+tuple for the second inventory tuple item as shown in the following
+example. This will read the inventory iterating through the (second)
+tuple items until the first successful fetch. The primary use case for
+this to specify mirror sites for server downtime of the primary
+inventory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;python&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://docs.python.org/3&#39;</span><span class="p">,</span>
+                                  <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;python-inv.txt&#39;</span><span class="p">))}</span>
+</pre></div>
+</div>
+<p>For a set of books edited and tested locally and then published
+together, it could be helpful to try a local inventory file first,
+to check references before publication:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;otherbook&#39;</span><span class="p">:</span>
+        <span class="p">(</span><span class="s1">&#39;https://myproj.readthedocs.io/projects/otherbook/en/latest&#39;</span><span class="p">,</span>
+            <span class="p">(</span><span class="s1">&#39;../../otherbook/build/html/objects.inv&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt id="confval-intersphinx_cache_limit">
+<code class="sig-name descname"><span class="pre">intersphinx_cache_limit</span></code><a class="headerlink" href="#confval-intersphinx_cache_limit" title="本定義的永久連結">¶</a></dt>
+<dd><p>The maximum number of days to cache remote inventories.  The default is
+<code class="docutils literal notranslate"><span class="pre">5</span></code>, meaning five days.  Set this to a negative value to cache inventories
+for unlimited time.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt id="confval-intersphinx_timeout">
+<code class="sig-name descname"><span class="pre">intersphinx_timeout</span></code><a class="headerlink" href="#confval-intersphinx_timeout" title="本定義的永久連結">¶</a></dt>
+<dd><p>The number of seconds for timeout.  The default is <code class="docutils literal notranslate"><span class="pre">None</span></code>, meaning do not
+timeout.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>timeout is not a time limit on the entire response download; rather, an
+exception is raised if the server has not issued a response for timeout
+seconds.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="showing-all-links-of-an-intersphinx-mapping-file">
+<h2>Showing all links of an Intersphinx mapping file<a class="headerlink" href="#showing-all-links-of-an-intersphinx-mapping-file" title="本標題的永久連結">¶</a></h2>
+<p>To show all Intersphinx links and their targets of an Intersphinx mapping file,
+run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-msphinx.ext.intersphinx</span> <span class="pre">url-or-path</span></code>.  This is helpful when
+searching for the root cause of a broken Intersphinx link in a documentation
+project. The following example prints the Intersphinx mapping of the Python 3
+documentation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -msphinx.ext.intersphinx https://docs.python.org/3/objects.inv
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-intersphinx-with-inventory-file-under-basic-authorization">
+<h2>Using Intersphinx with inventory file under Basic Authorization<a class="headerlink" href="#using-intersphinx-with-inventory-file-under-basic-authorization" title="本標題的永久連結">¶</a></h2>
+<p>Intersphinx supports Basic Authorization like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;python&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://user:password@docs.python.org/3&#39;</span><span class="p">,</span>
+                                  <span class="kc">None</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>在生成連結時，會從 URL 中移除使用者與密碼。</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="linkcode.html" title="sphinx.ext.linkcode – Add external links to source code"
+             >下一頁</a> |</li>
+        <li class="right" >
+          <a href="inheritance.html" title="sphinx.ext.inheritance_diagram – Include inheritance diagrams"
+             >上一頁</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >使用 Sphinx</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >擴充功能</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – 連結至其他專案的文件</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2021, Georg Brandl and the Sphinx team。
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+  </body>
+</html>

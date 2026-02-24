@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>i18n API &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/i18n.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Utilities" href="utils.html" />
+    <link rel="prev" title="Logging API" href="logging.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../index.html">
+  <img src="../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Developing extensions for Sphinx</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">i18n API</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">i18n API</a><ul>
+<li><a class="reference internal" href="#sphinx.locale.init"><code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.locale.init_console"><code class="docutils literal notranslate"><span class="pre">init_console()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.locale.get_translation"><code class="docutils literal notranslate"><span class="pre">get_translation()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.locale._"><code class="docutils literal notranslate"><span class="pre">_()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.locale.__"><code class="docutils literal notranslate"><span class="pre">__()</span></code></a></li>
+<li><a class="reference internal" href="#extension-internationalization-i18n-and-localization-l10n-using-i18n-api">Extension internationalization (<cite>i18n</cite>) and localization (<cite>l10n</cite>) using i18n API</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../templating.html">Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developing extensions for Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="appapi.html">Application API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projectapi.html">Project API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="envapi.html">Build environment API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builderapi.html">Builder API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collectorapi.html">Environment Collector API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markupapi.html">Docutils markup API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domainapi.html">Domain API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parserapi.html">Parser API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html">Doctree node classes added by Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">i18n API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecated.html">Deprecated APIs</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="i18n-api">
+<span id="id1"></span><h1>i18n API<a class="headerlink" href="#i18n-api" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx.locale.init">
+<span class="sig-prename descclassname"><span class="pre">sphinx.locale.</span></span><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locale_dirs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.14)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.14)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">catalog</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'sphinx'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'general'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/gettext.html#gettext.NullTranslations" title="(in Python v3.14)"><span class="pre">NullTranslations</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/locale.html#init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.locale.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Look for message catalogs in <cite>locale_dirs</cite> and <em>ensure</em> that there is at
+least a NullTranslations catalog set in <cite>translators</cite>. If called multiple
+times or if several <code class="docutils literal notranslate"><span class="pre">.mo</span></code> files are found, their contents are merged
+together (thus making <code class="docutils literal notranslate"><span class="pre">init</span></code> reentrant).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx.locale.init_console">
+<span class="sig-prename descclassname"><span class="pre">sphinx.locale.</span></span><span class="sig-name descname"><span class="pre">init_console</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locale_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/home/runner/work/sphinx-docs-l10n/sphinx-docs-l10n/.conda/lib/python3.10/site-packages/sphinx/locale'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">catalog</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'sphinx'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.14)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/gettext.html#gettext.NullTranslations" title="(in Python v3.14)"><span class="pre">NullTranslations</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/locale.html#init_console"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.locale.init_console" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize locale for console.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.8.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx.locale.get_translation">
+<span class="sig-prename descclassname"><span class="pre">sphinx.locale.</span></span><span class="sig-name descname"><span class="pre">get_translation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'general'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/locale.html#get_translation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.locale.get_translation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a translation function based on the <em>catalog</em> and <em>namespace</em>.</p>
+<p>The extension can use this API to translate the messages on the
+extension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.locale</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_translation</span>
+
+<span class="n">MESSAGE_CATALOG_NAME</span> <span class="o">=</span> <span class="s1">&#39;myextension&#39;</span>  <span class="c1"># name of *.pot, *.po and *.mo files</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">get_translation</span><span class="p">(</span><span class="n">MESSAGE_CATALOG_NAME</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Hello Sphinx!&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="n">package_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+    <span class="n">locale_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">package_dir</span><span class="p">,</span> <span class="s1">&#39;locales&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_message_catalog</span><span class="p">(</span><span class="n">MESSAGE_CATALOG_NAME</span><span class="p">,</span> <span class="n">locale_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With this code, sphinx searches a message catalog from
+<code class="docutils literal notranslate"><span class="pre">${package_dir}/locales/${language}/LC_MESSAGES/myextension.mo</span></code>.
+The <a class="reference internal" href="../usage/configuration.html#confval-language"><code class="xref std std-confval docutils literal notranslate"><span class="pre">language</span></code></a> is used for the searching.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.8.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx.locale._">
+<span class="sig-prename descclassname"><span class="pre">sphinx.locale.</span></span><span class="sig-name descname"><span class="pre">_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#sphinx.locale._" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translation function for messages on documentation (menu, labels, themes and so on).
+This function follows <a class="reference internal" href="../usage/configuration.html#confval-language"><code class="xref std std-confval docutils literal notranslate"><span class="pre">language</span></code></a> setting.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx.locale.__">
+<span class="sig-prename descclassname"><span class="pre">sphinx.locale.</span></span><span class="sig-name descname"><span class="pre">__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#sphinx.locale.__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translation function for console messages
+This function follows locale setting (<cite>LC_ALL</cite>, <cite>LC_MESSAGES</cite> and so on).</p>
+</dd></dl>
+
+<section id="extension-internationalization-i18n-and-localization-l10n-using-i18n-api">
+<span id="ext-i18n"></span><h2>Extension internationalization (<cite>i18n</cite>) and localization (<cite>l10n</cite>) using i18n API<a class="headerlink" href="#extension-internationalization-i18n-and-localization-l10n-using-i18n-api" title="Permalink to this heading">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.8.</span></p>
+</div>
+<p>An extension may naturally come with message translations.  This is briefly
+summarized in <a class="reference internal" href="#sphinx.locale.get_translation" title="sphinx.locale.get_translation"><code class="xref py py-func docutils literal notranslate"><span class="pre">sphinx.locale.get_translation()</span></code></a> help.</p>
+<p>In practice, you have to:</p>
+<ol class="arabic">
+<li><p>Choose a name for your message catalog, which must be unique.  Usually
+the name of your extension is used for the name of message catalog.</p></li>
+<li><p>Mark in your extension sources all messages as translatable, via
+<a class="reference internal" href="#sphinx.locale.get_translation" title="sphinx.locale.get_translation"><code class="xref py py-func docutils literal notranslate"><span class="pre">sphinx.locale.get_translation()</span></code></a> function, usually renamed <code class="docutils literal notranslate"><span class="pre">_()</span></code>,
+e.g.:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">src/__init__.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.locale</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_translation</span>
+
+<span class="n">MESSAGE_CATALOG_NAME</span> <span class="o">=</span> <span class="s1">&#39;myextension&#39;</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">get_translation</span><span class="p">(</span><span class="n">MESSAGE_CATALOG_NAME</span><span class="p">)</span>
+
+<span class="n">translated_text</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;Hello Sphinx!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p>Set up your extension to be aware of its dedicated translations:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">src/__init__.py</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="n">package_dir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+    <span class="n">locale_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">package_dir</span><span class="p">,</span> <span class="s1">&#39;locales&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_message_catalog</span><span class="p">(</span><span class="n">MESSAGE_CATALOG_NAME</span><span class="p">,</span> <span class="n">locale_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p>Generate message catalog template <code class="docutils literal notranslate"><span class="pre">*.pot</span></code> file, usually in <code class="docutils literal notranslate"><span class="pre">locale/</span></code>
+source directory, for example via <a class="reference external" href="https://babel.pocoo.org/">Babel</a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pybabel<span class="w"> </span>extract<span class="w"> </span>--output<span class="o">=</span>src/locale/myextension.pot<span class="w"> </span>src/
+</pre></div>
+</div>
+</li>
+<li><p>Create message catalogs (<code class="docutils literal notranslate"><span class="pre">*.po</span></code>) for each language which your extension
+will provide localization, for example via <a class="reference external" href="https://babel.pocoo.org/">Babel</a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pybabel<span class="w"> </span>init<span class="w"> </span>--input-file<span class="o">=</span>src/locale/myextension.pot<span class="w"> </span>--domain<span class="o">=</span>myextension<span class="w"> </span>--output-dir<span class="o">=</span>src/locale<span class="w"> </span>--locale<span class="o">=</span>fr_FR
+</pre></div>
+</div>
+</li>
+<li><p>Translate message catalogs for each language manually</p></li>
+<li><p>Compile message catalogs into <code class="docutils literal notranslate"><span class="pre">*.mo</span></code> files, for example via <a class="reference external" href="https://babel.pocoo.org/">Babel</a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pybabel<span class="w"> </span>compile<span class="w"> </span>--directory<span class="o">=</span>src/locale<span class="w"> </span>--domain<span class="o">=</span>myextension
+</pre></div>
+</div>
+</li>
+<li><p>Ensure that message catalog files are distributed when your package will
+be installed, by adding equivalent line in your extension <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">MANIFEST.in</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">recursive-include src *.pot *.po *.mo</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+<p>When the messages on your extension has been changed, you need to also update
+message catalog template and message catalogs, for example via <a class="reference external" href="https://babel.pocoo.org/">Babel</a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pybabel<span class="w"> </span>extract<span class="w"> </span>--output<span class="o">=</span>src/locale/myextension.pot<span class="w"> </span>src/
+<span class="gp">$ </span>pybabel<span class="w"> </span>update<span class="w"> </span>--input-file<span class="o">=</span>src/locale/myextension.pot<span class="w"> </span>--domain<span class="o">=</span>myextension<span class="w"> </span>--output-dir<span class="o">=</span>src/locale
+</pre></div>
+</div>
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../copyright.html">Copyright</a> 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+</div>
+  </body>
+</html>

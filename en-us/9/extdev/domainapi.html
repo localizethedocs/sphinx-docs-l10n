@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+<html lang="en-US" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Domain API &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../_static/documentation_options.js?v=4a9a0b2a"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/domainapi.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parser API" href="parserapi.html" />
+    <link rel="prev" title="Docutils markup API" href="markupapi.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../index.html">
+      <img src="../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Sphinx API</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Domain API</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Domain API</a><ul>
+<li><a class="reference internal" href="#sphinx.domains.Domain"><code class="docutils literal notranslate"><span class="pre">Domain</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.domains.Domain.add_object_type"><code class="docutils literal notranslate"><span class="pre">Domain.add_object_type()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.check_consistency"><code class="docutils literal notranslate"><span class="pre">Domain.check_consistency()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.clear_doc"><code class="docutils literal notranslate"><span class="pre">Domain.clear_doc()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.directive"><code class="docutils literal notranslate"><span class="pre">Domain.directive()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.get_enumerable_node_type"><code class="docutils literal notranslate"><span class="pre">Domain.get_enumerable_node_type()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.get_full_qualified_name"><code class="docutils literal notranslate"><span class="pre">Domain.get_full_qualified_name()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.get_objects"><code class="docutils literal notranslate"><span class="pre">Domain.get_objects()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.get_type_name"><code class="docutils literal notranslate"><span class="pre">Domain.get_type_name()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.merge_domaindata"><code class="docutils literal notranslate"><span class="pre">Domain.merge_domaindata()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.process_doc"><code class="docutils literal notranslate"><span class="pre">Domain.process_doc()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.process_field_xref"><code class="docutils literal notranslate"><span class="pre">Domain.process_field_xref()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.resolve_any_xref"><code class="docutils literal notranslate"><span class="pre">Domain.resolve_any_xref()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.resolve_xref"><code class="docutils literal notranslate"><span class="pre">Domain.resolve_xref()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.role"><code class="docutils literal notranslate"><span class="pre">Domain.role()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.setup"><code class="docutils literal notranslate"><span class="pre">Domain.setup()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.dangling_warnings"><code class="docutils literal notranslate"><span class="pre">Domain.dangling_warnings</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.data"><code class="docutils literal notranslate"><span class="pre">Domain.data</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.data_version"><code class="docutils literal notranslate"><span class="pre">Domain.data_version</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.directives"><code class="docutils literal notranslate"><span class="pre">Domain.directives</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.enumerable_nodes"><code class="docutils literal notranslate"><span class="pre">Domain.enumerable_nodes</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.indices"><code class="docutils literal notranslate"><span class="pre">Domain.indices</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.initial_data"><code class="docutils literal notranslate"><span class="pre">Domain.initial_data</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.label"><code class="docutils literal notranslate"><span class="pre">Domain.label</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.name"><code class="docutils literal notranslate"><span class="pre">Domain.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.object_types"><code class="docutils literal notranslate"><span class="pre">Domain.object_types</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Domain.roles"><code class="docutils literal notranslate"><span class="pre">Domain.roles</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.domains.ObjType"><code class="docutils literal notranslate"><span class="pre">ObjType</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.Index"><code class="docutils literal notranslate"><span class="pre">Index</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.domains.Index.generate"><code class="docutils literal notranslate"><span class="pre">Index.generate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.domains.IndexEntry"><code class="docutils literal notranslate"><span class="pre">IndexEntry</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.domains.IndexEntry.name"><code class="docutils literal notranslate"><span class="pre">IndexEntry.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.IndexEntry.subtype"><code class="docutils literal notranslate"><span class="pre">IndexEntry.subtype</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.IndexEntry.docname"><code class="docutils literal notranslate"><span class="pre">IndexEntry.docname</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.IndexEntry.anchor"><code class="docutils literal notranslate"><span class="pre">IndexEntry.anchor</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.IndexEntry.extra"><code class="docutils literal notranslate"><span class="pre">IndexEntry.extra</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.IndexEntry.qualifier"><code class="docutils literal notranslate"><span class="pre">IndexEntry.qualifier</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.IndexEntry.descr"><code class="docutils literal notranslate"><span class="pre">IndexEntry.descr</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription"><code class="docutils literal notranslate"><span class="pre">ObjectDescription</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription._object_hierarchy_parts"><code class="docutils literal notranslate"><span class="pre">ObjectDescription._object_hierarchy_parts()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription._toc_entry_name"><code class="docutils literal notranslate"><span class="pre">ObjectDescription._toc_entry_name()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription.add_target_and_index"><code class="docutils literal notranslate"><span class="pre">ObjectDescription.add_target_and_index()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription.after_content"><code class="docutils literal notranslate"><span class="pre">ObjectDescription.after_content()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription.before_content"><code class="docutils literal notranslate"><span class="pre">ObjectDescription.before_content()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription.get_signatures"><code class="docutils literal notranslate"><span class="pre">ObjectDescription.get_signatures()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription.handle_signature"><code class="docutils literal notranslate"><span class="pre">ObjectDescription.handle_signature()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription.run"><code class="docutils literal notranslate"><span class="pre">ObjectDescription.run()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription.transform_content"><code class="docutils literal notranslate"><span class="pre">ObjectDescription.transform_content()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription.final_argument_whitespace"><code class="docutils literal notranslate"><span class="pre">ObjectDescription.final_argument_whitespace</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription.has_content"><code class="docutils literal notranslate"><span class="pre">ObjectDescription.has_content</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription.option_spec"><code class="docutils literal notranslate"><span class="pre">ObjectDescription.option_spec</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription.optional_arguments"><code class="docutils literal notranslate"><span class="pre">ObjectDescription.optional_arguments</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.directives.ObjectDescription.required_arguments"><code class="docutils literal notranslate"><span class="pre">ObjectDescription.required_arguments</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sphinx.domains.python">Python Domain</a><ul>
+<li><a class="reference internal" href="#sphinx.domains.python.PythonDomain"><code class="docutils literal notranslate"><span class="pre">PythonDomain</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.domains.python.PythonDomain.objects"><code class="docutils literal notranslate"><span class="pre">PythonDomain.objects</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.python.PythonDomain.modules"><code class="docutils literal notranslate"><span class="pre">PythonDomain.modules</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.python.PythonDomain.note_object"><code class="docutils literal notranslate"><span class="pre">PythonDomain.note_object()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.domains.python.PythonDomain.note_module"><code class="docutils literal notranslate"><span class="pre">PythonDomain.note_module()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Sphinx API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="appapi.html">Application API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="event_callbacks.html">Event callbacks API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projectapi.html">Project API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="envapi.html">Build environment API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builderapi.html">Builder API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventapi.html">Event Manager API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collectorapi.html">Environment Collector API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markupapi.html">Docutils markup API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Domain API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parserapi.html">Parser API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html">Doctree node classes added by Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html">i18n API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecated.html">Deprecated APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes/index.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="module-sphinx.domains">
+<span id="id1"></span><span id="domain-api"></span><h1>Domain API<a class="headerlink" href="#module-sphinx.domains" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.domains.Domain">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.domains.</span></span><span class="sig-name descname"><span class="pre">Domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><span class="pre">BuildEnvironment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain" title="Link to this definition">¶</a></dt>
+<dd><p>A Domain is meant to be a group of “object” description directives for
+objects of a similar nature, and corresponding roles to create references to
+them.  Examples would be Python modules, classes, functions etc., elements
+of a templating language, Sphinx roles and directives, etc.</p>
+<p>Each domain has a separate storage for information about existing objects
+and how to reference them in <cite>self.data</cite>, which must be a dictionary.  It
+also must implement several functions that expose the object information in
+a uniform way to parts of Sphinx that allow the user to reference or search
+for objects in a domain-agnostic way.</p>
+<p>About <cite>self.data</cite>: since all object and cross-referencing information is
+stored on a BuildEnvironment instance, the <cite>domain.data</cite> object is also
+stored in the <cite>env.domaindata</cite> dict under the key <cite>domain.name</cite>.  Before the
+build process starts, every active domain is instantiated and given the
+environment object; the <cite>domaindata</cite> dict must then either be nonexistent or
+a dictionary whose ‘version’ key is equal to the domain class’
+<a class="reference internal" href="#sphinx.domains.Domain.data_version" title="sphinx.domains.Domain.data_version"><code class="xref py py-attr docutils literal notranslate"><span class="pre">data_version</span></code></a> attribute.  Otherwise, <cite>OSError</cite> is raised and the
+pickled environment is discarded.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.add_object_type">
+<span class="sig-name descname"><span class="pre">add_object_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">objtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#sphinx.domains.ObjType" title="sphinx.domains.ObjType"><span class="pre">ObjType</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.add_object_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.add_object_type" title="Link to this definition">¶</a></dt>
+<dd><p>Add an object type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.check_consistency">
+<span class="sig-name descname"><span class="pre">check_consistency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.check_consistency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.check_consistency" title="Link to this definition">¶</a></dt>
+<dd><p>Do consistency checks (<strong>experimental</strong>).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.clear_doc">
+<span class="sig-name descname"><span class="pre">clear_doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.clear_doc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.clear_doc" title="Link to this definition">¶</a></dt>
+<dd><p>Remove traces of a document in the domain-specific inventories.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.directive">
+<span class="sig-name descname"><span class="pre">directive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="markupapi.html#docutils.parsers.rst.Directive" title="docutils.parsers.rst.Directive"><span class="pre">Directive</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.directive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.directive" title="Link to this definition">¶</a></dt>
+<dd><p>Return a directive adapter class that always gives the registered
+directive its full name (‘domain:name’) as <code class="docutils literal notranslate"><span class="pre">self.name</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.get_enumerable_node_type">
+<span class="sig-name descname"><span class="pre">get_enumerable_node_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.get_enumerable_node_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.get_enumerable_node_type" title="Link to this definition">¶</a></dt>
+<dd><p>Get type of enumerable nodes (experimental).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.get_full_qualified_name">
+<span class="sig-name descname"><span class="pre">get_full_qualified_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.get_full_qualified_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.get_full_qualified_name" title="Link to this definition">¶</a></dt>
+<dd><p>Return full qualified name for given node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.get_objects">
+<span class="sig-name descname"><span class="pre">get_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.get_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.get_objects" title="Link to this definition">¶</a></dt>
+<dd><p>Return an iterable of “object descriptions”.</p>
+<p>Object descriptions are tuples with six items:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Fully qualified name.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dispname</span></code></dt><dd><p>Name to display when searching/linking.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">type</span></code></dt><dd><p>Object type, a key in <code class="docutils literal notranslate"><span class="pre">self.object_types</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">docname</span></code></dt><dd><p>The document where it is to be found.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">anchor</span></code></dt><dd><p>The anchor name for the object.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">priority</span></code></dt><dd><p>How “important” the object is (determines placement in search
+results). One of:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">1</span></code></dt><dd><p>Default priority (placed before full-text matches).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">0</span></code></dt><dd><p>Object is important (placed before default-priority objects).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">2</span></code></dt><dd><p>Object is unimportant (placed after full-text matches).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-1</span></code></dt><dd><p>Object should not show up in search at all.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.get_type_name">
+<span class="sig-name descname"><span class="pre">get_type_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#sphinx.domains.ObjType" title="sphinx.domains.ObjType"><span class="pre">ObjType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.get_type_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.get_type_name" title="Link to this definition">¶</a></dt>
+<dd><p>Return full name for given ObjType.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.merge_domaindata">
+<span class="sig-name descname"><span class="pre">merge_domaindata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docnames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">otherdata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.merge_domaindata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.merge_domaindata" title="Link to this definition">¶</a></dt>
+<dd><p>Merge in data regarding <em>docnames</em> from a different domaindata
+inventory (coming from a subprocess in parallel builds).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.process_doc">
+<span class="sig-name descname"><span class="pre">process_doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><span class="pre">BuildEnvironment</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">docname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nodes.document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.process_doc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.process_doc" title="Link to this definition">¶</a></dt>
+<dd><p>Process a document after it is read by the environment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.process_field_xref">
+<span class="sig-name descname"><span class="pre">process_field_xref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pnode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nodes.html#sphinx.addnodes.pending_xref" title="sphinx.addnodes.pending_xref"><span class="pre">pending_xref</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.process_field_xref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.process_field_xref" title="Link to this definition">¶</a></dt>
+<dd><p>Process a pending xref created in a doc field.
+For example, attach information about the current scope.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.resolve_any_xref">
+<span class="sig-name descname"><span class="pre">resolve_any_xref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><span class="pre">BuildEnvironment</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fromdocname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">builder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="builderapi.html#sphinx.builders.Builder" title="sphinx.builders.Builder"><span class="pre">Builder</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nodes.html#sphinx.addnodes.pending_xref" title="sphinx.addnodes.pending_xref"><span class="pre">pending_xref</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contnode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">nodes.reference</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.resolve_any_xref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.resolve_any_xref" title="Link to this definition">¶</a></dt>
+<dd><p>Resolve the pending_xref <em>node</em> with the given <em>target</em>.</p>
+<p>The reference comes from an “any” or similar role, which means that we
+don’t know the type.  Otherwise, the arguments are the same as for
+<a class="reference internal" href="#sphinx.domains.Domain.resolve_xref" title="sphinx.domains.Domain.resolve_xref"><code class="xref py py-meth docutils literal notranslate"><span class="pre">resolve_xref()</span></code></a>.</p>
+<p>The method must return a list (potentially empty) of tuples
+<code class="docutils literal notranslate"><span class="pre">('domain:role',</span> <span class="pre">newnode)</span></code>, where <code class="docutils literal notranslate"><span class="pre">'domain:role'</span></code> is the name of a
+role that could have created the same reference, e.g. <code class="docutils literal notranslate"><span class="pre">'py:func'</span></code>.
+<code class="docutils literal notranslate"><span class="pre">newnode</span></code> is what <a class="reference internal" href="#sphinx.domains.Domain.resolve_xref" title="sphinx.domains.Domain.resolve_xref"><code class="xref py py-meth docutils literal notranslate"><span class="pre">resolve_xref()</span></code></a> would return.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.resolve_xref">
+<span class="sig-name descname"><span class="pre">resolve_xref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><span class="pre">BuildEnvironment</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fromdocname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">builder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="builderapi.html#sphinx.builders.Builder" title="sphinx.builders.Builder"><span class="pre">Builder</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">typ</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nodes.html#sphinx.addnodes.pending_xref" title="sphinx.addnodes.pending_xref"><span class="pre">pending_xref</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">contnode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Element</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">nodes.reference</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.resolve_xref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.resolve_xref" title="Link to this definition">¶</a></dt>
+<dd><p>Resolve the pending_xref <em>node</em> with the given <em>typ</em> and <em>target</em>.</p>
+<p>This method should return a new node, to replace the xref node,
+containing the <em>contnode</em> which is the markup content of the
+cross-reference.</p>
+<p>If no resolution can be found, None can be returned; the xref node will
+then given to the <a class="reference internal" href="event_callbacks.html#event-missing-reference"><code class="xref std std-event docutils literal notranslate"><span class="pre">missing-reference</span></code></a> event, and if that yields no
+resolution, replaced by <em>contnode</em>.</p>
+<p>The method can also raise <code class="xref py py-exc docutils literal notranslate"><span class="pre">sphinx.environment.NoUri</span></code> to suppress
+the <a class="reference internal" href="event_callbacks.html#event-missing-reference"><code class="xref std std-event docutils literal notranslate"><span class="pre">missing-reference</span></code></a> event being emitted.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.role">
+<span class="sig-name descname"><span class="pre">role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">RoleFunction</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.role"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.role" title="Link to this definition">¶</a></dt>
+<dd><p>Return a role adapter function that always gives the registered
+role its full name (‘domain:name’) as the first argument.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains.html#Domain.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Domain.setup" title="Link to this definition">¶</a></dt>
+<dd><p>Set up domain object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.dangling_warnings">
+<span class="sig-name descname"><span class="pre">dangling_warnings</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#sphinx.domains.Domain.dangling_warnings" title="Link to this definition">¶</a></dt>
+<dd><p>role name -&gt; a warning message if reference is missing</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.data">
+<span class="sig-name descname"><span class="pre">data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#sphinx.domains.Domain.data" title="Link to this definition">¶</a></dt>
+<dd><p>data value</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.data_version">
+<span class="sig-name descname"><span class="pre">data_version</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#sphinx.domains.Domain.data_version" title="Link to this definition">¶</a></dt>
+<dd><p>data version, bump this when the format of <cite>self.data</cite> changes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.directives">
+<span class="sig-name descname"><span class="pre">directives</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="markupapi.html#docutils.parsers.rst.Directive" title="docutils.parsers.rst.Directive"><span class="pre">Directive</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#sphinx.domains.Domain.directives" title="Link to this definition">¶</a></dt>
+<dd><p>directive name -&gt; directive class</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.enumerable_nodes">
+<span class="sig-name descname"><span class="pre">enumerable_nodes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Node</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">TitleGetter</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#sphinx.domains.Domain.enumerable_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>node_class -&gt; (enum_node_type, title_getter)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.indices">
+<span class="sig-name descname"><span class="pre">indices</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#sphinx.domains.Index" title="sphinx.domains.Index"><span class="pre">Index</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></span><a class="headerlink" href="#sphinx.domains.Domain.indices" title="Link to this definition">¶</a></dt>
+<dd><p>a list of Index subclasses</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.initial_data">
+<span class="sig-name descname"><span class="pre">initial_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#sphinx.domains.Domain.initial_data" title="Link to this definition">¶</a></dt>
+<dd><p>data value for a fresh environment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.label">
+<span class="sig-name descname"><span class="pre">label</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#sphinx.domains.Domain.label" title="Link to this definition">¶</a></dt>
+<dd><p>domain label: longer, more descriptive (used in messages)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#sphinx.domains.Domain.name" title="Link to this definition">¶</a></dt>
+<dd><p>domain name: should be short, but unique</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.object_types">
+<span class="sig-name descname"><span class="pre">object_types</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#sphinx.domains.ObjType" title="sphinx.domains.ObjType"><span class="pre">ObjType</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#sphinx.domains.Domain.object_types" title="Link to this definition">¶</a></dt>
+<dd><p>type (usually directive) name -&gt; ObjType instance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.Domain.roles">
+<span class="sig-name descname"><span class="pre">roles</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">RoleFunction</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">XRefRole</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></span><a class="headerlink" href="#sphinx.domains.Domain.roles" title="Link to this definition">¶</a></dt>
+<dd><p>role name -&gt; role callable</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.domains.ObjType">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.domains.</span></span><span class="sig-name descname"><span class="pre">ObjType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">roles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attrs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/domains.html#ObjType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.ObjType" title="Link to this definition">¶</a></dt>
+<dd><p>An ObjType is the description for a type of object that a domain can
+document.  In the object_types attribute of Domain subclasses, object type
+names are mapped to instances of this class.</p>
+<p>Constructor arguments:</p>
+<ul class="simple">
+<li><p><em>lname</em>: localized name of the type (do not include domain name)</p></li>
+<li><p><em>roles</em>: all the roles that can refer to an object of this type</p></li>
+<li><p><em>attrs</em>: object attributes – currently only “searchprio” is known,
+which defines the object’s priority in the full-text search index,
+see <a class="reference internal" href="#sphinx.domains.Domain.get_objects" title="sphinx.domains.Domain.get_objects"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Domain.get_objects()</span></code></a>.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.domains.Index">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.domains.</span></span><span class="sig-name descname"><span class="pre">Index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#sphinx.domains.Domain" title="sphinx.domains.Domain"><span class="pre">Domain</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/domains/_index.html#Index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Index" title="Link to this definition">¶</a></dt>
+<dd><p>An Index is the description for a domain-specific index.  To add an index to
+a domain, subclass Index, overriding the three name attributes:</p>
+<ul class="simple">
+<li><p><cite>name</cite> is an identifier used for generating file names.
+It is also used for a hyperlink target for the index. Therefore, users can
+refer the index page using <code class="docutils literal notranslate"><span class="pre">ref</span></code> role and a string which is combined
+domain name and <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute (ex. <code class="docutils literal notranslate"><span class="pre">:ref:`py-modindex`</span></code>).</p></li>
+<li><p><cite>localname</cite> is the section title for the index.</p></li>
+<li><p><cite>shortname</cite> is a short name for the index, for use in the relation bar in
+HTML output.  Can be empty to disable entries in the relation bar.</p></li>
+</ul>
+<p>and providing a <a class="reference internal" href="#sphinx.domains.Index.generate" title="sphinx.domains.Index.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate()</span></code></a> method.  Then, add the index class to
+your domain’s <cite>indices</cite> list.  Extensions can add indices to existing
+domains using <a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_index_to_domain" title="sphinx.application.Sphinx.add_index_to_domain"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_index_to_domain()</span></code></a>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.0: </span>Index pages can be referred by domain name and index name via
+<a class="reference internal" href="../usage/referencing.html#role-ref" title="ref role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">ref</span></code></a> role.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.Index.generate">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docnames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#sphinx.domains.IndexEntry" title="sphinx.domains.IndexEntry"><span class="pre">IndexEntry</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/domains/_index.html#Index.generate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.Index.generate" title="Link to this definition">¶</a></dt>
+<dd><p>Get entries for the index.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">docnames</span></code> is given, restrict to entries referring to these
+docnames.</p>
+<p>The return value is a tuple of <code class="docutils literal notranslate"><span class="pre">(content,</span> <span class="pre">collapse)</span></code>:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">collapse</span></code></dt><dd><p>A boolean that determines if sub-entries should start collapsed (for
+output formats that support collapsing sub-entries).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">content</span></code>:</dt><dd><p>A sequence of <code class="docutils literal notranslate"><span class="pre">(letter,</span> <span class="pre">entries)</span></code> tuples, where <code class="docutils literal notranslate"><span class="pre">letter</span></code> is the
+“heading” for the given <code class="docutils literal notranslate"><span class="pre">entries</span></code>, usually the starting letter, and
+<code class="docutils literal notranslate"><span class="pre">entries</span></code> is a sequence of single entries.
+Each entry is an <a class="reference internal" href="#sphinx.domains.IndexEntry" title="sphinx.domains.IndexEntry"><code class="xref py py-class docutils literal notranslate"><span class="pre">IndexEntry</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.domains.IndexEntry">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.domains.</span></span><span class="sig-name descname"><span class="pre">IndexEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">docname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">descr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/domains/_index.html#IndexEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.IndexEntry" title="Link to this definition">¶</a></dt>
+<dd><p>An index entry.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>qualifier</em> and <em>description</em> are not rendered for some output formats,
+such as LaTeX.</p>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.IndexEntry.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#sphinx.domains.IndexEntry.name" title="Link to this definition">¶</a></dt>
+<dd><p>The name of the index entry to be displayed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.IndexEntry.subtype">
+<span class="sig-name descname"><span class="pre">subtype</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><a class="headerlink" href="#sphinx.domains.IndexEntry.subtype" title="Link to this definition">¶</a></dt>
+<dd><p>The sub-entry related type. One of:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">0</span></code></dt><dd><p>A normal entry.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">1</span></code></dt><dd><p>An entry with sub-entries.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">2</span></code></dt><dd><p>A sub-entry.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.IndexEntry.docname">
+<span class="sig-name descname"><span class="pre">docname</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#sphinx.domains.IndexEntry.docname" title="Link to this definition">¶</a></dt>
+<dd><p><em>docname</em> where the entry is located.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.IndexEntry.anchor">
+<span class="sig-name descname"><span class="pre">anchor</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#sphinx.domains.IndexEntry.anchor" title="Link to this definition">¶</a></dt>
+<dd><p>Anchor for the entry within <cite>docname</cite></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.IndexEntry.extra">
+<span class="sig-name descname"><span class="pre">extra</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#sphinx.domains.IndexEntry.extra" title="Link to this definition">¶</a></dt>
+<dd><p>Extra info for the entry.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.IndexEntry.qualifier">
+<span class="sig-name descname"><span class="pre">qualifier</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#sphinx.domains.IndexEntry.qualifier" title="Link to this definition">¶</a></dt>
+<dd><p>Qualifier for the description.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.IndexEntry.descr">
+<span class="sig-name descname"><span class="pre">descr</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#sphinx.domains.IndexEntry.descr" title="Link to this definition">¶</a></dt>
+<dd><p>Description for the entry.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-sphinx.directives">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.directives.</span></span><span class="sig-name descname"><span class="pre">ObjectDescription</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_machine</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/directives.html#ObjectDescription"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.directives.ObjectDescription" title="Link to this definition">¶</a></dt>
+<dd><p>Directive to describe a class, function or similar object.</p>
+<p>Not used directly, but subclassed (in domain-specific directives)
+to add custom behaviour.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription._object_hierarchy_parts">
+<span class="sig-name descname"><span class="pre">_object_hierarchy_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nodes.html#sphinx.addnodes.desc_signature" title="sphinx.addnodes.desc_signature"><span class="pre">desc_signature</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/directives.html#ObjectDescription._object_hierarchy_parts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.directives.ObjectDescription._object_hierarchy_parts" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a tuple of strings, one entry for each part of the object’s
+hierarchy (e.g. <code class="docutils literal notranslate"><span class="pre">('module',</span> <span class="pre">'submodule',</span> <span class="pre">'Class',</span> <span class="pre">'method')</span></code>). The
+returned tuple is used to properly nest children within parents in the
+table of contents, and can also be used within the
+<a class="reference internal" href="#sphinx.directives.ObjectDescription._toc_entry_name" title="sphinx.directives.ObjectDescription._toc_entry_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_toc_entry_name()</span></code></a> method.</p>
+<p>This method must not be used outwith table of contents generation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription._toc_entry_name">
+<span class="sig-name descname"><span class="pre">_toc_entry_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nodes.html#sphinx.addnodes.desc_signature" title="sphinx.addnodes.desc_signature"><span class="pre">desc_signature</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/sphinx/directives.html#ObjectDescription._toc_entry_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.directives.ObjectDescription._toc_entry_name" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the text of the table of contents entry for the object.</p>
+<p>This function is called once, in <a class="reference internal" href="#sphinx.directives.ObjectDescription.run" title="sphinx.directives.ObjectDescription.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>, to set the name for the
+table of contents entry (a special attribute <code class="docutils literal notranslate"><span class="pre">_toc_name</span></code> is set on the
+object node, later used in
+<code class="docutils literal notranslate"><span class="pre">environment.collectors.toctree.TocTreeCollector.process_doc().build_toc()</span></code>
+when the table of contents entries are collected).</p>
+<p>To support table of contents entries for their objects, domains must
+override this method, also respecting the configuration setting
+<code class="docutils literal notranslate"><span class="pre">toc_object_entries_show_parents</span></code>. Domains must also override
+<a class="reference internal" href="#sphinx.directives.ObjectDescription._object_hierarchy_parts" title="sphinx.directives.ObjectDescription._object_hierarchy_parts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_object_hierarchy_parts()</span></code></a>, with one (string) entry for each part of the
+object’s hierarchy. The result of this method is set on the signature
+node, and can be accessed as <code class="docutils literal notranslate"><span class="pre">sig_node['_toc_parts']</span></code> for use within
+this method. The resulting tuple is also used to properly nest children
+within parents in the table of contents.</p>
+<p>An example implementations of this method is within the python domain
+(<code class="xref py py-meth docutils literal notranslate"><span class="pre">PyObject._toc_entry_name()</span></code>). The python domain sets the
+<code class="docutils literal notranslate"><span class="pre">_toc_parts</span></code> attribute within the <a class="reference internal" href="#sphinx.directives.ObjectDescription.handle_signature" title="sphinx.directives.ObjectDescription.handle_signature"><code class="xref py py-meth docutils literal notranslate"><span class="pre">handle_signature()</span></code></a>
+method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription.add_target_and_index">
+<span class="sig-name descname"><span class="pre">add_target_and_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ObjDescT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">signode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nodes.html#sphinx.addnodes.desc_signature" title="sphinx.addnodes.desc_signature"><span class="pre">desc_signature</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/directives.html#ObjectDescription.add_target_and_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.directives.ObjectDescription.add_target_and_index" title="Link to this definition">¶</a></dt>
+<dd><p>Add cross-reference IDs and entries to self.indexnode, if applicable.</p>
+<p><em>name</em> is whatever <a class="reference internal" href="#sphinx.directives.ObjectDescription.handle_signature" title="sphinx.directives.ObjectDescription.handle_signature"><code class="xref py py-meth docutils literal notranslate"><span class="pre">handle_signature()</span></code></a> returned.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription.after_content">
+<span class="sig-name descname"><span class="pre">after_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/directives.html#ObjectDescription.after_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.directives.ObjectDescription.after_content" title="Link to this definition">¶</a></dt>
+<dd><p>Called after parsing content.</p>
+<p>Used to reset information about the current directive context
+on the build environment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription.before_content">
+<span class="sig-name descname"><span class="pre">before_content</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/directives.html#ObjectDescription.before_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.directives.ObjectDescription.before_content" title="Link to this definition">¶</a></dt>
+<dd><p>Called before parsing content.</p>
+<p>Used to set information about the current directive context
+on the build environment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription.get_signatures">
+<span class="sig-name descname"><span class="pre">get_signatures</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/directives.html#ObjectDescription.get_signatures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.directives.ObjectDescription.get_signatures" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve the signatures to document from the directive arguments.</p>
+<p>By default, signatures are given as arguments, one per line.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription.handle_signature">
+<span class="sig-name descname"><span class="pre">handle_signature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">signode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nodes.html#sphinx.addnodes.desc_signature" title="sphinx.addnodes.desc_signature"><span class="pre">desc_signature</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ObjDescT</span></span></span><a class="reference internal" href="../_modules/sphinx/directives.html#ObjectDescription.handle_signature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.directives.ObjectDescription.handle_signature" title="Link to this definition">¶</a></dt>
+<dd><p>Parse the signature <em>sig</em>.</p>
+<p>The individual nodes are then appended to <em>signode</em>.
+If ValueError is raised, parsing is aborted and the whole
+<em>sig</em> is put into a single desc_name node.</p>
+<p>The return value should be a value that identifies the object.  It is
+passed to <a class="reference internal" href="#sphinx.directives.ObjectDescription.add_target_and_index" title="sphinx.directives.ObjectDescription.add_target_and_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_target_and_index()</span></code></a> unchanged, and otherwise only
+used to skip duplicates.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Node</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/directives.html#ObjectDescription.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.directives.ObjectDescription.run" title="Link to this definition">¶</a></dt>
+<dd><p>Main directive entry function, called by docutils upon encountering the
+directive.</p>
+<p>This directive is meant to be quite easily subclassable, so it delegates
+to several additional methods.  What it does:</p>
+<ul class="simple">
+<li><p>find out if called as a domain-specific directive, set self.domain</p></li>
+<li><p>create a <cite>desc</cite> node to fit all description inside</p></li>
+<li><p>parse standard options, currently <cite>no-index</cite></p></li>
+<li><p>create an index node if needed as self.indexnode</p></li>
+<li><p>parse all given signatures (as returned by self.get_signatures())
+using self.handle_signature(), which should either return a name
+or raise ValueError</p></li>
+<li><p>add index entries using self.add_target_and_index()</p></li>
+<li><p>parse the content and handle doc fields in it</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription.transform_content">
+<span class="sig-name descname"><span class="pre">transform_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="nodes.html#sphinx.addnodes.desc_content" title="sphinx.addnodes.desc_content"><span class="pre">desc_content</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/directives.html#ObjectDescription.transform_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.directives.ObjectDescription.transform_content" title="Link to this definition">¶</a></dt>
+<dd><p>Can be used to manipulate the content.</p>
+<p>Called after creating the content through nested parsing,
+but before the <code class="docutils literal notranslate"><span class="pre">object-description-transform</span></code> event is emitted,
+and before the info-fields are transformed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription.final_argument_whitespace">
+<span class="sig-name descname"><span class="pre">final_argument_whitespace</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#sphinx.directives.ObjectDescription.final_argument_whitespace" title="Link to this definition">¶</a></dt>
+<dd><p>May the final argument contain whitespace?</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription.has_content">
+<span class="sig-name descname"><span class="pre">has_content</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#sphinx.directives.ObjectDescription.has_content" title="Link to this definition">¶</a></dt>
+<dd><p>May the directive have content?</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription.option_spec">
+<span class="sig-name descname"><span class="pre">option_spec</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">OptionSpec</span><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'no-contents-entry':</span> <span class="pre">&lt;function</span> <span class="pre">flag&gt;,</span> <span class="pre">'no-index':</span> <span class="pre">&lt;function</span> <span class="pre">flag&gt;,</span> <span class="pre">'no-index-entry':</span> <span class="pre">&lt;function</span> <span class="pre">flag&gt;,</span> <span class="pre">'no-typesetting':</span> <span class="pre">&lt;function</span> <span class="pre">flag&gt;,</span> <span class="pre">'nocontentsentry':</span> <span class="pre">&lt;function</span> <span class="pre">flag&gt;,</span> <span class="pre">'noindex':</span> <span class="pre">&lt;function</span> <span class="pre">flag&gt;,</span> <span class="pre">'noindexentry':</span> <span class="pre">&lt;function</span> <span class="pre">flag&gt;}</span></span><a class="headerlink" href="#sphinx.directives.ObjectDescription.option_spec" title="Link to this definition">¶</a></dt>
+<dd><p>Mapping of option names to validator functions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription.optional_arguments">
+<span class="sig-name descname"><span class="pre">optional_arguments</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></span><a class="headerlink" href="#sphinx.directives.ObjectDescription.optional_arguments" title="Link to this definition">¶</a></dt>
+<dd><p>Number of optional arguments after the required arguments.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.directives.ObjectDescription.required_arguments">
+<span class="sig-name descname"><span class="pre">required_arguments</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#sphinx.directives.ObjectDescription.required_arguments" title="Link to this definition">¶</a></dt>
+<dd><p>Number of required directive arguments.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="module-sphinx.domains.python">
+<span id="python-domain"></span><h2>Python Domain<a class="headerlink" href="#module-sphinx.domains.python" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.domains.python.PythonDomain">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.domains.python.</span></span><span class="sig-name descname"><span class="pre">PythonDomain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><span class="pre">BuildEnvironment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/domains/python.html#PythonDomain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.python.PythonDomain" title="Link to this definition">¶</a></dt>
+<dd><p>Python language domain.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.python.PythonDomain.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><a class="headerlink" href="#sphinx.domains.python.PythonDomain.objects" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.domains.python.PythonDomain.modules">
+<span class="sig-name descname"><span class="pre">modules</span></span><a class="headerlink" href="#sphinx.domains.python.PythonDomain.modules" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.python.PythonDomain.note_object">
+<span class="sig-name descname"><span class="pre">note_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">objtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">aliased</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains/python.html#PythonDomain.note_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.python.PythonDomain.note_object" title="Link to this definition">¶</a></dt>
+<dd><p>Note a python object for cross reference.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.domains.python.PythonDomain.note_module">
+<span class="sig-name descname"><span class="pre">note_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">synopsis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">deprecated</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/domains/python.html#PythonDomain.note_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.domains.python.PythonDomain.note_module" title="Link to this definition">¶</a></dt>
+<dd><p>Note a python module for cross reference.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.1.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="markupapi.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Docutils markup API</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="parserapi.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">Parser API</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; Copyright 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+</div>
+  </body>
+</html>

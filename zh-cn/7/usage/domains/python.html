@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The Python Domain &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=fb9458d3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css?v=4e502a7e" />
+    <script src="../../_static/documentation_options.js?v=891990c7"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=beaddf03"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/domains/python.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="The reStructuredText Domain" href="restructuredtext.html" />
+    <link rel="prev" title="The Mathematics Domain" href="mathematics.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../index.html">
+      <img src="../../_static/sphinx-logo.svg" alt="logo" />
+    </a>
+    <h1>Sphinx</h1>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>导航</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Domains</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">The Python Domain</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">The Python Domain</a><ul>
+<li><a class="reference internal" href="#directive-py-module"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:module::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-py-module-platform"><code class="docutils literal notranslate"><span class="pre">:platform:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-module-synopsis"><code class="docutils literal notranslate"><span class="pre">:synopsis:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-module-deprecated"><code class="docutils literal notranslate"><span class="pre">:deprecated:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-py-currentmodule"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:currentmodule::</span></code></a></li>
+<li><a class="reference internal" href="#directive-py-function"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:function::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-py-function-async"><code class="docutils literal notranslate"><span class="pre">:async:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-function-canonical"><code class="docutils literal notranslate"><span class="pre">:canonical:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-function-single-line-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-parameter-list:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-function-single-line-type-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-type-parameter-list:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-py-data"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:data::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-py-data-type"><code class="docutils literal notranslate"><span class="pre">:type:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-data-value"><code class="docutils literal notranslate"><span class="pre">:value:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-data-canonical"><code class="docutils literal notranslate"><span class="pre">:canonical:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-py-exception"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:exception::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-py-exception-final"><code class="docutils literal notranslate"><span class="pre">:final:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-exception-single-line-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-parameter-list:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-exception-single-line-type-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-type-parameter-list:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-py-class"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:class::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-py-class-canonical"><code class="docutils literal notranslate"><span class="pre">:canonical:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-class-final"><code class="docutils literal notranslate"><span class="pre">:final:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-class-single-line-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-parameter-list:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-class-single-line-type-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-type-parameter-list:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-py-attribute"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:attribute::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-py-attribute-type"><code class="docutils literal notranslate"><span class="pre">:type:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-attribute-value"><code class="docutils literal notranslate"><span class="pre">:value:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-attribute-canonical"><code class="docutils literal notranslate"><span class="pre">:canonical:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-py-property"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:property::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-py-property-abstractmethod"><code class="docutils literal notranslate"><span class="pre">:abstractmethod:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-property-classmethod"><code class="docutils literal notranslate"><span class="pre">:classmethod:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-property-type"><code class="docutils literal notranslate"><span class="pre">:type:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-py-type"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:type::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-py-type-canonical"><code class="docutils literal notranslate"><span class="pre">:canonical:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-py-method"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:method::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-py-method-abstractmethod"><code class="docutils literal notranslate"><span class="pre">:abstractmethod:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-method-async"><code class="docutils literal notranslate"><span class="pre">:async:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-method-canonical"><code class="docutils literal notranslate"><span class="pre">:canonical:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-method-classmethod"><code class="docutils literal notranslate"><span class="pre">:classmethod:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-method-final"><code class="docutils literal notranslate"><span class="pre">:final:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-method-single-line-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-parameter-list:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-method-single-line-type-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-type-parameter-list:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-method-staticmethod"><code class="docutils literal notranslate"><span class="pre">:staticmethod:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-py-staticmethod"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:staticmethod::</span></code></a></li>
+<li><a class="reference internal" href="#directive-py-classmethod"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:classmethod::</span></code></a></li>
+<li><a class="reference internal" href="#directive-py-decorator"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:decorator::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-py-decorator-single-line-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-parameter-list:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-py-decorator-single-line-type-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-type-parameter-list:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-py-decoratormethod"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:decoratormethod::</span></code></a></li>
+<li><a class="reference internal" href="#python-signatures">Python Signatures</a></li>
+<li><a class="reference internal" href="#info-field-lists">Info field lists</a></li>
+<li><a class="reference internal" href="#cross-referencing-python-objects">Cross-referencing Python objects</a><ul>
+<li><a class="reference internal" href="#role-py-mod"><code class="docutils literal notranslate"><span class="pre">:py:mod:</span></code></a></li>
+<li><a class="reference internal" href="#role-py-func"><code class="docutils literal notranslate"><span class="pre">:py:func:</span></code></a></li>
+<li><a class="reference internal" href="#role-py-data"><code class="docutils literal notranslate"><span class="pre">:py:data:</span></code></a></li>
+<li><a class="reference internal" href="#role-py-const"><code class="docutils literal notranslate"><span class="pre">:py:const:</span></code></a></li>
+<li><a class="reference internal" href="#role-py-class"><code class="docutils literal notranslate"><span class="pre">:py:class:</span></code></a></li>
+<li><a class="reference internal" href="#role-py-meth"><code class="docutils literal notranslate"><span class="pre">:py:meth:</span></code></a></li>
+<li><a class="reference internal" href="#role-py-attr"><code class="docutils literal notranslate"><span class="pre">:py:attr:</span></code></a></li>
+<li><a class="reference internal" href="#role-py-type"><code class="docutils literal notranslate"><span class="pre">:py:type:</span></code></a></li>
+<li><a class="reference internal" href="#role-py-exc"><code class="docutils literal notranslate"><span class="pre">:py:exc:</span></code></a></li>
+<li><a class="reference internal" href="#role-py-obj"><code class="docutils literal notranslate"><span class="pre">:py:obj:</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencing.html">Cross-referencing syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">Builders</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Domains</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="standard.html">The Standard Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html">The C Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpp.html">The C++ Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript.html">The JavaScript Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematics.html">The Mathematics Domain</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The Python Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="restructuredtext.html">The reStructuredText Domain</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML Theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="the-python-domain">
+<h1>The Python Domain<a class="headerlink" href="#the-python-domain" title="Link to this heading">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.0.</span></p>
+</div>
+<p>The Python domain (name <strong>py</strong>) provides the following directives for module
+declarations:</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-module">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:module::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-py-module" title="Link to this definition">¶</a></dt>
+<dd><p>This directive marks the beginning of the description of a module (or package
+submodule, in which case the name should be fully qualified, including the
+package name).  A description of the module such as the docstring can be
+placed in the body of the directive.</p>
+<p>This directive will also cause an entry in the global module index.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 5.2 版本发生变更: </span>Module directives support body content.</p>
+</div>
+<p class="rubric">options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-module-platform">
+<span class="sig-name descname"><span class="pre">:platform:</span></span><em class="property"> <span class="pre">platforms</span></em><em class="property"> <span class="pre">(comma</span> <span class="pre">separated</span> <span class="pre">list)</span></em><a class="headerlink" href="#directive-option-py-module-platform" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate platforms which the module is available (if it is available on
+all platforms, the option should be omitted).  The keys are short
+identifiers; examples that are in use include “IRIX”, “Mac”, “Windows”
+and “Unix”.  It is important to use a key which has already been used when
+applicable.</p>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-module-synopsis">
+<span class="sig-name descname"><span class="pre">:synopsis:</span></span><em class="property"> <span class="pre">purpose</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-py-module-synopsis" title="Link to this definition">¶</a></dt>
+<dd><p>Consist of one sentence describing the module’s purpose – it is currently
+only used in the Global Module Index.</p>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-module-deprecated">
+<span class="sig-name descname"><span class="pre">:deprecated:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">argument)</span></em><a class="headerlink" href="#directive-option-py-module-deprecated" title="Link to this definition">¶</a></dt>
+<dd><p>Mark a module as deprecated; it will be designated as such in various
+locations then.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-currentmodule">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:currentmodule::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-py-currentmodule" title="Link to this definition">¶</a></dt>
+<dd><p>This directive tells Sphinx that the classes, functions etc. documented from
+here are in the given module (like <a class="reference internal" href="#directive-py-module" title="py:module directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:module</span></code></a>), but it will not
+create index entries, an entry in the Global Module Index, or a link target
+for <a class="reference internal" href="#role-py-mod" title="py:mod role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">py:mod</span></code></a>.  This is helpful in situations where documentation
+for things in a module is spread over multiple files or sections – one
+location has the <a class="reference internal" href="#directive-py-module" title="py:module directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:module</span></code></a> directive, the others only
+<a class="reference internal" href="#directive-py-currentmodule" title="py:currentmodule directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:currentmodule</span></code></a>.</p>
+</dd></dl>
+
+<p>The following directives are provided for module and class contents:</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-function">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:function::</span></span><span class="sig-prename descclassname"> <span class="pre">name(parameters)</span></span><a class="headerlink" href="#directive-py-function" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:function::</span></span><span class="sig-prename descclassname"> <span class="pre">name[type</span> <span class="pre">parameters](parameters)</span></span></dt>
+<dd><p>Describes a module-level function.
+The signature should include the parameters,
+together with optional type parameters,
+as given in the Python function definition, see <a class="reference internal" href="#signatures"><span class="std std-ref">Python Signatures</span></a>.
+For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> Timer.repeat(repeat=3, number=1_000_000)
+<span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> add[T](a: T, b: T) -&gt; T
+</pre></div>
+</div>
+<p>For methods you should use <a class="reference internal" href="#directive-py-method" title="py:method directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:method</span></code></a>.</p>
+<p>The description normally includes information about the parameters required
+and how they are used (especially whether mutable objects passed as
+parameters are modified), side effects, and possible exceptions.</p>
+<p>This information can (in any <code class="docutils literal notranslate"><span class="pre">py</span></code> directive) optionally be given in a
+structured form, see <a class="reference internal" href="#info-field-lists"><span class="std std-ref">Info field lists</span></a>.</p>
+<p class="rubric">options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-function-async">
+<span class="sig-name descname"><span class="pre">:async:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-function-async" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate the function is an async function.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-function-canonical">
+<span class="sig-name descname"><span class="pre">:canonical:</span></span><em class="property"> <span class="pre">(full</span> <span class="pre">qualified</span> <span class="pre">name</span> <span class="pre">including</span> <span class="pre">module</span> <span class="pre">name)</span></em><a class="headerlink" href="#directive-option-py-function-canonical" title="Link to this definition">¶</a></dt>
+<dd><p>Describe the location where the object is defined if the object is
+imported from other modules</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-function-single-line-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-parameter-list:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-function-single-line-parameter-list" title="Link to this definition">¶</a></dt>
+<dd><p>Ensures that the function’s arguments will be emitted on a single logical
+line, overriding <a class="reference internal" href="../configuration.html#confval-python_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">python_maximum_signature_line_length</span></code></a> and
+<a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-function-single-line-type-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-type-parameter-list:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-function-single-line-type-parameter-list" title="Link to this definition">¶</a></dt>
+<dd><p>Ensure that the function’s type parameters are emitted on a single
+logical line, overriding <a class="reference internal" href="../configuration.html#confval-python_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">python_maximum_signature_line_length</span></code></a>
+and <a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.1.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-data">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:data::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-py-data" title="Link to this definition">¶</a></dt>
+<dd><p>Describes global data in a module, including both variables and values used
+as “defined constants.”
+Consider using <a class="reference internal" href="#directive-py-type" title="py:type directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:type</span></code></a> for type aliases instead
+and <a class="reference internal" href="#directive-py-attribute" title="py:attribute directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:attribute</span></code></a> for class variables and instance attributes.</p>
+<p class="rubric">options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-data-type">
+<span class="sig-name descname"><span class="pre">:type:</span></span><em class="property"> <span class="pre">type</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">variable</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-py-data-type" title="Link to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-data-value">
+<span class="sig-name descname"><span class="pre">:value:</span></span><em class="property"> <span class="pre">initial</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">variable</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-py-data-value" title="Link to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-data-canonical">
+<span class="sig-name descname"><span class="pre">:canonical:</span></span><em class="property"> <span class="pre">(full</span> <span class="pre">qualified</span> <span class="pre">name</span> <span class="pre">including</span> <span class="pre">module</span> <span class="pre">name)</span></em><a class="headerlink" href="#directive-option-py-data-canonical" title="Link to this definition">¶</a></dt>
+<dd><p>Describe the location where the object is defined if the object is
+imported from other modules</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-exception">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:exception::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-py-exception" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:exception::</span></span><span class="sig-prename descclassname"> <span class="pre">name(parameters)</span></span></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:exception::</span></span><span class="sig-prename descclassname"> <span class="pre">name[type</span> <span class="pre">parameters](parameters)</span></span></dt>
+<dd><p>Describes an exception class.
+The signature can, but need not include parentheses with constructor arguments,
+or may optionally include type parameters (see <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-0695/"><strong>PEP 695</strong></a>).</p>
+<p class="rubric">options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-exception-final">
+<span class="sig-name descname"><span class="pre">:final:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-exception-final" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate the class is a final class.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-exception-single-line-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-parameter-list:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-exception-single-line-parameter-list" title="Link to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#directive-option-py-class-single-line-parameter-list" title="py:class:single-line-parameter-list directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:class:single-line-parameter-list</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-exception-single-line-type-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-type-parameter-list:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-exception-single-line-type-parameter-list" title="Link to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#directive-option-py-class-single-line-type-parameter-list" title="py:class:single-line-type-parameter-list directive:option"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:class:single-line-type-parameter-list</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.1.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-class">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:class::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-py-class" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:class::</span></span><span class="sig-prename descclassname"> <span class="pre">name(parameters)</span></span></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:class::</span></span><span class="sig-prename descclassname"> <span class="pre">name[type</span> <span class="pre">parameters](parameters)</span></span></dt>
+<dd><p>Describes a class.
+The signature can optionally include type parameters (see <span class="target" id="index-1"></span><a class="pep reference external" href="https://peps.python.org/pep-0695/"><strong>PEP 695</strong></a>)
+or parentheses with parameters which will be shown as the constructor arguments.
+See also <a class="reference internal" href="#signatures"><span class="std std-ref">Python Signatures</span></a>.</p>
+<p>Methods and attributes belonging to the class should be placed in this
+directive’s body.  If they are placed outside, the supplied name should
+contain the class name so that cross-references still work.  Example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:class</span><span class="p">::</span> Foo
+
+<span class="p">   ..</span> <span class="ow">py:method</span><span class="p">::</span> quux()
+
+-- or --
+
+<span class="p">..</span> <span class="ow">py:class</span><span class="p">::</span> Bar
+
+<span class="p">..</span> <span class="ow">py:method</span><span class="p">::</span> Bar.quux()
+</pre></div>
+</div>
+<p>The first way is the preferred one.</p>
+<p class="rubric">options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-class-canonical">
+<span class="sig-name descname"><span class="pre">:canonical:</span></span><em class="property"> <span class="pre">(full</span> <span class="pre">qualified</span> <span class="pre">name</span> <span class="pre">including</span> <span class="pre">module</span> <span class="pre">name)</span></em><a class="headerlink" href="#directive-option-py-class-canonical" title="Link to this definition">¶</a></dt>
+<dd><p>Describe the location where the object is defined if the object is
+imported from other modules</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-class-final">
+<span class="sig-name descname"><span class="pre">:final:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-class-final" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate the class is a final class.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-class-single-line-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-parameter-list:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-class-single-line-parameter-list" title="Link to this definition">¶</a></dt>
+<dd><p>Ensures that the class constructor’s arguments will be emitted on a single
+logical line, overriding <a class="reference internal" href="../configuration.html#confval-python_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">python_maximum_signature_line_length</span></code></a>
+and <a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-class-single-line-type-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-type-parameter-list:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-class-single-line-type-parameter-list" title="Link to this definition">¶</a></dt>
+<dd><p>Ensure that the class type parameters are emitted on a single logical
+line, overriding <a class="reference internal" href="../configuration.html#confval-python_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">python_maximum_signature_line_length</span></code></a> and
+<a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-attribute">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:attribute::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-py-attribute" title="Link to this definition">¶</a></dt>
+<dd><p>Describes an object data attribute.  The description should include
+information about the type of the data to be expected and whether it may be
+changed directly.
+Type aliases should be documented with <a class="reference internal" href="#directive-py-type" title="py:type directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:type</span></code></a>.</p>
+<p class="rubric">options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-attribute-type">
+<span class="sig-name descname"><span class="pre">:type:</span></span><em class="property"> <span class="pre">type</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">attribute</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-py-attribute-type" title="Link to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-attribute-value">
+<span class="sig-name descname"><span class="pre">:value:</span></span><em class="property"> <span class="pre">initial</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">attribute</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-py-attribute-value" title="Link to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-attribute-canonical">
+<span class="sig-name descname"><span class="pre">:canonical:</span></span><em class="property"> <span class="pre">(full</span> <span class="pre">qualified</span> <span class="pre">name</span> <span class="pre">including</span> <span class="pre">module</span> <span class="pre">name)</span></em><a class="headerlink" href="#directive-option-py-attribute-canonical" title="Link to this definition">¶</a></dt>
+<dd><p>Describe the location where the object is defined if the object is
+imported from other modules</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.0.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-property">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:property::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-py-property" title="Link to this definition">¶</a></dt>
+<dd><p>Describes an object property.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.0.</span></p>
+</div>
+<p class="rubric">options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-property-abstractmethod">
+<span class="sig-name descname"><span class="pre">:abstractmethod:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-property-abstractmethod" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate the property is abstract.</p>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-property-classmethod">
+<span class="sig-name descname"><span class="pre">:classmethod:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-property-classmethod" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate the property is a classmethod.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.2.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-property-type">
+<span class="sig-name descname"><span class="pre">:type:</span></span><em class="property"> <span class="pre">type</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">property</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-py-property-type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-type">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:type::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-py-type" title="Link to this definition">¶</a></dt>
+<dd><p>Describe a <a class="reference external" href="https://docs.python.org/3/library/typing.html#type-aliases" title="（在 Python v3.14）"><span class="xref std std-ref">type alias</span></a>.</p>
+<p>The type that the alias represents should be described
+with the <code class="xref rst rst-dir docutils literal notranslate"><span class="pre">canonical</span></code> option.
+This directive supports an optional description body.</p>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:type</span><span class="p">::</span> UInt64
+
+   Represent a 64-bit positive integer.
+</pre></div>
+</div>
+<p>will be rendered as follows:</p>
+<dl class="py type">
+<dt class="sig sig-object py" id="UInt64">
+<em class="property"><span class="pre">type</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UInt64</span></span><a class="headerlink" href="#UInt64" title="Link to this definition">¶</a></dt>
+<dd><p>Represent a 64-bit positive integer.</p>
+</dd></dl>
+
+<p class="rubric">options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-type-canonical">
+<span class="sig-name descname"><span class="pre">:canonical:</span></span><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-py-type-canonical" title="Link to this definition">¶</a></dt>
+<dd><p>The canonical type represented by this alias, for example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:type</span><span class="p">::</span> StrPattern
+   <span class="nc">:canonical:</span> str | re.Pattern[str]
+
+   Represent a regular expression or a compiled pattern.
+</pre></div>
+</div>
+<p>This is rendered as:</p>
+<dl class="py type">
+<dt class="sig sig-object py" id="StrPattern">
+<em class="property"><span class="pre">type</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StrPattern</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/re.html#re.Pattern" title="（在 Python v3.14）"><span class="pre">re.Pattern</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#StrPattern" title="Link to this definition">¶</a></dt>
+<dd><p>Represent a regular expression or a compiled pattern.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-method">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:method::</span></span><span class="sig-prename descclassname"> <span class="pre">name(parameters)</span></span><a class="headerlink" href="#directive-py-method" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:method::</span></span><span class="sig-prename descclassname"> <span class="pre">name[type</span> <span class="pre">parameters](parameters)</span></span></dt>
+<dd><p>Describes an object method.  The parameters should not include the <code class="docutils literal notranslate"><span class="pre">self</span></code>
+parameter.  The description should include similar information to that
+described for <code class="docutils literal notranslate"><span class="pre">function</span></code>.  See also <a class="reference internal" href="#signatures"><span class="std std-ref">Python Signatures</span></a> and
+<a class="reference internal" href="#info-field-lists"><span class="std std-ref">Info field lists</span></a>.</p>
+<p class="rubric">options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-method-abstractmethod">
+<span class="sig-name descname"><span class="pre">:abstractmethod:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-method-abstractmethod" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate the method is an abstract method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-method-async">
+<span class="sig-name descname"><span class="pre">:async:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-method-async" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate the method is an async method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-method-canonical">
+<span class="sig-name descname"><span class="pre">:canonical:</span></span><em class="property"> <span class="pre">(full</span> <span class="pre">qualified</span> <span class="pre">name</span> <span class="pre">including</span> <span class="pre">module</span> <span class="pre">name)</span></em><a class="headerlink" href="#directive-option-py-method-canonical" title="Link to this definition">¶</a></dt>
+<dd><p>Describe the location where the object is defined if the object is
+imported from other modules</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-method-classmethod">
+<span class="sig-name descname"><span class="pre">:classmethod:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-method-classmethod" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate the method is a class method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-method-final">
+<span class="sig-name descname"><span class="pre">:final:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-method-final" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate the method is a final method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-method-single-line-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-parameter-list:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-method-single-line-parameter-list" title="Link to this definition">¶</a></dt>
+<dd><p>Ensures that the method’s arguments will be emitted on a single logical
+line, overriding <a class="reference internal" href="../configuration.html#confval-python_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">python_maximum_signature_line_length</span></code></a> and
+<a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-method-single-line-type-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-type-parameter-list:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-method-single-line-type-parameter-list" title="Link to this definition">¶</a></dt>
+<dd><p>Ensure that the method’s type parameters are emitted on a single logical
+line, overriding <a class="reference internal" href="../configuration.html#confval-python_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">python_maximum_signature_line_length</span></code></a> and
+<a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.2.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-method-staticmethod">
+<span class="sig-name descname"><span class="pre">:staticmethod:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-method-staticmethod" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate the method is a static method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.1.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-staticmethod">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:staticmethod::</span></span><span class="sig-prename descclassname"> <span class="pre">name(parameters)</span></span><a class="headerlink" href="#directive-py-staticmethod" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:staticmethod::</span></span><span class="sig-prename descclassname"> <span class="pre">name[type</span> <span class="pre">parameters](parameters)</span></span></dt>
+<dd><p>Like <a class="reference internal" href="#directive-py-method" title="py:method directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:method</span></code></a>, but indicates that the method is a static method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-classmethod">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:classmethod::</span></span><span class="sig-prename descclassname"> <span class="pre">name(parameters)</span></span><a class="headerlink" href="#directive-py-classmethod" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:classmethod::</span></span><span class="sig-prename descclassname"> <span class="pre">name[type</span> <span class="pre">parameters](parameters)</span></span></dt>
+<dd><p>Like <a class="reference internal" href="#directive-py-method" title="py:method directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:method</span></code></a>, but indicates that the method is a class method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.6.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-decorator">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:decorator::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-py-decorator" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:decorator::</span></span><span class="sig-prename descclassname"> <span class="pre">name(parameters)</span></span></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:decorator::</span></span><span class="sig-prename descclassname"> <span class="pre">name[type</span> <span class="pre">parameters](parameters)</span></span></dt>
+<dd><p>Describes a decorator function.  The signature should represent the usage as
+a decorator.  For example, given the functions</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">removename</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">func</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setnewname</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">return</span> <span class="n">func</span>
+    <span class="k">return</span> <span class="n">decorator</span>
+</pre></div>
+</div>
+<p>the descriptions should look like this:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:decorator</span><span class="p">::</span> removename
+
+   Remove name of the decorated function.
+
+<span class="p">..</span> <span class="ow">py:decorator</span><span class="p">::</span> setnewname(name)
+
+   Set name of the decorated function to <span class="ge">*name*</span>.
+</pre></div>
+</div>
+<p>(as opposed to <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:decorator::</span> <span class="pre">removename(func)</span></code>.)</p>
+<p>There is no <code class="docutils literal notranslate"><span class="pre">py:deco</span></code> role to link to a decorator that is marked up with
+this directive; rather, use the <a class="reference internal" href="#role-py-func" title="py:func role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">py:func</span></code></a> role.</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-decorator-single-line-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-parameter-list:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-decorator-single-line-parameter-list" title="Link to this definition">¶</a></dt>
+<dd><p>Ensures that the decorator’s arguments will be emitted on a single logical
+line, overriding <a class="reference internal" href="../configuration.html#confval-python_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">python_maximum_signature_line_length</span></code></a> and
+<a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-py-decorator-single-line-type-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-type-parameter-list:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-py-decorator-single-line-type-parameter-list" title="Link to this definition">¶</a></dt>
+<dd><p>Ensure that the decorator’s type parameters are emitted on a single
+logical line, overriding <a class="reference internal" href="../configuration.html#confval-python_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">python_maximum_signature_line_length</span></code></a>
+and <a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.2.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-py-decoratormethod">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:decoratormethod::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-py-decoratormethod" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:decoratormethod::</span></span><span class="sig-prename descclassname"> <span class="pre">name(signature)</span></span></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">py:decoratormethod::</span></span><span class="sig-prename descclassname"> <span class="pre">name[type</span> <span class="pre">parameters](signature)</span></span></dt>
+<dd><p>Same as <a class="reference internal" href="#directive-py-decorator" title="py:decorator directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:decorator</span></code></a>, but for decorators that are methods.</p>
+<p>Refer to a decorator method using the <a class="reference internal" href="#role-py-meth" title="py:meth role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">py:meth</span></code></a> role.</p>
+</dd></dl>
+
+<section id="python-signatures">
+<span id="signatures"></span><h2>Python Signatures<a class="headerlink" href="#python-signatures" title="Link to this heading">¶</a></h2>
+<p>Signatures of functions, methods and class constructors can be given like they
+would be written in Python.</p>
+<p>Default values for optional arguments can be given (but if they contain commas,
+they will confuse the signature parser).  Python 3-style argument annotations
+can also be given as well as return type annotations:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> compile(source : string, filename, symbol=&#39;file&#39;) -&gt; ast object
+</pre></div>
+</div>
+<p>For functions with optional parameters that don’t have default values
+(typically functions implemented in C extension modules without keyword
+argument support), you can use brackets to specify the optional parts:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="compile">
+<span class="sig-name descname"><span class="pre">compile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">symbol</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#compile" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>It is customary to put the opening bracket before the comma.</p>
+<p>Python 3.12 introduced <em>type parameters</em>, which are type variables
+declared directly  within the class or function definition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">AnimalList</span><span class="p">[</span><span class="n">AnimalT</span><span class="p">](</span><span class="nb">list</span><span class="p">[</span><span class="n">AnimalT</span><span class="p">]):</span>
+   <span class="o">...</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">[</span><span class="n">T</span><span class="p">](</span><span class="n">a</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+   <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p>The corresponding reStructuredText documentation would be:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:class</span><span class="p">::</span> AnimalList[AnimalT]
+
+<span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> add[T](a: T, b: T) -&gt; T
+</pre></div>
+</div>
+<p>See <span class="target" id="index-2"></span><a class="pep reference external" href="https://peps.python.org/pep-0695/"><strong>PEP 695</strong></a> and <span class="target" id="index-3"></span><a class="pep reference external" href="https://peps.python.org/pep-0696/"><strong>PEP 696</strong></a> for details and the full specification.</p>
+</section>
+<section id="info-field-lists">
+<span id="id1"></span><h2>Info field lists<a class="headerlink" href="#info-field-lists" title="Link to this heading">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.4.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.0 版本发生变更: </span>meta fields are added.</p>
+</div>
+<p>Inside Python object description directives,
+reStructuredText field lists with these fields
+are recognized and formatted nicely:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">param</span></code>, <code class="docutils literal notranslate"><span class="pre">parameter</span></code>, <code class="docutils literal notranslate"><span class="pre">arg</span></code>, <code class="docutils literal notranslate"><span class="pre">argument</span></code>, <code class="docutils literal notranslate"><span class="pre">key</span></code>, <code class="docutils literal notranslate"><span class="pre">keyword</span></code>:
+Description of a parameter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: Type of a parameter.  Creates a link if possible.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raises</span></code>, <code class="docutils literal notranslate"><span class="pre">raise</span></code>, <code class="docutils literal notranslate"><span class="pre">except</span></code>, <code class="docutils literal notranslate"><span class="pre">exception</span></code>: That (and when) a specific
+exception is raised.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">var</span></code>, <code class="docutils literal notranslate"><span class="pre">ivar</span></code>, <code class="docutils literal notranslate"><span class="pre">cvar</span></code>: Description of a variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vartype</span></code>: Type of a variable.  Creates a link if possible.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">returns</span></code>, <code class="docutils literal notranslate"><span class="pre">return</span></code>: Description of the return value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rtype</span></code>: Return type.  Creates a link if possible.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">meta</span></code>: Add metadata to description of the python object.  The metadata will
+not be shown on output document.  For example, <code class="docutils literal notranslate"><span class="pre">:meta</span> <span class="pre">private:</span></code> indicates
+the python object is private member.  It is used in
+<a class="reference internal" href="../extensions/autodoc.html#module-sphinx.ext.autodoc" title="sphinx.ext.autodoc: Include documentation from docstrings."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code></a> for filtering members.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>In current release, all <code class="docutils literal notranslate"><span class="pre">var</span></code>, <code class="docutils literal notranslate"><span class="pre">ivar</span></code> and <code class="docutils literal notranslate"><span class="pre">cvar</span></code> are represented as
+“Variable”.  There is no difference at all.</p>
+</div>
+<p>The field names must consist of one of these keywords and an argument (except
+for <code class="docutils literal notranslate"><span class="pre">returns</span></code> and <code class="docutils literal notranslate"><span class="pre">rtype</span></code>, which do not need an argument).  This is best
+explained by an example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> send_message(sender, recipient, message_body, [priority=1])
+
+   Send a message to a recipient
+
+   <span class="nc">:param str sender:</span> The person sending the message
+   <span class="nc">:param str recipient:</span> The recipient of the message
+   <span class="nc">:param str message_body:</span> The body of the message
+   <span class="nc">:param priority:</span> The priority of the message, can be a number 1-5
+   <span class="nc">:type priority:</span> integer or None
+   <span class="nc">:return:</span> the message id
+   <span class="nc">:rtype:</span> int
+   <span class="nc">:raises ValueError:</span> if the message_body exceeds 160 characters
+   <span class="nc">:raises TypeError:</span> if the message_body is not a basestring
+</pre></div>
+</div>
+<p>This will render like this:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="send_message">
+<span class="sig-name descname"><span class="pre">send_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recipient</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message_body</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">priority=1</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#send_message" title="Link to this definition">¶</a></dt>
+<dd><p>Send a message to a recipient</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sender</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><em>str</em></a>) – The person sending the message</p></li>
+<li><p><strong>recipient</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><em>str</em></a>) – The recipient of the message</p></li>
+<li><p><strong>message_body</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="（在 Python v3.14）"><em>str</em></a>) – The body of the message</p></li>
+<li><p><strong>priority</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）"><em>int</em></a><em> or </em><em>None</em>) – The priority of the message, can be a number 1-5</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>the message id</p>
+</dd>
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="（在 Python v3.14）">int</a></p>
+</dd>
+<dt class="field-even">抛出<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="（在 Python v3.14）"><strong>ValueError</strong></a> – if the message_body exceeds 160 characters</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="（在 Python v3.14）"><strong>TypeError</strong></a> – if the message_body is not a basestring</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>It is also possible to combine parameter type and description, if the type is a
+single word, like this:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:param int priority:</span> The priority of the message, can be a number 1-5
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.5.</span></p>
+</div>
+<p>Container types such as lists and dictionaries can be linked automatically
+using the following syntax:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:type priorities:</span> list(int)
+<span class="nc">:type priorities:</span> list[int]
+<span class="nc">:type mapping:</span> dict(str, int)
+<span class="nc">:type mapping:</span> dict[str, int]
+<span class="nc">:type point:</span> tuple(float, float)
+<span class="nc">:type point:</span> tuple[float, float]
+</pre></div>
+</div>
+<p>Multiple types in a type field will be linked automatically if separated by the
+word “or”:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:type an_arg:</span> int or None
+<span class="nc">:vartype a_var:</span> str or int
+<span class="nc">:rtype:</span> float or str
+</pre></div>
+</div>
+</section>
+<section id="cross-referencing-python-objects">
+<span id="python-xref-roles"></span><h2>Cross-referencing Python objects<a class="headerlink" href="#cross-referencing-python-objects" title="Link to this heading">¶</a></h2>
+<p>The following roles refer to objects in modules and are possibly hyperlinked if
+a matching identifier is found:</p>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-py-mod">
+<span class="sig-name descname"><span class="pre">:py:mod:</span></span><a class="headerlink" href="#role-py-mod" title="Link to this definition">¶</a></dt>
+<dd><p>Reference a module; a dotted name may be used.  This should also be used for
+package names.</p>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-py-func">
+<span class="sig-name descname"><span class="pre">:py:func:</span></span><a class="headerlink" href="#role-py-func" title="Link to this definition">¶</a></dt>
+<dd><p>Reference a Python function; dotted names may be used.  The role text needs
+not include trailing parentheses to enhance readability; they will be added
+automatically by Sphinx if the <a class="reference internal" href="../configuration.html#confval-add_function_parentheses"><code class="xref std std-confval docutils literal notranslate"><span class="pre">add_function_parentheses</span></code></a> config
+value is <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default).</p>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-py-data">
+<span class="sig-name descname"><span class="pre">:py:data:</span></span><a class="headerlink" href="#role-py-data" title="Link to this definition">¶</a></dt>
+<dd><p>Reference a module-level variable.</p>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-py-const">
+<span class="sig-name descname"><span class="pre">:py:const:</span></span><a class="headerlink" href="#role-py-const" title="Link to this definition">¶</a></dt>
+<dd><p>Reference a “defined” constant.  This may be a Python variable that is not
+intended to be changed.</p>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-py-class">
+<span class="sig-name descname"><span class="pre">:py:class:</span></span><a class="headerlink" href="#role-py-class" title="Link to this definition">¶</a></dt>
+<dd><p>Reference a class; a dotted name may be used.</p>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-py-meth">
+<span class="sig-name descname"><span class="pre">:py:meth:</span></span><a class="headerlink" href="#role-py-meth" title="Link to this definition">¶</a></dt>
+<dd><p>Reference a method of an object.  The role text can include the type name
+and the method name; if it occurs within the description of a type, the type
+name can be omitted.  A dotted name may be used.</p>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-py-attr">
+<span class="sig-name descname"><span class="pre">:py:attr:</span></span><a class="headerlink" href="#role-py-attr" title="Link to this definition">¶</a></dt>
+<dd><p>Reference a data attribute of an object.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>The role is also able to refer to property.</p>
+</div>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-py-type">
+<span class="sig-name descname"><span class="pre">:py:type:</span></span><a class="headerlink" href="#role-py-type" title="Link to this definition">¶</a></dt>
+<dd><p>Reference a type alias.</p>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-py-exc">
+<span class="sig-name descname"><span class="pre">:py:exc:</span></span><a class="headerlink" href="#role-py-exc" title="Link to this definition">¶</a></dt>
+<dd><p>Reference an exception.  A dotted name may be used.</p>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-py-obj">
+<span class="sig-name descname"><span class="pre">:py:obj:</span></span><a class="headerlink" href="#role-py-obj" title="Link to this definition">¶</a></dt>
+<dd><p>Reference an object of unspecified type.  Useful e.g. as the
+<a class="reference internal" href="../configuration.html#confval-default_role"><code class="xref std std-confval docutils literal notranslate"><span class="pre">default_role</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.4.</span></p>
+</div>
+</dd></dl>
+
+<p>The name enclosed in this markup can include a module name and/or a class name.
+For example, <code class="docutils literal notranslate"><span class="pre">:py:func:`filter`</span></code> could refer to a function named <code class="docutils literal notranslate"><span class="pre">filter</span></code>
+in the current module, or the built-in function of that name.  In contrast,
+<code class="docutils literal notranslate"><span class="pre">:py:func:`foo.filter`</span></code> clearly refers to the <code class="docutils literal notranslate"><span class="pre">filter</span></code> function in the
+<code class="docutils literal notranslate"><span class="pre">foo</span></code> module.</p>
+<p>Normally, names in these roles are searched first without any further
+qualification, then with the current module name prepended, then with the
+current module and class name (if any) prepended.  If you prefix the name with
+a dot, this order is reversed.  For example, in the documentation of Python’s
+<a class="reference external" href="https://docs.python.org/3/library/codecs.html#module-codecs" title="（在 Python v3.14）"><code class="xref py py-mod docutils literal notranslate"><span class="pre">codecs</span></code></a> module, <code class="docutils literal notranslate"><span class="pre">:py:func:`open`</span></code> always refers to the built-in
+function, while <code class="docutils literal notranslate"><span class="pre">:py:func:`.open`</span></code> refers to <a class="reference external" href="https://docs.python.org/3/library/codecs.html#codecs.open" title="（在 Python v3.14）"><code class="xref py py-func docutils literal notranslate"><span class="pre">codecs.open()</span></code></a>.</p>
+<p>A similar heuristic is used to determine whether the name is an attribute of
+the currently documented class.</p>
+<p>Also, if the name is prefixed with a dot, and no exact match is found, the
+target is taken as a suffix and all object names with that suffix are searched.
+For example, <code class="docutils literal notranslate"><span class="pre">:py:meth:`.TarFile.close`</span></code> references the
+<code class="docutils literal notranslate"><span class="pre">tarfile.TarFile.close()</span></code> function, even if the current module is not
+<code class="docutils literal notranslate"><span class="pre">tarfile</span></code>.  Since this can get ambiguous, if there is more than one possible
+match, you will get a warning from Sphinx.</p>
+<p>Note that you can combine the <code class="docutils literal notranslate"><span class="pre">~</span></code> and <code class="docutils literal notranslate"><span class="pre">.</span></code> prefixes:
+<code class="docutils literal notranslate"><span class="pre">:py:meth:`~.TarFile.close`</span></code> will reference the <code class="docutils literal notranslate"><span class="pre">tarfile.TarFile.close()</span></code>
+method, but the visible link caption will only be <code class="docutils literal notranslate"><span class="pre">close()</span></code>.</p>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="mathematics.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">The Mathematics Domain</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="restructuredtext.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">The reStructuredText Domain</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版权所有 2007-2026, the Sphinx developers.
+  由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7创建。
+</div>
+  </body>
+</html>

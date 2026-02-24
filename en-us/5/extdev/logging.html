@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Logging API &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/logging.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="i18n API" href="i18n.html" />
+    <link rel="prev" title="Doctree node classes added by Sphinx" href="nodes.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../index.html">
+  <img src="../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Developing extensions for Sphinx</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Logging API</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">Logging API</a><ul>
+<li><a class="reference internal" href="#sphinx.util.logging.getLogger"><code class="docutils literal notranslate"><span class="pre">getLogger()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.util.logging.SphinxLoggerAdapter"><code class="docutils literal notranslate"><span class="pre">SphinxLoggerAdapter</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.util.logging.SphinxLoggerAdapter.error"><code class="docutils literal notranslate"><span class="pre">SphinxLoggerAdapter.error()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.util.logging.SphinxLoggerAdapter.critical"><code class="docutils literal notranslate"><span class="pre">SphinxLoggerAdapter.critical()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.util.logging.SphinxLoggerAdapter.warning"><code class="docutils literal notranslate"><span class="pre">SphinxLoggerAdapter.warning()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.util.logging.SphinxLoggerAdapter.log"><code class="docutils literal notranslate"><span class="pre">SphinxLoggerAdapter.log()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.util.logging.SphinxLoggerAdapter.info"><code class="docutils literal notranslate"><span class="pre">SphinxLoggerAdapter.info()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.util.logging.SphinxLoggerAdapter.verbose"><code class="docutils literal notranslate"><span class="pre">SphinxLoggerAdapter.verbose()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.util.logging.SphinxLoggerAdapter.debug"><code class="docutils literal notranslate"><span class="pre">SphinxLoggerAdapter.debug()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.util.logging.pending_logging"><code class="docutils literal notranslate"><span class="pre">pending_logging()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.util.logging.pending_warnings"><code class="docutils literal notranslate"><span class="pre">pending_warnings()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.util.logging.prefixed_warnings"><code class="docutils literal notranslate"><span class="pre">prefixed_warnings()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../templating.html">Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developing extensions for Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="appapi.html">Application API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projectapi.html">Project API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="envapi.html">Build environment API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builderapi.html">Builder API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collectorapi.html">Environment Collector API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markupapi.html">Docutils markup API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domainapi.html">Domain API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parserapi.html">Parser API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html">Doctree node classes added by Sphinx</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Logging API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html">i18n API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecated.html">Deprecated APIs</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="logging-api">
+<span id="id1"></span><h1>Logging API<a class="headerlink" href="#logging-api" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx.util.logging.getLogger">
+<span class="sig-prename descclassname"><span class="pre">sphinx.util.logging.</span></span><span class="sig-name descname"><span class="pre">getLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/util/logging.html#getLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.util.logging.getLogger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get logger wrapped by <a class="reference internal" href="#sphinx.util.logging.SphinxLoggerAdapter" title="sphinx.util.logging.SphinxLoggerAdapter"><code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.util.logging.SphinxLoggerAdapter</span></code></a>.</p>
+<p>Sphinx logger always uses <code class="docutils literal notranslate"><span class="pre">sphinx.*</span></code> namespace to be independent from
+settings of root logger.  It ensures logging is consistent even if a
+third-party extension or imported application resets logger settings.</p>
+<p>Example usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Hello, this is an extension!&#39;</span><span class="p">)</span>
+<span class="go">Hello, this is an extension!</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.util.logging.SphinxLoggerAdapter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.util.logging.</span></span><span class="sig-name descname"><span class="pre">SphinxLoggerAdapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logging.LoggerAdapter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/util/logging.html#SphinxLoggerAdapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.util.logging.SphinxLoggerAdapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>LoggerAdapter allowing <code class="docutils literal notranslate"><span class="pre">type</span></code> and <code class="docutils literal notranslate"><span class="pre">subtype</span></code> keywords.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.util.logging.SphinxLoggerAdapter.error">
+<span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx.util.logging.SphinxLoggerAdapter.error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.util.logging.SphinxLoggerAdapter.critical">
+<span class="sig-name descname"><span class="pre">critical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx.util.logging.SphinxLoggerAdapter.critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.util.logging.SphinxLoggerAdapter.warning">
+<span class="sig-name descname"><span class="pre">warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx.util.logging.SphinxLoggerAdapter.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs a message on this logger with the specified level.
+Basically, the arguments are as with python’s logging module.</p>
+<p>In addition, Sphinx logger supports following keyword arguments:</p>
+<dl>
+<dt><strong>type</strong>, <strong>*subtype*</strong></dt><dd><p>Categories of warning logs.  It is used to suppress
+warnings by <a class="reference internal" href="../usage/configuration.html#confval-suppress_warnings"><code class="xref std std-confval docutils literal notranslate"><span class="pre">suppress_warnings</span></code></a> setting.</p>
+</dd>
+<dt><strong>location</strong></dt><dd><p>Where the warning happened.  It is used to include
+the path and line number in each log.  It allows docname,
+tuple of docname and line number and nodes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">logger</span> <span class="o">=</span> <span class="n">sphinx</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Warning happened!&#39;</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Warning happened!&#39;</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;chapter1/index&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Warning happened!&#39;</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">some_node</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>color</strong></dt><dd><p>The color of logs.  By default, error level logs are colored as
+<code class="docutils literal notranslate"><span class="pre">&quot;darkred&quot;</span></code>, critical level ones is not colored, and warning level
+ones are colored as <code class="docutils literal notranslate"><span class="pre">&quot;red&quot;</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.util.logging.SphinxLoggerAdapter.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/util/logging.html#SphinxLoggerAdapter.log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.util.logging.SphinxLoggerAdapter.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.util.logging.SphinxLoggerAdapter.info">
+<span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx.util.logging.SphinxLoggerAdapter.info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.util.logging.SphinxLoggerAdapter.verbose">
+<span class="sig-name descname"><span class="pre">verbose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/util/logging.html#SphinxLoggerAdapter.verbose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.util.logging.SphinxLoggerAdapter.verbose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.util.logging.SphinxLoggerAdapter.debug">
+<span class="sig-name descname"><span class="pre">debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx.util.logging.SphinxLoggerAdapter.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs a message to this logger with the specified level.
+Basically, the arguments are as with python’s logging module.</p>
+<p>In addition, Sphinx logger supports following keyword arguments:</p>
+<dl class="simple">
+<dt><strong>nonl</strong></dt><dd><p>If true, the logger does not fold lines at the end of the log message.
+The default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt><strong>location</strong></dt><dd><p>Where the message emitted.  For more detail, see
+<a class="reference internal" href="#sphinx.util.logging.SphinxLoggerAdapter.warning" title="sphinx.util.logging.SphinxLoggerAdapter.warning"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SphinxLoggerAdapter.warning()</span></code></a>.</p>
+</dd>
+<dt><strong>color</strong></dt><dd><p>The color of logs.  By default, info and verbose level logs are not
+colored, and debug level ones are colored as <code class="docutils literal notranslate"><span class="pre">&quot;darkgray&quot;</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx.util.logging.pending_logging">
+<span class="sig-prename descclassname"><span class="pre">sphinx.util.logging.</span></span><span class="sig-name descname"><span class="pre">pending_logging</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/util/logging.html#pending_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.util.logging.pending_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context manager to postpone logging all logs temporarily.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pending_logging</span><span class="p">():</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Warning message!&#39;</span><span class="p">)</span>  <span class="c1"># not flushed yet</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">some_long_process</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">Warning message!  # the warning is flushed here</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx.util.logging.pending_warnings">
+<span class="sig-prename descclassname"><span class="pre">sphinx.util.logging.</span></span><span class="sig-name descname"><span class="pre">pending_warnings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/util/logging.html#pending_warnings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.util.logging.pending_warnings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context manager to postpone logging warnings temporarily.</p>
+<p>Similar to <a class="reference internal" href="#sphinx.util.logging.pending_logging" title="sphinx.util.logging.pending_logging"><code class="xref py py-func docutils literal notranslate"><span class="pre">pending_logging()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sphinx.util.logging.prefixed_warnings">
+<span class="sig-prename descclassname"><span class="pre">sphinx.util.logging.</span></span><span class="sig-name descname"><span class="pre">prefixed_warnings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/util/logging.html#prefixed_warnings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.util.logging.prefixed_warnings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context manager to prepend prefix to all warning log records temporarily.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">prefixed_warnings</span><span class="p">(</span><span class="s2">&quot;prefix:&quot;</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Warning message!&#39;</span><span class="p">)</span>  <span class="c1"># =&gt; prefix: Warning message!</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0.</span></p>
+</div>
+</dd></dl>
+
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../copyright.html">Copyright</a> 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+</div>
+  </body>
+</html>

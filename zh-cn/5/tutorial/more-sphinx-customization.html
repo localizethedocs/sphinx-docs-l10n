@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>More Sphinx customization &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/tutorial/more-sphinx-customization.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Narrative documentation in Sphinx" href="narrative-documentation.html" />
+    <link rel="prev" title="First steps to document your project using Sphinx" href="first-steps.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../index.html">
+  <img src="../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>导航</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Build your first project</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">More Sphinx customization</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">More Sphinx customization</a><ul>
+<li><a class="reference internal" href="#enabling-a-built-in-extension">Enabling a built-in extension</a></li>
+<li><a class="reference internal" href="#using-a-third-party-html-theme">Using a third-party HTML theme</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Build your first project</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-steps.html">First steps to document your project using Sphinx</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">More Sphinx customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="narrative-documentation.html">Narrative documentation in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="describing-code.html">Describing code in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automatic-doc-generation.html">Automatic documentation generation from code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploying.html">Appendix: Deploying a Sphinx project online</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">Where to go from here</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../templating.html">Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extdev/index.html">Developing extensions for Sphinx</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="more-sphinx-customization">
+<h1>More Sphinx customization<a class="headerlink" href="#more-sphinx-customization" title="此标题的永久链接">¶</a></h1>
+<p>There are two main ways to customize your documentation beyond what is possible
+with core Sphinx: extensions and themes.</p>
+<section id="enabling-a-built-in-extension">
+<h2>Enabling a built-in extension<a class="headerlink" href="#enabling-a-built-in-extension" title="此标题的永久链接">¶</a></h2>
+<p>In addition to these configuration values, you can customize Sphinx even more
+by using <a class="reference internal" href="../usage/extensions/index.html"><span class="doc">extensions</span></a>.  Sphinx ships several
+<a class="reference internal" href="../usage/extensions/index.html#builtin-extensions"><span class="std std-ref">builtin ones</span></a>, and there are many more
+<a class="reference internal" href="../usage/extensions/index.html#third-party-extensions"><span class="std std-ref">maintained by the community</span></a>.</p>
+<p>For example, to enable the <a class="reference internal" href="../usage/extensions/duration.html#module-sphinx.ext.duration" title="sphinx.ext.duration: Measure durations of Sphinx processing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code></a> extension,
+locate the <code class="docutils literal notranslate"><span class="pre">extensions</span></code> list in your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> and add one element as
+follows:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">docs/source/conf.py</span><a class="headerlink" href="#id1" title="此代码块的永久链接">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add any Sphinx extension module names here, as strings. They can be</span>
+<span class="c1"># extensions coming with Sphinx (named &#39;sphinx.ext.*&#39;) or your custom</span>
+<span class="c1"># ones.</span>
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinx.ext.duration&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>After that, every time you generate your documentation, you will see a short
+durations report at the end of the console output, like this one:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>make<span class="w"> </span>html
+<span class="go">...</span>
+<span class="go">The HTML pages are in build/html.</span>
+
+<span class="go">====================== slowest reading durations =======================</span>
+<span class="go">0.042 temp/source/index</span>
+</pre></div>
+</div>
+</section>
+<section id="using-a-third-party-html-theme">
+<h2>Using a third-party HTML theme<a class="headerlink" href="#using-a-third-party-html-theme" title="此标题的永久链接">¶</a></h2>
+<p>Themes, on the other hand, are a way to customize the appearance of your
+documentation.  Sphinx has several <a class="reference internal" href="../usage/theming.html#builtin-themes"><span class="std std-ref">builtin themes</span></a>, and
+there are also <a class="reference external" href="https://sphinx-themes.org/">third-party ones</a>.</p>
+<p>For example, to use the <a class="reference external" href="https://pradyunsg.me/furo/">Furo</a> third-party theme
+in your HTML documentation, first you will need to install it with <code class="docutils literal notranslate"><span class="pre">pip</span></code> in
+your Python virtual environment, like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>furo
+</pre></div>
+</div>
+<p>And then, locate the <code class="docutils literal notranslate"><span class="pre">html_theme</span></code> variable on your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> and replace
+its value as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">docs/source/conf.py</span><a class="headerlink" href="#id2" title="此代码块的永久链接">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The theme to use for HTML and HTML Help pages.  See the documentation for</span>
+<span class="c1"># a list of builtin themes.</span>
+<span class="c1">#</span>
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;furo&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>With this change, you will notice that your HTML documentation has now a new
+appearance:</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/lumache-furo.png"><img alt="HTML documentation of Lumache with the Furo theme" src="../_images/lumache-furo.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-text">HTML documentation of Lumache with the Furo theme</span><a class="headerlink" href="#id3" title="此图像的永久链接">¶</a></p>
+</figcaption>
+</figure>
+<p>It is now time to <a class="reference internal" href="narrative-documentation.html"><span class="doc">expand the narrative documentation and split it into
+several documents</span></a>.</p>
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../copyright.html"> 版权所有</a> 2007-2026, the Sphinx developers.
+  由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0创建。
+</div>
+  </body>
+</html>

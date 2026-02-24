@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sphinx.ext.graphviz – Add Graphviz graphs &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=fb9458d3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css?v=4e502a7e" />
+    <script src="../../_static/documentation_options.js?v=f906b030"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=f1e884e3"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/graphviz.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../search.html" />
+    <link rel="next" title="sphinx.ext.ifconfig – Include content based on configuration" href="ifconfig.html" />
+    <link rel="prev" title="sphinx.ext.githubpages – 在 GitHub Pages 中發布 HTML 文件" href="githubpages.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../index.html">
+      <img src="../../_static/sphinx-logo.svg" alt="logo" />
+    </a>
+    <h1>Sphinx</h1>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >使用 Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">擴充功能</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a><ul>
+<li><a class="reference internal" href="#directive-graphviz"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">graphviz::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-graphviz-alt"><code class="docutils literal notranslate"><span class="pre">:alt:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-graphviz-align"><code class="docutils literal notranslate"><span class="pre">:align:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-graphviz-caption"><code class="docutils literal notranslate"><span class="pre">:caption:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-graphviz-layout"><code class="docutils literal notranslate"><span class="pre">:layout:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-graphviz-name"><code class="docutils literal notranslate"><span class="pre">:name:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-graphviz-class"><code class="docutils literal notranslate"><span class="pre">:class:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-graph"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">graph::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-graph-alt"><code class="docutils literal notranslate"><span class="pre">:alt:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-graph-align"><code class="docutils literal notranslate"><span class="pre">:align:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-graph-caption"><code class="docutils literal notranslate"><span class="pre">:caption:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-graph-layout"><code class="docutils literal notranslate"><span class="pre">:layout:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-graph-name"><code class="docutils literal notranslate"><span class="pre">:name:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-graph-class"><code class="docutils literal notranslate"><span class="pre">:class:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-digraph"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">digraph::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-digraph-alt"><code class="docutils literal notranslate"><span class="pre">:alt:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-digraph-align"><code class="docutils literal notranslate"><span class="pre">:align:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-digraph-caption"><code class="docutils literal notranslate"><span class="pre">:caption:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-digraph-layout"><code class="docutils literal notranslate"><span class="pre">:layout:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-digraph-name"><code class="docutils literal notranslate"><span class="pre">:name:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-digraph-class"><code class="docutils literal notranslate"><span class="pre">:class:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#confval-graphviz_dot"><code class="docutils literal notranslate"><span class="pre">graphviz_dot</span></code></a></li>
+<li><a class="reference internal" href="#confval-graphviz_dot_args"><code class="docutils literal notranslate"><span class="pre">graphviz_dot_args</span></code></a></li>
+<li><a class="reference internal" href="#confval-graphviz_output_format"><code class="docutils literal notranslate"><span class="pre">graphviz_output_format</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">基礎知識</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">建置您的第一個專案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">使用 Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencing.html">Cross-referencing syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">組態</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">建置器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../domains/index.html">領域</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">擴充功能</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> – Include documentation from docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> – Allow reference sections using its title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> – Test snippets in the documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> – Measure durations of Sphinx processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> – Markup to shorten external links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> – 在 GitHub Pages 中發布 HTML 文件</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> – A reference image converter using Imagemagick</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inheritance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intersphinx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – 連結至其他專案的文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> – Add external links to source code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="math.html">Math support for HTML outputs in Sphinx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="napoleon.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> – Support for todo items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML Theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">國際化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">擴充 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx 常見問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx 作者群</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">組態</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">擴充功能</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> – Include documentation from docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> – Allow reference sections using its title</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> – Test snippets in the documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> – Measure durations of Sphinx processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> – Markup to shorten external links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> – 在 GitHub Pages 中發布 HTML 文件</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> – A reference image converter using Imagemagick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intersphinx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – 連結至其他專案的文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> – Add external links to source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">Math support for HTML outputs in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="napoleon.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> – Support for todo items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="module-sphinx.ext.graphviz">
+<span id="sphinx-ext-graphviz-add-graphviz-graphs"></span><h1><a class="reference internal" href="#module-sphinx.ext.graphviz" title="sphinx.ext.graphviz: Support for Graphviz graphs."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code></a> – Add Graphviz graphs<a class="headerlink" href="#module-sphinx.ext.graphviz" title="連結到這個標頭">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">在 0.6 版被加入.</span></p>
+</div>
+<p>This extension allows you to embed <a class="reference external" href="https://graphviz.org/">Graphviz</a> graphs in
+your documents.</p>
+<p>It adds these directives:</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-graphviz">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">graphviz::</span></span><a class="headerlink" href="#directive-graphviz" title="連結到這個定義">¶</a></dt>
+<dd><p>Directive to embed graphviz code.  The input code for <code class="docutils literal notranslate"><span class="pre">dot</span></code> is given as the
+content.  For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">graphviz</span><span class="p">::</span>
+
+   digraph foo {
+      &quot;bar&quot; -&gt; &quot;baz&quot;;
+   }
+</pre></div>
+</div>
+<p>In HTML output, the code will be rendered to a PNG or SVG image (see
+<a class="reference internal" href="#confval-graphviz_output_format"><code class="xref std std-confval docutils literal notranslate"><span class="pre">graphviz_output_format</span></code></a>).  In LaTeX output, the code will be
+rendered to an embeddable PDF file.</p>
+<p>You can also embed external dot files, by giving the file name as an
+argument to <a class="reference internal" href="#directive-graphviz" title="graphviz directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">graphviz</span></code></a> and no additional content:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">graphviz</span><span class="p">::</span> external.dot
+</pre></div>
+</div>
+<p>As for all file references in Sphinx, if the filename is absolute, it is
+taken as relative to the source directory.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.1 版的變更: </span>Added support for external files.</p>
+</div>
+<p class="rubric">options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-graphviz-alt">
+<span class="sig-name descname"><span class="pre">:alt:</span></span><em class="property"> <span class="pre">alternate</span> <span class="pre">text</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-graphviz-alt" title="連結到這個定義">¶</a></dt>
+<dd><p>The alternate text of the graph.  By default, the graph code is used to
+the alternate text.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.0 版被加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-graphviz-align">
+<span class="sig-name descname"><span class="pre">:align:</span></span><em class="property"> <span class="pre">alignment</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">graph</span></em><em class="property"> <span class="pre">(left,</span> <span class="pre">center</span> <span class="pre">or</span> <span class="pre">right)</span></em><a class="headerlink" href="#directive-option-graphviz-align" title="連結到這個定義">¶</a></dt>
+<dd><p>The horizontal alignment of the graph.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版被加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-graphviz-caption">
+<span class="sig-name descname"><span class="pre">:caption:</span></span><em class="property"> <span class="pre">caption</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">graph</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-graphviz-caption" title="連結到這個定義">¶</a></dt>
+<dd><p>The caption of the graph.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.1 版被加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-graphviz-layout">
+<span class="sig-name descname"><span class="pre">:layout:</span></span><em class="property"> <span class="pre">layout</span> <span class="pre">type</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">graph</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-graphviz-layout" title="連結到這個定義">¶</a></dt>
+<dd><p>The layout of the graph (e.g. <code class="docutils literal notranslate"><span class="pre">dot</span></code>, <code class="docutils literal notranslate"><span class="pre">neato</span></code> and so on).  A path to the
+graphviz commands are also allowed.  By default, <a class="reference internal" href="#confval-graphviz_dot"><code class="xref std std-confval docutils literal notranslate"><span class="pre">graphviz_dot</span></code></a>
+is used.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.4 版被加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 2.2 版的變更: </span>Renamed from <code class="docutils literal notranslate"><span class="pre">graphviz_dot</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-graphviz-name">
+<span class="sig-name descname"><span class="pre">:name:</span></span><em class="property"> <span class="pre">label</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-graphviz-name" title="連結到這個定義">¶</a></dt>
+<dd><p>The label of the graph.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.6 版被加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-graphviz-class">
+<span class="sig-name descname"><span class="pre">:class:</span></span><em class="property"> <span class="pre">class</span> <span class="pre">names</span></em><em class="property"> <span class="pre">(a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">class</span> <span class="pre">names</span> <span class="pre">separated</span> <span class="pre">by</span> <span class="pre">spaces)</span></em><a class="headerlink" href="#directive-option-graphviz-class" title="連結到這個定義">¶</a></dt>
+<dd><p>The class name of the graph.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 2.4 版被加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-graph">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">graph::</span></span><a class="headerlink" href="#directive-graph" title="連結到這個定義">¶</a></dt>
+<dd><p>Directive for embedding a single undirected graph.  The name is given as a
+directive argument, the contents of the graph are the directive content.
+This is a convenience directive to generate <code class="docutils literal notranslate"><span class="pre">graph</span> <span class="pre">&lt;name&gt;</span> <span class="pre">{</span> <span class="pre">&lt;content&gt;</span> <span class="pre">}</span></code>.</p>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">graph</span><span class="p">::</span> foo
+
+   &quot;bar&quot; -- &quot;baz&quot;;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>The graph name is passed unchanged to Graphviz.  If it contains
+non-alphanumeric characters (e.g. a dash), you will have to double-quote
+it.</p>
+</div>
+<p class="rubric">options</p>
+<p>Same as <a class="reference internal" href="#directive-graphviz" title="graphviz directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">graphviz</span></code></a>.</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-graph-alt">
+<span class="sig-name descname"><span class="pre">:alt:</span></span><em class="property"> <span class="pre">alternate</span> <span class="pre">text</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-graph-alt" title="連結到這個定義">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">在 1.0 版被加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-graph-align">
+<span class="sig-name descname"><span class="pre">:align:</span></span><em class="property"> <span class="pre">alignment</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">graph</span></em><em class="property"> <span class="pre">(left,</span> <span class="pre">center</span> <span class="pre">or</span> <span class="pre">right)</span></em><a class="headerlink" href="#directive-option-graph-align" title="連結到這個定義">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版被加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-graph-caption">
+<span class="sig-name descname"><span class="pre">:caption:</span></span><em class="property"> <span class="pre">caption</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">graph</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-graph-caption" title="連結到這個定義">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">在 1.1 版被加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-graph-layout">
+<span class="sig-name descname"><span class="pre">:layout:</span></span><em class="property"> <span class="pre">layout</span> <span class="pre">type</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">graph</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-graph-layout" title="連結到這個定義">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">在 1.4 版被加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 2.2 版的變更: </span>Renamed from <code class="docutils literal notranslate"><span class="pre">graphviz_dot</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-graph-name">
+<span class="sig-name descname"><span class="pre">:name:</span></span><em class="property"> <span class="pre">label</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-graph-name" title="連結到這個定義">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">在 1.6 版被加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-graph-class">
+<span class="sig-name descname"><span class="pre">:class:</span></span><em class="property"> <span class="pre">class</span> <span class="pre">names</span></em><em class="property"> <span class="pre">(a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">class</span> <span class="pre">names</span> <span class="pre">separated</span> <span class="pre">by</span> <span class="pre">spaces)</span></em><a class="headerlink" href="#directive-option-graph-class" title="連結到這個定義">¶</a></dt>
+<dd><p>The class name of the graph.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 2.4 版被加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-digraph">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">digraph::</span></span><a class="headerlink" href="#directive-digraph" title="連結到這個定義">¶</a></dt>
+<dd><p>Directive for embedding a single directed graph.  The name is given as a
+directive argument, the contents of the graph are the directive content.
+This is a convenience directive to generate <code class="docutils literal notranslate"><span class="pre">digraph</span> <span class="pre">&lt;name&gt;</span> <span class="pre">{</span> <span class="pre">&lt;content&gt;</span> <span class="pre">}</span></code>.</p>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">digraph</span><span class="p">::</span> foo
+
+   &quot;bar&quot; -&gt; &quot;baz&quot; -&gt; &quot;quux&quot;;
+</pre></div>
+</div>
+<p class="rubric">options</p>
+<p>Same as <a class="reference internal" href="#directive-graphviz" title="graphviz directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">graphviz</span></code></a>.</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-digraph-alt">
+<span class="sig-name descname"><span class="pre">:alt:</span></span><em class="property"> <span class="pre">alternate</span> <span class="pre">text</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-digraph-alt" title="連結到這個定義">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">在 1.0 版被加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-digraph-align">
+<span class="sig-name descname"><span class="pre">:align:</span></span><em class="property"> <span class="pre">alignment</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">graph</span></em><em class="property"> <span class="pre">(left,</span> <span class="pre">center</span> <span class="pre">or</span> <span class="pre">right)</span></em><a class="headerlink" href="#directive-option-digraph-align" title="連結到這個定義">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">在 1.5 版被加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-digraph-caption">
+<span class="sig-name descname"><span class="pre">:caption:</span></span><em class="property"> <span class="pre">caption</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">graph</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-digraph-caption" title="連結到這個定義">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">在 1.1 版被加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-digraph-layout">
+<span class="sig-name descname"><span class="pre">:layout:</span></span><em class="property"> <span class="pre">layout</span> <span class="pre">type</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">graph</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-digraph-layout" title="連結到這個定義">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">在 1.4 版被加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 2.2 版的變更: </span>Renamed from <code class="docutils literal notranslate"><span class="pre">graphviz_dot</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-digraph-name">
+<span class="sig-name descname"><span class="pre">:name:</span></span><em class="property"> <span class="pre">label</span></em><em class="property"> <span class="pre">(text)</span></em><a class="headerlink" href="#directive-option-digraph-name" title="連結到這個定義">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">在 1.6 版被加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-digraph-class">
+<span class="sig-name descname"><span class="pre">:class:</span></span><em class="property"> <span class="pre">class</span> <span class="pre">names</span></em><em class="property"> <span class="pre">(a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">class</span> <span class="pre">names</span> <span class="pre">separated</span> <span class="pre">by</span> <span class="pre">spaces)</span></em><a class="headerlink" href="#directive-option-digraph-class" title="連結到這個定義">¶</a></dt>
+<dd><p>The class name of the graph.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 2.4 版被加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<p>There are also these config values:</p>
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-graphviz_dot">
+<span class="sig-name descname"><span class="pre">graphviz_dot</span></span><a class="headerlink" href="#confval-graphviz_dot" title="連結到這個定義">¶</a></dt>
+<dd><p>The command name with which to invoke <code class="docutils literal notranslate"><span class="pre">dot</span></code>.  The default is <code class="docutils literal notranslate"><span class="pre">'dot'</span></code>; you
+may need to set this to a full path if <code class="docutils literal notranslate"><span class="pre">dot</span></code> is not in the executable
+search path.</p>
+<p>Since this setting is not portable from system to system, it is normally not
+useful to set it in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>; rather, giving it on the
+<strong class="program">sphinx-build</strong> command line via the <a class="reference internal" href="../../man/sphinx-build.html#cmdoption-sphinx-build-D"><code class="xref std std-option docutils literal notranslate"><span class="pre">-D</span></code></a>
+option should be preferable, like this:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>sphinx-build -M html -D graphviz_dot=C:\graphviz\bin\dot.exe . _build
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-graphviz_dot_args">
+<span class="sig-name descname"><span class="pre">graphviz_dot_args</span></span><a class="headerlink" href="#confval-graphviz_dot_args" title="連結到這個定義">¶</a></dt>
+<dd><p>Additional command-line arguments to give to dot, as a list.  The default is
+an empty list.  This is the right place to set global graph, node or edge
+attributes via dot’s <code class="docutils literal notranslate"><span class="pre">-G</span></code>, <code class="docutils literal notranslate"><span class="pre">-N</span></code> and <code class="docutils literal notranslate"><span class="pre">-E</span></code> options.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-graphviz_output_format">
+<span class="sig-name descname"><span class="pre">graphviz_output_format</span></span><a class="headerlink" href="#confval-graphviz_output_format" title="連結到這個定義">¶</a></dt>
+<dd><p>The output format for Graphviz when building HTML files.  This must be either
+<code class="docutils literal notranslate"><span class="pre">'png'</span></code> or <code class="docutils literal notranslate"><span class="pre">'svg'</span></code>; the default is <code class="docutils literal notranslate"><span class="pre">'png'</span></code>. If <code class="docutils literal notranslate"><span class="pre">'svg'</span></code> is used, in
+order to make the URL links work properly, an appropriate <code class="docutils literal notranslate"><span class="pre">target</span></code>
+attribute must be set, such as <code class="docutils literal notranslate"><span class="pre">&quot;_top&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;_blank&quot;</span></code>. For example, the
+link in the following graph should work in the svg output:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">graphviz</span><span class="p">::</span>
+
+     digraph example {
+         a [label=&quot;sphinx&quot;, href=&quot;https://www.sphinx-doc.org/&quot;, target=&quot;_top&quot;];
+         b [label=&quot;other&quot;];
+         a -&gt; b;
+     }
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.0 版被加入: </span>Previously, output always was PNG.</p>
+</div>
+</dd></dl>
+
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="githubpages.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> – 在 GitHub Pages 中發布 HTML 文件</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="ifconfig.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版權所有 2007-2026, the Sphinx developers.
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7 建立。
+</div>
+  </body>
+</html>

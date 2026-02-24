@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>開始使用 &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/tutorial/getting-started.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="First steps to document your project using Sphinx" href="first-steps.html" />
+    <link rel="prev" title="Sphinx tutorial" href="index.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="first-steps.html" title="First steps to document your project using Sphinx"
+             accesskey="N">下一頁</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Sphinx tutorial"
+             accesskey="P">上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Sphinx tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">開始使用</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">目次表</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">開始使用</a><ul>
+<li><a class="reference internal" href="#setting-up-your-project-and-development-environment">設定您的專案和開發環境</a></li>
+<li><a class="reference internal" href="#creating-the-documentation-layout">建立文件配置</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="index.html"
+                          title="上一章">Sphinx tutorial</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="first-steps.html"
+                          title="下一章">First steps to document your project using Sphinx</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>本頁</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/getting-started.rst.txt"
+            rel="nofollow">顯示原始碼</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="getting-started">
+<h1>開始使用<a class="headerlink" href="#getting-started" title="本標題的永久連結">¶</a></h1>
+<section id="setting-up-your-project-and-development-environment">
+<h2>設定您的專案和開發環境<a class="headerlink" href="#setting-up-your-project-and-development-environment" title="本標題的永久連結">¶</a></h2>
+<p>在一個新目錄中，建立一個名為 <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> 的檔案，內容如下。</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">README.rst</span><a class="headerlink" href="#id1" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Lumache</span>
+<span class="gh">=======</span>
+
+<span class="gs">**Lumache**</span> (/lu&#39;make/) is a Python library for cooks and food lovers that
+creates recipes mixing random ingredients.
+</pre></div>
+</div>
+</div>
+<p>現在是建立 Python 虛擬環境並安裝所需工具的好時機。為此，請開啟命令行終端機，<code class="docutils literal notranslate"><span class="pre">cd</span></code> 進入您剛建立的目錄，然後執行以下命令：</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>sphinx
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>The installation method used above is described in more detail in
+<a class="reference internal" href="../usage/installation.html#install-pypi"><span class="std std-ref">Installation from PyPI</span></a>.  For the rest of this tutorial, the instructions will
+assume a Python virtual environment.</p>
+</div>
+<p>If you executed these instructions correctly, you should have the Sphinx command
+line tools available.  You can do a basic verification running this command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>sphinx-build<span class="w"> </span>--version
+<span class="go">sphinx-build 4.0.2</span>
+</pre></div>
+</div>
+<p>If you see a similar output, you are on the right path!</p>
+</section>
+<section id="creating-the-documentation-layout">
+<h2>建立文件配置<a class="headerlink" href="#creating-the-documentation-layout" title="本標題的永久連結">¶</a></h2>
+<p>Then from the command line, run the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>sphinx-quickstart<span class="w"> </span>docs
+</pre></div>
+</div>
+<p>This will present to you a series of questions required to create the basic
+directory and configuration layout for your project inside the <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder.
+To proceed, answer each question as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">Separate</span> <span class="pre">source</span> <span class="pre">and</span> <span class="pre">build</span> <span class="pre">directories</span> <span class="pre">(y/n)</span> <span class="pre">[n]</span></code>: Write 「<code class="docutils literal notranslate"><span class="pre">y</span></code>」 (without
+quotes) and press <kbd class="kbd docutils literal notranslate">Enter</kbd>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">Project</span> <span class="pre">name</span></code>: Write 「<code class="docutils literal notranslate"><span class="pre">Lumache</span></code>」 (without quotes) and press
+<kbd class="kbd docutils literal notranslate">Enter</kbd>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">Author</span> <span class="pre">name(s)</span></code>: Write 「<code class="docutils literal notranslate"><span class="pre">Graziella</span></code>」 (without quotes) and press
+<kbd class="kbd docutils literal notranslate">Enter</kbd>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">Project</span> <span class="pre">release</span> <span class="pre">[]</span></code>: Write 「<code class="docutils literal notranslate"><span class="pre">0.1</span></code>」 (without quotes) and press
+<kbd class="kbd docutils literal notranslate">Enter</kbd>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">Project</span> <span class="pre">language</span> <span class="pre">[en]</span></code>: Leave it empty (the default, English) and press
+<kbd class="kbd docutils literal notranslate">Enter</kbd>.</p></li>
+</ul>
+<p>After the last question, you will see the new <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory with the
+following content.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>docs
+├── build
+├── make.bat
+├── Makefile
+└── source
+   ├── conf.py
+   ├── index.rst
+   ├── _static
+   └── _templates
+</pre></div>
+</div>
+<p>The purpose of each of these files is:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">build/</span></code></dt><dd><p>An empty directory (for now) that will hold the rendered documentation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">make.bat</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code></dt><dd><p>Convenience scripts to simplify some common Sphinx operations, such as
+rendering the content.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">source/conf.py</span></code></dt><dd><p>A Python script holding the configuration of the Sphinx project.  It contains
+the project name and release you specified to <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code>, as well
+as some extra configuration keys.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">source/index.rst</span></code></dt><dd><p>The <a class="reference internal" href="../glossary.html#term-root-document"><span class="xref std std-term">root document</span></a> of the project, which serves as welcome page and
+contains the root of the 「table of contents tree」 (or <em>toctree</em>).</p>
+</dd>
+</dl>
+<p>Thanks to this bootstrapping step, you already have everything needed to render
+the documentation as HTML for the first time.  To do that, run this command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>docs/source/<span class="w"> </span>docs/build/html
+</pre></div>
+</div>
+<p>And finally, open <code class="docutils literal notranslate"><span class="pre">docs/build/html/index.html</span></code> in your browser.  You should see
+something like this:</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/lumache-first-light.png"><img alt="Freshly created documentation of Lumache" src="../_images/lumache-first-light.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-text">Freshly created documentation of Lumache</span><a class="headerlink" href="#id2" title="本圖片的永久連結">¶</a></p>
+</figcaption>
+</figure>
+<p>There we go! You created your first HTML documentation using Sphinx.
+Now you can start <a class="reference internal" href="first-steps.html"><span class="doc">customizing it</span></a>.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="first-steps.html" title="First steps to document your project using Sphinx"
+             >下一頁</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Sphinx tutorial"
+             >上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Sphinx tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">開始使用</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2022, Georg Brandl and the Sphinx team。
+      使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0 建立。
+    </div>
+  </body>
+</html>

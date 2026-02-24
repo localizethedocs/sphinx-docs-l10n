@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>sphinx-build &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/man/sphinx-build.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="sphinx-apidoc" href="sphinx-apidoc.html" />
+    <link rel="prev" title="sphinx-quickstart" href="sphinx-quickstart.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../index.html">
+  <img src="../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">命令行工具</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">sphinx-build</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">sphinx-build</a><ul>
+<li><a class="reference internal" href="#synopsis">概要</a></li>
+<li><a class="reference internal" href="#description">描述</a></li>
+<li><a class="reference internal" href="#options">選項</a></li>
+<li><a class="reference internal" href="#environment-variables">環境變數</a></li>
+<li><a class="reference internal" href="#deprecation-warnings">棄用警告</a></li>
+<li><a class="reference internal" href="#see-also">另請參見</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">開始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">開始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial: Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使用者指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">使用 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Writing Sphinx Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extdev/index.html">Sphinx Extensions API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx 常見問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx 作者群</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">命令行工具</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sphinx-quickstart.html">sphinx-quickstart</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">sphinx-build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx-apidoc.html">sphinx-apidoc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx-autogen.html">sphinx-autogen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">組態</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">擴充功能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="sphinx-build">
+<h1>sphinx-build<a class="headerlink" href="#sphinx-build" title="本標頭的永久連結">¶</a></h1>
+<section id="synopsis">
+<h2>概要<a class="headerlink" href="#synopsis" title="本標頭的永久連結">¶</a></h2>
+<p><strong>sphinx-build</strong> [<em>options</em>] &lt;<em>sourcedir</em>&gt; &lt;<em>outputdir</em>&gt; [<em>filenames</em> …]</p>
+</section>
+<section id="description">
+<h2>描述<a class="headerlink" href="#description" title="本標頭的永久連結">¶</a></h2>
+<p><strong class="program">sphinx-build</strong> generates documentation from the files in
+<code class="docutils literal notranslate"><span class="pre">&lt;sourcedir&gt;</span></code> and places it in the <code class="docutils literal notranslate"><span class="pre">&lt;outputdir&gt;</span></code>.</p>
+<p><strong class="program">sphinx-build</strong> looks for <code class="docutils literal notranslate"><span class="pre">&lt;sourcedir&gt;/conf.py</span></code> for the configuration
+settings.  <em class="manpage">sphinx-quickstart(1)</em> may be used to generate template
+files, including <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
+<p><strong class="program">sphinx-build</strong> can create documentation in different formats.  A
+format is selected by specifying the builder name on the command line; it
+defaults to HTML.  Builders can also perform other tasks related to
+documentation processing.  For a list of available builders, refer to
+<a class="reference internal" href="#cmdoption-sphinx-build-b"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-b</span></code></a>.</p>
+<p>By default, everything that is outdated is built.  Output only for selected
+files can be built by specifying individual filenames.</p>
+</section>
+<section id="options">
+<h2>選項<a class="headerlink" href="#options" title="本標頭的永久連結">¶</a></h2>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-b">
+<span class="sig-name descname"><span class="pre">-b</span></span><span class="sig-prename descclassname"> <span class="pre">buildername</span></span><a class="headerlink" href="#cmdoption-sphinx-build-b" title="本定義的永久連結">¶</a></dt>
+<dd><p>The most important option: it selects a builder.  The most common builders
+are:</p>
+<dl class="simple">
+<dt><strong>html</strong></dt><dd><p>建置 HTML 頁面。這是預設的建置器。</p>
+</dd>
+<dt><strong>dirhtml</strong></dt><dd><p>Build HTML pages, but with a single directory per document.  Makes for
+prettier URLs (no <code class="docutils literal notranslate"><span class="pre">.html</span></code>) if served from a webserver.</p>
+</dd>
+<dt><strong>singlehtml</strong></dt><dd><p>建置包含全部內容的單一 HTML 頁面。</p>
+</dd>
+<dt><strong>htmlhelp</strong>, <strong>qthelp</strong>, <strong>devhelp</strong>, <strong>epub</strong></dt><dd><p>Build HTML files with additional information for building a documentation
+collection in one of these formats.</p>
+</dd>
+<dt><strong>applehelp</strong></dt><dd><p>Build an Apple Help Book.  Requires <strong class="program">hiutil</strong> and
+<strong class="program">codesign</strong>, which are not Open Source and presently only
+available on Mac OS X 10.6 and higher.</p>
+</dd>
+<dt><strong>latex</strong></dt><dd><p>Build LaTeX sources that can be compiled to a PDF document using
+<strong class="program">pdflatex</strong>.</p>
+</dd>
+<dt><strong>man</strong></dt><dd><p>Build manual pages in groff format for UNIX systems.</p>
+</dd>
+<dt><strong>texinfo</strong></dt><dd><p>Build Texinfo files that can be processed into Info files using
+<strong class="program">makeinfo</strong>.</p>
+</dd>
+<dt><strong>text</strong></dt><dd><p>建置純文字檔案。</p>
+</dd>
+<dt><strong>gettext</strong></dt><dd><p>Build gettext-style message catalogs (<code class="docutils literal notranslate"><span class="pre">.pot</span></code> files).</p>
+</dd>
+<dt><strong>doctest</strong></dt><dd><p>Run all doctests in the documentation, if the <a class="reference internal" href="../usage/extensions/doctest.html#module-sphinx.ext.doctest" title="sphinx.ext.doctest: Test snippets in the documentation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">doctest</span></code></a>
+extension is enabled.</p>
+</dd>
+<dt><strong>linkcheck</strong></dt><dd><p>Check the integrity of all external links.</p>
+</dd>
+<dt><strong>xml</strong></dt><dd><p>建置 Docutils 原生的 XML 檔案。</p>
+</dd>
+<dt><strong>pseudoxml</strong></dt><dd><p>Build compact pretty-printed 「pseudo-XML」 files displaying the
+internal structure of the intermediate document trees.</p>
+</dd>
+</dl>
+<p>See <a class="reference internal" href="../usage/builders/index.html"><span class="doc">建置器</span></a> for a list of all builders shipped with
+Sphinx.  Extensions can add their own builders.</p>
+</dd></dl>
+
+<span class="target" id="make-mode"></span><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-M">
+<span id="cmdoption-sphinx-build-m"></span><span class="sig-name descname"><span class="pre">-M</span></span><span class="sig-prename descclassname"> <span class="pre">buildername</span></span><a class="headerlink" href="#cmdoption-sphinx-build-M" title="本定義的永久連結">¶</a></dt>
+<dd><p>Alternative to <a class="reference internal" href="#cmdoption-sphinx-build-b"><code class="xref std std-option docutils literal notranslate"><span class="pre">-b</span></code></a>. Uses the Sphinx <strong class="program">make_mode</strong> module,
+which provides the same build functionality as a default <a class="reference internal" href="#makefile-options"><span class="std std-ref">Makefile or
+Make.bat</span></a>. In addition to all Sphinx
+<a class="reference internal" href="../usage/builders/index.html"><span class="doc">建置器</span></a>, the following build pipelines are available:</p>
+<dl class="simple">
+<dt><strong>latexpdf</strong></dt><dd><p>Build LaTeX files and run them through <strong class="program">pdflatex</strong>, or as per
+<a class="reference internal" href="../usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> setting.
+If <a class="reference internal" href="../usage/configuration.html#confval-language"><code class="xref std std-confval docutils literal notranslate"><span class="pre">language</span></code></a> is set to <code class="docutils literal notranslate"><span class="pre">'ja'</span></code>, will use automatically
+the <strong class="program">platex/dvipdfmx</strong> latex to PDF pipeline.</p>
+</dd>
+<dt><strong>info</strong></dt><dd><p>Build Texinfo files and run them through <strong class="program">makeinfo</strong>.</p>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>Sphinx only recognizes the <code class="docutils literal notranslate"><span class="pre">-M</span></code> option if it is placed first.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.2.1 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-a">
+<span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-a" title="本定義的永久連結">¶</a></dt>
+<dd><p>If given, always write all output files. The default is to only write output
+files for new and changed source files. (This may not apply to all
+builders.)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-E">
+<span id="cmdoption-sphinx-build-e"></span><span class="sig-name descname"><span class="pre">-E</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-E" title="本定義的永久連結">¶</a></dt>
+<dd><p>Don’t use a saved <a class="reference internal" href="../glossary.html#term-environment"><span class="xref std std-term">environment</span></a> (the structure caching all
+cross-references), but rebuild it completely.  The default is to only read
+and parse source files that are new or have changed since the last run.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-t">
+<span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"> <span class="pre">tag</span></span><a class="headerlink" href="#cmdoption-sphinx-build-t" title="本定義的永久連結">¶</a></dt>
+<dd><p>Define the tag <em>tag</em>.  This is relevant for <a class="reference internal" href="../usage/restructuredtext/directives.html#directive-only" title="only directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">only</span></code></a> directives that
+only include their content if this tag is set.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 0.6 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-d">
+<span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"> <span class="pre">path</span></span><a class="headerlink" href="#cmdoption-sphinx-build-d" title="本定義的永久連結">¶</a></dt>
+<dd><p>Since Sphinx has to read and parse all source files before it can write an
+output file, the parsed source files are cached as 「doctree pickles」.
+Normally, these files are put in a directory called <code class="file docutils literal notranslate"><span class="pre">.doctrees</span></code> under
+the build directory; with this option you can select a different cache
+directory (the doctrees can be shared between all builders).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-j">
+<span id="cmdoption-sphinx-build-jobs"></span><span class="sig-name descname"><span class="pre">-j</span></span><span class="sig-prename descclassname"> <span class="pre">N</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--jobs</span></span><span class="sig-prename descclassname"> <span class="pre">N</span></span><a class="headerlink" href="#cmdoption-sphinx-build-j" title="本定義的永久連結">¶</a></dt>
+<dd><p>Distribute the build over <em>N</em> processes in parallel, to make building on
+multiprocessor machines more effective.  Note that not all parts and not all
+builders of Sphinx can be parallelized.  If <code class="docutils literal notranslate"><span class="pre">auto</span></code> argument is given,
+Sphinx uses the number of CPUs as <em>N</em>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.2 版新加入: </span>This option should be considered <em>experimental</em>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.7 版的變更: </span>支援 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 引數。</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 6.2 版的變更: </span>增添 <code class="docutils literal notranslate"><span class="pre">--jobs</span></code> 長選項。</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-c">
+<span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"> <span class="pre">path</span></span><a class="headerlink" href="#cmdoption-sphinx-build-c" title="本定義的永久連結">¶</a></dt>
+<dd><p>Don’t look for the <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> in the source directory, but use the given
+configuration directory instead.  Note that various other files and paths
+given by configuration values are expected to be relative to the
+configuration directory, so they will have to be present at this location
+too.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 0.3 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-C">
+<span class="sig-name descname"><span class="pre">-C</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-C" title="本定義的永久連結">¶</a></dt>
+<dd><p>Don’t look for a configuration file; only take options via the <code class="docutils literal notranslate"><span class="pre">-D</span></code> option.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 0.5 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-D">
+<span class="sig-name descname"><span class="pre">-D</span></span><span class="sig-prename descclassname"> <span class="pre">setting=value</span></span><a class="headerlink" href="#cmdoption-sphinx-build-D" title="本定義的永久連結">¶</a></dt>
+<dd><p>Override a configuration value set in the <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> file.  The value
+must be a number, string, list or dictionary value.</p>
+<p>For lists, you can separate elements with a comma like this: <code class="docutils literal notranslate"><span class="pre">-D</span>
+<span class="pre">html_theme_path=path1,path2</span></code>.</p>
+<p>For dictionary values, supply the setting name and key like this:
+<code class="docutils literal notranslate"><span class="pre">-D</span> <span class="pre">latex_elements.docclass=scrartcl</span></code>.</p>
+<p>For boolean values, use <code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">1</span></code> as the value.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 0.6 版的變更: </span>The value can now be a dictionary value.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.3 版的變更: </span>The value can now also be a list value.</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-A">
+<span class="sig-name descname"><span class="pre">-A</span></span><span class="sig-prename descclassname"> <span class="pre">name=value</span></span><a class="headerlink" href="#cmdoption-sphinx-build-A" title="本定義的永久連結">¶</a></dt>
+<dd><p>在 HTML 模板中將 <em>name</em> 指定為 <em>value</em>。</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 0.5 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-n">
+<span class="sig-name descname"><span class="pre">-n</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-n" title="本定義的永久連結">¶</a></dt>
+<dd><p>Run in nit-picky mode.  Currently, this generates warnings for all missing
+references.  See the config value <a class="reference internal" href="../usage/configuration.html#confval-nitpick_ignore"><code class="xref std std-confval docutils literal notranslate"><span class="pre">nitpick_ignore</span></code></a> for a way to
+exclude some references as 「known missing」.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-N">
+<span class="sig-name descname"><span class="pre">-N</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-N" title="本定義的永久連結">¶</a></dt>
+<dd><p>Do not emit colored output.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-v">
+<span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-v" title="本定義的永久連結">¶</a></dt>
+<dd><p>Increase verbosity (loglevel).  This option can be given up to three times
+to get more debug logging output.  It implies <a class="reference internal" href="#cmdoption-sphinx-build-T"><code class="xref std std-option docutils literal notranslate"><span class="pre">-T</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.2 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-q">
+<span class="sig-name descname"><span class="pre">-q</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-q" title="本定義的永久連結">¶</a></dt>
+<dd><p>Do not output anything on standard output, only write warnings and errors to
+standard error.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-Q">
+<span class="sig-name descname"><span class="pre">-Q</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-Q" title="本定義的永久連結">¶</a></dt>
+<dd><p>Do not output anything on standard output, also suppress warnings.  Only
+errors are written to standard error.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-w">
+<span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"> <span class="pre">file</span></span><a class="headerlink" href="#cmdoption-sphinx-build-w" title="本定義的永久連結">¶</a></dt>
+<dd><p>Write warnings (and errors) to the given file, in addition to standard error.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-W">
+<span class="sig-name descname"><span class="pre">-W</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-W" title="本定義的永久連結">¶</a></dt>
+<dd><p>Turn warnings into errors.  This means that the build stops at the first
+warning and <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> exits with exit status 1.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-keep-going">
+<span class="sig-name descname"><span class="pre">--keep-going</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-keep-going" title="本定義的永久連結">¶</a></dt>
+<dd><p>With -W option, keep going processing when getting warnings to the end
+of build, and <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> exits with exit status 1.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.8 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-T">
+<span class="sig-name descname"><span class="pre">-T</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-T" title="本定義的永久連結">¶</a></dt>
+<dd><p>Display the full traceback when an unhandled exception occurs.  Otherwise,
+only a summary is displayed and the traceback information is saved to a file
+for further analysis.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.2 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-P">
+<span id="cmdoption-sphinx-build-p"></span><span class="sig-name descname"><span class="pre">-P</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-P" title="本定義的永久連結">¶</a></dt>
+<dd><p>(Useful for debugging only.)  Run the Python debugger, <a class="reference external" href="https://docs.python.org/3/library/pdb.html#module-pdb" title="(於 Python v3.14)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pdb</span></code></a>, if an
+unhandled exception occurs while building.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sphinx-build-h">
+<span id="cmdoption-sphinx-build-help"></span><span id="cmdoption-sphinx-build-version"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--version</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-sphinx-build-h" title="本定義的永久連結">¶</a></dt>
+<dd><p>顯示使用摘要或 Sphinx 版本。</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.2 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<p>You can also give one or more filenames on the command line after the source
+and build directories. Sphinx will then try to build only these output files
+(and their dependencies).</p>
+</section>
+<section id="environment-variables">
+<h2>環境變數<a class="headerlink" href="#environment-variables" title="本標頭的永久連結">¶</a></h2>
+<p>The <strong class="program">sphinx-build</strong> refers following environment variables:</p>
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">MAKE</span></span></dt>
+<dd><p>A path to make command.  A command name is also allowed.
+<strong class="program">sphinx-build</strong> uses it to invoke sub-build process on make-mode.</p>
+</dd></dl>
+
+<p class="rubric" id="makefile-options">Makefile 選項</p>
+<p>The <code class="file docutils literal notranslate"><span class="pre">Makefile</span></code> and <code class="file docutils literal notranslate"><span class="pre">make.bat</span></code> files created by
+<strong class="program">sphinx-quickstart</strong> usually run <strong class="program">sphinx-build</strong> only with the
+<a class="reference internal" href="#cmdoption-sphinx-build-b"><code class="xref std std-option docutils literal notranslate"><span class="pre">-b</span></code></a> and <a class="reference internal" href="#cmdoption-sphinx-build-d"><code class="xref std std-option docutils literal notranslate"><span class="pre">-d</span></code></a> options.  However, they support the following
+variables to customize behavior:</p>
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">PAPER</span></span></dt>
+<dd><p>This sets the <code class="docutils literal notranslate"><span class="pre">'papersize'</span></code> key of <a class="reference internal" href="../usage/configuration.html#confval-latex_elements"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_elements</span></code></a>:
+i.e. <code class="docutils literal notranslate"><span class="pre">PAPER=a4</span></code> sets it to <code class="docutils literal notranslate"><span class="pre">'a4paper'</span></code> and <code class="docutils literal notranslate"><span class="pre">PAPER=letter</span></code> to
+<code class="docutils literal notranslate"><span class="pre">'letterpaper'</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>Usage of this environment variable got broken at Sphinx 1.5 as
+<code class="docutils literal notranslate"><span class="pre">a4</span></code> or <code class="docutils literal notranslate"><span class="pre">letter</span></code> ended up as option to LaTeX document in
+place of the needed <code class="docutils literal notranslate"><span class="pre">a4paper</span></code>, resp. <code class="docutils literal notranslate"><span class="pre">letterpaper</span></code>.  Fixed at
+1.7.7.</p>
+</div>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">SPHINXBUILD</span></span></dt>
+<dd><p>The command to use instead of <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code>.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">BUILDDIR</span></span></dt>
+<dd><p>The build directory to use instead of the one chosen in
+<strong class="program">sphinx-quickstart</strong>.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">SPHINXOPTS</span></span></dt>
+<dd><p>Additional options for <strong class="program">sphinx-build</strong>. These options can
+also be set via the shortcut variable <strong>O</strong> (capital 『o』).</p>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">NO_COLOR</span></span></dt>
+<dd><p>When set (regardless of value), <strong class="program">sphinx-build</strong>  will not use color
+in terminal output. <code class="docutils literal notranslate"><span class="pre">NO_COLOR</span></code> takes precedence over <code class="docutils literal notranslate"><span class="pre">FORCE_COLOR</span></code>. See
+<a class="reference external" href="https://no-color.org/">no-color.org</a> for other libraries supporting this
+community standard.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 4.5.0 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">FORCE_COLOR</span></span></dt>
+<dd><p>When set (regardless of value), <strong class="program">sphinx-build</strong> will use color in
+terminal output. <code class="docutils literal notranslate"><span class="pre">NO_COLOR</span></code> takes precedence over <code class="docutils literal notranslate"><span class="pre">FORCE_COLOR</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 4.5.0 版新加入.</span></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="deprecation-warnings">
+<span id="when-deprecation-warnings-are-displayed"></span><h2>棄用警告<a class="headerlink" href="#deprecation-warnings" title="本標頭的永久連結">¶</a></h2>
+<p>If any deprecation warning like <code class="docutils literal notranslate"><span class="pre">RemovedInSphinxXXXWarning</span></code> are displayed
+when building a user’s document, some Sphinx extension is using deprecated
+features. In that case, please report it to author of the extension.</p>
+<p>To disable the deprecation warnings, please set <code class="docutils literal notranslate"><span class="pre">PYTHONWARNINGS=</span></code> environment
+variable to your environment. For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PYTHONWARNINGS=</span> <span class="pre">make</span> <span class="pre">html</span></code> (Linux/Mac)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PYTHONWARNINGS=</span></code> 並執行 <a href="#id1"><span class="problematic" id="id2">``</span></a>make html``（Linux/Mac）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">PYTHONWARNINGS=</span></code> 並執行 <a href="#id1"><span class="problematic" id="id2">``</span></a>make html``（Windows）</p></li>
+<li><p>modify your Makefile/make.bat and set the environment variable</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>另請參見<a class="headerlink" href="#see-also" title="本標頭的永久連結">¶</a></h2>
+<p><em class="manpage">sphinx-quickstart(1)</em></p>
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../copyright.html">版權所有</a> 2007-2026, the Sphinx developers。
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1 建立。
+</div>
+  </body>
+</html>

@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>sphinx.ext.napoleon – Support for NumPy and Google style docstrings &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/napoleon.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sphinx.ext.todo – Support for todo items" href="todo.html" />
+    <link rel="prev" title="Math support for HTML outputs in Sphinx" href="math.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../../index.html">
+  <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Extensions</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#docstrings">Docstrings</a></li>
+<li><a class="reference internal" href="#docstring-sections">Docstring Sections</a></li>
+<li><a class="reference internal" href="#google-vs-numpy">Google vs NumPy</a></li>
+<li><a class="reference internal" href="#type-annotations">Type Annotations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">Builders</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Extensions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> – Include documentation from docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> – Allow reference sections using its title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> – Test snippets in the documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> – Measure durations of Sphinx processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> – Markup to shorten external links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> – Publish HTML docs in GitHub Pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> – A reference image converter using Imagemagick</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inheritance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intersphinx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – Link to other projects’ documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> – Add external links to source code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="math.html">Math support for HTML outputs in Sphinx</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> – Support for todo items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML Theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/setuptools.html">Setuptools integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../templating.html">Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Developing extensions for Sphinx</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="module-sphinx.ext.napoleon">
+<span id="sphinx-ext-napoleon-support-for-numpy-and-google-style-docstrings"></span><h1><a class="reference internal" href="#module-sphinx.ext.napoleon" title="sphinx.ext.napoleon: Support for NumPy and Google style docstrings"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code></a> – Support for NumPy and Google style docstrings<a class="headerlink" href="#module-sphinx.ext.napoleon" title="Permalink to this heading">¶</a></h1>
+<p><em>Module author: Rob Ruana</em></p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.</span></p>
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>Are you tired of writing docstrings that look like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:param path: The path of the file to wrap
+:type path: str
+:param field_storage: The :class:`FileStorage` instance to wrap
+:type field_storage: FileStorage
+:param temporary: Whether or not to delete the file when the File
+   instance is destructed
+:type temporary: bool
+:returns: A buffered writable file descriptor
+:rtype: BufferedFileStorage
+</pre></div>
+</div>
+<p><a class="reference external" href="https://docutils.sourceforge.io/rst.html">reStructuredText</a> is great, but it creates visually dense, hard to read
+<span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-0287/"><strong>docstrings</strong></a>. Compare the jumble above to the same thing rewritten
+according to the <a class="reference external" href="https://google.github.io/styleguide/pyguide.html">Google Python Style Guide</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Args:
+    path (str): The path of the file to wrap
+    field_storage (FileStorage): The :class:`FileStorage` instance to wrap
+    temporary (bool): Whether or not to delete the file when the File
+       instance is destructed
+
+Returns:
+    BufferedFileStorage: A buffered writable file descriptor
+</pre></div>
+</div>
+<p>Much more legible, no?</p>
+<p>Napoleon is a <a class="reference internal" href="../../glossary.html#term-extension"><span class="xref std std-term">extension</span></a> that enables Sphinx to parse both <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy</a> and
+<a class="reference external" href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google</a> style docstrings - the style recommended by <a class="reference external" href="https://github.com/Khan/style-guides/blob/master/style/python.md#docstrings">Khan Academy</a>.</p>
+<p>Napoleon is a pre-processor that parses <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy</a> and <a class="reference external" href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google</a> style
+docstrings and converts them to reStructuredText before Sphinx attempts to
+parse them. This happens in an intermediate step while Sphinx is processing
+the documentation, so it doesn’t modify any of the docstrings in your actual
+source code files.</p>
+<section id="getting-started">
+<h3>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic">
+<li><p>After <a class="reference internal" href="../quickstart.html"><span class="doc">setting up Sphinx</span></a> to build your docs,
+enable napoleon in the Sphinx <cite>conf.py</cite> file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># conf.py
+
+# Add napoleon to the extensions list
+extensions = [&#39;sphinx.ext.napoleon&#39;]
+</pre></div>
+</div>
+</li>
+<li><p>Use <cite>sphinx-apidoc</cite> to build your API documentation:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ sphinx-apidoc -f -o docs/source projectdir
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="docstrings">
+<h3>Docstrings<a class="headerlink" href="#docstrings" title="Permalink to this heading">¶</a></h3>
+<p>Napoleon interprets every docstring that <a class="reference internal" href="autodoc.html#module-sphinx.ext.autodoc" title="sphinx.ext.autodoc: Include documentation from docstrings."><code class="xref py py-mod docutils literal notranslate"><span class="pre">autodoc</span></code></a>
+can find, including docstrings on: <code class="docutils literal notranslate"><span class="pre">modules</span></code>, <code class="docutils literal notranslate"><span class="pre">classes</span></code>, <code class="docutils literal notranslate"><span class="pre">attributes</span></code>,
+<code class="docutils literal notranslate"><span class="pre">methods</span></code>, <code class="docutils literal notranslate"><span class="pre">functions</span></code>, and <code class="docutils literal notranslate"><span class="pre">variables</span></code>. Inside each docstring,
+specially formatted <a class="reference internal" href="#sections">Sections</a> are parsed and converted to
+reStructuredText.</p>
+<p>All standard reStructuredText formatting still works as expected.</p>
+</section>
+<section id="docstring-sections">
+<span id="sections"></span><h3>Docstring Sections<a class="headerlink" href="#docstring-sections" title="Permalink to this heading">¶</a></h3>
+<p>All of the following section headers are supported:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Args</span></code> <em>(alias of Parameters)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Arguments</span></code> <em>(alias of Parameters)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Attention</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Attributes</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Caution</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Danger</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Error</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Example</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Examples</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Hint</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Important</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Keyword</span> <span class="pre">Args</span></code> <em>(alias of Keyword Arguments)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Keyword</span> <span class="pre">Arguments</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Methods</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Note</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Notes</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Other</span> <span class="pre">Parameters</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Parameters</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Return</span></code> <em>(alias of Returns)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Returns</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Raise</span></code> <em>(alias of Raises)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Raises</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">References</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">See</span> <span class="pre">Also</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Tip</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Todo</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Warning</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Warnings</span></code> <em>(alias of Warning)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Warn</span></code> <em>(alias of Warns)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Warns</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Yield</span></code> <em>(alias of Yields)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Yields</span></code></p></li>
+</ul>
+</section>
+<section id="google-vs-numpy">
+<h3>Google vs NumPy<a class="headerlink" href="#google-vs-numpy" title="Permalink to this heading">¶</a></h3>
+<p>Napoleon supports two styles of docstrings: <a class="reference external" href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google</a> and <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy</a>. The
+main difference between the two styles is that Google uses indentation to
+separate sections, whereas NumPy uses underlines.</p>
+<p>Google style:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Summary line.</span>
+
+<span class="sd">    Extended description of function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        arg1 (int): Description of arg1</span>
+<span class="sd">        arg2 (str): Description of arg2</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: Description of return value</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>NumPy style:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Summary line.</span>
+
+<span class="sd">    Extended description of function.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    arg1 : int</span>
+<span class="sd">        Description of arg1</span>
+<span class="sd">    arg2 : str</span>
+<span class="sd">        Description of arg2</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bool</span>
+<span class="sd">        Description of return value</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>NumPy style tends to require more vertical space, whereas Google style
+tends to use more horizontal space. Google style tends to be easier to
+read for short and simple docstrings, whereas NumPy style tends be easier
+to read for long and in-depth docstrings.</p>
+<p>The choice between styles is largely aesthetic, but the two styles should
+not be mixed. Choose one style for your project and be consistent with it.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For complete examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="example_google.html#example-google"><span class="std std-ref">Example Google Style Python Docstrings</span></a></p></li>
+<li><p><a class="reference internal" href="example_numpy.html#example-numpy"><span class="std std-ref">Example NumPy Style Python Docstrings</span></a></p></li>
+</ul>
+</div>
+</section>
+<section id="type-annotations">
+<h3>Type Annotations<a class="headerlink" href="#type-annotations" title="Permalink to this heading">¶</a></h3>
+<p><span class="target" id="index-1"></span><a class="pep reference external" href="https://peps.python.org/pep-0484/"><strong>PEP 484</strong></a> introduced a standard way to express types in Python code.
+This is an alternative to expressing types directly in docstrings.
+One benefit of expressing types according to <span class="target" id="index-2"></span><a class="pep reference external" href="https://peps.python.org/pep-0484/"><strong>PEP 484</strong></a> is that
+type checkers and IDEs can take advantage of them for static code
+analysis. <span class="target" id="index-3"></span><a class="pep reference external" href="https://peps.python.org/pep-0484/"><strong>PEP 484</strong></a> was then extended by <span class="target" id="index-4"></span><a class="pep reference external" href="https://peps.python.org/pep-0526/"><strong>PEP 526</strong></a> which introduced
+a similar way to annotate variables (and attributes).</p>
+<p>Google style with Python 3 type annotations:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>def func(arg1: int, arg2: str) -&gt; bool:
+    &quot;&quot;&quot;Summary line.
+
+    Extended description of function.
+
+    Args:
+        arg1: Description of arg1
+        arg2: Description of arg2
+
+    Returns:
+        Description of return value
+
+    &quot;&quot;&quot;
+    return True
+
+class Class:
+    &quot;&quot;&quot;Summary line.
+
+    Extended description of class
+
+    Attributes:
+        attr1: Description of attr1
+        attr2: Description of attr2
+    &quot;&quot;&quot;
+
+    attr1: int
+    attr2: str
+</pre></div>
+</div>
+<p>Google style with types in docstrings:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>def func(arg1, arg2):
+    &quot;&quot;&quot;Summary line.
+
+    Extended description of function.
+
+    Args:
+        arg1 (int): Description of arg1
+        arg2 (str): Description of arg2
+
+    Returns:
+        bool: Description of return value
+
+    &quot;&quot;&quot;
+    return True
+
+class Class:
+    &quot;&quot;&quot;Summary line.
+
+    Extended description of class
+
+    Attributes:
+        attr1 (int): Description of attr1
+        attr2 (str): Description of attr2
+    &quot;&quot;&quot;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference external" href="https://peps.python.org/pep-0484/#suggested-syntax-for-python-2-7-and-straddling-code">Python 2/3 compatible annotations</a> aren’t currently
+supported by Sphinx and won’t show up in the docs.</p>
+</div>
+</section>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">¶</a></h2>
+<p>Listed below are all the settings used by napoleon and their default
+values. These settings can be changed in the Sphinx <cite>conf.py</cite> file. Make
+sure that “sphinx.ext.napoleon” is enabled in <cite>conf.py</cite>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># conf.py
+
+# Add any Sphinx extension module names here, as strings
+extensions = [&#39;sphinx.ext.napoleon&#39;]
+
+# Napoleon settings
+napoleon_google_docstring = True
+napoleon_numpy_docstring = True
+napoleon_include_init_with_doc = False
+napoleon_include_private_with_doc = False
+napoleon_include_special_with_doc = True
+napoleon_use_admonition_for_examples = False
+napoleon_use_admonition_for_notes = False
+napoleon_use_admonition_for_references = False
+napoleon_use_ivar = False
+napoleon_use_param = True
+napoleon_use_rtype = True
+napoleon_preprocess_types = False
+napoleon_type_aliases = None
+napoleon_attr_annotations = True
+</pre></div>
+</div>
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_google_docstring">
+<span class="sig-name descname"><span class="pre">napoleon_google_docstring</span></span><a class="headerlink" href="#confval-napoleon_google_docstring" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to parse <a class="reference external" href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google style</a> docstrings. False to disable support
+for Google style docstrings. <em>Defaults to True.</em></p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_numpy_docstring">
+<span class="sig-name descname"><span class="pre">napoleon_numpy_docstring</span></span><a class="headerlink" href="#confval-napoleon_numpy_docstring" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to parse <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy style</a> docstrings. False to disable support
+for NumPy style docstrings. <em>Defaults to True.</em></p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_include_init_with_doc">
+<span class="sig-name descname"><span class="pre">napoleon_include_init_with_doc</span></span><a class="headerlink" href="#confval-napoleon_include_init_with_doc" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to list <code class="docutils literal notranslate"><span class="pre">__init___</span></code> docstrings separately from the class
+docstring. False to fall back to Sphinx’s default behavior, which
+considers the <code class="docutils literal notranslate"><span class="pre">__init___</span></code> docstring as part of the class
+documentation. <em>Defaults to False.</em></p>
+<p><strong>If True</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>def __init__(self):
+    &quot;&quot;&quot;
+    This will be included in the docs because it has a docstring
+    &quot;&quot;&quot;
+
+def __init__(self):
+    # This will NOT be included in the docs
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_include_private_with_doc">
+<span class="sig-name descname"><span class="pre">napoleon_include_private_with_doc</span></span><a class="headerlink" href="#confval-napoleon_include_private_with_doc" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to include private members (like <code class="docutils literal notranslate"><span class="pre">_membername</span></code>) with docstrings
+in the documentation. False to fall back to Sphinx’s default behavior.
+<em>Defaults to False.</em></p>
+<p><strong>If True</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>def _included(self):
+    &quot;&quot;&quot;
+    This will be included in the docs because it has a docstring
+    &quot;&quot;&quot;
+    pass
+
+def _skipped(self):
+    # This will NOT be included in the docs
+    pass
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_include_special_with_doc">
+<span class="sig-name descname"><span class="pre">napoleon_include_special_with_doc</span></span><a class="headerlink" href="#confval-napoleon_include_special_with_doc" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to include special members (like <code class="docutils literal notranslate"><span class="pre">__membername__</span></code>) with
+docstrings in the documentation. False to fall back to Sphinx’s
+default behavior. <em>Defaults to True.</em></p>
+<p><strong>If True</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>def __str__(self):
+    &quot;&quot;&quot;
+    This will be included in the docs because it has a docstring
+    &quot;&quot;&quot;
+    return unicode(self).encode(&#39;utf-8&#39;)
+
+def __unicode__(self):
+    # This will NOT be included in the docs
+    return unicode(self.__class__.__name__)
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_use_admonition_for_examples">
+<span class="sig-name descname"><span class="pre">napoleon_use_admonition_for_examples</span></span><a class="headerlink" href="#confval-napoleon_use_admonition_for_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to use the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">admonition::</span></code> directive for the <strong>Example</strong> and
+<strong>Examples</strong> sections. False to use the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">rubric::</span></code> directive
+instead. One may look better than the other depending on what HTML
+theme is used. <em>Defaults to False.</em></p>
+<p>This <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy style</a> snippet will be converted as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Example
+-------
+This is just a quick example
+</pre></div>
+</div>
+<p><strong>If True</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.. admonition:: Example
+
+   This is just a quick example
+</pre></div>
+</div>
+<p><strong>If False</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.. rubric:: Example
+
+This is just a quick example
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_use_admonition_for_notes">
+<span class="sig-name descname"><span class="pre">napoleon_use_admonition_for_notes</span></span><a class="headerlink" href="#confval-napoleon_use_admonition_for_notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to use the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">admonition::</span></code> directive for <strong>Notes</strong> sections.
+False to use the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">rubric::</span></code> directive instead. <em>Defaults to False.</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The singular <strong>Note</strong> section will always be converted to a
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">note::</span></code> directive.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-attr docutils literal notranslate"><span class="pre">napoleon_use_admonition_for_examples</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_use_admonition_for_references">
+<span class="sig-name descname"><span class="pre">napoleon_use_admonition_for_references</span></span><a class="headerlink" href="#confval-napoleon_use_admonition_for_references" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to use the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">admonition::</span></code> directive for <strong>References</strong>
+sections. False to use the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">rubric::</span></code> directive instead.
+<em>Defaults to False.</em></p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-attr docutils literal notranslate"><span class="pre">napoleon_use_admonition_for_examples</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_use_ivar">
+<span class="sig-name descname"><span class="pre">napoleon_use_ivar</span></span><a class="headerlink" href="#confval-napoleon_use_ivar" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to use the <code class="docutils literal notranslate"><span class="pre">:ivar:</span></code> role for instance variables. False to use
+the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">attribute::</span></code> directive instead. <em>Defaults to False.</em></p>
+<p>This <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy style</a> snippet will be converted as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Attributes
+----------
+attr1 : int
+    Description of `attr1`
+</pre></div>
+</div>
+<p><strong>If True</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:ivar attr1: Description of `attr1`
+:vartype attr1: int
+</pre></div>
+</div>
+<p><strong>If False</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.. attribute:: attr1
+
+   Description of `attr1`
+
+   :type: int
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_use_param">
+<span class="sig-name descname"><span class="pre">napoleon_use_param</span></span><a class="headerlink" href="#confval-napoleon_use_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to use a <code class="docutils literal notranslate"><span class="pre">:param:</span></code> role for each function parameter. False to
+use a single <code class="docutils literal notranslate"><span class="pre">:parameters:</span></code> role for all the parameters.
+<em>Defaults to True.</em></p>
+<p>This <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy style</a> snippet will be converted as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Parameters
+----------
+arg1 : str
+    Description of `arg1`
+arg2 : int, optional
+    Description of `arg2`, defaults to 0
+</pre></div>
+</div>
+<p><strong>If True</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:param arg1: Description of `arg1`
+:type arg1: str
+:param arg2: Description of `arg2`, defaults to 0
+:type arg2: :class:`int`, *optional*
+</pre></div>
+</div>
+<p><strong>If False</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:parameters: * **arg1** (*str*) --
+               Description of `arg1`
+             * **arg2** (*int, optional*) --
+               Description of `arg2`, defaults to 0
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_use_keyword">
+<span class="sig-name descname"><span class="pre">napoleon_use_keyword</span></span><a class="headerlink" href="#confval-napoleon_use_keyword" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to use a <code class="docutils literal notranslate"><span class="pre">:keyword:</span></code> role for each function keyword argument.
+False to use a single <code class="docutils literal notranslate"><span class="pre">:keyword</span> <span class="pre">arguments:</span></code> role for all the
+keywords.
+<em>Defaults to True.</em></p>
+<p>This behaves similarly to  <code class="xref py py-attr docutils literal notranslate"><span class="pre">napoleon_use_param</span></code>. Note unlike docutils,
+<code class="docutils literal notranslate"><span class="pre">:keyword:</span></code> and <code class="docutils literal notranslate"><span class="pre">:param:</span></code> will not be treated the same way - there will
+be a separate “Keyword Arguments” section, rendered in the same fashion as
+“Parameters” section (type links created if possible)</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-attr docutils literal notranslate"><span class="pre">napoleon_use_param</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_use_rtype">
+<span class="sig-name descname"><span class="pre">napoleon_use_rtype</span></span><a class="headerlink" href="#confval-napoleon_use_rtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to use the <code class="docutils literal notranslate"><span class="pre">:rtype:</span></code> role for the return type. False to output
+the return type inline with the description. <em>Defaults to True.</em></p>
+<p>This <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy style</a> snippet will be converted as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Returns
+-------
+bool
+    True if successful, False otherwise
+</pre></div>
+</div>
+<p><strong>If True</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:returns: True if successful, False otherwise
+:rtype: bool
+</pre></div>
+</div>
+<p><strong>If False</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:returns: *bool* -- True if successful, False otherwise
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_preprocess_types">
+<span class="sig-name descname"><span class="pre">napoleon_preprocess_types</span></span><a class="headerlink" href="#confval-napoleon_preprocess_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to convert the type definitions in the docstrings as references.
+Defaults to <em>False</em>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.2.1.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.5: </span>Do preprocess the Google style docstrings also.</p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_type_aliases">
+<span class="sig-name descname"><span class="pre">napoleon_type_aliases</span></span><a class="headerlink" href="#confval-napoleon_type_aliases" title="Permalink to this definition">¶</a></dt>
+<dd><p>A mapping to translate type names to other names or references. Works
+only when <code class="docutils literal notranslate"><span class="pre">napoleon_use_param</span> <span class="pre">=</span> <span class="pre">True</span></code>. <em>Defaults to None.</em></p>
+<p>With:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>napoleon_type_aliases = {
+    &quot;CustomType&quot;: &quot;mypackage.CustomType&quot;,
+    &quot;dict-like&quot;: &quot;:term:`dict-like &lt;mapping&gt;`&quot;,
+}
+</pre></div>
+</div>
+<p>This <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy style</a> snippet:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Parameters
+----------
+arg1 : CustomType
+    Description of `arg1`
+arg2 : dict-like
+    Description of `arg2`
+</pre></div>
+</div>
+<p>becomes:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:param arg1: Description of `arg1`
+:type arg1: mypackage.CustomType
+:param arg2: Description of `arg2`
+:type arg2: :term:`dict-like &lt;mapping&gt;`
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.2.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_attr_annotations">
+<span class="sig-name descname"><span class="pre">napoleon_attr_annotations</span></span><a class="headerlink" href="#confval-napoleon_attr_annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>True to allow using <span class="target" id="index-5"></span><a class="pep reference external" href="https://peps.python.org/pep-0526/"><strong>PEP 526</strong></a> attributes annotations in classes.
+If an attribute is documented in the docstring without a type and
+has an annotation in the class body, that type is used.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-napoleon_custom_sections">
+<span class="sig-name descname"><span class="pre">napoleon_custom_sections</span></span><a class="headerlink" href="#confval-napoleon_custom_sections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a list of custom sections to include, expanding the list of parsed sections.
+<em>Defaults to None.</em></p>
+<p>The entries can either be strings or tuples, depending on the intention:</p>
+<ul class="simple">
+<li><p>To create a custom “generic” section, just pass a string.</p></li>
+<li><p>To create an alias for an existing section, pass a tuple containing the
+alias name and the original, in that order.</p></li>
+<li><p>To create a custom section that displays like the parameters or returns
+section, pass a tuple containing the custom section name and a string
+value, “params_style” or “returns_style”.</p></li>
+</ul>
+<p>If an entry is just a string, it is interpreted as a header for a generic
+section. If the entry is a tuple/list/indexed container, the first entry
+is the name of the section, the second is the section key to emulate. If the
+second entry value is “params_style” or “returns_style”, the custom section
+will be displayed like the parameters section or returns section.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.8.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.5: </span>Support <code class="docutils literal notranslate"><span class="pre">params_style</span></code> and <code class="docutils literal notranslate"><span class="pre">returns_style</span></code></p>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../../copyright.html">Copyright</a> 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+</div>
+  </body>
+</html>

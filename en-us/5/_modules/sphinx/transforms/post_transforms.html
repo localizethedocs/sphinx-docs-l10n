@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sphinx.transforms.post_transforms &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx13.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/_modules/sphinx/transforms/post_transforms.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+ 
+
+<script type="text/javascript" src="../../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../../../index.html">
+  <img src="../../../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="../transforms.html" accesskey="U">sphinx.transforms</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">sphinx.transforms.post_transforms</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../templating.html">Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extdev/index.html">Developing extensions for Sphinx</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Sphinx FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <h1>Source code for sphinx.transforms.post_transforms</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Docutils transforms used by Sphinx.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">cast</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">nodes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils.nodes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">Node</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx</span><span class="w"> </span><span class="kn">import</span> <span class="n">addnodes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.addnodes</span><span class="w"> </span><span class="kn">import</span> <span class="n">pending_xref</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.application</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sphinx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.domains</span><span class="w"> </span><span class="kn">import</span> <span class="n">Domain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">NoUri</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.locale</span><span class="w"> </span><span class="kn">import</span> <span class="n">__</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.transforms</span><span class="w"> </span><span class="kn">import</span> <span class="n">SphinxTransform</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.docutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">SphinxTranslator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.nodes</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_pending_xref_condition</span><span class="p">,</span> <span class="n">process_only_nodes</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SphinxPostTransform"><a class="viewcode-back" href="../../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SphinxPostTransform</span><span class="p">(</span><span class="n">SphinxTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A base class of post-transforms.</span>
+
+<span class="sd">    Post transforms are invoked to modify the document to restructure it for outputting.</span>
+<span class="sd">    They resolve references, convert images, do special transformation for each output</span>
+<span class="sd">    formats and so on.  This class helps to implement these post transforms.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">builders</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">formats</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+
+<div class="viewcode-block" id="SphinxPostTransform.apply"><a class="viewcode-back" href="../../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform.apply">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_supported</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SphinxPostTransform.is_supported"><a class="viewcode-back" href="../../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform.is_supported">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_supported</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check this transform working for current builder.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">builders</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">builders</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">formats</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">format</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">formats</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="SphinxPostTransform.run"><a class="viewcode-back" href="../../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform.run">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Main method of post transforms.</span>
+
+<span class="sd">        Subclasses should override this method instead of ``apply()``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ReferencesResolver</span><span class="p">(</span><span class="n">SphinxPostTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Resolves cross-references on doctrees.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">10</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">addnodes</span><span class="o">.</span><span class="n">pending_xref</span><span class="p">):</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_pending_xref_condition</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;resolved&quot;</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">content</span><span class="p">:</span>
+                <span class="n">contnode</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Element</span><span class="p">,</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">contnode</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Element</span><span class="p">,</span> <span class="n">node</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">())</span>
+
+            <span class="n">newnode</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="n">typ</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;reftype&#39;</span><span class="p">]</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;reftarget&#39;</span><span class="p">]</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;refdoc&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">docname</span><span class="p">)</span>
+            <span class="n">refdoc</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;refdoc&#39;</span><span class="p">)</span>
+            <span class="n">domain</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;refdomain&#39;</span> <span class="ow">in</span> <span class="n">node</span> <span class="ow">and</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;refdomain&#39;</span><span class="p">]:</span>
+                    <span class="c1"># let the domain try to resolve the reference</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">domain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">domains</span><span class="p">[</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;refdomain&#39;</span><span class="p">]]</span>
+                    <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="n">NoUri</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">typ</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+                    <span class="n">newnode</span> <span class="o">=</span> <span class="n">domain</span><span class="o">.</span><span class="n">resolve_xref</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">,</span> <span class="n">refdoc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="p">,</span>
+                                                  <span class="n">typ</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">contnode</span><span class="p">)</span>
+                <span class="c1"># really hardwired reference types</span>
+                <span class="k">elif</span> <span class="n">typ</span> <span class="o">==</span> <span class="s1">&#39;any&#39;</span><span class="p">:</span>
+                    <span class="n">newnode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve_anyref</span><span class="p">(</span><span class="n">refdoc</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">contnode</span><span class="p">)</span>
+                <span class="c1"># no new node found? try the missing-reference event</span>
+                <span class="k">if</span> <span class="n">newnode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">newnode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">emit_firstresult</span><span class="p">(</span><span class="s1">&#39;missing-reference&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">,</span>
+                                                        <span class="n">node</span><span class="p">,</span> <span class="n">contnode</span><span class="p">,</span>
+                                                        <span class="n">allowed_exceptions</span><span class="o">=</span><span class="p">(</span><span class="n">NoUri</span><span class="p">,))</span>
+                    <span class="c1"># still not found? warn if node wishes to be warned about or</span>
+                    <span class="c1"># we are in nit-picky mode</span>
+                    <span class="k">if</span> <span class="n">newnode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">warn_missing_reference</span><span class="p">(</span><span class="n">refdoc</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">NoUri</span><span class="p">:</span>
+                <span class="n">newnode</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="n">newnode</span><span class="p">:</span>
+                <span class="n">newnodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">newnode</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">newnodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">contnode</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">newnode</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">addnodes</span><span class="o">.</span><span class="n">pending_xref_condition</span><span class="p">):</span>
+                    <span class="n">matched</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_pending_xref_condition</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,))</span>
+                    <span class="k">if</span> <span class="n">matched</span><span class="p">:</span>
+                        <span class="n">newnodes</span> <span class="o">=</span> <span class="n">matched</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;Could not determine the fallback text for the &#39;</span>
+                                          <span class="s1">&#39;cross-reference. Might be a bug.&#39;</span><span class="p">),</span> <span class="n">location</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
+
+            <span class="n">node</span><span class="o">.</span><span class="n">replace_self</span><span class="p">(</span><span class="n">newnodes</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">resolve_anyref</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">refdoc</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">pending_xref</span><span class="p">,</span> <span class="n">contnode</span><span class="p">:</span> <span class="n">Element</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Element</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve reference generated by the &quot;any&quot; role.&quot;&quot;&quot;</span>
+        <span class="n">stddomain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">get_domain</span><span class="p">(</span><span class="s1">&#39;std&#39;</span><span class="p">)</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;reftarget&#39;</span><span class="p">]</span>
+        <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Element</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># first, try resolving as :doc:</span>
+        <span class="n">doc_ref</span> <span class="o">=</span> <span class="n">stddomain</span><span class="o">.</span><span class="n">resolve_xref</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">,</span> <span class="n">refdoc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="p">,</span>
+                                         <span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">contnode</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">doc_ref</span><span class="p">:</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="n">doc_ref</span><span class="p">))</span>
+        <span class="c1"># next, do the standard domain (makes this a priority)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">stddomain</span><span class="o">.</span><span class="n">resolve_any_xref</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">,</span> <span class="n">refdoc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="p">,</span>
+                                                  <span class="n">target</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">contnode</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">domains</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">domain</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;std&#39;</span><span class="p">:</span>
+                <span class="k">continue</span>  <span class="c1"># we did this one already</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">domain</span><span class="o">.</span><span class="n">resolve_any_xref</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">,</span> <span class="n">refdoc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="p">,</span>
+                                                       <span class="n">target</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">contnode</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
+                <span class="c1"># the domain doesn&#39;t yet support the new interface</span>
+                <span class="c1"># we have to manually collect possible references (SLOW)</span>
+                <span class="k">for</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">domain</span><span class="o">.</span><span class="n">roles</span><span class="p">:</span>
+                    <span class="n">res</span> <span class="o">=</span> <span class="n">domain</span><span class="o">.</span><span class="n">resolve_xref</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">,</span> <span class="n">refdoc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="p">,</span>
+                                              <span class="n">role</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">contnode</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">res</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Element</span><span class="p">):</span>
+                        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">domain</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">role</span><span class="p">),</span> <span class="n">res</span><span class="p">))</span>
+        <span class="c1"># now, see how many matches we got...</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">stringify</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+                <span class="n">reftitle</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;reftitle&#39;</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">astext</span><span class="p">())</span>
+                <span class="k">return</span> <span class="s1">&#39;:</span><span class="si">%s</span><span class="s1">:`</span><span class="si">%s</span><span class="s1">`&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">reftitle</span><span class="p">)</span>
+            <span class="n">candidates</span> <span class="o">=</span> <span class="s1">&#39; or &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stringify</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">role</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;more than one target found for </span><span class="se">\&#39;</span><span class="s1">any</span><span class="se">\&#39;</span><span class="s1"> cross-&#39;</span>
+                              <span class="s1">&#39;reference </span><span class="si">%r</span><span class="s1">: could be </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">),</span> <span class="n">target</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span>
+                           <span class="n">location</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">res_role</span><span class="p">,</span> <span class="n">newnode</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Override &quot;any&quot; class with the actual role type to get the styling</span>
+        <span class="c1"># approximately correct.</span>
+        <span class="n">res_domain</span> <span class="o">=</span> <span class="n">res_role</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">newnode</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span>
+                <span class="nb">isinstance</span><span class="p">(</span><span class="n">newnode</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Element</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="n">newnode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;classes&#39;</span><span class="p">)):</span>
+            <span class="n">newnode</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;classes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res_domain</span><span class="p">)</span>
+            <span class="n">newnode</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;classes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res_role</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">newnode</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">warn_missing_reference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">refdoc</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">typ</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                               <span class="n">node</span><span class="p">:</span> <span class="n">pending_xref</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Domain</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">warn</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;refwarn&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">nitpicky</span><span class="p">:</span>
+            <span class="n">warn</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">domain</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">typ</span><span class="p">)</span> <span class="k">if</span> <span class="n">domain</span> <span class="k">else</span> <span class="n">typ</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">nitpick_ignore</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">nitpick_ignore</span><span class="p">:</span>
+                    <span class="n">warn</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="c1"># for &quot;std&quot; types also try without domain name</span>
+                <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">domain</span> <span class="ow">or</span> <span class="n">domain</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;std&#39;</span><span class="p">)</span> <span class="ow">and</span> \
+                   <span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">nitpick_ignore</span><span class="p">:</span>
+                    <span class="n">warn</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">nitpick_ignore_regex</span><span class="p">:</span>
+                <span class="k">def</span><span class="w"> </span><span class="nf">matches_ignore</span><span class="p">(</span><span class="n">entry_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">entry_target</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">ignore_type</span><span class="p">,</span> <span class="n">ignore_target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">nitpick_ignore_regex</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">ignore_type</span><span class="p">,</span> <span class="n">entry_type</span><span class="p">)</span> <span class="ow">and</span> \
+                           <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">ignore_target</span><span class="p">,</span> <span class="n">entry_target</span><span class="p">):</span>
+                            <span class="k">return</span> <span class="kc">True</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+                <span class="k">if</span> <span class="n">matches_ignore</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+                    <span class="n">warn</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="c1"># for &quot;std&quot; types also try without domain name</span>
+                <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">domain</span> <span class="ow">or</span> <span class="n">domain</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;std&#39;</span><span class="p">)</span> <span class="ow">and</span> \
+                   <span class="n">matches_ignore</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+                    <span class="n">warn</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">warn</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">emit_firstresult</span><span class="p">(</span><span class="s1">&#39;warn-missing-reference&#39;</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="k">elif</span> <span class="n">domain</span> <span class="ow">and</span> <span class="n">typ</span> <span class="ow">in</span> <span class="n">domain</span><span class="o">.</span><span class="n">dangling_warnings</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">domain</span><span class="o">.</span><span class="n">dangling_warnings</span><span class="p">[</span><span class="n">typ</span><span class="p">]</span> <span class="o">%</span> <span class="p">{</span><span class="s1">&#39;target&#39;</span><span class="p">:</span> <span class="n">target</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;refdomain&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1"> reference target not found: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">%</span>
+                   <span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;refdomain&#39;</span><span class="p">],</span> <span class="n">typ</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">__</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%r</span><span class="s1"> reference target not found: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">node</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ref&#39;</span><span class="p">,</span> <span class="n">subtype</span><span class="o">=</span><span class="n">typ</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_pending_xref_condition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">pending_xref</span><span class="p">,</span> <span class="n">conditions</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+                                    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">]]:</span>
+        <span class="k">for</span> <span class="n">condition</span> <span class="ow">in</span> <span class="n">conditions</span><span class="p">:</span>
+            <span class="n">matched</span> <span class="o">=</span> <span class="n">find_pending_xref_condition</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">condition</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">matched</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">matched</span><span class="o">.</span><span class="n">children</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">OnlyNodeTransform</span><span class="p">(</span><span class="n">SphinxPostTransform</span><span class="p">):</span>
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">50</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># A comment on the comment() nodes being inserted: replacing by [] would</span>
+        <span class="c1"># result in a &quot;Losing ids&quot; exception if there is a target node before</span>
+        <span class="c1"># the only node, so we make sure docutils can transfer the id to</span>
+        <span class="c1"># something, even if it&#39;s just a comment and will lose the id anyway...</span>
+        <span class="n">process_only_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">tags</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SigElementFallbackTransform</span><span class="p">(</span><span class="n">SphinxPostTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fallback various desc_* nodes to inline if translator does not support them.&quot;&quot;&quot;</span>
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">200</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">has_visitor</span><span class="p">(</span><span class="n">translator</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">NodeVisitor</span><span class="p">],</span> <span class="n">node</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Element</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">translator</span><span class="p">,</span> <span class="s2">&quot;visit_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">node</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+        <span class="n">translator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">get_translator_class</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">translator</span><span class="p">,</span> <span class="n">SphinxTranslator</span><span class="p">):</span>
+            <span class="c1"># subclass of SphinxTranslator supports desc_sig_element nodes automatically.</span>
+            <span class="k">return</span>
+
+        <span class="c1"># for the leaf elements (desc_sig_element), the translator should support _all_</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">has_visitor</span><span class="p">(</span><span class="n">translator</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">addnodes</span><span class="o">.</span><span class="n">SIG_ELEMENTS</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fallback</span><span class="p">(</span><span class="n">addnodes</span><span class="o">.</span><span class="n">desc_sig_element</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">has_visitor</span><span class="p">(</span><span class="n">translator</span><span class="p">,</span> <span class="n">addnodes</span><span class="o">.</span><span class="n">desc_inline</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fallback</span><span class="p">(</span><span class="n">addnodes</span><span class="o">.</span><span class="n">desc_inline</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fallback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodeType</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">nodeType</span><span class="p">):</span>
+            <span class="n">newnode</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">inline</span><span class="p">()</span>
+            <span class="n">newnode</span><span class="o">.</span><span class="n">update_all_atts</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="n">newnode</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">replace_self</span><span class="p">(</span><span class="n">newnode</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PropagateDescDomain</span><span class="p">(</span><span class="n">SphinxPostTransform</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add the domain name of the parent node as a class in each desc_signature node.&quot;&quot;&quot;</span>
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">200</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">addnodes</span><span class="o">.</span><span class="n">desc_signature</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;domain&#39;</span><span class="p">):</span>
+                <span class="n">node</span><span class="p">[</span><span class="s1">&#39;classes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_post_transform</span><span class="p">(</span><span class="n">ReferencesResolver</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_post_transform</span><span class="p">(</span><span class="n">OnlyNodeTransform</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_post_transform</span><span class="p">(</span><span class="n">SigElementFallbackTransform</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_post_transform</span><span class="p">(</span><span class="n">PropagateDescDomain</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;builtin&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../../../copyright.html">Copyright</a> 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+</div>
+  </body>
+</html>

@@ -1,0 +1,411 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>sphinx.ext.intersphinx – Link to other projects’ documentation &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/intersphinx.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sphinx.ext.linkcode – Add external links to source code" href="linkcode.html" />
+    <link rel="prev" title="sphinx.ext.inheritance_diagram – Include inheritance diagrams" href="inheritance.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../../index.html">
+  <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Extensions</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – Link to other projects’ documentation</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – Link to other projects’ documentation</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#explicitly-reference-external-objects">Explicitly Reference External Objects</a><ul>
+<li><a class="reference internal" href="#role-external"><code class="docutils literal notranslate"><span class="pre">:external:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#showing-all-links-of-an-intersphinx-mapping-file">Showing all links of an Intersphinx mapping file</a></li>
+<li><a class="reference internal" href="#using-intersphinx-with-inventory-file-under-basic-authorization">Using Intersphinx with inventory file under Basic Authorization</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial: Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">Builders</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Extensions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> – Include documentation from docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> – Allow reference sections using its title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> – Test snippets in the documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> – Measure durations of Sphinx processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> – Markup to shorten external links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> – Publish HTML docs in GitHub Pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> – A reference image converter using Imagemagick</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inheritance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – Link to other projects’ documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> – Add external links to source code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="math.html">Math support for HTML outputs in Sphinx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="napoleon.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> – Support for todo items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML Theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/setuptools.html">Setuptools integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Writing Sphinx Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx Extensions API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extensions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> – Include documentation from docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> – Allow reference sections using its title</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> – Test snippets in the documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> – Measure durations of Sphinx processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> – Markup to shorten external links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> – Publish HTML docs in GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphviz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> – A reference image converter using Imagemagick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – Link to other projects’ documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> – Add external links to source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">Math support for HTML outputs in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="napoleon.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> – Support for todo items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="module-sphinx.ext.intersphinx">
+<span id="sphinx-ext-intersphinx-link-to-other-projects-documentation"></span><h1><a class="reference internal" href="#module-sphinx.ext.intersphinx" title="sphinx.ext.intersphinx: Link to other Sphinx documentation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code></a> – Link to other projects’ documentation<a class="headerlink" href="#module-sphinx.ext.intersphinx" title="Permalink to this heading">¶</a></h1>
+<div class="versionadded" id="index-0">
+<p><span class="versionmodified added">New in version 0.5.</span></p>
+</div>
+<p>This extension can generate links to the documentation of objects in external
+projects, either explicitly through the <a class="reference internal" href="#role-external" title="external role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">external</span></code></a> role, or as a
+fallback resolution for any other cross-reference.</p>
+<p>Usage for fallback resolution is simple: whenever Sphinx encounters a
+cross-reference that has no matching target in the current documentation set,
+it looks for targets in the external documentation sets configured in
+<a class="reference internal" href="#confval-intersphinx_mapping"><code class="xref std std-confval docutils literal notranslate"><span class="pre">intersphinx_mapping</span></code></a>.  A reference like
+<code class="docutils literal notranslate"><span class="pre">:py:class:`zipfile.ZipFile`</span></code> can then link to the Python documentation
+for the ZipFile class, without you having to specify where it is located
+exactly.</p>
+<p>When using the <a class="reference internal" href="#role-external" title="external role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">external</span></code></a> role, you can force lookup to any external
+projects, and optionally to a specific external project.
+A link like <code class="docutils literal notranslate"><span class="pre">:external:ref:`comparison</span> <span class="pre">manual</span> <span class="pre">&lt;comparisons&gt;`</span></code> will then link
+to the label “comparisons” in whichever configured external project, if it
+exists,
+and a link like <code class="docutils literal notranslate"><span class="pre">:external+python:ref:`comparison</span> <span class="pre">manual</span> <span class="pre">&lt;comparisons&gt;`</span></code> will
+link to the label “comparisons” only in the doc set “python”, if it exists.</p>
+<p>Behind the scenes, this works as follows:</p>
+<ul class="simple">
+<li><p>Each Sphinx HTML build creates a file named <code class="file docutils literal notranslate"><span class="pre">objects.inv</span></code> that contains
+a mapping from object names to URIs relative to the HTML set’s root.</p></li>
+<li><p>Projects using the Intersphinx extension can specify the location of such
+mapping files in the <a class="reference internal" href="#confval-intersphinx_mapping"><code class="xref std std-confval docutils literal notranslate"><span class="pre">intersphinx_mapping</span></code></a> config value.  The mapping
+will then be used to resolve both <a class="reference internal" href="#role-external" title="external role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">external</span></code></a> references, and also
+otherwise missing references to objects into links to the other documentation.</p></li>
+<li><p>By default, the mapping file is assumed to be at the same location as the rest
+of the documentation; however, the location of the mapping file can also be
+specified individually, e.g. if the docs should be buildable without Internet
+access.</p></li>
+</ul>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">¶</a></h2>
+<p>To use Intersphinx linking, add <code class="docutils literal notranslate"><span class="pre">'sphinx.ext.intersphinx'</span></code> to your
+<a class="reference internal" href="../configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">extensions</span></code></a> config value, and use these config values to activate
+linking:</p>
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-intersphinx_mapping">
+<span class="sig-name descname"><span class="pre">intersphinx_mapping</span></span><a class="headerlink" href="#confval-intersphinx_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>This config value contains the locations and names of other projects that
+should be linked to in this documentation.</p>
+<p>Relative local paths for target locations are taken as relative to the base
+of the built documentation, while relative local paths for inventory
+locations are taken as relative to the source directory.</p>
+<p>When fetching remote inventory files, proxy settings will be read from
+the <code class="docutils literal notranslate"><span class="pre">$HTTP_PROXY</span></code> environment variable.</p>
+<p><strong>Format</strong></p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.</span></p>
+</div>
+<p>A dictionary mapping unique identifiers to a tuple <code class="docutils literal notranslate"><span class="pre">(target,</span> <span class="pre">inventory)</span></code>.
+Each <code class="docutils literal notranslate"><span class="pre">target</span></code> is the base URI of a foreign Sphinx documentation set and can
+be a local path or an HTTP URI.  The <code class="docutils literal notranslate"><span class="pre">inventory</span></code> indicates where the
+inventory file can be found: it can be <code class="docutils literal notranslate"><span class="pre">None</span></code> (an <code class="file docutils literal notranslate"><span class="pre">objects.inv</span></code> file
+at the same location as the base URI) or another local file path or a full
+HTTP URI to an inventory file.</p>
+<p>The unique identifier can be used in the <a class="reference internal" href="#role-external" title="external role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">external</span></code></a> role, so that
+it is clear which intersphinx set the target belongs to.  A link like
+<code class="docutils literal notranslate"><span class="pre">external:python+ref:`comparison</span> <span class="pre">manual</span> <span class="pre">&lt;comparisons&gt;`</span></code> will link to the
+label “comparisons” in the doc set “python”, if it exists.</p>
+<p><strong>Example</strong></p>
+<p>To add links to modules and objects in the Python standard library
+documentation, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;python&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://docs.python.org/3&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>This will download the corresponding <code class="file docutils literal notranslate"><span class="pre">objects.inv</span></code> file from the
+Internet and generate links to the pages under the given URI.  The downloaded
+inventory is cached in the Sphinx environment, so it must be re-downloaded
+whenever you do a full rebuild.</p>
+<p>A second example, showing the meaning of a non-<code class="docutils literal notranslate"><span class="pre">None</span></code> value of the second
+tuple item:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;python&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://docs.python.org/3&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;python-inv.txt&#39;</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>This will read the inventory from <code class="file docutils literal notranslate"><span class="pre">python-inv.txt</span></code> in the source
+directory, but still generate links to the pages under
+<code class="docutils literal notranslate"><span class="pre">https://docs.python.org/3</span></code>.  It is up to you to update the inventory file
+as new objects are added to the Python documentation.</p>
+<p><strong>Multiple targets for the inventory</strong></p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.</span></p>
+</div>
+<p>Alternative files can be specified for each inventory. One can give a
+tuple for the second inventory tuple item as shown in the following
+example. This will read the inventory iterating through the (second)
+tuple items until the first successful fetch. The primary use case for
+this to specify mirror sites for server downtime of the primary
+inventory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;python&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://docs.python.org/3&#39;</span><span class="p">,</span>
+                                  <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;python-inv.txt&#39;</span><span class="p">))}</span>
+</pre></div>
+</div>
+<p>For a set of books edited and tested locally and then published
+together, it could be helpful to try a local inventory file first,
+to check references before publication:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;otherbook&#39;</span><span class="p">:</span>
+        <span class="p">(</span><span class="s1">&#39;https://myproj.readthedocs.io/projects/otherbook/en/latest&#39;</span><span class="p">,</span>
+            <span class="p">(</span><span class="s1">&#39;../../otherbook/build/html/objects.inv&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Old format for this config value</strong></p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 6.2.</span></p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This is the format used before Sphinx 1.0.
+It is deprecated and will be removed in Sphinx 8.0.</p>
+</div>
+<p>A dictionary mapping URIs to either <code class="docutils literal notranslate"><span class="pre">None</span></code> or an URI.  The keys are the
+base URI of the foreign Sphinx documentation sets and can be local paths or
+HTTP URIs.  The values indicate where the inventory file can be found: they
+can be <code class="docutils literal notranslate"><span class="pre">None</span></code> (at the same location as the base URI) or another local or
+HTTP URI.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;https://docs.python.org/&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-intersphinx_cache_limit">
+<span class="sig-name descname"><span class="pre">intersphinx_cache_limit</span></span><a class="headerlink" href="#confval-intersphinx_cache_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum number of days to cache remote inventories.  The default is
+<code class="docutils literal notranslate"><span class="pre">5</span></code>, meaning five days.  Set this to a negative value to cache inventories
+for unlimited time.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-intersphinx_timeout">
+<span class="sig-name descname"><span class="pre">intersphinx_timeout</span></span><a class="headerlink" href="#confval-intersphinx_timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of seconds for timeout.  The default is <code class="docutils literal notranslate"><span class="pre">None</span></code>, meaning do not
+timeout.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>timeout is not a time limit on the entire response download; rather, an
+exception is raised if the server has not issued a response for timeout
+seconds.</p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-intersphinx_disabled_reftypes">
+<span class="sig-name descname"><span class="pre">intersphinx_disabled_reftypes</span></span><a class="headerlink" href="#confval-intersphinx_disabled_reftypes" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 4.3.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 5.0: </span>Changed default value from an empty list to <code class="docutils literal notranslate"><span class="pre">['std:doc']</span></code>.</p>
+</div>
+<p>A list of strings being either:</p>
+<ul class="simple">
+<li><p>the name of a specific reference type in a domain,
+e.g., <code class="docutils literal notranslate"><span class="pre">std:doc</span></code>, <code class="docutils literal notranslate"><span class="pre">py:func</span></code>, or <code class="docutils literal notranslate"><span class="pre">cpp:class</span></code>,</p></li>
+<li><p>the name of a domain, and a wildcard, e.g.,
+<code class="docutils literal notranslate"><span class="pre">std:*</span></code>, <code class="docutils literal notranslate"><span class="pre">py:*</span></code>, or <code class="docutils literal notranslate"><span class="pre">cpp:*</span></code>, or</p></li>
+<li><p>simply a wildcard <code class="docutils literal notranslate"><span class="pre">*</span></code>.</p></li>
+</ul>
+<p>The default value is <code class="docutils literal notranslate"><span class="pre">['std:doc']</span></code>.</p>
+<p>When a non-<a class="reference internal" href="#role-external" title="external role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">external</span></code></a> cross-reference is being resolved by
+intersphinx, skip resolution if it matches one of the specifications in this
+list.</p>
+<p>For example, with <code class="docutils literal notranslate"><span class="pre">intersphinx_disabled_reftypes</span> <span class="pre">=</span> <span class="pre">['std:doc']</span></code>
+a cross-reference <code class="docutils literal notranslate"><span class="pre">:doc:`installation`</span></code> will not be attempted to be
+resolved by intersphinx, but <code class="docutils literal notranslate"><span class="pre">:external+otherbook:doc:`installation`</span></code> will
+be attempted to be resolved in the inventory named <code class="docutils literal notranslate"><span class="pre">otherbook</span></code> in
+<a class="reference internal" href="#confval-intersphinx_mapping"><code class="xref std std-confval docutils literal notranslate"><span class="pre">intersphinx_mapping</span></code></a>.
+At the same time, all cross-references generated in, e.g., Python,
+declarations will still be attempted to be resolved by intersphinx.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">*</span></code> is in the list of domains, then no non-<a class="reference internal" href="#role-external" title="external role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">external</span></code></a>
+references will be resolved by intersphinx.</p>
+</dd></dl>
+
+</section>
+<section id="explicitly-reference-external-objects">
+<h2>Explicitly Reference External Objects<a class="headerlink" href="#explicitly-reference-external-objects" title="Permalink to this heading">¶</a></h2>
+<p>The Intersphinx extension provides the following role.</p>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-external">
+<span class="sig-name descname"><span class="pre">:external:</span></span><a class="headerlink" href="#role-external" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 4.4.</span></p>
+</div>
+<p>Use Intersphinx to perform lookup only in external projects, and not the
+current project. Intersphinx still needs to know the type of object you
+would like to find, so the general form of this role is to write the
+cross-refererence as if the object is in the current project, but then prefix
+it with <code class="docutils literal notranslate"><span class="pre">:external</span></code>.
+The two forms are then</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">:external:domain:reftype:`target`</span></code>,
+e.g., <code class="docutils literal notranslate"><span class="pre">:external:py:class:`zipfile.ZipFile`</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">:external:reftype:`target`</span></code>,
+e.g., <code class="docutils literal notranslate"><span class="pre">:external:doc:`installation`</span></code>.</p></li>
+</ul>
+<p>If you would like to constrain the lookup to a specific external project,
+then the key of the project, as specified in <a class="reference internal" href="#confval-intersphinx_mapping"><code class="xref std std-confval docutils literal notranslate"><span class="pre">intersphinx_mapping</span></code></a>,
+is added as well to get the two forms</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">:external+invname:domain:reftype:`target`</span></code>,
+e.g., <code class="docutils literal notranslate"><span class="pre">:external+python:py:class:`zipfile.ZipFile`</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">:external+invname:reftype:`target`</span></code>,
+e.g., <code class="docutils literal notranslate"><span class="pre">:external+python:doc:`installation`</span></code>.</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="showing-all-links-of-an-intersphinx-mapping-file">
+<h2>Showing all links of an Intersphinx mapping file<a class="headerlink" href="#showing-all-links-of-an-intersphinx-mapping-file" title="Permalink to this heading">¶</a></h2>
+<p>To show all Intersphinx links and their targets of an Intersphinx mapping file,
+run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-msphinx.ext.intersphinx</span> <span class="pre">url-or-path</span></code>.  This is helpful when
+searching for the root cause of a broken Intersphinx link in a documentation
+project. The following example prints the Intersphinx mapping of the Python 3
+documentation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m sphinx.ext.intersphinx https://docs.python.org/3/objects.inv
+</pre></div>
+</div>
+</section>
+<section id="using-intersphinx-with-inventory-file-under-basic-authorization">
+<h2>Using Intersphinx with inventory file under Basic Authorization<a class="headerlink" href="#using-intersphinx-with-inventory-file-under-basic-authorization" title="Permalink to this heading">¶</a></h2>
+<p>Intersphinx supports Basic Authorization like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;python&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://user:password@docs.python.org/3&#39;</span><span class="p">,</span>
+                                  <span class="kc">None</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>The user and password will be stripped from the URL when generating the links.</p>
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../../copyright.html">Copyright</a> 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+</div>
+  </body>
+</html>

@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Developing autodoc extension for IntEnum &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/development/tutorials/autodoc_ext.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../search.html" />
+    <link rel="next" title="組態建置器" href="../builders.html" />
+    <link rel="prev" title="Developing a 「recipe」 extension" href="recipe.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../../index.html">
+  <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >Writing Sphinx Extensions</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Extension tutorials</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Developing autodoc extension for IntEnum</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">Developing autodoc extension for IntEnum</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#writing-the-extension">編寫擴充套件</a></li>
+<li><a class="reference internal" href="#using-the-extension">使用擴充套件</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">開始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">開始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial: Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使用者指南</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">使用 Sphinx</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Writing Sphinx Extensions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Developing extensions overview</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Extension tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="helloworld.html">Developing a 「Hello world」 extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="todo.html">Developing a 「TODO」 extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recipe.html">Developing a 「recipe」 extension</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Developing autodoc extension for IntEnum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../builders.html">組態建置器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../templating.html">Templating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML 主題開發</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx Extensions API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx 常見問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx 作者群</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/configuration.html">組態</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/extensions/index.html">擴充功能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="developing-autodoc-extension-for-intenum">
+<span id="autodoc-ext-tutorial"></span><h1>Developing autodoc extension for IntEnum<a class="headerlink" href="#developing-autodoc-extension-for-intenum" title="本標頭的永久連結">¶</a></h1>
+<p>The objective of this tutorial is to create an extension that adds
+support for new type for autodoc. This autodoc extension will format
+the <code class="docutils literal notranslate"><span class="pre">IntEnum</span></code> class from Python standard library. (module <code class="docutils literal notranslate"><span class="pre">enum</span></code>)</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="本標頭的永久連結">¶</a></h2>
+<p>We want the extension that will create auto-documentation for IntEnum.
+<code class="docutils literal notranslate"><span class="pre">IntEnum</span></code> is the integer enum class from standard library <code class="docutils literal notranslate"><span class="pre">enum</span></code> module.</p>
+<p>Currently this class has no special auto documentation behavior.</p>
+<p>We want to add following to autodoc:</p>
+<ul class="simple">
+<li><p>A new <code class="docutils literal notranslate"><span class="pre">autointenum</span></code> directive that will document the <code class="docutils literal notranslate"><span class="pre">IntEnum</span></code> class.</p></li>
+<li><p>The generated documentation will have all the enum possible values
+with names.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">autointenum</span></code> directive will have an option <code class="docutils literal notranslate"><span class="pre">:hex:</span></code> which will
+cause the integers be printed in hexadecimal form.</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="本標頭的永久連結">¶</a></h2>
+<p>We need the same setup as in <a class="reference internal" href="todo.html"><span class="doc">the previous extensions</span></a>. This time,
+we will be putting out extension in a file called <code class="file docutils literal notranslate"><span class="pre">autodoc_intenum.py</span></code>.
+The <code class="file docutils literal notranslate"><span class="pre">my_enums.py</span></code> will contain the sample enums we will document.</p>
+<p>Here is an example of the folder structure you might obtain:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>└── source
+    ├── _ext
+    │   └── autodoc_intenum.py
+    ├── conf.py
+    ├── index.rst
+    └── my_enums.py
+</pre></div>
+</div>
+</section>
+<section id="writing-the-extension">
+<h2>編寫擴充套件<a class="headerlink" href="#writing-the-extension" title="本標頭的永久連結">¶</a></h2>
+<p>Start with <code class="docutils literal notranslate"><span class="pre">setup</span></code> function for the extension.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">2</span>    <span class="n">app</span><span class="o">.</span><span class="n">setup_extension</span><span class="p">(</span><span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">)</span>  <span class="c1"># Require autodoc extension</span>
+<span class="linenos">3</span>    <span class="n">app</span><span class="o">.</span><span class="n">add_autodocumenter</span><span class="p">(</span><span class="n">IntEnumDocumenter</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../../extdev/appapi.html#sphinx.application.Sphinx.setup_extension" title="sphinx.application.Sphinx.setup_extension"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup_extension()</span></code></a> method will pull the
+autodoc extension because our new extension depends on autodoc.
+<a class="reference internal" href="../../extdev/appapi.html#sphinx.application.Sphinx.add_autodocumenter" title="sphinx.application.Sphinx.add_autodocumenter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_autodocumenter()</span></code></a> is the method that
+registers our new auto documenter class.</p>
+<p>We want to import certain objects from the autodoc extension:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">IntEnum</span>
+<span class="linenos">4</span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span><span class="kn">from</span><span class="w"> </span><span class="nn">docutils.statemachine</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringList</span>
+<span class="linenos">7</span>
+</pre></div>
+</div>
+<p>There are several different documenter classes such as <code class="docutils literal notranslate"><span class="pre">MethodDocumenter</span></code>
+or <code class="docutils literal notranslate"><span class="pre">AttributeDocumenter</span></code> available in the autodoc extension but
+our new class is the subclass of <code class="docutils literal notranslate"><span class="pre">ClassDocumenter</span></code> which a
+documenter class used by autodoc to document classes.</p>
+<p>This is the definition of our new the auto-documenter class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">IntEnumDocumenter</span><span class="p">(</span><span class="n">ClassDocumenter</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="n">objtype</span> <span class="o">=</span> <span class="s1">&#39;intenum&#39;</span>
+<span class="linenos"> 3</span>    <span class="n">directivetype</span> <span class="o">=</span> <span class="n">ClassDocumenter</span><span class="o">.</span><span class="n">objtype</span>
+<span class="linenos"> 4</span>    <span class="n">priority</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">ClassDocumenter</span><span class="o">.</span><span class="n">priority</span>
+<span class="linenos"> 5</span>    <span class="n">option_spec</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">ClassDocumenter</span><span class="o">.</span><span class="n">option_spec</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="n">option_spec</span><span class="p">[</span><span class="s1">&#39;hex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bool_option</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="nd">@classmethod</span>
+<span class="linenos"> 9</span>    <span class="k">def</span><span class="w"> </span><span class="nf">can_document_member</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span>
+<span class="linenos">10</span>                            <span class="n">member</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">membername</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="linenos">11</span>                            <span class="n">isattr</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="linenos">12</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">13</span>            <span class="k">return</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">member</span><span class="p">,</span> <span class="n">IntEnum</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="linenos">15</span>            <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>    <span class="k">def</span><span class="w"> </span><span class="nf">add_directive_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sig</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">18</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_directive_header</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="bp">self</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="s1">&#39;   :final:&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sourcename</span><span class="p">())</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>    <span class="k">def</span><span class="w"> </span><span class="nf">add_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<span class="linenos">22</span>                    <span class="n">more_content</span><span class="p">:</span> <span class="n">StringList</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+<span class="linenos">23</span>                    <span class="n">no_docstring</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="linenos">24</span>                    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_content</span><span class="p">(</span><span class="n">more_content</span><span class="p">,</span> <span class="n">no_docstring</span><span class="p">)</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span>        <span class="n">source_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sourcename</span><span class="p">()</span>
+<span class="linenos">29</span>        <span class="n">enum_object</span><span class="p">:</span> <span class="n">IntEnum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">object</span>
+<span class="linenos">30</span>        <span class="n">use_hex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">hex</span>
+<span class="linenos">31</span>        <span class="bp">self</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">source_name</span><span class="p">)</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span>        <span class="k">for</span> <span class="n">the_member_name</span><span class="p">,</span> <span class="n">enum_member</span> <span class="ow">in</span> <span class="n">enum_object</span><span class="o">.</span><span class="n">__members__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="linenos">34</span>            <span class="n">the_member_value</span> <span class="o">=</span> <span class="n">enum_member</span><span class="o">.</span><span class="n">value</span>
+<span class="linenos">35</span>            <span class="k">if</span> <span class="n">use_hex</span><span class="p">:</span>
+<span class="linenos">36</span>                <span class="n">the_member_value</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="n">the_member_value</span><span class="p">)</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span>            <span class="bp">self</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span>
+<span class="linenos">39</span>                <span class="sa">f</span><span class="s2">&quot;**</span><span class="si">{</span><span class="n">the_member_name</span><span class="si">}</span><span class="s2">**: </span><span class="si">{</span><span class="n">the_member_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">source_name</span><span class="p">)</span>
+<span class="linenos">40</span>            <span class="bp">self</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">source_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Important attributes of the new class:</p>
+<dl class="simple">
+<dt><strong>objtype</strong></dt><dd><p>This attribute determines the <code class="docutils literal notranslate"><span class="pre">auto</span></code> directive name. In
+this case the auto directive will be <code class="docutils literal notranslate"><span class="pre">autointenum</span></code>.</p>
+</dd>
+<dt><strong>directivetype</strong></dt><dd><p>This attribute sets the generated directive name. In
+this example the generated directive will be <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">:py:class::</span></code>.</p>
+</dd>
+<dt><strong>priority</strong></dt><dd><p>the larger the number the higher is the priority. We want our
+documenter be higher priority than the parent.</p>
+</dd>
+<dt><strong>option_spec</strong></dt><dd><p>option specifications. We copy the parent class options and
+add a new option <em>hex</em>.</p>
+</dd>
+</dl>
+<p>Overridden members:</p>
+<dl class="simple">
+<dt><strong>can_document_member</strong></dt><dd><p>This member is important to override. It should
+return <em>True</em> when the passed object can be documented by this class.</p>
+</dd>
+<dt><strong>add_directive_header</strong></dt><dd><p>This method generates the directive header. We add
+<strong>:final:</strong> directive option. Remember to call <strong>super</strong> or no directive
+will be generated.</p>
+</dd>
+<dt><strong>add_content</strong></dt><dd><p>This method generates the body of the class documentation.
+After calling the super method we generate lines for enum description.</p>
+</dd>
+</dl>
+</section>
+<section id="using-the-extension">
+<h2>使用擴充套件<a class="headerlink" href="#using-the-extension" title="本標頭的永久連結">¶</a></h2>
+<p>You can now use the new autodoc directive to document any <code class="docutils literal notranslate"><span class="pre">IntEnum</span></code>.</p>
+<p>For example, you have the following <code class="docutils literal notranslate"><span class="pre">IntEnum</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">my_enums.py</span><a class="headerlink" href="#id1" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Colors</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Colors enumerator&quot;&quot;&quot;</span>
+    <span class="n">NONE</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">RED</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">GREEN</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">BLUE</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<p>This will be the documentation file with auto-documentation directive:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">index.rst</span><a class="headerlink" href="#id2" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">autointenum</span><span class="p">::</span> my_enums.Colors
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../../copyright.html">版權所有</a> 2007-2026, the Sphinx developers。
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1 建立。
+</div>
+  </body>
+</html>

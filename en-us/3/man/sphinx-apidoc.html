@@ -1,0 +1,389 @@
+
+<!DOCTYPE html>
+
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sphinx-apidoc &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/man/sphinx-apidoc.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sphinx-autogen" href="sphinx-autogen.html" />
+    <link rel="prev" title="sphinx-build" href="sphinx-build.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sphinx-autogen.html" title="sphinx-autogen"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sphinx-build.html" title="sphinx-build"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Man Pages</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sphinx-apidoc</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">sphinx-apidoc</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#environment">Environment</a></li>
+<li><a class="reference internal" href="#see-also">See also</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="sphinx-build.html"
+                        title="previous chapter">sphinx-build</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="sphinx-autogen.html"
+                        title="next chapter">sphinx-autogen</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/man/sphinx-apidoc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sphinx-apidoc">
+<h1>sphinx-apidoc<a class="headerlink" href="#sphinx-apidoc" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p><strong>sphinx-apidoc</strong> [<em>OPTIONS</em>] -o &lt;<em>OUTPUT_PATH</em>&gt; &lt;<em>MODULE_PATH</em>&gt;
+[<em>EXCLUDE_PATTERN</em> …]</p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><strong class="program">sphinx-apidoc</strong> is a tool for automatic generation of Sphinx sources
+that, using the <code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autodoc</span></code> extension, document a whole package in the
+style of other automatic API documentation tools.</p>
+<p><em>MODULE_PATH</em> is the path to a Python package to document, and <em>OUTPUT_PATH</em> is
+the directory where the generated sources are placed. Any <em>EXCLUDE_PATTERN</em>s
+given are <a class="reference external" href="https://docs.python.org/3/library/fnmatch.html">fnmatch-style</a> file and/or directory patterns that will be excluded
+from generation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> generates source files that use <a class="reference internal" href="../usage/extensions/autodoc.html#module-sphinx.ext.autodoc" title="sphinx.ext.autodoc: Include documentation from docstrings."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code></a>
+to document all found modules.  If any modules have side effects on import,
+these will be executed by <code class="docutils literal notranslate"><span class="pre">autodoc</span></code> when <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> is run.</p>
+<p>If you document scripts (as opposed to library modules), make sure their main
+routine is protected by a <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> condition.</p>
+</div>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-o">
+<code class="sig-name descname"><span class="pre">-o</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;OUTPUT_PATH&gt;</span></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Directory to place the output files. If it does not exist, it is created.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-q">
+<code class="sig-name descname"><span class="pre">-q</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do not output anything on standard output, only write warnings and errors to
+standard error.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-f">
+<span id="cmdoption-sphinx-apidoc-force"></span><code class="sig-name descname"><span class="pre">-f</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--force</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force overwriting of any existing generated files.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-l">
+<span id="cmdoption-sphinx-apidoc-follow-links"></span><code class="sig-name descname"><span class="pre">-l</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--follow-links</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>Follow symbolic links.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-n">
+<span id="cmdoption-sphinx-apidoc-dry-run"></span><code class="sig-name descname"><span class="pre">-n</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--dry-run</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do not create any files.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-s">
+<code class="sig-name descname"><span class="pre">-s</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;suffix&gt;</span></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suffix for the source files generated. Defaults to <code class="docutils literal notranslate"><span class="pre">rst</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-d">
+<code class="sig-name descname"><span class="pre">-d</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;MAXDEPTH&gt;</span></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum depth for the generated table of contents file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-tocfile">
+<code class="sig-name descname"><span class="pre">--tocfile</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-tocfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filename for a table of contents file. Defaults to <code class="docutils literal notranslate"><span class="pre">modules</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-T">
+<span id="cmdoption-sphinx-apidoc-t"></span><span id="cmdoption-sphinx-apidoc-no-toc"></span><code class="sig-name descname"><span class="pre">-T</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--no-toc</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do not create a table of contents file. Ignored when <a class="reference internal" href="#cmdoption-sphinx-apidoc-F"><code class="xref std std-option docutils literal notranslate"><span class="pre">--full</span></code></a> is
+provided.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-F">
+<span id="cmdoption-sphinx-apidoc-full"></span><code class="sig-name descname"><span class="pre">-F</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--full</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-F" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a full Sphinx project (<code class="docutils literal notranslate"><span class="pre">conf.py</span></code>, <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> etc.) using
+the same mechanism as <strong class="program">sphinx-quickstart</strong>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-e">
+<span id="cmdoption-sphinx-apidoc-separate"></span><code class="sig-name descname"><span class="pre">-e</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--separate</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put documentation for each module on its own page.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.2.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-E">
+<span id="cmdoption-sphinx-apidoc-no-headings"></span><code class="sig-name descname"><span class="pre">-E</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--no-headings</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-E" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do not create headings for the modules/packages. This is useful, for
+example, when docstrings already contain headings.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-P">
+<span id="cmdoption-sphinx-apidoc-p"></span><span id="cmdoption-sphinx-apidoc-private"></span><code class="sig-name descname"><span class="pre">-P</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--private</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-P" title="Permalink to this definition">¶</a></dt>
+<dd><p>Include “_private” modules.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.2.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-implicit-namespaces">
+<code class="sig-name descname"><span class="pre">--implicit-namespaces</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-implicit-namespaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>By default sphinx-apidoc processes sys.path searching for modules only.
+Python 3.3 introduced <span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0420"><strong>PEP 420</strong></a> implicit namespaces that allow module path
+structures such as <code class="docutils literal notranslate"><span class="pre">foo/bar/module.py</span></code> or <code class="docutils literal notranslate"><span class="pre">foo/bar/baz/__init__.py</span></code>
+(notice that <code class="docutils literal notranslate"><span class="pre">bar</span></code> and <code class="docutils literal notranslate"><span class="pre">foo</span></code> are namespaces, not modules).</p>
+<p>Interpret paths recursively according to PEP-0420.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-M">
+<span id="cmdoption-sphinx-apidoc-m"></span><span id="cmdoption-sphinx-apidoc-module-first"></span><code class="sig-name descname"><span class="pre">-M</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--module-first</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-M" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put module documentation before submodule documentation.</p>
+</dd></dl>
+
+<p>These options are used when <a class="reference internal" href="#cmdoption-sphinx-apidoc-F"><code class="xref std std-option docutils literal notranslate"><span class="pre">--full</span></code></a> is specified:</p>
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-a">
+<code class="sig-name descname"><span class="pre">-a</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append module_path to sys.path.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-H">
+<span id="cmdoption-sphinx-apidoc-h"></span><code class="sig-name descname"><span class="pre">-H</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;project&gt;</span></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-H" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the project name to put in generated files (see <a class="reference internal" href="../usage/configuration.html#confval-project"><code class="xref std std-confval docutils literal notranslate"><span class="pre">project</span></code></a>).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-A">
+<code class="sig-name descname"><span class="pre">-A</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;author&gt;</span></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-A" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the author name(s) to put in generated files (see
+<a class="reference internal" href="../usage/configuration.html#confval-copyright"><code class="xref std std-confval docutils literal notranslate"><span class="pre">copyright</span></code></a>).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-V">
+<span id="cmdoption-sphinx-apidoc-v"></span><code class="sig-name descname"><span class="pre">-V</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;version&gt;</span></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-V" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the project version to put in generated files (see <a class="reference internal" href="../usage/configuration.html#confval-version"><code class="xref std std-confval docutils literal notranslate"><span class="pre">version</span></code></a>).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-R">
+<span id="cmdoption-sphinx-apidoc-r"></span><code class="sig-name descname"><span class="pre">-R</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;release&gt;</span></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-R" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the project release to put in generated files (see <a class="reference internal" href="../usage/configuration.html#confval-release"><code class="xref std std-confval docutils literal notranslate"><span class="pre">release</span></code></a>).</p>
+</dd></dl>
+
+<p class="rubric">Project templating</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.2: </span>Project templating options for sphinx-apidoc</p>
+</div>
+<dl class="std option">
+<dt id="cmdoption-sphinx-apidoc-0">
+<span id="cmdoption-sphinx-apidoc-templatedir"></span><code class="sig-name descname"><span class="pre">-t</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--templatedir</span></code><code class="sig-prename descclassname"><span class="pre">=TEMPLATEDIR</span></code><a class="headerlink" href="#cmdoption-sphinx-apidoc-0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Template directory for template files.  You can modify the templates of
+sphinx project files generated by apidoc.  Following Jinja2 template
+files are allowed:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">module.rst_t</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">package.rst_t</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">toc.rst_t</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">master_doc.rst_t</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conf.py_t</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Makefile_t</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Makefile.new_t</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make.bat_t</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make.bat.new_t</span></code></p></li>
+</ul>
+<p>In detail, please refer the system template files Sphinx provides.
+(<code class="docutils literal notranslate"><span class="pre">sphinx/templates/apidoc</span></code> and <code class="docutils literal notranslate"><span class="pre">sphinx/templates/quickstart</span></code>)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="environment">
+<h2>Environment<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h2>
+<dl class="std envvar">
+<dt id="envvar-SPHINX_APIDOC_OPTIONS">
+<code class="sig-name descname"><span class="pre">SPHINX_APIDOC_OPTIONS</span></code><a class="headerlink" href="#envvar-SPHINX_APIDOC_OPTIONS" title="Permalink to this definition">¶</a></dt>
+<dd><p>A comma-separated list of option to append to generated <code class="docutils literal notranslate"><span class="pre">automodule</span></code>
+directives. Defaults to <code class="docutils literal notranslate"><span class="pre">members,undoc-members,show-inheritance</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><em class="manpage">sphinx-build(1)</em>, <em class="manpage">sphinx-autogen(1)</em></p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sphinx-autogen.html" title="sphinx-autogen"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sphinx-build.html" title="sphinx-build"
+             >previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Man Pages</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sphinx-apidoc</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2021, Georg Brandl and the Sphinx team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+  </body>
+</html>

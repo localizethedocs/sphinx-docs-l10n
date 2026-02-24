@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Appendix: Deploying a Sphinx project online &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../_static/documentation_options.js?v=cafd1c67"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=beaddf03"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/tutorial/deploying.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Where to go from here" href="end.html" />
+    <link rel="prev" title="Automatic documentation generation from code" href="automatic-doc-generation.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../index.html">
+      <img src="../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>导航</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Build your first project</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Appendix: Deploying a Sphinx project online</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Appendix: Deploying a Sphinx project online</a><ul>
+<li><a class="reference internal" href="#sphinx-friendly-deployment-options">Sphinx-friendly deployment options</a></li>
+<li><a class="reference internal" href="#embracing-the-docs-as-code-philosophy">Embracing the &quot;Docs as Code&quot; philosophy</a></li>
+<li><a class="reference internal" href="#publishing-your-documentation-sources">Publishing your documentation sources</a><ul>
+<li><a class="reference internal" href="#id1">GitHub</a></li>
+<li><a class="reference internal" href="#id2">GitLab</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#publishing-your-html-documentation">Publishing your HTML documentation</a><ul>
+<li><a class="reference internal" href="#id4">Read the Docs</a></li>
+<li><a class="reference internal" href="#id5">GitHub Pages</a></li>
+<li><a class="reference internal" href="#id6">GitLab Pages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Build your first project</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-steps.html">First steps to document your project using Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="more-sphinx-customization.html">More Sphinx customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="narrative-documentation.html">Narrative documentation in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="describing-code.html">Describing code in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automatic-doc-generation.html">Automatic documentation generation from code</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Appendix: Deploying a Sphinx project online</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">Where to go from here</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes/index.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="appendix-deploying-a-sphinx-project-online">
+<h1>Appendix: Deploying a Sphinx project online<a class="headerlink" href="#appendix-deploying-a-sphinx-project-online" title="Link to this heading">¶</a></h1>
+<p>When you are ready to show your documentation project to the world, there are
+many options available to do so. Since the HTML generated by Sphinx is static,
+you can decouple the process of building your HTML documentation from hosting
+such files in the platform of your choice. You will not need a sophisticated
+server running Python: virtually every web hosting service will suffice.</p>
+<p>Therefore, the challenge is less how or where to serve the static HTML, but
+rather how to pick a workflow that automatically updates the deployed
+documentation every time there is a change in the source files.</p>
+<p>The following sections describe some of the available options to deploy
+your online documentation, and give some background information. If you want
+to go directly to the practical part, you can skip to <a class="reference internal" href="#publishing-sources"><span class="std std-ref">Publishing your documentation sources</span></a>.</p>
+<section id="sphinx-friendly-deployment-options">
+<h2>Sphinx-friendly deployment options<a class="headerlink" href="#sphinx-friendly-deployment-options" title="Link to this heading">¶</a></h2>
+<p>There are several possible options you have to host your Sphinx documentation.
+Some of them are:</p>
+<dl class="simple">
+<dt><strong>Read the Docs</strong></dt><dd><p><a class="reference external" href="https://readthedocs.org/">Read the Docs</a> is an online service specialized in hosting technical
+documentation written in Sphinx, as well as MkDocs. They have a
+number of extra features, such as versioned documentation, traffic and
+search analytics, custom domains, user-defined redirects, and more.</p>
+</dd>
+<dt><strong>GitHub Pages</strong></dt><dd><p><a class="reference external" href="https://pages.github.com/">GitHub Pages</a> is a simple static web hosting tightly integrated with
+<a class="reference external" href="https://github.com/">GitHub</a>: static HTML is served from one of the branches of a project,
+and usually sources are stored in another branch so that the output
+can be updated every time the sources change (for example using <a class="reference external" href="https://github.com/features/actions">GitHub
+Actions</a>). It is free to use and supports custom domains.</p>
+</dd>
+<dt><strong>GitLab Pages</strong></dt><dd><p><a class="reference external" href="https://about.gitlab.com/stages-devops-lifecycle/pages/">GitLab Pages</a> is a similar concept to GitHub Pages, integrated with
+<a class="reference external" href="https://gitlab.com/">GitLab</a> and usually automated with <a class="reference external" href="https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/">GitLab CI</a> instead.</p>
+</dd>
+<dt><strong>Netlify</strong></dt><dd><p><a class="reference external" href="https://www.netlify.com/">Netlify</a> is a sophisticated hosting for static sites enhanced by
+client-side web technologies like JavaScript (so-called <a class="reference external" href="https://jamstack.org/">&quot;Jamstack&quot;</a>).
+They offer support for headless content management systems and
+serverless computing.</p>
+</dd>
+<dt><strong>Your own server</strong></dt><dd><p>You can always use your own web server to host Sphinx HTML documentation.
+It is the option that gives more flexibility, but also more complexity.</p>
+</dd>
+</dl>
+<p>All these options have zero cost, with the option of paying for extra features.</p>
+</section>
+<section id="embracing-the-docs-as-code-philosophy">
+<h2>Embracing the &quot;Docs as Code&quot; philosophy<a class="headerlink" href="#embracing-the-docs-as-code-philosophy" title="Link to this heading">¶</a></h2>
+<p>The free offerings of most of the options listed above require your
+documentation sources to be publicly available. Moreover, these services
+expect you to use a <a class="reference external" href="https://en.wikipedia.org/wiki/Version_control">Version Control System</a>, a technology that tracks the
+evolution of a collection of files as a series of snapshots (&quot;commits&quot;).
+The practice of writing documentation in plain text files with the same tools
+as the ones used for software development is commonly known as <a class="reference external" href="https://www.writethedocs.org/guide/docs-as-code/">&quot;Docs as Code&quot;</a>.</p>
+<p>The most popular Version Control System nowadays is <a class="reference external" href="https://git-scm.com/">Git</a>, a free and open
+source tool that is the backbone of services like GitHub and GitLab.
+Since both Read the Docs and Netlify have integrations with GitHub and GitLab,
+and both GitHub and GitLab have an integrated Pages product, the most effective
+way of automatically build your documentation online is to upload your sources
+to either of these Git hosting services.</p>
+</section>
+<section id="publishing-your-documentation-sources">
+<span id="publishing-sources"></span><h2>Publishing your documentation sources<a class="headerlink" href="#publishing-your-documentation-sources" title="Link to this heading">¶</a></h2>
+<section id="id1">
+<h3>GitHub<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>The quickest way to upload an existing project to GitHub is to:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/signup">Sign up for a GitHub account</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/new">Create a new repository</a>.</p></li>
+<li><p>Open <a class="reference external" href="https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository">the &quot;Upload files&quot; page</a> of your new repository.</p></li>
+<li><p>Select the files on your operating system file browser (in your case
+<code class="docutils literal notranslate"><span class="pre">README.rst</span></code>, <code class="docutils literal notranslate"><span class="pre">lumache.py</span></code>, the makefiles under the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory,
+and everything under <code class="docutils literal notranslate"><span class="pre">docs/source</span></code>) and drag them to the GitHub interface
+to upload them all.</p></li>
+<li><p>Click on the <span class="guilabel">Commit changes</span> button.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Make sure you don't upload the <code class="docutils literal notranslate"><span class="pre">docs/build</span></code> directory, as it contains the
+output generated by Sphinx and it will change every time you change the
+sources, complicating your workflow.</p>
+</div>
+<p>These steps do not require access to the command line or installing any
+additional software. To learn more, read <a class="reference external" href="https://docs.github.com/en/get-started/quickstart">this quickstart tutorial</a> or
+consult the <a class="reference external" href="https://docs.github.com/en/get-started">official GitHub documentation</a></p>
+</section>
+<section id="id2">
+<h3>GitLab<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<p>Similarly to GitHub, the fastest way to upload your project to GitLab is
+using the web interface:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://gitlab.com/users/sign_up">Sign up for a GitLab account</a>.</p></li>
+<li><p><a class="reference external" href="https://gitlab.com/projects/new">Create a new blank project</a>.</p></li>
+<li><p>Upload the project files (in your case <code class="docutils literal notranslate"><span class="pre">README.rst</span></code>, <code class="docutils literal notranslate"><span class="pre">lumache.py</span></code>, the
+makefiles under the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory, and everything under
+<code class="docutils literal notranslate"><span class="pre">docs/source</span></code>) one by one using the <span class="guilabel">Upload File</span> button <a class="footnote-reference brackets" href="#f1" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></li>
+</ol>
+<p>Again, these steps do not require additional software on your computer. To
+learn more, you can:</p>
+<ul class="simple">
+<li><p>Follow <a class="reference external" href="https://docs.gitlab.com/ee/gitlab-basics/start-using-git.html">this tutorial</a> to install Git on your machine.</p></li>
+<li><p>Browse the <a class="reference external" href="https://docs.gitlab.com/ee/user/index.html">GitLab User documentation</a> to understand the possibilities of
+the platform.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Make sure you don't upload the <code class="docutils literal notranslate"><span class="pre">docs/build</span></code> directory, as it contains the
+output generated by Sphinx and it will change every time you change the
+sources, complicating your workflow.</p>
+</div>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
+<p>At the time of writing, <a class="reference external" href="https://gitlab.com/gitlab-org/gitlab/-/issues/228490">uploading whole directories to GitLab using
+only the web
+interface</a> is
+not yet implemented.</p>
+</aside>
+</aside>
+</section>
+</section>
+<section id="publishing-your-html-documentation">
+<h2>Publishing your HTML documentation<a class="headerlink" href="#publishing-your-html-documentation" title="Link to this heading">¶</a></h2>
+<section id="id4">
+<h3>Read the Docs<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<p><a class="reference external" href="https://readthedocs.org/">Read the Docs</a> offers integration with both GitHub and GitLab. The quickest
+way of getting started is to follow <a class="reference external" href="https://docs.readthedocs.com/platform/stable/tutorial/index.html" title="（在 Read the Docs user documentation v15.14.1）"><span class="xref std std-doc">the RTD
+tutorial</span></a>, which is loosely based on this one.
+You can publish your sources on GitHub as explained <a class="reference internal" href="#publishing-sources"><span class="std std-ref">in the previous
+section</span></a>, then skip directly to
+<a class="reference external" href="https://docs.readthedocs.com/platform/stable/tutorial/index.html#creating-a-read-the-docs-account" title="（在 Read the Docs user documentation v15.14.1）"><span>Creating a Read the Docs account</span></a>.
+If you choose GitLab instead, the process is similar.</p>
+</section>
+<section id="id5">
+<h3>GitHub Pages<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<p><a class="reference external" href="https://pages.github.com/">GitHub Pages</a> requires you to <a class="reference internal" href="#publishing-sources"><span class="std std-ref">publish your
+sources</span></a> on <a class="reference external" href="https://github.com/">GitHub</a>. After that, you will need an
+automated process that performs the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> step every time the sources
+change. That can be achieved using <a class="reference external" href="https://github.com/features/actions">GitHub Actions</a>.</p>
+<p>After you have published your sources on GitHub, create a file named
+<code class="docutils literal notranslate"><span class="pre">.github/workflows/sphinx.yml</span></code> in your repository with the following
+contents:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">.github/workflows/</span><a class="headerlink" href="#id7" title="Link to this code">¶</a></div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Sphinx:</span><span class="nv"> </span><span class="s">Render</span><span class="nv"> </span><span class="s">docs&quot;</span>
+
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">persist-credentials</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build HTML</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ammaraskar/sphinx-action@master</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upload artifacts</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v4</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">html-docs</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docs/build/html/</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span>
+<span class="w">      </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == &#39;refs/heads/main&#39;</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+<span class="w">        </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docs/build/html</span>
+</pre></div>
+</div>
+</div>
+<p>This contains a GitHub Actions workflow with a single job of four steps:</p>
+<ol class="arabic simple">
+<li><p>Checkout the code.</p></li>
+<li><p>Build the HTML documentation using Sphinx.</p></li>
+<li><p>Attach the HTML output the artifacts to the GitHub Actions job, for easier
+inspection.</p></li>
+<li><p>If the change happens on the default branch, take the contents of
+<code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> and push it to the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch.</p></li>
+</ol>
+<p>Next, you need to specify the dependencies for the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> step to be
+successful. For that, create a file <code class="docutils literal notranslate"><span class="pre">docs/requirements.txt</span></code> and add the
+following contents:</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">docs/requirements.txt</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">furo</span><span class="o">==</span><span class="mf">2021.11.16</span>
+</pre></div>
+</div>
+</div>
+<p>And finally, you are ready to <a class="reference external" href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">enable GitHub Pages on your repository</a>. For
+that, go to <span class="guilabel">Settings</span>, then <span class="guilabel">Pages</span> on the left sidebar,
+select the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch in the &quot;Source&quot; dropdown menu, and click
+<span class="guilabel">Save</span>. After a few minutes, you should be able to see your HTML at
+the designated URL.</p>
+</section>
+<section id="id6">
+<h3>GitLab Pages<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<p><a class="reference external" href="https://about.gitlab.com/stages-devops-lifecycle/pages/">GitLab Pages</a>, on the other hand, requires you to <a class="reference internal" href="#publishing-sources"><span class="std std-ref">publish your
+sources</span></a> on <a class="reference external" href="https://gitlab.com/">GitLab</a>. When you are ready, you can
+automate the process of running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> using <a class="reference external" href="https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/">GitLab CI</a>.</p>
+<p>After you have published your sources on GitLab, create a file named
+<code class="docutils literal notranslate"><span class="pre">.gitlab-ci.yml</span></code> in your repository with these contents:</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">.gitlab-ci.yml</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">stages</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy</span>
+
+<span class="nt">pages</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy</span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python:3.12-slim</span>
+<span class="w">  </span><span class="nt">before_script</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apt-get update &amp;&amp; apt-get install make --no-install-recommends -y</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python -m pip install sphinx furo</span>
+<span class="w">  </span><span class="nt">script</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cd docs &amp;&amp; make html</span>
+<span class="w">  </span><span class="nt">after_script</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mv docs/build/html/ ./public/</span>
+<span class="w">  </span><span class="nt">artifacts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">paths</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">public</span>
+<span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH</span>
+</pre></div>
+</div>
+</div>
+<p>This contains a GitLab CI workflow with one job of several steps:</p>
+<ol class="arabic simple">
+<li><p>Install the necessary dependencies.</p></li>
+<li><p>Build the HTML documentation using Sphinx.</p></li>
+<li><p>Move the output to a known artifacts location.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>You will need to <a class="reference external" href="https://about.gitlab.com/blog/2021/05/17/prevent-crypto-mining-abuse/#validating-an-account">validate your account</a> by entering a payment method
+(you will be charged a small amount that will then be reimbursed).</p>
+</div>
+<p>After that, if the pipeline is successful, you should be able to see your HTML
+at the designated URL.</p>
+</section>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="automatic-doc-generation.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Automatic documentation generation from code</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="end.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">Where to go from here</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版权所有 2007-2026, the Sphinx developers.
+  由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3创建。
+</div>
+  </body>
+</html>

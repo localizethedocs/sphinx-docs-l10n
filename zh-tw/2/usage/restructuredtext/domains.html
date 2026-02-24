@@ -1,0 +1,2039 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_TW">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>領域 &#8212; Sphinx 2.4.5 說明文件</title>
+    <link rel="stylesheet" href="../../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/restructuredtext/domains.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx 2.4.5 說明文件 中搜尋"
+          href="../../_static/opensearch.xml"/>
+
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../search.html" />
+    <link rel="next" title="Markdown" href="../markdown.html" />
+    <link rel="prev" title="欄位列表" href="field-lists.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../installation.html">Get it</a></li>
+    <li><a href="../../contents.html">Docs</a></li>
+    <li><a href="../../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../../index.html">
+      <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="../markdown.html" title="Markdown"
+             accesskey="N">下一頁</a> |</li>
+        <li class="right" >
+          <a href="field-lists.html" title="欄位列表"
+             accesskey="P">上一頁</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">reStructuredText</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">領域</a><ul>
+<li><a class="reference internal" href="#basic-markup">基礎標註</a><ul>
+<li><a class="reference internal" href="#cross-referencing-syntax">交叉參照語法</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-python-domain">Python 領域</a><ul>
+<li><a class="reference internal" href="#python-signatures">Python Signatures</a></li>
+<li><a class="reference internal" href="#info-field-lists">Info field lists</a></li>
+<li><a class="reference internal" href="#cross-referencing-python-objects">Cross-referencing Python objects</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-c-domain">C 語言領域</a><ul>
+<li><a class="reference internal" href="#cross-referencing-c-constructs">Cross-referencing C constructs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cpp-domain">C++ 領域</a><ul>
+<li><a class="reference internal" href="#directives-for-declaring-entities">Directives for Declaring Entities</a><ul>
+<li><a class="reference internal" href="#options">選項</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#anonymous-entities">Anonymous Entities</a></li>
+<li><a class="reference internal" href="#aliasing-declarations">Aliasing Declarations</a></li>
+<li><a class="reference internal" href="#constrained-templates">Constrained Templates</a><ul>
+<li><a class="reference internal" href="#placeholders">Placeholders</a></li>
+<li><a class="reference internal" href="#template-introductions">Template Introductions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inline-expressions-and-types">Inline Expressions and Types</a></li>
+<li><a class="reference internal" href="#namespacing">Namespacing</a></li>
+<li><a class="reference internal" href="#id3">Info field lists</a></li>
+<li><a class="reference internal" href="#cross-referencing">交叉參照</a><ul>
+<li><a class="reference internal" href="#declarations-without-template-parameters-and-template-arguments">Declarations without template parameters and template arguments</a></li>
+<li><a class="reference internal" href="#overloaded-member-functions">Overloaded (member) functions</a></li>
+<li><a class="reference internal" href="#templated-declarations">Templated declarations</a></li>
+<li><a class="reference internal" href="#full-template-specialisations">(Full) Template Specialisations</a></li>
+<li><a class="reference internal" href="#partial-template-specialisations">Partial Template Specialisations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration-variables">組態變數</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-standard-domain">標準領域</a></li>
+<li><a class="reference internal" href="#the-javascript-domain">JavaScript 領域</a></li>
+<li><a class="reference internal" href="#the-restructuredtext-domain">The reStructuredText domain</a></li>
+<li><a class="reference internal" href="#the-math-domain">The Math Domain</a></li>
+<li><a class="reference internal" href="#more-domains">More domains</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上個主題</h4>
+  <p class="topless"><a href="field-lists.html"
+                        title="上一章">欄位列表</a></p>
+  <h4>下個主題</h4>
+  <p class="topless"><a href="../markdown.html"
+                        title="下一章">Markdown</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本頁</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/usage/restructuredtext/domains.rst.txt"
+            rel="nofollow">顯示原始碼</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="搜" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="domains">
+<h1>領域<a class="headerlink" href="#domains" title="本標題的永久連結">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">1.0 版新加入.</span></p>
+</div>
+<p>Originally, Sphinx was conceived for a single project, the documentation of the
+Python language.  Shortly afterwards, it was made available for everyone as a
+documentation tool, but the documentation of Python modules remained deeply
+built in – the most fundamental directives, like <code class="docutils literal notranslate"><span class="pre">function</span></code>, were designed
+for Python objects.  Since Sphinx has become somewhat popular, interest
+developed in using it for many different purposes: C/C++ projects, JavaScript,
+or even reStructuredText markup (like in this documentation).</p>
+<p>While this was always possible, it is now much easier to easily support
+documentation of projects using different programming languages or even ones
+not supported by the main Sphinx distribution, by providing a <strong>domain</strong> for
+every such purpose.</p>
+<p>A domain is a collection of markup (reStructuredText <a class="reference internal" href="../../glossary.html#term-directive"><span class="xref std std-term">directive</span></a>s and
+<a class="reference internal" href="../../glossary.html#term-role"><span class="xref std std-term">role</span></a>s) to describe and link to <a class="reference internal" href="../../glossary.html#term-object"><span class="xref std std-term">object</span></a>s belonging together,
+e.g. elements of a programming language.  Directive and role names in a domain
+have names like <code class="docutils literal notranslate"><span class="pre">domain:name</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">py:function</span></code>.  Domains can also
+provide custom indices (like the Python Module Index).</p>
+<p>Having domains means that there are no naming problems when one set of
+documentation wants to refer to e.g. C++ and Python classes.  It also means
+that extensions that support the documentation of whole new languages are much
+easier to write.</p>
+<p>This section describes what the domains that are included with Sphinx provide.
+The domain API is documented as well, in the section <a class="reference internal" href="../../extdev/domainapi.html#domain-api"><span class="std std-ref">領域 API</span></a>.</p>
+<section id="basic-markup">
+<span id="basic-domain-markup"></span><h2>基礎標註<a class="headerlink" href="#basic-markup" title="本標題的永久連結">¶</a></h2>
+<p>Most domains provide a number of <em class="dfn">object description directives</em>, used to
+describe specific objects provided by modules.  Each directive requires one or
+more signatures to provide basic information about what is being described, and
+the content should be the description.  The basic version makes entries in the
+general index; if no index entry is desired, you can give the directive option
+flag <code class="docutils literal notranslate"><span class="pre">:noindex:</span></code>.  An example using a Python domain directive:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> spam(eggs)
+                 ham(eggs)
+
+   Spam or ham the foo.
+</pre></div>
+</div>
+<p>This describes the two Python functions <code class="docutils literal notranslate"><span class="pre">spam</span></code> and <code class="docutils literal notranslate"><span class="pre">ham</span></code>.  (Note that when
+signatures become too long, you can break them if you add a backslash to lines
+that are continued in the next line.  Example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> filterwarnings(action, message=&#39;&#39;, category=Warning, \
+                                module=&#39;&#39;, lineno=0, append=False)
+   <span class="nc">:noindex:</span>
+</pre></div>
+</div>
+<p>(This example also shows how to use the <code class="docutils literal notranslate"><span class="pre">:noindex:</span></code> flag.)</p>
+<p>The domains also provide roles that link back to these object descriptions.
+For example, to link to one of the functions described in the example above,
+you could say</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>The function <span class="na">:py:func:</span><span class="nv">`spam`</span> does a similar thing.
+</pre></div>
+</div>
+<p>As you can see, both directive and role names contain the domain name and the
+directive name.</p>
+<p class="rubric">Default Domain</p>
+<p>For documentation describing objects from solely one domain, authors will not
+have to state again its name at each directive, role, etc… after
+having specified a default. This can be done either via the config
+value <a class="reference internal" href="../configuration.html#confval-primary_domain"><code class="xref std std-confval docutils literal notranslate"><span class="pre">primary_domain</span></code></a> or via this directive:</p>
+<dl class="directive">
+<dt id="directive-default-domain">
+<code class="sig-name descname">.. default-domain::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-default-domain" title="本定義的永久連結">¶</a></dt>
+<dd><p>Select a new default domain.  While the <a class="reference internal" href="../configuration.html#confval-primary_domain"><code class="xref std std-confval docutils literal notranslate"><span class="pre">primary_domain</span></code></a> selects a
+global default, this only has an effect within the same file.</p>
+</dd></dl>
+
+<p>If no other default is selected, the Python domain (named <code class="docutils literal notranslate"><span class="pre">py</span></code>) is the
+default one, mostly for compatibility with documentation written for older
+versions of Sphinx.</p>
+<p>Directives and roles that belong to the default domain can be mentioned without
+giving the domain name, i.e.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">function</span><span class="p">::</span> pyfunc()
+
+   Describes a Python function.
+
+Reference to <span class="na">:func:</span><span class="nv">`pyfunc`</span>.
+</pre></div>
+</div>
+<section id="cross-referencing-syntax">
+<h3>交叉參照語法<a class="headerlink" href="#cross-referencing-syntax" title="本標題的永久連結">¶</a></h3>
+<p>For cross-reference roles provided by domains, the same facilities exist as for
+general cross-references.  See <a class="reference internal" href="roles.html#xref-syntax"><span class="std std-ref">交叉參照語法</span></a>.</p>
+<p>In short:</p>
+<ul class="simple">
+<li><p>You may supply an explicit title and reference target: <code class="docutils literal notranslate"><span class="pre">:role:`title</span>
+<span class="pre">&lt;target&gt;`</span></code> will refer to <em>target</em>, but the link text will be <em>title</em>.</p></li>
+<li><p>If you prefix the content with <code class="docutils literal notranslate"><span class="pre">!</span></code>, no reference/hyperlink will be created.</p></li>
+<li><p>If you prefix the content with <code class="docutils literal notranslate"><span class="pre">~</span></code>, the link text will only be the last
+component of the target.  For example, <code class="docutils literal notranslate"><span class="pre">:py:meth:`~Queue.Queue.get`</span></code> will
+refer to <code class="docutils literal notranslate"><span class="pre">Queue.Queue.get</span></code> but only display <code class="docutils literal notranslate"><span class="pre">get</span></code> as the link text.</p></li>
+</ul>
+</section>
+</section>
+<section id="the-python-domain">
+<h2>Python 領域<a class="headerlink" href="#the-python-domain" title="本標題的永久連結">¶</a></h2>
+<p>The Python domain (name <strong>py</strong>) provides the following directives for module
+declarations:</p>
+<dl class="directive">
+<dt id="directive-py:module">
+<code class="sig-name descname">.. py:module::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-py:module" title="本定義的永久連結">¶</a></dt>
+<dd><p>This directive marks the beginning of the description of a module (or package
+submodule, in which case the name should be fully qualified, including the
+package name).  It does not create content (like e.g. <a class="reference internal" href="#directive-py:class" title="py:class directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:class</span></code></a>
+does).</p>
+<p>This directive will also cause an entry in the global module index.</p>
+<p class="rubric">options</p>
+<dl class="directive:option">
+<dt id="directive:option-py:module-platform">
+<code class="sig-name descname">:platform:</code><em class="property"> platforms</em><em class="property"> (comma separated list)</em><a class="headerlink" href="#directive:option-py:module-platform" title="本定義的永久連結">¶</a></dt>
+<dd><p>Indicate platforms which the module is available (if it is available on
+all platforms, the option should be omitted).  The keys are short
+identifiers; examples that are in use include 「IRIX」, 「Mac」, 「Windows」
+and 「Unix」.  It is important to use a key which has already been used when
+applicable.</p>
+</dd></dl>
+
+<dl class="directive:option">
+<dt id="directive:option-py:module-synopsis">
+<code class="sig-name descname">:synopsis:</code><em class="property"> purpose</em><em class="property"> (text)</em><a class="headerlink" href="#directive:option-py:module-synopsis" title="本定義的永久連結">¶</a></dt>
+<dd><p>Consist of one sentence describing the module’s purpose – it is currently
+only used in the Global Module Index.</p>
+</dd></dl>
+
+<dl class="directive:option">
+<dt id="directive:option-py:module-deprecated">
+<code class="sig-name descname">:deprecated:</code><em class="property"> (no argument)</em><a class="headerlink" href="#directive:option-py:module-deprecated" title="本定義的永久連結">¶</a></dt>
+<dd><p>Mark a module as deprecated; it will be designated as such in various
+locations then.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:currentmodule">
+<code class="sig-name descname">.. py:currentmodule::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-py:currentmodule" title="本定義的永久連結">¶</a></dt>
+<dd><p>This directive tells Sphinx that the classes, functions etc. documented from
+here are in the given module (like <a class="reference internal" href="#directive-py:module" title="py:module directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:module</span></code></a>), but it will not
+create index entries, an entry in the Global Module Index, or a link target
+for <a class="reference internal" href="#role-py:mod" title="py:mod role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">py:mod</span></code></a>.  This is helpful in situations where documentation
+for things in a module is spread over multiple files or sections – one
+location has the <a class="reference internal" href="#directive-py:module" title="py:module directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:module</span></code></a> directive, the others only
+<a class="reference internal" href="#directive-py:currentmodule" title="py:currentmodule directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:currentmodule</span></code></a>.</p>
+</dd></dl>
+
+<p>The following directives are provided for module and class contents:</p>
+<dl class="directive">
+<dt id="directive-py:function">
+<code class="sig-name descname">.. py:function::</code><code class="sig-prename descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:function" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes a module-level function.  The signature should include the
+parameters as given in the Python function definition, see <a class="reference internal" href="#signatures"><span class="std std-ref">Python Signatures</span></a>.
+For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> Timer.repeat(repeat=3, number=1000000)
+</pre></div>
+</div>
+<p>For methods you should use <a class="reference internal" href="#directive-py:method" title="py:method directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:method</span></code></a>.</p>
+<p>The description normally includes information about the parameters required
+and how they are used (especially whether mutable objects passed as
+parameters are modified), side effects, and possible exceptions.</p>
+<p>This information can (in any <code class="docutils literal notranslate"><span class="pre">py</span></code> directive) optionally be given in a
+structured form, see <a class="reference internal" href="#info-field-lists"><span class="std std-ref">Info field lists</span></a>.</p>
+<p class="rubric">options</p>
+<dl class="directive:option">
+<dt id="directive:option-py:function-async">
+<code class="sig-name descname">:async:</code><em class="property"> (no value)</em><a class="headerlink" href="#directive:option-py:function-async" title="本定義的永久連結">¶</a></dt>
+<dd><p>Indicate the function is an async function.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">2.1 版新加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:data">
+<code class="sig-name descname">.. py:data::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-py:data" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes global data in a module, including both variables and values used
+as 「defined constants.」  Class and object attributes are not documented
+using this environment.</p>
+<p class="rubric">options</p>
+<dl class="directive:option">
+<dt id="directive:option-py:data-type">
+<code class="sig-name descname">:type:</code><em class="property"> type of the variable</em><em class="property"> (text)</em><a class="headerlink" href="#directive:option-py:data-type" title="本定義的永久連結">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">2.4 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive:option">
+<dt id="directive:option-py:data-value">
+<code class="sig-name descname">:value:</code><em class="property"> initial value of the variable</em><em class="property"> (text)</em><a class="headerlink" href="#directive:option-py:data-value" title="本定義的永久連結">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">2.4 版新加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:exception">
+<code class="sig-name descname">.. py:exception::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-py:exception" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes an exception class.  The signature can, but need not include
+parentheses with constructor arguments.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:class">
+<code class="sig-name descname">.. py:class::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-py:class" title="本定義的永久連結">¶</a></dt>
+<dt>
+<code class="sig-name descname">.. py:class::</code><code class="sig-prename descclassname"> name(parameters)</code></dt>
+<dd><p>Describes a class.  The signature can optionally include parentheses with
+parameters which will be shown as the constructor arguments.  See also
+<a class="reference internal" href="#signatures"><span class="std std-ref">Python Signatures</span></a>.</p>
+<p>Methods and attributes belonging to the class should be placed in this
+directive’s body.  If they are placed outside, the supplied name should
+contain the class name so that cross-references still work.  Example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:class</span><span class="p">::</span> Foo
+
+<span class="p">   ..</span> <span class="ow">py:method</span><span class="p">::</span> quux()
+
+-- or --
+
+<span class="p">..</span> <span class="ow">py:class</span><span class="p">::</span> Bar
+
+<span class="p">..</span> <span class="ow">py:method</span><span class="p">::</span> Bar.quux()
+</pre></div>
+</div>
+<p>The first way is the preferred one.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:attribute">
+<code class="sig-name descname">.. py:attribute::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-py:attribute" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes an object data attribute.  The description should include
+information about the type of the data to be expected and whether it may be
+changed directly.</p>
+<p class="rubric">options</p>
+<dl class="directive:option">
+<dt id="directive:option-py:attribute-type">
+<code class="sig-name descname">:type:</code><em class="property"> type of the attribute</em><em class="property"> (text)</em><a class="headerlink" href="#directive:option-py:attribute-type" title="本定義的永久連結">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">2.4 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive:option">
+<dt id="directive:option-py:attribute-value">
+<code class="sig-name descname">:value:</code><em class="property"> initial value of the attribute</em><em class="property"> (text)</em><a class="headerlink" href="#directive:option-py:attribute-value" title="本定義的永久連結">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">2.4 版新加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:method">
+<code class="sig-name descname">.. py:method::</code><code class="sig-prename descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:method" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes an object method.  The parameters should not include the <code class="docutils literal notranslate"><span class="pre">self</span></code>
+parameter.  The description should include similar information to that
+described for <code class="docutils literal notranslate"><span class="pre">function</span></code>.  See also <a class="reference internal" href="#signatures"><span class="std std-ref">Python Signatures</span></a> and
+<a class="reference internal" href="#info-field-lists"><span class="std std-ref">Info field lists</span></a>.</p>
+<p class="rubric">options</p>
+<dl class="directive:option">
+<dt id="directive:option-py:method-abstractmethod">
+<code class="sig-name descname">:abstractmethod:</code><em class="property"> (no value)</em><a class="headerlink" href="#directive:option-py:method-abstractmethod" title="本定義的永久連結">¶</a></dt>
+<dd><p>Indicate the method is an abstract method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">2.1 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive:option">
+<dt id="directive:option-py:method-async">
+<code class="sig-name descname">:async:</code><em class="property"> (no value)</em><a class="headerlink" href="#directive:option-py:method-async" title="本定義的永久連結">¶</a></dt>
+<dd><p>Indicate the method is an async method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">2.1 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive:option">
+<dt id="directive:option-py:method-classmethod">
+<code class="sig-name descname">:classmethod:</code><em class="property"> (no value)</em><a class="headerlink" href="#directive:option-py:method-classmethod" title="本定義的永久連結">¶</a></dt>
+<dd><p>Indicate the method is a class method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">2.1 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive:option">
+<dt id="directive:option-py:method-property">
+<code class="sig-name descname">:property:</code><em class="property"> (no value)</em><a class="headerlink" href="#directive:option-py:method-property" title="本定義的永久連結">¶</a></dt>
+<dd><p>Indicate the method is a property.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">2.1 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive:option">
+<dt id="directive:option-py:method-staticmethod">
+<code class="sig-name descname">:staticmethod:</code><em class="property"> (no value)</em><a class="headerlink" href="#directive:option-py:method-staticmethod" title="本定義的永久連結">¶</a></dt>
+<dd><p>Indicate the method is a static method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">2.1 版新加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:staticmethod">
+<code class="sig-name descname">.. py:staticmethod::</code><code class="sig-prename descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:staticmethod" title="本定義的永久連結">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#directive-py:method" title="py:method directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:method</span></code></a>, but indicates that the method is a static method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">0.4 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:classmethod">
+<code class="sig-name descname">.. py:classmethod::</code><code class="sig-prename descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:classmethod" title="本定義的永久連結">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#directive-py:method" title="py:method directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:method</span></code></a>, but indicates that the method is a class method.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">0.6 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:decorator">
+<code class="sig-name descname">.. py:decorator::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-py:decorator" title="本定義的永久連結">¶</a></dt>
+<dt>
+<code class="sig-name descname">.. py:decorator::</code><code class="sig-prename descclassname"> name(parameters)</code></dt>
+<dd><p>Describes a decorator function.  The signature should represent the usage as
+a decorator.  For example, given the functions</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">removename</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">func</span>
+
+<span class="k">def</span> <span class="nf">setnewname</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">return</span> <span class="n">func</span>
+    <span class="k">return</span> <span class="n">decorator</span>
+</pre></div>
+</div>
+<p>the descriptions should look like this:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:decorator</span><span class="p">::</span> removename
+
+   Remove name of the decorated function.
+
+<span class="p">..</span> <span class="ow">py:decorator</span><span class="p">::</span> setnewname(name)
+
+   Set name of the decorated function to <span class="ge">*name*</span>.
+</pre></div>
+</div>
+<p>(as opposed to <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:decorator::</span> <span class="pre">removename(func)</span></code>.)</p>
+<p>There is no <code class="docutils literal notranslate"><span class="pre">py:deco</span></code> role to link to a decorator that is marked up with
+this directive; rather, use the <a class="reference internal" href="#role-py:func" title="py:func role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">py:func</span></code></a> role.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:decoratormethod">
+<code class="sig-name descname">.. py:decoratormethod::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-py:decoratormethod" title="本定義的永久連結">¶</a></dt>
+<dt>
+<code class="sig-name descname">.. py:decoratormethod::</code><code class="sig-prename descclassname"> name(signature)</code></dt>
+<dd><p>Same as <a class="reference internal" href="#directive-py:decorator" title="py:decorator directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:decorator</span></code></a>, but for decorators that are methods.</p>
+<p>Refer to a decorator method using the <a class="reference internal" href="#role-py:meth" title="py:meth role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">py:meth</span></code></a> role.</p>
+</dd></dl>
+
+<section id="python-signatures">
+<span id="signatures"></span><h3>Python Signatures<a class="headerlink" href="#python-signatures" title="本標題的永久連結">¶</a></h3>
+<p>Signatures of functions, methods and class constructors can be given like they
+would be written in Python.</p>
+<p>Default values for optional arguments can be given (but if they contain commas,
+they will confuse the signature parser).  Python 3-style argument annotations
+can also be given as well as return type annotations:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> compile(source : string, filename, symbol=&#39;file&#39;) -&gt; ast object
+</pre></div>
+</div>
+<p>For functions with optional parameters that don’t have default values
+(typically functions implemented in C extension modules without keyword
+argument support), you can use brackets to specify the optional parts:</p>
+<blockquote>
+<div><dl class="function">
+<dt id="compile">
+<code class="sig-name descname">compile</code><span class="sig-paren">(</span><em class="sig-param">source</em><span class="optional">[</span>, <em class="sig-param">filename</em><span class="optional">[</span>, <em class="sig-param">symbol</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#compile" title="本定義的永久連結">¶</a></dt>
+<dd></dd></dl>
+
+</div></blockquote>
+<p>It is customary to put the opening bracket before the comma.</p>
+</section>
+<section id="info-field-lists">
+<span id="id1"></span><h3>Info field lists<a class="headerlink" href="#info-field-lists" title="本標題的永久連結">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">0.4 版新加入.</span></p>
+</div>
+<p>Inside Python object description directives, reST field lists with these fields
+are recognized and formatted nicely:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">param</span></code>, <code class="docutils literal notranslate"><span class="pre">parameter</span></code>, <code class="docutils literal notranslate"><span class="pre">arg</span></code>, <code class="docutils literal notranslate"><span class="pre">argument</span></code>, <code class="docutils literal notranslate"><span class="pre">key</span></code>, <code class="docutils literal notranslate"><span class="pre">keyword</span></code>:
+Description of a parameter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: Type of a parameter.  Creates a link if possible.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raises</span></code>, <code class="docutils literal notranslate"><span class="pre">raise</span></code>, <code class="docutils literal notranslate"><span class="pre">except</span></code>, <code class="docutils literal notranslate"><span class="pre">exception</span></code>: That (and when) a specific
+exception is raised.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">var</span></code>, <code class="docutils literal notranslate"><span class="pre">ivar</span></code>, <code class="docutils literal notranslate"><span class="pre">cvar</span></code>: Description of a variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vartype</span></code>: Type of a variable.  Creates a link if possible.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">returns</span></code>, <code class="docutils literal notranslate"><span class="pre">return</span></code>: Description of the return value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rtype</span></code>: Return type.  Creates a link if possible.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>In current release, all <code class="docutils literal notranslate"><span class="pre">var</span></code>, <code class="docutils literal notranslate"><span class="pre">ivar</span></code> and <code class="docutils literal notranslate"><span class="pre">cvar</span></code> are represented as
+「Variable」.  There is no difference at all.</p>
+</div>
+<p>The field names must consist of one of these keywords and an argument (except
+for <code class="docutils literal notranslate"><span class="pre">returns</span></code> and <code class="docutils literal notranslate"><span class="pre">rtype</span></code>, which do not need an argument).  This is best
+explained by an example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> send_message(sender, recipient, message_body, [priority=1])
+
+   Send a message to a recipient
+
+   <span class="nc">:param str sender:</span> The person sending the message
+   <span class="nc">:param str recipient:</span> The recipient of the message
+   <span class="nc">:param str message_body:</span> The body of the message
+   <span class="nc">:param priority:</span> The priority of the message, can be a number 1-5
+   <span class="nc">:type priority:</span> integer or None
+   <span class="nc">:return:</span> the message id
+   <span class="nc">:rtype:</span> int
+   <span class="nc">:raises ValueError:</span> if the message_body exceeds 160 characters
+   <span class="nc">:raises TypeError:</span> if the message_body is not a basestring
+</pre></div>
+</div>
+<p>This will render like this:</p>
+<blockquote>
+<div><dl class="function">
+<dt>
+<code class="sig-name descname">send_message</code><span class="sig-paren">(</span><em class="sig-param">sender</em>, <em class="sig-param">recipient</em>, <em class="sig-param">message_body</em><span class="optional">[</span>, <em class="sig-param">priority=1</em><span class="optional">]</span><span class="sig-paren">)</span></dt>
+<dd><p>Send a message to a recipient</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sender</strong> (<em>str</em>) – The person sending the message</p></li>
+<li><p><strong>recipient</strong> (<em>str</em>) – The recipient of the message</p></li>
+<li><p><strong>message_body</strong> (<em>str</em>) – The body of the message</p></li>
+<li><p><strong>priority</strong> (<em>integer</em><em> or </em><em>None</em>) – The priority of the message, can be a number 1-5</p></li>
+</ul>
+</dd>
+<dt class="field-even">傳回</dt>
+<dd class="field-even"><p>the message id</p>
+</dd>
+<dt class="field-odd">傳回型態</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">丟出</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – if the message_body exceeds 160 characters</p></li>
+<li><p><strong>TypeError</strong> – if the message_body is not a basestring</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div></blockquote>
+<p>It is also possible to combine parameter type and description, if the type is a
+single word, like this:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:param int priority:</span> The priority of the message, can be a number 1-5
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">1.5 版新加入.</span></p>
+</div>
+<p>Container types such as lists and dictionaries can be linked automatically
+using the following syntax:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:type priorities:</span> list(int)
+<span class="nc">:type priorities:</span> list[int]
+<span class="nc">:type mapping:</span> dict(str, int)
+<span class="nc">:type mapping:</span> dict[str, int]
+<span class="nc">:type point:</span> tuple(float, float)
+<span class="nc">:type point:</span> tuple[float, float]
+</pre></div>
+</div>
+<p>Multiple types in a type field will be linked automatically if separated by the
+word 「or」:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:type an_arg:</span> int or None
+<span class="nc">:vartype a_var:</span> str or int
+<span class="nc">:rtype:</span> float or str
+</pre></div>
+</div>
+</section>
+<section id="cross-referencing-python-objects">
+<span id="python-roles"></span><h3>Cross-referencing Python objects<a class="headerlink" href="#cross-referencing-python-objects" title="本標題的永久連結">¶</a></h3>
+<p>The following roles refer to objects in modules and are possibly hyperlinked if
+a matching identifier is found:</p>
+<dl class="role">
+<dt id="role-py:mod">
+<code class="sig-name descname">:py:mod:</code><a class="headerlink" href="#role-py:mod" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a module; a dotted name may be used.  This should also be used for
+package names.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:func">
+<code class="sig-name descname">:py:func:</code><a class="headerlink" href="#role-py:func" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a Python function; dotted names may be used.  The role text needs
+not include trailing parentheses to enhance readability; they will be added
+automatically by Sphinx if the <a class="reference internal" href="../configuration.html#confval-add_function_parentheses"><code class="xref std std-confval docutils literal notranslate"><span class="pre">add_function_parentheses</span></code></a> config
+value is <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default).</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:data">
+<code class="sig-name descname">:py:data:</code><a class="headerlink" href="#role-py:data" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a module-level variable.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:const">
+<code class="sig-name descname">:py:const:</code><a class="headerlink" href="#role-py:const" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a 「defined」 constant.  This may be a Python variable that is not
+intended to be changed.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:class">
+<code class="sig-name descname">:py:class:</code><a class="headerlink" href="#role-py:class" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a class; a dotted name may be used.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:meth">
+<code class="sig-name descname">:py:meth:</code><a class="headerlink" href="#role-py:meth" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a method of an object.  The role text can include the type name
+and the method name; if it occurs within the description of a type, the type
+name can be omitted.  A dotted name may be used.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:attr">
+<code class="sig-name descname">:py:attr:</code><a class="headerlink" href="#role-py:attr" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a data attribute of an object.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:exc">
+<code class="sig-name descname">:py:exc:</code><a class="headerlink" href="#role-py:exc" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference an exception.  A dotted name may be used.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:obj">
+<code class="sig-name descname">:py:obj:</code><a class="headerlink" href="#role-py:obj" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference an object of unspecified type.  Useful e.g. as the
+<a class="reference internal" href="../configuration.html#confval-default_role"><code class="xref std std-confval docutils literal notranslate"><span class="pre">default_role</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">0.4 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<p>The name enclosed in this markup can include a module name and/or a class name.
+For example, <code class="docutils literal notranslate"><span class="pre">:py:func:`filter`</span></code> could refer to a function named <code class="docutils literal notranslate"><span class="pre">filter</span></code>
+in the current module, or the built-in function of that name.  In contrast,
+<code class="docutils literal notranslate"><span class="pre">:py:func:`foo.filter`</span></code> clearly refers to the <code class="docutils literal notranslate"><span class="pre">filter</span></code> function in the
+<code class="docutils literal notranslate"><span class="pre">foo</span></code> module.</p>
+<p>Normally, names in these roles are searched first without any further
+qualification, then with the current module name prepended, then with the
+current module and class name (if any) prepended.  If you prefix the name with
+a dot, this order is reversed.  For example, in the documentation of Python’s
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">codecs</span></code> module, <code class="docutils literal notranslate"><span class="pre">:py:func:`open`</span></code> always refers to the built-in
+function, while <code class="docutils literal notranslate"><span class="pre">:py:func:`.open`</span></code> refers to <code class="xref py py-func docutils literal notranslate"><span class="pre">codecs.open()</span></code>.</p>
+<p>A similar heuristic is used to determine whether the name is an attribute of
+the currently documented class.</p>
+<p>Also, if the name is prefixed with a dot, and no exact match is found, the
+target is taken as a suffix and all object names with that suffix are searched.
+For example, <code class="docutils literal notranslate"><span class="pre">:py:meth:`.TarFile.close`</span></code> references the
+<code class="docutils literal notranslate"><span class="pre">tarfile.TarFile.close()</span></code> function, even if the current module is not
+<code class="docutils literal notranslate"><span class="pre">tarfile</span></code>.  Since this can get ambiguous, if there is more than one possible
+match, you will get a warning from Sphinx.</p>
+<p>Note that you can combine the <code class="docutils literal notranslate"><span class="pre">~</span></code> and <code class="docutils literal notranslate"><span class="pre">.</span></code> prefixes:
+<code class="docutils literal notranslate"><span class="pre">:py:meth:`~.TarFile.close`</span></code> will reference the <code class="docutils literal notranslate"><span class="pre">tarfile.TarFile.close()</span></code>
+method, but the visible link caption will only be <code class="docutils literal notranslate"><span class="pre">close()</span></code>.</p>
+</section>
+</section>
+<section id="the-c-domain">
+<span id="c-domain"></span><h2>C 語言領域<a class="headerlink" href="#the-c-domain" title="本標題的永久連結">¶</a></h2>
+<p>C 領域（名稱 <strong>c</strong>）適用於 C API 的文件。</p>
+<dl class="directive">
+<dt id="directive-c:function">
+<code class="sig-name descname">.. c:function::</code><code class="sig-prename descclassname"> function prototype</code><a class="headerlink" href="#directive-c:function" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes a C function. The signature should be given as in C, e.g.:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:function</span><span class="p">::</span> PyObject<span class="ge">* PyType_GenericAlloc(PyTypeObject *</span>type, Py_ssize_t nitems)
+</pre></div>
+</div>
+<p>This is also used to describe function-like preprocessor macros.  The names
+of the arguments should be given so they may be used in the description.</p>
+<p>Note that you don’t have to backslash-escape asterisks in the signature, as
+it is not parsed by the reST inliner.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-c:member">
+<code class="sig-name descname">.. c:member::</code><code class="sig-prename descclassname"> declaration</code><a class="headerlink" href="#directive-c:member" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes a C struct member. Example signature:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:member</span><span class="p">::</span> PyObject* PyTypeObject.tp_bases
+</pre></div>
+</div>
+<p>The text of the description should include the range of values allowed, how
+the value should be interpreted, and whether the value can be changed.
+References to structure members in text should use the <code class="docutils literal notranslate"><span class="pre">member</span></code> role.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-c:macro">
+<code class="sig-name descname">.. c:macro::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-c:macro" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes a 「simple」 C macro.  Simple macros are macros which are used for
+code expansion, but which do not take arguments so cannot be described as
+functions.  This is a simple C-language <code class="docutils literal notranslate"><span class="pre">#define</span></code>.  Examples of its use in
+the Python documentation include <code class="xref c c-macro docutils literal notranslate"><span class="pre">PyObject_HEAD</span></code> and
+<code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_BEGIN_ALLOW_THREADS</span></code>.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-c:type">
+<code class="sig-name descname">.. c:type::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-c:type" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes a C type (whether defined by a typedef or struct). The signature
+should just be the type name.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-c:var">
+<code class="sig-name descname">.. c:var::</code><code class="sig-prename descclassname"> declaration</code><a class="headerlink" href="#directive-c:var" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes a global C variable.  The signature should include the type, such
+as:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:var</span><span class="p">::</span> PyObject* PyClass_Type
+</pre></div>
+</div>
+</dd></dl>
+
+<section id="cross-referencing-c-constructs">
+<span id="c-roles"></span><h3>Cross-referencing C constructs<a class="headerlink" href="#cross-referencing-c-constructs" title="本標題的永久連結">¶</a></h3>
+<p>The following roles create cross-references to C-language constructs if they
+are defined in the documentation:</p>
+<dl class="role">
+<dt id="role-c:func">
+<code class="sig-name descname">:c:func:</code><a class="headerlink" href="#role-c:func" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a C-language function. Should include trailing parentheses.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-c:member">
+<code class="sig-name descname">:c:member:</code><a class="headerlink" href="#role-c:member" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a C-language member of a struct.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-c:macro">
+<code class="sig-name descname">:c:macro:</code><a class="headerlink" href="#role-c:macro" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a 「simple」 C macro, as defined above.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-c:type">
+<code class="sig-name descname">:c:type:</code><a class="headerlink" href="#role-c:type" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a C-language type.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-c:data">
+<code class="sig-name descname">:c:data:</code><a class="headerlink" href="#role-c:data" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a C-language variable.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="cpp-domain">
+<span id="id2"></span><h2>C++ 領域<a class="headerlink" href="#cpp-domain" title="本標題的永久連結">¶</a></h2>
+<p>The C++ domain (name <strong>cpp</strong>) supports documenting C++ projects.</p>
+<section id="directives-for-declaring-entities">
+<h3>Directives for Declaring Entities<a class="headerlink" href="#directives-for-declaring-entities" title="本標題的永久連結">¶</a></h3>
+<p>The following directives are available. All declarations can start with a
+visibility statement (<code class="docutils literal notranslate"><span class="pre">public</span></code>, <code class="docutils literal notranslate"><span class="pre">private</span></code> or <code class="docutils literal notranslate"><span class="pre">protected</span></code>).</p>
+<dl class="directive">
+<dt id="directive-cpp:class">
+<code class="sig-name descname">.. cpp:class::</code><code class="sig-prename descclassname"> class specifier</code><a class="headerlink" href="#directive-cpp:class" title="本定義的永久連結">¶</a></dt>
+<dt id="directive-cpp:struct">
+<code class="sig-name descname">.. cpp:struct::</code><code class="sig-prename descclassname"> class specifier</code><a class="headerlink" href="#directive-cpp:struct" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describe a class/struct, possibly with specification of inheritance, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> MyClass : public MyBase, MyOtherBase
+</pre></div>
+</div>
+<p>The difference between <a class="reference internal" href="#directive-cpp:class" title="cpp:class directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">cpp:class</span></code></a> and <a class="reference internal" href="#directive-cpp:struct" title="cpp:struct directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">cpp:struct</span></code></a> is
+only cosmetic: the prefix rendered in the output, and the specifier shown
+in the index.</p>
+<p>The class can be directly declared inside a nested scope, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> OuterScope::MyClass : public MyBase, MyOtherBase
+</pre></div>
+</div>
+<p>A class template can be declared:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T, std::size_t N&gt; std::array
+</pre></div>
+</div>
+<p>or with a line break:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T, std::size_t N&gt; \
+               std::array
+</pre></div>
+</div>
+<p>Full and partial template specialisations can be declared:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;&gt; \
+               std::array&lt;bool, 256&gt;
+
+<span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T&gt; \
+               std::array&lt;T, 42&gt;
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">2.0 版新加入: </span><a class="reference internal" href="#directive-cpp:struct" title="cpp:struct directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">cpp:struct</span></code></a> 指示詞。</p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:function">
+<code class="sig-name descname">.. cpp:function::</code><code class="sig-prename descclassname"> (member) function prototype</code><a class="headerlink" href="#directive-cpp:function" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describe a function or member function, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> bool myMethod(int arg1, std::string arg2)
+
+   A function with parameters and types.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> bool myMethod(int, double)
+
+   A function with unnamed parameters.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> const T &amp;MyClass::operator[](std::size_t i) const
+
+   An overload for the indexing operator.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> operator bool() const
+
+   A casting operator.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> constexpr void foo(std::string &amp;bar[2]) noexcept
+
+   A constexpr function.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> MyClass::MyClass(const MyClass&amp;) = default
+
+   A copy constructor with default implementation.
+</pre></div>
+</div>
+<p>Function templates can also be described:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> template&lt;typename U&gt; \
+                  void print(U &amp;&amp;u)
+</pre></div>
+</div>
+<p>and function template specialisations:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> template&lt;&gt; \
+                  void print(int i)
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:member">
+<code class="sig-name descname">.. cpp:member::</code><code class="sig-prename descclassname"> (member) variable declaration</code><a class="headerlink" href="#directive-cpp:member" title="本定義的永久連結">¶</a></dt>
+<dt id="directive-cpp:var">
+<code class="sig-name descname">.. cpp:var::</code><code class="sig-prename descclassname"> (member) variable declaration</code><a class="headerlink" href="#directive-cpp:var" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describe a variable or member variable, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:member</span><span class="p">::</span> std::string MyClass::myMember
+
+<span class="p">..</span> <span class="ow">cpp:var</span><span class="p">::</span> std::string MyClass::myOtherMember[N][M]
+
+<span class="p">..</span> <span class="ow">cpp:member</span><span class="p">::</span> int a = 42
+</pre></div>
+</div>
+<p>Variable templates can also be described:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:member</span><span class="p">::</span> template&lt;class T&gt; \
+                constexpr T pi = T(3.1415926535897932385)
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:type">
+<code class="sig-name descname">.. cpp:type::</code><code class="sig-prename descclassname"> typedef declaration</code><a class="headerlink" href="#directive-cpp:type" title="本定義的永久連結">¶</a></dt>
+<dt>
+<code class="sig-name descname">.. cpp:type::</code><code class="sig-prename descclassname"> name</code></dt>
+<dt>
+<code class="sig-name descname">.. cpp:type::</code><code class="sig-prename descclassname"> type alias declaration</code></dt>
+<dd><p>Describe a type as in a typedef declaration, a type alias declaration, or
+simply the name of a type with unspecified type, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> std::vector&lt;int&gt; MyList
+
+   A typedef-like declaration of a type.
+
+<span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> MyContainer::const_iterator
+
+   Declaration of a type alias with unspecified type.
+
+<span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> MyType = std::unordered_map&lt;int, std::string&gt;
+
+   Declaration of a type alias.
+</pre></div>
+</div>
+<p>A type alias can also be templated:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> template&lt;typename T&gt; \
+              MyContainer = std::vector&lt;T&gt;
+</pre></div>
+</div>
+<p>The example are rendered as follows.</p>
+<dl class="type">
+<dt id="_CPPv46MyList">
+<span id="_CPPv36MyList"></span><span id="_CPPv26MyList"></span><span id="MyList"></span><em class="property">typedef </em>std::vector&lt;int&gt; <code class="sig-name descname">MyList</code><a class="headerlink" href="#_CPPv46MyList" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>A typedef-like declaration of a type.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="_CPPv4N11MyContainer14const_iteratorE">
+<span id="_CPPv3N11MyContainer14const_iteratorE"></span><span id="_CPPv2N11MyContainer14const_iteratorE"></span><span id="MyContainer::const_iterator"></span><em class="property">type </em><code class="sig-prename descclassname">MyContainer<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">const_iterator</code><a class="headerlink" href="#_CPPv4N11MyContainer14const_iteratorE" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Declaration of a type alias with unspecified type.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="_CPPv46MyType">
+<span id="_CPPv36MyType"></span><span id="_CPPv26MyType"></span><em class="property">using </em><code class="sig-name descname">MyType</code> = std::unordered_map&lt;int, std::string&gt;<a class="headerlink" href="#_CPPv46MyType" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Declaration of a type alias.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="_CPPv4I0E11MyContainer">
+<span id="_CPPv3I0E11MyContainer"></span><span id="_CPPv2I0E11MyContainer"></span>template&lt;typename <code class="sig-name descname">T</code>&gt;<br /><em class="property">using </em><code class="sig-name descname">MyContainer</code> = std::vector&lt;<a class="reference internal" href="#_CPPv4I0E11MyContainer" title="MyContainer::T">T</a>&gt;<a class="headerlink" href="#_CPPv4I0E11MyContainer" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:enum">
+<code class="sig-name descname">.. cpp:enum::</code><code class="sig-prename descclassname"> unscoped enum declaration</code><a class="headerlink" href="#directive-cpp:enum" title="本定義的永久連結">¶</a></dt>
+<dt id="directive-cpp:enum-struct">
+<code class="sig-name descname">.. cpp:enum-struct::</code><code class="sig-prename descclassname"> scoped enum declaration</code><a class="headerlink" href="#directive-cpp:enum-struct" title="本定義的永久連結">¶</a></dt>
+<dt id="directive-cpp:enum-class">
+<code class="sig-name descname">.. cpp:enum-class::</code><code class="sig-prename descclassname"> scoped enum declaration</code><a class="headerlink" href="#directive-cpp:enum-class" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describe a (scoped) enum, possibly with the underlying type specified.  Any
+enumerators declared inside an unscoped enum will be declared both in the
+enum scope and in the parent scope.  Examples:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:enum</span><span class="p">::</span> MyEnum
+
+   An unscoped enum.
+
+<span class="p">..</span> <span class="ow">cpp:enum</span><span class="p">::</span> MySpecificEnum : long
+
+   An unscoped enum with specified underlying type.
+
+<span class="p">..</span> <span class="ow">cpp:enum-class</span><span class="p">::</span> MyScopedEnum
+
+   A scoped enum.
+
+<span class="p">..</span> <span class="ow">cpp:enum-struct</span><span class="p">::</span> protected MyScopedVisibilityEnum : std::underlying_type&lt;MySpecificEnum&gt;::type
+
+   A scoped enum with non-default visibility, and with a specified
+   underlying type.
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:enumerator">
+<code class="sig-name descname">.. cpp:enumerator::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-cpp:enumerator" title="本定義的永久連結">¶</a></dt>
+<dt>
+<code class="sig-name descname">.. cpp:enumerator::</code><code class="sig-prename descclassname"> name = constant</code></dt>
+<dd><p>Describe an enumerator, optionally with its value defined, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:enumerator</span><span class="p">::</span> MyEnum::myEnumerator
+
+<span class="p">..</span> <span class="ow">cpp:enumerator</span><span class="p">::</span> MyEnum::myOtherEnumerator = 42
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:union">
+<code class="sig-name descname">.. cpp:union::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-cpp:union" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describe a union.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.8 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:concept">
+<code class="sig-name descname">.. cpp:concept::</code><code class="sig-prename descclassname"> template-parameter-list name</code><a class="headerlink" href="#directive-cpp:concept" title="本定義的永久連結">¶</a></dt>
+<dd><div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>The support for concepts is experimental. It is based on the
+current draft standard and the Concepts Technical Specification.
+The features may change as they evolve.</p>
+</div>
+<p>Describe a concept. It must have exactly 1 template parameter list. The name
+may be a nested name. Example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:concept</span><span class="p">::</span> template&lt;typename It&gt; std::Iterator
+
+   Proxy to an element of a notional sequence that can be compared,
+   indirected, or incremented.
+
+   <span class="gs">**Notation**</span>
+
+<span class="p">   ..</span> <span class="ow">cpp:var</span><span class="p">::</span> It r
+
+      An lvalue.
+
+   <span class="gs">**Valid Expressions**</span>
+
+   <span class="m">-</span> <span class="na">:cpp:expr:</span><span class="nv">`*r`</span>, when <span class="na">:cpp:expr:</span><span class="nv">`r`</span> is dereferenceable.
+   <span class="m">-</span> <span class="na">:cpp:expr:</span><span class="nv">`++r`</span>, with return type <span class="na">:cpp:expr:</span><span class="nv">`It&amp;`</span>, when
+     <span class="na">:cpp:expr:</span><span class="nv">`r`</span> is incrementable.
+</pre></div>
+</div>
+<p>This will render as follows:</p>
+<dl class="concept">
+<dt id="_CPPv4I0ENSt8IteratorE">
+<span id="_CPPv3I0ENSt8IteratorE"></span><span id="_CPPv2I0ENSt8IteratorE"></span>template&lt;typename <code class="sig-name descname">It</code>&gt;<br /><em class="property">concept </em><code class="sig-prename descclassname">std<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">Iterator</code><a class="headerlink" href="#_CPPv4I0ENSt8IteratorE" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>Proxy to an element of a notional sequence that can be compared,
+indirected, or incremented.</p>
+<p><strong>Notation</strong></p>
+<dl class="var">
+<dt id="_CPPv4NSt8Iterator1rE">
+<span id="_CPPv3NSt8Iterator1rE"></span><span id="_CPPv2NSt8Iterator1rE"></span><span id="std::Iterator::r__It"></span><a class="reference internal" href="#_CPPv4I0ENSt8IteratorE" title="std::Iterator::It">It</a> <code class="sig-name descname">r</code><a class="headerlink" href="#_CPPv4NSt8Iterator1rE" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>An lvalue.</p>
+</dd></dl>
+
+<p><strong>Valid Expressions</strong></p>
+<ul class="simple">
+<li><p><code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">*</span><a class="reference internal" href="#_CPPv4NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, when <code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code> is dereferenceable.</p></li>
+<li><p><code class="xref cpp cpp-expr docutils literal notranslate"><span class="pre">++</span><a class="reference internal" href="#_CPPv4NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, with return type <code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4I0ENSt8IteratorE" title="std::Iterator::It"><span class="pre">It</span></a><span class="pre">&amp;</span></code>, when <code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv4NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>
+is incrementable.</p></li>
+</ul>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">1.5 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<section id="options">
+<h4>選項<a class="headerlink" href="#options" title="本標題的永久連結">¶</a></h4>
+<p>Some directives support options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">:noindex:</span></code>, see <a class="reference internal" href="#basic-domain-markup"><span class="std std-ref">基礎標註</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">:tparam-line-spec:</span></code>, for templated declarations.
+If specified, each template parameter will be rendered on a separate line.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.6 版新加入.</span></p>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="anonymous-entities">
+<h3>Anonymous Entities<a class="headerlink" href="#anonymous-entities" title="本標題的永久連結">¶</a></h3>
+<p>C++ supports anonymous namespaces, classes, enums, and unions.
+For the sake of documentation they must be given some name that starts with
+<code class="docutils literal notranslate"><span class="pre">&#64;</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">&#64;42</span></code> or <code class="docutils literal notranslate"><span class="pre">&#64;data</span></code>.
+These names can also be used in cross-references and (type) expressions,
+though nested symbols will be found even when omitted.
+The <code class="docutils literal notranslate"><span class="pre">&#64;...</span></code> name will always be rendered as <strong>[anonymous]</strong> (possibly as a
+link).</p>
+<p>Example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> Data
+
+<span class="p">   ..</span> <span class="ow">cpp:union</span><span class="p">::</span> @data
+
+<span class="p">      ..</span> <span class="ow">cpp:var</span><span class="p">::</span> int a
+
+<span class="p">      ..</span> <span class="ow">cpp:var</span><span class="p">::</span> double b
+
+Explicit ref: <span class="na">:cpp:var:</span><span class="nv">`Data::@data::a`</span>. Short-hand ref: <span class="na">:cpp:var:</span><span class="nv">`Data::a`</span>.
+</pre></div>
+</div>
+<p>This will be rendered as:</p>
+<dl class="class">
+<dt id="_CPPv44Data">
+<span id="_CPPv34Data"></span><span id="_CPPv24Data"></span><span id="Data"></span><em class="property">class </em><code class="sig-name descname">Data</code><a class="headerlink" href="#_CPPv44Data" title="本定義的永久連結">¶</a><br /></dt>
+<dd><dl class="union">
+<dt id="_CPPv4N4DataUt4_dataE">
+<span id="_CPPv3N4DataUt4_dataE"></span><em class="property">union </em><strong>[anonymous]</strong><a class="headerlink" href="#_CPPv4N4DataUt4_dataE" title="本定義的永久連結">¶</a><br /></dt>
+<dd><dl class="var">
+<dt id="_CPPv4N4DataUt4_data1aE">
+<span id="_CPPv3N4DataUt4_data1aE"></span>int <code class="sig-name descname">a</code><a class="headerlink" href="#_CPPv4N4DataUt4_data1aE" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="var">
+<dt id="_CPPv4N4DataUt4_data1bE">
+<span id="_CPPv3N4DataUt4_data1bE"></span>double <code class="sig-name descname">b</code><a class="headerlink" href="#_CPPv4N4DataUt4_data1bE" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<p>Explicit ref: <a class="reference internal" href="#_CPPv4N4DataUt4_data1aE" title="Data::[anonymous]::a"><code class="xref cpp cpp-var docutils literal notranslate"><span class="pre">Data::[anonymous]::a</span></code></a>. Short-hand ref: <a class="reference internal" href="#_CPPv4N4DataUt4_data1aE" title="Data::[anonymous]::a"><code class="xref cpp cpp-var docutils literal notranslate"><span class="pre">Data::a</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.8 版新加入.</span></p>
+</div>
+</section>
+<section id="aliasing-declarations">
+<h3>Aliasing Declarations<a class="headerlink" href="#aliasing-declarations" title="本標題的永久連結">¶</a></h3>
+<p>Sometimes it may be helpful list declarations elsewhere than their main
+documentation, e.g., when creating a synopsis of a class interface.
+The following directive can be used for this purpose.</p>
+<dl class="directive">
+<dt id="directive-cpp:alias">
+<code class="sig-name descname">.. cpp:alias::</code><code class="sig-prename descclassname"> name or function signature</code><a class="headerlink" href="#directive-cpp:alias" title="本定義的永久連結">¶</a></dt>
+<dd><p>Insert one or more alias declarations. Each entity can be specified
+as they can in the <a class="reference internal" href="#role-cpp:any" title="cpp:any role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:any</span></code></a> role.
+If the name of a function is given (as opposed to the complete signature),
+then all overloads of the function will be listed.</p>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:alias</span><span class="p">::</span> Data::a
+               overload_example::C::f
+</pre></div>
+</div>
+<p>becomes</p>
+<dl class="alias">
+<dt>
+int <a class="reference internal" href="#_CPPv4N4DataUt4_data1aE" title="Data::[anonymous]::a">a</a><br /></dt>
+<dt>
+void <a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="overload_example::C::f">f</a><span class="sig-paren">(</span>double d<span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
+<dt>
+void <a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="overload_example::C::f">f</a><span class="sig-paren">(</span>double d<span class="sig-paren">)</span><br /></dt>
+<dt>
+void <a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="overload_example::C::f">f</a><span class="sig-paren">(</span>int i<span class="sig-paren">)</span><br /></dt>
+<dt>
+void <a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="overload_example::C::f">f</a><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dd></dd></dl>
+
+<p>whereas:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:alias</span><span class="p">::</span> void overload_example::C::f(double d) const
+               void overload_example::C::f(double d)
+</pre></div>
+</div>
+<p>becomes</p>
+<dl class="alias">
+<dt>
+void <a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="overload_example::C::f">f</a><span class="sig-paren">(</span>double d<span class="sig-paren">)</span> <em class="property">const</em><br /></dt>
+<dt>
+void <a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="overload_example::C::f">f</a><span class="sig-paren">(</span>double d<span class="sig-paren">)</span><br /></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">2.0 版新加入.</span></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="constrained-templates">
+<h3>Constrained Templates<a class="headerlink" href="#constrained-templates" title="本標題的永久連結">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>The support for concepts is experimental. It is based on the
+current draft standard and the Concepts Technical Specification.
+The features may change as they evolve.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>Sphinx does not currently support <code class="docutils literal notranslate"><span class="pre">requires</span></code> clauses.</p>
+</div>
+<section id="placeholders">
+<h4>Placeholders<a class="headerlink" href="#placeholders" title="本標題的永久連結">¶</a></h4>
+<p>Declarations may use the name of a concept to introduce constrained template
+parameters, or the keyword <code class="docutils literal notranslate"><span class="pre">auto</span></code> to introduce unconstrained template
+parameters:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> void f(auto &amp;&amp;arg)
+
+   A function template with a single unconstrained template parameter.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> void f(std::Iterator it)
+
+   A function template with a single template parameter, constrained by the
+   Iterator concept.
+</pre></div>
+</div>
+</section>
+<section id="template-introductions">
+<h4>Template Introductions<a class="headerlink" href="#template-introductions" title="本標題的永久連結">¶</a></h4>
+<p>Simple constrained function or class templates can be declared with a <cite>template
+introduction</cite> instead of a template parameter list:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> std::Iterator{It} void advance(It &amp;it)
+
+    A function template with a template parameter constrained to be an
+    Iterator.
+
+<span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> std::LessThanComparable{T} MySortedContainer
+
+    A class template with a template parameter constrained to be
+    LessThanComparable.
+</pre></div>
+</div>
+<p>They are rendered as follows.</p>
+<dl class="function">
+<dt id="_CPPv4I0EXNSt8IteratorEI2ItEE7advancevR2It">
+<span id="_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It"></span><span id="_CPPv2I0EXNSt8IteratorEI2ItEE7advanceR2It"></span>std::<a class="reference internal" href="#_CPPv4I0ENSt8IteratorE" title="std::Iterator">Iterator</a>{<code class="sig-name descname">It</code>}<br />void <code class="sig-name descname">advance</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EXNSt8IteratorEI2ItEE7advancevR2It" title="advance::It">It</a> &amp;<em>it</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EXNSt8IteratorEI2ItEE7advancevR2It" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>A function template with a template parameter constrained to be an Iterator.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv4I0EXNSt18LessThanComparableEI1TEE17MySortedContainer">
+<span id="_CPPv3I0EXNSt18LessThanComparableEI1TEE17MySortedContainer"></span><span id="_CPPv2I0EXNSt18LessThanComparableEI1TEE17MySortedContainer"></span>std::LessThanComparable{<code class="sig-name descname">T</code>}<br /><em class="property">class </em><code class="sig-name descname">MySortedContainer</code><a class="headerlink" href="#_CPPv4I0EXNSt18LessThanComparableEI1TEE17MySortedContainer" title="本定義的永久連結">¶</a><br /></dt>
+<dd><p>A class template with a template parameter constrained to be
+LessThanComparable.</p>
+</dd></dl>
+
+<p>Note however that no checking is performed with respect to parameter
+compatibility. E.g., <code class="docutils literal notranslate"><span class="pre">Iterator{A,</span> <span class="pre">B,</span> <span class="pre">C}</span></code> will be accepted as an introduction
+even though it would not be valid C++.</p>
+</section>
+</section>
+<section id="inline-expressions-and-types">
+<h3>Inline Expressions and Types<a class="headerlink" href="#inline-expressions-and-types" title="本標題的永久連結">¶</a></h3>
+<dl class="role">
+<dt id="role-cpp:expr">
+<code class="sig-name descname">:cpp:expr:</code><a class="headerlink" href="#role-cpp:expr" title="本定義的永久連結">¶</a></dt>
+<dt id="role-cpp:texpr">
+<code class="sig-name descname">:cpp:texpr:</code><a class="headerlink" href="#role-cpp:texpr" title="本定義的永久連結">¶</a></dt>
+<dd><p>Insert a C++ expression or type either as inline code (<code class="docutils literal notranslate"><span class="pre">cpp:expr</span></code>)
+or inline text (<code class="docutils literal notranslate"><span class="pre">cpp:texpr</span></code>). For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:var</span><span class="p">::</span> int a = 42
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> int f(int i)
+
+An expression: <span class="na">:cpp:expr:</span><span class="nv">`a * f(a)`</span> (or as text: <span class="na">:cpp:texpr:</span><span class="nv">`a * f(a)`</span>).
+
+A type: <span class="na">:cpp:expr:</span><span class="nv">`const MySortedContainer&lt;int&gt;&amp;`</span>
+(or as text <span class="na">:cpp:texpr:</span><span class="nv">`const MySortedContainer&lt;int&gt;&amp;`</span>).
+</pre></div>
+</div>
+<p>will be rendered as follows:</p>
+<dl class="var">
+<dt id="_CPPv41a">
+<span id="_CPPv31a"></span><span id="_CPPv21a"></span><span id="a__i"></span>int <code class="sig-name descname">a</code> = 42<a class="headerlink" href="#_CPPv41a" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv41fi">
+<span id="_CPPv31fi"></span><span id="_CPPv21fi"></span><span id="f__i"></span>int <code class="sig-name descname">f</code><span class="sig-paren">(</span>int <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv41fi" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p>An expression: <code class="xref cpp cpp-expr docutils literal notranslate"><a class="reference internal" href="#_CPPv41a" title="a"><span class="pre">a</span></a> <span class="pre">*</span> <a class="reference internal" href="#_CPPv41fi" title="f"><span class="pre">f</span></a><span class="pre">(</span><a class="reference internal" href="#_CPPv41a" title="a"><span class="pre">a</span></a><span class="pre">)</span></code> (or as text: <span class="xref cpp cpp-texpr"><a class="reference internal" href="#_CPPv41a" title="a">a</a> * <a class="reference internal" href="#_CPPv41fi" title="f">f</a>(<a class="reference internal" href="#_CPPv41a" title="a">a</a>)</span>).</p>
+<p>A type: <code class="xref cpp cpp-expr docutils literal notranslate"><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0EXNSt18LessThanComparableEI1TEE17MySortedContainer" title="MySortedContainer"><span class="pre">MySortedContainer</span></a><span class="pre">&lt;</span><span class="pre">int</span><span class="pre">&gt;</span><span class="pre">&amp;</span></code>
+(or as text <span class="xref cpp cpp-texpr"><em class="property">const</em> <a class="reference internal" href="#_CPPv4I0EXNSt18LessThanComparableEI1TEE17MySortedContainer" title="MySortedContainer">MySortedContainer</a>&lt;int&gt;&amp;</span>).</p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.7 版新加入: </span>The <a class="reference internal" href="#role-cpp:expr" title="cpp:expr role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:expr</span></code></a> role.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">1.8 版新加入: </span>The <a class="reference internal" href="#role-cpp:texpr" title="cpp:texpr role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:texpr</span></code></a> role.</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="namespacing">
+<h3>Namespacing<a class="headerlink" href="#namespacing" title="本標題的永久連結">¶</a></h3>
+<p>Declarations in the C++ domain are as default placed in global scope.  The
+current scope can be changed using three namespace directives.  They manage a
+stack declarations where <code class="docutils literal notranslate"><span class="pre">cpp:namespace</span></code> resets the stack and changes a given
+scope.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cpp:namespace-push</span></code> directive changes the scope to a given inner scope
+of the current one.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cpp:namespace-pop</span></code> directive undoes the most recent
+<code class="docutils literal notranslate"><span class="pre">cpp:namespace-push</span></code> directive.</p>
+<dl class="directive">
+<dt id="directive-cpp:namespace">
+<code class="sig-name descname">.. cpp:namespace::</code><code class="sig-prename descclassname"> scope specification</code><a class="headerlink" href="#directive-cpp:namespace" title="本定義的永久連結">¶</a></dt>
+<dd><p>Changes the current scope for the subsequent objects to the given scope, and
+resets the namespace directive stack.  Note that the namespace does not need
+to correspond to C++ namespaces, but can end in names of classes, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> Namespace1::Namespace2::SomeClass::AnInnerClass
+</pre></div>
+</div>
+<p>All subsequent objects will be defined as if their name were declared with
+the scope prepended. The subsequent cross-references will be searched for
+starting in the current scope.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, or <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> as the scope will change to global
+scope.</p>
+<p>A namespace declaration can also be templated, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T&gt; \
+               std::vector
+
+<span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> template&lt;typename T&gt; std::vector
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> std::size_t size() const
+</pre></div>
+</div>
+<p>declares <code class="docutils literal notranslate"><span class="pre">size</span></code> as a member function of the class template
+<code class="docutils literal notranslate"><span class="pre">std::vector</span></code>.  Equivalently this could have been declared using:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T&gt; \
+               std::vector
+
+<span class="p">   ..</span> <span class="ow">cpp:function</span><span class="p">::</span> std::size_t size() const
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T&gt; \
+               std::vector
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:namespace-push">
+<code class="sig-name descname">.. cpp:namespace-push::</code><code class="sig-prename descclassname"> scope specification</code><a class="headerlink" href="#directive-cpp:namespace-push" title="本定義的永久連結">¶</a></dt>
+<dd><p>Change the scope relatively to the current scope. For example, after:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> A::B
+
+<span class="p">..</span> <span class="ow">cpp:namespace-push</span><span class="p">::</span> C::D
+</pre></div>
+</div>
+<p>the current scope will be <code class="docutils literal notranslate"><span class="pre">A::B::C::D</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.4 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:namespace-pop">
+<code class="sig-name descname">.. cpp:namespace-pop::</code><a class="headerlink" href="#directive-cpp:namespace-pop" title="本定義的永久連結">¶</a></dt>
+<dd><p>Undo the previous <code class="docutils literal notranslate"><span class="pre">cpp:namespace-push</span></code> directive (<em>not</em> just pop a scope).
+For example, after:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> A::B
+
+<span class="p">..</span> <span class="ow">cpp:namespace-push</span><span class="p">::</span> C::D
+
+<span class="p">..</span> <span class="ow">cpp:namespace-pop</span><span class="p">::</span>
+</pre></div>
+</div>
+<p>the current scope will be <code class="docutils literal notranslate"><span class="pre">A::B</span></code> (<em>not</em> <code class="docutils literal notranslate"><span class="pre">A::B::C</span></code>).</p>
+<p>If no previous <code class="docutils literal notranslate"><span class="pre">cpp:namespace-push</span></code> directive has been used, but only a
+<code class="docutils literal notranslate"><span class="pre">cpp:namespace</span></code> directive, then the current scope will be reset to global
+scope.  That is, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:namespace::</span> <span class="pre">A::B</span></code> is equivalent to:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> nullptr
+
+<span class="p">..</span> <span class="ow">cpp:namespace-push</span><span class="p">::</span> A::B
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">1.4 版新加入.</span></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h3>Info field lists<a class="headerlink" href="#id3" title="本標題的永久連結">¶</a></h3>
+<p>The C++ directives support the following info fields (see also
+<a class="reference internal" href="#info-field-lists"><span class="std std-ref">Info field lists</span></a>):</p>
+<ul class="simple">
+<li><p><cite>param</cite>, <cite>parameter</cite>, <cite>arg</cite>, <cite>argument</cite>: Description of a parameter.</p></li>
+<li><p><cite>tparam</cite>: Description of a template parameter.</p></li>
+<li><p><cite>returns</cite>, <cite>return</cite>: Description of a return value.</p></li>
+<li><p><cite>throws</cite>, <cite>throw</cite>, <cite>exception</cite>: Description of a possibly thrown exception.</p></li>
+</ul>
+</section>
+<section id="cross-referencing">
+<span id="cpp-roles"></span><h3>交叉參照<a class="headerlink" href="#cross-referencing" title="本標題的永久連結">¶</a></h3>
+<p>These roles link to the given declaration types:</p>
+<dl class="role">
+<dt id="role-cpp:any">
+<code class="sig-name descname">:cpp:any:</code><a class="headerlink" href="#role-cpp:any" title="本定義的永久連結">¶</a></dt>
+<dt id="role-cpp:class">
+<code class="sig-name descname">:cpp:class:</code><a class="headerlink" href="#role-cpp:class" title="本定義的永久連結">¶</a></dt>
+<dt id="role-cpp:struct">
+<code class="sig-name descname">:cpp:struct:</code><a class="headerlink" href="#role-cpp:struct" title="本定義的永久連結">¶</a></dt>
+<dt id="role-cpp:func">
+<code class="sig-name descname">:cpp:func:</code><a class="headerlink" href="#role-cpp:func" title="本定義的永久連結">¶</a></dt>
+<dt id="role-cpp:member">
+<code class="sig-name descname">:cpp:member:</code><a class="headerlink" href="#role-cpp:member" title="本定義的永久連結">¶</a></dt>
+<dt id="role-cpp:var">
+<code class="sig-name descname">:cpp:var:</code><a class="headerlink" href="#role-cpp:var" title="本定義的永久連結">¶</a></dt>
+<dt id="role-cpp:type">
+<code class="sig-name descname">:cpp:type:</code><a class="headerlink" href="#role-cpp:type" title="本定義的永久連結">¶</a></dt>
+<dt id="role-cpp:concept">
+<code class="sig-name descname">:cpp:concept:</code><a class="headerlink" href="#role-cpp:concept" title="本定義的永久連結">¶</a></dt>
+<dt id="role-cpp:enum">
+<code class="sig-name descname">:cpp:enum:</code><a class="headerlink" href="#role-cpp:enum" title="本定義的永久連結">¶</a></dt>
+<dt id="role-cpp:enumerator">
+<code class="sig-name descname">:cpp:enumerator:</code><a class="headerlink" href="#role-cpp:enumerator" title="本定義的永久連結">¶</a></dt>
+<dd><p>Reference a C++ declaration by name (see below for details).  The name must
+be properly qualified relative to the position of the link.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">2.0 版新加入: </span>The <a class="reference internal" href="#role-cpp:struct" title="cpp:struct role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:struct</span></code></a> role as alias for the <a class="reference internal" href="#role-cpp:class" title="cpp:class role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:class</span></code></a>
+role.</p>
+</div>
+</dd></dl>
+
+<div class="admonition-note-on-references-with-templates-parameters-arguments admonition">
+<p class="admonition-title">Note on References with Templates Parameters/Arguments</p>
+<p>These roles follow the Sphinx <a class="reference internal" href="roles.html#xref-syntax"><span class="std std-ref">交叉參照語法</span></a> rules. This means care must
+be taken when referencing a (partial) template specialization, e.g. if the
+link looks like this: <code class="docutils literal notranslate"><span class="pre">:cpp:class:`MyClass&lt;int&gt;`</span></code>.
+This is interpreted as a link to <code class="docutils literal notranslate"><span class="pre">int</span></code> with a title of <code class="docutils literal notranslate"><span class="pre">MyClass</span></code>.
+In this case, escape the opening angle bracket with a backslash,
+like this: <code class="docutils literal notranslate"><span class="pre">:cpp:class:`MyClass\&lt;int&gt;`</span></code>.</p>
+<p>When a custom title is not needed it may be useful to use the roles for
+inline expressions, <a class="reference internal" href="#role-cpp:expr" title="cpp:expr role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:expr</span></code></a> and <a class="reference internal" href="#role-cpp:texpr" title="cpp:texpr role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:texpr</span></code></a>, where
+angle brackets do not need escaping.</p>
+</div>
+<section id="declarations-without-template-parameters-and-template-arguments">
+<h4>Declarations without template parameters and template arguments<a class="headerlink" href="#declarations-without-template-parameters-and-template-arguments" title="本標題的永久連結">¶</a></h4>
+<p>For linking to non-templated declarations the name must be a nested name, e.g.,
+<code class="docutils literal notranslate"><span class="pre">f</span></code> or <code class="docutils literal notranslate"><span class="pre">MyClass::f</span></code>.</p>
+</section>
+<section id="overloaded-member-functions">
+<h4>Overloaded (member) functions<a class="headerlink" href="#overloaded-member-functions" title="本標題的永久連結">¶</a></h4>
+<p>When a (member) function is referenced using just its name, the reference
+will point to an arbitrary matching overload.
+The <a class="reference internal" href="#role-cpp:any" title="cpp:any role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:any</span></code></a> and <a class="reference internal" href="#role-cpp:func" title="cpp:func role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:func</span></code></a> roles use an alternative
+format, which simply is a complete function declaration.
+This will resolve to the exact matching overload.
+As example, consider the following class declaration:</p>
+<dl class="class">
+<dt id="_CPPv4N16overload_example1CE">
+<span id="_CPPv3N16overload_example1CE"></span><span id="_CPPv2N16overload_example1CE"></span><span id="overload_example::C"></span><em class="property">class </em><code class="sig-name descname">C</code><a class="headerlink" href="#_CPPv4N16overload_example1CE" title="本定義的永久連結">¶</a><br /></dt>
+<dd><dl class="function">
+<dt id="_CPPv4NK16overload_example1C1fEd">
+<span id="_CPPv3NK16overload_example1C1fEd"></span><span id="_CPPv2NK16overload_example1C1fEd"></span><span id="overload_example::C::f__doubleC"></span>void <code class="sig-name descname">f</code><span class="sig-paren">(</span>double <em>d</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK16overload_example1C1fEd" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N16overload_example1C1fEd">
+<span id="_CPPv3N16overload_example1C1fEd"></span><span id="_CPPv2N16overload_example1C1fEd"></span><span id="overload_example::C::f__double"></span>void <code class="sig-name descname">f</code><span class="sig-paren">(</span>double <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16overload_example1C1fEd" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N16overload_example1C1fEi">
+<span id="_CPPv3N16overload_example1C1fEi"></span><span id="_CPPv2N16overload_example1C1fEi"></span><span id="overload_example::C::f__i"></span>void <code class="sig-name descname">f</code><span class="sig-paren">(</span>int <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16overload_example1C1fEi" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N16overload_example1C1fEv">
+<span id="_CPPv3N16overload_example1C1fEv"></span><span id="_CPPv2N16overload_example1C1fEv"></span><span id="overload_example::C::f"></span>void <code class="sig-name descname">f</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16overload_example1C1fEv" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<p>References using the <a class="reference internal" href="#role-cpp:func" title="cpp:func role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:func</span></code></a> role:</p>
+<ul class="simple">
+<li><p>Arbitrary overload: <code class="docutils literal notranslate"><span class="pre">C::f</span></code>, <a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="overload_example::C::f"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">C::f()</span></code></a></p></li>
+<li><p>Also arbitrary overload: <code class="docutils literal notranslate"><span class="pre">C::f()</span></code>, <a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="overload_example::C::f"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">C::f()</span></code></a></p></li>
+<li><p>Specific overload: <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f()</span></code>, <a class="reference internal" href="#_CPPv4N16overload_example1C1fEv" title="void C::f()"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f()</span></code></a></p></li>
+<li><p>Specific overload: <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f(int)</span></code>, <a class="reference internal" href="#_CPPv4N16overload_example1C1fEi" title="void C::f(int)"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f(int)</span></code></a></p></li>
+<li><p>Specific overload: <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f(double)</span></code>, <a class="reference internal" href="#_CPPv4N16overload_example1C1fEd" title="void C::f(double)"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f(double)</span></code></a></p></li>
+<li><p>Specific overload: <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f(double)</span> <span class="pre">const</span></code>,
+<a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="void C::f(double) const"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f(double)</span> <span class="pre">const</span></code></a></p></li>
+</ul>
+<p>Note that the <a class="reference internal" href="../configuration.html#confval-add_function_parentheses"><code class="xref std std-confval docutils literal notranslate"><span class="pre">add_function_parentheses</span></code></a> configuration variable
+does not influence specific overload references.</p>
+</section>
+<section id="templated-declarations">
+<h4>Templated declarations<a class="headerlink" href="#templated-declarations" title="本標題的永久連結">¶</a></h4>
+<p>Assume the following declarations.</p>
+<dl class="class">
+<dt id="_CPPv47Wrapper">
+<span id="_CPPv37Wrapper"></span><span id="_CPPv27Wrapper"></span><span id="Wrapper"></span><em class="property">class </em><code class="sig-name descname">Wrapper</code><a class="headerlink" href="#_CPPv47Wrapper" title="本定義的永久連結">¶</a><br /></dt>
+<dd><dl class="class">
+<dt id="_CPPv4I0EN7Wrapper5OuterE">
+<span id="_CPPv3I0EN7Wrapper5OuterE"></span><span id="_CPPv2I0EN7Wrapper5OuterE"></span>template&lt;typename <code class="sig-name descname">TOuter</code>&gt;<br /><em class="property">class </em><code class="sig-name descname">Outer</code><a class="headerlink" href="#_CPPv4I0EN7Wrapper5OuterE" title="本定義的永久連結">¶</a><br /></dt>
+<dd><dl class="class">
+<dt id="_CPPv4I0EN7Wrapper5Outer5InnerE">
+<span id="_CPPv3I0EN7Wrapper5Outer5InnerE"></span><span id="_CPPv2I0EN7Wrapper5Outer5InnerE"></span>template&lt;typename <code class="sig-name descname">TInner</code>&gt;<br /><em class="property">class </em><code class="sig-name descname">Inner</code><a class="headerlink" href="#_CPPv4I0EN7Wrapper5Outer5InnerE" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<p>In general the reference must include the template parameter declarations,
+and template arguments for the prefix of qualified names. For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">template\&lt;typename</span> <span class="pre">TOuter&gt;</span> <span class="pre">Wrapper::Outer</span></code>
+(<a class="reference internal" href="#_CPPv4I0EN7Wrapper5OuterE" title="Wrapper::Outer"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">template&lt;typename</span> <span class="pre">TOuter&gt;</span> <span class="pre">Wrapper::Outer</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">template\&lt;typename</span> <span class="pre">TOuter&gt;</span> <span class="pre">template\&lt;typename</span> <span class="pre">TInner&gt;</span> <span class="pre">Wrapper::Outer&lt;TOuter&gt;::Inner</span></code>
+(<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">template&lt;typename</span> <span class="pre">TOuter&gt;</span> <span class="pre">template&lt;typename</span> <span class="pre">TInner&gt;</span> <span class="pre">Wrapper::Outer&lt;TOuter&gt;::Inner</span></code>)</p></li>
+</ul>
+<p>Currently the lookup only succeed if the template parameter identifiers are
+equal strings.  That is, <code class="docutils literal notranslate"><span class="pre">template\&lt;typename</span> <span class="pre">UOuter&gt;</span> <span class="pre">Wrapper::Outer</span></code> will not
+work.</p>
+<p>As a shorthand notation, if a template parameter list is omitted,
+then the lookup will assume either a primary template or a non-template,
+but not a partial template specialisation.
+This means the following references work as well:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Wrapper::Outer</span></code>
+(<a class="reference internal" href="#_CPPv4I0EN7Wrapper5OuterE" title="Wrapper::Outer"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Wrapper::Outer</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Wrapper::Outer::Inner</span></code>
+(<a class="reference internal" href="#_CPPv4I0EN7Wrapper5Outer5InnerE" title="Wrapper::Outer::Inner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Wrapper::Outer::Inner</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">template\&lt;typename</span> <span class="pre">TInner&gt;</span> <span class="pre">Wrapper::Outer::Inner</span></code>
+(<a class="reference internal" href="#_CPPv4I0EN7Wrapper5Outer5InnerE" title="Wrapper::Outer::Inner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">template&lt;typename</span> <span class="pre">TInner&gt;</span> <span class="pre">Wrapper::Outer::Inner</span></code></a>)</p></li>
+</ul>
+</section>
+<section id="full-template-specialisations">
+<h4>(Full) Template Specialisations<a class="headerlink" href="#full-template-specialisations" title="本標題的永久連結">¶</a></h4>
+<p>Assume the following declarations.</p>
+<dl class="class">
+<dt id="_CPPv4I0E5Outer">
+<span id="_CPPv3I0E5Outer"></span><span id="_CPPv2I0E5Outer"></span>template&lt;typename <code class="sig-name descname">TOuter</code>&gt;<br /><em class="property">class </em><code class="sig-name descname">Outer</code><a class="headerlink" href="#_CPPv4I0E5Outer" title="本定義的永久連結">¶</a><br /></dt>
+<dd><dl class="class">
+<dt id="_CPPv4I0EN5Outer5InnerE">
+<span id="_CPPv3I0EN5Outer5InnerE"></span><span id="_CPPv2I0EN5Outer5InnerE"></span>template&lt;typename <code class="sig-name descname">TInner</code>&gt;<br /><em class="property">class </em><code class="sig-name descname">Inner</code><a class="headerlink" href="#_CPPv4I0EN5Outer5InnerE" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv4IE5OuterIiE">
+<span id="_CPPv3IE5OuterIiE"></span><span id="_CPPv2IE5OuterIiE"></span>template&lt;&gt;<br /><em class="property">class </em><code class="sig-name descname">Outer</code>&lt;int&gt;<a class="headerlink" href="#_CPPv4IE5OuterIiE" title="本定義的永久連結">¶</a><br /></dt>
+<dd><dl class="class">
+<dt id="_CPPv4I0EN5OuterIiE5InnerE">
+<span id="_CPPv3I0EN5OuterIiE5InnerE"></span><span id="_CPPv2I0EN5OuterIiE5InnerE"></span>template&lt;typename <code class="sig-name descname">TInner</code>&gt;<br /><em class="property">class </em><code class="sig-name descname">Inner</code><a class="headerlink" href="#_CPPv4I0EN5OuterIiE5InnerE" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="_CPPv4IEN5OuterIiE5InnerIbEE">
+<span id="_CPPv3IEN5OuterIiE5InnerIbEE"></span><span id="_CPPv2IEN5OuterIiE5InnerIbEE"></span>template&lt;&gt;<br /><em class="property">class </em><code class="sig-name descname">Inner</code>&lt;bool&gt;<a class="headerlink" href="#_CPPv4IEN5OuterIiE5InnerIbEE" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<p>In general the reference must include a template parameter list for each
+template argument list.  The full specialisation above can therefore be
+referenced with <code class="docutils literal notranslate"><span class="pre">template\&lt;&gt;</span> <span class="pre">Outer\&lt;int&gt;</span></code> (<a class="reference internal" href="#_CPPv4IE5OuterIiE" title="Outer&lt;int&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">template&lt;&gt;</span>
+<span class="pre">Outer&lt;int&gt;</span></code></a>) and <code class="docutils literal notranslate"><span class="pre">template\&lt;&gt;</span> <span class="pre">template\&lt;&gt;</span> <span class="pre">Outer\&lt;int&gt;::Inner\&lt;bool&gt;</span></code>
+(<a class="reference internal" href="#_CPPv4IEN5OuterIiE5InnerIbEE" title="Outer&lt;int&gt;::Inner&lt;bool&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">template&lt;&gt;</span> <span class="pre">template&lt;&gt;</span> <span class="pre">Outer&lt;int&gt;::Inner&lt;bool&gt;</span></code></a>).  As a
+shorthand the empty template parameter list can be omitted, e.g.,
+<code class="docutils literal notranslate"><span class="pre">Outer\&lt;int&gt;</span></code> (<a class="reference internal" href="#_CPPv4IE5OuterIiE" title="Outer&lt;int&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Outer&lt;int&gt;</span></code></a>) and <code class="docutils literal notranslate"><span class="pre">Outer\&lt;int&gt;::Inner\&lt;bool&gt;</span></code>
+(<a class="reference internal" href="#_CPPv4IEN5OuterIiE5InnerIbEE" title="Outer&lt;int&gt;::Inner&lt;bool&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Outer&lt;int&gt;::Inner&lt;bool&gt;</span></code></a>).</p>
+</section>
+<section id="partial-template-specialisations">
+<h4>Partial Template Specialisations<a class="headerlink" href="#partial-template-specialisations" title="本標題的永久連結">¶</a></h4>
+<p>Assume the following declaration.</p>
+<dl class="class">
+<dt id="_CPPv4I0E5OuterIP1TE">
+<span id="_CPPv3I0E5OuterIP1TE"></span><span id="_CPPv2I0E5OuterIP1TE"></span>template&lt;typename <code class="sig-name descname">T</code>&gt;<br /><em class="property">class </em><code class="sig-name descname">Outer</code>&lt;<a class="reference internal" href="#_CPPv4I0E5OuterIP1TE" title="Outer&lt;T *&gt;::T">T</a> *&gt;<a class="headerlink" href="#_CPPv4I0E5OuterIP1TE" title="本定義的永久連結">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p>References to partial specialisations must always include the template
+parameter lists, e.g., <code class="docutils literal notranslate"><span class="pre">template\&lt;typename</span> <span class="pre">T&gt;</span> <span class="pre">Outer\&lt;T*&gt;</span></code>
+(<a class="reference internal" href="#_CPPv4I0E5OuterIP1TE" title="Outer&lt;T *&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">template&lt;typename</span> <span class="pre">T&gt;</span> <span class="pre">Outer&lt;T*&gt;</span></code></a>).  Currently the lookup only
+succeed if the template parameter identifiers are equal strings.</p>
+</section>
+</section>
+<section id="configuration-variables">
+<h3>組態變數<a class="headerlink" href="#configuration-variables" title="本標題的永久連結">¶</a></h3>
+<p>See <a class="reference internal" href="../configuration.html#cpp-config"><span class="std std-ref">C++ 領域的選項</span></a>.</p>
+</section>
+</section>
+<section id="the-standard-domain">
+<span id="domains-std"></span><h2>標準領域<a class="headerlink" href="#the-standard-domain" title="本標題的永久連結">¶</a></h2>
+<p>The so-called 「standard」 domain collects all markup that doesn’t warrant a
+domain of its own.  Its directives and roles are not prefixed with a domain
+name.</p>
+<p>The standard domain is also where custom object descriptions, added using the
+<a class="reference internal" href="../../extdev/appapi.html#sphinx.application.Sphinx.add_object_type" title="sphinx.application.Sphinx.add_object_type"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_object_type()</span></code></a> API, are placed.</p>
+<p>There is a set of directives allowing documenting command-line programs:</p>
+<dl class="directive">
+<dt id="directive-option">
+<code class="sig-name descname">.. option::</code><code class="sig-prename descclassname"> name args, name args, ...</code><a class="headerlink" href="#directive-option" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes a command line argument or switch.  Option argument names should
+be enclosed in angle brackets.  Examples:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">option</span><span class="p">::</span> dest_dir
+
+   Destination directory.
+
+<span class="p">..</span> <span class="ow">option</span><span class="p">::</span> -m &lt;module&gt;, --module &lt;module&gt;
+
+   Run a module as a script.
+</pre></div>
+</div>
+<p>The directive will create cross-reference targets for the given options,
+referenceable by <a class="reference internal" href="roles.html#role-option" title="option role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">option</span></code></a> (in the example case, you’d use something
+like <code class="docutils literal notranslate"><span class="pre">:option:`dest_dir`</span></code>, <code class="docutils literal notranslate"><span class="pre">:option:`-m`</span></code>, or <code class="docutils literal notranslate"><span class="pre">:option:`--module`</span></code>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">cmdoption</span></code> directive is a deprecated alias for the <code class="docutils literal notranslate"><span class="pre">option</span></code> directive.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-envvar">
+<code class="sig-name descname">.. envvar::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-envvar" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes an environment variable that the documented code or program uses
+or defines.  Referenceable by <a class="reference internal" href="roles.html#role-envvar" title="envvar role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">envvar</span></code></a>.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-program">
+<code class="sig-name descname">.. program::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-program" title="本定義的永久連結">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#directive-py:currentmodule" title="py:currentmodule directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:currentmodule</span></code></a>, this directive produces no output.
+Instead, it serves to notify Sphinx that all following <a class="reference internal" href="#directive-option" title="option directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">option</span></code></a>
+directives document options for the program called <em>name</em>.</p>
+<p>If you use <a class="reference internal" href="#directive-program" title="program directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">program</span></code></a>, you have to qualify the references in your
+<a class="reference internal" href="roles.html#role-option" title="option role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">option</span></code></a> roles by the program name, so if you have the following
+situation</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">program</span><span class="p">::</span> rm
+
+<span class="p">..</span> <span class="ow">option</span><span class="p">::</span> -r
+
+   Work recursively.
+
+<span class="p">..</span> <span class="ow">program</span><span class="p">::</span> svn
+
+<span class="p">..</span> <span class="ow">option</span><span class="p">::</span> -r revision
+
+   Specify the revision to work upon.
+</pre></div>
+</div>
+<p>then <code class="docutils literal notranslate"><span class="pre">:option:`rm</span> <span class="pre">-r`</span></code> would refer to the first option, while
+<code class="docutils literal notranslate"><span class="pre">:option:`svn</span> <span class="pre">-r`</span></code> would refer to the second one.</p>
+<p>The program name may contain spaces (in case you want to document
+subcommands like <code class="docutils literal notranslate"><span class="pre">svn</span> <span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">svn</span> <span class="pre">commit</span></code> separately).</p>
+<div class="versionadded">
+<p><span class="versionmodified added">0.5 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<p>There is also a very generic object description directive, which is not tied to
+any domain:</p>
+<dl class="directive">
+<dt id="directive-describe">
+<code class="sig-name descname">.. describe::</code><code class="sig-prename descclassname"> text</code><a class="headerlink" href="#directive-describe" title="本定義的永久連結">¶</a></dt>
+<dt id="directive-object">
+<code class="sig-name descname">.. object::</code><code class="sig-prename descclassname"> text</code><a class="headerlink" href="#directive-object" title="本定義的永久連結">¶</a></dt>
+<dd><p>This directive produces the same formatting as the specific ones provided by
+domains, but does not create index entries or cross-referencing targets.
+Example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">describe</span><span class="p">::</span> PAPER
+
+   You can set this variable to select a paper size.
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="the-javascript-domain">
+<h2>JavaScript 領域<a class="headerlink" href="#the-javascript-domain" title="本標題的永久連結">¶</a></h2>
+<p>The JavaScript domain (name <strong>js</strong>) provides the following directives:</p>
+<dl class="directive">
+<dt id="directive-js:module">
+<code class="sig-name descname">.. js:module::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-js:module" title="本定義的永久連結">¶</a></dt>
+<dd><p>This directive sets the module name for object declarations that follow
+after. The module name is used in the global module index and in cross
+references. This directive does not create an object heading like
+<a class="reference internal" href="#directive-py:class" title="py:class directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:class</span></code></a> would, for example.</p>
+<p>By default, this directive will create a linkable entity and will cause an
+entry in the global module index, unless the <code class="docutils literal notranslate"><span class="pre">noindex</span></code> option is
+specified.  If this option is specified, the directive will only update the
+current module name.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.6 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-js:function">
+<code class="sig-name descname">.. js:function::</code><code class="sig-prename descclassname"> name(signature)</code><a class="headerlink" href="#directive-js:function" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes a JavaScript function or method.  If you want to describe
+arguments as optional use square brackets as <a class="reference internal" href="#signatures"><span class="std std-ref">documented</span></a>
+for Python signatures.</p>
+<p>You can use fields to give more details about arguments and their expected
+types, errors which may be thrown by the function, and the value being
+returned:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">js:function</span><span class="p">::</span> $.getJSON(href, callback[, errback])
+
+   <span class="nc">:param string href:</span> An URI to the location of the resource.
+   <span class="nc">:param callback:</span> Gets called with the object.
+   <span class="nc">:param errback:</span>
+       Gets called in case the request fails. And a lot of other
+       text so we need multiple lines.
+   <span class="nc">:throws SomeError:</span> For whatever reason in that case.
+   <span class="nc">:returns:</span> Something.
+</pre></div>
+</div>
+<p>This is rendered as:</p>
+<blockquote>
+<div><dl class="function">
+<dt id="_S_.getJSON">
+<code class="sig-prename descclassname">$.</code><code class="sig-name descname">getJSON</code><span class="sig-paren">(</span><em class="sig-param">href</em>, <em class="sig-param">callback</em><span class="optional">[</span>, <em class="sig-param">errback</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#_S_.getJSON" title="本定義的永久連結">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">引數</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>href</strong> (<em>string</em>) – An URI to the location of the resource.</p></li>
+<li><p><strong>callback</strong> – Gets called with the object.</p></li>
+<li><p><strong>errback</strong> – Gets called in case the request fails. And a lot of other
+text so we need multiple lines.</p></li>
+</ul>
+</dd>
+<dt class="field-even">拋出</dt>
+<dd class="field-even"><p><strong>SomeError</strong> – For whatever reason in that case.</p>
+</dd>
+<dt class="field-odd">傳回</dt>
+<dd class="field-odd"><p>Something.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-js:method">
+<code class="sig-name descname">.. js:method::</code><code class="sig-prename descclassname"> name(signature)</code><a class="headerlink" href="#directive-js:method" title="本定義的永久連結">¶</a></dt>
+<dd><p>This directive is an alias for <a class="reference internal" href="#directive-js:function" title="js:function directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">js:function</span></code></a>, however it describes
+a function that is implemented as a method on a class object.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.6 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-js:class">
+<code class="sig-name descname">.. js:class::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-js:class" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes a constructor that creates an object.  This is basically like a
+function but will show up with a <cite>class</cite> prefix:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">js:class</span><span class="p">::</span> MyAnimal(name[, age])
+
+   <span class="nc">:param string name:</span> The name of the animal
+   <span class="nc">:param number age:</span> an optional age for the animal
+</pre></div>
+</div>
+<p>This is rendered as:</p>
+<blockquote>
+<div><dl class="class">
+<dt id="MyAnimal">
+<em class="property">class </em><code class="sig-name descname">MyAnimal</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="optional">[</span>, <em class="sig-param">age</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#MyAnimal" title="本定義的永久連結">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">引數</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>string</em>) – The name of the animal</p></li>
+<li><p><strong>age</strong> (<em>number</em>) – an optional age for the animal</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-js:data">
+<code class="sig-name descname">.. js:data::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-js:data" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes a global variable or constant.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-js:attribute">
+<code class="sig-name descname">.. js:attribute::</code><code class="sig-prename descclassname"> object.name</code><a class="headerlink" href="#directive-js:attribute" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes the attribute <em>name</em> of <em>object</em>.</p>
+</dd></dl>
+
+<p id="js-roles">These roles are provided to refer to the described objects:</p>
+<dl class="role">
+<dt id="role-js:mod">
+<code class="sig-name descname">:js:mod:</code><a class="headerlink" href="#role-js:mod" title="本定義的永久連結">¶</a></dt>
+<dt id="role-js:func">
+<code class="sig-name descname">:js:func:</code><a class="headerlink" href="#role-js:func" title="本定義的永久連結">¶</a></dt>
+<dt id="role-js:meth">
+<code class="sig-name descname">:js:meth:</code><a class="headerlink" href="#role-js:meth" title="本定義的永久連結">¶</a></dt>
+<dt id="role-js:class">
+<code class="sig-name descname">:js:class:</code><a class="headerlink" href="#role-js:class" title="本定義的永久連結">¶</a></dt>
+<dt id="role-js:data">
+<code class="sig-name descname">:js:data:</code><a class="headerlink" href="#role-js:data" title="本定義的永久連結">¶</a></dt>
+<dt id="role-js:attr">
+<code class="sig-name descname">:js:attr:</code><a class="headerlink" href="#role-js:attr" title="本定義的永久連結">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="the-restructuredtext-domain">
+<h2>The reStructuredText domain<a class="headerlink" href="#the-restructuredtext-domain" title="本標題的永久連結">¶</a></h2>
+<p>The reStructuredText domain (name <strong>rst</strong>) provides the following directives:</p>
+<dl class="directive">
+<dt id="directive-rst:directive">
+<code class="sig-name descname">.. rst:directive::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-rst:directive" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes a reST directive.  The <em>name</em> can be a single directive name or
+actual directive syntax (<cite>..</cite> prefix and <cite>::</cite> suffix) with arguments that
+will be rendered differently.  For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">rst:directive</span><span class="p">::</span> foo
+
+   Foo description.
+
+<span class="p">..</span> <span class="ow">rst:directive</span><span class="p">::</span> .. bar:: baz
+
+   Bar description.
+</pre></div>
+</div>
+<p>will be rendered as:</p>
+<blockquote>
+<div><dl class="directive">
+<dt id="directive-foo">
+<code class="sig-name descname">.. foo::</code><a class="headerlink" href="#directive-foo" title="本定義的永久連結">¶</a></dt>
+<dd><p>Foo description.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-bar">
+<code class="sig-name descname">.. bar::</code><code class="sig-prename descclassname"> baz</code><a class="headerlink" href="#directive-bar" title="本定義的永久連結">¶</a></dt>
+<dd><p>Bar description.</p>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-rst:directive:option">
+<code class="sig-name descname">.. rst:directive:option::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-rst:directive:option" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes an option for reST directive.  The <em>name</em> can be a single option
+name or option name with arguments which separated with colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>).
+For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">rst:directive</span><span class="p">::</span> toctree
+
+<span class="p">   ..</span> <span class="ow">rst:directive:option</span><span class="p">::</span> caption: caption of ToC
+
+<span class="p">   ..</span> <span class="ow">rst:directive:option</span><span class="p">::</span> glob
+</pre></div>
+</div>
+<p>will be rendered as:</p>
+<blockquote>
+<div><dl class="directive">
+<dt>
+<code class="sig-name descname">.. toctree::</code></dt>
+<dd><dl class="directive:option">
+<dt id="directive:option-toctree-caption">
+<code class="sig-name descname">:caption:</code><em class="property"> caption of ToC</em><a class="headerlink" href="#directive:option-toctree-caption" title="本定義的永久連結">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="directive:option">
+<dt id="directive:option-toctree-glob">
+<code class="sig-name descname">:glob:</code><a class="headerlink" href="#directive:option-toctree-glob" title="本定義的永久連結">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="rubric">options</p>
+<dl class="directive:option">
+<dt id="directive:option-rst:directive:option-type">
+<code class="sig-name descname">:type:</code><em class="property"> description of argument</em><em class="property"> (text)</em><a class="headerlink" href="#directive:option-rst:directive:option-type" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describe the type of option value.</p>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">rst:directive</span><span class="p">::</span> toctree
+
+<span class="p">   ..</span> <span class="ow">rst:directive:option</span><span class="p">::</span> maxdepth
+      <span class="nc">:type:</span> integer or no value
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">2.1 版新加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-rst:role">
+<code class="sig-name descname">.. rst:role::</code><code class="sig-prename descclassname"> name</code><a class="headerlink" href="#directive-rst:role" title="本定義的永久連結">¶</a></dt>
+<dd><p>Describes a reST role.  For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">rst:role</span><span class="p">::</span> foo
+
+   Foo description.
+</pre></div>
+</div>
+<p>will be rendered as:</p>
+<blockquote>
+<div><dl class="role">
+<dt id="role-foo">
+<code class="sig-name descname">:foo:</code><a class="headerlink" href="#role-foo" title="本定義的永久連結">¶</a></dt>
+<dd><p>Foo description.</p>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+<p id="rst-roles">These roles are provided to refer to the described objects:</p>
+<dl class="role">
+<dt id="role-rst:dir">
+<code class="sig-name descname">:rst:dir:</code><a class="headerlink" href="#role-rst:dir" title="本定義的永久連結">¶</a></dt>
+<dt id="role-rst:role">
+<code class="sig-name descname">:rst:role:</code><a class="headerlink" href="#role-rst:role" title="本定義的永久連結">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="the-math-domain">
+<span id="math-domain"></span><h2>The Math Domain<a class="headerlink" href="#the-math-domain" title="本標題的永久連結">¶</a></h2>
+<p>The math domain (name <strong>math</strong>) provides the following roles:</p>
+<dl class="role">
+<dt id="role-math:numref">
+<code class="sig-name descname">:math:numref:</code><a class="headerlink" href="#role-math:numref" title="本定義的永久連結">¶</a></dt>
+<dd><p>Role for cross-referencing equations defined by <a class="reference internal" href="directives.html#directive-math" title="math directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">math</span></code></a> directive
+via their label.  Example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">math</span><span class="p">::</span> e^{i\pi} + 1 = 0
+   <span class="nc">:label:</span> euler
+
+Euler&#39;s identity, equation <span class="na">:math:numref:</span><span class="nv">`euler`</span>, was elected one of the
+most beautiful mathematical formulas.
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">1.8 版新加入.</span></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="more-domains">
+<h2>More domains<a class="headerlink" href="#more-domains" title="本標題的永久連結">¶</a></h2>
+<p>The <a class="reference external" href="https://bitbucket.org/birkenfeld/sphinx-contrib/">sphinx-contrib</a> repository contains more domains available as extensions;
+currently <a class="reference external" href="https://pypi.org/project/sphinxcontrib-adadomain/">Ada</a>, <a class="reference external" href="https://pypi.org/project/sphinxcontrib-coffee/">CoffeeScript</a>, <a class="reference external" href="https://pypi.org/project/sphinxcontrib-erlangdomain/">Erlang</a>, <a class="reference external" href="https://pypi.org/project/sphinxcontrib-httpdomain/">HTTP</a>, <a class="reference external" href="https://pypi.org/project/sphinxcontrib-lassodomain/">Lasso</a>, <a class="reference external" href="https://pypi.org/project/sphinxcontrib-matlabdomain/">MATLAB</a>, <a class="reference external" href="https://pypi.org/project/sphinxcontrib-phpdomain/">PHP</a>, and <a class="reference external" href="https://bitbucket.org/birkenfeld/sphinx-contrib/src/default/rubydomain">Ruby</a>
+domains. Also available are domains for <a class="reference external" href="https://pypi.org/project/sphinxcontrib-chapeldomain/">Chapel</a>, <a class="reference external" href="https://pypi.org/project/sphinxcontrib-cldomain/">Common Lisp</a>, <a class="reference external" href="https://pypi.org/project/sphinxcontrib-dqndomain/">dqn</a>, <a class="reference external" href="https://pypi.org/project/sphinxcontrib-golangdomain/">Go</a>,
+<a class="reference external" href="https://pypi.org/project/sphinxcontrib-jinjadomain/">Jinja</a>, <a class="reference external" href="https://pypi.org/project/sphinxcontrib-operationdomain/">Operation</a>, and <a class="reference external" href="https://pypi.org/project/sphinxcontrib-scaladomain/">Scala</a>.</p>
+</section>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="../markdown.html" title="Markdown"
+             >下一頁</a> |</li>
+        <li class="right" >
+          <a href="field-lists.html" title="欄位列表"
+             >上一頁</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >reStructuredText</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2019, Georg Brandl and the Sphinx team。
+      使用 <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5 創建。
+    </div>
+  </body>
+</html>

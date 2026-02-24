@@ -1,0 +1,622 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en_US">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Projects using Sphinx &#8212; Sphinx 2.4.5 documentation</title>
+    <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/examples.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx 2.4.5 documentation"
+          href="_static/opensearch.xml"/>
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Sphinx authors" href="authors.html" />
+    <link rel="prev" title="Changes in Sphinx" href="changes.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/examples.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="ltd-provenance.js"></script>
+<script type="text/javascript" src="ltd-current.js"></script>
+<script type="text/javascript" src="../../ltd-config.js"></script>
+<script type="text/javascript" src="../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="usage/installation.html">Get it</a></li>
+    <li><a href="contents.html">Docs</a></li>
+    <li><a href="develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="index.html">
+      <img src="_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="authors.html" title="Sphinx authors"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="changes.html" title="Changes in Sphinx"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Projects using Sphinx</a><ul>
+<li><a class="reference internal" href="#documentation-using-the-alabaster-theme">Documentation using the alabaster theme</a></li>
+<li><a class="reference internal" href="#documentation-using-the-classic-theme">Documentation using the classic theme</a></li>
+<li><a class="reference internal" href="#documentation-using-the-sphinxdoc-theme">Documentation using the sphinxdoc theme</a></li>
+<li><a class="reference internal" href="#documentation-using-the-nature-theme">Documentation using the nature theme</a></li>
+<li><a class="reference internal" href="#documentation-using-another-builtin-theme">Documentation using another builtin theme</a></li>
+<li><a class="reference internal" href="#documentation-using-sphinx-rtd-theme">Documentation using sphinx_rtd_theme</a></li>
+<li><a class="reference internal" href="#documentation-using-sphinx-bootstrap-theme">Documentation using sphinx_bootstrap_theme</a></li>
+<li><a class="reference internal" href="#documentation-using-a-custom-theme-or-integrated-in-a-website">Documentation using a custom theme or integrated in a website</a></li>
+<li><a class="reference internal" href="#homepages-and-other-non-documentation-sites">Homepages and other non-documentation sites</a></li>
+<li><a class="reference internal" href="#books-produced-using-sphinx">Books produced using Sphinx</a></li>
+<li><a class="reference internal" href="#theses-produced-using-sphinx">Theses produced using Sphinx</a></li>
+<li><a class="reference internal" href="#projects-integrating-sphinx-functionality">Projects integrating Sphinx functionality</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="changes.html"
+                        title="previous chapter">Changes in Sphinx</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="authors.html"
+                        title="next chapter">Sphinx authors</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/examples.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="projects-using-sphinx">
+<span id="examples"></span><h1>Projects using Sphinx<a class="headerlink" href="#projects-using-sphinx" title="Permalink to this headline">¶</a></h1>
+<p>This is an (incomplete) alphabetic list of projects that use Sphinx or
+are experimenting with using it for their documentation.  If you like to
+be included, please mail to <a class="reference external" href="https://groups.google.com/forum/#!forum/sphinx-users">the Google group</a>.</p>
+<p>I’ve grouped the list into sections to make it easier to find
+interesting examples.</p>
+<section id="documentation-using-the-alabaster-theme">
+<h2>Documentation using the alabaster theme<a class="headerlink" href="#documentation-using-the-alabaster-theme" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://alabaster.readthedocs.io/">Alabaster</a></p></li>
+<li><p><a class="reference external" href="https://pythonhosted.org/blinker/">Blinker</a></p></li>
+<li><p><a class="reference external" href="https://manual.calibre-ebook.com/">Calibre</a></p></li>
+<li><p><a class="reference external" href="http://click.pocoo.org/">Click</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://docs.coala.io/">coala</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://documen.tician.de/codepy/">CodePy</a></p></li>
+<li><p><a class="reference external" href="https://docs.python-eve.org/">Eve</a> (Python REST API framework)</p></li>
+<li><p><a class="reference external" href="https://docs.fabfile.org/">Fabric</a></p></li>
+<li><p><a class="reference external" href="https://fityk.nieto.pl/">Fityk</a></p></li>
+<li><p><a class="reference external" href="http://flask.pocoo.org/docs/">Flask</a></p></li>
+<li><p><a class="reference external" href="https://pythonhosted.org/Flask-OpenID/">Flask-OpenID</a></p></li>
+<li><p><a class="reference external" href="https://docs.pyinvoke.org/">Invoke</a></p></li>
+<li><p><a class="reference external" href="http://jinja.pocoo.org/docs/">Jinja</a></p></li>
+<li><p><a class="reference external" href="http://www.lino-framework.org/">Lino</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://getmarbl.readthedocs.io/">marbl</a></p></li>
+<li><p><a class="reference external" href="https://www.mdanalysis.org/docs/">MDAnalysis</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://documen.tician.de/meshpy/">MeshPy</a></p></li>
+<li><p><a class="reference external" href="https://molecule.readthedocs.io/">Molecule</a></p></li>
+<li><p><a class="reference external" href="https://documen.tician.de/pycuda/">PyCUDA</a></p></li>
+<li><p><a class="reference external" href="https://documen.tician.de/pyopencl/">PyOpenCL</a></p></li>
+<li><p><a class="reference external" href="http://pylangacq.org/">PyLangAcq</a></p></li>
+<li><p><a class="reference external" href="https://docs.pytest.org/">pytest</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://apt.alioth.debian.org/python-apt-doc/">python-apt</a></p></li>
+<li><p><a class="reference external" href="https://documen.tician.de/pyvisfile/">PyVisfile</a></p></li>
+<li><p><a class="reference external" href="http://www.python-requests.org/">Requests</a></p></li>
+<li><p><a class="reference external" href="https://asciimoo.github.io/searx/">searx</a></p></li>
+<li><p><a class="reference external" href="https://docs.spyder-ide.org/">Spyder</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://docs.python-tablib.org/">Tablib</a></p></li>
+<li><p><a class="reference external" href="https://urllib3.readthedocs.io/">urllib3</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://werkzeug.pocoo.org/docs/">Werkzeug</a> (customized)</p></li>
+</ul>
+</section>
+<section id="documentation-using-the-classic-theme">
+<h2>Documentation using the classic theme<a class="headerlink" href="#documentation-using-the-classic-theme" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://xoomer.virgilio.it/infinity77/AGW_Docs/">Advanced Generic Widgets</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://docs.couchdb.org/">Apache CouchDB</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://rogerbinns.github.io/apsw/">APSW</a></p></li>
+<li><p><a class="reference external" href="http://arblib.org/">Arb</a></p></li>
+<li><p><a class="reference external" href="http://doc.bazaar.canonical.com/">Bazaar</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">Beautiful Soup</a></p></li>
+<li><p><a class="reference external" href="https://docs.blender.org/api/current/">Blender</a></p></li>
+<li><p><a class="reference external" href="https://bugzilla.readthedocs.io/">Bugzilla</a></p></li>
+<li><p><a class="reference external" href="https://docs.buildbot.net/latest/">Buildbot</a></p></li>
+<li><p><a class="reference external" href="https://cmake.org/documentation/">CMake</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://docs.enthought.com/chaco/">Chaco</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://downloads.pf.itd.nrl.navy.mil/docs/core/core-html/">CORE</a></p></li>
+<li><p><a class="reference external" href="https://downloads.pf.itd.nrl.navy.mil/docs/core/core-python-html/">CORE Python modules</a></p></li>
+<li><p><a class="reference external" href="http://cormoran.nhopkg.org/docs/">Cormoran</a></p></li>
+<li><p><a class="reference external" href="https://deap.readthedocs.io/">DEAP</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://pythonhosted.org/director/">Director</a></p></li>
+<li><p><a class="reference external" href="https://pageperso.lif.univ-mrs.fr/~edouard.thiel/ez-draw/doc/en/html/ez-manual.html">EZ-Draw</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://f2py.sourceforge.net/docs/">F2py</a></p></li>
+<li><p><a class="reference external" href="https://gmt.soest.hawaii.edu/doc/latest/">Generic Mapping Tools (GMT)</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://noble.gs.washington.edu/proj/genomedata/doc/1.3.3/">Genomedata</a></p></li>
+<li><p><a class="reference external" href="http://getfem.org/">GetFEM++</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/">Glasgow Haskell Compiler</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://grok.zope.org/doc/current/">Grok</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://manual.gromacs.org/documentation/">GROMACS</a></p></li>
+<li><p><a class="reference external" href="https://www.nongnu.org/gsl-shell/">GSL Shell</a></p></li>
+<li><p><a class="reference external" href="https://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/">Hands-on Python Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://api.freevo.org/kaa-base/">Kaa</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://leoeditor.com/">Leo</a></p></li>
+<li><p><a class="reference external" href="http://www.acooke.org/lepl/">LEPL</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://docs.enthought.com/mayavi/mayavi/">Mayavi</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://mediagoblin.readthedocs.io/">MediaGoblin</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://mpmath.org/doc/current/">mpmath</a></p></li>
+<li><p><a class="reference external" href="https://docs.opencv.org/">OpenCV</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://excamera.com/articles/26/doc/index.html">OpenEXR</a></p></li>
+<li><p><a class="reference external" href="http://www.opengda.org/gdadoc/html/">OpenGDA</a></p></li>
+<li><p><a class="reference external" href="https://peach3.nl/doc/latest/userdoc/">Peach^3</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://docs.plone.org/">Plone</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://pyemd.readthedocs.io/">PyEMD</a></p></li>
+<li><p><a class="reference external" href="http://pyevolve.sourceforge.net/">Pyevolve</a></p></li>
+<li><p><a class="reference external" href="https://www.pygame.org/docs/">Pygame</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://pythonhosted.org/pymqi/">PyMQI</a></p></li>
+<li><p><a class="reference external" href="http://pyqt.sourceforge.net/Docs/PyQt4/">PyQt4</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://pyqt.sourceforge.net/Docs/PyQt5/">PyQt5</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/2/">Python 2</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/">Python 3</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://www.pypa.io/">Python Packaging Authority</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://ring-lang.sourceforge.net/doc/">Ring programming language</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://doc.sagemath.org/">SageMath</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://noble.gs.washington.edu/proj/segway/doc/1.1.0/segway.html">Segway</a></p></li>
+<li><p><a class="reference external" href="http://simupop.sourceforge.net/manual_release/build/userGuide.html">simuPOP</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://sprox.org/">Sprox</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://docs.sympy.org/">SymPy</a></p></li>
+<li><p><a class="reference external" href="https://turbogears.readthedocs.io/">TurboGears</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://docs.enthought.com/mayavi/tvtk/">tvtk</a></p></li>
+<li><p><a class="reference external" href="https://www.varnish-cache.org/docs/">Varnish</a> (customized, alabaster for index)</p></li>
+<li><p><a class="reference external" href="https://waf.io/apidocs/">Waf</a></p></li>
+<li><p><a class="reference external" href="https://wxpython.org/Phoenix/docs/html/main.html">wxPython Phoenix</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://yum.baseurl.org/api/yum/">Yum</a></p></li>
+<li><p><a class="reference external" href="https://www.ibiblio.org/paulcarduner/z3ctutorial/">z3c</a></p></li>
+<li><p><a class="reference external" href="https://pythonhosted.org/zc.async/">zc.async</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://docs.zope.org/zope2/">Zope</a> (customized)</p></li>
+</ul>
+</section>
+<section id="documentation-using-the-sphinxdoc-theme">
+<h2>Documentation using the sphinxdoc theme<a class="headerlink" href="#documentation-using-the-sphinxdoc-theme" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://abrt.readthedocs.io/">ABRT</a></p></li>
+<li><p><a class="reference external" href="https://scitools.org.uk/cartopy/docs/latest/">cartopy</a></p></li>
+<li><p><a class="reference external" href="http://www.jython.org/docs/">Jython</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/">Matplotlib</a></p></li>
+<li><p><a class="reference external" href="https://www.mdanalysis.org/MDAnalysisTutorial/">MDAnalysis Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://networkx.github.io/">NetworkX</a></p></li>
+<li><p><a class="reference external" href="http://pycantonese.org/">PyCantonese</a></p></li>
+<li><p><a class="reference external" href="http://docs.danse.us/pyre/sphinx/">Pyre</a></p></li>
+<li><p><a class="reference external" href="https://pyspace.github.io/pyspace/">pySPACE</a></p></li>
+<li><p><a class="reference external" href="http://pysparse.sourceforge.net/">Pysparse</a></p></li>
+<li><p><a class="reference external" href="https://www.esrf.eu/computing/cs/tango/tango_doc/kernel_doc/pytango/latest/">PyTango</a></p></li>
+<li><p><a class="reference external" href="https://vmlaker.github.io/pythonwildmagic/">Python Wild Magic</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://www.reteisi.org/contents.html">Reteisi</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://sqlkit.argolinux.org/">Sqlkit</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://docs.turbulenz.com/">Turbulenz</a></p></li>
+</ul>
+</section>
+<section id="documentation-using-the-nature-theme">
+<h2>Documentation using the nature theme<a class="headerlink" href="#documentation-using-the-nature-theme" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://alembic.zzzcomputing.com/">Alembic</a></p></li>
+<li><p><a class="reference external" href="http://docs.cython.org/">Cython</a></p></li>
+<li><p><a class="reference external" href="https://easybuild.readthedocs.io/">easybuild</a></p></li>
+<li><p><a class="reference external" href="http://doc.jsfiddle.net/">jsFiddle</a></p></li>
+<li><p><a class="reference external" href="https://www.liblas.org/">libLAS</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://lmod.readthedocs.io/">Lmod</a></p></li>
+<li><p><a class="reference external" href="https://mapserver.org/">MapServer</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/">Pandas</a></p></li>
+<li><p><a class="reference external" href="https://pyglet.readthedocs.io/">pyglet</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://setuptools.readthedocs.io/">Setuptools</a></p></li>
+<li><p><a class="reference external" href="https://docs.spring.io/spring-python/1.2.x/sphinx/html/">Spring Python</a></p></li>
+<li><p><a class="reference external" href="https://www.statsmodels.org/">StatsModels</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://sylli.sourceforge.net/">Sylli</a></p></li>
+</ul>
+</section>
+<section id="documentation-using-another-builtin-theme">
+<h2>Documentation using another builtin theme<a class="headerlink" href="#documentation-using-another-builtin-theme" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://breathe.readthedocs.io/">Breathe</a> (haiku)</p></li>
+<li><p><a class="reference external" href="https://vmlaker.github.io/mpipe/">MPipe</a> (sphinx13)</p></li>
+<li><p><a class="reference external" href="https://www.nltk.org/">NLTK</a> (agogo)</p></li>
+<li><p><a class="reference external" href="https://www.florian-diesch.de/doc/python-und-glade/online/">Programmieren mit PyGTK und Glade (German)</a> (agogo, customized)</p></li>
+<li><p><a class="reference external" href="https://pypubsub.readthedocs.io/">PyPubSub</a> (bizstyle)</p></li>
+<li><p><a class="reference external" href="https://docs.pylonsproject.org/projects/pylons-webframework/">Pylons</a> (pyramid)</p></li>
+<li><p><a class="reference external" href="https://docs.pylonsproject.org/projects/pyramid/">Pyramid web framework</a> (pyramid)</p></li>
+<li><p><a class="reference external" href="http://www.sphinx-doc.org/">Sphinx</a> (sphinx13) :-)</p></li>
+<li><p><a class="reference external" href="https://docs.valence.desire2learn.com/">Valence</a> (haiku, customized)</p></li>
+</ul>
+</section>
+<section id="documentation-using-sphinx-rtd-theme">
+<h2>Documentation using sphinx_rtd_theme<a class="headerlink" href="#documentation-using-sphinx-rtd-theme" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://docs.annotatorjs.org/">Annotator</a></p></li>
+<li><p><a class="reference external" href="https://docs.ansible.com/">Ansible</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://arcade.academy/">Arcade</a></p></li>
+<li><p><a class="reference external" href="https://aria2.github.io/manual/en/html/">aria2</a></p></li>
+<li><p><a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a></p></li>
+<li><p><a class="reference external" href="http://docs.autofac.org/">Autofac</a></p></li>
+<li><p><a class="reference external" href="https://docs.bigchaindb.com/">BigchainDB</a></p></li>
+<li><p><a class="reference external" href="https://blocks.readthedocs.io/">Blocks</a></p></li>
+<li><p><a class="reference external" href="https://bootstrap-datepicker.readthedocs.io/">bootstrap-datepicker</a></p></li>
+<li><p><a class="reference external" href="https://letsencrypt.readthedocs.io/">Certbot</a></p></li>
+<li><p><a class="reference external" href="https://docs.chainer.org/">Chainer</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://docs.cherrypy.org/">CherryPy</a></p></li>
+<li><p><a class="reference external" href="https://cloudinit.readthedocs.io/">cloud-init</a></p></li>
+<li><p><a class="reference external" href="https://www.codeigniter.com/user_guide/">CodeIgniter</a></p></li>
+<li><p><a class="reference external" href="https://conda.io/docs/">Conda</a></p></li>
+<li><p><a class="reference external" href="https://docs.corda.net/">Corda</a></p></li>
+<li><p><a class="reference external" href="https://dask.pydata.org/">Dask</a></p></li>
+<li><p><a class="reference external" href="https://docs.databricks.com/">Databricks</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://doc.dataiku.com/">Dataiku DSS</a></p></li>
+<li><p><a class="reference external" href="https://dnf.readthedocs.io/">DNF</a></p></li>
+<li><p><a class="reference external" href="https://docs.edx.org/">edX</a></p></li>
+<li><p><a class="reference external" href="http://docs.electrum.org/">Electrum</a></p></li>
+<li><p><a class="reference external" href="http://libelemental.org/documentation/dev/">Elemental</a></p></li>
+<li><p><a class="reference external" href="https://eswp3.readthedocs.io/">ESWP3</a></p></li>
+<li><p><a class="reference external" href="http://www.ethdocs.org/">Ethereum Homestead</a></p></li>
+<li><p><a class="reference external" href="https://faker.readthedocs.io/">Faker</a></p></li>
+<li><p><a class="reference external" href="https://fidimag.readthedocs.io/">Fidimag</a></p></li>
+<li><p><a class="reference external" href="http://flake8.pycqa.org/">Flake8</a></p></li>
+<li><p><a class="reference external" href="http://docs.flatpak.org/">Flatpak</a></p></li>
+<li><p><a class="reference external" href="https://fluiddyn.readthedocs.io/">FluidDyn</a></p></li>
+<li><p><a class="reference external" href="https://fluidsim.readthedocs.io/">Fluidsim</a></p></li>
+<li><p><a class="reference external" href="http://docs.geonode.org/">GeoNode</a></p></li>
+<li><p><a class="reference external" href="https://glances.readthedocs.io/">Glances</a></p></li>
+<li><p><a class="reference external" href="https://godot.readthedocs.io/">Godot</a></p></li>
+<li><p><a class="reference external" href="http://docs.graylog.org/">Graylog</a></p></li>
+<li><p><a class="reference external" href="https://wiki.fysik.dtu.dk/gpaw/">GPAW</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://docs.h5py.org/">HDF5 for Python (h5py)</a></p></li>
+<li><p><a class="reference external" href="https://hyperledger-fabric.readthedocs.io/">Hyperledger Fabric</a></p></li>
+<li><p><a class="reference external" href="https://intelledger.github.io/">Hyperledger Sawtooth</a></p></li>
+<li><p><a class="reference external" href="http://docs.identityserver.io/">IdentityServer</a></p></li>
+<li><p><a class="reference external" href="http://docs.idris-lang.org/">Idris</a></p></li>
+<li><p><a class="reference external" href="https://bronto-javasphinx.readthedocs.io/">javasphinx</a></p></li>
+<li><p><a class="reference external" href="https://julia.readthedocs.io/">Julia</a></p></li>
+<li><p><a class="reference external" href="https://jupyter-notebook.readthedocs.io/">Jupyter Notebook</a></p></li>
+<li><p><a class="reference external" href="https://lasagne.readthedocs.io/">Lasagne</a></p></li>
+<li><p><a class="reference external" href="https://latexindentpl.readthedocs.io/">latexindent.pl</a></p></li>
+<li><p><a class="reference external" href="https://linguistica-uchicago.github.io/lxa5/">Linguistica</a></p></li>
+<li><p><a class="reference external" href="https://www.kernel.org/doc/html/latest/index.html">Linux kernel</a></p></li>
+<li><p><a class="reference external" href="https://docs.mathjax.org/">MathJax</a></p></li>
+<li><p><a class="reference external" href="http://mdtraj.org/latest/">MDTraj</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://micca.org/docs/latest/">MICrobial Community Analysis (micca)</a></p></li>
+<li><p><a class="reference external" href="https://docs.micropython.org/">MicroPython</a></p></li>
+<li><p><a class="reference external" href="https://www.minds.org/docs/">Minds</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://mink.behat.org/">Mink</a></p></li>
+<li><p><a class="reference external" href="http://docs.mockery.io/">Mockery</a></p></li>
+<li><p><a class="reference external" href="https://modwsgi.readthedocs.io/">mod_wsgi</a></p></li>
+<li><p><a class="reference external" href="https://moin-20.readthedocs.io/">MoinMoin</a></p></li>
+<li><p><a class="reference external" href="https://docs.mopidy.com/">Mopidy</a></p></li>
+<li><p><a class="reference external" href="http://docs.myhdl.org/">MyHDL</a></p></li>
+<li><p><a class="reference external" href="https://www.nextflow.io/docs/latest/index.html">Nextflow</a></p></li>
+<li><p><a class="reference external" href="https://forge.frm2.tum.de/nicos/doc/nicos-master/">NICOS</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://docs.getpelican.com/">Pelican</a></p></li>
+<li><p><a class="reference external" href="https://picamera.readthedocs.io/">picamera</a></p></li>
+<li><p><a class="reference external" href="https://pillow.readthedocs.io/">Pillow</a></p></li>
+<li><p><a class="reference external" href="https://pip.pypa.io/">pip</a></p></li>
+<li><p><a class="reference external" href="https://paver.readthedocs.io/">Paver</a></p></li>
+<li><p><a class="reference external" href="http://docs.peewee-orm.com/">peewee</a></p></li>
+<li><p><a class="reference external" href="http://docs.phinx.org/">Phinx</a></p></li>
+<li><p><a class="reference external" href="https://docs.phpmyadmin.net/">phpMyAdmin</a></p></li>
+<li><p><a class="reference external" href="https://pros.cs.purdue.edu/v5/">PROS</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://docs.pushkin.io/">Pushkin</a></p></li>
+<li><p><a class="reference external" href="http://mpastell.com/pweave/">Pweave</a></p></li>
+<li><p><a class="reference external" href="http://doc.pypy.org/">PyPy</a></p></li>
+<li><p><a class="reference external" href="https://sqlparse.readthedocs.io/">python-sqlparse</a></p></li>
+<li><p><a class="reference external" href="https://pyvisa.readthedocs.io/">PyVISA</a></p></li>
+<li><p><a class="reference external" href="https://docs.readthedocs.io/">Read The Docs</a></p></li>
+<li><p><a class="reference external" href="http://redaction-technique.org/">Free your information from their silos (French)</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://releases.readthedocs.io/">Releases Sphinx extension</a></p></li>
+<li><p><a class="reference external" href="http://docs.qtile.org/">Qtile</a></p></li>
+<li><p><a class="reference external" href="http://quex.sourceforge.net/doc/html/main.html">Quex</a></p></li>
+<li><p><a class="reference external" href="http://qutip.org/docs/latest/">QuTiP</a></p></li>
+<li><p><a class="reference external" href="http://docs.satchmoproject.com/">Satchmo</a></p></li>
+<li><p><a class="reference external" href="https://scapy.readthedocs.io/">Scapy</a></p></li>
+<li><p><a class="reference external" href="http://simgrid.gforge.inria.fr/simgrid/latest/doc/">SimGrid</a></p></li>
+<li><p><a class="reference external" href="https://simpy.readthedocs.io/">SimPy</a></p></li>
+<li><p><a class="reference external" href="https://six.readthedocs.io/">six</a></p></li>
+<li><p><a class="reference external" href="https://newdocs.slamdata.com">SlamData</a></p></li>
+<li><p><a class="reference external" href="https://solidity.readthedocs.io/">Solidity</a></p></li>
+<li><p><a class="reference external" href="http://docs.python-soco.com/">Sonos Controller (SoCo)</a></p></li>
+<li><p><a class="reference external" href="https://sphinx-autoapi.readthedocs.io/">Sphinx AutoAPI</a></p></li>
+<li><p><a class="reference external" href="https://sphinx-argparse.readthedocs.io/">sphinx-argparse</a></p></li>
+<li><p><a class="reference external" href="https://sphinx-gallery.readthedocs.io/">Sphinx-Gallery</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://spotbugs.readthedocs.io/">SpotBugs</a></p></li>
+<li><p><a class="reference external" href="https://docs.staruml.io/">StarUML</a></p></li>
+<li><p><a class="reference external" href="http://docs.sublimetext.info/">Sublime Text Unofficial Documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.sunpy.org/">SunPy</a></p></li>
+<li><p><a class="reference external" href="http://docs.sylius.org/">Sylius</a></p></li>
+<li><p><a class="reference external" href="https://docs.syncthing.net/">Syncthing</a></p></li>
+<li><p><a class="reference external" href="https://tango-controls.readthedocs.io/">Tango Controls</a> (customized)</p></li>
+<li><p><a class="reference external" href="http://docs.topshelf-project.com/">Topshelf</a></p></li>
+<li><p><a class="reference external" href="http://www.deeplearning.net/software/theano/">Theano</a></p></li>
+<li><p><a class="reference external" href="https://docs.threatconnect.com/">ThreatConnect</a></p></li>
+<li><p><a class="reference external" href="https://tuleap.net/doc/en/">Tuleap</a></p></li>
+<li><p><a class="reference external" href="https://docs.typo3.org/">TYPO3</a> (customized)</p></li>
+<li><p><a class="reference external" href="https://docs.veyon.io/">Veyon</a></p></li>
+<li><p><a class="reference external" href="https://uwsgi-docs.readthedocs.io/">uWSGI</a></p></li>
+<li><p><a class="reference external" href="https://virtualenv.readthedocs.io/">virtualenv</a></p></li>
+<li><p><a class="reference external" href="https://docs.wagtail.io/">Wagtail</a></p></li>
+<li><p><a class="reference external" href="http://docs.w3af.org/">Web Application Attack and Audit Framework (w3af)</a></p></li>
+<li><p><a class="reference external" href="https://docs.weblate.org/">Weblate</a></p></li>
+<li><p><a class="reference external" href="https://x265.readthedocs.io/">x265</a></p></li>
+<li><p><a class="reference external" href="https://zeronet.readthedocs.io/">ZeroNet</a></p></li>
+<li><p><a class="reference external" href="https://zulip.readthedocs.io/">Zulip</a></p></li>
+</ul>
+</section>
+<section id="documentation-using-sphinx-bootstrap-theme">
+<h2>Documentation using sphinx_bootstrap_theme<a class="headerlink" href="#documentation-using-sphinx-bootstrap-theme" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ryan-roemer.github.io/sphinx-bootstrap-theme/">Bootstrap Theme</a></p></li>
+<li><p><a class="reference external" href="https://eclipsebook.in/">C/C++ Software Development with Eclipse</a></p></li>
+<li><p><a class="reference external" href="http://guides.dataverse.org/">Dataverse</a></p></li>
+<li><p><a class="reference external" href="https://e-cidadania.readthedocs.io/">e-cidadania</a></p></li>
+<li><p><a class="reference external" href="http://docs.hangfire.io/">Hangfire</a></p></li>
+<li><p><a class="reference external" href="https://documen.tician.de/hedge/">Hedge</a></p></li>
+<li><p><a class="reference external" href="https://docs.obspy.org/">ObsPy</a></p></li>
+<li><p><a class="reference external" href="https://opendylan.org/documentation/">Open Dylan</a></p></li>
+<li><p><a class="reference external" href="http://docs.translatehouse.org/projects/pootle/">Pootle</a></p></li>
+<li><p><a class="reference external" href="https://documen.tician.de/pyublas/">PyUblas</a></p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/">seaborn</a></p></li>
+</ul>
+</section>
+<section id="documentation-using-a-custom-theme-or-integrated-in-a-website">
+<h2>Documentation using a custom theme or integrated in a website<a class="headerlink" href="#documentation-using-a-custom-theme-or-integrated-in-a-website" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://cassandra.apache.org/doc/">Apache Cassandra</a></p></li>
+<li><p><a class="reference external" href="http://docs.astropy.org/">Astropy</a></p></li>
+<li><p><a class="reference external" href="https://bokeh.pydata.org/">Bokeh</a></p></li>
+<li><p><a class="reference external" href="https://boto3.readthedocs.io/">Boto 3</a></p></li>
+<li><p><a class="reference external" href="https://book.cakephp.org/">CakePHP</a></p></li>
+<li><p><a class="reference external" href="http://docs.casperjs.org/">CasperJS</a></p></li>
+<li><p><a class="reference external" href="http://docs.ceph.com/docs/master/">Ceph</a></p></li>
+<li><p><a class="reference external" href="https://docs.chef.io/">Chef</a></p></li>
+<li><p><a class="reference external" href="https://docs.ckan.org/">CKAN</a></p></li>
+<li><p><a class="reference external" href="https://docs.confluent.io/">Confluent Platform</a></p></li>
+<li><p><a class="reference external" href="https://docs.djangoproject.com/">Django</a></p></li>
+<li><p><a class="reference external" href="https://www.doctrine-project.org/">Doctrine</a></p></li>
+<li><p><a class="reference external" href="https://www.adobe.com/devnet-docs/acrobatetk/">Enterprise Toolkit for Acrobat products</a></p></li>
+<li><p><a class="reference external" href="http://excamera.com/sphinx/gameduino/">Gameduino</a></p></li>
+<li><p><a class="reference external" href="https://radimrehurek.com/gensim/">gensim</a></p></li>
+<li><p><a class="reference external" href="http://docs.geoserver.org/">GeoServer</a></p></li>
+<li><p><a class="reference external" href="http://www.gevent.org/">gevent</a></p></li>
+<li><p><a class="reference external" href="https://downloads.haskell.org/~ghc/master/users-guide/">GHC - Glasgow Haskell Compiler</a></p></li>
+<li><p><a class="reference external" href="http://docs.guzzlephp.org/">Guzzle</a></p></li>
+<li><p><a class="reference external" href="http://docs.h2o.ai/">H2O.ai</a></p></li>
+<li><p><a class="reference external" href="https://hekad.readthedocs.io/">Heka</a></p></li>
+<li><p><a class="reference external" href="https://belgeler.yazbel.com/python-istihza/">Istihza (Turkish Python documentation project)</a></p></li>
+<li><p><a class="reference external" href="http://docs.kombu.me/">Kombu</a></p></li>
+<li><p><a class="reference external" href="http://lassoguide.com/">Lasso</a></p></li>
+<li><p><a class="reference external" href="http://docs.makotemplates.org/">Mako</a></p></li>
+<li><p><a class="reference external" href="http://mirrorbrain.org/docs/">MirrorBrain</a></p></li>
+<li><p><a class="reference external" href="https://docs.mongodb.com/">MongoDB</a></p></li>
+<li><p><a class="reference external" href="https://web.mit.edu/music21/doc/">Music21</a></p></li>
+<li><p><a class="reference external" href="http://docs.myhdl.org/">MyHDL</a></p></li>
+<li><p><a class="reference external" href="https://nose.readthedocs.io/">nose</a></p></li>
+<li><p><a class="reference external" href="https://www.nsnam.org/documentation/">ns-3</a></p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/">NumPy</a></p></li>
+<li><p><a class="reference external" href="http://objectlistview.sourceforge.net/python/">ObjectListView</a></p></li>
+<li><p><a class="reference external" href="https://doc.odoo.com/">OpenERP</a></p></li>
+<li><p><a class="reference external" href="https://docs.opencv.org/">OpenCV</a></p></li>
+<li><p><a class="reference external" href="http://docs.openlayers.org/">OpenLayers</a></p></li>
+<li><p><a class="reference external" href="https://openturns.github.io/openturns/master/">OpenTURNS</a></p></li>
+<li><p><a class="reference external" href="http://docs.openvswitch.org/">Open vSwitch</a></p></li>
+<li><p><a class="reference external" href="https://docs.platformio.org/">PlatformIO</a></p></li>
+<li><p><a class="reference external" href="http://rhodesmill.org/pyephem/">PyEphem</a></p></li>
+<li><p><a class="reference external" href="http://pygments.org/docs/">Pygments</a></p></li>
+<li><p><a class="reference external" href="https://www.hasecke.com/plone-benutzerhandbuch/4.0/">Plone User Manual (German)</a></p></li>
+<li><p><a class="reference external" href="http://www.psicode.org/psi4manual/master/index.html">PSI4</a></p></li>
+<li><p><a class="reference external" href="https://pymotw.com/2/">PyMOTW</a></p></li>
+<li><p><a class="reference external" href="https://python-aspectlib.readthedocs.io/">python-aspectlib</a> (<a class="reference external" href="https://pypi.org/project/sphinx_py3doc_enhanced_theme/">sphinx_py3doc_enhanced_theme</a>)</p></li>
+<li><p><a class="reference external" href="https://qgis.org/en/docs/index.html">QGIS</a></p></li>
+<li><p><a class="reference external" href="https://www.qooxdoo.org/current/">qooxdoo</a></p></li>
+<li><p><a class="reference external" href="http://www.roundup-tracker.org/">Roundup</a></p></li>
+<li><p><a class="reference external" href="https://docs.saltstack.com/">SaltStack</a></p></li>
+<li><p><a class="reference external" href="http://scikit-learn.org/stable/">scikit-learn</a></p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/refrence/">SciPy</a></p></li>
+<li><p><a class="reference external" href="https://doc.scrapy.org/">Scrapy</a></p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/">Seaborn</a></p></li>
+<li><p><a class="reference external" href="https://docs.seleniumhq.org/docs/">Selenium</a></p></li>
+<li><p><a class="reference external" href="http://www.selflanguage.org/">Self</a></p></li>
+<li><p><a class="reference external" href="https://docs.pylonsproject.org/projects/substanced/">Substance D</a></p></li>
+<li><p><a class="reference external" href="http://docs.sulu.io/">Sulu</a></p></li>
+<li><p><a class="reference external" href="https://docs.sqlalchemy.org/">SQLAlchemy</a></p></li>
+<li><p><a class="reference external" href="http://tinytim.sourceforge.net/docs/2.0/">tinyTiM</a></p></li>
+<li><p><a class="reference external" href="https://twistedmatrix.com/documents/current/">Twisted</a></p></li>
+<li><p><a class="reference external" href="http://packaging.ubuntu.com/html/">Ubuntu Packaging Guide</a></p></li>
+<li><p><a class="reference external" href="https://docs.webfaction.com/">WebFaction</a></p></li>
+<li><p><a class="reference external" href="https://wtforms.readthedocs.io/">WTForms</a></p></li>
+</ul>
+</section>
+<section id="homepages-and-other-non-documentation-sites">
+<h2>Homepages and other non-documentation sites<a class="headerlink" href="#homepages-and-other-non-documentation-sites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://becksteinlab.physics.asu.edu/pages/courses/2013/SimBioNano/">Arizona State University PHY494/PHY598/CHM598 Simulation approaches to Bio-and Nanophysics</a> (classic)</p></li>
+<li><p><a class="reference external" href="https://bboissin.appspot.com/">Benoit Boissinot</a> (classic, customized)</p></li>
+<li><p><a class="reference external" href="https://lab.miletic.net/">Computer Networks, Parallelization, and Simulation Laboratory (CNPSLab)</a> (sphinx_rtd_theme)</p></li>
+<li><p><a class="reference external" href="http://www.deeplearning.net/tutorial/">Deep Learning Tutorials</a> (sphinxdoc)</p></li>
+<li><p><a class="reference external" href="http://ericholscher.com/">Eric Holscher</a> (alabaster)</p></li>
+<li><p><a class="reference external" href="http://statisticalphysics.openmetric.org/">Lei Ma’s Statistical Mechanics lecture notes</a> (sphinx_bootstrap_theme)</p></li>
+<li><p><a class="reference external" href="https://books.cs.luc.edu/distributedsystems/">Loyola University Chicago COMP 339-439 Distributed Systems course</a> (sphinx_bootstrap_theme)</p></li>
+<li><p><a class="reference external" href="http://www.deeplearning.net/software/pylearn2/">Pylearn2</a> (sphinxdoc, customized)</p></li>
+<li><p><a class="reference external" href="https://www.pyxll.com/">PyXLL</a> (sphinx_bootstrap_theme, customized)</p></li>
+<li><p><a class="reference external" href="https://scipy-cookbook.readthedocs.io/">SciPy Cookbook</a> (sphinx_rtd_theme)</p></li>
+<li><p><a class="reference external" href="https://www.thewinecellarbook.com/doc/en/">The Wine Cellar Book</a> (sphinxdoc)</p></li>
+<li><p><a class="reference external" href="https://thomas-cokelaer.info/tutorials/">Thomas Cokelaer’s Python, Sphinx and reStructuredText tutorials</a> (standard)</p></li>
+<li><p><a class="reference external" href="https://berkeley-me233.github.io/">UC Berkeley ME233 Advanced Control Systems II course</a> (sphinxdoc)</p></li>
+<li><p><a class="reference external" href="https://www.svedruziclab.com/">Željko Svedružić’s Biomolecular Structure and Function Laboratory (BioSFLab)</a> (sphinx_bootstrap_theme)</p></li>
+</ul>
+</section>
+<section id="books-produced-using-sphinx">
+<h2>Books produced using Sphinx<a class="headerlink" href="#books-produced-using-sphinx" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.oreilly.co.jp/books/9784873114958/">“The Art of Community” (Japanese translation)</a></p></li>
+<li><p><a class="reference external" href="https://literatur.hasecke.com/post/die-wahrheit-des-sehens-dekalog-kieslowski/">“Die Wahrheit des Sehens. Der DEKALOG von Krzysztof Kieślowski”</a></p></li>
+<li><p><a class="reference external" href="https://www.packtpub.com/application-development/expert-python-programming">“Expert Python Programming”</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.co.jp/dp/4048686291/">“Expert Python Programming” (Japanese translation)</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.co.jp/dp/4048930613/">“Expert Python Programming 2nd Edition” (Japanese translation)</a></p></li>
+<li><p><a class="reference external" href="https://docs.python-guide.org/">“The Hitchhiker’s Guide to Python”</a></p></li>
+<li><p><a class="reference external" href="http://www.lassosoft.com/Lasso-Documentation">“LassoGuide”</a></p></li>
+<li><p><a class="reference external" href="https://www.oreilly.co.jp/books/9784873116488/">“Learning Sphinx” (in Japanese)</a></p></li>
+<li><p><a class="reference external" href="https://www.lambdanote.com/products/go">“Learning System Programming with Go (Japanese)”</a></p></li>
+<li><p><a class="reference external" href="https://book.mercurial-scm.org/">“Mercurial: the definitive guide (Second edition)”</a></p></li>
+<li><p><a class="reference external" href="https://www.oreilly.co.jp/books/9784873117447/">“Mithril – The fastest clientside MVC (Japanese)”</a></p></li>
+<li><p><a class="reference external" href="http://pioneers.rstebbing.com/">“Pioneers and Prominent Men of Utah”</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.co.jp/dp/4048689525/">“Pomodoro Technique Illustrated” (Japanese translation)</a></p></li>
+<li><p><a class="reference external" href="https://mixmastamyk.bitbucket.io/pro_soft_dev/">“Professional Software Development”</a></p></li>
+<li><p><a class="reference external" href="http://www.amazon.co.jp/dp/4798032948/">“Python Professional Programming” (in Japanese)</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.co.jp/dp/479804315X/">“Python Professional Programming 2nd Edition” (in Japanese)</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.co.jp/dp/4798053821/">“Python Professional Programming 3rd Edition” (in Japanese)</a></p></li>
+<li><p><a class="reference external" href="https://www.oreilly.co.jp/books/9784873118048/">“Real World HTTP – Learning The Internet and Web Technology via its history and code (Japanese)”</a></p></li>
+<li><p><a class="reference external" href="https://www.shuwasystem.co.jp/products/7980html/4825.html">“Redmine Primer 5th Edition (in Japanese)”</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/repoze-bfg-Web-Application-Framework-Version/dp/0615345379">“The repoze.bfg Web Application Framework”</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.co.jp/dp/4822292274/">“The Self-Taught Programmer” (Japanese translation)</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.co.jp/dp/477414259X/">“Simple and Steady Way of Learning for Software Engineering” (in Japanese)</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.de/dp/1497448689/">“Software-Dokumentation mit Sphinx”</a></p></li>
+<li><p><a class="reference external" href="https://www.theoretical-physics.net/">“Theoretical Physics Reference”</a></p></li>
+<li><p><a class="reference external" href="https://info.varnish-software.com/the-varnish-book">“The Varnish Book”</a></p></li>
+</ul>
+</section>
+<section id="theses-produced-using-sphinx">
+<h2>Theses produced using Sphinx<a class="headerlink" href="#theses-produced-using-sphinx" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.yumpu.com/et/document/view/11722645/masterthesis-markusmayr-0542042">“A Web-Based System for Comparative Analysis of OpenStreetMap Data by the Use
+of CouchDB”</a></p></li>
+<li><p><a class="reference external" href="https://www.cs.princeton.edu/research/techreps/TR-941-12">“Content Conditioning and Distribution for Dynamic Virtual Worlds”</a></p></li>
+<li><p><a class="reference external" href="https://jterrace.github.io/sphinxtr/">“The Sphinx Thesis Resource”</a></p></li>
+</ul>
+</section>
+<section id="projects-integrating-sphinx-functionality">
+<h2>Projects integrating Sphinx functionality<a class="headerlink" href="#projects-integrating-sphinx-functionality" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://readthedocs.org/">Read the Docs</a>, a software-as-a-service documentation hosting platform, uses
+Sphinx to automatically build documentation updates that are pushed to GitHub.</p></li>
+<li><p><a class="reference external" href="https://docs.spyder-ide.org/help.html">Spyder</a>, the Scientific Python Development Environment, uses Sphinx in its
+help pane to render rich documentation for functions, classes and methods
+automatically or on-demand.</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="authors.html" title="Sphinx authors"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="changes.html" title="Changes in Sphinx"
+             >previous</a> |</li>
+        <li><a href="index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2019, Georg Brandl and the Sphinx team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5.
+    </div>
+  </body>
+</html>

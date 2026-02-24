@@ -1,0 +1,587 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_TW">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Sphinx Developer’s Guide &#8212; Sphinx 1.8.6 說明文件</title>
+    <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/devguide.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx 1.8.6 說明文件 中搜尋"
+          href="_static/opensearch.xml"/>
+
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜尋" href="search.html" />
+    <link rel="next" title="Changes in Sphinx" href="changes.html" />
+    <link rel="prev" title="詞彙表" href="glossary.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/devguide.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script type="text/javascript">
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="ltd-provenance.js"></script>
+<script type="text/javascript" src="ltd-current.js"></script>
+<script type="text/javascript" src="../../ltd-config.js"></script>
+<script type="text/javascript" src="../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="usage/installation.html">Get it</a></li>
+    <li><a href="contents.html">Docs</a></li>
+    <li><a href="develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="index.html">
+      <img src="_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="changes.html" title="Changes in Sphinx"
+             accesskey="N">下一頁</a> |</li>
+        <li class="right" >
+          <a href="glossary.html" title="詞彙表"
+             accesskey="P">上一頁</a> |</li>
+        <li><a href="index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sphinx Developer’s Guide</a><ul>
+<li><a class="reference internal" href="#bug-reports-and-feature-requests">臭蟲回報與功能請求</a></li>
+<li><a class="reference internal" href="#contributing-to-sphinx">貢獻 Sphinx</a><ul>
+<li><a class="reference internal" href="#getting-started">開始使用</a></li>
+<li><a class="reference internal" href="#core-developers">Core Developers</a></li>
+<li><a class="reference internal" href="#locale-updates">Locale updates</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#coding-guide">Coding Guide</a><ul>
+<li><a class="reference internal" href="#debugging-tips">Debugging Tips</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#branch-model">Branch Model</a></li>
+<li><a class="reference internal" href="#deprecating-a-feature">Deprecating a feature</a></li>
+<li><a class="reference internal" href="#deprecation-policy">Deprecation policy</a></li>
+<li><a class="reference internal" href="#unit-testing">Unit Testing</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上個主題</h4>
+  <p class="topless"><a href="glossary.html"
+                        title="上一章">詞彙表</a></p>
+  <h4>下個主題</h4>
+  <p class="topless"><a href="changes.html"
+                        title="下一章">Changes in Sphinx</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本頁</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/devguide.rst.txt"
+            rel="nofollow">顯示原始碼</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="搜" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sphinx-developer-s-guide">
+<h1>Sphinx Developer’s Guide<a class="headerlink" href="#sphinx-developer-s-guide" title="本標題的永久連結">¶</a></h1>
+<div class="topic">
+<p class="topic-title">Abstract</p>
+<p>This document describes the development process of Sphinx, a documentation
+system used by developers to document systems used by other developers to
+develop other systems that may also be documented using Sphinx.</p>
+</div>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><a class="reference internal" href="#bug-reports-and-feature-requests" id="id4">臭蟲回報與功能請求</a></li>
+<li><a class="reference internal" href="#contributing-to-sphinx" id="id5">貢獻 Sphinx</a><ul>
+<li><a class="reference internal" href="#getting-started" id="id6">開始使用</a></li>
+<li><a class="reference internal" href="#core-developers" id="id7">Core Developers</a></li>
+<li><a class="reference internal" href="#locale-updates" id="id8">Locale updates</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#coding-guide" id="id9">Coding Guide</a><ul>
+<li><a class="reference internal" href="#debugging-tips" id="id10">Debugging Tips</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#branch-model" id="id11">Branch Model</a></li>
+<li><a class="reference internal" href="#deprecating-a-feature" id="id12">Deprecating a feature</a></li>
+<li><a class="reference internal" href="#deprecation-policy" id="id13">Deprecation policy</a></li>
+<li><a class="reference internal" href="#unit-testing" id="id14">Unit Testing</a></li>
+</ul>
+</div>
+<p>The Sphinx source code is managed using Git and is hosted on GitHub.</p>
+<blockquote>
+<div>git clone git://github.com/sphinx-doc/sphinx</div></blockquote>
+<p class="rubric">Community</p>
+<dl class="docutils">
+<dt>sphinx-users &lt;<a class="reference external" href="mailto:sphinx-users&#37;&#52;&#48;googlegroups&#46;com">sphinx-users<span>&#64;</span>googlegroups<span>&#46;</span>com</a>&gt;</dt>
+<dd>Mailing list for user support.</dd>
+<dt>sphinx-dev &lt;<a class="reference external" href="mailto:sphinx-dev&#37;&#52;&#48;googlegroups&#46;com">sphinx-dev<span>&#64;</span>googlegroups<span>&#46;</span>com</a>&gt;</dt>
+<dd>Mailing list for development related discussions.</dd>
+<dt>#sphinx-doc on irc.freenode.net</dt>
+<dd>IRC channel for development questions and user support.</dd>
+</dl>
+<div class="section" id="bug-reports-and-feature-requests">
+<h2><a class="toc-backref" href="#id4">臭蟲回報與功能請求</a><a class="headerlink" href="#bug-reports-and-feature-requests" title="本標題的永久連結">¶</a></h2>
+<p>If you have encountered a problem with Sphinx or have an idea for a new
+feature, please submit it to the <a class="reference external" href="https://github.com/sphinx-doc/sphinx/issues">issue tracker</a> on GitHub or discuss it
+on the <a class="reference external" href="mailto:sphinx-dev&#37;&#52;&#48;googlegroups&#46;com">sphinx-dev</a> mailing list.</p>
+<p>For bug reports, please include the output produced during the build process
+and also the log file Sphinx creates after it encounters an unhandled
+exception.  The location of this file should be shown towards the end of the
+error message.</p>
+<p>Including or providing a link to the source files involved may help us fix the
+issue.  If possible, try to create a minimal project that produces the error
+and post that instead.</p>
+</div>
+<div class="section" id="contributing-to-sphinx">
+<h2><a class="toc-backref" href="#id5">貢獻 Sphinx</a><a class="headerlink" href="#contributing-to-sphinx" title="本標題的永久連結">¶</a></h2>
+<p>The recommended way for new contributors to submit code to Sphinx is to fork
+the repository on GitHub and then submit a pull request after
+committing the changes.  The pull request will then need to be approved by one
+of the core developers before it is merged into the main repository.</p>
+<ol class="arabic simple">
+<li>Check for open issues or open a fresh issue to start a discussion around a
+feature idea or a bug.</li>
+<li>If you feel uncomfortable or uncertain about an issue or your changes, feel
+free to email the <em>sphinx-dev</em> mailing list.</li>
+<li>Fork <a class="reference external" href="https://github.com/sphinx-doc/sphinx">the repository</a> on GitHub to start making your changes to the
+<code class="docutils literal notranslate"><span class="pre">master</span></code> branch for next major version, or <code class="docutils literal notranslate"><span class="pre">X.Y</span></code> branch for next
+minor version (see <a class="reference internal" href="#branch-model">Branch Model</a>).</li>
+<li>Write a test which shows that the bug was fixed or that the feature works
+as expected.</li>
+<li>Send a pull request and bug the maintainer until it gets merged and
+published. Make sure to add yourself to <a class="reference external" href="https://github.com/sphinx-doc/sphinx/blob/master/AUTHORS">AUTHORS</a> and the change to
+<a class="reference external" href="https://github.com/sphinx-doc/sphinx/blob/master/CHANGES">CHANGES</a>.</li>
+</ol>
+<div class="section" id="getting-started">
+<h3><a class="toc-backref" href="#id6">開始使用</a><a class="headerlink" href="#getting-started" title="本標題的永久連結">¶</a></h3>
+<p>These are the basic steps needed to start developing on Sphinx.</p>
+<ol class="arabic">
+<li><p class="first">在 GitHub 上建立帳號。</p>
+</li>
+<li><p class="first">Fork the main Sphinx repository (<a class="reference external" href="https://github.com/sphinx-doc/sphinx">sphinx-doc/sphinx</a>) using the GitHub interface.</p>
+</li>
+<li><p class="first">Clone the forked repository to your machine.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/USERNAME/sphinx</span>
+<span class="go">cd sphinx</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Checkout the appropriate branch.</p>
+<p>For changes that should be included in the next minor release (namely bug
+fixes), use the <code class="docutils literal notranslate"><span class="pre">X.Y</span></code> branch.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git checkout X.Y</span>
+</pre></div>
+</div>
+<p>For new features or other substantial changes that should wait until the
+next major release, use the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch  (see <a class="reference internal" href="#branch-model">Branch Model</a> for
+detail).</p>
+</li>
+<li><p class="first">Setup a virtual environment.</p>
+<p>This is not necessary for unit testing, thanks to <code class="docutils literal notranslate"><span class="pre">tox</span></code>, but it is
+necessary if you wish to run <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> locally or run unit tests
+without the help of <code class="docutils literal notranslate"><span class="pre">tox</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">virtualenv ~/.venv</span>
+<span class="go">. ~/.venv/bin/activate</span>
+<span class="go">pip install -e .</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create a new working branch.  Choose any name you like.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git checkout -b feature-xyz</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Hack, hack, hack.</p>
+<p>For tips on working with the code, see the <a class="reference internal" href="#coding-guide">Coding Guide</a>.</p>
+</li>
+<li><p class="first">Test, test, test.</p>
+<p>Testing is best done through <code class="docutils literal notranslate"><span class="pre">tox</span></code>, which provides a number of targets and
+allows testing against multiple different Python environments:</p>
+<ul>
+<li><p class="first">To list all possible targets:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">tox -av</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">To run unit tests for a specific Python version, such as 3.6:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">tox -e py36</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">To run unit tests for a specific Python version and turn on deprecation
+warnings on so they’re shown in the test output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">PYTHONWARNINGS=all tox -e py36</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">To run code style and type checks:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">tox -e mypy</span>
+<span class="go">tox -e flake8</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Arguments to <code class="docutils literal notranslate"><span class="pre">pytest</span></code> can be passed via <code class="docutils literal notranslate"><span class="pre">tox</span></code>, e.g. in order to run a
+particular test:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">tox -e py36 tests/test_module.py::test_new_feature</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">To build the documentation:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">tox -e docs</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">To build the documentation in multiple formats:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">tox -e docs -- -b html,latexpdf</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">To run JavaScript tests with <a class="reference external" href="https://karma-runner.github.io">Karma</a>,
+execute the following commands (requires <a class="reference external" href="https://nodejs.org">Node.js</a>):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">npm install</span>
+<span class="go">npm run test</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>You can also test by installing dependencies in your local environment.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install .[test]</span>
+</pre></div>
+</div>
+<p>New unit tests should be included in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory where
+necessary:</p>
+<ul class="simple">
+<li>For bug fixes, first add a test that fails without your changes and passes
+after they are applied.</li>
+<li>Tests that need a <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> run should be integrated in one of the
+existing test modules if possible.  New tests that to <code class="docutils literal notranslate"><span class="pre">&#64;with_app</span></code> and
+then <code class="docutils literal notranslate"><span class="pre">build_all</span></code> for a few assertions are not good since <em>the test suite
+should not take more than a minute to run</em>.</li>
+</ul>
+</li>
+<li><p class="first">Please add a bullet point to <code class="file docutils literal notranslate"><span class="pre">CHANGES</span></code> if the fix or feature is not
+trivial (small doc updates, typo fixes).  Then commit:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git commit -m &#39;#42: Add useful new feature that does this.&#39;</span>
+</pre></div>
+</div>
+<p>GitHub recognizes certain phrases that can be used to automatically
+update the issue tracker.</p>
+<p>For example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git commit -m &#39;Closes #42: Fix invalid markup in docstring of Foo.bar.&#39;</span>
+</pre></div>
+</div>
+<p>would close issue #42.</p>
+</li>
+<li><p class="first">Push changes in the branch to your forked repository on GitHub.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git push origin feature-xyz</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Submit a pull request from your branch to the respective branch (<code class="docutils literal notranslate"><span class="pre">master</span></code>
+or <code class="docutils literal notranslate"><span class="pre">X.Y</span></code>).</p>
+</li>
+<li><p class="first">Wait for a core developer to review your changes.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="core-developers">
+<h3><a class="toc-backref" href="#id7">Core Developers</a><a class="headerlink" href="#core-developers" title="本標題的永久連結">¶</a></h3>
+<p>The core developers of Sphinx have write access to the main repository.  They
+can commit changes, accept/reject pull requests, and manage items on the issue
+tracker.</p>
+<p>You do not need to be a core developer or have write access to be involved in
+the development of Sphinx.  You can submit patches or create pull requests
+from forked repositories and have a core developer add the changes for you.</p>
+<p>The following are some general guidelines for core developers:</p>
+<ul class="simple">
+<li>Questionable or extensive changes should be submitted as a pull request
+instead of being committed directly to the main repository.  The pull
+request should be reviewed by another core developer before it is merged.</li>
+<li>Trivial changes can be committed directly but be sure to keep the repository
+in a good working state and that all tests pass before pushing your changes.</li>
+<li>When committing code written by someone else, please attribute the original
+author in the commit message and any relevant <code class="file docutils literal notranslate"><span class="pre">CHANGES</span></code> entry.</li>
+</ul>
+</div>
+<div class="section" id="locale-updates">
+<h3><a class="toc-backref" href="#id8">Locale updates</a><a class="headerlink" href="#locale-updates" title="本標題的永久連結">¶</a></h3>
+<p>The parts of messages in Sphinx that go into builds are translated into several
+locales.  The translations are kept as gettext <code class="docutils literal notranslate"><span class="pre">.po</span></code> files translated from the
+master template <code class="docutils literal notranslate"><span class="pre">sphinx/locale/sphinx.pot</span></code>.</p>
+<p>Sphinx uses <a class="reference external" href="http://babel.pocoo.org/en/latest/">Babel</a> to extract messages
+and maintain the catalog files.  It is integrated in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>:</p>
+<ul class="simple">
+<li>Use <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">extract_messages</span></code> to update the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> template.</li>
+<li>Use <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">update_catalog</span></code> to update all existing language
+catalogs in <code class="docutils literal notranslate"><span class="pre">sphinx/locale/*/LC_MESSAGES</span></code> with the current messages in the
+template file.</li>
+<li>Use <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">compile_catalog</span></code> to compile the <code class="docutils literal notranslate"><span class="pre">.po</span></code> files to binary
+<code class="docutils literal notranslate"><span class="pre">.mo</span></code> files and <code class="docutils literal notranslate"><span class="pre">.js</span></code> files.</li>
+</ul>
+<p>When an updated <code class="docutils literal notranslate"><span class="pre">.po</span></code> file is submitted, run compile_catalog to commit both
+the source and the compiled catalogs.</p>
+<p>When a new locale is submitted, add a new directory with the ISO 639-1 language
+identifier and put <code class="docutils literal notranslate"><span class="pre">sphinx.po</span></code> in there.  Don’t forget to update the possible
+values for <a class="reference internal" href="usage/configuration.html#confval-language"><code class="xref std std-confval docutils literal notranslate"><span class="pre">language</span></code></a> in <code class="docutils literal notranslate"><span class="pre">doc/config.rst</span></code>.</p>
+<p>The Sphinx core messages can also be translated on <a class="reference external" href="https://www.transifex.com/">Transifex</a>.  There exists a client tool named <code class="docutils literal notranslate"><span class="pre">tx</span></code> in the
+Python package 「transifex_client」, which can be used to pull translations in
+<code class="docutils literal notranslate"><span class="pre">.po</span></code> format from Transifex.  To do this, go to <code class="docutils literal notranslate"><span class="pre">sphinx/locale</span></code> and then run
+<code class="docutils literal notranslate"><span class="pre">tx</span> <span class="pre">pull</span> <span class="pre">-f</span> <span class="pre">-l</span> <span class="pre">LANG</span></code> where LANG is an existing language identifier.  It is
+good practice to run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">update_catalog</span></code> afterwards to make sure
+the <code class="docutils literal notranslate"><span class="pre">.po</span></code> file has the canonical Babel formatting.</p>
+</div>
+</div>
+<div class="section" id="coding-guide">
+<h2><a class="toc-backref" href="#id9">Coding Guide</a><a class="headerlink" href="#coding-guide" title="本標題的永久連結">¶</a></h2>
+<ul class="simple">
+<li>Try to use the same code style as used in the rest of the project.  See the
+<a class="reference external" href="http://flask.pocoo.org/docs/styleguide/">Pocoo Styleguide</a> for more information.</li>
+<li>For non-trivial changes, please update the <code class="file docutils literal notranslate"><span class="pre">CHANGES</span></code> file.  If your
+changes alter existing behavior, please document this.</li>
+<li>New features should be documented.  Include examples and use cases where
+appropriate.  If possible, include a sample that is displayed in the
+generated output.</li>
+<li>When adding a new configuration variable, be sure to document it and update
+<code class="file docutils literal notranslate"><span class="pre">sphinx/quickstart.py</span></code> if it’s important enough.</li>
+<li>Use the included <strong class="program">utils/check_sources.py</strong> script to check for
+common formatting issues (trailing whitespace, lengthy lines, etc).</li>
+<li>增添合適的單元測試。</li>
+</ul>
+<div class="section" id="debugging-tips">
+<h3><a class="toc-backref" href="#id10">Debugging Tips</a><a class="headerlink" href="#debugging-tips" title="本標題的永久連結">¶</a></h3>
+<ul>
+<li><p class="first">Delete the build cache before building documents if you make changes in the
+code by running the command <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> or using the
+<a class="reference internal" href="man/sphinx-build.html#cmdoption-sphinx-build-e"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-E</span></code></a> option.</p>
+</li>
+<li><p class="first">Use the <a class="reference internal" href="man/sphinx-build.html#cmdoption-sphinx-build-p"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-P</span></code></a> option to run <code class="docutils literal notranslate"><span class="pre">pdb</span></code> on exceptions.</p>
+</li>
+<li><p class="first">Use <code class="docutils literal notranslate"><span class="pre">node.pformat()</span></code> and <code class="docutils literal notranslate"><span class="pre">node.asdom().toxml()</span></code> to generate a printable
+representation of the document structure.</p>
+</li>
+<li><p class="first">Set the configuration variable <a class="reference internal" href="usage/configuration.html#confval-keep_warnings"><code class="xref std std-confval docutils literal notranslate"><span class="pre">keep_warnings</span></code></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code> so
+warnings will be displayed in the generated output.</p>
+</li>
+<li><p class="first">Set the configuration variable <a class="reference internal" href="usage/configuration.html#confval-nitpicky"><code class="xref std std-confval docutils literal notranslate"><span class="pre">nitpicky</span></code></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code> so that Sphinx
+will complain about references without a known target.</p>
+</li>
+<li><p class="first">Set the debugging options in the <a class="reference external" href="http://docutils.sourceforge.net/docs/user/config.html">Docutils configuration file</a>.</p>
+</li>
+<li><p class="first">JavaScript stemming algorithms in <code class="docutils literal notranslate"><span class="pre">sphinx/search/*.py</span></code> (except <code class="docutils literal notranslate"><span class="pre">en.py</span></code>) are
+generated by this
+<a class="reference external" href="https://github.com/shibukawa/snowball">modified snowballcode generator</a>.
+Generated <a class="reference external" href="https://jsx.github.io/">JSX</a> files are
+in <a class="reference external" href="https://github.com/shibukawa/snowball-stemmer.jsx">this repository</a>.
+You can get the resulting JavaScript files using the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">npm install</span>
+<span class="go">node_modules/.bin/grunt build # -&gt; dest/*.global.js</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="branch-model">
+<h2><a class="toc-backref" href="#id11">Branch Model</a><a class="headerlink" href="#branch-model" title="本標題的永久連結">¶</a></h2>
+<p>Sphinx project uses following branches for developing.</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">master</span></code></dt>
+<dd>Used for main development.  All improvement and refactoring, bug fixes
+are allowed.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">X.Y</span></code></dt>
+<dd>Where <code class="docutils literal notranslate"><span class="pre">X.Y</span></code> is the <code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR</span></code> release.  Used to maintain current
+stable release.  Only bug fixes and stable changes are allowed.  Only the
+most recent stable release is currently retained. When a new version is
+released, the old release branch will be deleted and replaced by an
+equivalent tag.</dd>
+</dl>
+</div>
+<div class="section" id="deprecating-a-feature">
+<h2><a class="toc-backref" href="#id12">Deprecating a feature</a><a class="headerlink" href="#deprecating-a-feature" title="本標題的永久連結">¶</a></h2>
+<p>There are a couple reasons that code in Sphinx might be deprecated:</p>
+<ul class="simple">
+<li>If a feature has been improved or modified in a backwards-incompatible way,
+the old feature or behavior will be deprecated.</li>
+<li>Sometimes Sphinx will include a backport of a Python library that’s not
+included in a version of Python that Sphinx currently supports. When Sphinx
+no longer needs to support the older version of Python that doesn’t include
+the library, the library will be deprecated in Sphinx.</li>
+</ul>
+<p>As the <a class="reference internal" href="#deprecation-policy"><span class="std std-ref">Deprecation policy</span></a> describes, the first release of Sphinx that
+deprecates a feature (<code class="docutils literal notranslate"><span class="pre">A.B</span></code>) should raise a <code class="docutils literal notranslate"><span class="pre">RemovedInSphinxXXWarning</span></code>
+(where <code class="docutils literal notranslate"><span class="pre">XX</span></code> is the Sphinx version where the feature will be removed) when the
+deprecated feature is invoked. Assuming we have good test coverage, these
+warnings are converted to errors when running the test suite with warnings
+enabled:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pytest -Wall</span>
+</pre></div>
+</div>
+<p>Thus, when adding a <code class="docutils literal notranslate"><span class="pre">RemovedInSphinxXXWarning</span></code> you need to eliminate or
+silence any warnings generated when running the tests.</p>
+</div>
+<div class="section" id="deprecation-policy">
+<span id="id3"></span><h2><a class="toc-backref" href="#id13">Deprecation policy</a><a class="headerlink" href="#deprecation-policy" title="本標題的永久連結">¶</a></h2>
+<p>A feature release may deprecate certain features from previous releases. If a
+feature is deprecated in feature release 1.A, it will continue to work in all
+1.A.x versions (for all versions of x) but raise warnings. Deprecated features
+will be removed in the first 1.B release, or 1.B.1 for features deprecated in
+the last 1.A.x feature release to ensure deprecations are done over at least 2
+feature releases.</p>
+<p>So, for example, if we decided to start the deprecation of a function in
+Sphinx 1.4:</p>
+<ul class="simple">
+<li>Sphinx 1.4.x will contain a backwards-compatible replica of the function
+which will raise a <code class="docutils literal notranslate"><span class="pre">RemovedInSphinx16Warning</span></code>.</li>
+<li>Sphinx 1.5 (the version that follows 1.4) will still contain the
+backwards-compatible replica.</li>
+<li>Sphinx 1.6 will remove the feature outright.</li>
+</ul>
+<p>The warnings are displayed by default. You can turn off display of these
+warnings with:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">PYTHONWARNINGS=</span> <span class="pre">make</span> <span class="pre">html</span></code> (Linux/Mac)</li>
+<li><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PYTHONWARNINGS=</span></code> 並執行 <a href="#id1"><span class="problematic" id="id2">``</span></a>make html``（Linux/Mac）</li>
+<li><code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">PYTHONWARNINGS=</span></code> 並執行 <a href="#id1"><span class="problematic" id="id2">``</span></a>make html``（Windows）</li>
+</ul>
+</div>
+<div class="section" id="unit-testing">
+<h2><a class="toc-backref" href="#id14">Unit Testing</a><a class="headerlink" href="#unit-testing" title="本標題的永久連結">¶</a></h2>
+<p>Sphinx has been tested with pytest runner. Sphinx developers write unit tests
+using pytest notation. Utility functions and pytest fixtures for testing are
+provided in <code class="docutils literal notranslate"><span class="pre">sphinx.testing</span></code>. If you are a developer of Sphinx extensions,
+you can write unit tests with using pytest. At this time, <code class="docutils literal notranslate"><span class="pre">sphinx.testing</span></code>
+will help your test implementation.</p>
+<p>How to use pytest fixtures that are provided by <code class="docutils literal notranslate"><span class="pre">sphinx.testing</span></code>?
+You can require <code class="docutils literal notranslate"><span class="pre">'sphinx.testing.fixtures'</span></code> in your test modules or
+<code class="docutils literal notranslate"><span class="pre">conftest.py</span></code> files like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pytest_plugins = &#39;sphinx.testing.fixtures&#39;</span>
+</pre></div>
+</div>
+<p>If you want to know more detailed usage, please refer to <code class="docutils literal notranslate"><span class="pre">tests/conftest.py</span></code>
+and other <code class="docutils literal notranslate"><span class="pre">test_*.py</span></code> files under <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory.</p>
+<div class="admonition note">
+<p class="first admonition-title">備註</p>
+<p class="last">Prior to Sphinx - 1.5.2, Sphinx was running the test with nose.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">1.6 版新加入: </span><code class="docutils literal notranslate"><span class="pre">sphinx.testing</span></code> as a experimental.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">1.8 版新加入: </span>Sphinx also runs JavaScript tests.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="changes.html" title="Changes in Sphinx"
+             >下一頁</a> |</li>
+        <li class="right" >
+          <a href="glossary.html" title="詞彙表"
+             >上一頁</a> |</li>
+        <li><a href="index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2019, Georg Brandl and the Sphinx team。
+      使用 <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.6 創建。
+    </div>
+  </body>
+</html>

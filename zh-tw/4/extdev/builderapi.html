@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>建置器 API &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/builderapi.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="Environment Collector API" href="collectorapi.html" />
+    <link rel="prev" title="Build environment API" href="envapi.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="collectorapi.html" title="Environment Collector API"
+             accesskey="N">下一頁</a> |</li>
+        <li class="right" >
+          <a href="envapi.html" title="Build environment API"
+             accesskey="P">上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Developing extensions for Sphinx</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">建置器 API</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="envapi.html"
+                          title="上一章">Build environment API</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="collectorapi.html"
+                          title="下一章">Environment Collector API</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>本頁</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/extdev/builderapi.rst.txt"
+            rel="nofollow">顯示原始碼</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="builder-api">
+<span id="writing-builders"></span><h1>建置器 API<a class="headerlink" href="#builder-api" title="本標題的永久連結">¶</a></h1>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Expand this.</p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.builders.Builder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.builders.</span></span><span class="sig-name descname"><span class="pre">Builder</span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder" title="本定義的永久連結">¶</a></dt>
+<dd><p>This is the base class for all builders.</p>
+<p>These attributes should be set on builder classes:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#sphinx.builders.Builder.name" title="本定義的永久連結">¶</a></dt>
+<dd><p>The builder’s name, for the -b command line option.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#sphinx.builders.Builder.format" title="本定義的永久連結">¶</a></dt>
+<dd><p>The builder’s output format, or 『』 if no document output is produced.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.epilog">
+<span class="sig-name descname"><span class="pre">epilog</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#sphinx.builders.Builder.epilog" title="本定義的永久連結">¶</a></dt>
+<dd><p>The message emitted upon successful build completion. This can be a
+printf-style template string with the following keys: <code class="docutils literal notranslate"><span class="pre">outdir</span></code>,
+<code class="docutils literal notranslate"><span class="pre">project</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.allow_parallel">
+<span class="sig-name descname"><span class="pre">allow_parallel</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx.builders.Builder.allow_parallel" title="本定義的永久連結">¶</a></dt>
+<dd><p>allow parallel write_doc() calls</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#sphinx.builders.Builder.supported_image_types" title="本定義的永久連結">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.supported_remote_images">
+<span class="sig-name descname"><span class="pre">supported_remote_images</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx.builders.Builder.supported_remote_images" title="本定義的永久連結">¶</a></dt>
+<dd><p>The builder supports remote images or not.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.supported_data_uri_images">
+<span class="sig-name descname"><span class="pre">supported_data_uri_images</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx.builders.Builder.supported_data_uri_images" title="本定義的永久連結">¶</a></dt>
+<dd><p>The builder supports data URIs or not.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.default_translator_class">
+<span class="sig-name descname"><span class="pre">default_translator_class</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">docutils.nodes.NodeVisitor</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sphinx.builders.Builder.default_translator_class" title="本定義的永久連結">¶</a></dt>
+<dd><p>default translator class for the builder.  This can be overridden by
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">app.set_translator()</span></code>.</p>
+</dd></dl>
+
+<p>These methods are predefined and will be called from the application:</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.get_relative_uri">
+<span class="sig-name descname"><span class="pre">get_relative_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">typ</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(於 Python v3.14)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.get_relative_uri"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.get_relative_uri" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return a relative URI between two source filenames.</p>
+<p>May raise environment.NoUri if there’s no way to return a sensible URI.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.build_all">
+<span class="sig-name descname"><span class="pre">build_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(於 Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.build_all"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.build_all" title="本定義的永久連結">¶</a></dt>
+<dd><p>建置所有的來源檔。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.build_specific">
+<span class="sig-name descname"><span class="pre">build_specific</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filenames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(於 Python v3.14)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(於 Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.build_specific"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.build_specific" title="本定義的永久連結">¶</a></dt>
+<dd><p>Only rebuild as much as needed for changes in the <em>filenames</em>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.build_update">
+<span class="sig-name descname"><span class="pre">build_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(於 Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.build_update"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.build_update" title="本定義的永久連結">¶</a></dt>
+<dd><p>Only rebuild what was changed or added since last build.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docnames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(於 Python v3.14)"><span class="pre">Iterable</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(於 Python v3.14)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'update'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(於 Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.build"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.build" title="本定義的永久連結">¶</a></dt>
+<dd><p>Main build method.</p>
+<p>First updates the environment, and then calls <code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code>.</p>
+</dd></dl>
+
+<p>These methods can be overridden in concrete builder classes:</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(於 Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.init"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.init" title="本定義的永久連結">¶</a></dt>
+<dd><p>Load necessary templates and perform initialization.  The default
+implementation does nothing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.get_outdated_docs">
+<span class="sig-name descname"><span class="pre">get_outdated_docs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(於 Python v3.14)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(於 Python v3.14)"><span class="pre">Iterable</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.get_outdated_docs"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.get_outdated_docs" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return an iterable of output files that are outdated, or a string
+describing what an update build will build.</p>
+<p>If the builder does not output individual files corresponding to
+source files, return a string here.  If it does, return an iterable
+of those files that need to be written.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.get_target_uri">
+<span class="sig-name descname"><span class="pre">get_target_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">typ</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(於 Python v3.14)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.get_target_uri"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.get_target_uri" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return the target URI for a document name.</p>
+<p><em>typ</em> can be used to qualify the link characteristic for individual
+builders.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.prepare_writing">
+<span class="sig-name descname"><span class="pre">prepare_writing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docnames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(於 Python v3.14)"><span class="pre">Set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(於 Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.prepare_writing"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.prepare_writing" title="本定義的永久連結">¶</a></dt>
+<dd><p>A place where you can add logic before <a class="reference internal" href="#sphinx.builders.Builder.write_doc" title="sphinx.builders.Builder.write_doc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_doc()</span></code></a> is run</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.write_doc">
+<span class="sig-name descname"><span class="pre">write_doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(於 Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">doctree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">docutils.nodes.document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(於 Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.write_doc"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.write_doc" title="本定義的永久連結">¶</a></dt>
+<dd><p>Where you actually write something to the filesystem.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.finish">
+<span class="sig-name descname"><span class="pre">finish</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(於 Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.finish"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.finish" title="本定義的永久連結">¶</a></dt>
+<dd><p>Finish the building process.</p>
+<p>The default implementation does nothing.</p>
+</dd></dl>
+
+<p><strong>Attributes</strong></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.events">
+<span class="sig-name descname"><span class="pre">events</span></span><a class="headerlink" href="#sphinx.builders.Builder.events" title="本定義的永久連結">¶</a></dt>
+<dd><p>An <a class="reference internal" href="utils.html#sphinx.events.EventManager" title="sphinx.events.EventManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventManager</span></code></a> object.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="collectorapi.html" title="Environment Collector API"
+             >下一頁</a> |</li>
+        <li class="right" >
+          <a href="envapi.html" title="Build environment API"
+             >上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Developing extensions for Sphinx</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">建置器 API</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2022, Georg Brandl and the Sphinx team。
+      使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0 建立。
+    </div>
+  </body>
+</html>

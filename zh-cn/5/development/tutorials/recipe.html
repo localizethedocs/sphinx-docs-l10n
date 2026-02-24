@@ -1,0 +1,607 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Developing a “recipe” extension &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/development/tutorials/recipe.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="Developing autodoc extension for IntEnum" href="autodoc_ext.html" />
+    <link rel="prev" title="Developing a “TODO” extension" href="todo.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../../index.html">
+  <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>导航</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >Extending Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Extension tutorials</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Developing a “recipe” extension</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">Developing a “recipe” extension</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#writing-the-extension">Writing the extension</a></li>
+<li><a class="reference internal" href="#using-the-extension">Using the extension</a></li>
+<li><a class="reference internal" href="#further-reading">Further reading</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Extending Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Developing extensions overview</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Extension tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="helloworld.html">Developing a “Hello world” extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="todo.html">Developing a “TODO” extension</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Developing a “recipe” extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autodoc_ext.html">Developing autodoc extension for IntEnum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../builders.html">Configuring builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML theme development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../templating.html">Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Developing extensions for Sphinx</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="developing-a-recipe-extension">
+<h1>Developing a “recipe” extension<a class="headerlink" href="#developing-a-recipe-extension" title="此标题的永久链接">¶</a></h1>
+<p>The objective of this tutorial is to illustrate roles, directives and domains.
+Once complete, we will be able to use this extension to describe a recipe and
+reference that recipe from elsewhere in our documentation.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>This tutorial is based on a guide first published on <a class="reference external" href="https://opensource.com/article/18/11/building-custom-workflows-sphinx">opensource.com</a> and
+is provided here with the original author’s permission.</p>
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="此标题的永久链接">¶</a></h2>
+<p>We want the extension to add the following to Sphinx:</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">recipe</span></code> <a class="reference internal" href="../../glossary.html#term-directive"><span class="xref std std-term">directive</span></a>, containing some content describing the recipe
+steps, along with a <code class="docutils literal notranslate"><span class="pre">:contains:</span></code> option highlighting the main ingredients
+of the recipe.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">ref</span></code> <a class="reference internal" href="../../glossary.html#term-role"><span class="xref std std-term">role</span></a>, which provides a cross-reference to the recipe
+itself.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">recipe</span></code> <a class="reference internal" href="../../glossary.html#term-domain"><span class="xref std std-term">domain</span></a>, which allows us to tie together the above role
+and domain, along with things like indices.</p></li>
+</ul>
+<p>For that, we will need to add the following elements to Sphinx:</p>
+<ul class="simple">
+<li><p>A new directive called <code class="docutils literal notranslate"><span class="pre">recipe</span></code></p></li>
+<li><p>New indexes to allow us to reference ingredient and recipes</p></li>
+<li><p>A new domain called <code class="docutils literal notranslate"><span class="pre">recipe</span></code>, which will contain the <code class="docutils literal notranslate"><span class="pre">recipe</span></code> directive
+and <code class="docutils literal notranslate"><span class="pre">ref</span></code> role</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="此标题的永久链接">¶</a></h2>
+<p>We need the same setup as in <a class="reference internal" href="todo.html"><span class="doc">the previous extensions</span></a>. This time,
+we will be putting out extension in a file called <code class="file docutils literal notranslate"><span class="pre">recipe.py</span></code>.</p>
+<p>Here is an example of the folder structure you might obtain:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>└── source
+    ├── _ext
+    │   └── recipe.py
+    ├── conf.py
+    └── index.rst
+</pre></div>
+</div>
+</section>
+<section id="writing-the-extension">
+<h2>Writing the extension<a class="headerlink" href="#writing-the-extension" title="此标题的永久链接">¶</a></h2>
+<p>Open <code class="file docutils literal notranslate"><span class="pre">recipe.py</span></code> and paste the following code in it, all of which we will
+explain in detail shortly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="kn">from</span><span class="w"> </span><span class="nn">docutils.parsers.rst</span><span class="w"> </span><span class="kn">import</span> <span class="n">directives</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinx</span><span class="w"> </span><span class="kn">import</span> <span class="n">addnodes</span>
+<span class="linenos">  6</span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.directives</span><span class="w"> </span><span class="kn">import</span> <span class="n">ObjectDescription</span>
+<span class="linenos">  7</span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.domains</span><span class="w"> </span><span class="kn">import</span> <span class="n">Domain</span><span class="p">,</span> <span class="n">Index</span>
+<span class="linenos">  8</span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.roles</span><span class="w"> </span><span class="kn">import</span> <span class="n">XRefRole</span>
+<span class="linenos">  9</span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.nodes</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_refnode</span>
+<span class="linenos"> 10</span>
+<span class="linenos"> 11</span>
+<span class="linenos"> 12</span><span class="k">class</span><span class="w"> </span><span class="nc">RecipeDirective</span><span class="p">(</span><span class="n">ObjectDescription</span><span class="p">):</span>
+<span class="linenos"> 13</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;A custom directive that describes a recipe.&quot;&quot;&quot;</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span>    <span class="n">has_content</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos"> 16</span>    <span class="n">required_arguments</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 17</span>    <span class="n">option_spec</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 18</span>        <span class="s1">&#39;contains&#39;</span><span class="p">:</span> <span class="n">directives</span><span class="o">.</span><span class="n">unchanged_required</span><span class="p">,</span>
+<span class="linenos"> 19</span>    <span class="p">}</span>
+<span class="linenos"> 20</span>
+<span class="linenos"> 21</span>    <span class="k">def</span><span class="w"> </span><span class="nf">handle_signature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">signode</span><span class="p">):</span>
+<span class="linenos"> 22</span>        <span class="n">signode</span> <span class="o">+=</span> <span class="n">addnodes</span><span class="o">.</span><span class="n">desc_name</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">sig</span><span class="p">)</span>
+<span class="linenos"> 23</span>        <span class="k">return</span> <span class="n">sig</span>
+<span class="linenos"> 24</span>
+<span class="linenos"> 25</span>    <span class="k">def</span><span class="w"> </span><span class="nf">add_target_and_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name_cls</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">signode</span><span class="p">):</span>
+<span class="linenos"> 26</span>        <span class="n">signode</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;recipe&#39;</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">sig</span><span class="p">)</span>
+<span class="linenos"> 27</span>        <span class="k">if</span> <span class="s1">&#39;contains&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
+<span class="linenos"> 28</span>            <span class="n">ingredients</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 29</span>                <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;contains&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)]</span>
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span>            <span class="n">recipes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">get_domain</span><span class="p">(</span><span class="s1">&#39;recipe&#39;</span><span class="p">)</span>
+<span class="linenos"> 32</span>            <span class="n">recipes</span><span class="o">.</span><span class="n">add_recipe</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">)</span>
+<span class="linenos"> 33</span>
+<span class="linenos"> 34</span>
+<span class="linenos"> 35</span><span class="k">class</span><span class="w"> </span><span class="nc">IngredientIndex</span><span class="p">(</span><span class="n">Index</span><span class="p">):</span>
+<span class="linenos"> 36</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;A custom index that creates an ingredient matrix.&quot;&quot;&quot;</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span>    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ingredient&#39;</span>
+<span class="linenos"> 39</span>    <span class="n">localname</span> <span class="o">=</span> <span class="s1">&#39;Ingredient Index&#39;</span>
+<span class="linenos"> 40</span>    <span class="n">shortname</span> <span class="o">=</span> <span class="s1">&#39;Ingredient&#39;</span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span>    <span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docnames</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="linenos"> 43</span>        <span class="n">content</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="linenos"> 44</span>
+<span class="linenos"> 45</span>        <span class="n">recipes</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="p">(</span><span class="n">dispname</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">)</span>
+<span class="linenos"> 46</span>                   <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">dispname</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">_</span>
+<span class="linenos"> 47</span>                   <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">get_objects</span><span class="p">()}</span>
+<span class="linenos"> 48</span>        <span class="n">recipe_ingredients</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;recipe_ingredients&#39;</span><span class="p">]</span>
+<span class="linenos"> 49</span>        <span class="n">ingredient_recipes</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="linenos"> 50</span>
+<span class="linenos"> 51</span>        <span class="c1"># flip from recipe_ingredients to ingredient_recipes</span>
+<span class="linenos"> 52</span>        <span class="k">for</span> <span class="n">recipe_name</span><span class="p">,</span> <span class="n">ingredients</span> <span class="ow">in</span> <span class="n">recipe_ingredients</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="linenos"> 53</span>            <span class="k">for</span> <span class="n">ingredient</span> <span class="ow">in</span> <span class="n">ingredients</span><span class="p">:</span>
+<span class="linenos"> 54</span>                <span class="n">ingredient_recipes</span><span class="p">[</span><span class="n">ingredient</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">recipe_name</span><span class="p">)</span>
+<span class="linenos"> 55</span>
+<span class="linenos"> 56</span>        <span class="c1"># convert the mapping of ingredient to recipes to produce the expected</span>
+<span class="linenos"> 57</span>        <span class="c1"># output, shown below, using the ingredient name as a key to group</span>
+<span class="linenos"> 58</span>        <span class="c1">#</span>
+<span class="linenos"> 59</span>        <span class="c1"># name, subtype, docname, anchor, extra, qualifier, description</span>
+<span class="linenos"> 60</span>        <span class="k">for</span> <span class="n">ingredient</span><span class="p">,</span> <span class="n">recipe_names</span> <span class="ow">in</span> <span class="n">ingredient_recipes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="linenos"> 61</span>            <span class="k">for</span> <span class="n">recipe_name</span> <span class="ow">in</span> <span class="n">recipe_names</span><span class="p">:</span>
+<span class="linenos"> 62</span>                <span class="n">dispname</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span> <span class="o">=</span> <span class="n">recipes</span><span class="p">[</span><span class="n">recipe_name</span><span class="p">]</span>
+<span class="linenos"> 63</span>                <span class="n">content</span><span class="p">[</span><span class="n">ingredient</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos"> 64</span>                    <span class="p">(</span><span class="n">dispname</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">typ</span><span class="p">))</span>
+<span class="linenos"> 65</span>
+<span class="linenos"> 66</span>        <span class="c1"># convert the dict to the sorted list of tuples expected</span>
+<span class="linenos"> 67</span>        <span class="n">content</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+<span class="linenos"> 68</span>
+<span class="linenos"> 69</span>        <span class="k">return</span> <span class="n">content</span><span class="p">,</span> <span class="kc">True</span>
+<span class="linenos"> 70</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="k">class</span><span class="w"> </span><span class="nc">RecipeIndex</span><span class="p">(</span><span class="n">Index</span><span class="p">):</span>
+<span class="linenos"> 73</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;A custom index that creates an recipe matrix.&quot;&quot;&quot;</span>
+<span class="linenos"> 74</span>
+<span class="linenos"> 75</span>    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;recipe&#39;</span>
+<span class="linenos"> 76</span>    <span class="n">localname</span> <span class="o">=</span> <span class="s1">&#39;Recipe Index&#39;</span>
+<span class="linenos"> 77</span>    <span class="n">shortname</span> <span class="o">=</span> <span class="s1">&#39;Recipe&#39;</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span>    <span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docnames</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="linenos"> 80</span>        <span class="n">content</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="linenos"> 81</span>
+<span class="linenos"> 82</span>        <span class="c1"># sort the list of recipes in alphabetical order</span>
+<span class="linenos"> 83</span>        <span class="n">recipes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">get_objects</span><span class="p">()</span>
+<span class="linenos"> 84</span>        <span class="n">recipes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">recipes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">recipe</span><span class="p">:</span> <span class="n">recipe</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos"> 85</span>
+<span class="linenos"> 86</span>        <span class="c1"># generate the expected output, shown below, from the above using the</span>
+<span class="linenos"> 87</span>        <span class="c1"># first letter of the recipe as a key to group thing</span>
+<span class="linenos"> 88</span>        <span class="c1">#</span>
+<span class="linenos"> 89</span>        <span class="c1"># name, subtype, docname, anchor, extra, qualifier, description</span>
+<span class="linenos"> 90</span>        <span class="k">for</span> <span class="n">_name</span><span class="p">,</span> <span class="n">dispname</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">_priority</span> <span class="ow">in</span> <span class="n">recipes</span><span class="p">:</span>
+<span class="linenos"> 91</span>            <span class="n">content</span><span class="p">[</span><span class="n">dispname</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos"> 92</span>                <span class="p">(</span><span class="n">dispname</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">typ</span><span class="p">))</span>
+<span class="linenos"> 93</span>
+<span class="linenos"> 94</span>        <span class="c1"># convert the dict to the sorted list of tuples expected</span>
+<span class="linenos"> 95</span>        <span class="n">content</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span>        <span class="k">return</span> <span class="n">content</span><span class="p">,</span> <span class="kc">True</span>
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span><span class="k">class</span><span class="w"> </span><span class="nc">RecipeDomain</span><span class="p">(</span><span class="n">Domain</span><span class="p">):</span>
+<span class="linenos">101</span>
+<span class="linenos">102</span>    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;recipe&#39;</span>
+<span class="linenos">103</span>    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Recipe Sample&#39;</span>
+<span class="linenos">104</span>    <span class="n">roles</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">105</span>        <span class="s1">&#39;ref&#39;</span><span class="p">:</span> <span class="n">XRefRole</span><span class="p">()</span>
+<span class="linenos">106</span>    <span class="p">}</span>
+<span class="linenos">107</span>    <span class="n">directives</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">108</span>        <span class="s1">&#39;recipe&#39;</span><span class="p">:</span> <span class="n">RecipeDirective</span><span class="p">,</span>
+<span class="linenos">109</span>    <span class="p">}</span>
+<span class="linenos">110</span>    <span class="n">indices</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">111</span>        <span class="n">RecipeIndex</span><span class="p">,</span>
+<span class="linenos">112</span>        <span class="n">IngredientIndex</span>
+<span class="linenos">113</span>    <span class="p">}</span>
+<span class="linenos">114</span>    <span class="n">initial_data</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">115</span>        <span class="s1">&#39;recipes&#39;</span><span class="p">:</span> <span class="p">[],</span>  <span class="c1"># object list</span>
+<span class="linenos">116</span>        <span class="s1">&#39;recipe_ingredients&#39;</span><span class="p">:</span> <span class="p">{},</span>  <span class="c1"># name -&gt; object</span>
+<span class="linenos">117</span>    <span class="p">}</span>
+<span class="linenos">118</span>
+<span class="linenos">119</span>    <span class="k">def</span><span class="w"> </span><span class="nf">get_full_qualified_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+<span class="linenos">120</span>        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;recipe&#39;</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span>    <span class="k">def</span><span class="w"> </span><span class="nf">get_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">123</span>        <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;recipes&#39;</span><span class="p">]</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span>    <span class="k">def</span><span class="w"> </span><span class="nf">resolve_xref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">fromdocname</span><span class="p">,</span> <span class="n">builder</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span>
+<span class="linenos">126</span>                     <span class="n">contnode</span><span class="p">):</span>
+<span class="linenos">127</span>        <span class="n">match</span> <span class="o">=</span> <span class="p">[(</span><span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">)</span>
+<span class="linenos">128</span>                 <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">prio</span>
+<span class="linenos">129</span>                 <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_objects</span><span class="p">()</span> <span class="k">if</span> <span class="n">sig</span> <span class="o">==</span> <span class="n">target</span><span class="p">]</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">match</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">132</span>            <span class="n">todocname</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">133</span>            <span class="n">targ</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">134</span>
+<span class="linenos">135</span>            <span class="k">return</span> <span class="n">make_refnode</span><span class="p">(</span><span class="n">builder</span><span class="p">,</span> <span class="n">fromdocname</span><span class="p">,</span> <span class="n">todocname</span><span class="p">,</span> <span class="n">targ</span><span class="p">,</span>
+<span class="linenos">136</span>                                <span class="n">contnode</span><span class="p">,</span> <span class="n">targ</span><span class="p">)</span>
+<span class="linenos">137</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">138</span>            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Awww, found nothing&#39;</span><span class="p">)</span>
+<span class="linenos">139</span>            <span class="k">return</span> <span class="kc">None</span>
+<span class="linenos">140</span>
+<span class="linenos">141</span>    <span class="k">def</span><span class="w"> </span><span class="nf">add_recipe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">):</span>
+<span class="linenos">142</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a new recipe to the domain.&quot;&quot;&quot;</span>
+<span class="linenos">143</span>        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;recipe&#39;</span><span class="p">,</span> <span class="n">signature</span><span class="p">)</span>
+<span class="linenos">144</span>        <span class="n">anchor</span> <span class="o">=</span> <span class="s1">&#39;recipe-</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">signature</span><span class="p">)</span>
+<span class="linenos">145</span>
+<span class="linenos">146</span>        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;recipe_ingredients&#39;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ingredients</span>
+<span class="linenos">147</span>        <span class="c1"># name, dispname, type, docname, anchor, priority</span>
+<span class="linenos">148</span>        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;recipes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos">149</span>            <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="s1">&#39;Recipe&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="linenos">150</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span><span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="linenos">153</span>    <span class="n">app</span><span class="o">.</span><span class="n">add_domain</span><span class="p">(</span><span class="n">RecipeDomain</span><span class="p">)</span>
+<span class="linenos">154</span>
+<span class="linenos">155</span>    <span class="k">return</span> <span class="p">{</span>
+<span class="linenos">156</span>        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
+<span class="linenos">157</span>        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">158</span>        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">159</span>    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Let’s look at each piece of this extension step-by-step to explain what’s going
+on.</p>
+<p class="rubric">The directive class</p>
+<p>The first thing to examine is the <code class="docutils literal notranslate"><span class="pre">RecipeDirective</span></code> directive:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">RecipeDirective</span><span class="p">(</span><span class="n">ObjectDescription</span><span class="p">):</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;A custom directive that describes a recipe.&quot;&quot;&quot;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>    <span class="n">has_content</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos"> 5</span>    <span class="n">required_arguments</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 6</span>    <span class="n">option_spec</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 7</span>        <span class="s1">&#39;contains&#39;</span><span class="p">:</span> <span class="n">directives</span><span class="o">.</span><span class="n">unchanged_required</span><span class="p">,</span>
+<span class="linenos"> 8</span>    <span class="p">}</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="k">def</span><span class="w"> </span><span class="nf">handle_signature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">signode</span><span class="p">):</span>
+<span class="linenos">11</span>        <span class="n">signode</span> <span class="o">+=</span> <span class="n">addnodes</span><span class="o">.</span><span class="n">desc_name</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">sig</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="k">return</span> <span class="n">sig</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="k">def</span><span class="w"> </span><span class="nf">add_target_and_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name_cls</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">signode</span><span class="p">):</span>
+<span class="linenos">15</span>        <span class="n">signode</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;recipe&#39;</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">sig</span><span class="p">)</span>
+<span class="linenos">16</span>        <span class="k">if</span> <span class="s1">&#39;contains&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
+<span class="linenos">17</span>            <span class="n">ingredients</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">18</span>                <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;contains&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)]</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>            <span class="n">recipes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">get_domain</span><span class="p">(</span><span class="s1">&#39;recipe&#39;</span><span class="p">)</span>
+<span class="linenos">21</span>            <span class="n">recipes</span><span class="o">.</span><span class="n">add_recipe</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Unlike <a class="reference internal" href="helloworld.html"><span class="doc">Developing a “Hello world” extension</span></a> and <a class="reference internal" href="todo.html"><span class="doc">Developing a “TODO” extension</span></a>, this directive doesn’t derive from
+<a class="reference internal" href="../../extdev/markupapi.html#docutils.parsers.rst.Directive" title="docutils.parsers.rst.Directive"><code class="xref py py-class docutils literal notranslate"><span class="pre">docutils.parsers.rst.Directive</span></code></a> and doesn’t define a <code class="docutils literal notranslate"><span class="pre">run</span></code> method.
+Instead, it derives from <a class="reference internal" href="../../extdev/domainapi.html#sphinx.directives.ObjectDescription" title="sphinx.directives.ObjectDescription"><code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.directives.ObjectDescription</span></code></a> and
+defines  <code class="docutils literal notranslate"><span class="pre">handle_signature</span></code> and <code class="docutils literal notranslate"><span class="pre">add_target_and_index</span></code> methods. This is
+because <code class="docutils literal notranslate"><span class="pre">ObjectDescription</span></code> is a special-purpose directive that’s intended
+for describing things like classes, functions, or, in our case, recipes. More
+specifically, <code class="docutils literal notranslate"><span class="pre">handle_signature</span></code> implements parsing the signature of the
+directive and passes on the object’s name and type to its superclass, while
+<code class="docutils literal notranslate"><span class="pre">add_taget_and_index</span></code> adds a target (to link to) and an entry to the index
+for this node.</p>
+<p>We also see that this directive defines <code class="docutils literal notranslate"><span class="pre">has_content</span></code>, <code class="docutils literal notranslate"><span class="pre">required_arguments</span></code>
+and <code class="docutils literal notranslate"><span class="pre">option_spec</span></code>. Unlike the <code class="docutils literal notranslate"><span class="pre">TodoDirective</span></code> directive added in the
+<a class="reference internal" href="todo.html"><span class="doc">previous tutorial</span></a>, this directive takes a single argument, the
+recipe name, and an option, <code class="docutils literal notranslate"><span class="pre">contains</span></code>, in addition to the nested
+reStructuredText in the body.</p>
+<p class="rubric">The index classes</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">待处理</p>
+<p>Add brief overview of indices</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">IngredientIndex</span><span class="p">(</span><span class="n">Index</span><span class="p">):</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;A custom index that creates an ingredient matrix.&quot;&quot;&quot;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ingredient&#39;</span>
+<span class="linenos"> 5</span>    <span class="n">localname</span> <span class="o">=</span> <span class="s1">&#39;Ingredient Index&#39;</span>
+<span class="linenos"> 6</span>    <span class="n">shortname</span> <span class="o">=</span> <span class="s1">&#39;Ingredient&#39;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docnames</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="linenos"> 9</span>        <span class="n">content</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>        <span class="n">recipes</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="p">(</span><span class="n">dispname</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">)</span>
+<span class="linenos">12</span>                   <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">dispname</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">_</span>
+<span class="linenos">13</span>                   <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">get_objects</span><span class="p">()}</span>
+<span class="linenos">14</span>        <span class="n">recipe_ingredients</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;recipe_ingredients&#39;</span><span class="p">]</span>
+<span class="linenos">15</span>        <span class="n">ingredient_recipes</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>        <span class="c1"># flip from recipe_ingredients to ingredient_recipes</span>
+<span class="linenos">18</span>        <span class="k">for</span> <span class="n">recipe_name</span><span class="p">,</span> <span class="n">ingredients</span> <span class="ow">in</span> <span class="n">recipe_ingredients</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="linenos">19</span>            <span class="k">for</span> <span class="n">ingredient</span> <span class="ow">in</span> <span class="n">ingredients</span><span class="p">:</span>
+<span class="linenos">20</span>                <span class="n">ingredient_recipes</span><span class="p">[</span><span class="n">ingredient</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">recipe_name</span><span class="p">)</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>        <span class="c1"># convert the mapping of ingredient to recipes to produce the expected</span>
+<span class="linenos">23</span>        <span class="c1"># output, shown below, using the ingredient name as a key to group</span>
+<span class="linenos">24</span>        <span class="c1">#</span>
+<span class="linenos">25</span>        <span class="c1"># name, subtype, docname, anchor, extra, qualifier, description</span>
+<span class="linenos">26</span>        <span class="k">for</span> <span class="n">ingredient</span><span class="p">,</span> <span class="n">recipe_names</span> <span class="ow">in</span> <span class="n">ingredient_recipes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="linenos">27</span>            <span class="k">for</span> <span class="n">recipe_name</span> <span class="ow">in</span> <span class="n">recipe_names</span><span class="p">:</span>
+<span class="linenos">28</span>                <span class="n">dispname</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span> <span class="o">=</span> <span class="n">recipes</span><span class="p">[</span><span class="n">recipe_name</span><span class="p">]</span>
+<span class="linenos">29</span>                <span class="n">content</span><span class="p">[</span><span class="n">ingredient</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos">30</span>                    <span class="p">(</span><span class="n">dispname</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">typ</span><span class="p">))</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span>        <span class="c1"># convert the dict to the sorted list of tuples expected</span>
+<span class="linenos">33</span>        <span class="n">content</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span>        <span class="k">return</span> <span class="n">content</span><span class="p">,</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">RecipeIndex</span><span class="p">(</span><span class="n">Index</span><span class="p">):</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;A custom index that creates an recipe matrix.&quot;&quot;&quot;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;recipe&#39;</span>
+<span class="linenos"> 5</span>    <span class="n">localname</span> <span class="o">=</span> <span class="s1">&#39;Recipe Index&#39;</span>
+<span class="linenos"> 6</span>    <span class="n">shortname</span> <span class="o">=</span> <span class="s1">&#39;Recipe&#39;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docnames</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="linenos"> 9</span>        <span class="n">content</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>        <span class="c1"># sort the list of recipes in alphabetical order</span>
+<span class="linenos">12</span>        <span class="n">recipes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">get_objects</span><span class="p">()</span>
+<span class="linenos">13</span>        <span class="n">recipes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">recipes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">recipe</span><span class="p">:</span> <span class="n">recipe</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>        <span class="c1"># generate the expected output, shown below, from the above using the</span>
+<span class="linenos">16</span>        <span class="c1"># first letter of the recipe as a key to group thing</span>
+<span class="linenos">17</span>        <span class="c1">#</span>
+<span class="linenos">18</span>        <span class="c1"># name, subtype, docname, anchor, extra, qualifier, description</span>
+<span class="linenos">19</span>        <span class="k">for</span> <span class="n">_name</span><span class="p">,</span> <span class="n">dispname</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">_priority</span> <span class="ow">in</span> <span class="n">recipes</span><span class="p">:</span>
+<span class="linenos">20</span>            <span class="n">content</span><span class="p">[</span><span class="n">dispname</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos">21</span>                <span class="p">(</span><span class="n">dispname</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">typ</span><span class="p">))</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>        <span class="c1"># convert the dict to the sorted list of tuples expected</span>
+<span class="linenos">24</span>        <span class="n">content</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>        <span class="k">return</span> <span class="n">content</span><span class="p">,</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>Both <code class="docutils literal notranslate"><span class="pre">IngredientIndex</span></code> and <code class="docutils literal notranslate"><span class="pre">RecipeIndex</span></code> are derived from <a class="reference internal" href="../../extdev/domainapi.html#sphinx.domains.Index" title="sphinx.domains.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>.
+They implement custom logic to generate a tuple of values that define the
+index. Note that <code class="docutils literal notranslate"><span class="pre">RecipeIndex</span></code> is a simple index that has only one entry.
+Extending it to cover more object types is not yet part of the code.</p>
+<p>Both indices use the method <a class="reference internal" href="../../extdev/domainapi.html#sphinx.domains.Index.generate" title="sphinx.domains.Index.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Index.generate()</span></code></a> to do their work. This
+method combines the information from our domain, sorts it, and returns it in a
+list structure that will be accepted by Sphinx. This might look complicated but
+all it really is is a list of tuples like <code class="docutils literal notranslate"><span class="pre">('tomato',</span> <span class="pre">'TomatoSoup',</span> <span class="pre">'test',</span>
+<span class="pre">'rec-TomatoSoup',...)</span></code>. Refer to the <a class="reference internal" href="../../extdev/domainapi.html"><span class="doc">domain API guide</span></a> for more information on this API.</p>
+<p>These index pages can be referred by combination of domain name and its
+<code class="docutils literal notranslate"><span class="pre">name</span></code> using <a class="reference internal" href="../../usage/restructuredtext/roles.html#role-ref" title="ref role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">ref</span></code></a> role.  For example, <code class="docutils literal notranslate"><span class="pre">RecipeIndex</span></code> can be
+referred by <code class="docutils literal notranslate"><span class="pre">:ref:`recipe-recipe`</span></code>.</p>
+<p class="rubric">The domain</p>
+<p>A Sphinx domain is a specialized container that ties together roles,
+directives, and indices, among other things. Let’s look at the domain we’re
+creating here.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span><span class="w"> </span><span class="nc">RecipeDomain</span><span class="p">(</span><span class="n">Domain</span><span class="p">):</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;recipe&#39;</span>
+<span class="linenos"> 4</span>    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Recipe Sample&#39;</span>
+<span class="linenos"> 5</span>    <span class="n">roles</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 6</span>        <span class="s1">&#39;ref&#39;</span><span class="p">:</span> <span class="n">XRefRole</span><span class="p">()</span>
+<span class="linenos"> 7</span>    <span class="p">}</span>
+<span class="linenos"> 8</span>    <span class="n">directives</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 9</span>        <span class="s1">&#39;recipe&#39;</span><span class="p">:</span> <span class="n">RecipeDirective</span><span class="p">,</span>
+<span class="linenos">10</span>    <span class="p">}</span>
+<span class="linenos">11</span>    <span class="n">indices</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">12</span>        <span class="n">RecipeIndex</span><span class="p">,</span>
+<span class="linenos">13</span>        <span class="n">IngredientIndex</span>
+<span class="linenos">14</span>    <span class="p">}</span>
+<span class="linenos">15</span>    <span class="n">initial_data</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">16</span>        <span class="s1">&#39;recipes&#39;</span><span class="p">:</span> <span class="p">[],</span>  <span class="c1"># object list</span>
+<span class="linenos">17</span>        <span class="s1">&#39;recipe_ingredients&#39;</span><span class="p">:</span> <span class="p">{},</span>  <span class="c1"># name -&gt; object</span>
+<span class="linenos">18</span>    <span class="p">}</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="k">def</span><span class="w"> </span><span class="nf">get_full_qualified_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+<span class="linenos">21</span>        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;recipe&#39;</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="k">def</span><span class="w"> </span><span class="nf">get_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">24</span>        <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;recipes&#39;</span><span class="p">]</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>    <span class="k">def</span><span class="w"> </span><span class="nf">resolve_xref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">fromdocname</span><span class="p">,</span> <span class="n">builder</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span>
+<span class="linenos">27</span>                     <span class="n">contnode</span><span class="p">):</span>
+<span class="linenos">28</span>        <span class="n">match</span> <span class="o">=</span> <span class="p">[(</span><span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">)</span>
+<span class="linenos">29</span>                 <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">prio</span>
+<span class="linenos">30</span>                 <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_objects</span><span class="p">()</span> <span class="k">if</span> <span class="n">sig</span> <span class="o">==</span> <span class="n">target</span><span class="p">]</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">match</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos">33</span>            <span class="n">todocname</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">34</span>            <span class="n">targ</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span>            <span class="k">return</span> <span class="n">make_refnode</span><span class="p">(</span><span class="n">builder</span><span class="p">,</span> <span class="n">fromdocname</span><span class="p">,</span> <span class="n">todocname</span><span class="p">,</span> <span class="n">targ</span><span class="p">,</span>
+<span class="linenos">37</span>                                <span class="n">contnode</span><span class="p">,</span> <span class="n">targ</span><span class="p">)</span>
+<span class="linenos">38</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">39</span>            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Awww, found nothing&#39;</span><span class="p">)</span>
+<span class="linenos">40</span>            <span class="k">return</span> <span class="kc">None</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span>    <span class="k">def</span><span class="w"> </span><span class="nf">add_recipe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">):</span>
+<span class="linenos">43</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a new recipe to the domain.&quot;&quot;&quot;</span>
+<span class="linenos">44</span>        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;recipe&#39;</span><span class="p">,</span> <span class="n">signature</span><span class="p">)</span>
+<span class="linenos">45</span>        <span class="n">anchor</span> <span class="o">=</span> <span class="s1">&#39;recipe-</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">signature</span><span class="p">)</span>
+<span class="linenos">46</span>
+<span class="linenos">47</span>        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;recipe_ingredients&#39;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ingredients</span>
+<span class="linenos">48</span>        <span class="c1"># name, dispname, type, docname, anchor, priority</span>
+<span class="linenos">49</span>        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;recipes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="linenos">50</span>            <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="s1">&#39;Recipe&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">docname</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>There are some interesting things to note about this <code class="docutils literal notranslate"><span class="pre">recipe</span></code> domain and domains
+in general. Firstly, we actually register our directives, roles and indices
+here, via the <code class="docutils literal notranslate"><span class="pre">directives</span></code>, <code class="docutils literal notranslate"><span class="pre">roles</span></code> and <code class="docutils literal notranslate"><span class="pre">indices</span></code> attributes, rather than
+via calls later on in <code class="docutils literal notranslate"><span class="pre">setup</span></code>. We can also note that we aren’t actually
+defining a custom role and are instead reusing the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.roles.XRefRole</span></code> role and defining the
+<a class="reference internal" href="../../extdev/domainapi.html#sphinx.domains.Domain.resolve_xref" title="sphinx.domains.Domain.resolve_xref"><code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.domains.Domain.resolve_xref</span></code></a> method. This method takes two
+arguments, <code class="docutils literal notranslate"><span class="pre">typ</span></code> and <code class="docutils literal notranslate"><span class="pre">target</span></code>, which refer to the cross-reference type and
+its target name. We’ll use <code class="docutils literal notranslate"><span class="pre">target</span></code> to resolve our destination from our
+domain’s <code class="docutils literal notranslate"><span class="pre">recipes</span></code> because we currently have only one type of node.</p>
+<p>Moving on, we can see that we’ve defined <code class="docutils literal notranslate"><span class="pre">initial_data</span></code>. The values defined in
+<code class="docutils literal notranslate"><span class="pre">initial_data</span></code> will be copied to <code class="docutils literal notranslate"><span class="pre">env.domaindata[domain_name]</span></code> as the
+initial data of the domain, and domain instances can access it via
+<code class="docutils literal notranslate"><span class="pre">self.data</span></code>. We see that we have defined two items in <code class="docutils literal notranslate"><span class="pre">initial_data</span></code>:
+<code class="docutils literal notranslate"><span class="pre">recipes</span></code> and <code class="docutils literal notranslate"><span class="pre">recipe2ingredient</span></code>. These contain a list of all objects
+defined (i.e. all recipes) and a hash that maps a canonical ingredient name to
+the list of objects. The way we name objects is common across our extension and
+is defined in the <code class="docutils literal notranslate"><span class="pre">get_full_qualified_name</span></code> method. For each object created,
+the canonical name is <code class="docutils literal notranslate"><span class="pre">recipe.&lt;recipename&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;recipename&gt;</span></code> is the
+name the documentation writer gives the object (a recipe). This enables the
+extension to use different object types that share the same name. Having a
+canonical name and central place for our objects is a huge advantage. Both our
+indices and our cross-referencing code use this feature.</p>
+<p class="rubric">The <code class="docutils literal notranslate"><span class="pre">setup</span></code> function</p>
+<p><a class="reference internal" href="todo.html"><span class="doc">As always</span></a>, the <code class="docutils literal notranslate"><span class="pre">setup</span></code> function is a requirement and is used to
+hook the various parts of our extension into Sphinx. Let’s look at the
+<code class="docutils literal notranslate"><span class="pre">setup</span></code> function for this extension.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="linenos">2</span>    <span class="n">app</span><span class="o">.</span><span class="n">add_domain</span><span class="p">(</span><span class="n">RecipeDomain</span><span class="p">)</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span>    <span class="k">return</span> <span class="p">{</span>
+<span class="linenos">5</span>        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
+<span class="linenos">6</span>        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">7</span>        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">8</span>    <span class="p">}</span>
+</pre></div>
+</div>
+<p>This looks a little different to what we’re used to seeing. There are no calls
+to <a class="reference internal" href="../../extdev/appapi.html#sphinx.application.Sphinx.add_directive" title="sphinx.application.Sphinx.add_directive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_directive()</span></code></a> or even <a class="reference internal" href="../../extdev/appapi.html#sphinx.application.Sphinx.add_role" title="sphinx.application.Sphinx.add_role"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_role()</span></code></a>. Instead, we
+have a single call to <a class="reference internal" href="../../extdev/appapi.html#sphinx.application.Sphinx.add_domain" title="sphinx.application.Sphinx.add_domain"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_domain()</span></code></a> followed by some
+initialization of the <a class="reference internal" href="../../usage/restructuredtext/domains.html#domains-std"><span class="std std-ref">standard domain</span></a>. This is because we
+had already registered our directives, roles and indexes as part of the
+directive itself.</p>
+</section>
+<section id="using-the-extension">
+<h2>Using the extension<a class="headerlink" href="#using-the-extension" title="此标题的永久链接">¶</a></h2>
+<p>You can now use the extension throughout your project. For example:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">index.rst</span><a class="headerlink" href="#id2" title="此代码块的永久链接">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Joe&#39;s Recipes</span>
+<span class="gh">=============</span>
+
+Below are a collection of my favourite recipes. I highly recommend the
+<span class="na">:recipe:ref:</span><span class="nv">`TomatoSoup`</span> recipe in particular!
+
+<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+
+   tomato-soup
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">tomato-soup.rst</span><a class="headerlink" href="#id3" title="此代码块的永久链接">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>The recipe contains <span class="nv">`tomato`</span> and <span class="nv">`cilantro`</span>.
+
+<span class="p">..</span> <span class="ow">recipe:recipe</span><span class="p">::</span> TomatoSoup
+   <span class="nc">:contains:</span> tomato, cilantro, salt, pepper
+
+   This recipe is a tasty tomato soup, combine all ingredients
+   and cook.
+</pre></div>
+</div>
+</div>
+<p>The important things to note are the use of the <code class="docutils literal notranslate"><span class="pre">:recipe:ref:</span></code> role to
+cross-reference the recipe actually defined elsewhere (using the
+<code class="docutils literal notranslate"><span class="pre">:recipe:recipe:</span></code> directive.</p>
+</section>
+<section id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="此标题的永久链接">¶</a></h2>
+<p>For more information, refer to the <a class="reference external" href="https://docutils.sourceforge.io/docs/">docutils</a> documentation and
+<a class="reference internal" href="../../extdev/index.html"><span class="doc">Developing extensions for Sphinx</span></a>.</p>
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../../copyright.html"> 版权所有</a> 2007-2026, the Sphinx developers.
+  由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0创建。
+</div>
+  </body>
+</html>

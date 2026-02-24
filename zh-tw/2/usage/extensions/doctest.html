@@ -1,0 +1,541 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_TW">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>sphinx.ext.doctest – Test snippets in the documentation &#8212; Sphinx 2.4.5 說明文件</title>
+    <link rel="stylesheet" href="../../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/doctest.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx 2.4.5 說明文件 中搜尋"
+          href="../../_static/opensearch.xml"/>
+
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../search.html" />
+    <link rel="next" title="sphinx.ext.duration – Measure durations of Sphinx processing" href="duration.html" />
+    <link rel="prev" title="sphinx.ext.coverage – Collect doc coverage stats" href="coverage.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/usage/extensions/doctest.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../installation.html">Get it</a></li>
+    <li><a href="../../contents.html">Docs</a></li>
+    <li><a href="../../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../../index.html">
+      <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="duration.html" title="sphinx.ext.duration – Measure durations of Sphinx processing"
+             accesskey="N">下一頁</a> |</li>
+        <li class="right" >
+          <a href="coverage.html" title="sphinx.ext.coverage – Collect doc coverage stats"
+             accesskey="P">上一頁</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">擴充功能</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> – Test snippets in the documentation</a><ul>
+<li><a class="reference internal" href="#directives">指示詞</a></li>
+<li><a class="reference internal" href="#skipping-tests-conditionally">Skipping tests conditionally</a></li>
+<li><a class="reference internal" href="#configuration">組態</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上個主題</h4>
+  <p class="topless"><a href="coverage.html"
+                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></p>
+  <h4>下個主題</h4>
+  <p class="topless"><a href="duration.html"
+                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> – Measure durations of Sphinx processing</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本頁</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/usage/extensions/doctest.rst.txt"
+            rel="nofollow">顯示原始碼</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="搜" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-sphinx.ext.doctest">
+<span id="sphinx-ext-doctest-test-snippets-in-the-documentation"></span><h1><a class="reference internal" href="#module-sphinx.ext.doctest" title="sphinx.ext.doctest: Test snippets in the documentation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code></a> – Test snippets in the documentation<a class="headerlink" href="#module-sphinx.ext.doctest" title="本標題的永久連結">¶</a></h1>
+<p id="index-0">This extension allows you to test snippets in the documentation in a natural
+way.  It works by collecting specially-marked up code blocks and running them as
+doctest tests.</p>
+<p>Within one document, test code is partitioned in <em>groups</em>, where each group
+consists of:</p>
+<ul class="simple">
+<li><p>zero or more <em>setup code</em> blocks (e.g. importing the module to test)</p></li>
+<li><p>one or more <em>test</em> blocks</p></li>
+</ul>
+<p>When building the docs with the <code class="docutils literal notranslate"><span class="pre">doctest</span></code> builder, groups are collected for
+each document and run one after the other, first executing setup code blocks,
+then the test blocks in the order they appear in the file.</p>
+<p>There are two kinds of test blocks:</p>
+<ul class="simple">
+<li><p><em>doctest-style</em> blocks mimic interactive sessions by interleaving Python code
+(including the interpreter prompt) and output.</p></li>
+<li><p><em>code-output-style</em> blocks consist of an ordinary piece of Python code, and
+optionally, a piece of output for that code.</p></li>
+</ul>
+<section id="directives">
+<h2>指示詞<a class="headerlink" href="#directives" title="本標題的永久連結">¶</a></h2>
+<p>The <em>group</em> argument below is interpreted as follows: if it is empty, the block
+is assigned to the group named <code class="docutils literal notranslate"><span class="pre">default</span></code>.  If it is <code class="docutils literal notranslate"><span class="pre">*</span></code>, the block is
+assigned to all groups (including the <code class="docutils literal notranslate"><span class="pre">default</span></code> group).  Otherwise, it must be
+a comma-separated list of group names.</p>
+<dl class="directive">
+<dt id="directive-testsetup">
+<code class="sig-name descname">.. testsetup::</code><code class="sig-prename descclassname"> [group]</code><a class="headerlink" href="#directive-testsetup" title="本定義的永久連結">¶</a></dt>
+<dd><p>A setup code block.  This code is not shown in the output for other builders,
+but executed before the doctests of the group(s) it belongs to.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-testcleanup">
+<code class="sig-name descname">.. testcleanup::</code><code class="sig-prename descclassname"> [group]</code><a class="headerlink" href="#directive-testcleanup" title="本定義的永久連結">¶</a></dt>
+<dd><p>A cleanup code block.  This code is not shown in the output for other
+builders, but executed after the doctests of the group(s) it belongs to.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.1 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-doctest">
+<code class="sig-name descname">.. doctest::</code><code class="sig-prename descclassname"> [group]</code><a class="headerlink" href="#directive-doctest" title="本定義的永久連結">¶</a></dt>
+<dd><p>A doctest-style code block.  You can use standard <code class="xref py py-mod docutils literal notranslate"><span class="pre">doctest</span></code> flags for
+controlling how actual output is compared with what you give as output.  The
+default set of flags is specified by the <a class="reference internal" href="#confval-doctest_default_flags"><code class="xref std std-confval docutils literal notranslate"><span class="pre">doctest_default_flags</span></code></a>
+configuration variable.</p>
+<p>This directive supports three options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">hide</span></code>, a flag option, hides the doctest block in other builders.  By
+default it is shown as a highlighted doctest block.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options</span></code>, a string option, can be used to give a comma-separated list of
+doctest flags that apply to each example in the tests.  (You still can give
+explicit flags per example, with doctest comments, but they will show up in
+other builders too.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pyversion</span></code>, a string option, can be used to specify the required Python
+version for the example to be tested. For instance, in the following case
+the example will be tested only for Python versions greater than 3.3:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">doctest</span><span class="p">::</span>
+   <span class="nc">:pyversion:</span> &gt; 3.3
+</pre></div>
+</div>
+<p>The following operands are supported:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~=</span></code>: Compatible release clause</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">==</span></code>: Version matching clause</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">!=</span></code>: Version exclusion clause</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>: Inclusive ordered comparison clause</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>: Exclusive ordered comparison clause</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">===</span></code>: Arbitrary equality clause.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">pyversion</span></code> option is followed <a class="reference external" href="https://www.python.org/dev/peps/pep-0440/#version-specifiers">PEP-440: Version Specifiers</a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.6 版新加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">1.7 版更變: </span>Supported PEP-440 operands and notations</p>
+</div>
+</li>
+</ul>
+<p>Note that like with standard doctests, you have to use <code class="docutils literal notranslate"><span class="pre">&lt;BLANKLINE&gt;</span></code> to
+signal a blank line in the expected output.  The <code class="docutils literal notranslate"><span class="pre">&lt;BLANKLINE&gt;</span></code> is removed
+when building presentation output (HTML, LaTeX etc.).</p>
+<p>Also, you can give inline doctest options, like in doctest:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; datetime.date.now()   # doctest: +SKIP
+datetime.date(2008, 1, 1)
+</pre></div>
+</div>
+<p>They will be respected when the test is run, but stripped from presentation
+output.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-testcode">
+<code class="sig-name descname">.. testcode::</code><code class="sig-prename descclassname"> [group]</code><a class="headerlink" href="#directive-testcode" title="本定義的永久連結">¶</a></dt>
+<dd><p>A code block for a code-output-style test.</p>
+<p>This directive supports one option:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hide</span></code>, a flag option, hides the code block in other builders.  By
+default it is shown as a highlighted code block.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>Code in a <code class="docutils literal notranslate"><span class="pre">testcode</span></code> block is always executed all at once, no matter how
+many statements it contains.  Therefore, output will <em>not</em> be generated
+for bare expressions – use <code class="docutils literal notranslate"><span class="pre">print</span></code>.  Example:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">testcode</span><span class="p">::</span>
+
+   1+1        # this will give no output!
+   print 2+2  # this will give output
+
+<span class="p">..</span> <span class="ow">testoutput</span><span class="p">::</span>
+
+   4
+</pre></div>
+</div>
+<p>Also, please be aware that since the doctest module does not support
+mixing regular output and an exception message in the same snippet, this
+applies to testcode/testoutput as well.</p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-testoutput">
+<code class="sig-name descname">.. testoutput::</code><code class="sig-prename descclassname"> [group]</code><a class="headerlink" href="#directive-testoutput" title="本定義的永久連結">¶</a></dt>
+<dd><p>The corresponding output, or the exception message, for the last
+<a class="reference internal" href="#directive-testcode" title="testcode directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">testcode</span></code></a> block.</p>
+<p>This directive supports two options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hide</span></code>, a flag option, hides the output block in other builders.  By
+default it is shown as a literal block without highlighting.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options</span></code>, a string option, can be used to give doctest flags
+(comma-separated) just like in normal doctest blocks.</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">testcode</span><span class="p">::</span>
+
+   print &#39;Output     text.&#39;
+
+<span class="p">..</span> <span class="ow">testoutput</span><span class="p">::</span>
+   <span class="nc">:hide:</span>
+   <span class="nc">:options:</span> -ELLIPSIS, +NORMALIZE_WHITESPACE
+
+   Output text.
+</pre></div>
+</div>
+</dd></dl>
+
+<p>The following is an example for the usage of the directives.  The test via
+<a class="reference internal" href="#directive-doctest" title="doctest directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">doctest</span></code></a> and the test via <a class="reference internal" href="#directive-testcode" title="testcode directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">testcode</span></code></a> and
+<a class="reference internal" href="#directive-testoutput" title="testoutput directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">testoutput</span></code></a> are equivalent.</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="gh">The parrot module</span>
+<span class="gh">=================</span>
+
+<span class="p">..</span> <span class="ow">testsetup</span><span class="p">::</span> *
+
+   import parrot
+
+The parrot module is a module about parrots.
+
+Doctest example:
+
+<span class="p">..</span> <span class="ow">doctest</span><span class="p">::</span>
+
+   &gt;&gt;&gt; parrot.voom(3000)
+   This parrot wouldn&#39;t voom if you put 3000 volts through it!
+
+Test-Output example:
+
+<span class="p">..</span> <span class="ow">testcode</span><span class="p">::</span>
+
+   parrot.voom(3000)
+
+This would output:
+
+<span class="p">..</span> <span class="ow">testoutput</span><span class="p">::</span>
+
+   This parrot wouldn&#39;t voom if you put 3000 volts through it!
+</pre></div>
+</div>
+</section>
+<section id="skipping-tests-conditionally">
+<h2>Skipping tests conditionally<a class="headerlink" href="#skipping-tests-conditionally" title="本標題的永久連結">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">skipif</span></code>, a string option, can be used to skip directives conditionally. This
+may be useful e.g. when a different set of tests should be run depending on the
+environment (hardware, network/VPN, optional dependencies or different versions
+of dependencies). The <code class="docutils literal notranslate"><span class="pre">skipif</span></code> option is supported by all of the doctest
+directives. Below are typical use cases for <code class="docutils literal notranslate"><span class="pre">skipif</span></code> when used for different
+directives:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#directive-testsetup" title="testsetup directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">testsetup</span></code></a> and <a class="reference internal" href="#directive-testcleanup" title="testcleanup directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">testcleanup</span></code></a></p>
+<ul>
+<li><p>conditionally skip test setup and/or cleanup</p></li>
+<li><p>customize setup/cleanup code per environment</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#directive-doctest" title="doctest directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">doctest</span></code></a></p>
+<ul>
+<li><p>conditionally skip both a test and its output verification</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#directive-testcode" title="testcode directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">testcode</span></code></a></p>
+<ul>
+<li><p>conditionally skip a test</p></li>
+<li><p>customize test code per environment</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#directive-testoutput" title="testoutput directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">testoutput</span></code></a></p>
+<ul>
+<li><p>conditionally skip output assertion for a skipped test</p></li>
+<li><p>expect different output depending on the environment</p></li>
+</ul>
+</li>
+</ul>
+<p>The value of the <code class="docutils literal notranslate"><span class="pre">skipif</span></code> option is evaluated as a Python expression. If the
+result is a true value, the directive is omitted from the test run just as if
+it wasn’t present in the file at all.</p>
+<p>Instead of repeating an expression, the <a class="reference internal" href="#confval-doctest_global_setup"><code class="xref std std-confval docutils literal notranslate"><span class="pre">doctest_global_setup</span></code></a>
+configuration option can be used to assign it to a variable which can then be
+used instead.</p>
+<p>Here’s an example which skips some tests if Pandas is not installed:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id1" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sphinx.ext.doctest&#39;</span><span class="p">]</span>
+<span class="n">doctest_global_setup</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">try:</span>
+<span class="s1">    import pandas as pd</span>
+<span class="s1">except ImportError:</span>
+<span class="s1">    pd = None</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">contents.rst</span><a class="headerlink" href="#id2" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">testsetup</span><span class="p">::</span>
+   <span class="nc">:skipif:</span> pd is None
+
+   data = pd.Series([42])
+
+<span class="p">..</span> <span class="ow">doctest</span><span class="p">::</span>
+   <span class="nc">:skipif:</span> pd is None
+
+   &gt;&gt;&gt; data.iloc[0]
+   42
+
+<span class="p">..</span> <span class="ow">testcode</span><span class="p">::</span>
+   <span class="nc">:skipif:</span> pd is None
+
+   print(data.iloc[-1])
+
+<span class="p">..</span> <span class="ow">testoutput</span><span class="p">::</span>
+   <span class="nc">:skipif:</span> pd is None
+
+   42
+</pre></div>
+</div>
+</div>
+</section>
+<section id="configuration">
+<h2>組態<a class="headerlink" href="#configuration" title="本標題的永久連結">¶</a></h2>
+<p>The doctest extension uses the following configuration values:</p>
+<dl class="confval">
+<dt id="confval-doctest_default_flags">
+<code class="sig-name descname">doctest_default_flags</code><a class="headerlink" href="#confval-doctest_default_flags" title="本定義的永久連結">¶</a></dt>
+<dd><p>By default, these options are enabled:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ELLIPSIS</span></code>, allowing you to put ellipses in the expected output that
+match anything in the actual output;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IGNORE_EXCEPTION_DETAIL</span></code>, causing everything following the leftmost
+colon and any module information in the exception name to be ignored;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DONT_ACCEPT_TRUE_FOR_1</span></code>, rejecting 「True」 in the output where 「1」 is
+given – the default behavior of accepting this substitution is a relic of
+pre-Python 2.2 times.</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">1.5 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-doctest_path">
+<code class="sig-name descname">doctest_path</code><a class="headerlink" href="#confval-doctest_path" title="本定義的永久連結">¶</a></dt>
+<dd><p>A list of directories that will be added to <code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code> when the doctest
+builder is used.  (Make sure it contains absolute paths.)</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-doctest_global_setup">
+<code class="sig-name descname">doctest_global_setup</code><a class="headerlink" href="#confval-doctest_global_setup" title="本定義的永久連結">¶</a></dt>
+<dd><p>Python code that is treated like it were put in a <code class="docutils literal notranslate"><span class="pre">testsetup</span></code> directive for
+<em>every</em> file that is tested, and for every group.  You can use this to
+e.g. import modules you will always need in your doctests.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">0.6 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-doctest_global_cleanup">
+<code class="sig-name descname">doctest_global_cleanup</code><a class="headerlink" href="#confval-doctest_global_cleanup" title="本定義的永久連結">¶</a></dt>
+<dd><p>Python code that is treated like it were put in a <code class="docutils literal notranslate"><span class="pre">testcleanup</span></code> directive
+for <em>every</em> file that is tested, and for every group.  You can use this to
+e.g. remove any temporary files that the tests leave behind.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">1.1 版新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-doctest_test_doctest_blocks">
+<code class="sig-name descname">doctest_test_doctest_blocks</code><a class="headerlink" href="#confval-doctest_test_doctest_blocks" title="本定義的永久連結">¶</a></dt>
+<dd><p>If this is a nonempty string (the default is <code class="docutils literal notranslate"><span class="pre">'default'</span></code>), standard reST
+doctest blocks will be tested too.  They will be assigned to the group name
+given.</p>
+<p>reST doctest blocks are simply doctests put into a paragraph of their own,
+like so:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span>Some documentation text.
+
+&gt;&gt;&gt; print 1
+1
+
+Some more documentation text.
+</pre></div>
+</div>
+<p>(Note that no special <code class="docutils literal notranslate"><span class="pre">::</span></code> is used to introduce a doctest block; docutils
+recognizes them from the leading <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>.  Also, no additional indentation is
+used, though it doesn’t hurt.)</p>
+<p>If this value is left at its default value, the above snippet is interpreted
+by the doctest builder exactly like the following:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span>Some documentation text.
+
+<span class="p">..</span> <span class="ow">doctest</span><span class="p">::</span>
+
+   &gt;&gt;&gt; print 1
+   1
+
+Some more documentation text.
+</pre></div>
+</div>
+<p>This feature makes it easy for you to test doctests in docstrings included
+with the <a class="reference internal" href="autodoc.html#module-sphinx.ext.autodoc" title="sphinx.ext.autodoc: Include documentation from docstrings."><code class="xref py py-mod docutils literal notranslate"><span class="pre">autodoc</span></code></a> extension without marking them up with a
+special directive.</p>
+<p>Note though that you can’t have blank lines in reST doctest blocks.  They
+will be interpreted as one block ending and another one starting.  Also,
+removal of <code class="docutils literal notranslate"><span class="pre">&lt;BLANKLINE&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">doctest:</span></code> options only works in
+<a class="reference internal" href="#directive-doctest" title="doctest directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">doctest</span></code></a> blocks, though you may set <a class="reference internal" href="../configuration.html#confval-trim_doctest_flags"><code class="xref std std-confval docutils literal notranslate"><span class="pre">trim_doctest_flags</span></code></a>
+to achieve that in all code blocks with Python console content.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="duration.html" title="sphinx.ext.duration – Measure durations of Sphinx processing"
+             >下一頁</a> |</li>
+        <li class="right" >
+          <a href="coverage.html" title="sphinx.ext.coverage – Collect doc coverage stats"
+             >上一頁</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >擴充功能</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2019, Georg Brandl and the Sphinx team。
+      使用 <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5 創建。
+    </div>
+  </body>
+</html>

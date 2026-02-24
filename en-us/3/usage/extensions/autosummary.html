@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sphinx.ext.autosummary – Generate autodoc summaries &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/autosummary.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sphinx.ext.coverage – Collect doc coverage stats" href="coverage.html" />
+    <link rel="prev" title="sphinx.ext.autosectionlabel – Allow reference sections using its title" href="autosectionlabel.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../installation.html">Get it</a></li>
+    <li><a href="../../contents.html">Docs</a></li>
+    <li><a href="../../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../../index.html">
+      <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="coverage.html" title="sphinx.ext.coverage – Collect doc coverage stats"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="autosectionlabel.html" title="sphinx.ext.autosectionlabel – Allow reference sections using its title"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Extensions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a><ul>
+<li><a class="reference internal" href="#sphinx-autogen-generate-autodoc-stub-pages"><strong class="program">sphinx-autogen</strong> – generate autodoc stub pages</a></li>
+<li><a class="reference internal" href="#generating-stub-pages-automatically">Generating stub pages automatically</a></li>
+<li><a class="reference internal" href="#customizing-templates">Customizing templates</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="autosectionlabel.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> – Allow reference sections using its title</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="coverage.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/usage/extensions/autosummary.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-sphinx.ext.autosummary">
+<span id="sphinx-ext-autosummary-generate-autodoc-summaries"></span><h1><a class="reference internal" href="#module-sphinx.ext.autosummary" title="sphinx.ext.autosummary: Generate autodoc summaries"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code></a> – Generate autodoc summaries<a class="headerlink" href="#module-sphinx.ext.autosummary" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.6.</span></p>
+</div>
+<p>This extension generates function/method/attribute summary lists, similar to
+those output e.g. by Epydoc and other API doc generation tools.  This is
+especially useful when your docstrings are long and detailed, and putting each
+one of them on a separate page makes them easier to read.</p>
+<p>The <a class="reference internal" href="#module-sphinx.ext.autosummary" title="sphinx.ext.autosummary: Generate autodoc summaries"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code></a> extension does this in two parts:</p>
+<ol class="arabic simple">
+<li><p>There is an <a class="reference internal" href="#directive-autosummary" title="autosummary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autosummary</span></code></a> directive for generating summary listings
+that contain links to the documented items, and short summary blurbs
+extracted from their docstrings.</p></li>
+<li><p>Optionally, the convenience script <strong class="program">sphinx-autogen</strong> or the new
+<a class="reference internal" href="#confval-autosummary_generate"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autosummary_generate</span></code></a> config value can be used to generate short
+“stub” files for the entries listed in the <a class="reference internal" href="#directive-autosummary" title="autosummary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autosummary</span></code></a> directives.
+These files by default contain only the corresponding
+<a class="reference internal" href="autodoc.html#module-sphinx.ext.autodoc" title="sphinx.ext.autodoc: Include documentation from docstrings."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code></a> directive, but can be customized with templates.</p></li>
+</ol>
+<dl class="rst directive">
+<dt id="directive-autosummary">
+<code class="sig-name descname"><span class="pre">..</span> <span class="pre">autosummary::</span></code><a class="headerlink" href="#directive-autosummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a table that contains links to documented items, and a short summary
+blurb (the first sentence of the docstring) for each of them.</p>
+<p>The <a class="reference internal" href="#directive-autosummary" title="autosummary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autosummary</span></code></a> directive can also optionally serve as a
+<a class="reference internal" href="../restructuredtext/directives.html#directive-toctree" title="toctree directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">toctree</span></code></a> entry for the included items. Optionally, stub
+<code class="docutils literal notranslate"><span class="pre">.rst</span></code> files for these items can also be automatically generated
+when <a class="reference internal" href="#confval-autosummary_generate"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autosummary_generate</span></code></a> is <cite>True</cite>.</p>
+<p>For example,</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">currentmodule</span><span class="p">::</span> sphinx
+
+<span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
+
+   environment.BuildEnvironment
+   util.relative_uri
+</pre></div>
+</div>
+<p>produces a table like this:</p>
+<blockquote>
+<div><table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../extdev/envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">environment.BuildEnvironment</span></code></a>(app)</p></td>
+<td><p>The environment in which the ReST files are translated.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">util.relative_uri</span></code>(base, to)</p></td>
+<td><p>Return a relative URL from <code class="docutils literal notranslate"><span class="pre">base</span></code> to <code class="docutils literal notranslate"><span class="pre">to</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>Autosummary preprocesses the docstrings and signatures with the same
+<a class="reference internal" href="autodoc.html#event-autodoc-process-docstring"><code class="xref std std-event docutils literal notranslate"><span class="pre">autodoc-process-docstring</span></code></a> and <a class="reference internal" href="autodoc.html#event-autodoc-process-signature"><code class="xref std std-event docutils literal notranslate"><span class="pre">autodoc-process-signature</span></code></a>
+hooks as <a class="reference internal" href="autodoc.html#module-sphinx.ext.autodoc" title="sphinx.ext.autodoc: Include documentation from docstrings."><code class="xref py py-mod docutils literal notranslate"><span class="pre">autodoc</span></code></a>.</p>
+<p><strong>Options</strong></p>
+<ul>
+<li><p>If you want the <a class="reference internal" href="#directive-autosummary" title="autosummary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autosummary</span></code></a> table to also serve as a
+<a class="reference internal" href="../restructuredtext/directives.html#directive-toctree" title="toctree directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">toctree</span></code></a> entry, use the <code class="docutils literal notranslate"><span class="pre">toctree</span></code> option, for example:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
+   <span class="nc">:toctree:</span> DIRNAME
+
+   sphinx.environment.BuildEnvironment
+   sphinx.util.relative_uri
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">toctree</span></code> option also signals to the <strong class="program">sphinx-autogen</strong> script
+that stub pages should be generated for the entries listed in this
+directive.  The option accepts a directory name as an argument;
+<strong class="program">sphinx-autogen</strong> will by default place its output in this
+directory. If no argument is given, output is placed in the same directory
+as the file that contains the directive.</p>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">caption</span></code> option to give a caption to the toctree.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.1: </span>caption option added.</p>
+</div>
+</li>
+<li><p>If you don’t want the <a class="reference internal" href="#directive-autosummary" title="autosummary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autosummary</span></code></a> to show function signatures in
+the listing, include the <code class="docutils literal notranslate"><span class="pre">nosignatures</span></code> option:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
+   <span class="nc">:nosignatures:</span>
+
+   sphinx.environment.BuildEnvironment
+   sphinx.util.relative_uri
+</pre></div>
+</div>
+</li>
+<li><p>You can specify a custom template with the <code class="docutils literal notranslate"><span class="pre">template</span></code> option.
+For example,</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
+   <span class="nc">:template:</span> mytemplate.rst
+
+   sphinx.environment.BuildEnvironment
+</pre></div>
+</div>
+<p>would use the template <code class="file docutils literal notranslate"><span class="pre">mytemplate.rst</span></code> in your
+<a class="reference internal" href="../configuration.html#confval-templates_path"><code class="xref std std-confval docutils literal notranslate"><span class="pre">templates_path</span></code></a> to generate the pages for all entries
+listed. See <a class="reference internal" href="#customizing-templates">Customizing templates</a> below.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.</span></p>
+</div>
+</li>
+<li><p>You can specify the <code class="docutils literal notranslate"><span class="pre">recursive</span></code> option to generate documents for
+modules and sub-packages recursively.  It defaults to disabled.
+For example,</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
+   <span class="nc">:recursive:</span>
+
+   sphinx.environment.BuildEnvironment
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.1.</span></p>
+</div>
+</li>
+</ul>
+</dd></dl>
+
+<div class="section" id="sphinx-autogen-generate-autodoc-stub-pages">
+<h2><strong class="program">sphinx-autogen</strong> – generate autodoc stub pages<a class="headerlink" href="#sphinx-autogen-generate-autodoc-stub-pages" title="Permalink to this headline">¶</a></h2>
+<p>The <strong class="program">sphinx-autogen</strong> script can be used to conveniently generate stub
+documentation pages for items included in <a class="reference internal" href="#directive-autosummary" title="autosummary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autosummary</span></code></a> listings.</p>
+<p>For example, the command</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span>$ sphinx-autogen -o generated *.rst
+</pre></div>
+</div>
+<p>will read all <a class="reference internal" href="#directive-autosummary" title="autosummary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autosummary</span></code></a> tables in the <code class="file docutils literal notranslate"><span class="pre">*.rst</span></code> files that have
+the <code class="docutils literal notranslate"><span class="pre">:toctree:</span></code> option set, and output corresponding stub pages in directory
+<code class="docutils literal notranslate"><span class="pre">generated</span></code> for all documented items.  The generated pages by default contain
+text of the form:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="gh">sphinx.util.relative_uri</span>
+<span class="gh">========================</span>
+
+<span class="p">..</span> <span class="ow">autofunction</span><span class="p">::</span> sphinx.util.relative_uri
+</pre></div>
+</div>
+<p>If the <code class="docutils literal notranslate"><span class="pre">-o</span></code> option is not given, the script will place the output files in the
+directories specified in the <code class="docutils literal notranslate"><span class="pre">:toctree:</span></code> options.</p>
+<p>For more information, refer to the <a class="reference internal" href="../../man/sphinx-autogen.html"><span class="doc">sphinx-autogen documentation</span></a></p>
+</div>
+<div class="section" id="generating-stub-pages-automatically">
+<h2>Generating stub pages automatically<a class="headerlink" href="#generating-stub-pages-automatically" title="Permalink to this headline">¶</a></h2>
+<p>If you do not want to create stub pages with <strong class="program">sphinx-autogen</strong>, you can
+also use these config values:</p>
+<dl class="std confval">
+<dt id="confval-autosummary_context">
+<code class="sig-name descname"><span class="pre">autosummary_context</span></code><a class="headerlink" href="#confval-autosummary_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary of values to pass into the template engine’s context for
+autosummary stubs files.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt id="confval-autosummary_generate">
+<code class="sig-name descname"><span class="pre">autosummary_generate</span></code><a class="headerlink" href="#confval-autosummary_generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean indicating whether to scan all found documents for autosummary
+directives, and to generate stub pages for each. It is disabled by default.</p>
+<p>Can also be a list of documents for which stub pages should be generated.</p>
+<p>The new files will be placed in the directories specified in the
+<code class="docutils literal notranslate"><span class="pre">:toctree:</span></code> options of the directives.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 2.3: </span>Emits <a class="reference internal" href="autodoc.html#event-autodoc-skip-member"><code class="xref std std-event docutils literal notranslate"><span class="pre">autodoc-skip-member</span></code></a> event as <a class="reference internal" href="autodoc.html#module-sphinx.ext.autodoc" title="sphinx.ext.autodoc: Include documentation from docstrings."><code class="xref py py-mod docutils literal notranslate"><span class="pre">autodoc</span></code></a>
+does.</p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt id="confval-autosummary_generate_overwrite">
+<code class="sig-name descname"><span class="pre">autosummary_generate_overwrite</span></code><a class="headerlink" href="#confval-autosummary_generate_overwrite" title="Permalink to this definition">¶</a></dt>
+<dd><p>If true, autosummary overwrites existing files by generated stub pages.
+Defaults to true (enabled).</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt id="confval-autosummary_mock_imports">
+<code class="sig-name descname"><span class="pre">autosummary_mock_imports</span></code><a class="headerlink" href="#confval-autosummary_mock_imports" title="Permalink to this definition">¶</a></dt>
+<dd><p>This value contains a list of modules to be mocked up.  See
+<a class="reference internal" href="autodoc.html#confval-autodoc_mock_imports"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autodoc_mock_imports</span></code></a> for more details.  It defaults to
+<a class="reference internal" href="autodoc.html#confval-autodoc_mock_imports"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autodoc_mock_imports</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt id="confval-autosummary_imported_members">
+<code class="sig-name descname"><span class="pre">autosummary_imported_members</span></code><a class="headerlink" href="#confval-autosummary_imported_members" title="Permalink to this definition">¶</a></dt>
+<dd><p>A boolean flag indicating whether to document classes and functions imported
+in modules. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt id="confval-autosummary_filename_map">
+<code class="sig-name descname"><span class="pre">autosummary_filename_map</span></code><a class="headerlink" href="#confval-autosummary_filename_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dict mapping object names to filenames. This is necessary to avoid
+filename conflicts where multiple objects have names that are
+indistinguishable when case is ignored, on file systems where filenames
+are case-insensitive.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.2.</span></p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="customizing-templates">
+<h2>Customizing templates<a class="headerlink" href="#customizing-templates" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.</span></p>
+</div>
+<p>You can customize the stub page templates, in a similar way as the HTML Jinja
+templates, see <a class="reference internal" href="../../templating.html#templating"><span class="std std-ref">Templating</span></a>. (<a class="reference internal" href="../../extdev/appapi.html#sphinx.application.TemplateBridge" title="sphinx.application.TemplateBridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemplateBridge</span></code></a>
+is not supported.)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you find yourself spending much time tailoring the stub templates, this
+may indicate that it’s a better idea to write custom narrative documentation
+instead.</p>
+</div>
+<p>Autosummary uses the following Jinja template files:</p>
+<ul class="simple">
+<li><p><code class="file docutils literal notranslate"><span class="pre">autosummary/base.rst</span></code> – fallback template</p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">autosummary/module.rst</span></code> – template for modules</p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">autosummary/class.rst</span></code> – template for classes</p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">autosummary/function.rst</span></code> – template for functions</p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">autosummary/attribute.rst</span></code> – template for class attributes</p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">autosummary/method.rst</span></code> – template for class methods</p></li>
+</ul>
+<p>The following variables available in the templates:</p>
+<dl class="py data">
+<dt id="name">
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the documented object, excluding the module and class parts.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="objname">
+<code class="sig-name descname"><span class="pre">objname</span></code><a class="headerlink" href="#objname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the documented object, excluding the module parts.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="fullname">
+<code class="sig-name descname"><span class="pre">fullname</span></code><a class="headerlink" href="#fullname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full name of the documented object, including module and class parts.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="module">
+<code class="sig-name descname"><span class="pre">module</span></code><a class="headerlink" href="#module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the module the documented object belongs to.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="class">
+<code class="sig-name descname"><span class="pre">class</span></code><a class="headerlink" href="#class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the class the documented object belongs to.  Only available for
+methods and attributes.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="underline">
+<code class="sig-name descname"><span class="pre">underline</span></code><a class="headerlink" href="#underline" title="Permalink to this definition">¶</a></dt>
+<dd><p>A string containing <code class="docutils literal notranslate"><span class="pre">len(full_name)</span> <span class="pre">*</span> <span class="pre">'='</span></code>. Use the <code class="docutils literal notranslate"><span class="pre">underline</span></code> filter
+instead.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="members">
+<code class="sig-name descname"><span class="pre">members</span></code><a class="headerlink" href="#members" title="Permalink to this definition">¶</a></dt>
+<dd><p>List containing names of all members of the module or class.  Only available
+for modules and classes.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="inherited_members">
+<code class="sig-name descname"><span class="pre">inherited_members</span></code><a class="headerlink" href="#inherited_members" title="Permalink to this definition">¶</a></dt>
+<dd><p>List containing names of all inherited members of class.  Only available for
+classes.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.8.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt id="functions">
+<code class="sig-name descname"><span class="pre">functions</span></code><a class="headerlink" href="#functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>List containing names of “public” functions in the module.  Here, “public”
+here means that the name does not start with an underscore. Only available
+for modules.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="classes">
+<code class="sig-name descname"><span class="pre">classes</span></code><a class="headerlink" href="#classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>List containing names of “public” classes in the module.  Only available for
+modules.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="exceptions">
+<code class="sig-name descname"><span class="pre">exceptions</span></code><a class="headerlink" href="#exceptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>List containing names of “public” exceptions in the module.  Only available
+for modules.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><a class="headerlink" href="#methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>List containing names of “public” methods in the class.  Only available for
+classes.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="attributes">
+<code class="sig-name descname"><span class="pre">attributes</span></code><a class="headerlink" href="#attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>List containing names of “public” attributes in the class/module.  Only
+available for classes and modules.</p>
+<blockquote>
+<div><div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.1: </span>Attributes of modules are supported.</p>
+</div>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py data">
+<dt id="modules">
+<code class="sig-name descname"><span class="pre">modules</span></code><a class="headerlink" href="#modules" title="Permalink to this definition">¶</a></dt>
+<dd><p>List containing names of “public” modules in the package.  Only available for
+modules that are packages and the <code class="docutils literal notranslate"><span class="pre">recursive</span></code> option is on.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.1.</span></p>
+</div>
+</dd></dl>
+
+<p>Additionally, the following filters are available</p>
+<dl class="py function">
+<dt id="escape">
+<code class="sig-name descname"><span class="pre">escape</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#escape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Escape any special characters in the text to be used in formatting RST
+contexts. For instance, this prevents asterisks making things bold. This
+replaces the builtin Jinja <a class="reference external" href="http://jinja.pocoo.org/docs/2.9/templates/#escape">escape filter</a> that does html-escaping.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname"><span class="pre">underline</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'='</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Add a title underline to a piece of text.</p>
+</dd></dl>
+
+<p>For instance, <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">fullname</span> <span class="pre">|</span> <span class="pre">escape</span> <span class="pre">|</span> <span class="pre">underline</span> <span class="pre">}}</span></code> should be used to produce
+the title of a page.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can use the <a class="reference internal" href="#directive-autosummary" title="autosummary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autosummary</span></code></a> directive in the stub pages.
+Stub pages are generated also based on these directives.</p>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="coverage.html" title="sphinx.ext.coverage – Collect doc coverage stats"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="autosectionlabel.html" title="sphinx.ext.autosectionlabel – Allow reference sections using its title"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Extensions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2021, Georg Brandl and the Sphinx team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+  </body>
+</html>

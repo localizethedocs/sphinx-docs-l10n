@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Environment Collector API &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../_static/documentation_options.js?v=8bd269de"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/translations.js?v=cbf116e0"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/collectorapi.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="Docutils markup API" href="markupapi.html" />
+    <link rel="prev" title="Event Manager API" href="eventapi.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../index.html">
+      <img src="../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Sphinx API</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Environment Collector API</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Environment Collector API</a><ul>
+<li><a class="reference internal" href="#sphinx.environment.collectors.EnvironmentCollector"><code class="docutils literal notranslate"><span class="pre">EnvironmentCollector</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.environment.collectors.EnvironmentCollector.clear_doc"><code class="docutils literal notranslate"><span class="pre">EnvironmentCollector.clear_doc()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.environment.collectors.EnvironmentCollector.get_outdated_docs"><code class="docutils literal notranslate"><span class="pre">EnvironmentCollector.get_outdated_docs()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.environment.collectors.EnvironmentCollector.get_updated_docs"><code class="docutils literal notranslate"><span class="pre">EnvironmentCollector.get_updated_docs()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.environment.collectors.EnvironmentCollector.merge_other"><code class="docutils literal notranslate"><span class="pre">EnvironmentCollector.merge_other()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.environment.collectors.EnvironmentCollector.process_doc"><code class="docutils literal notranslate"><span class="pre">EnvironmentCollector.process_doc()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">基礎知識</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">開始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">建置您的第一個專案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使用者指南</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">使用 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">擴充 Sphinx</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Sphinx API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="appapi.html">Application API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="event_callbacks.html">Event callbacks API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projectapi.html">專案 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="envapi.html">Build environment API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builderapi.html">建置器 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventapi.html">Event Manager API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Environment Collector API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markupapi.html">Docutils markup API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domainapi.html">領域 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parserapi.html">Parser API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html">Doctree node classes added by Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html">國際化 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">測試 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecated.html">Deprecated APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx 常見問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx 作者群</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">組態</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">擴充功能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes/index.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="module-sphinx.environment.collectors">
+<span id="environment-collector-api"></span><span id="collector-api"></span><h1>Environment Collector API<a class="headerlink" href="#module-sphinx.environment.collectors" title="連結到這個標頭">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.environment.collectors.EnvironmentCollector">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.environment.collectors.</span></span><span class="sig-name descname"><span class="pre">EnvironmentCollector</span></span><a class="reference internal" href="../_modules/sphinx/environment/collectors.html#EnvironmentCollector"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.environment.collectors.EnvironmentCollector" title="連結到這個定義">¶</a></dt>
+<dd><p>An EnvironmentCollector is a specific data collector from each document.</p>
+<p>It gathers data and stores <a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code></a> as a database.
+Examples of specific data would be images, download files, section titles, metadatas, index
+entries and toctrees, etc.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>This class essentially wraps a sub-set of <a class="reference internal" href="event_callbacks.html#events"><span class="std std-ref">Sphinx event callbacks</span></a>.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.environment.collectors.EnvironmentCollector.clear_doc">
+<span class="sig-name descname"><span class="pre">clear_doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><span class="pre">Sphinx</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><span class="pre">BuildEnvironment</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">docname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/environment/collectors.html#EnvironmentCollector.clear_doc"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.environment.collectors.EnvironmentCollector.clear_doc" title="連結到這個定義">¶</a></dt>
+<dd><p>Remove specified data of a document.</p>
+<p>This method is called on the removal of the document.</p>
+<div class="admonition seealso">
+<p class="admonition-title">另請參見</p>
+<p><a class="reference internal" href="event_callbacks.html#event-env-purge-doc"><code class="xref std std-event docutils literal notranslate"><span class="pre">env-purge-doc</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.environment.collectors.EnvironmentCollector.get_outdated_docs">
+<span class="sig-name descname"><span class="pre">get_outdated_docs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><span class="pre">Sphinx</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><span class="pre">BuildEnvironment</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">added</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">changed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/environment/collectors.html#EnvironmentCollector.get_outdated_docs"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.environment.collectors.EnvironmentCollector.get_outdated_docs" title="連結到這個定義">¶</a></dt>
+<dd><p>Return a list of docnames to re-read.</p>
+<p>This method is called before reading the documents.</p>
+<div class="admonition seealso">
+<p class="admonition-title">另請參見</p>
+<p><a class="reference internal" href="event_callbacks.html#event-env-get-outdated"><code class="xref std std-event docutils literal notranslate"><span class="pre">env-get-outdated</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.environment.collectors.EnvironmentCollector.get_updated_docs">
+<span class="sig-name descname"><span class="pre">get_updated_docs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><span class="pre">Sphinx</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><span class="pre">BuildEnvironment</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/environment/collectors.html#EnvironmentCollector.get_updated_docs"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.environment.collectors.EnvironmentCollector.get_updated_docs" title="連結到這個定義">¶</a></dt>
+<dd><p>Return a list of docnames to re-read.</p>
+<p>This method is called after reading the whole of documents.</p>
+<div class="admonition seealso">
+<p class="admonition-title">另請參見</p>
+<p><a class="reference internal" href="event_callbacks.html#event-env-get-updated"><code class="xref std std-event docutils literal notranslate"><span class="pre">env-get-updated</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.environment.collectors.EnvironmentCollector.merge_other">
+<span class="sig-name descname"><span class="pre">merge_other</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><span class="pre">Sphinx</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><span class="pre">BuildEnvironment</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">docnames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><span class="pre">BuildEnvironment</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/environment/collectors.html#EnvironmentCollector.merge_other"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.environment.collectors.EnvironmentCollector.merge_other" title="連結到這個定義">¶</a></dt>
+<dd><p>Merge in specified data regarding docnames from a different <cite>BuildEnvironment</cite>
+object which coming from a subprocess in parallel builds.</p>
+<div class="admonition seealso">
+<p class="admonition-title">另請參見</p>
+<p><a class="reference internal" href="event_callbacks.html#event-env-merge-info"><code class="xref std std-event docutils literal notranslate"><span class="pre">env-merge-info</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.environment.collectors.EnvironmentCollector.process_doc">
+<span class="sig-name descname"><span class="pre">process_doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><span class="pre">Sphinx</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">doctree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">nodes.document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/environment/collectors.html#EnvironmentCollector.process_doc"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#sphinx.environment.collectors.EnvironmentCollector.process_doc" title="連結到這個定義">¶</a></dt>
+<dd><p>Process a document and gather specific data from it.</p>
+<p>This method is called after the document is read.</p>
+<div class="admonition seealso">
+<p class="admonition-title">另請參見</p>
+<p><a class="reference internal" href="event_callbacks.html#event-doctree-read"><code class="xref std std-event docutils literal notranslate"><span class="pre">doctree-read</span></code></a></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="eventapi.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Event Manager API</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="markupapi.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">Docutils markup API</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版權所有 2007-2026, the Sphinx developers.
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0 建立。
+</div>
+  </body>
+</html>

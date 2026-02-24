@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sphinx.errors &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/_modules/sphinx/errors.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../search.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../../index.html">
+  <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">模組原始碼</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">sphinx.errors</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">開始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">開始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使用者指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">使用 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../templating.html">Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Developing extensions for Sphinx</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx 常見問題</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <h1>sphinx.errors 的原始碼</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Contains SphinxError and a few subclasses.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+
+
+<div class="viewcode-block" id="SphinxError"><a class="viewcode-back" href="../../extdev/appapi.html#sphinx.errors.SphinxError">[文件]</a><span class="k">class</span><span class="w"> </span><span class="nc">SphinxError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for Sphinx errors.</span>
+
+<span class="sd">    This is the base class for &quot;nice&quot; exceptions.  When such an exception is</span>
+<span class="sd">    raised, Sphinx will abort the build and present the exception category and</span>
+<span class="sd">    message to the user.</span>
+
+<span class="sd">    Extensions are encouraged to derive from this exception for their custom</span>
+<span class="sd">    errors.</span>
+
+<span class="sd">    Exceptions *not* derived from :exc:`SphinxError` are treated as unexpected</span>
+<span class="sd">    and shown to the user with a part of the traceback (and the full traceback</span>
+<span class="sd">    saved in a temporary file).</span>
+
+<span class="sd">    .. attribute:: category</span>
+
+<span class="sd">       Description of the exception &quot;category&quot;, used in converting the</span>
+<span class="sd">       exception to a string (&quot;category: message&quot;).  Should be set accordingly</span>
+<span class="sd">       in subclasses.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="s1">&#39;Sphinx error&#39;</span></div>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SphinxWarning</span><span class="p">(</span><span class="n">SphinxError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Warning, treated as error.&quot;&quot;&quot;</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="s1">&#39;Warning, treated as error&#39;</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ApplicationError</span><span class="p">(</span><span class="n">SphinxError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Application initialization error.&quot;&quot;&quot;</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="s1">&#39;Application error&#39;</span>
+
+
+<div class="viewcode-block" id="ExtensionError"><a class="viewcode-back" href="../../extdev/appapi.html#sphinx.errors.ExtensionError">[文件]</a><span class="k">class</span><span class="w"> </span><span class="nc">ExtensionError</span><span class="p">(</span><span class="n">SphinxError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extension error.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">orig_exc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="ne">Exception</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">modname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig_exc</span> <span class="o">=</span> <span class="n">orig_exc</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modname</span> <span class="o">=</span> <span class="n">modname</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">category</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>  <span class="c1"># type: ignore</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">modname</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;Extension error (</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">modname</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;Extension error&#39;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_exc</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(</span><span class="si">%r</span><span class="s1">, </span><span class="si">%r</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_exc</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">(</span><span class="si">%r</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">parent_str</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_exc</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> (exception: </span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">parent_str</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_exc</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">parent_str</span></div>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BuildEnvironmentError</span><span class="p">(</span><span class="n">SphinxError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;BuildEnvironment error.&quot;&quot;&quot;</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="s1">&#39;BuildEnvironment error&#39;</span>
+
+
+<div class="viewcode-block" id="ConfigError"><a class="viewcode-back" href="../../extdev/appapi.html#sphinx.errors.ConfigError">[文件]</a><span class="k">class</span><span class="w"> </span><span class="nc">ConfigError</span><span class="p">(</span><span class="n">SphinxError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration error.&quot;&quot;&quot;</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="s1">&#39;Configuration error&#39;</span></div>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DocumentError</span><span class="p">(</span><span class="n">SphinxError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Document error.&quot;&quot;&quot;</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="s1">&#39;Document error&#39;</span>
+
+
+<div class="viewcode-block" id="ThemeError"><a class="viewcode-back" href="../../extdev/appapi.html#sphinx.errors.ThemeError">[文件]</a><span class="k">class</span><span class="w"> </span><span class="nc">ThemeError</span><span class="p">(</span><span class="n">SphinxError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Theme error.&quot;&quot;&quot;</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="s1">&#39;Theme error&#39;</span></div>
+
+
+<div class="viewcode-block" id="VersionRequirementError"><a class="viewcode-back" href="../../extdev/appapi.html#sphinx.errors.VersionRequirementError">[文件]</a><span class="k">class</span><span class="w"> </span><span class="nc">VersionRequirementError</span><span class="p">(</span><span class="n">SphinxError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Incompatible Sphinx version error.&quot;&quot;&quot;</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="s1">&#39;Sphinx version error&#39;</span></div>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SphinxParallelError</span><span class="p">(</span><span class="n">SphinxError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sphinx parallel build error.&quot;&quot;&quot;</span>
+
+    <span class="n">category</span> <span class="o">=</span> <span class="s1">&#39;Sphinx parallel build error&#39;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">traceback</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">traceback</span> <span class="o">=</span> <span class="n">traceback</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">message</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PycodeError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pycode Python source code analyser error.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="s1">&#39; (exception was: </span><span class="si">%r</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">res</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NoUri</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised by builder.get_relative_uri() or from missing-reference handlers</span>
+<span class="sd">    if there is no URI available.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FiletypeNotFoundError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised by get_filetype() if a filename matches no source suffix.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../../copyright.html">版權所有</a> 2007-2026, the Sphinx developers。
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0 建立。
+</div>
+  </body>
+</html>
