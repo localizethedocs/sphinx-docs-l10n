@@ -1,0 +1,1896 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2022, Georg Brandl and the Sphinx team
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-03 20:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../latex.rst:2
+msgid "LaTeX customization"
+msgstr ""
+
+#: ../../../latex.rst:7
+msgid ""
+"\\begingroup\n"
+"\\sphinxsetup{%\n"
+"      verbatimwithframe=false,\n"
+"      VerbatimColor={named}{OldLace},\n"
+"      TitleColor={named}{DarkGoldenrod},\n"
+"      hintBorderColor={named}{LightCoral},\n"
+"      attentionborder=3pt,\n"
+"      attentionBorderColor={named}{Crimson},\n"
+"      attentionBgColor={named}{FloralWhite},\n"
+"      noteborder=2pt,\n"
+"      noteBorderColor={named}{Olive},\n"
+"      cautionborder=3pt,\n"
+"      cautionBorderColor={named}{Cyan},\n"
+"      cautionBgColor={named}{LightCyan}}\n"
+"\\relax"
+msgstr ""
+
+#: ../../../latex.rst:25
+msgid ""
+"Unlike :ref:`the HTML builders <html-themes>`, the ``latex`` builder does "
+"not benefit from prepared themes. The :ref:`latex-options`, and particularly "
+"the :ref:`latex_elements <latex_elements_confval>` variable, provides much "
+"of the interface for customization. For example:"
+msgstr ""
+
+#: ../../../latex.rst:30
+msgid ""
+"# inside conf.py\n"
+"latex_engine = 'xelatex'\n"
+"latex_elements = {\n"
+"    'fontpkg': r'''\n"
+"\\setmainfont{DejaVu Serif}\n"
+"\\setsansfont{DejaVu Sans}\n"
+"\\setmonofont{DejaVu Sans Mono}\n"
+"''',\n"
+"    'preamble': r'''\n"
+"\\usepackage[titles]{tocloft}\n"
+"\\cftsetpnumwidth {1.25cm}\\cftsetrmarg{1.5cm}\n"
+"\\setlength{\\cftchapnumwidth}{0.75cm}\n"
+"\\setlength{\\cftsecindent}{\\cftchapnumwidth}\n"
+"\\setlength{\\cftsecnumwidth}{1.25cm}\n"
+"''',\n"
+"    'fncychap': r'\\usepackage[Bjornstrup]{fncychap}',\n"
+"    'printindex': r'\\footnotesize\\raggedright\\printindex',\n"
+"}\n"
+"latex_show_urls = 'footnote'"
+msgstr ""
+
+#: ../../../latex.rst:54
+msgid ""
+"Keep in mind that backslashes must be doubled in Python string literals to "
+"avoid interpretation as escape sequences. Alternatively, you may use raw "
+"strings as is done above."
+msgstr ""
+
+#: ../../../latex.rst:61
+msgid "The ``latex_elements`` configuration setting"
+msgstr ""
+
+#: ../../../latex.rst:63
+msgid ""
+"A dictionary that contains LaTeX snippets overriding those Sphinx usually "
+"puts into the generated ``.tex`` files.  Its ``'sphinxsetup'`` key is "
+"described :ref:`separately <latexsphinxsetup>`."
+msgstr ""
+
+#: ../../../latex.rst:67
+msgid "Keys that you may want to override include:"
+msgstr ""
+
+#: ../../../latex.rst:73
+msgid "``'papersize'``"
+msgstr ""
+
+#: ../../../latex.rst:70
+msgid ""
+"Paper size option of the document class (``'a4paper'`` or ``'letterpaper'``)"
+msgstr ""
+
+#: ../../../latex.rst:73
+msgid "Default: ``'letterpaper'``"
+msgstr "預設值：``'letterpaper'``"
+
+#: ../../../latex.rst:79
+msgid "``'pointsize'``"
+msgstr ""
+
+#: ../../../latex.rst:76
+msgid ""
+"Point size option of the document class (``'10pt'``, ``'11pt'`` or "
+"``'12pt'``)"
+msgstr ""
+
+#: ../../../latex.rst:79
+msgid "Default: ``'10pt'``"
+msgstr "預設值：``'10pt'``"
+
+#: ../../../latex.rst:92
+msgid "``'pxunit'``"
+msgstr ""
+
+#: ../../../latex.rst:82
+msgid ""
+"The value of the ``px`` when used in image attributes ``width`` and "
+"``height``. The default value is ``'0.75bp'`` which achieves ``96px=1in`` "
+"(in TeX ``1in = 72bp = 72.27pt``.) To obtain for example ``100px=1in`` use "
+"``'0.01in'`` or ``'0.7227pt'`` (the latter leads to TeX computing a more "
+"precise value, due to the smaller unit used in the specification); for "
+"``72px=1in``, simply use ``'1bp'``; for ``90px=1in``, use ``'0.8bp'`` or "
+"``'0.803pt'``."
+msgstr ""
+
+#: ../../../latex.rst:90
+msgid "Default: ``'0.75bp'``"
+msgstr "預設值：``'0.75bp'``"
+
+#: ../../../latex.rst:106
+msgid "``'passoptionstopackages'``"
+msgstr ""
+
+#: ../../../latex.rst:95
+msgid ""
+"A string which will be positioned early in the preamble, designed to contain "
+"``\\\\PassOptionsToPackage{options}{foo}`` commands."
+msgstr ""
+
+#: ../../../latex.rst:100
+msgid ""
+"It may be also used for loading LaTeX packages very early in the preamble.  "
+"For example package ``fancybox`` is incompatible with being loaded via the "
+"``'preamble'`` key, it must be loaded earlier."
+msgstr ""
+
+#: ../../../latex.rst:104 ../../../latex.rst:199 ../../../latex.rst:215
+#: ../../../latex.rst:235 ../../../latex.rst:242 ../../../latex.rst:254
+msgid "Default: ``''``"
+msgstr "預設值：``''``"
+
+#: ../../../latex.rst:139
+msgid "``'babel'``"
+msgstr ""
+
+#: ../../../latex.rst:109
+msgid ""
+"\"babel\" package inclusion, default ``'\\\\usepackage{babel}'`` (the "
+"suitable document language string is passed as class option, and ``english`` "
+"is used if no language.) For Japanese documents, the default is the empty "
+"string."
+msgstr ""
+
+#: ../../../latex.rst:114
+msgid ""
+"With XeLaTeX and LuaLaTeX, Sphinx configures the LaTeX document to use "
+"`polyglossia`_, but one should be aware that current `babel`_ has improved "
+"its support for Unicode engines in recent years and for some languages it "
+"may make sense to prefer ``babel`` over ``polyglossia``."
+msgstr ""
+
+#: ../../../latex.rst:124
+msgid ""
+"After modifiying a core LaTeX key like this one, clean up the LaTeX build "
+"repertory before next PDF build, else left-over auxiliary files are likely "
+"to break the build."
+msgstr ""
+
+#: ../../../latex.rst:128
+msgid "Default:  ``'\\\\usepackage{babel}'`` (``''`` for Japanese documents)"
+msgstr ""
+
+#: ../../../latex.rst:130
+msgid ""
+"For :confval:`latex_engine` set to ``'xelatex'``, the default is ``'\\"
+"\\usepackage{polyglossia}\\n\\\\setmainlanguage{<language>}'``."
+msgstr ""
+
+#: ../../../latex.rst:134
+msgid "``'lualatex'`` uses same default setting as ``'xelatex'``"
+msgstr ""
+
+#: ../../../latex.rst:137
+msgid ""
+"For French, ``xelatex`` and ``lualatex`` default to using ``babel``, not "
+"``polyglossia``."
+msgstr ""
+
+#: ../../../latex.rst:168
+msgid "``'fontpkg'``"
+msgstr ""
+
+#: ../../../latex.rst:142
+msgid "Font package inclusion. The default is::"
+msgstr ""
+
+#: ../../../latex.rst:144
+msgid ""
+"r\"\"\"\\usepackage{tgtermes}\n"
+"\\usepackage{tgheros}\n"
+"\\renewcommand\\ttdefault{txtt}\n"
+"\"\"\""
+msgstr ""
+
+#: ../../../latex.rst:149
+msgid ""
+"For ``'xelatex'`` and ``'lualatex'`` however the default is to use the GNU "
+"FreeFont."
+msgstr ""
+
+#: ../../../latex.rst:152
+msgid ""
+"Defaults to ``''`` when the :confval:`language` uses the Cyrillic script."
+msgstr ""
+
+#: ../../../latex.rst:156
+msgid ""
+"Incorporates some font substitution commands to help support occasional "
+"Greek or Cyrillic in a document using ``'pdflatex'`` engine."
+msgstr ""
+
+#: ../../../latex.rst:162
+msgid ""
+"The font substitution commands added at ``2.0`` have been moved to the "
+"``'fontsubstitution'`` key, as their presence here made it complicated for "
+"user to customize the value of ``'fontpkg'``."
+msgstr ""
+
+#: ../../../latex.rst:165
+msgid ""
+"The default font setting has changed: it still uses Times and Helvetica "
+"clones for serif and sans serif, but via better, more complete TeX fonts and "
+"associated LaTeX packages.  The monospace font has been changed to better "
+"match the Times clone."
+msgstr ""
+
+#: ../../../latex.rst:181
+msgid "``'fncychap'``"
+msgstr ""
+
+#: ../../../latex.rst:171
+msgid ""
+"Inclusion of the \"fncychap\" package (which makes fancy chapter titles), "
+"default ``'\\\\usepackage[Bjarne]{fncychap}'`` for English documentation "
+"(this option is slightly customized by Sphinx), ``'\\\\usepackage[Sonny]"
+"{fncychap}'`` for internationalized docs (because the \"Bjarne\" style uses "
+"numbers spelled out in English).  Other \"fncychap\" styles you can try are "
+"\"Lenny\", \"Glenn\", \"Conny\", \"Rejne\" and \"Bjornstrup\".  You can also "
+"set this to ``''`` to disable fncychap."
+msgstr ""
+
+#: ../../../latex.rst:179
+msgid ""
+"Default: ``'\\\\usepackage[Bjarne]{fncychap}'`` for English documents, ``'\\"
+"\\usepackage[Sonny]{fncychap}'`` for internationalized documents, and ``''`` "
+"for Japanese documents."
+msgstr ""
+
+#: ../../../latex.rst:199
+msgid "``'preamble'``"
+msgstr ""
+
+#: ../../../latex.rst:184
+msgid ""
+"Additional preamble content.  One may move all needed macros into some file :"
+"file:`mystyle.tex.txt` of the project source repertory, and get LaTeX to "
+"import it at run time::"
+msgstr ""
+
+#: ../../../latex.rst:188
+msgid ""
+"'preamble': r'\\input{mystyle.tex.txt}',\n"
+"# or, if the \\ProvidesPackage LaTeX macro is used in a file mystyle.sty\n"
+"'preamble': r'\\usepackage{mystyle}',"
+msgstr ""
+
+#: ../../../latex.rst:192
+msgid ""
+"It is then needed to set appropriately :confval:`latex_additional_files`, "
+"for example:"
+msgstr ""
+
+#: ../../../latex.rst:195
+msgid "latex_additional_files = [\"mystyle.sty\"]"
+msgstr ""
+
+#: ../../../latex.rst:210
+msgid "``'figure_align'``"
+msgstr ""
+
+#: ../../../latex.rst:202
+msgid ""
+"Latex figure float alignment. Whenever an image doesn't fit into the current "
+"page, it will be 'floated' into the next page but may be preceded by any "
+"other text.  If you don't like this behavior, use 'H' which will disable "
+"floating and position figures strictly in the order they appear in the "
+"source."
+msgstr ""
+
+#: ../../../latex.rst:208
+msgid "Default: ``'htbp'`` (here, top, bottom, page)"
+msgstr ""
+
+#: ../../../latex.rst:217
+msgid "``'atendofbody'``"
+msgstr ""
+
+#: ../../../latex.rst:213
+msgid "Additional document content (right before the indices)."
+msgstr ""
+
+#: ../../../latex.rst:237
+msgid "``'extrapackages'``"
+msgstr ""
+
+#: ../../../latex.rst:220
+msgid "Additional LaTeX packages.  For example:"
+msgstr "額外的 LaTeX 軟體包。例如："
+
+#: ../../../latex.rst:222
+msgid ""
+"latex_elements = {\n"
+"    'packages': r'\\usepackage{isodate}'\n"
+"}"
+msgstr ""
+
+#: ../../../latex.rst:228
+msgid ""
+"The specified LaTeX packages will be loaded before hyperref package and "
+"packages loaded from Sphinx extensions."
+msgstr ""
+
+#: ../../../latex.rst:232
+msgid ""
+"If you'd like to load additional LaTeX packages after hyperref, use "
+"``'preamble'`` key instead."
+msgstr ""
+
+#: ../../../latex.rst:245
+msgid "``'footer'``"
+msgstr ""
+
+#: ../../../latex.rst:240
+msgid "Additional footer content (before the indices)."
+msgstr ""
+
+#: ../../../latex.rst:244
+msgid "Use ``'atendofbody'`` key instead."
+msgstr ""
+
+#: ../../../latex.rst:247
+msgid "Keys that don't need to be overridden unless in special cases are:"
+msgstr ""
+
+#: ../../../latex.rst:259
+msgid "``'extraclassoptions'``"
+msgstr ""
+
+#: ../../../latex.rst:250
+msgid ""
+"The default is the empty string. Example: ``'extraclassoptions': 'openany'`` "
+"will allow chapters (for documents of the ``'manual'`` type) to start on any "
+"page."
+msgstr ""
+
+#: ../../../latex.rst:258
+msgid "Added this documentation."
+msgstr ""
+
+#: ../../../latex.rst:279
+msgid "``'maxlistdepth'``"
+msgstr ""
+
+#: ../../../latex.rst:262
+msgid ""
+"LaTeX allows by default at most 6 levels for nesting list and quote-like "
+"environments, with at most 4 enumerated lists, and 4 bullet lists. Setting "
+"this key for example to ``'10'`` (as a string) will allow up to 10 nested "
+"levels (of all sorts). Leaving it to the empty string means to obey the "
+"LaTeX default."
+msgstr ""
+
+#: ../../../latex.rst:270
+msgid ""
+"Using this key may prove incompatible with some LaTeX packages or special "
+"document classes which do their own list customization."
+msgstr ""
+
+#: ../../../latex.rst:273
+msgid ""
+"The key setting is silently *ignored* if ``\\usepackage{enumitem}`` is "
+"executed inside the document preamble. Use then rather the dedicated "
+"commands of this LaTeX package."
+msgstr ""
+
+#: ../../../latex.rst:277
+msgid "Default: ``6``"
+msgstr ""
+
+#: ../../../latex.rst:311
+msgid "``'inputenc'``"
+msgstr ""
+
+#: ../../../latex.rst:282
+msgid "\"inputenc\" package inclusion."
+msgstr ""
+
+#: ../../../latex.rst:284
+msgid ""
+"Default: ``'\\\\usepackage[utf8]{inputenc}'`` when using pdflatex, else "
+"``''``."
+msgstr ""
+
+#: ../../../latex.rst:289
+msgid ""
+"If using ``utf8x`` in place of ``utf8`` it is mandatory to extend the LaTeX "
+"preamble with suitable ``\\PreloadUnicodePage{<number>}`` commands, as per "
+"the ``utf8x`` documentation (``texdoc ucs`` on a TeXLive based TeX "
+"installation).  Else, unexpected and possibly hard-to-spot problems (i.e. "
+"not causing a build crash) may arise in the PDF, in particular regarding "
+"hyperlinks."
+msgstr ""
+
+#: ../../../latex.rst:296
+msgid ""
+"Even if these precautions are taken, PDF build via ``pdflatex`` engine may "
+"crash due to upstream LaTeX not being fully compatible with ``utf8x``.  For "
+"example, in certain circumstances related to code-blocks, or attempting to "
+"include images whose filenames contain Unicode characters.  Indeed, starting "
+"in 2015, upstream LaTeX with ``pdflatex`` engine has somewhat enhanced "
+"native support for Unicode and is becoming more and more incompatible with "
+"``utf8x``.  In particular, since the October 2019 LaTeX release, filenames "
+"can use Unicode characters, and even spaces.  At Sphinx level this means e."
+"g. that the :dudir:`image` and :dudir:`figure` directives are now compatible "
+"with such filenames for PDF via LaTeX output.  But this is broken if "
+"``utf8x`` is in use."
+msgstr ""
+
+#: ../../../latex.rst:309
+msgid ""
+"Previously ``'\\\\usepackage[utf8]{inputenc}'`` was used for all compilers."
+msgstr ""
+
+#: ../../../latex.rst:318
+msgid "``'cmappkg'``"
+msgstr ""
+
+#: ../../../latex.rst:314
+msgid "\"cmap\" package inclusion."
+msgstr ""
+
+#: ../../../latex.rst:316
+msgid "Default: ``'\\\\usepackage{cmap}'``"
+msgstr ""
+
+#: ../../../latex.rst:366
+msgid "``'fontenc'``"
+msgstr ""
+
+#: ../../../latex.rst:321
+msgid "Customize this from its default ``'\\\\usepackage[T1]{fontenc}'`` to:"
+msgstr ""
+
+#: ../../../latex.rst:323
+msgid ""
+"``'\\\\usepackage[X2,T1]{fontenc}'`` if you need occasional Cyrillic letters "
+"(физика частиц),"
+msgstr ""
+
+#: ../../../latex.rst:326
+msgid ""
+"``'\\\\usepackage[LGR,T1]{fontenc}'`` if you need occasional Greek letters "
+"(Σωματιδιακή φυσική)."
+msgstr ""
+
+#: ../../../latex.rst:329
+msgid "Use ``[LGR,X2,T1]`` rather if both are needed."
+msgstr ""
+
+#: ../../../latex.rst:333
+msgid ""
+"Do not use this key for a :confval:`latex_engine` other than ``'pdflatex'``."
+msgstr ""
+
+#: ../../../latex.rst:336
+msgid ""
+"If Greek is main language, do not use this key.  Since Sphinx 2.2.1, "
+"``xelatex`` will be used automatically as :confval:`latex_engine`."
+msgstr ""
+
+#: ../../../latex.rst:339
+msgid ""
+"The TeX installation may need some extra packages. For example, on Ubuntu "
+"xenial, packages ``texlive-lang-greek`` and ``cm-super`` are needed for "
+"``LGR`` to work. And ``texlive-lang-cyrillic`` and ``cm-super`` are needed "
+"for support of Cyrillic."
+msgstr ""
+
+#: ../../../latex.rst:344
+msgid ""
+"Defaults to ``'\\\\usepackage{fontspec}'`` when :confval:`latex_engine` is "
+"``'xelatex'``."
+msgstr ""
+
+#: ../../../latex.rst:348
+msgid "``'lualatex'`` uses ``fontspec`` per default like ``'xelatex'``."
+msgstr ""
+
+#: ../../../latex.rst:351
+msgid ""
+"``'lualatex'`` executes ``\\defaultfontfeatures[\\rmfamily,\\sffamily]{}`` "
+"to disable TeX ligatures transforming `<<` and `>>` as escaping working with "
+"``pdflatex/xelatex`` failed with ``lualatex``."
+msgstr ""
+
+#: ../../../latex.rst:357
+msgid ""
+"Detection of ``LGR``, ``T2A``, ``X2`` to trigger support of occasional Greek "
+"or Cyrillic letters (``'pdflatex'``)."
+msgstr ""
+
+#: ../../../latex.rst:361
+msgid ""
+"``'xelatex'`` executes ``\\defaultfontfeatures[\\rmfamily,\\sffamily]{}`` in "
+"order to avoid contractions of ``--`` into en-dash or transforms of straight "
+"quotes into curly ones in PDF (in non-literal text paragraphs) despite :"
+"confval:`smartquotes` being set to ``False``."
+msgstr ""
+
+#: ../../../latex.rst:376
+msgid "``'fontsubstitution'``"
+msgstr ""
+
+#: ../../../latex.rst:369
+msgid ""
+"Ignored if ``'fontenc'`` was not configured to use ``LGR`` or ``X2`` (or "
+"``T2A``).  In case ``'fontpkg'`` key is configured for usage with some TeX "
+"fonts known to be available in the ``LGR`` or ``X2`` encodings, set this one "
+"to be the empty string.  Else leave to its default."
+msgstr ""
+
+#: ../../../latex.rst:374
+msgid "Ignored with :confval:`latex_engine` other than ``'pdflatex'``."
+msgstr ""
+
+#: ../../../latex.rst:394
+msgid "``'textgreek'``"
+msgstr ""
+
+#: ../../../latex.rst:379
+msgid "For the support of occasional Greek letters."
+msgstr ""
+
+#: ../../../latex.rst:381
+msgid ""
+"It is ignored with ``'platex'``, ``'xelatex'`` or ``'lualatex'`` as :confval:"
+"`latex_engine` and defaults to either the empty string or to ``'\\"
+"\\usepackage{textalpha}'`` for ``'pdflatex'`` depending on whether the "
+"``'fontenc'`` key was used with ``LGR`` or not.  Only expert LaTeX users may "
+"want to customize this key."
+msgstr ""
+
+#: ../../../latex.rst:387
+msgid ""
+"It can also be used as ``r'\\usepackage{textalpha,alphabeta}'`` to let "
+"``'pdflatex'`` support Greek Unicode input in :rst:dir:`math` context. For "
+"example ``:math:`α``` (U+03B1) will render as :math:`\\alpha`."
+msgstr ""
+
+#: ../../../latex.rst:391
+msgid ""
+"Default: ``'\\\\usepackage{textalpha}'`` or ``''`` if ``fontenc`` does not "
+"include the ``LGR`` option."
+msgstr ""
+
+#: ../../../latex.rst:428
+msgid "``'geometry'``"
+msgstr ""
+
+#: ../../../latex.rst:397
+msgid "\"geometry\" package inclusion, the default definition is:"
+msgstr ""
+
+#: ../../../latex.rst:399
+msgid "``'\\\\usepackage{geometry}'``"
+msgstr ""
+
+#: ../../../latex.rst:401
+msgid ""
+"with an additional ``[dvipdfm]`` for Japanese documents. The Sphinx LaTeX "
+"style file executes:"
+msgstr ""
+
+#: ../../../latex.rst:404
+msgid ""
+"``\\PassOptionsToPackage{hmargin=1in,vmargin=1in,marginpar=0.5in}{geometry}``"
+msgstr ""
+
+#: ../../../latex.rst:406
+msgid ""
+"which can be customized via corresponding :ref:`'sphinxsetup' options "
+"<latexsphinxsetup>`."
+msgstr ""
+
+#: ../../../latex.rst:409
+msgid ""
+"Default: ``'\\\\usepackage{geometry}'`` (or ``'\\\\usepackage[dvipdfm]"
+"{geometry}'`` for Japanese documents)"
+msgstr ""
+
+#: ../../../latex.rst:414
+msgid "``dvipdfm`` option if :confval:`latex_engine` is ``'platex'``."
+msgstr ""
+
+#: ../../../latex.rst:417
+msgid ""
+"The :ref:`'sphinxsetup' keys for the margins <latexsphinxsetuphmargin>`."
+msgstr ""
+
+#: ../../../latex.rst:421
+msgid ""
+"The location in the LaTeX file has been moved to after ``\\usepackage{sphinx}"
+"`` and ``\\sphinxsetup{..}``, hence also after insertion of ``'fontpkg'`` "
+"key. This is in order to handle the paper layout options in a special way "
+"for Japanese documents: the text width will be set to an integer multiple of "
+"the *zenkaku* width, and the text height to an integer multiple of the "
+"baseline. See the :ref:`hmargin <latexsphinxsetuphmargin>` documentation for "
+"more."
+msgstr ""
+
+#: ../../../latex.rst:440
+msgid "``'hyperref'``"
+msgstr ""
+
+#: ../../../latex.rst:431
+msgid ""
+"\"hyperref\" package inclusion; also loads package \"hypcap\" and issues "
+"``\\urlstyle{same}``. This is done after :file:`sphinx.sty` file is loaded "
+"and before executing the contents of ``'preamble'`` key."
+msgstr ""
+
+#: ../../../latex.rst:437
+msgid "Loading of packages \"hyperref\" and \"hypcap\" is mandatory."
+msgstr ""
+
+#: ../../../latex.rst:439
+msgid "Previously this was done from inside :file:`sphinx.sty`."
+msgstr ""
+
+#: ../../../latex.rst:461
+msgid "``'maketitle'``"
+msgstr ""
+
+#: ../../../latex.rst:443
+msgid ""
+"\"maketitle\" call. Override if you want to generate a differently styled "
+"title page."
+msgstr ""
+
+#: ../../../latex.rst:448
+msgid ""
+"If the key value is set to ``r'\\newcommand\\sphinxbackoftitlepage{<Extra "
+"material>}\\sphinxmaketitle'``, then ``<Extra material>`` will be typeset on "
+"back of title page (``'manual'`` docclass only)."
+msgstr ""
+
+#: ../../../latex.rst:453
+msgid "Default: ``'\\\\sphinxmaketitle'``"
+msgstr ""
+
+#: ../../../latex.rst:455
+msgid ""
+"Original ``\\maketitle`` from document class is not overwritten, hence is re-"
+"usable as part of some custom setting for this key."
+msgstr ""
+
+#: ../../../latex.rst:459
+msgid ""
+"``\\sphinxbackoftitlepage`` optional macro.  It can also be defined inside "
+"``'preamble'`` key rather than this one."
+msgstr ""
+
+#: ../../../latex.rst:468
+msgid "``'releasename'``"
+msgstr ""
+
+#: ../../../latex.rst:464
+msgid ""
+"Value that prefixes ``'release'`` element on title page.  As for *title* and "
+"*author* used in the tuples of :confval:`latex_documents`, it is inserted as "
+"LaTeX markup."
+msgstr ""
+
+#: ../../../latex.rst:468
+msgid "Default: ``'Release'``"
+msgstr ""
+
+#: ../../../latex.rst:481
+msgid "``'tableofcontents'``"
+msgstr ""
+
+#: ../../../latex.rst:471
+msgid ""
+"\"tableofcontents\" call. The default of ``'\\\\sphinxtableofcontents'`` is "
+"a wrapper of unmodified ``\\tableofcontents``, which may itself be "
+"customized by user loaded packages. Override if you want to generate a "
+"different table of contents or put content between the title page and the "
+"TOC."
+msgstr ""
+
+#: ../../../latex.rst:476
+msgid "Default: ``'\\\\sphinxtableofcontents'``"
+msgstr ""
+
+#: ../../../latex.rst:478
+msgid ""
+"Previously the meaning of ``\\tableofcontents`` itself was modified by "
+"Sphinx. This created an incompatibility with dedicated packages modifying it "
+"also such as \"tocloft\" or \"etoc\"."
+msgstr ""
+
+#: ../../../latex.rst:492
+msgid "``'transition'``"
+msgstr ""
+
+#: ../../../latex.rst:484
+msgid ""
+"Commands used to display transitions. Override if you want to display "
+"transitions differently."
+msgstr ""
+
+#: ../../../latex.rst:487
+msgid "Default: ``'\\n\\n\\\\bigskip\\\\hrule\\\\bigskip\\n\\n'``"
+msgstr ""
+
+#: ../../../latex.rst:491
+msgid "Remove unneeded ``{}`` after ``\\\\hrule``."
+msgstr ""
+
+#: ../../../latex.rst:499
+msgid "``'makeindex'``"
+msgstr ""
+
+#: ../../../latex.rst:495
+msgid ""
+"\"makeindex\" call, the last thing before ``\\begin{document}``. With ``'\\"
+"\\usepackage[columns=1]{idxlayout}\\\\makeindex'`` the index will use only "
+"one column. You may have to install ``idxlayout`` LaTeX package."
+msgstr ""
+
+#: ../../../latex.rst:499
+msgid "Default: ``'\\\\makeindex'``"
+msgstr ""
+
+#: ../../../latex.rst:511
+msgid "``'printindex'``"
+msgstr ""
+
+#: ../../../latex.rst:502
+msgid ""
+"\"printindex\" call, the last thing in the file. Override if you want to "
+"generate the index differently, append some content after the index, or "
+"change the font. As LaTeX uses two-column mode for the index it is often "
+"advisable to set this key to ``'\\\\footnotesize\\\\raggedright\\"
+"\\printindex'``. Or, to obtain a one-column index, use ``'\\\\def\\"
+"\\twocolumn[#1]{#1}\\\\printindex'`` (this trick may fail if using a custom "
+"document class; then try the ``idxlayout`` approach described in the "
+"documentation of the ``'makeindex'`` key)."
+msgstr ""
+
+#: ../../../latex.rst:511
+msgid "Default: ``'\\\\printindex'``"
+msgstr ""
+
+#: ../../../latex.rst:536
+msgid "``'fvset'``"
+msgstr ""
+
+#: ../../../latex.rst:514
+msgid "Customization of ``fancyvrb`` LaTeX package."
+msgstr ""
+
+#: ../../../latex.rst:516
+msgid ""
+"The default value is ``'\\\\fvset{fontsize=auto}'`` which means that the "
+"font size will adjust correctly if a code-block ends up in a footnote. You "
+"may need to modify this if you use custom fonts: ``'\\\\fvset{fontsize=\\"
+"\\small}'`` if the monospace font is Courier-like."
+msgstr ""
+
+#: ../../../latex.rst:521
+msgid "Default: ``'\\\\fvset{fontsize=auto}'``"
+msgstr ""
+
+#: ../../../latex.rst:525
+msgid ""
+"For ``'xelatex'`` and ``'lualatex'`` defaults to ``'\\\\fvset{fontsize=\\"
+"\\small}'`` as this is adapted to the relative widths of the FreeFont family."
+msgstr ""
+
+#: ../../../latex.rst:530
+msgid ""
+"Changed default for ``'pdflatex'``. Previously it was using ``'\\"
+"\\fvset{fontsize=\\\\small}'``."
+msgstr ""
+
+#: ../../../latex.rst:534
+msgid ""
+"Changed default for Chinese documents to ``'\\\\fvset{fontsize=\\\\small,"
+"formatcom=\\\\xeCJKVerbAddon}'``"
+msgstr ""
+
+#: ../../../latex.rst:538
+msgid ""
+"Keys that are set by other options and therefore should not be overridden "
+"are:"
+msgstr ""
+
+#: ../../../latex.rst:540
+msgid ""
+"``'docclass'`` ``'classoptions'`` ``'title'`` ``'release'`` ``'author'``"
+msgstr ""
+
+#: ../../../latex.rst:550
+msgid "The ``sphinxsetup`` configuration setting"
+msgstr ""
+
+#: ../../../latex.rst:554
+msgid ""
+"The ``'sphinxsetup'`` key of :ref:`latex_elements <latex_elements_confval>` "
+"provides a LaTeX-type customization interface::"
+msgstr ""
+
+#: ../../../latex.rst:557
+msgid ""
+"latex_elements = {\n"
+"    'sphinxsetup': 'key1=value1, key2=value2, ...',\n"
+"}"
+msgstr ""
+
+#: ../../../latex.rst:561
+msgid ""
+"It defaults to empty.  If non-empty, it will be passed as argument to the "
+"``\\sphinxsetup`` macro inside the document preamble, like this::"
+msgstr ""
+
+#: ../../../latex.rst:564
+msgid ""
+"\\usepackage{sphinx}\n"
+"\\sphinxsetup{key1=value1, key2=value2,...}"
+msgstr ""
+
+#: ../../../latex.rst:567
+msgid ""
+"The colors used in the above are provided by the ``svgnames`` option of the "
+"\"xcolor\" package::"
+msgstr ""
+
+#: ../../../latex.rst:570
+msgid ""
+"latex_elements = {\n"
+"    'passoptionstopackages': r'\\PassOptionsToPackage{svgnames}{xcolor}',\n"
+"}"
+msgstr ""
+
+#: ../../../latex.rst:574
+msgid ""
+"It is possible to insert further uses of the ``\\sphinxsetup`` LaTeX macro "
+"directly into the body of the document, via the help of the :rst:dir:`raw` "
+"directive. This chapter is styled in the PDF output using the following at "
+"the start of the chapter::"
+msgstr ""
+
+#: ../../../latex.rst:579
+msgid ""
+".. raw:: latex\n"
+"\n"
+"   \\begingroup\n"
+"   \\sphinxsetup{%\n"
+"         verbatimwithframe=false,\n"
+"         VerbatimColor={named}{OldLace},\n"
+"         TitleColor={named}{DarkGoldenrod},\n"
+"         hintBorderColor={named}{LightCoral},\n"
+"         attentionborder=3pt,\n"
+"         attentionBorderColor={named}{Crimson},\n"
+"         attentionBgColor={named}{FloralWhite},\n"
+"         noteborder=2pt,\n"
+"         noteBorderColor={named}{Olive},\n"
+"         cautionborder=3pt,\n"
+"         cautionBorderColor={named}{Cyan},\n"
+"         cautionBgColor={named}{LightCyan}}"
+msgstr ""
+
+#: ../../../latex.rst:596
+msgid "The below is included at the end of the chapter::"
+msgstr ""
+
+#: ../../../latex.rst:598
+msgid ""
+".. raw:: latex\n"
+"\n"
+"   \\endgroup"
+msgstr ""
+
+#: ../../../latex.rst:602
+msgid ""
+"LaTeX syntax for boolean keys requires *lowercase* ``true`` or ``false`` e.g "
+"``'sphinxsetup': \"verbatimwrapslines=false\"``.  If setting the boolean key "
+"to ``true``, ``=true`` is optional. Spaces around the commas and equal signs "
+"are ignored, spaces inside LaTeX macros may be significant. Do not use "
+"quotes to enclose values, whether numerical or strings."
+msgstr ""
+
+#: ../../../latex.rst:617
+msgid "``bookmarksdepth``"
+msgstr ""
+
+#: ../../../latex.rst:610
+msgid ""
+"Controls the depth of the collapsible bookmarks panel in the PDF. May be "
+"either a number (e.g. ``3``) or a LaTeX sectioning name (e.g. "
+"``subsubsection``, i.e. without backslash). For details, refer to the "
+"``hyperref`` LaTeX docs."
+msgstr ""
+
+#: ../../../latex.rst:615
+msgid "Default: ``5``"
+msgstr ""
+
+#: ../../../latex.rst:645
+msgid "``hmargin, vmargin``"
+msgstr ""
+
+#: ../../../latex.rst:622
+msgid ""
+"The dimensions of the horizontal (resp. vertical) margins, passed as "
+"``hmargin`` (resp. ``vmargin``) option to the ``geometry`` package. Example::"
+msgstr ""
+
+#: ../../../latex.rst:626
+msgid ""
+"'sphinxsetup': 'hmargin={2in,1.5in}, vmargin={1.5in,2in}, marginpar=1in',"
+msgstr ""
+
+#: ../../../latex.rst:628
+msgid ""
+"Japanese documents currently accept only the one-dimension format for these "
+"parameters. The ``geometry`` package is then passed suitable options to get "
+"the text width set to an exact multiple of the *zenkaku* width, and the text "
+"height set to an integer multiple of the baselineskip, with the closest fit "
+"for the margins."
+msgstr ""
+
+#: ../../../latex.rst:634
+msgid "Default: ``1in`` (equivalent to ``{1in,1in}``)"
+msgstr ""
+
+#: ../../../latex.rst:638
+msgid ""
+"For Japanese ``'manual'`` docclass with pointsize ``11pt`` or ``12pt``, use "
+"the ``nomag`` extra document class option (cf. ``'extraclassoptions'`` key "
+"of :confval:`latex_elements`) or so-called TeX \"true\" units::"
+msgstr ""
+
+#: ../../../latex.rst:643
+msgid "'sphinxsetup': 'hmargin=1.5truein, vmargin=1.5truein, marginpar=5zw',"
+msgstr ""
+
+#: ../../../latex.rst:653
+msgid "``marginpar``"
+msgstr ""
+
+#: ../../../latex.rst:648
+msgid ""
+"The ``\\marginparwidth`` LaTeX dimension. For Japanese documents, the value "
+"is modified to be the closest integer multiple of the *zenkaku* width."
+msgstr ""
+
+#: ../../../latex.rst:651
+msgid "Default: ``0.5in``"
+msgstr "預設值：``0.5in``"
+
+#: ../../../latex.rst:660
+msgid "``verbatimwithframe``"
+msgstr ""
+
+#: ../../../latex.rst:656
+msgid ""
+"Boolean to specify if :rst:dir:`code-block`\\ s and literal includes are "
+"framed. Setting it to ``false`` does not deactivate use of package "
+"\"framed\", because it is still in use for the optional background colour."
+msgstr ""
+
+#: ../../../latex.rst:660
+msgid "Default: ``true``."
+msgstr "預設值：``true``。"
+
+#: ../../../latex.rst:672
+msgid "``verbatimwrapslines``"
+msgstr ""
+
+#: ../../../latex.rst:663
+msgid ""
+"Boolean to specify if long lines in :rst:dir:`code-block`\\ 's contents are "
+"wrapped."
+msgstr ""
+
+#: ../../../latex.rst:666
+msgid ""
+"If ``true``, line breaks may happen at spaces (the last space before the "
+"line break will be rendered using a special symbol), and at ascii "
+"punctuation characters (i.e. not at letters or digits). Whenever a long "
+"string has no break points, it is moved to next line. If its length is "
+"longer than the line width it will overflow."
+msgstr ""
+
+#: ../../../latex.rst:672 ../../../latex.rst:733 ../../../latex.rst:751
+#: ../../../latex.rst:763
+msgid "Default: ``true``"
+msgstr ""
+
+#: ../../../latex.rst:694
+msgid "``verbatimforcewraps``"
+msgstr ""
+
+#: ../../../latex.rst:677
+msgid ""
+"Boolean to specify if long lines in :rst:dir:`code-block`\\ 's contents "
+"should be forcefully wrapped to never overflow due to long strings."
+msgstr ""
+
+#: ../../../latex.rst:682
+msgid ""
+"It is assumed that the Pygments_ LaTeXFormatter has not been used with its "
+"``texcomments`` or similar options which allow additional (arbitrary) LaTeX "
+"mark-up."
+msgstr ""
+
+#: ../../../latex.rst:686
+msgid ""
+"Also, in case of :confval:`latex_engine` set to ``'pdflatex'``, only the "
+"default LaTeX handling of Unicode code points, i.e. ``utf8`` not ``utf8x`` "
+"is allowed."
+msgstr ""
+
+#: ../../../latex.rst:692
+msgid "Default: ``false``"
+msgstr ""
+
+#: ../../../latex.rst:704
+msgid "``verbatimmaxoverfull``"
+msgstr ""
+
+#: ../../../latex.rst:697
+msgid ""
+"A number. If an unbreakable long string has length larger than the total "
+"linewidth plus this number of characters, and if ``verbatimforcewraps`` mode "
+"is on, the input line will be reset using the forceful algorithm which "
+"applies breakpoints at each character."
+msgstr ""
+
+#: ../../../latex.rst:702
+msgid "Default: ``3``"
+msgstr ""
+
+#: ../../../latex.rst:727
+msgid "``verbatimmaxunderfull``"
+msgstr ""
+
+#: ../../../latex.rst:707
+msgid ""
+"A number. If ``verbatimforcewraps`` mode applies, and if after applying the "
+"line wrapping at spaces and punctuation, the first part of the split line is "
+"lacking at least that number of characters to fill the available width, then "
+"the input line will be reset using the forceful algorithm."
+msgstr ""
+
+#: ../../../latex.rst:712
+msgid ""
+"As the default is set to a high value, the forceful algorithm is triggered "
+"only in overfull case, i.e. in presence of a string longer than full "
+"linewidth. Set this to ``0`` to force all input lines to be hard wrapped at "
+"the current available linewidth::"
+msgstr ""
+
+#: ../../../latex.rst:717
+msgid ""
+"latex_elements = {\n"
+"    'sphinxsetup': \"verbatimforcewraps, verbatimmaxunderfull=0\",\n"
+"}"
+msgstr ""
+
+#: ../../../latex.rst:721
+msgid ""
+"This can be done locally for a given code-block via the use of raw latex "
+"directives to insert suitable ``\\sphinxsetup`` (before and after) into the "
+"latex file."
+msgstr ""
+
+#: ../../../latex.rst:725
+msgid "Default: ``100``"
+msgstr ""
+
+#: ../../../latex.rst:737
+msgid "``verbatimhintsturnover``"
+msgstr ""
+
+#: ../../../latex.rst:730
+msgid ""
+"Boolean to specify if code-blocks display \"continued on next page\" and "
+"\"continued from previous page\" hints in case of pagebreaks."
+msgstr ""
+
+#: ../../../latex.rst:736
+msgid "the default changed from ``false`` to ``true``."
+msgstr ""
+
+#: ../../../latex.rst:745
+msgid "``verbatimcontinuedalign``, ``verbatimcontinuesalign``"
+msgstr ""
+
+#: ../../../latex.rst:740
+msgid ""
+"Horizontal position relative to the framed contents: either ``l`` (left "
+"aligned), ``r`` (right aligned) or ``c`` (centered)."
+msgstr ""
+
+#: ../../../latex.rst:743
+msgid "Default: ``r``"
+msgstr ""
+
+#: ../../../latex.rst:754
+msgid "``parsedliteralwraps``"
+msgstr ""
+
+#: ../../../latex.rst:748
+msgid ""
+"Boolean to specify if long lines in :dudir:`parsed-literal`\\ 's contents "
+"should wrap."
+msgstr ""
+
+#: ../../../latex.rst:753 ../../../latex.rst:765
+msgid "set this option value to ``false`` to recover former behaviour."
+msgstr ""
+
+#: ../../../latex.rst:769
+msgid "``inlineliteralwraps``"
+msgstr ""
+
+#: ../../../latex.rst:757
+msgid ""
+"Boolean to specify if line breaks are allowed inside inline literals: but "
+"extra potential break-points (additionally to those allowed by LaTeX at "
+"spaces or for hyphenation) are currently inserted only after the characters "
+"``. , ; ? ! /`` and ``\\``. Due to TeX internals, white space in the line "
+"will be stretched (or shrunk) in order to accommodate the linebreak."
+msgstr ""
+
+#: ../../../latex.rst:768
+msgid "added potential breakpoint at ``\\`` characters."
+msgstr ""
+
+#: ../../../latex.rst:775
+msgid "``verbatimvisiblespace``"
+msgstr ""
+
+#: ../../../latex.rst:772
+msgid ""
+"When a long code line is split, the last space character from the source "
+"code line right before the linebreak location is typeset using this."
+msgstr ""
+
+#: ../../../latex.rst:775
+msgid "Default: ``\\textcolor{red}{\\textvisiblespace}``"
+msgstr ""
+
+#: ../../../latex.rst:786
+msgid "``verbatimcontinued``"
+msgstr ""
+
+#: ../../../latex.rst:778
+msgid ""
+"A LaTeX macro inserted at start of continuation code lines. Its "
+"(complicated...) default typesets a small red hook pointing to the right::"
+msgstr ""
+
+#: ../../../latex.rst:781
+msgid ""
+"\\makebox[2\\fontcharwd\\font`\\x][r]{\\textcolor{red}{\\tiny$"
+"\\hookrightarrow$}}"
+msgstr ""
+
+#: ../../../latex.rst:783
+msgid ""
+"The breaking of long code lines was added at 1.4.2. The default definition "
+"of the continuation symbol was changed at 1.5 to accommodate various font "
+"sizes (e.g. code-blocks can be in footnotes)."
+msgstr ""
+
+#: ../../../latex.rst:796
+msgid "``TitleColor``"
+msgstr ""
+
+#: ../../../latex.rst:789
+msgid "The colour for titles (as configured via use of package \"titlesec\".)"
+msgstr ""
+
+#: ../../../latex.rst:791
+msgid "Default: ``{rgb}{0.126,0.263,0.361}``"
+msgstr ""
+
+#: ../../../latex.rst:795
+msgid ""
+"Colours set via ``'sphinxsetup'``  must obey the syntax of the argument of "
+"the ``color/xcolor`` packages ``\\definecolor`` command."
+msgstr ""
+
+#: ../../../latex.rst:802
+msgid "``InnerLinkColor``"
+msgstr ""
+
+#: ../../../latex.rst:799
+msgid ""
+"A colour passed to ``hyperref`` as value of ``linkcolor``  and ``citecolor``."
+msgstr ""
+
+#: ../../../latex.rst:802
+msgid "Default: ``{rgb}{0.208,0.374,0.486}``."
+msgstr ""
+
+#: ../../../latex.rst:808
+msgid "``OuterLinkColor``"
+msgstr ""
+
+#: ../../../latex.rst:805
+msgid ""
+"A colour passed to ``hyperref`` as value of ``filecolor``, ``menucolor``, "
+"and ``urlcolor``."
+msgstr ""
+
+#: ../../../latex.rst:808
+msgid "Default: ``{rgb}{0.216,0.439,0.388}``"
+msgstr ""
+
+#: ../../../latex.rst:813
+msgid "``VerbatimColor``"
+msgstr ""
+
+#: ../../../latex.rst:811
+msgid "The background colour for :rst:dir:`code-block`\\ s."
+msgstr ""
+
+#: ../../../latex.rst:813 ../../../latex.rst:886
+msgid "Default: ``{rgb}{1,1,1}`` (white)"
+msgstr ""
+
+#: ../../../latex.rst:818
+msgid "``VerbatimBorderColor``"
+msgstr ""
+
+#: ../../../latex.rst:816
+msgid "The frame color."
+msgstr ""
+
+#: ../../../latex.rst:818 ../../../latex.rst:862 ../../../latex.rst:874
+#: ../../../latex.rst:881
+msgid "Default: ``{rgb}{0,0,0}`` (black)"
+msgstr ""
+
+#: ../../../latex.rst:830
+msgid "``VerbatimHighlightColor``"
+msgstr ""
+
+#: ../../../latex.rst:821
+msgid "The color for highlighted lines."
+msgstr ""
+
+#: ../../../latex.rst:823
+msgid "Default: ``{rgb}{0.878,1,1}``"
+msgstr "預設值：``{rgb}{0.878,1,1}``"
+
+#: ../../../latex.rst:829
+msgid ""
+"Starting with this colour, and for all others following, the names declared "
+"to \"color\" or \"xcolor\" are prefixed with \"sphinx\"."
+msgstr ""
+
+#: ../../../latex.rst:835
+msgid "``verbatimsep``"
+msgstr ""
+
+#: ../../../latex.rst:833
+msgid "The separation between code lines and the frame."
+msgstr ""
+
+#: ../../../latex.rst:835
+msgid "Default: ``\\fboxsep``"
+msgstr ""
+
+#: ../../../latex.rst:840
+msgid "``verbatimborder``"
+msgstr "``verbatimborder``"
+
+#: ../../../latex.rst:838
+msgid "The width of the frame around :rst:dir:`code-block`\\ s."
+msgstr ""
+
+#: ../../../latex.rst:840 ../../../latex.rst:856
+msgid "Default: ``\\fboxrule``"
+msgstr ""
+
+#: ../../../latex.rst:846
+msgid "``shadowsep``"
+msgstr ""
+
+#: ../../../latex.rst:843
+msgid ""
+"The separation between contents and frame for :dudir:`contents` and :dudir:"
+"`topic` boxes."
+msgstr ""
+
+#: ../../../latex.rst:846
+msgid "Default: ``5pt``"
+msgstr ""
+
+#: ../../../latex.rst:851
+msgid "``shadowsize``"
+msgstr ""
+
+#: ../../../latex.rst:849
+msgid "The width of the lateral \"shadow\" to the right."
+msgstr ""
+
+#: ../../../latex.rst:851
+msgid "Default: ``4pt``"
+msgstr ""
+
+#: ../../../latex.rst:856
+msgid "``shadowrule``"
+msgstr ""
+
+#: ../../../latex.rst:854
+msgid "The width of the frame around :dudir:`topic` boxes."
+msgstr ""
+
+#: ../../../latex.rst:862
+msgid "|notebdcolors|"
+msgstr ""
+
+#: ../../../latex.rst:859
+msgid ""
+"The colour for the two horizontal rules used by Sphinx in LaTeX for styling "
+"a :dudir:`note` type admonition."
+msgstr ""
+
+#: ../../../latex.rst:867
+msgid "``noteborder``, ``hintborder``, ``importantborder``, ``tipborder``"
+msgstr ""
+
+#: ../../../latex.rst:865
+msgid "The width of the two horizontal rules."
+msgstr ""
+
+#: ../../../latex.rst:867
+msgid "Default: ``0.5pt``"
+msgstr ""
+
+#: ../../../latex.rst:872
+msgid "|warningbdcolors|"
+msgstr ""
+
+#: ../../../latex.rst:872 ../../../latex.rst:879
+msgid "The colour for the admonition frame."
+msgstr ""
+
+#: ../../../latex.rst:879
+msgid "|wgbdcolorslatex|"
+msgstr ""
+
+#: ../../../latex.rst:886
+msgid "|warningbgcolors|"
+msgstr ""
+
+#: ../../../latex.rst:884
+msgid "The background colours for the respective admonitions."
+msgstr ""
+
+#: ../../../latex.rst:891
+msgid "|warningborders|"
+msgstr ""
+
+#: ../../../latex.rst:889
+msgid "The width of the frame."
+msgstr ""
+
+#: ../../../latex.rst:891
+msgid "Default: ``1pt``"
+msgstr ""
+
+#: ../../../latex.rst:897
+msgid "``AtStartFootnote``"
+msgstr ""
+
+#: ../../../latex.rst:894
+msgid ""
+"LaTeX macros inserted at the start of the footnote text at bottom of page, "
+"after the footnote number."
+msgstr ""
+
+#: ../../../latex.rst:897
+msgid "Default: ``\\mbox{ }``"
+msgstr ""
+
+#: ../../../latex.rst:905
+msgid "``BeforeFootnote``"
+msgstr ""
+
+#: ../../../latex.rst:900
+msgid ""
+"LaTeX macros inserted before the footnote mark. The default removes possible "
+"space before it (else, TeX could insert a line break there)."
+msgstr ""
+
+#: ../../../latex.rst:903
+msgid "Default: ``\\leavevmode\\unskip``"
+msgstr ""
+
+#: ../../../latex.rst:909
+msgid "``HeaderFamily``"
+msgstr ""
+
+#: ../../../latex.rst:908
+msgid "default ``\\sffamily\\bfseries``. Sets the font used by headings."
+msgstr ""
+
+#: ../../../latex.rst:933
+msgid "LaTeX macros and environments"
+msgstr ""
+
+#: ../../../latex.rst:935
+msgid ""
+"The \"LaTeX package\" file :file:`sphinx.sty` loads various components "
+"providing support macros (aka commands), and environments, which are used in "
+"the mark-up produced on output from the ``latex`` builder, before conversion "
+"to ``pdf`` via the LaTeX toolchain.  Also the \"LaTeX class\" files :file:"
+"`sphinxhowto.cls` and :file:`sphinxmanual.cls` define or customize some "
+"environments.  All of these files can be found in the latex build repertory."
+msgstr ""
+
+#: ../../../latex.rst:942
+msgid ""
+"Some of these provide facilities not available from pre-existing LaTeX "
+"packages and work around LaTeX limitations with lists, table cells, verbatim "
+"rendering, footnotes, etc..."
+msgstr ""
+
+#: ../../../latex.rst:946
+msgid ""
+"Others simply define macros with public names to make overwriting their "
+"defaults easy via user-added contents to the preamble.  We will survey most "
+"of those public names here, but defaults have to be looked at in their "
+"respective definition files."
+msgstr ""
+
+#: ../../../latex.rst:953
+msgid ""
+"Sphinx LaTeX support code is split across multiple smaller-sized files. "
+"Rather than adding code to the preamble via `latex_elements "
+"<latex_elements_confval_>`_\\ [``'preamble'``] it is also possible to "
+"replace entirely one of the component files of Sphinx LaTeX code with a "
+"custom version, simply by including a modified copy in the project source "
+"and adding the filename to the :confval:`latex_additional_files` list.  "
+"Check the LaTeX build repertory for the filenames and contents."
+msgstr ""
+
+#: ../../../latex.rst:962
+msgid ""
+"split of :file:`sphinx.sty` into multiple smaller units, to facilitate "
+"customization of many aspects simultaneously."
+msgstr ""
+
+#: ../../../latex.rst:969
+msgid "Macros"
+msgstr ""
+
+#: ../../../latex.rst:971
+msgid "Text styling commands:"
+msgstr ""
+
+#: ../../../latex.rst:973
+msgid "``\\sphinxstrong``,"
+msgstr ""
+
+#: ../../../latex.rst:974
+msgid "``\\sphinxbfcode``,"
+msgstr ""
+
+#: ../../../latex.rst:975
+msgid "``\\sphinxemail``,"
+msgstr ""
+
+#: ../../../latex.rst:976
+msgid "``\\sphinxtablecontinued``,"
+msgstr ""
+
+#: ../../../latex.rst:977
+msgid "``\\sphinxtitleref``,"
+msgstr ""
+
+#: ../../../latex.rst:978
+msgid "``\\sphinxmenuselection``,"
+msgstr ""
+
+#: ../../../latex.rst:979
+msgid "``\\sphinxaccelerator``,"
+msgstr ""
+
+#: ../../../latex.rst:980
+msgid "``\\sphinxcrossref``,"
+msgstr ""
+
+#: ../../../latex.rst:981
+msgid "``\\sphinxtermref``,"
+msgstr ""
+
+#: ../../../latex.rst:982
+msgid "``\\sphinxoptional``."
+msgstr ""
+
+#: ../../../latex.rst:984
+msgid ""
+"Use of ``\\sphinx`` prefixed macro names to limit possibilities of conflict "
+"with LaTeX packages."
+msgstr ""
+
+#: ../../../latex.rst:988
+msgid "More text styling:"
+msgstr ""
+
+#: ../../../latex.rst:990
+msgid "``\\sphinxstyleindexentry``,"
+msgstr ""
+
+#: ../../../latex.rst:991
+msgid "``\\sphinxstyleindexextra``,"
+msgstr ""
+
+#: ../../../latex.rst:992
+msgid "``\\sphinxstyleindexpageref``,"
+msgstr ""
+
+#: ../../../latex.rst:993
+msgid "``\\sphinxstyletopictitle``,"
+msgstr ""
+
+#: ../../../latex.rst:994
+msgid "``\\sphinxstylesidebartitle``,"
+msgstr ""
+
+#: ../../../latex.rst:995
+msgid "``\\sphinxstyleothertitle``,"
+msgstr ""
+
+#: ../../../latex.rst:996
+msgid "``\\sphinxstylesidebarsubtitle``,"
+msgstr ""
+
+#: ../../../latex.rst:997
+msgid "``\\sphinxstyletheadfamily``,"
+msgstr ""
+
+#: ../../../latex.rst:998
+msgid "``\\sphinxstyleemphasis``,"
+msgstr ""
+
+#: ../../../latex.rst:999
+msgid "``\\sphinxstyleliteralemphasis``,"
+msgstr ""
+
+#: ../../../latex.rst:1000
+msgid "``\\sphinxstylestrong``,"
+msgstr ""
+
+#: ../../../latex.rst:1001
+msgid "``\\sphinxstyleliteralstrong``,"
+msgstr ""
+
+#: ../../../latex.rst:1002
+msgid "``\\sphinxstyleabbreviation``,"
+msgstr ""
+
+#: ../../../latex.rst:1003
+msgid "``\\sphinxstyleliteralintitle``,"
+msgstr ""
+
+#: ../../../latex.rst:1004
+msgid "``\\sphinxstylecodecontinued``,"
+msgstr ""
+
+#: ../../../latex.rst:1005
+msgid "``\\sphinxstylecodecontinues``."
+msgstr ""
+
+#: ../../../latex.rst:1007
+msgid ""
+"These macros were formerly hard-coded as non customizable ``\\texttt``, "
+"``\\emph``, etc..."
+msgstr ""
+
+#: ../../../latex.rst:1011
+msgid ""
+"``\\sphinxstyletheadfamily`` which defaults to ``\\sffamily`` and allows "
+"multiple paragraphs in header cells of tables."
+msgstr ""
+
+#: ../../../latex.rst:1015
+msgid "``\\sphinxstylecodecontinued`` and ``\\sphinxstylecodecontinues``."
+msgstr ""
+
+#: ../../../latex.rst:1018
+msgid "``\\sphinxkeyboard``"
+msgstr ""
+
+#: ../../../latex.rst:1021
+msgid ""
+"``\\sphinxtableofcontents``: A wrapper (defined differently in :file:"
+"`sphinxhowto.cls` and in :file:`sphinxmanual.cls`) of standard "
+"``\\tableofcontents``.  The macro ``\\sphinxtableofcontentshook`` is "
+"executed during its expansion right before ``\\tableofcontents`` itself."
+msgstr ""
+
+#: ../../../latex.rst:1026
+msgid "Formerly, the meaning of ``\\tableofcontents`` was modified by Sphinx."
+msgstr ""
+
+#: ../../../latex.rst:1029
+msgid ""
+"Hard-coded redefinitions of ``\\l@section`` and ``\\l@subsection`` formerly "
+"done during loading of ``'manual'`` docclass are now executed later via "
+"``\\sphinxtableofcontentshook``.  This macro is also executed by the "
+"``'howto'`` docclass, but defaults to empty with it."
+msgstr ""
+
+#: ../../../latex.rst:1035
+msgid ""
+"``\\sphinxmaketitle``: Used as the default setting of the ``'maketitle'`` :"
+"confval:`latex_elements` key. Defined in the class files :file:`sphinxmanual."
+"cls` and :file:`sphinxhowto.cls`."
+msgstr ""
+
+#: ../../../latex.rst:1040
+msgid ""
+"Formerly, ``\\maketitle`` from LaTeX document class was modified by Sphinx."
+msgstr ""
+
+#: ../../../latex.rst:1044
+msgid ""
+"``\\sphinxbackoftitlepage``: For ``'manual'`` docclass, and if it is "
+"defined, it gets executed at end of ``\\sphinxmaketitle``, before the final "
+"``\\clearpage``.  Use either the ``'maketitle'`` key or the ``'preamble'`` "
+"key of :confval:`latex_elements` to add a custom definition of "
+"``\\sphinxbackoftitlepage``."
+msgstr ""
+
+#: ../../../latex.rst:1052
+msgid ""
+"``\\sphinxcite``: A wrapper of standard ``\\cite`` for citation references."
+msgstr ""
+
+#: ../../../latex.rst:1055
+msgid "Environments"
+msgstr ""
+
+#: ../../../latex.rst:1057
+msgid ""
+"A :dudir:`figure` may have an optional legend with arbitrary body elements: "
+"they are rendered in a ``sphinxlegend`` environment. The default definition "
+"issues ``\\small``, and ends with ``\\par``."
+msgstr ""
+
+#: ../../../latex.rst:1061
+msgid ""
+"Formerly, the ``\\small`` was hardcoded in LaTeX writer and the ending "
+"``\\par`` was lacking."
+msgstr ""
+
+#: ../../../latex.rst:1065
+msgid "Environments associated with admonitions:"
+msgstr ""
+
+#: ../../../latex.rst:1067
+msgid "``sphinxnote``,"
+msgstr ""
+
+#: ../../../latex.rst:1068
+msgid "``sphinxhint``,"
+msgstr ""
+
+#: ../../../latex.rst:1069
+msgid "``sphinximportant``,"
+msgstr ""
+
+#: ../../../latex.rst:1070
+msgid "``sphinxtip``,"
+msgstr ""
+
+#: ../../../latex.rst:1071
+msgid "``sphinxwarning``,"
+msgstr ""
+
+#: ../../../latex.rst:1072
+msgid "``sphinxcaution``,"
+msgstr ""
+
+#: ../../../latex.rst:1073
+msgid "``sphinxattention``,"
+msgstr ""
+
+#: ../../../latex.rst:1074
+msgid "``sphinxdanger``,"
+msgstr ""
+
+#: ../../../latex.rst:1075
+msgid "``sphinxerror``."
+msgstr ""
+
+#: ../../../latex.rst:1077
+msgid ""
+"They may be ``\\renewenvironment`` 'd individually, and must then be defined "
+"with one argument (it is the heading of the notice, for example ``Warning:`` "
+"for :dudir:`warning` directive, if English is the document language). Their "
+"default definitions use either the *sphinxheavybox* (for the last 5 ones) or "
+"the *sphinxlightbox* environments, configured to use the parameters "
+"(colours, border thickness) specific to each type, which can be set via "
+"``'sphinxsetup'`` string."
+msgstr ""
+
+#: ../../../latex.rst:1085
+msgid ""
+"Use of public environment names, separate customizability of the parameters, "
+"such as ``noteBorderColor``, ``noteborder``, ``warningBgColor``, "
+"``warningBorderColor``, ``warningborder``, ..."
+msgstr ""
+
+#: ../../../latex.rst:1090
+msgid ""
+"The :dudir:`contents` directive (with ``:local:`` option) and the :dudir:"
+"`topic` directive are implemented by environment ``sphinxShadowBox``."
+msgstr ""
+
+#: ../../../latex.rst:1093
+msgid "Former code refactored into an environment allowing page breaks."
+msgstr ""
+
+#: ../../../latex.rst:1096
+msgid "Options ``shadowsep``, ``shadowsize``,  ``shadowrule``."
+msgstr ""
+
+#: ../../../latex.rst:1099
+msgid ""
+"The literal blocks (via ``::`` or :rst:dir:`code-block`), are implemented "
+"using ``sphinxVerbatim`` environment which is a wrapper of ``Verbatim`` "
+"environment from package ``fancyvrb.sty``. It adds the handling of the top "
+"caption and the wrapping of long lines, and a frame which allows pagebreaks. "
+"Inside tables the used environment is ``sphinxVerbatimintable`` (it does not "
+"draw a frame, but allows a caption)."
+msgstr ""
+
+#: ../../../latex.rst:1107
+msgid ""
+"``Verbatim`` keeps exact same meaning as in ``fancyvrb.sty`` (also under the "
+"name ``OriginalVerbatim``); ``sphinxVerbatimintable`` is used inside tables."
+msgstr ""
+
+#: ../../../latex.rst:1112
+msgid ""
+"Options ``verbatimwithframe``, ``verbatimwrapslines``, ``verbatimsep``, "
+"``verbatimborder``."
+msgstr ""
+
+#: ../../../latex.rst:1116
+msgid "Support for ``:emphasize-lines:`` option"
+msgstr ""
+
+#: ../../../latex.rst:1119
+msgid ""
+"Easier customizability of the formatting via exposed to user LaTeX macros "
+"such as ``\\sphinxVerbatimHighlightLine``."
+msgstr ""
+
+#: ../../../latex.rst:1123
+msgid ""
+"The bibliography uses ``sphinxthebibliography`` and the Python Module index "
+"as well as the general index both use ``sphinxtheindex``; these environments "
+"are wrappers of the ``thebibliography`` and respectively ``theindex`` "
+"environments as provided by the document class (or packages)."
+msgstr ""
+
+#: ../../../latex.rst:1128
+msgid "Formerly, the original environments were modified by Sphinx."
+msgstr ""
+
+#: ../../../latex.rst:1132
+msgid "Miscellany"
+msgstr ""
+
+#: ../../../latex.rst:1134
+msgid ""
+"Every text paragraph in document body starts with ``\\sphinxAtStartPar``. "
+"Currently, this is used to insert a zero width horizontal skip which is a "
+"trick to allow TeX hyphenation of the first word of a paragraph in a narrow "
+"context (like a table cell). For ``'lualatex'`` which does not need the "
+"trick, the ``\\sphinxAtStartPar`` does nothing."
+msgstr ""
+
+#: ../../../latex.rst:1142
+msgid ""
+"The section, subsection, ... headings are set using  *titlesec*'s "
+"``\\titleformat`` command."
+msgstr ""
+
+#: ../../../latex.rst:1145
+msgid ""
+"For the ``'manual'`` docclass, the chapter headings can be customized using "
+"*fncychap*'s commands ``\\ChNameVar``, ``\\ChNumVar``, ``\\ChTitleVar``. "
+"File :file:`sphinx.sty` has custom re-definitions in case of *fncychap* "
+"option ``Bjarne``."
+msgstr ""
+
+#: ../../../latex.rst:1150
+msgid ""
+"Formerly, use of *fncychap* with other styles than ``Bjarne`` was "
+"dysfunctional."
+msgstr ""
+
+#: ../../../latex.rst:1154
+msgid ""
+"Docutils :dudir:`container` directives are supported in LaTeX output: to let "
+"a container class with name ``foo`` influence the final PDF via LaTeX, it is "
+"only needed to define in the preamble an environment ``sphinxclassfoo``.  A "
+"simple example would be:"
+msgstr ""
+
+#: ../../../latex.rst:1159
+msgid "\\newenvironment{sphinxclassred}{\\color{red}}{}"
+msgstr ""
+
+#: ../../../latex.rst:1163
+msgid ""
+"Currently the class names must contain only ascii characters and avoid "
+"characters special to LaTeX such as ``\\``."
+msgstr ""
+
+#: ../../../latex.rst:1170
+msgid ""
+"As an experimental feature, Sphinx can use user-defined template file for "
+"LaTeX source if you have a file named ``_templates/latex.tex_t`` in your "
+"project."
+msgstr ""
+
+#: ../../../latex.rst:1174
+msgid ""
+"Additional files ``longtable.tex_t``, ``tabulary.tex_t`` and ``tabular."
+"tex_t`` can be added to ``_templates/`` to configure some aspects of table "
+"rendering (such as the caption position)."
+msgstr ""
+
+#: ../../../latex.rst:1178
+msgid "currently all template variables are unstable and undocumented."
+msgstr ""
+
+#: ../../../latex.rst:1181
+msgid "\\endgroup"
+msgstr ""
