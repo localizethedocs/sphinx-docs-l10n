@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Sphinx 3.1 &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../_static/documentation_options.js?v=cafd1c67"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=beaddf03"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/changes/3.1.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Sphinx 3.0" href="3.0.html" />
+    <link rel="prev" title="Sphinx 3.2" href="3.2.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../index.html">
+      <img src="../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>导航</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Changelog</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Sphinx 3.1</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Sphinx 3.1</a><ul>
+<li><a class="reference internal" href="#release-3-1-2-released-jul-05-2020">Release 3.1.2 (released Jul 05, 2020)</a><ul>
+<li><a class="reference internal" href="#incompatible-changes">Incompatible changes</a></li>
+<li><a class="reference internal" href="#bugs-fixed">Bugs fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#release-3-1-1-released-jun-14-2020">Release 3.1.1 (released Jun 14, 2020)</a><ul>
+<li><a class="reference internal" href="#id1">Incompatible changes</a></li>
+<li><a class="reference internal" href="#features-added">Features added</a></li>
+<li><a class="reference internal" href="#id2">Bugs fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#release-3-1-0-released-jun-08-2020">Release 3.1.0 (released Jun 08, 2020)</a><ul>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#id3">Incompatible changes</a></li>
+<li><a class="reference internal" href="#deprecated">Deprecated</a></li>
+<li><a class="reference internal" href="#id4">Features added</a></li>
+<li><a class="reference internal" href="#id5">Bugs fixed</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Changelog</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="8.2.html">Sphinx 8.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8.1.html">Sphinx 8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8.0.html">Sphinx 8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.4.html">Sphinx 7.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.3.html">Sphinx 7.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.2.html">Sphinx 7.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.1.html">Sphinx 7.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.0.html">Sphinx 7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.2.html">Sphinx 6.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.1.html">Sphinx 6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.0.html">Sphinx 6.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.3.html">Sphinx 5.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.2.html">Sphinx 5.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.1.html">Sphinx 5.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.0.html">Sphinx 5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.5.html">Sphinx 4.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.4.html">Sphinx 4.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.3.html">Sphinx 4.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.2.html">Sphinx 4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.1.html">Sphinx 4.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0.html">Sphinx 4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.5.html">Sphinx 3.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.4.html">Sphinx 3.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.3.html">Sphinx 3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.2.html">Sphinx 3.2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sphinx 3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0.html">Sphinx 3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.4.html">Sphinx 2.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.3.html">Sphinx 2.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2.html">Sphinx 2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.1.html">Sphinx 2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0.html">Sphinx 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.8.html">Sphinx 1.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.7.html">Sphinx 1.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.6.html">Sphinx 1.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.5.html">Sphinx 1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.4.html">Sphinx 1.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.html">Sphinx 1.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.html">Sphinx 1.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.html">Sphinx 1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0.html">Sphinx 1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.6.html">Sphinx 0.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.5.html">Sphinx 0.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.4.html">Sphinx 0.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.3.html">Sphinx 0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.2.html">Sphinx 0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.1.html">Sphinx 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="sphinx-3-1">
+<h1>Sphinx 3.1<a class="headerlink" href="#sphinx-3-1" title="Link to this heading">¶</a></h1>
+<section id="release-3-1-2-released-jul-05-2020">
+<h2>Release 3.1.2 (released Jul 05, 2020)<a class="headerlink" href="#release-3-1-2-released-jul-05-2020" title="Link to this heading">¶</a></h2>
+<section id="incompatible-changes">
+<h3>Incompatible changes<a class="headerlink" href="#incompatible-changes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>#7650: autodoc: the signature of base function will be shown for decorated
+functions, not a signature of decorator</p></li>
+</ul>
+</section>
+<section id="bugs-fixed">
+<h3>Bugs fixed<a class="headerlink" href="#bugs-fixed" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>#7844: autodoc: Failed to detect module when relative module name given</p></li>
+<li><p>#7856: autodoc: AttributeError is raised when non-class object is given to
+the autoclass directive</p></li>
+<li><p>#7850: autodoc: KeyError is raised for invalid mark up when autodoc_typehints
+is 'description'</p></li>
+<li><p>#7812: autodoc: crashed if the target name matches to both an attribute and
+module that are same name</p></li>
+<li><p>#7650: autodoc: function signature becomes <code class="docutils literal notranslate"><span class="pre">(*args,</span> <span class="pre">**kwargs)</span></code> if the
+function is decorated by generic decorator</p></li>
+<li><p>#7812: autosummary: generates broken stub files if the target code contains
+an attribute and module that are same name</p></li>
+<li><p>#7806: viewcode: Failed to resolve viewcode references on 3rd party builders</p></li>
+<li><p>#7838: html theme: List items have extra vertical space</p></li>
+<li><p>#7878: html theme: Undesired interaction between &quot;overflow&quot; and &quot;float&quot;</p></li>
+</ul>
+</section>
+</section>
+<section id="release-3-1-1-released-jun-14-2020">
+<h2>Release 3.1.1 (released Jun 14, 2020)<a class="headerlink" href="#release-3-1-1-released-jun-14-2020" title="Link to this heading">¶</a></h2>
+<section id="id1">
+<h3>Incompatible changes<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>#7808: napoleon: a type for attribute are represented as typed field</p></li>
+</ul>
+</section>
+<section id="features-added">
+<h3>Features added<a class="headerlink" href="#features-added" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>#7807: autodoc: Show detailed warning when type_comment is mismatched with its
+signature</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Bugs fixed<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>#7808: autodoc: Warnings raised on variable and attribute type annotations</p></li>
+<li><p>#7802: autodoc: EOFError is raised on parallel build</p></li>
+<li><p>#7821: autodoc: TypeError is raised for overloaded C-ext function</p></li>
+<li><p>#7805: autodoc: an object which descriptors returns is unexpectedly documented</p></li>
+<li><p>#7807: autodoc: wrong signature is shown for the function using contextmanager</p></li>
+<li><p>#7812: autosummary: generates broken stub files if the target code contains
+an attribute and module that are same name</p></li>
+<li><p>#7808: napoleon: Warnings raised on variable and attribute type annotations</p></li>
+<li><p>#7811: sphinx.util.inspect causes circular import problem</p></li>
+</ul>
+</section>
+</section>
+<section id="release-3-1-0-released-jun-08-2020">
+<h2>Release 3.1.0 (released Jun 08, 2020)<a class="headerlink" href="#release-3-1-0-released-jun-08-2020" title="Link to this heading">¶</a></h2>
+<section id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>#7746: mathjax: Update to 2.7.5</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Incompatible changes<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>#7477: imgconverter: Invoke &quot;magick convert&quot; command by default on Windows</p></li>
+</ul>
+</section>
+<section id="deprecated">
+<h3>Deprecated<a class="headerlink" href="#deprecated" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The first argument for sphinx.ext.autosummary.generate.AutosummaryRenderer has
+been changed to Sphinx object</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.AutosummaryRenderer</span></code> takes an object type
+as an argument</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">ignore</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.Documenter.get_doc()</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">template_dir</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.</span>
+<span class="pre">AutosummaryRenderer</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">module</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.</span>
+<span class="pre">find_autosummary_in_docstring()</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.</span>
+<span class="pre">generate_autosummary_docs()</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">template_dir</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.</span>
+<span class="pre">generate_autosummary_docs()</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">ignore</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.util.docstring.prepare_docstring()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.AutosummaryRenderer.exists()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.rpartition()</span></code></p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Features added<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>LaTeX: Make the <code class="docutils literal notranslate"><span class="pre">toplevel_sectioning</span></code> setting optional in LaTeX theme</p></li>
+<li><p>LaTeX: Allow to override papersize and pointsize from LaTeX themes</p></li>
+<li><p>LaTeX: Add <a class="reference internal" href="../usage/configuration.html#confval-latex_theme_options"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_theme_options</span></code></a> to override theme options</p></li>
+<li><p>#7410: Allow to suppress &quot;circular toctree references detected&quot; warnings using
+<a class="reference internal" href="../usage/configuration.html#confval-suppress_warnings"><code class="xref std std-confval docutils literal notranslate"><span class="pre">suppress_warnings</span></code></a></p></li>
+<li><p>C, added scope control directives, <a class="reference internal" href="../usage/domains/c.html#directive-c-namespace" title="c:namespace directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">c:namespace</span></code></a>,
+<a class="reference internal" href="../usage/domains/c.html#directive-c-namespace-push" title="c:namespace-push directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">c:namespace-push</span></code></a>, and <a class="reference internal" href="../usage/domains/c.html#directive-c-namespace-pop" title="c:namespace-pop directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">c:namespace-pop</span></code></a>.</p></li>
+<li><p>#2044: autodoc: Suppress default value for instance attributes</p></li>
+<li><p>#7473: autodoc: consider a member public if docstring contains
+<code class="docutils literal notranslate"><span class="pre">:meta</span> <span class="pre">public:</span></code> in info-field-list</p></li>
+<li><p>#7487: autodoc: Allow to generate docs for singledispatch functions by
+py:autofunction</p></li>
+<li><p>#7143: autodoc: Support final classes and methods</p></li>
+<li><p>#7384: autodoc: Support signatures defined by <code class="docutils literal notranslate"><span class="pre">__new__()</span></code>, metaclasses and
+builtin base classes</p></li>
+<li><p>#2106: autodoc: Support multiple signatures on docstring</p></li>
+<li><p>#4422: autodoc: Support GenericAlias in Python 3.7 or above</p></li>
+<li><p>#3610: autodoc: Support overloaded functions</p></li>
+<li><p>#7722: autodoc: Support TypeVar</p></li>
+<li><p>#7466: autosummary: headings in generated documents are not translated</p></li>
+<li><p>#7490: autosummary: Add <code class="docutils literal notranslate"><span class="pre">:caption:</span></code> option to autosummary directive to set a
+caption to the toctree</p></li>
+<li><p>#7469: autosummary: Support module attributes</p></li>
+<li><p>#248, #6040: autosummary: Add <code class="docutils literal notranslate"><span class="pre">:recursive:</span></code> option to autosummary directive
+to generate stub files recursively</p></li>
+<li><p>#4030: autosummary: Add <a class="reference internal" href="../usage/extensions/autosummary.html#confval-autosummary_context"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autosummary_context</span></code></a> to add template
+variables for custom templates</p></li>
+<li><p>#7530: html: Support nested &lt;kbd&gt; elements</p></li>
+<li><p>#7481: html theme: Add right margin to footnote/citation labels</p></li>
+<li><p>#7482, #7717: html theme: CSS spacing for code blocks with captions and line
+numbers</p></li>
+<li><p>#7443: html theme: Add new options <code class="xref std std-confval docutils literal notranslate"><span class="pre">globaltoc_collapse</span></code> and
+<code class="xref std std-confval docutils literal notranslate"><span class="pre">globaltoc_includehidden</span></code> to control the behavior of globaltoc in
+sidebar</p></li>
+<li><p>#7484: html theme: Avoid clashes between sidebar and other blocks</p></li>
+<li><p>#7476: html theme: Relbar breadcrumb should contain current page</p></li>
+<li><p>#7506: html theme: A canonical URL is not escaped</p></li>
+<li><p>#7533: html theme: Avoid whitespace at the beginning of genindex.html</p></li>
+<li><p>#7541: html theme: Add a &quot;clearer&quot; at the end of the &quot;body&quot;</p></li>
+<li><p>#7542: html theme: Make admonition/topic/sidebar scrollable</p></li>
+<li><p>#7543: html theme: Add top and bottom margins to tables</p></li>
+<li><p>#7695: html theme: Add viewport meta tag for basic theme</p></li>
+<li><p>#7721: html theme: classic: default codetextcolor/codebgcolor doesn't override
+Pygments</p></li>
+<li><p>C and C++: allow semicolon in the end of declarations.</p></li>
+<li><p>C++, parse parameterized noexcept specifiers.</p></li>
+<li><p>#7294: C++, parse expressions with user-defined literals.</p></li>
+<li><p>C++, parse trailing return types.</p></li>
+<li><p>#7143: py domain: Add <code class="docutils literal notranslate"><span class="pre">:final:</span></code> option to <a class="reference internal" href="../usage/domains/python.html#directive-py-class" title="py:class directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:class</span></code></a>,
+<a class="reference internal" href="../usage/domains/python.html#directive-py-exception" title="py:exception directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:exception</span></code></a> and <a class="reference internal" href="../usage/domains/python.html#directive-py-method" title="py:method directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:method</span></code></a> directives</p></li>
+<li><p>#7596: py domain: Change a type annotation for variables to a hyperlink</p></li>
+<li><p>#7770: std domain: <a class="reference internal" href="../usage/domains/standard.html#directive-option" title="option directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">option</span></code></a> directive support arguments in the form
+of <code class="docutils literal notranslate"><span class="pre">foo[=bar]</span></code></p></li>
+<li><p>#7582: napoleon: a type for attribute are represented like type annotation</p></li>
+<li><p>#7734: napoleon: overescaped trailing underscore on attribute</p></li>
+<li><p>#7247: linkcheck: Add <a class="reference internal" href="../usage/configuration.html#confval-linkcheck_request_headers"><code class="xref std std-confval docutils literal notranslate"><span class="pre">linkcheck_request_headers</span></code></a> to send custom HTTP
+headers for specific host</p></li>
+<li><p>#7792: setuptools: Support <code class="docutils literal notranslate"><span class="pre">--verbosity</span></code> option</p></li>
+<li><p>#7683: Add <code class="docutils literal notranslate"><span class="pre">allowed_exceptions</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">Sphinx.emit()</span></code> to allow
+handlers to raise specified exceptions</p></li>
+<li><p>#7295: C++, parse (trailing) requires clauses.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>Bugs fixed<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>#6703: autodoc: incremental build does not work for imported objects</p></li>
+<li><p>#7564: autodoc: annotations not to be shown for descriptors</p></li>
+<li><p>#6588: autodoc: Decorated inherited method has no documentation</p></li>
+<li><p>#7469: autodoc: The change of autodoc-process-docstring for variables is
+cached unexpectedly</p></li>
+<li><p>#7559: autodoc: misdetects a sync function is async</p></li>
+<li><p>#6857: autodoc: failed to detect a classmethod on Enum class</p></li>
+<li><p>#7562: autodoc: a typehint contains spaces is wrongly rendered under
+<a class="reference internal" href="../usage/extensions/autodoc.html#confval-autodoc_typehints"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autodoc_typehints</span></code></a><code class="docutils literal notranslate"><span class="pre">='description'</span></code> mode</p></li>
+<li><p>#7551: autodoc: failed to import nested class</p></li>
+<li><p>#7362: autodoc: does not render correct signatures for built-in functions</p></li>
+<li><p>#7654: autodoc: <code class="docutils literal notranslate"><span class="pre">Optional[Union[foo,</span> <span class="pre">bar]]</span></code> is presented as
+<code class="docutils literal notranslate"><span class="pre">Union[foo,</span> <span class="pre">bar,</span> <span class="pre">None]</span></code></p></li>
+<li><p>#7629: autodoc: autofunction emits an unfriendly warning if an invalid object
+specified</p></li>
+<li><p>#7650: autodoc: undecorated signature is shown for decorated functions</p></li>
+<li><p>#7676: autodoc: typo in the default value of autodoc_member_order</p></li>
+<li><p>#7676: autodoc: wrong value for :member-order: option is ignored silently</p></li>
+<li><p>#7676: autodoc: member-order=&quot;bysource&quot; does not work for C module</p></li>
+<li><p>#3673: autodoc: member-order=&quot;bysource&quot; does not work for a module having
+<code class="docutils literal notranslate"><span class="pre">__all__</span></code></p></li>
+<li><p>#7668: autodoc: wrong retann value is passed to a handler of
+autodoc-process-signature</p></li>
+<li><p>#7711: autodoc: fails with ValueError when processing numpy objects</p></li>
+<li><p>#7791: autodoc: TypeError is raised on documenting singledispatch function</p></li>
+<li><p>#7551: autosummary: a nested class is indexed as non-nested class</p></li>
+<li><p>#7661: autosummary: autosummary directive emits warnings twices if failed to
+import the target module</p></li>
+<li><p>#7685: autosummary: The template variable &quot;members&quot; contains imported members
+even if <code class="xref std std-confval docutils literal notranslate"><span class="pre">autossummary_imported_members</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+<li><p>#7671: autosummary: The location of import failure warning is missing</p></li>
+<li><p>#7535: sphinx-autogen: crashes when custom template uses inheritance</p></li>
+<li><p>#7536: sphinx-autogen: crashes when template uses i18n feature</p></li>
+<li><p>#7781: sphinx-build: Wrong error message when outdir is not directory</p></li>
+<li><p>#7653: sphinx-quickstart: Fix multiple directory creation for nested relpath</p></li>
+<li><p>#2785: html: Bad alignment of equation links</p></li>
+<li><p>#7718: html theme: some themes does not respect background color of Pygments
+style (agogo, haiku, nature, pyramid, scrolls, sphinxdoc and traditional)</p></li>
+<li><p>#7544: html theme: inconsistent padding in admonitions</p></li>
+<li><p>#7581: napoleon: bad parsing of inline code in attribute docstrings</p></li>
+<li><p>#7628: imgconverter: runs imagemagick once unnecessary for builders not
+supporting images</p></li>
+<li><p>#7610: incorrectly renders consecutive backslashes for Docutils 0.16</p></li>
+<li><p>#7646: handle errors on event handlers</p></li>
+<li><p>#4187: LaTeX: EN DASH disappears from PDF bookmarks in Japanese documents</p></li>
+<li><p>#7701: LaTeX: Anonymous indirect hyperlink target causes duplicated labels</p></li>
+<li><p>#7723: LaTeX: pdflatex crashed when URL contains a single quote</p></li>
+<li><p>#7756: py domain: The default value for positional only argument is not shown</p></li>
+<li><p>#7760: coverage: Add <a class="reference internal" href="../usage/extensions/coverage.html#confval-coverage_show_missing_items"><code class="xref std std-confval docutils literal notranslate"><span class="pre">coverage_show_missing_items</span></code></a> to show coverage
+result to console</p></li>
+<li><p>C++, fix rendering and xrefs in nested names explicitly starting
+in global scope, e.g., <code class="docutils literal notranslate"><span class="pre">::A::B</span></code>.</p></li>
+<li><p>C, fix rendering and xrefs in nested names explicitly starting
+in global scope, e.g., <code class="docutils literal notranslate"><span class="pre">.A.B</span></code>.</p></li>
+<li><p>#7763: C and C++, don't crash during display stringification of unary
+expressions and fold expressions.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="3.2.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Sphinx 3.2</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="3.0.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">Sphinx 3.0</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版权所有 2007-2026, the Sphinx developers.
+  由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3创建。
+</div>
+  </body>
+</html>

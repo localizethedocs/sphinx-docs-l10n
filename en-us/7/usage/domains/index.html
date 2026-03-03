@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="en-US" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Domains &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=fb9458d3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css?v=4e502a7e" />
+    <script src="../../_static/documentation_options.js?v=384ed2c4"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/domains/index.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Standard Domain" href="standard.html" />
+    <link rel="prev" title="Builders" href="../builders/index.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../index.html">
+      <img src="../../_static/sphinx-logo.svg" alt="logo" />
+    </a>
+    <h1>Sphinx</h1>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Using Sphinx</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Domains</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Domains</a><ul>
+<li><a class="reference internal" href="#basic-markup">Basic Markup</a><ul>
+<li><a class="reference internal" href="#directive-default-domain"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">default-domain::</span></code></a></li>
+<li><a class="reference internal" href="#cross-referencing-syntax">Cross-referencing syntax</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#built-in-domains">Built-in domains</a></li>
+<li><a class="reference internal" href="#more-domains">More domains</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencing.html">Cross-referencing syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">Builders</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Domains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="standard.html">The Standard Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html">The C Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpp.html">The C++ Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript.html">The JavaScript Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematics.html">The Mathematics Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python.html">The Python Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="restructuredtext.html">The reStructuredText Domain</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML Theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="domains">
+<span id="usage-domains"></span><h1>Domains<a class="headerlink" href="#domains" title="Link to this heading">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.0.</span></p>
+</div>
+<p>Originally, Sphinx was conceived for a single project, the documentation of the
+Python language.  Shortly afterwards, it was made available for everyone as a
+documentation tool, but the documentation of Python modules remained deeply
+built in – the most fundamental directives, like <code class="docutils literal notranslate"><span class="pre">function</span></code>, were designed
+for Python objects.  Since Sphinx has become somewhat popular, interest
+developed in using it for many different purposes: C/C++ projects, JavaScript,
+or even reStructuredText markup (like in this documentation).</p>
+<p>While this was always possible, it is now much easier to easily support
+documentation of projects using different programming languages or even ones
+not supported by the main Sphinx distribution, by providing a <strong>domain</strong> for
+every such purpose.</p>
+<p>A domain is a collection of markup (reStructuredText <a class="reference internal" href="../../glossary.html#term-directive"><span class="xref std std-term">directive</span></a>s and
+<a class="reference internal" href="../../glossary.html#term-role"><span class="xref std std-term">role</span></a>s) to describe and link to <a class="reference internal" href="../../glossary.html#term-object"><span class="xref std std-term">object</span></a>s belonging together,
+e.g. elements of a programming language.  Directive and role names in a domain
+have names like <code class="docutils literal notranslate"><span class="pre">domain:name</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">py:function</span></code>.  Domains can also
+provide custom indices (like the Python Module Index).</p>
+<p>Having domains means that there are no naming problems when one set of
+documentation wants to refer to e.g. C++ and Python classes.  It also means
+that extensions that support the documentation of whole new languages are much
+easier to write.</p>
+<p>This section describes what the domains that are included with Sphinx provide.
+The domain API is documented as well, in the section <a class="reference internal" href="../../extdev/domainapi.html#domain-api"><span class="std std-ref">Domain API</span></a>.</p>
+<section id="basic-markup">
+<span id="basic-domain-markup"></span><h2>Basic Markup<a class="headerlink" href="#basic-markup" title="Link to this heading">¶</a></h2>
+<p>Most domains provide a number of <em class="dfn">object description directives</em>, used to
+describe specific objects provided by modules.  Each directive requires one or
+more signatures to provide basic information about what is being described, and
+the content should be the description.</p>
+<p>A domain will typically keep an internal index of all entities to aid
+cross-referencing.
+Typically it will also add entries in the shown general index.
+If you want to suppress the addition of an entry in the shown index, you can
+give the directive option flag <code class="docutils literal notranslate"><span class="pre">:no-index-entry:</span></code>.
+If you want to exclude the object description from the table of contents, you
+can give the directive option flag <code class="docutils literal notranslate"><span class="pre">:no-contents-entry:</span></code>.
+If you want to typeset an object description, without even making it available
+for cross-referencing, you can give the directive option flag <code class="docutils literal notranslate"><span class="pre">:no-index:</span></code>
+(which implies <code class="docutils literal notranslate"><span class="pre">:no-index-entry:</span></code>).
+If you do not want to typeset anything, you can give the directive option flag
+<code class="docutils literal notranslate"><span class="pre">:no-typesetting:</span></code>.  This can for example be used to create only a target and
+index entry for later reference.
+Though, note that not every directive in every domain may support these
+options.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.2: </span>The directive option <code class="docutils literal notranslate"><span class="pre">noindexentry</span></code> in the Python, C, C++, and Javascript
+domains.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 5.2.3: </span>The directive option <code class="docutils literal notranslate"><span class="pre">:nocontentsentry:</span></code> in the Python, C, C++, Javascript,
+and reStructuredText domains.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.2: </span>The directive option <code class="docutils literal notranslate"><span class="pre">no-typesetting</span></code> in the Python, C, C++, Javascript,
+and reStructuredText domains.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 7.2: </span></p>
+<ul class="simple">
+<li><p>The directive option <code class="docutils literal notranslate"><span class="pre">:noindex:</span></code> was renamed
+to <code class="docutils literal notranslate"><span class="pre">:no-index:</span></code>.</p></li>
+<li><p>The directive option <code class="docutils literal notranslate"><span class="pre">:noindexentry:</span></code> was renamed
+to <code class="docutils literal notranslate"><span class="pre">:no-index-entry:</span></code>.</p></li>
+<li><p>The directive option <code class="docutils literal notranslate"><span class="pre">:nocontentsentry:</span></code> was renamed
+to <code class="docutils literal notranslate"><span class="pre">:no-contents-entry:</span></code>.</p></li>
+</ul>
+<p>The previous names are retained as aliases,
+but will be deprecated and removed
+in a future version of Sphinx.</p>
+</div>
+<p>An example using a Python domain directive:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> spam(eggs)
+                 ham(eggs)
+
+   Spam or ham the foo.
+</pre></div>
+</div>
+<p>This describes the two Python functions <code class="docutils literal notranslate"><span class="pre">spam</span></code> and <code class="docutils literal notranslate"><span class="pre">ham</span></code>.  (Note that when
+signatures become too long, you can break them if you add a backslash to lines
+that are continued in the next line.  Example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> filterwarnings(action, message=&#39;&#39;, category=Warning, \
+                                module=&#39;&#39;, lineno=0, append=False)
+   <span class="nc">:no-index:</span>
+</pre></div>
+</div>
+<p>(This example also shows how to use the <code class="docutils literal notranslate"><span class="pre">:no-index:</span></code> flag.)</p>
+<p>The domains also provide roles that link back to these object descriptions.
+For example, to link to one of the functions described in the example above,
+you could say</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>The function <span class="na">:py:func:</span><span class="nv">`spam`</span> does a similar thing.
+</pre></div>
+</div>
+<p>As you can see, both directive and role names contain the domain name and the
+directive name.</p>
+<p>The directive option <code class="docutils literal notranslate"><span class="pre">:no-typesetting:</span></code> can be used to create a target
+(and index entry) which can later be referenced
+by the roles provided by the domain.
+This is particularly useful for literate programming:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> spam(eggs)
+   <span class="nc">:no-typesetting:</span>
+
+<span class="p">..</span> <span class="ow">code</span><span class="p">::</span> <span class="k">python</span>
+
+   <span class="k">def</span><span class="w"> </span><span class="nf">spam</span><span class="p">(</span><span class="n">eggs</span><span class="p">):</span>
+       <span class="k">pass</span>
+
+The function <span class="na">:py:func:</span><span class="nv">`spam`</span> does nothing.
+</pre></div>
+</div>
+<p class="rubric">Default Domain</p>
+<p>For documentation describing objects from solely one domain, authors will not
+have to state again its name at each directive, role, etc… after
+having specified a default. This can be done either via the config
+value <a class="reference internal" href="../configuration.html#confval-primary_domain"><code class="xref std std-confval docutils literal notranslate"><span class="pre">primary_domain</span></code></a> or via this directive:</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-default-domain">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">default-domain::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-default-domain" title="Link to this definition">¶</a></dt>
+<dd><p>Select a new default domain.  While the <a class="reference internal" href="../configuration.html#confval-primary_domain"><code class="xref std std-confval docutils literal notranslate"><span class="pre">primary_domain</span></code></a> selects a
+global default, this only has an effect within the same file.</p>
+</dd></dl>
+
+<p>If no other default is selected, the Python domain (named <code class="docutils literal notranslate"><span class="pre">py</span></code>) is the
+default one, mostly for compatibility with documentation written for older
+versions of Sphinx.</p>
+<p>Directives and roles that belong to the default domain can be mentioned without
+giving the domain name, i.e.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">function</span><span class="p">::</span> pyfunc()
+
+   Describes a Python function.
+
+Reference to <span class="na">:func:</span><span class="nv">`pyfunc`</span>.
+</pre></div>
+</div>
+<section id="cross-referencing-syntax">
+<h3>Cross-referencing syntax<a class="headerlink" href="#cross-referencing-syntax" title="Link to this heading">¶</a></h3>
+<p>For cross-reference roles provided by domains, the same facilities exist as for
+general cross-references.  See <a class="reference internal" href="../referencing.html#xref-syntax"><span class="std std-ref">Cross-referencing syntax</span></a>.</p>
+<p>In short:</p>
+<ul class="simple">
+<li><p>You may supply an explicit title and reference target: <code class="docutils literal notranslate"><span class="pre">:role:`title</span>
+<span class="pre">&lt;target&gt;`</span></code> will refer to <em>target</em>, but the link text will be <em>title</em>.</p></li>
+<li><p>If you prefix the content with <code class="docutils literal notranslate"><span class="pre">!</span></code>, no reference/hyperlink will be created.</p></li>
+<li><p>If you prefix the content with <code class="docutils literal notranslate"><span class="pre">~</span></code>, the link text will only be the last
+component of the target.  For example, <code class="docutils literal notranslate"><span class="pre">:py:meth:`~Queue.Queue.get`</span></code> will
+refer to <code class="docutils literal notranslate"><span class="pre">Queue.Queue.get</span></code> but only display <code class="docutils literal notranslate"><span class="pre">get</span></code> as the link text.</p></li>
+</ul>
+</section>
+</section>
+<section id="built-in-domains">
+<h2>Built-in domains<a class="headerlink" href="#built-in-domains" title="Link to this heading">¶</a></h2>
+<p>The following domains are included within Sphinx:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="standard.html">The Standard Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c.html">The C Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpp.html">The C++ Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript.html">The JavaScript Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathematics.html">The Mathematics Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">The Python Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restructuredtext.html">The reStructuredText Domain</a></li>
+</ul>
+</div>
+</section>
+<section id="more-domains">
+<h2>More domains<a class="headerlink" href="#more-domains" title="Link to this heading">¶</a></h2>
+<p>There are several third-party domains available as extensions, including:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-adadomain/">Ada</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-chapeldomain/">Chapel</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-coffee/">CoffeeScript</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-cldomain/">Common Lisp</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-dqndomain/">dqn</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-erlangdomain/">Erlang</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-golangdomain/">Go</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-httpdomain/">HTTP</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-jinjadomain/">Jinja</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-lassodomain/">Lasso</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-matlabdomain/">MATLAB</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-operationdomain/">Operation</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-phpdomain/">PHP</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-rubydomain/">Ruby</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-scaladomain/">Scala</a></p></li>
+</ul>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="../builders/index.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Builders</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="standard.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">The Standard Domain</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; Copyright 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+</div>
+  </body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Extending syntax with roles and directives &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=fb9458d3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css?v=4e502a7e" />
+    <script src="../../_static/documentation_options.js?v=891990c7"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=beaddf03"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/development/tutorials/extending_syntax.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="Extending the build process" href="extending_build.html" />
+    <link rel="prev" title="Tutorials" href="index.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../index.html">
+      <img src="../../_static/sphinx-logo.svg" alt="logo" />
+    </a>
+    <h1>Sphinx</h1>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>导航</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >Extending Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Tutorials</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Extending syntax with roles and directives</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Extending syntax with roles and directives</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#setting-up-the-project">Setting up the project</a></li>
+<li><a class="reference internal" href="#writing-the-extension">Writing the extension</a><ul>
+<li><a class="reference internal" href="#the-role-class">The role class</a></li>
+<li><a class="reference internal" href="#the-directive-class">The directive class</a></li>
+<li><a class="reference internal" href="#what-are-docutils-nodes">What are docutils nodes?</a></li>
+<li><a class="reference internal" href="#the-setup-function">The <code class="docutils literal notranslate"><span class="pre">setup</span></code> function</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-the-extension">Using the extension</a></li>
+<li><a class="reference internal" href="#further-reading">Further reading</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Extending Sphinx</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Extending syntax with roles and directives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extending_build.html">Extending the build process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adding_domain.html">Adding a reference domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autodoc_ext.html">Developing autodoc extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../howtos/index.html">How-tos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../html_themes/index.html">HTML theme development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="extending-syntax-with-roles-and-directives">
+<span id="tutorial-extending-syntax"></span><h1>Extending syntax with roles and directives<a class="headerlink" href="#extending-syntax-with-roles-and-directives" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>The syntax of both reStructuredText and MyST can be extended
+by creating new <strong>directives</strong> - for block-level elements -
+and <strong>roles</strong> - for inline elements.</p>
+<p>In this tutorial we shall extend Sphinx to add:</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">hello</span></code> role, that will simply output the text <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">{text}!</span></code>.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">hello</span></code> directive, that will simply output the text <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">{text}!</span></code>,
+as a paragraph.</p></li>
+</ul>
+<p>For this extension, you will need some basic understanding of Python,
+and we shall also introduce aspects of the <a class="reference external" href="https://docutils.sourceforge.io/">docutils</a> API.</p>
+</section>
+<section id="setting-up-the-project">
+<h2>Setting up the project<a class="headerlink" href="#setting-up-the-project" title="Link to this heading">¶</a></h2>
+<p>You can either use an existing Sphinx project
+or create a new one using <strong class="program">sphinx-quickstart</strong>.</p>
+<p>With this we will add the extension to the project,
+within the <code class="file docutils literal notranslate"><span class="pre">source</span></code> folder:</p>
+<ol class="arabic simple">
+<li><p>Create an <code class="file docutils literal notranslate"><span class="pre">_ext</span></code> folder in <code class="file docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p>Create a new Python file in the <code class="file docutils literal notranslate"><span class="pre">_ext</span></code> folder called
+<code class="file docutils literal notranslate"><span class="pre">helloworld.py</span></code></p></li>
+</ol>
+<p>Here is an example of the folder structure you might obtain:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>└── source
+    ├── _ext
+    │   └── helloworld.py
+    ├── conf.py
+    ├── index.rst
+</pre></div>
+</div>
+</section>
+<section id="writing-the-extension">
+<h2>Writing the extension<a class="headerlink" href="#writing-the-extension" title="Link to this heading">¶</a></h2>
+<p>Open <code class="file docutils literal notranslate"><span class="pre">helloworld.py</span></code> and paste the following code in it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kn">from</span><span class="w"> </span><span class="nn">docutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">nodes</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.application</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sphinx</span>
+<span class="linenos"> 6</span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.docutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">SphinxDirective</span><span class="p">,</span> <span class="n">SphinxRole</span>
+<span class="linenos"> 7</span><span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtensionMetadata</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="k">class</span><span class="w"> </span><span class="nc">HelloRole</span><span class="p">(</span><span class="n">SphinxRole</span><span class="p">):</span>
+<span class="linenos">11</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;A role to say hello!&quot;&quot;&quot;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">system_message</span><span class="p">]]:</span>
+<span class="linenos">14</span>        <span class="n">node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">inline</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Hello </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="k">return</span> <span class="p">[</span><span class="n">node</span><span class="p">],</span> <span class="p">[]</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="k">class</span><span class="w"> </span><span class="nc">HelloDirective</span><span class="p">(</span><span class="n">SphinxDirective</span><span class="p">):</span>
+<span class="linenos">19</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;A directive to say hello!&quot;&quot;&quot;</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>    <span class="n">required_arguments</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">]:</span>
+<span class="linenos">24</span>        <span class="n">paragraph_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;hello </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
+<span class="linenos">25</span>        <span class="k">return</span> <span class="p">[</span><span class="n">paragraph_node</span><span class="p">]</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtensionMetadata</span><span class="p">:</span>
+<span class="linenos">29</span>    <span class="n">app</span><span class="o">.</span><span class="n">add_role</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">HelloRole</span><span class="p">())</span>
+<span class="linenos">30</span>    <span class="n">app</span><span class="o">.</span><span class="n">add_directive</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">HelloDirective</span><span class="p">)</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span>    <span class="k">return</span> <span class="p">{</span>
+<span class="linenos">33</span>        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
+<span class="linenos">34</span>        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">35</span>        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">36</span>    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Some essential things are happening in this example:</p>
+<section id="the-role-class">
+<h3>The role class<a class="headerlink" href="#the-role-class" title="Link to this heading">¶</a></h3>
+<p>Our new role is declared in the <code class="docutils literal notranslate"><span class="pre">HelloRole</span></code> class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span><span class="w"> </span><span class="nc">HelloRole</span><span class="p">(</span><span class="n">SphinxRole</span><span class="p">):</span>
+<span class="linenos">2</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;A role to say hello!&quot;&quot;&quot;</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">system_message</span><span class="p">]]:</span>
+<span class="linenos">5</span>        <span class="n">node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">inline</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Hello </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
+<span class="linenos">6</span>        <span class="k">return</span> <span class="p">[</span><span class="n">node</span><span class="p">],</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p>This class extends the <a class="reference internal" href="../../extdev/utils.html#sphinx.util.docutils.SphinxRole" title="sphinx.util.docutils.SphinxRole"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxRole</span></code></a> class.
+The class contains a <code class="docutils literal notranslate"><span class="pre">run</span></code> method,
+which is a requirement for every role.
+It contains the main logic of the role and it
+returns a tuple containing:</p>
+<ul class="simple">
+<li><p>a list of inline-level docutils nodes to be processed by Sphinx.</p></li>
+<li><p>an (optional) list of system message nodes</p></li>
+</ul>
+</section>
+<section id="the-directive-class">
+<h3>The directive class<a class="headerlink" href="#the-directive-class" title="Link to this heading">¶</a></h3>
+<p>Our new directive is declared in the <code class="docutils literal notranslate"><span class="pre">HelloDirective</span></code> class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span><span class="w"> </span><span class="nc">HelloDirective</span><span class="p">(</span><span class="n">SphinxDirective</span><span class="p">):</span>
+<span class="linenos">2</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;A directive to say hello!&quot;&quot;&quot;</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span>    <span class="n">required_arguments</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">nodes</span><span class="o">.</span><span class="n">Node</span><span class="p">]:</span>
+<span class="linenos">7</span>        <span class="n">paragraph_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;hello </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
+<span class="linenos">8</span>        <span class="k">return</span> <span class="p">[</span><span class="n">paragraph_node</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This class extends the <a class="reference internal" href="../../extdev/utils.html#sphinx.util.docutils.SphinxDirective" title="sphinx.util.docutils.SphinxDirective"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxDirective</span></code></a> class.
+The class contains a <code class="docutils literal notranslate"><span class="pre">run</span></code> method,
+which is a requirement for every directive.
+It contains the main logic of the directive and it
+returns a list of block-level docutils nodes to be processed by Sphinx.
+It also contains a <code class="docutils literal notranslate"><span class="pre">required_arguments</span></code> attribute,
+which tells Sphinx how many arguments are required for the directive.</p>
+</section>
+<section id="what-are-docutils-nodes">
+<h3>What are docutils nodes?<a class="headerlink" href="#what-are-docutils-nodes" title="Link to this heading">¶</a></h3>
+<p>When Sphinx parses a document,
+it creates an “Abstract Syntax Tree” (AST) of nodes
+that represent the content of the document in a structured way,
+that is generally independent of any one
+input (rST, MyST, etc) or output (HTML, LaTeX, etc) format.
+It is a tree because each node can have children nodes, and so on:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;document&gt;</span>
+<span class="w">   </span><span class="nt">&lt;paragraph&gt;</span>
+<span class="w">      </span><span class="nt">&lt;text&gt;</span>
+<span class="w">         </span>Hello<span class="w"> </span>world!
+</pre></div>
+</div>
+<p>The <a class="reference external" href="https://docutils.sourceforge.io/">docutils</a> package provides many <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/doctree.html">built-in nodes</a>,
+to represent different types of content such as
+text, paragraphs, references, tables, etc.</p>
+<p>Each node type generally only accepts a specific set of direct child nodes,
+for example the <code class="docutils literal notranslate"><span class="pre">document</span></code> node should only contain “block-level” nodes,
+such as <code class="docutils literal notranslate"><span class="pre">paragraph</span></code>, <code class="docutils literal notranslate"><span class="pre">section</span></code>, <code class="docutils literal notranslate"><span class="pre">table</span></code>, etc,
+whilst the <code class="docutils literal notranslate"><span class="pre">paragraph</span></code> node should only contain “inline-level” nodes,
+such as <code class="docutils literal notranslate"><span class="pre">text</span></code>, <code class="docutils literal notranslate"><span class="pre">emphasis</span></code>, <code class="docutils literal notranslate"><span class="pre">strong</span></code>, etc.</p>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p>The docutils documentation on
+<a class="reference external" href="https://docutils.sourceforge.io/docs/howto/rst-directives.html">creating directives</a>, and
+<a class="reference external" href="https://docutils.sourceforge.io/docs/howto/rst-roles.html">creating roles</a>.</p>
+</div>
+</section>
+<section id="the-setup-function">
+<h3>The <code class="docutils literal notranslate"><span class="pre">setup</span></code> function<a class="headerlink" href="#the-setup-function" title="Link to this heading">¶</a></h3>
+<p>This function is a requirement.
+We use it to plug our new directive into Sphinx.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtensionMetadata</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_role</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">HelloRole</span><span class="p">())</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_directive</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">HelloDirective</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>The simplest thing you can do is to call the
+<a class="reference internal" href="../../extdev/appapi.html#sphinx.application.Sphinx.add_role" title="sphinx.application.Sphinx.add_role"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Sphinx.add_role()</span></code></a> and <a class="reference internal" href="../../extdev/appapi.html#sphinx.application.Sphinx.add_directive" title="sphinx.application.Sphinx.add_directive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Sphinx.add_directive()</span></code></a> methods,
+which is what we’ve done here.
+For this particular call, the first argument is the name of the role/directive itself
+as used in a reStructuredText file.
+In this case, we would use <code class="docutils literal notranslate"><span class="pre">hello</span></code>. For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>Some intro text here...
+
+<span class="p">..</span> <span class="ow">hello</span><span class="p">::</span> world
+
+Some text with a <span class="na">:hello:</span><span class="nv">`world`</span> role.
+</pre></div>
+</div>
+<p>We also return the <a class="reference internal" href="../../extdev/index.html#ext-metadata"><span class="std std-ref">extension metadata</span></a> that indicates the
+version of our extension, along with the fact that it is safe to use the
+extension for both parallel reading and writing.</p>
+</section>
+</section>
+<section id="using-the-extension">
+<h2>Using the extension<a class="headerlink" href="#using-the-extension" title="Link to this heading">¶</a></h2>
+<p>The extension has to be declared in your <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> file to make Sphinx
+aware of it. There are two steps necessary here:</p>
+<ol class="arabic simple">
+<li><p>Add the <code class="file docutils literal notranslate"><span class="pre">_ext</span></code> directory to the <a class="reference external" href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH">Python path</a> using
+<code class="docutils literal notranslate"><span class="pre">sys.path.append</span></code>. This should be placed at the top of the file.</p></li>
+<li><p>Update or create the <a class="reference internal" href="../../usage/configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">extensions</span></code></a> list and add the extension file
+name to the list</p></li>
+</ol>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;./_ext&quot;</span><span class="p">))</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;helloworld&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>Because we haven’t installed our extension as a <a class="reference external" href="https://packaging.python.org/">Python package</a>, we need to
+modify the <a class="reference external" href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH">Python path</a> so Sphinx can find our extension. This is why we
+need the call to <code class="docutils literal notranslate"><span class="pre">sys.path.append</span></code>.</p>
+</div>
+<p>You can now use the extension in a file. For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>Some intro text here...
+
+<span class="p">..</span> <span class="ow">hello</span><span class="p">::</span> world
+
+Some text with a <span class="na">:hello:</span><span class="nv">`world`</span> role.
+</pre></div>
+</div>
+<p>The sample above would generate:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Some intro text here...
+
+Hello world!
+
+Some text with a hello world! role.
+</pre></div>
+</div>
+</section>
+<section id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Link to this heading">¶</a></h2>
+<p>This is the very basic principle of an extension
+that creates a new role and directive.</p>
+<p>For a more advanced example, refer to <a class="reference internal" href="extending_build.html#tutorial-extend-build"><span class="std std-ref">Extending the build process</span></a>.</p>
+<p>If you wish to share your extension across multiple projects or with others,
+check out the <a class="reference internal" href="../../usage/extensions/index.html#third-party-extensions"><span class="std std-ref">Third-party extensions</span></a> section.</p>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="index.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Tutorials</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="extending_build.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">Extending the build process</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版权所有 2007-2026, the Sphinx developers.
+  由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7创建。
+</div>
+  </body>
+</html>

@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sphinx.builders.linkcheck &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../../../_static/documentation_options.js?v=bae23c90"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/translations.js?v=cbf116e0"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/_modules/sphinx/builders/linkcheck.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../../search.html" />
+
+ 
+
+<script type="text/javascript" src="../../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../../index.html">
+      <img src="../../../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../../index.html" >模組原始碼</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="../builders.html" accesskey="U">sphinx.builders</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">sphinx.builders.linkcheck</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">基礎知識</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">開始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">建置您的第一個專案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使用者指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">使用 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">擴充 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">Sphinx 常見問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Sphinx 作者群</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../man/index.html">命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/configuration.html">組態</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/extensions/index.html">擴充功能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes/index.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <h1>sphinx.builders.linkcheck 的原始碼</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;The CheckExternalLinksBuilder class.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">contextlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrEnum</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">html.parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTMLParser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">PriorityQueue</span><span class="p">,</span> <span class="n">Queue</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">threading</span><span class="w"> </span><span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="kn">import</span> <span class="n">quote</span><span class="p">,</span> <span class="n">unquote</span><span class="p">,</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">urlsplit</span><span class="p">,</span> <span class="n">urlunparse</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">docutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">nodes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">requests.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="ne">ConnectionError</span><span class="p">,</span>  <span class="c1"># NoQA: A004</span>
+    <span class="n">HTTPError</span><span class="p">,</span>
+    <span class="n">SSLError</span><span class="p">,</span>
+    <span class="n">TooManyRedirects</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">requests.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Timeout</span> <span class="k">as</span> <span class="n">RequestTimeout</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx._cli.util.colour</span><span class="w"> </span><span class="kn">import</span> <span class="n">darkgray</span><span class="p">,</span> <span class="n">darkgreen</span><span class="p">,</span> <span class="n">purple</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="n">turquoise</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.builders.dummy</span><span class="w"> </span><span class="kn">import</span> <span class="n">DummyBuilder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.locale</span><span class="w"> </span><span class="kn">import</span> <span class="n">__</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.transforms.post_transforms</span><span class="w"> </span><span class="kn">import</span> <span class="n">SphinxPostTransform</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging</span><span class="p">,</span> <span class="n">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util._uri</span><span class="w"> </span><span class="kn">import</span> <span class="n">encode_uri</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.http_date</span><span class="w"> </span><span class="kn">import</span> <span class="n">rfc1123_to_epoch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.nodes</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_node_line</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterator</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">TypeAlias</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">requests</span><span class="w"> </span><span class="kn">import</span> <span class="n">Response</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.application</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sphinx</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">Config</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util._pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">_StrPath</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtensionMetadata</span>
+
+    <span class="n">_URIProperties</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="s1">&#39;_Status&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_Status</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+    <span class="n">BROKEN</span> <span class="o">=</span> <span class="s1">&#39;broken&#39;</span>
+    <span class="n">IGNORED</span> <span class="o">=</span> <span class="s1">&#39;ignored&#39;</span>
+    <span class="n">RATE_LIMITED</span> <span class="o">=</span> <span class="s1">&#39;rate-limited&#39;</span>
+    <span class="n">REDIRECTED</span> <span class="o">=</span> <span class="s1">&#39;redirected&#39;</span>
+    <span class="n">TIMEOUT</span> <span class="o">=</span> <span class="s1">&#39;timeout&#39;</span>
+    <span class="n">UNCHECKED</span> <span class="o">=</span> <span class="s1">&#39;unchecked&#39;</span>
+    <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="s1">&#39;unknown&#39;</span>
+    <span class="n">WORKING</span> <span class="o">=</span> <span class="s1">&#39;working&#39;</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># matches to foo:// and // (a protocol relative URL)</span>
+<span class="n">uri_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;([a-z]+:)?//&#39;</span><span class="p">)</span>
+
+<span class="n">DEFAULT_REQUEST_HEADERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;text/html,application/xhtml+xml;q=0.9,*/*;q=0.8&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">CHECK_IMMEDIATELY</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">QUEUE_POLL_SECS</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">DEFAULT_DELAY</span> <span class="o">=</span> <span class="mf">60.0</span>
+
+
+<div class="viewcode-block" id="CheckExternalLinksBuilder">
+<a class="viewcode-back" href="../../../usage/builders/index.html#sphinx.builders.linkcheck.CheckExternalLinksBuilder">[文件]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CheckExternalLinksBuilder</span><span class="p">(</span><span class="n">DummyBuilder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks for broken external links.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;linkcheck&#39;</span>
+    <span class="n">epilog</span> <span class="o">=</span> <span class="n">__</span><span class="p">(</span><span class="s1">&#39;Look for any errors in the above output or in </span><span class="si">%(outdir)s</span><span class="s1">/output.txt&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">broken_hyperlinks</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timed_out_hyperlinks</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hyperlinks</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Hyperlink</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># set a timeout for non-responding servers</span>
+        <span class="n">socket</span><span class="o">.</span><span class="n">setdefaulttimeout</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">checker</span> <span class="o">=</span> <span class="n">HyperlinkAvailabilityChecker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="n">output_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outdir</span> <span class="o">/</span> <span class="s1">&#39;output.txt&#39;</span>
+        <span class="n">output_json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outdir</span> <span class="o">/</span> <span class="s1">&#39;output.json&#39;</span>
+        <span class="k">with</span> <span class="p">(</span>
+            <span class="nb">open</span><span class="p">(</span><span class="n">output_text</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="bp">self</span><span class="o">.</span><span class="n">txt_outfile</span><span class="p">,</span>
+            <span class="nb">open</span><span class="p">(</span><span class="n">output_json</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="bp">self</span><span class="o">.</span><span class="n">json_outfile</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">checker</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hyperlinks</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">process_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">broken_hyperlinks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">timed_out_hyperlinks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">statuscode</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">CheckResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">doc2path</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">docname</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">res_uri</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">uri</span>
+
+        <span class="n">linkstat</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">_Status</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span>
+            <span class="s1">&#39;lineno&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">lineno</span><span class="p">,</span>
+            <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="p">,</span>
+            <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
+            <span class="s1">&#39;uri&#39;</span><span class="p">:</span> <span class="n">res_uri</span><span class="p">,</span>
+            <span class="s1">&#39;info&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_linkstat</span><span class="p">(</span><span class="n">linkstat</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">lineno</span> <span class="ow">and</span> <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="n">_Status</span><span class="o">.</span><span class="n">UNCHECKED</span><span class="p">:</span>
+            <span class="c1"># unchecked links are not logged</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;(</span><span class="si">%16s</span><span class="s1">: line </span><span class="si">%4d</span><span class="s1">) &#39;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">docname</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">lineno</span><span class="p">,</span> <span class="n">nonl</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">match</span> <span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="p">:</span>
+            <span class="k">case</span> <span class="n">_Status</span><span class="o">.</span><span class="n">RATE_LIMITED</span> <span class="o">|</span> <span class="n">_Status</span><span class="o">.</span><span class="n">UNCHECKED</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">case</span> <span class="n">_Status</span><span class="o">.</span><span class="n">IGNORED</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">res_uri</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="n">res_uri</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">darkgray</span><span class="p">(</span><span class="s1">&#39;-ignored- &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">msg</span><span class="p">)</span>  <span class="c1"># NoQA: G003</span>
+            <span class="k">case</span> <span class="n">_Status</span><span class="o">.</span><span class="n">WORKING</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">darkgreen</span><span class="p">(</span><span class="s1">&#39;ok        &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">res_uri</span><span class="si">}{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># NoQA: G003</span>
+            <span class="k">case</span> <span class="n">_Status</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">quiet</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;timeout   &#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">res_uri</span><span class="si">}{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">docname</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">lineno</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="n">red</span><span class="p">(</span><span class="s1">&#39;timeout   &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">res_uri</span> <span class="o">+</span> <span class="n">red</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; - </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_entry</span><span class="p">(</span>
+                    <span class="n">_Status</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">,</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">docname</span><span class="p">,</span>
+                    <span class="n">filename</span><span class="p">,</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">lineno</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">res_uri</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">timed_out_hyperlinks</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">case</span> <span class="n">_Status</span><span class="o">.</span><span class="n">BROKEN</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">quiet</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                        <span class="n">__</span><span class="p">(</span><span class="s1">&#39;broken link: </span><span class="si">%s</span><span class="s1"> (</span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">),</span>
+                        <span class="n">res_uri</span><span class="p">,</span>
+                        <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+                        <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">docname</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">lineno</span><span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="n">red</span><span class="p">(</span><span class="s1">&#39;broken    &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">res_uri</span> <span class="o">+</span> <span class="n">red</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; - </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_entry</span><span class="p">(</span>
+                    <span class="n">_Status</span><span class="o">.</span><span class="n">BROKEN</span><span class="p">,</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">docname</span><span class="p">,</span>
+                    <span class="n">filename</span><span class="p">,</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">lineno</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">res_uri</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">broken_hyperlinks</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">case</span> <span class="n">_Status</span><span class="o">.</span><span class="n">REDIRECTED</span><span class="p">:</span>
+                <span class="k">match</span> <span class="n">result</span><span class="o">.</span><span class="n">code</span><span class="p">:</span>
+                    <span class="k">case</span> <span class="mi">301</span><span class="p">:</span>
+                        <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;permanently&#39;</span>
+                    <span class="k">case</span> <span class="mi">302</span><span class="p">:</span>
+                        <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;with Found&#39;</span>
+                    <span class="k">case</span> <span class="mi">303</span><span class="p">:</span>
+                        <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;with See Other&#39;</span>
+                    <span class="k">case</span> <span class="mi">307</span><span class="p">:</span>
+                        <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;temporarily&#39;</span>
+                    <span class="k">case</span> <span class="mi">308</span><span class="p">:</span>
+                        <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;permanently&#39;</span>
+                    <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                        <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;with unknown code&#39;</span>
+                <span class="n">linkstat</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">text</span>
+                <span class="n">redirection</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">linkcheck_allowed_redirects</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;redirect  </span><span class="si">{</span><span class="n">res_uri</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">redirection</span><span class="si">}</span><span class="s1">&#39;</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">docname</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">lineno</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">colour</span> <span class="o">=</span> <span class="n">turquoise</span> <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="mi">307</span> <span class="k">else</span> <span class="n">purple</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="n">colour</span><span class="p">(</span><span class="s1">&#39;redirect  &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">res_uri</span> <span class="o">+</span> <span class="n">colour</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; - </span><span class="si">{</span><span class="n">redirection</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_entry</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;redirected </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">docname</span><span class="p">,</span>
+                    <span class="n">filename</span><span class="p">,</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">lineno</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">res_uri</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">case</span> <span class="n">_Status</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Unknown status.&#39;</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_linkstat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">_Status</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">json_outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">json_outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_entry</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">what</span><span class="p">:</span> <span class="n">_Status</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">docname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">_StrPath</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">uri</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">txt_outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="s1">: [</span><span class="si">{</span><span class="n">what</span><span class="si">}</span><span class="s1">] </span><span class="si">{</span><span class="n">uri</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HyperlinkCollector</span><span class="p">(</span><span class="n">SphinxPostTransform</span><span class="p">):</span>
+    <span class="n">builders</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;linkcheck&#39;</span><span class="p">,)</span>
+    <span class="n">default_priority</span> <span class="o">=</span> <span class="mi">800</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">findall</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">uri</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_uri</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add_uri</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Find a URI for a given node.</span>
+
+<span class="sd">        This call can be used to retrieve a URI from a provided node. If no</span>
+<span class="sd">        URI exists for a provided node, this call will return ``None``.</span>
+
+<span class="sd">        This method can be useful for extension developers who wish to</span>
+<span class="sd">        easily inject hyperlinks into a builder by only needing to override</span>
+<span class="sd">        this method.</span>
+
+<span class="sd">        :param node: A node class</span>
+<span class="sd">        :returns: URI of the node</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># reference nodes</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">reference</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;refuri&#39;</span> <span class="ow">in</span> <span class="n">node</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;refuri&#39;</span><span class="p">]</span>
+
+        <span class="c1"># image nodes</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">image</span><span class="p">):</span>
+            <span class="n">uri</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;candidates&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">uri</span> <span class="ow">and</span> <span class="s1">&#39;://&#39;</span> <span class="ow">in</span> <span class="n">uri</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">uri</span>
+
+        <span class="c1"># raw nodes</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">raw</span><span class="p">):</span>
+            <span class="n">uri</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;source&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">uri</span> <span class="ow">and</span> <span class="s1">&#39;://&#39;</span> <span class="ow">in</span> <span class="n">uri</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">uri</span>
+
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Registers a node&#39;s URI into a builder&#39;s collection of hyperlinks.</span>
+
+<span class="sd">        Provides the ability to register a URI value determined from a node</span>
+<span class="sd">        into the linkcheck&#39;s builder. URI&#39;s processed through this call can</span>
+<span class="sd">        be manipulated through a ``linkcheck-process-uri`` event before the</span>
+<span class="sd">        builder attempts to validate.</span>
+
+<span class="sd">        :param uri: URI to add</span>
+<span class="sd">        :param node: A node class where the URI was found</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">builder</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s1">&#39;CheckExternalLinksBuilder&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="p">)</span>
+        <span class="n">hyperlinks</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">hyperlinks</span>
+        <span class="n">docname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">docname</span>
+
+        <span class="k">if</span> <span class="n">newuri</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">emit_firstresult</span><span class="p">(</span><span class="s1">&#39;linkcheck-process-uri&#39;</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+            <span class="n">uri</span> <span class="o">=</span> <span class="n">newuri</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">lineno</span> <span class="o">=</span> <span class="n">get_node_line</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">lineno</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">uri</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">hyperlinks</span><span class="p">:</span>
+            <span class="n">hyperlinks</span><span class="p">[</span><span class="n">uri</span><span class="p">]</span> <span class="o">=</span> <span class="n">Hyperlink</span><span class="p">(</span>
+                <span class="n">uri</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">doc2path</span><span class="p">(</span><span class="n">docname</span><span class="p">),</span> <span class="n">lineno</span>
+            <span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Hyperlink</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">uri</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">docname</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">docpath</span><span class="p">:</span> <span class="n">_StrPath</span>
+    <span class="n">lineno</span><span class="p">:</span> <span class="nb">int</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HyperlinkAvailabilityChecker</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate_limits</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">RateLimit</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rqueue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">[</span><span class="n">CheckResult</span><span class="p">]</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Thread</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wqueue</span><span class="p">:</span> <span class="n">PriorityQueue</span><span class="p">[</span><span class="n">CheckRequest</span><span class="p">]</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_workers</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">to_ignore</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">Pattern</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="nb">map</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">linkcheck_ignore</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hyperlinks</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Hyperlink</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">CheckResult</span><span class="p">]:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invoke_threads</span><span class="p">()</span>
+
+        <span class="n">total_links</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">hyperlink</span> <span class="ow">in</span> <span class="n">hyperlinks</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_ignored_uri</span><span class="p">(</span><span class="n">hyperlink</span><span class="o">.</span><span class="n">uri</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">CheckResult</span><span class="p">(</span>
+                    <span class="n">uri</span><span class="o">=</span><span class="n">hyperlink</span><span class="o">.</span><span class="n">uri</span><span class="p">,</span>
+                    <span class="n">docname</span><span class="o">=</span><span class="n">hyperlink</span><span class="o">.</span><span class="n">docname</span><span class="p">,</span>
+                    <span class="n">lineno</span><span class="o">=</span><span class="n">hyperlink</span><span class="o">.</span><span class="n">lineno</span><span class="p">,</span>
+                    <span class="n">status</span><span class="o">=</span><span class="n">_Status</span><span class="o">.</span><span class="n">IGNORED</span><span class="p">,</span>
+                    <span class="n">message</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                    <span class="n">code</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wqueue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">CheckRequest</span><span class="p">(</span><span class="n">CHECK_IMMEDIATELY</span><span class="p">,</span> <span class="n">hyperlink</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="n">total_links</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">done</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">done</span> <span class="o">&lt;</span> <span class="n">total_links</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">rqueue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="n">done</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">shutdown_threads</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">invoke_threads</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span><span class="p">):</span>
+            <span class="n">thread</span> <span class="o">=</span> <span class="n">HyperlinkAvailabilityCheckWorker</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rqueue</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wqueue</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate_limits</span>
+            <span class="p">)</span>
+            <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thread</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">shutdown_threads</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wqueue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">_worker</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">workers</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wqueue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">CheckRequest</span><span class="p">(</span><span class="n">CHECK_IMMEDIATELY</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_ignored_uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">pat</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span> <span class="k">for</span> <span class="n">pat</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_ignore</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CheckRequest</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">next_check</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">hyperlink</span><span class="p">:</span> <span class="n">Hyperlink</span> <span class="o">|</span> <span class="kc">None</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CheckResult</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">uri</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">docname</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">lineno</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">status</span><span class="p">:</span> <span class="n">_Status</span>
+    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">code</span><span class="p">:</span> <span class="nb">int</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HyperlinkAvailabilityCheckWorker</span><span class="p">(</span><span class="n">Thread</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A worker class for checking the availability of hyperlinks.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">,</span>
+        <span class="n">rqueue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">[</span><span class="n">CheckResult</span><span class="p">],</span>
+        <span class="n">wqueue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">[</span><span class="n">CheckRequest</span><span class="p">],</span>
+        <span class="n">rate_limits</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">RateLimit</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate_limits</span> <span class="o">=</span> <span class="n">rate_limits</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rqueue</span> <span class="o">=</span> <span class="n">rqueue</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wqueue</span> <span class="o">=</span> <span class="n">wqueue</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">anchors_ignore</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">Pattern</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="nb">map</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_anchors_ignore</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anchors_ignore_for_url</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">Pattern</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="nb">map</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_anchors_ignore_for_url</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">documents_exclude</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">Pattern</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="nb">map</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_exclude_documents</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">),</span> <span class="n">auth_info</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">auth_info</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_auth</span>
+        <span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_headers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_request_headers</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_anchors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_anchors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowed_redirects</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">Pattern</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">re</span><span class="o">.</span><span class="n">Pattern</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowed_redirects</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_allowed_redirects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_retries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate_limit_timeout</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_rate_limit_timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_allow_unauthorized</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_allow_unauthorized</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_status</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="n">_Status</span><span class="o">.</span><span class="n">BROKEN</span><span class="p">,</span> <span class="n">_Status</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_report_timeouts_as_broken</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_status</span> <span class="o">=</span> <span class="n">_Status</span><span class="o">.</span><span class="n">BROKEN</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_status</span> <span class="o">=</span> <span class="n">_Status</span><span class="o">.</span><span class="n">TIMEOUT</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_agent</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">user_agent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tls_verify</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">tls_verify</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tls_cacerts</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">tls_cacerts</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">_Session</span><span class="p">(</span>
+            <span class="n">_ignored_redirects</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">linkcheck_ignore</span><span class="p">))</span>
+        <span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">next_check</span><span class="p">,</span> <span class="n">hyperlink</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wqueue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">hyperlink</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># An empty hyperlink is a signal to shutdown the worker; cleanup resources here</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="k">break</span>
+
+            <span class="n">uri</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">_docpath</span><span class="p">,</span> <span class="n">lineno</span> <span class="o">=</span> <span class="n">hyperlink</span>
+            <span class="k">if</span> <span class="n">uri</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="n">netloc</span> <span class="o">=</span> <span class="n">urlsplit</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span><span class="o">.</span><span class="n">netloc</span>
+            <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">suppress</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">):</span>
+                <span class="c1"># Refresh rate limit.</span>
+                <span class="c1"># When there are many links in the queue, workers are all stuck waiting</span>
+                <span class="c1"># for responses, but the builder keeps queuing. Links in the queue may</span>
+                <span class="c1"># have been queued before rate limits were discovered.</span>
+                <span class="n">next_check</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate_limits</span><span class="p">[</span><span class="n">netloc</span><span class="p">]</span><span class="o">.</span><span class="n">next_check</span>
+            <span class="k">if</span> <span class="n">next_check</span> <span class="o">&gt;</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">():</span>
+                <span class="c1"># Sleep before putting message back in the queue to avoid</span>
+                <span class="c1"># waking up other threads.</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">QUEUE_POLL_SECS</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wqueue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">CheckRequest</span><span class="p">(</span><span class="n">next_check</span><span class="p">,</span> <span class="n">hyperlink</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wqueue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
+                <span class="k">continue</span>
+            <span class="n">status</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check</span><span class="p">(</span><span class="n">docname</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">hyperlink</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">_Status</span><span class="o">.</span><span class="n">RATE_LIMITED</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="n">darkgray</span><span class="p">(</span><span class="s1">&#39;-rate limited-   &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">uri</span> <span class="o">+</span> <span class="n">darkgray</span><span class="p">(</span><span class="s1">&#39; | sleeping...&#39;</span><span class="p">)</span>  <span class="c1"># NoQA: G003</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">rqueue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">CheckResult</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">code</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wqueue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">hyperlink</span><span class="p">:</span> <span class="n">Hyperlink</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_URIProperties</span><span class="p">:</span>
+        <span class="c1"># check for various conditions without bothering the network</span>
+
+        <span class="k">for</span> <span class="n">doc_matcher</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">documents_exclude</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">doc_matcher</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">docname</span><span class="p">):</span>
+                <span class="n">info</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">docname</span><span class="si">}</span><span class="s1"> matched </span><span class="si">{</span><span class="n">doc_matcher</span><span class="o">.</span><span class="n">pattern</span><span class="si">}</span><span class="s1"> from &#39;</span>
+                    <span class="s1">&#39;linkcheck_exclude_documents&#39;</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">IGNORED</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">uri</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="s1">&#39;mailto:&#39;</span><span class="p">,</span> <span class="s1">&#39;tel:&#39;</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">UNCHECKED</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">uri</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s1">&#39;http:&#39;</span><span class="p">,</span> <span class="s1">&#39;https:&#39;</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">uri_re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">uri</span><span class="p">):</span>
+                <span class="c1"># Non-supported URI schemes (ex. ftp)</span>
+                <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">UNCHECKED</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">hyperlink</span><span class="o">.</span><span class="n">docpath</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="n">uri</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">WORKING</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span>
+            <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">BROKEN</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span>
+
+        <span class="c1"># need to actually check the URI</span>
+        <span class="n">status</span><span class="p">:</span> <span class="n">_Status</span>
+        <span class="n">status</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">code</span> <span class="o">=</span> <span class="n">_Status</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">retries</span><span class="p">):</span>
+            <span class="n">status</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_uri</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">hyperlink</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">_Status</span><span class="o">.</span><span class="n">BROKEN</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="k">return</span> <span class="n">status</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">code</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_retrieval_methods</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">check_anchors</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">anchor</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Response</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]]]:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">check_anchors</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">anchor</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">head</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;allow_redirects&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;stream&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">hyperlink</span><span class="p">:</span> <span class="n">Hyperlink</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_URIProperties</span><span class="p">:</span>
+        <span class="n">req_url</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">,</span> <span class="n">anchor</span> <span class="o">=</span> <span class="n">uri</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">delimiter</span> <span class="ow">and</span> <span class="n">anchor</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">rex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchors_ignore</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">rex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">anchor</span><span class="p">):</span>
+                    <span class="n">anchor</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">rex</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchors_ignore_for_url</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">rex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">req_url</span><span class="p">):</span>
+                        <span class="n">anchor</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                        <span class="k">break</span>
+            <span class="n">anchor</span> <span class="o">=</span> <span class="n">unquote</span><span class="p">(</span><span class="n">anchor</span><span class="p">)</span>
+
+        <span class="c1"># handle non-ASCII URIs</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">req_url</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">UnicodeError</span><span class="p">:</span>
+            <span class="n">req_url</span> <span class="o">=</span> <span class="n">encode_uri</span><span class="p">(</span><span class="n">req_url</span><span class="p">)</span>
+
+        <span class="c1"># Get auth info, if any</span>
+        <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">auth_info</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">:</span>  <span class="c1"># NoQA: B007 (false positive)</span>
+            <span class="k">if</span> <span class="n">pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">uri</span><span class="p">):</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">auth_info</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># update request headers for the URL</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="n">_get_request_headers</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_headers</span><span class="p">)</span>
+
+        <span class="c1"># Linkcheck HTTP request logic:</span>
+        <span class="c1">#</span>
+        <span class="c1"># - Attempt HTTP HEAD before HTTP GET unless page content is required.</span>
+        <span class="c1"># - Follow server-issued HTTP redirects.</span>
+        <span class="c1"># - Respect server-issued HTTP 429 back-offs.</span>
+        <span class="n">error_message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">status_code</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">response_url</span> <span class="o">=</span> <span class="n">retry_after</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">retrieval_method</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieval_methods</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_anchors</span><span class="p">,</span> <span class="n">anchor</span>
+        <span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">retrieval_method</span><span class="p">(</span>
+                    <span class="n">url</span><span class="o">=</span><span class="n">req_url</span><span class="p">,</span>
+                    <span class="n">auth</span><span class="o">=</span><span class="n">auth_info</span><span class="p">,</span>
+                    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                    <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                    <span class="n">_user_agent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user_agent</span><span class="p">,</span>
+                    <span class="n">_tls_info</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tls_verify</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tls_cacerts</span><span class="p">),</span>
+                <span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">anchor</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_anchors</span> <span class="ow">and</span> <span class="n">response</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">found</span> <span class="o">=</span> <span class="n">contains_anchor</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">anchor</span><span class="p">)</span>
+                        <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+                            <span class="k">return</span> <span class="p">(</span>
+                                <span class="n">_Status</span><span class="o">.</span><span class="n">IGNORED</span><span class="p">,</span>
+                                <span class="s1">&#39;unable to decode response content&#39;</span><span class="p">,</span>
+                                <span class="mi">0</span><span class="p">,</span>
+                            <span class="p">)</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+                            <span class="k">return</span> <span class="p">(</span>
+                                <span class="n">_Status</span><span class="o">.</span><span class="n">BROKEN</span><span class="p">,</span>
+                                <span class="n">__</span><span class="p">(</span><span class="s2">&quot;Anchor &#39;</span><span class="si">%s</span><span class="s2">&#39; not found&quot;</span><span class="p">)</span> <span class="o">%</span> <span class="n">quote</span><span class="p">(</span><span class="n">anchor</span><span class="p">),</span>
+                                <span class="mi">0</span><span class="p">,</span>
+                            <span class="p">)</span>
+
+                <span class="c1"># Copy data we need from the (closed) response</span>
+                <span class="n">status_code</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+                <span class="n">redirect_status_code</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">status_code</span> <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">history</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="p">)</span>
+                <span class="n">retry_after</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Retry-After&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+                <span class="n">response_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+                <span class="k">del</span> <span class="n">response</span>
+                <span class="k">break</span>
+
+            <span class="k">except</span> <span class="n">RequestTimeout</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_status</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">),</span> <span class="mi">0</span>
+
+            <span class="k">except</span> <span class="n">SSLError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="c1"># SSL failure; report that the link is broken.</span>
+                <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">BROKEN</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">),</span> <span class="mi">0</span>
+
+            <span class="k">except</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="n">TooManyRedirects</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="c1"># Servers drop the connection on HEAD requests, causing</span>
+                <span class="c1"># ConnectionError.</span>
+                <span class="n">error_message</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">_IgnoredRedirection</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="c1"># A redirection to an ignored URI was attempted; report it appropriately</span>
+                <span class="k">return</span> <span class="p">(</span>
+                    <span class="n">_Status</span><span class="o">.</span><span class="n">IGNORED</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s1">&#39;ignored redirect: </span><span class="si">{</span><span class="n">err</span><span class="o">.</span><span class="n">destination</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                    <span class="n">err</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+                <span class="p">)</span>
+
+            <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">error_message</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+                <span class="c1"># Unauthorized: the client did not provide required credentials</span>
+                <span class="k">if</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_unauthorized</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">WORKING</span><span class="p">,</span> <span class="s1">&#39;unauthorized&#39;</span><span class="p">,</span> <span class="mi">0</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">BROKEN</span><span class="p">,</span> <span class="s1">&#39;unauthorized&#39;</span><span class="p">,</span> <span class="mi">0</span>
+
+                <span class="c1"># Rate limiting; back-off if allowed, or report failure otherwise</span>
+                <span class="k">if</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">429</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">next_check</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limit_rate</span><span class="p">(</span><span class="n">response_url</span><span class="p">,</span> <span class="n">retry_after</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">wqueue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">CheckRequest</span><span class="p">(</span><span class="n">next_check</span><span class="p">,</span> <span class="n">hyperlink</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">RATE_LIMITED</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span>
+                    <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">BROKEN</span><span class="p">,</span> <span class="n">error_message</span><span class="p">,</span> <span class="mi">0</span>
+
+                <span class="c1"># Don&#39;t claim success/failure during server-side outages</span>
+                <span class="k">if</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">503</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">IGNORED</span><span class="p">,</span> <span class="s1">&#39;service unavailable&#39;</span><span class="p">,</span> <span class="mi">0</span>
+
+                <span class="c1"># For most HTTP failures, continue attempting alternate retrieval methods</span>
+                <span class="k">continue</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="c1"># Unhandled exception (intermittent or permanent); report that</span>
+                <span class="c1"># the link is broken.</span>
+                <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">BROKEN</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">),</span> <span class="mi">0</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># All available retrieval methods have been exhausted; report</span>
+            <span class="c1"># that the link is broken.</span>
+            <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">BROKEN</span><span class="p">,</span> <span class="n">error_message</span><span class="p">,</span> <span class="mi">0</span>
+
+        <span class="c1"># Success; clear rate limits for the origin</span>
+        <span class="n">netloc</span> <span class="o">=</span> <span class="n">urlsplit</span><span class="p">(</span><span class="n">req_url</span><span class="p">)</span><span class="o">.</span><span class="n">netloc</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate_limits</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">netloc</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">response_url</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">req_url</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">))</span>
+            <span class="ow">or</span> <span class="n">_allowed_redirect</span><span class="p">(</span><span class="n">req_url</span><span class="p">,</span> <span class="n">response_url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowed_redirects</span><span class="p">)</span>
+        <span class="p">):</span>  <span class="c1"># fmt: skip</span>
+            <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">WORKING</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">redirect_status_code</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">REDIRECTED</span><span class="p">,</span> <span class="n">response_url</span><span class="p">,</span> <span class="n">redirect_status_code</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_Status</span><span class="o">.</span><span class="n">REDIRECTED</span><span class="p">,</span> <span class="n">response_url</span><span class="p">,</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">limit_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">retry_after</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">delay</span> <span class="o">=</span> <span class="n">DEFAULT_DELAY</span>
+        <span class="n">next_check</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">retry_after</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Integer: time to wait before next attempt.</span>
+                <span class="n">delay</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">retry_after</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># An HTTP-date: time of next attempt.</span>
+                    <span class="n">next_check</span> <span class="o">=</span> <span class="n">rfc1123_to_epoch</span><span class="p">(</span><span class="n">retry_after</span><span class="p">)</span>
+                <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+                    <span class="c1"># TypeError: Invalid date format.</span>
+                    <span class="c1"># ValueError: Invalid date, e.g. Oct 52th.</span>
+                    <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">delay</span> <span class="o">=</span> <span class="n">next_check</span> <span class="o">-</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">next_check</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">delay</span>
+        <span class="n">netloc</span> <span class="o">=</span> <span class="n">urlsplit</span><span class="p">(</span><span class="n">response_url</span><span class="p">)</span><span class="o">.</span><span class="n">netloc</span>
+        <span class="k">if</span> <span class="n">next_check</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">max_delay</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate_limit_timeout</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">rate_limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate_limits</span><span class="p">[</span><span class="n">netloc</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">delay</span> <span class="o">=</span> <span class="n">DEFAULT_DELAY</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">last_wait_time</span> <span class="o">=</span> <span class="n">rate_limit</span><span class="o">.</span><span class="n">delay</span>
+                <span class="n">delay</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">last_wait_time</span>
+                <span class="k">if</span> <span class="n">delay</span> <span class="o">&gt;</span> <span class="n">max_delay</span> <span class="o">&gt;</span> <span class="n">last_wait_time</span><span class="p">:</span>
+                    <span class="n">delay</span> <span class="o">=</span> <span class="n">max_delay</span>
+            <span class="k">if</span> <span class="n">delay</span> <span class="o">&gt;</span> <span class="n">max_delay</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="n">next_check</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">delay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate_limits</span><span class="p">[</span><span class="n">netloc</span><span class="p">]</span> <span class="o">=</span> <span class="n">RateLimit</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="n">next_check</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">next_check</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_request_headers</span><span class="p">(</span>
+    <span class="n">uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">request_headers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">urlsplit</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+    <span class="n">candidates</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">scheme</span><span class="si">}</span><span class="s1">://</span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">netloc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">scheme</span><span class="si">}</span><span class="s1">://</span><span class="si">{</span><span class="n">url</span><span class="o">.</span><span class="n">netloc</span><span class="si">}</span><span class="s1">/&#39;</span><span class="p">,</span>
+        <span class="n">uri</span><span class="p">,</span>
+        <span class="s1">&#39;*&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">request_headers</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="n">DEFAULT_REQUEST_HEADERS</span><span class="p">,</span> <span class="o">**</span><span class="n">request_headers</span><span class="p">[</span><span class="n">u</span><span class="p">]}</span>
+    <span class="k">return</span> <span class="p">{}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">contains_anchor</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">,</span> <span class="n">anchor</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine if an anchor is contained within an HTTP response.&quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">AnchorCheckParser</span><span class="p">(</span><span class="n">anchor</span><span class="p">)</span>
+    <span class="c1"># Read file in chunks. If we find a matching anchor, we break</span>
+    <span class="c1"># the loop early in hopes not to have to download the whole thing.</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span> <span class="n">decode_unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="c1"># requests failed to decode, manually try to decode it</span>
+            <span class="n">chunk</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+        <span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">parser</span><span class="o">.</span><span class="n">found</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">found</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">AnchorCheckParser</span><span class="p">(</span><span class="n">HTMLParser</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Specialised HTML parser that looks for a specific anchor.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_anchor</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">search_anchor</span> <span class="o">=</span> <span class="n">search_anchor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_starttag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">attrs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">}</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_anchor</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">break</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_allowed_redirect</span><span class="p">(</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">new_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">allowed_redirects</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">Pattern</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">re</span><span class="o">.</span><span class="n">Pattern</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">any</span><span class="p">(</span>
+        <span class="n">from_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="ow">and</span> <span class="n">to_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">new_url</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">from_url</span><span class="p">,</span> <span class="n">to_url</span> <span class="ow">in</span> <span class="n">allowed_redirects</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RateLimit</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">delay</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">next_check</span><span class="p">:</span> <span class="nb">float</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rewrite_github_anchor</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">,</span> <span class="n">uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rewrite anchor name of the hyperlink to github.com</span>
+
+<span class="sd">    The hyperlink anchors in github.com are dynamically generated.  This rewrites</span>
+<span class="sd">    them before checking and makes them comparable.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parsed</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parsed</span><span class="o">.</span><span class="n">hostname</span> <span class="o">==</span> <span class="s1">&#39;github.com&#39;</span> <span class="ow">and</span> <span class="n">parsed</span><span class="o">.</span><span class="n">fragment</span><span class="p">:</span>
+        <span class="n">prefixed</span> <span class="o">=</span> <span class="n">parsed</span><span class="o">.</span><span class="n">fragment</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;user-content-&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">prefixed</span><span class="p">:</span>
+            <span class="n">fragment</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;user-content-</span><span class="si">{</span><span class="n">parsed</span><span class="o">.</span><span class="n">fragment</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="k">return</span> <span class="n">urlunparse</span><span class="p">(</span><span class="n">parsed</span><span class="o">.</span><span class="n">_replace</span><span class="p">(</span><span class="n">fragment</span><span class="o">=</span><span class="n">fragment</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compile_linkcheck_allowed_redirects</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compile patterns in linkcheck_allowed_redirects to the regexp objects.&quot;&quot;&quot;</span>
+    <span class="n">linkcheck_allowed_redirects</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">linkcheck_allowed_redirects</span>
+    <span class="k">for</span> <span class="n">url</span><span class="p">,</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">linkcheck_allowed_redirects</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">linkcheck_allowed_redirects</span><span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">url</span><span class="p">)]</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">re</span><span class="o">.</span><span class="n">error</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="n">__</span><span class="p">(</span><span class="s1">&#39;Failed to compile regex in linkcheck_allowed_redirects: </span><span class="si">%r</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">),</span>
+                <span class="n">exc</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span>
+                <span class="n">exc</span><span class="o">.</span><span class="n">msg</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="c1"># Remove the original regexp-string</span>
+            <span class="n">linkcheck_allowed_redirects</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtensionMetadata</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_builder</span><span class="p">(</span><span class="n">CheckExternalLinksBuilder</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_post_transform</span><span class="p">(</span><span class="n">HyperlinkCollector</span><span class="p">)</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;linkcheck_ignore&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">}))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span>
+        <span class="s1">&#39;linkcheck_exclude_documents&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">})</span>
+    <span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;linkcheck_allowed_redirects&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">dict</span><span class="p">}))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;linkcheck_auth&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">}))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;linkcheck_request_headers&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">dict</span><span class="p">}))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;linkcheck_retries&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">int</span><span class="p">}))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;linkcheck_timeout&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">}))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;linkcheck_workers&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">int</span><span class="p">}))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;linkcheck_anchors&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">bool</span><span class="p">}))</span>
+    <span class="c1"># Anchors starting with ! are ignored since they are</span>
+    <span class="c1"># commonly used for dynamic pages</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span>
+        <span class="s1">&#39;linkcheck_anchors_ignore&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;^!&#39;</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">})</span>
+    <span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span>
+        <span class="s1">&#39;linkcheck_anchors_ignore_for_url&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">})</span>
+    <span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span>
+        <span class="s1">&#39;linkcheck_rate_limit_timeout&#39;</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">})</span>
+    <span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span>
+        <span class="s1">&#39;linkcheck_allow_unauthorized&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">bool</span><span class="p">})</span>
+    <span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span>
+        <span class="s1">&#39;linkcheck_report_timeouts_as_broken&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="nb">frozenset</span><span class="p">({</span><span class="nb">bool</span><span class="p">})</span>
+    <span class="p">)</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s1">&#39;linkcheck-process-uri&#39;</span><span class="p">)</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;config-inited&#39;</span><span class="p">,</span> <span class="n">compile_linkcheck_allowed_redirects</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+
+    <span class="c1"># FIXME: Disable URL rewrite handler for github.com temporarily.</span>
+    <span class="c1"># See: https://github.com/sphinx-doc/sphinx/issues/9435</span>
+    <span class="c1"># app.connect(&#39;linkcheck-process-uri&#39;, rewrite_github_anchor)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;builtin&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    
+    <div></div>
+    
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版權所有 2007-2026, the Sphinx developers.
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3 建立。
+</div>
+  </body>
+</html>

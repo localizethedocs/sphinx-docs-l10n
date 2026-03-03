@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Extensions &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/index.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sphinx.ext.autodoc – Include documentation from docstrings" href="autodoc.html" />
+    <link rel="prev" title="Builders" href="../builders/index.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../../index.html">
+  <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Using Sphinx</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Extensions</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">Extensions</a><ul>
+<li><a class="reference internal" href="#built-in-extensions">Built-in extensions</a></li>
+<li><a class="reference internal" href="#third-party-extensions">Third-party extensions</a><ul>
+<li><a class="reference internal" href="#where-to-put-your-own-extensions">Where to put your own extensions?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">Builders</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Extensions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> – Include documentation from docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> – Allow reference sections using its title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> – Test snippets in the documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> – Measure durations of Sphinx processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> – Markup to shorten external links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> – Publish HTML docs in GitHub Pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> – A reference image converter using Imagemagick</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inheritance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intersphinx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – Link to other projects’ documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> – Add external links to source code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="math.html">Math support for HTML outputs in Sphinx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="napoleon.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> – Support for todo items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML Theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/setuptools.html">Setuptools integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../templating.html">Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Developing extensions for Sphinx</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="extensions">
+<h1>Extensions<a class="headerlink" href="#extensions" title="Permalink to this heading">¶</a></h1>
+<p>Since many projects will need special features in their documentation, Sphinx
+allows adding “extensions” to the build process, each of which can modify
+almost any aspect of document processing.</p>
+<p>This chapter describes the extensions bundled with Sphinx.  For the API
+documentation on writing your own extension, refer to <a class="reference internal" href="../../extdev/index.html#dev-extensions"><span class="std std-ref">Developing extensions for Sphinx</span></a>.</p>
+<section id="built-in-extensions">
+<span id="builtin-extensions"></span><h2>Built-in extensions<a class="headerlink" href="#built-in-extensions" title="Permalink to this heading">¶</a></h2>
+<p>These extensions are built in and can be activated by respective entries in the
+<a class="reference internal" href="../configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">extensions</span></code></a> configuration value:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> – Include documentation from docstrings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autodoc.html#directives">Directives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html#directive-automodule"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">automodule::</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autodoc.html#directive-option-automodule-members"><code class="docutils literal notranslate"><span class="pre">:members:</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autodoc.html#directive-option-automodule-undoc-members"><code class="docutils literal notranslate"><span class="pre">:undoc-members:</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autodoc.html#directive-option-automodule-private-members"><code class="docutils literal notranslate"><span class="pre">:private-members:</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autodoc.html#directive-option-automodule-special-members"><code class="docutils literal notranslate"><span class="pre">:special-members:</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html#directive-autoclass"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoclass::</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html#directive-autoexception"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoexception::</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html#directive-autofunction"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autofunction::</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html#directive-autodecorator"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autodecorator::</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html#directive-autodata"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autodata::</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html#directive-automethod"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">automethod::</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html#directive-autoattribute"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoattribute::</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html#directive-autoproperty"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoproperty::</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autodoc.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autodoc.html#docstring-preprocessing">Docstring preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html#sphinx.ext.autodoc.cut_lines"><code class="docutils literal notranslate"><span class="pre">cut_lines()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html#sphinx.ext.autodoc.between"><code class="docutils literal notranslate"><span class="pre">between()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autodoc.html#skipping-members">Skipping members</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> – Allow reference sections using its title</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autosectionlabel.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosectionlabel.html#debugging">Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autosummary.html#directive-autosummary"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autosummary::</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosummary.html#sphinx-autogen-generate-autodoc-stub-pages"><strong class="program">sphinx-autogen</strong> – generate autodoc stub pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosummary.html#generating-stub-pages-automatically">Generating stub pages automatically</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosummary.html#customizing-templates">Customizing templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#name"><code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#objname"><code class="docutils literal notranslate"><span class="pre">objname</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#fullname"><code class="docutils literal notranslate"><span class="pre">fullname</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#module"><code class="docutils literal notranslate"><span class="pre">module</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#class"><code class="docutils literal notranslate"><span class="pre">class</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#underline"><code class="docutils literal notranslate"><span class="pre">underline</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#members"><code class="docutils literal notranslate"><span class="pre">members</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#inherited_members"><code class="docutils literal notranslate"><span class="pre">inherited_members</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#functions"><code class="docutils literal notranslate"><span class="pre">functions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#classes"><code class="docutils literal notranslate"><span class="pre">classes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#exceptions"><code class="docutils literal notranslate"><span class="pre">exceptions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#methods"><code class="docutils literal notranslate"><span class="pre">methods</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#attributes"><code class="docutils literal notranslate"><span class="pre">attributes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#modules"><code class="docutils literal notranslate"><span class="pre">modules</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html#escape"><code class="docutils literal notranslate"><span class="pre">escape()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="coverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="coverage.html#sphinx.ext.coverage.CoverageBuilder"><code class="docutils literal notranslate"><span class="pre">CoverageBuilder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> – Test snippets in the documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doctest.html#directives">Directives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="doctest.html#directive-testsetup"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">testsetup::</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="doctest.html#directive-testcleanup"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">testcleanup::</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="doctest.html#directive-doctest"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">doctest::</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="doctest.html#directive-testcode"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">testcode::</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="doctest.html#directive-testoutput"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">testoutput::</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="doctest.html#skipping-tests-conditionally">Skipping tests conditionally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doctest.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> – Measure durations of Sphinx processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> – Markup to shorten external links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> – Publish HTML docs in GitHub Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphviz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="graphviz.html#directive-graphviz"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">graphviz::</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-graphviz-alt"><code class="docutils literal notranslate"><span class="pre">:alt:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-graphviz-align"><code class="docutils literal notranslate"><span class="pre">:align:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-graphviz-caption"><code class="docutils literal notranslate"><span class="pre">:caption:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-graphviz-layout"><code class="docutils literal notranslate"><span class="pre">:layout:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-graphviz-name"><code class="docutils literal notranslate"><span class="pre">:name:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-graphviz-class"><code class="docutils literal notranslate"><span class="pre">:class:</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphviz.html#directive-graph"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">graph::</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-graph-alt"><code class="docutils literal notranslate"><span class="pre">:alt:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-graph-align"><code class="docutils literal notranslate"><span class="pre">:align:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-graph-caption"><code class="docutils literal notranslate"><span class="pre">:caption:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-graph-layout"><code class="docutils literal notranslate"><span class="pre">:layout:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-graph-name"><code class="docutils literal notranslate"><span class="pre">:name:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-graph-class"><code class="docutils literal notranslate"><span class="pre">:class:</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphviz.html#directive-digraph"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">digraph::</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-digraph-alt"><code class="docutils literal notranslate"><span class="pre">:alt:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-digraph-align"><code class="docutils literal notranslate"><span class="pre">:align:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-digraph-caption"><code class="docutils literal notranslate"><span class="pre">:caption:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-digraph-layout"><code class="docutils literal notranslate"><span class="pre">:layout:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-digraph-name"><code class="docutils literal notranslate"><span class="pre">:name:</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html#directive-option-digraph-class"><code class="docutils literal notranslate"><span class="pre">:class:</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ifconfig.html#directive-ifconfig"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">ifconfig::</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> – A reference image converter using Imagemagick</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="imgconverter.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inheritance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html#directive-inheritance-diagram"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">inheritance-diagram::</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intersphinx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – Link to other projects’ documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intersphinx.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intersphinx.html#explicitly-reference-external-objects">Explicitly Reference External Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="intersphinx.html#role-external"><code class="docutils literal notranslate"><span class="pre">:external:</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="intersphinx.html#showing-all-links-of-an-intersphinx-mapping-file">Showing all links of an Intersphinx mapping file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intersphinx.html#using-intersphinx-with-inventory-file-under-basic-authorization">Using Intersphinx with inventory file under Basic Authorization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> – Add external links to source code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linkcode.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="math.html">Math support for HTML outputs in Sphinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="math.html#module-sphinx.ext.imgmath"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgmath</span></code> – Render math as images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html#module-sphinx.ext.mathjax"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.mathjax</span></code> – Render math via JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html#module-sphinx.ext.jsmath"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.jsmath</span></code> – Render math via JavaScript</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="napoleon.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="napoleon.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="napoleon.html#getting-started">Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="napoleon.html#docstrings">Docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="napoleon.html#docstring-sections">Docstring Sections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="napoleon.html#google-vs-numpy">Google vs NumPy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="napoleon.html#type-annotations">Type Annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="napoleon.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> – Support for todo items</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="todo.html#directive-todo"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">todo::</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="todo.html#directive-todolist"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">todolist::</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="todo.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viewcode.html#configuration">Configuration</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="third-party-extensions">
+<span id="id1"></span><h2>Third-party extensions<a class="headerlink" href="#third-party-extensions" title="Permalink to this heading">¶</a></h2>
+<p>You can find several extensions contributed by users in the <a class="reference external" href="https://github.com/sphinx-contrib/">sphinx-contrib</a>
+organization. If you wish to include your extension in this organization,
+simply follow the instructions provided in the <a class="reference external" href="https://github.com/sphinx-contrib/github-administration">github-administration</a>
+project. This is optional and there are several extensions hosted elsewhere.
+The <a class="reference external" href="https://github.com/yoloseem/awesome-sphinxdoc">awesome-sphinxdoc</a> project contains a curated list of Sphinx packages,
+and many packages use the <a class="reference external" href="https://pypi.org/search/?c=Framework+%3A%3A+Sphinx+%3A%3A+Extension">Framework :: Sphinx :: Extension</a> and
+<a class="reference external" href="https://pypi.org/search/?c=Framework+%3A%3A+Sphinx+%3A%3A+Theme">Framework :: Sphinx :: Theme</a> trove classifiers for Sphinx extensions and
+themes, respectively.</p>
+<section id="where-to-put-your-own-extensions">
+<h3>Where to put your own extensions?<a class="headerlink" href="#where-to-put-your-own-extensions" title="Permalink to this heading">¶</a></h3>
+<p>Extensions local to a project should be put within the project’s directory
+structure.  Set Python’s module search path, <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>, accordingly so that
+Sphinx can find them.  For example, if your extension <code class="docutils literal notranslate"><span class="pre">foo.py</span></code> lies in the
+<code class="docutils literal notranslate"><span class="pre">exts</span></code> subdirectory of the project root, put into <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;exts&#39;</span><span class="p">))</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You can also install extensions anywhere else on <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>, e.g. in the
+<code class="docutils literal notranslate"><span class="pre">site-packages</span></code> directory.</p>
+</section>
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../../copyright.html">Copyright</a> 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+</div>
+  </body>
+</html>
