@@ -166,7 +166,7 @@ msgstr ""
 
 #: ../../../internals/contributing.rst:101
 msgid "python -m pip install -U uv"
-msgstr ""
+msgstr "python -m pip install -U uv"
 
 #: ../../../internals/contributing.rst:105
 msgid "Then, set up your environment:"
@@ -188,14 +188,17 @@ msgid ""
 ". .venv/bin/activate\n"
 "python -m pip install -e ."
 msgstr ""
+"python -m venv .venv\n"
+". .venv/bin/activate\n"
+"python -m pip install -e ."
 
 #: ../../../internals/contributing.rst:120
 msgid "Create a new working branch. Choose any name you like."
-msgstr ""
+msgstr "建立一個新的工作分支。選擇任何你喜歡的名稱。"
 
 #: ../../../internals/contributing.rst:122
 msgid "git switch -c feature-xyz"
-msgstr ""
+msgstr "git switch -c feature-xyz"
 
 #: ../../../internals/contributing.rst:126
 msgid "Hack, hack, hack."
@@ -215,11 +218,11 @@ msgstr ""
 
 #: ../../../internals/contributing.rst:134
 msgid "git commit -m 'Add useful new feature that does this.'"
-msgstr ""
+msgstr "git commit -m 'Add useful new feature that does this.'"
 
 #: ../../../internals/contributing.rst:138
 msgid "Push changes in the branch to your forked repository on GitHub:"
-msgstr ""
+msgstr "將分支中的變更推送到您在 GitHub 上分叉的儲存庫："
 
 #: ../../../internals/contributing.rst:140
 msgid "git push origin feature-xyz"
@@ -227,7 +230,7 @@ msgstr "git push origin feature-xyz"
 
 #: ../../../internals/contributing.rst:144
 msgid "Submit a pull request from your branch to the ``master`` branch."
-msgstr ""
+msgstr "從您的分支提交一個拉取請求到 ``master`` 分支。"
 
 #: ../../../internals/contributing.rst:146
 msgid ""
@@ -235,10 +238,12 @@ msgid ""
 "the issue tracker. For example, including 'Closes #42' in the body of your "
 "pull request will close issue #42 if the PR is merged."
 msgstr ""
+"GitHub 會自動識別某些用於更新議題追蹤器的特定短語。舉例來說，若在拉取請求的內"
+"容中包含「Closes #42」，當該 PR 被合併時，將會關閉編號為 #42 的議題。"
 
 #: ../../../internals/contributing.rst:151
 msgid "Wait for a core developer or contributor to review your changes."
-msgstr ""
+msgstr "等待核心開發者或貢獻者審核您的變更。"
 
 #: ../../../internals/contributing.rst:153
 msgid ""
@@ -285,7 +290,7 @@ msgstr "增添合適的單元測試。"
 
 #: ../../../internals/contributing.rst:178
 msgid "Style and type checks can be run as follows:"
-msgstr ""
+msgstr "樣式和型別檢查可以按以下方式執行："
 
 #: ../../../internals/contributing.rst:180
 msgid ""
@@ -293,6 +298,9 @@ msgid ""
 "uv run ruff format\n"
 "uv run mypy"
 msgstr ""
+"uv run ruff check\n"
+"uv run ruff format\n"
+"uv run mypy"
 
 #: ../../../internals/contributing.rst:188
 msgid "Unit tests"
@@ -312,7 +320,7 @@ msgstr ""
 
 #: ../../../internals/contributing.rst:198
 msgid "To list all possible targets:"
-msgstr ""
+msgstr "列出所有可能的目標："
 
 #: ../../../internals/contributing.rst:200
 msgid "tox -av"
@@ -324,7 +332,7 @@ msgstr ""
 
 #: ../../../internals/contributing.rst:206
 msgid "tox -e py314"
-msgstr ""
+msgstr "tox -e py314"
 
 #: ../../../internals/contributing.rst:210
 msgid ""
@@ -334,11 +342,11 @@ msgstr ""
 
 #: ../../../internals/contributing.rst:213
 msgid "tox -e py314 tests/test_module.py::test_new_feature"
-msgstr ""
+msgstr "tox -e py314 tests/test_module.py::test_new_feature"
 
 #: ../../../internals/contributing.rst:217
 msgid "You can also test by installing dependencies in your local environment:"
-msgstr ""
+msgstr "你也可以在本機環境中安裝依賴來進行測試："
 
 #: ../../../internals/contributing.rst:219
 msgid "uv run pytest"
@@ -346,7 +354,7 @@ msgstr "uv run pytest"
 
 #: ../../../internals/contributing.rst:223
 msgid "Or with :program:`pip`:"
-msgstr ""
+msgstr "或者使用 :program:`pip`："
 
 #: ../../../internals/contributing.rst:225
 msgid ""
@@ -358,7 +366,7 @@ msgstr ""
 
 #: ../../../internals/contributing.rst:230
 msgid "To run JavaScript tests, use :program:`npm`:"
-msgstr ""
+msgstr "若要執行 JavaScript 測試，請使用 :program:`npm`："
 
 #: ../../../internals/contributing.rst:232
 msgid ""
@@ -406,11 +414,11 @@ msgstr ""
 
 #: ../../../internals/contributing.rst:259
 msgid "Sphinx also runs JavaScript tests."
-msgstr ""
+msgstr "Sphinx 還會執行 JavaScript 測試。"
 
 #: ../../../internals/contributing.rst:261
 msgid "Sphinx was switched from nose to pytest."
-msgstr ""
+msgstr "Sphinx 已從 nose 切換為 pytest。"
 
 #: ../../../internals/contributing.rst:266
 msgid "Contribute documentation"
@@ -444,7 +452,7 @@ msgstr "建置文件"
 
 #: ../../../internals/contributing.rst:282
 msgid "To build the documentation, run the following command:"
-msgstr ""
+msgstr "若要建置文件，請執行以下命令："
 
 #: ../../../internals/contributing.rst:284
 msgid "sphinx-build -M html ./doc ./build/sphinx --fail-on-warning"
@@ -489,17 +497,18 @@ msgstr ""
 msgid ""
 "Translated strings from the platform are pulled into the Sphinx repository "
 "by a maintainer before a new release."
-msgstr ""
+msgstr "平臺上的翻譯字串將由維護者在新的發行版之前拉取至 Sphinx 儲存庫。"
 
 #: ../../../internals/contributing.rst:315
 msgid ""
 "We do not accept pull requests altering the translation files directly. "
 "Instead, please contribute translations via the Transifex platform."
 msgstr ""
+"我們不接受直接修改翻譯檔案的拉取請求。相反地，請透過 Transifex 平臺貢獻翻譯。"
 
 #: ../../../internals/contributing.rst:319
 msgid "Translations notes for maintainers"
-msgstr ""
+msgstr "給維護者的翻譯備註"
 
 #: ../../../internals/contributing.rst:321
 msgid ""
@@ -528,18 +537,24 @@ msgid ""
 "catalogs in ``sphinx/locale/*/LC_MESSAGES`` with the current messages in the "
 "template file."
 msgstr ""
+"使用 ``python babel_runner.py update`` 來更新 ``sphinx/locale/*/"
+"LC_MESSAGES`` 中所有現有語言的型錄，使其內容與模板檔案的當前訊息同步。"
 
 #: ../../../internals/contributing.rst:336
 msgid ""
 "Use ``python babel_runner.py compile`` to compile the ``.po`` files to "
 "binary ``.mo`` files and ``.js`` files."
 msgstr ""
+"使用 ``python babel_runner.py compile`` 來將 ``.po`` 檔案編譯為二進位 ``."
+"mo`` 檔案和 ``.js`` 檔案。"
 
 #: ../../../internals/contributing.rst:339
 msgid ""
 "When an updated ``.po`` file is submitted, run ``python babel_runner.py "
 "compile`` to commit both the source and the compiled catalogs."
 msgstr ""
+"當更新後的 ``.po`` 檔案提交時，執行 ``python babel_runner.py compile`` 以送交"
+"來源檔及編譯後的型錄。"
 
 #: ../../../internals/contributing.rst:343
 msgid ""
@@ -570,24 +585,32 @@ msgid ""
 "Use ``node.pformat()`` and ``node.asdom().toxml()`` to generate a printable "
 "representation of the document structure."
 msgstr ""
+"使用 ``node.pformat()`` 與 ``node.asdom().toxml()`` 來生成文件結構的可列印表"
+"示方式。"
 
 #: ../../../internals/contributing.rst:360
 msgid ""
 "Set the configuration variable :confval:`keep_warnings` to ``True`` so "
 "warnings will be displayed in the generated output."
 msgstr ""
+"將組態變數 :confval:`keep_warnings` 設為 ``True``，這樣警告訊息便會顯示於生成"
+"的輸出中。"
 
 #: ../../../internals/contributing.rst:363
 msgid ""
 "Set the configuration variable :confval:`nitpicky` to ``True`` so that "
 "Sphinx will complain about references without a known target."
 msgstr ""
+"將組態變數 :confval:`nitpicky` 設為 ``True``，這樣 Sphinx 就會對沒有已知目標"
+"的參考提出警告。"
 
 #: ../../../internals/contributing.rst:366
 msgid ""
 "Set the debugging options in the `Docutils configuration file <https://"
 "docutils.sourceforge.io/docs/user/config.html>`_."
 msgstr ""
+"在 `Docutils 組態檔 <https://docutils.sourceforge.io/docs/user/config."
+"html>`_\\ 中設定除錯選項。"
 
 #: ../../../internals/contributing.rst:371
 msgid "Updating generated files"
