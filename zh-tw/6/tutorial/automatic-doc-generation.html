@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>從程式碼自動生成文件 &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/tutorial/automatic-doc-generation.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="附錄：在線上部署 Sphinx 專案" href="deploying.html" />
+    <link rel="prev" title="Describing code in Sphinx" href="describing-code.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../index.html">
+  <img src="../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Tutorial: Build your first project</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">從程式碼自動生成文件</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">從程式碼自動生成文件</a><ul>
+<li><a class="reference internal" href="#reusing-signatures-and-docstrings-with-autodoc">Reusing signatures and docstrings with autodoc</a></li>
+<li><a class="reference internal" href="#generating-comprehensive-api-references">生成完整的 API 參考文件</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">開始使用</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">開始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial: Build your first project</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">開始使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-steps.html">First steps to document your project using Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="more-sphinx-customization.html">More Sphinx customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="narrative-documentation.html">Narrative documentation in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="describing-code.html">Describing code in Sphinx</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">從程式碼自動生成文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploying.html">附錄：在線上部署 Sphinx 專案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">Where to go from here</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使用者指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">使用 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Writing Sphinx Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extdev/index.html">Sphinx Extensions API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx 常見問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx 作者群</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">組態</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">擴充功能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="automatic-documentation-generation-from-code">
+<h1>從程式碼自動生成文件<a class="headerlink" href="#automatic-documentation-generation-from-code" title="本標頭的永久連結">¶</a></h1>
+<p>In the <a class="reference internal" href="describing-code.html#tutorial-describing-objects"><span class="std std-ref">previous section</span></a> of the tutorial
+you manually documented a Python function in Sphinx. However, the description
+was out of sync with the code itself, since the function signature was not
+the same. Besides, it would be nice to reuse <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-0257/#what-is-a-docstring"><strong>Python docstrings</strong></a> in the documentation, rather than having to write
+the information in two places.</p>
+<p>Fortunately, <a class="reference internal" href="../usage/extensions/autodoc.html"><span class="doc">the autodoc extension</span></a> provides this
+functionality.</p>
+<section id="reusing-signatures-and-docstrings-with-autodoc">
+<h2>Reusing signatures and docstrings with autodoc<a class="headerlink" href="#reusing-signatures-and-docstrings-with-autodoc" title="本標頭的永久連結">¶</a></h2>
+<p>To use autodoc, first add it to the list of enabled extensions:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">docs/source/conf.py</span><a class="headerlink" href="#id1" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinx.ext.duration&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.doctest&#39;</span><span class="p">,</span>
+<span class="hll">    <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
+</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Next, move the content of the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:function</span></code> directive to the function
+docstring in the original Python file, as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">lumache.py</span><a class="headerlink" href="#id2" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_random_ingredients</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="hll"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span class="hll"><span class="sd">    Return a list of random ingredients as strings.</span>
+</span><span class="hll">
+</span><span class="hll"><span class="sd">    :param kind: Optional &quot;kind&quot; of ingredients.</span>
+</span><span class="hll"><span class="sd">    :type kind: list[str] or None</span>
+</span><span class="hll"><span class="sd">    :raise lumache.InvalidKindError: If the kind is invalid.</span>
+</span><span class="hll"><span class="sd">    :return: The ingredients list.</span>
+</span><span class="hll"><span class="sd">    :rtype: list[str]</span>
+</span><span class="hll">
+</span><span class="hll"><span class="sd">    &quot;&quot;&quot;</span>
+</span>    <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;shells&quot;</span><span class="p">,</span> <span class="s2">&quot;gorgonzola&quot;</span><span class="p">,</span> <span class="s2">&quot;parsley&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Finally, replace the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:function</span></code> directive from the Sphinx documentation
+with <a class="reference internal" href="../usage/extensions/autodoc.html#directive-autofunction" title="autofunction directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autofunction</span></code></a>:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">docs/source/usage.rst</span><a class="headerlink" href="#id3" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>you can use the <span class="s">``lumache.get_random_ingredients()``</span> function:
+
+<span class="hll"><span class="p">..</span> <span class="ow">autofunction</span><span class="p">::</span> lumache.get_random_ingredients
+</span></pre></div>
+</div>
+</div>
+<p>If you now build the HTML documentation, the output will be the same!
+With the advantage that it is generated from the code itself.
+Sphinx took the reStructuredText from the docstring and included it,
+also generating proper cross-references.</p>
+<p>You can also autogenerate documentation from other objects. For example, add
+the code for the <code class="docutils literal notranslate"><span class="pre">InvalidKindError</span></code> exception:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">lumache.py</span><a class="headerlink" href="#id4" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">InvalidKindError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised if the kind is invalid.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<p>And replace the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:exception</span></code> directive with <a class="reference internal" href="../usage/extensions/autodoc.html#directive-autoexception" title="autoexception directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autoexception</span></code></a>
+as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">docs/source/usage.rst</span><a class="headerlink" href="#id5" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>or <span class="s">``&quot;veggies&quot;``</span>. Otherwise, <span class="na">:py:func:</span><span class="nv">`lumache.get_random_ingredients`</span>
+will raise an exception.
+
+<span class="hll"><span class="p">..</span> <span class="ow">autoexception</span><span class="p">::</span> lumache.InvalidKindError
+</span></pre></div>
+</div>
+</div>
+<p>And again, after running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>, the output will be the same as before.</p>
+</section>
+<section id="generating-comprehensive-api-references">
+<h2>生成完整的 API 參考文件<a class="headerlink" href="#generating-comprehensive-api-references" title="本標頭的永久連結">¶</a></h2>
+<p>While using <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> makes keeping the code and the documentation
+in sync much easier, it still requires you to write an <code class="docutils literal notranslate"><span class="pre">auto*</span></code> directive
+for every object you want to document. Sphinx provides yet another level of
+automation: the <a class="reference internal" href="../usage/extensions/autosummary.html"><span class="doc">autosummary</span></a> extension.</p>
+<p>The <a class="reference internal" href="../usage/extensions/autosummary.html#directive-autosummary" title="autosummary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autosummary</span></code></a> directive generates documents that contain all the
+necessary <code class="docutils literal notranslate"><span class="pre">autodoc</span></code> directives. To use it, first enable the autosummary
+extension:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">docs/source/conf.py</span><a class="headerlink" href="#id6" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="s1">&#39;sphinx.ext.duration&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;sphinx.ext.doctest&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
+<span class="hll">   <span class="s1">&#39;sphinx.ext.autosummary&#39;</span><span class="p">,</span>
+</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Next, create a new <code class="docutils literal notranslate"><span class="pre">api.rst</span></code> file with these contents:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">docs/source/api.rst</span><a class="headerlink" href="#id7" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">API</span>
+<span class="gh">===</span>
+
+<span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
+   <span class="nc">:toctree:</span> generated
+
+   lumache
+</pre></div>
+</div>
+</div>
+<p>Remember to include the new document in the root toctree:</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">docs/source/index.rst</span><a class="headerlink" href="#id8" title="本原始碼的永久連結">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Contents</span>
+<span class="gh">--------</span>
+
+<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+
+   usage
+<span class="hll">   api
+</span></pre></div>
+</div>
+</div>
+<p>Finally, after you build the HTML documentation running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>, it will
+contain two new pages:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">api.html</span></code>, corresponding to <code class="docutils literal notranslate"><span class="pre">docs/source/api.rst</span></code> and containing a table
+with the objects you included in the <code class="docutils literal notranslate"><span class="pre">autosummary</span></code> directive (in this case,
+only one).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">generated/lumache.html</span></code>, corresponding to a newly created reST file
+<code class="docutils literal notranslate"><span class="pre">generated/lumache.rst</span></code> and containing a summary of members of the module,
+in this case one function and one exception.</p></li>
+</ul>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="../_images/lumache-autosummary.png"><img alt="Summary page created by autosummary" src="../_images/lumache-autosummary.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-text">Summary page created by autosummary</span><a class="headerlink" href="#id9" title="本圖片的永久連結">¶</a></p>
+</figcaption>
+</figure>
+<p>Each of the links in the summary page will take you to the places where you
+originally used the corresponding <code class="docutils literal notranslate"><span class="pre">autodoc</span></code> directive, in this case in the
+<code class="docutils literal notranslate"><span class="pre">usage.rst</span></code> document.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>The generated files are based on <a class="reference external" href="https://jinja2docs.readthedocs.io/">Jinja2
+templates</a> that
+<a class="reference internal" href="../usage/extensions/autosummary.html#autosummary-customizing-templates"><span class="std std-ref">can be customized</span></a>,
+but that is out of scope for this tutorial.</p>
+</div>
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../copyright.html">版權所有</a> 2007-2026, the Sphinx developers。
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1 建立。
+</div>
+  </body>
+</html>

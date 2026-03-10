@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+
+<html lang="en-US" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Builders &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../../_static/documentation_options.js?v=4a9a0b2a"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/builders/index.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Domains" href="../domains/index.html" />
+    <link rel="prev" title="Configuration" href="../configuration.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../index.html">
+      <img src="../../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Using Sphinx</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Builders</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Builders</a><ul>
+<li><a class="reference internal" href="#sphinx.builders.html.StandaloneHTMLBuilder"><code class="docutils literal notranslate"><span class="pre">StandaloneHTMLBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.html.StandaloneHTMLBuilder.name"><code class="docutils literal notranslate"><span class="pre">StandaloneHTMLBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.html.StandaloneHTMLBuilder.format"><code class="docutils literal notranslate"><span class="pre">StandaloneHTMLBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.html.StandaloneHTMLBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">StandaloneHTMLBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.dirhtml.DirectoryHTMLBuilder"><code class="docutils literal notranslate"><span class="pre">DirectoryHTMLBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.dirhtml.DirectoryHTMLBuilder.name"><code class="docutils literal notranslate"><span class="pre">DirectoryHTMLBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.dirhtml.DirectoryHTMLBuilder.format"><code class="docutils literal notranslate"><span class="pre">DirectoryHTMLBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.dirhtml.DirectoryHTMLBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">DirectoryHTMLBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.singlehtml.SingleFileHTMLBuilder"><code class="docutils literal notranslate"><span class="pre">SingleFileHTMLBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.singlehtml.SingleFileHTMLBuilder.name"><code class="docutils literal notranslate"><span class="pre">SingleFileHTMLBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.singlehtml.SingleFileHTMLBuilder.format"><code class="docutils literal notranslate"><span class="pre">SingleFileHTMLBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.singlehtml.SingleFileHTMLBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">SingleFileHTMLBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinxcontrib.htmlhelp.HTMLHelpBuilder"><code class="docutils literal notranslate"><span class="pre">HTMLHelpBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinxcontrib.htmlhelp.HTMLHelpBuilder.name"><code class="docutils literal notranslate"><span class="pre">HTMLHelpBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.htmlhelp.HTMLHelpBuilder.format"><code class="docutils literal notranslate"><span class="pre">HTMLHelpBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.htmlhelp.HTMLHelpBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">HTMLHelpBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinxcontrib.qthelp.QtHelpBuilder"><code class="docutils literal notranslate"><span class="pre">QtHelpBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinxcontrib.qthelp.QtHelpBuilder.name"><code class="docutils literal notranslate"><span class="pre">QtHelpBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.qthelp.QtHelpBuilder.format"><code class="docutils literal notranslate"><span class="pre">QtHelpBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.qthelp.QtHelpBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">QtHelpBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinxcontrib.applehelp.AppleHelpBuilder"><code class="docutils literal notranslate"><span class="pre">AppleHelpBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinxcontrib.applehelp.AppleHelpBuilder.name"><code class="docutils literal notranslate"><span class="pre">AppleHelpBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.applehelp.AppleHelpBuilder.format"><code class="docutils literal notranslate"><span class="pre">AppleHelpBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.applehelp.AppleHelpBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">AppleHelpBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinxcontrib.devhelp.DevhelpBuilder"><code class="docutils literal notranslate"><span class="pre">DevhelpBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinxcontrib.devhelp.DevhelpBuilder.name"><code class="docutils literal notranslate"><span class="pre">DevhelpBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.devhelp.DevhelpBuilder.format"><code class="docutils literal notranslate"><span class="pre">DevhelpBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.devhelp.DevhelpBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">DevhelpBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.epub3.Epub3Builder"><code class="docutils literal notranslate"><span class="pre">Epub3Builder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.epub3.Epub3Builder.name"><code class="docutils literal notranslate"><span class="pre">Epub3Builder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.epub3.Epub3Builder.format"><code class="docutils literal notranslate"><span class="pre">Epub3Builder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.epub3.Epub3Builder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">Epub3Builder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.latex.LaTeXBuilder"><code class="docutils literal notranslate"><span class="pre">LaTeXBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.latex.LaTeXBuilder.name"><code class="docutils literal notranslate"><span class="pre">LaTeXBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.latex.LaTeXBuilder.format"><code class="docutils literal notranslate"><span class="pre">LaTeXBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.latex.LaTeXBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">LaTeXBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.text.TextBuilder"><code class="docutils literal notranslate"><span class="pre">TextBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.text.TextBuilder.name"><code class="docutils literal notranslate"><span class="pre">TextBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.text.TextBuilder.format"><code class="docutils literal notranslate"><span class="pre">TextBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.text.TextBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">TextBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.manpage.ManualPageBuilder"><code class="docutils literal notranslate"><span class="pre">ManualPageBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.manpage.ManualPageBuilder.name"><code class="docutils literal notranslate"><span class="pre">ManualPageBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.manpage.ManualPageBuilder.format"><code class="docutils literal notranslate"><span class="pre">ManualPageBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.manpage.ManualPageBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">ManualPageBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.texinfo.TexinfoBuilder"><code class="docutils literal notranslate"><span class="pre">TexinfoBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.texinfo.TexinfoBuilder.name"><code class="docutils literal notranslate"><span class="pre">TexinfoBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.texinfo.TexinfoBuilder.format"><code class="docutils literal notranslate"><span class="pre">TexinfoBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.texinfo.TexinfoBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">TexinfoBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder"><code class="docutils literal notranslate"><span class="pre">SerializingHTMLBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder.implementation"><code class="docutils literal notranslate"><span class="pre">SerializingHTMLBuilder.implementation</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder.out_suffix"><code class="docutils literal notranslate"><span class="pre">SerializingHTMLBuilder.out_suffix</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder.globalcontext_filename"><code class="docutils literal notranslate"><span class="pre">SerializingHTMLBuilder.globalcontext_filename</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder.searchindex_filename"><code class="docutils literal notranslate"><span class="pre">SerializingHTMLBuilder.searchindex_filename</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.PickleHTMLBuilder"><code class="docutils literal notranslate"><span class="pre">PickleHTMLBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.PickleHTMLBuilder.name"><code class="docutils literal notranslate"><span class="pre">PickleHTMLBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.PickleHTMLBuilder.format"><code class="docutils literal notranslate"><span class="pre">PickleHTMLBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.PickleHTMLBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">PickleHTMLBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.JSONHTMLBuilder"><code class="docutils literal notranslate"><span class="pre">JSONHTMLBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.JSONHTMLBuilder.name"><code class="docutils literal notranslate"><span class="pre">JSONHTMLBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.JSONHTMLBuilder.format"><code class="docutils literal notranslate"><span class="pre">JSONHTMLBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinxcontrib.serializinghtml.JSONHTMLBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">JSONHTMLBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.gettext.MessageCatalogBuilder"><code class="docutils literal notranslate"><span class="pre">MessageCatalogBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.gettext.MessageCatalogBuilder.name"><code class="docutils literal notranslate"><span class="pre">MessageCatalogBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.gettext.MessageCatalogBuilder.format"><code class="docutils literal notranslate"><span class="pre">MessageCatalogBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.gettext.MessageCatalogBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">MessageCatalogBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.changes.ChangesBuilder"><code class="docutils literal notranslate"><span class="pre">ChangesBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.changes.ChangesBuilder.name"><code class="docutils literal notranslate"><span class="pre">ChangesBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.changes.ChangesBuilder.format"><code class="docutils literal notranslate"><span class="pre">ChangesBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.changes.ChangesBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">ChangesBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.dummy.DummyBuilder"><code class="docutils literal notranslate"><span class="pre">DummyBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.dummy.DummyBuilder.name"><code class="docutils literal notranslate"><span class="pre">DummyBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.dummy.DummyBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">DummyBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.linkcheck.CheckExternalLinksBuilder"><code class="docutils literal notranslate"><span class="pre">CheckExternalLinksBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.linkcheck.CheckExternalLinksBuilder.name"><code class="docutils literal notranslate"><span class="pre">CheckExternalLinksBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.linkcheck.CheckExternalLinksBuilder.format"><code class="docutils literal notranslate"><span class="pre">CheckExternalLinksBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.linkcheck.CheckExternalLinksBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">CheckExternalLinksBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.xml.XMLBuilder"><code class="docutils literal notranslate"><span class="pre">XMLBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.xml.XMLBuilder.name"><code class="docutils literal notranslate"><span class="pre">XMLBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.xml.XMLBuilder.format"><code class="docutils literal notranslate"><span class="pre">XMLBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.xml.XMLBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">XMLBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sphinx.builders.xml.PseudoXMLBuilder"><code class="docutils literal notranslate"><span class="pre">PseudoXMLBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.xml.PseudoXMLBuilder.name"><code class="docutils literal notranslate"><span class="pre">PseudoXMLBuilder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.xml.PseudoXMLBuilder.format"><code class="docutils literal notranslate"><span class="pre">PseudoXMLBuilder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.xml.PseudoXMLBuilder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">PseudoXMLBuilder.supported_image_types</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#serialization-builder-details">Serialization builder details</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencing.html">Cross-references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../domains/index.html">Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes/index.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="builders">
+<span id="id1"></span><h1>Builders<a class="headerlink" href="#builders" title="Link to this heading">¶</a></h1>
+<p id="module-sphinx.builders">These are the built-in Sphinx builders.  More builders can be added by
+<a class="reference internal" href="../extensions/index.html"><span class="doc">extensions</span></a>.</p>
+<p>The builder’s “name” must be given to the <strong>-M</strong> or <strong>-b</strong> command-line options of
+<strong class="program">sphinx-build</strong> to select a builder.</p>
+<p>The most common builders are:</p>
+<dl class="simple">
+<dt><strong>html</strong></dt><dd><p>Build HTML pages.  This is the default builder.</p>
+</dd>
+<dt><strong>dirhtml</strong></dt><dd><p>Build HTML pages, but with a single directory per document.  Makes for
+prettier URLs (no <code class="docutils literal notranslate"><span class="pre">.html</span></code>) if served from a webserver.</p>
+</dd>
+<dt><strong>singlehtml</strong></dt><dd><p>Build a single HTML with the whole content.</p>
+</dd>
+<dt><strong>htmlhelp</strong>, <strong>qthelp</strong>, <strong>devhelp</strong>, <strong>epub</strong></dt><dd><p>Build HTML files with additional information for building a documentation
+collection in one of these formats.</p>
+</dd>
+<dt><strong>applehelp</strong></dt><dd><p>Build an Apple Help Book.  Requires <strong class="program">hiutil</strong> and
+<strong class="program">codesign</strong>, which are not Open Source and presently only
+available on Mac OS X 10.6 and higher.</p>
+</dd>
+<dt><strong>latex</strong></dt><dd><p>Build LaTeX sources that can be compiled to a PDF document using
+<strong class="program">pdflatex</strong>.</p>
+</dd>
+<dt><strong>man</strong></dt><dd><p>Build manual pages in groff format for UNIX systems.</p>
+</dd>
+<dt><strong>texinfo</strong></dt><dd><p>Build Texinfo files that can be processed into Info files using
+<strong class="program">makeinfo</strong>.</p>
+</dd>
+<dt><strong>text</strong></dt><dd><p>Build plain text files.</p>
+</dd>
+<dt><strong>gettext</strong></dt><dd><p>Build gettext-style message catalogs (<code class="docutils literal notranslate"><span class="pre">.pot</span></code> files).</p>
+</dd>
+<dt><strong>doctest</strong></dt><dd><p>Run all doctests in the documentation, if the <a class="reference internal" href="../extensions/doctest.html#module-sphinx.ext.doctest" title="sphinx.ext.doctest: Test snippets in the documentation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">doctest</span></code></a>
+extension is enabled.</p>
+</dd>
+<dt><strong>linkcheck</strong></dt><dd><p>Check the integrity of all external links.</p>
+</dd>
+<dt><strong>xml</strong></dt><dd><p>Build Docutils-native XML files.</p>
+</dd>
+<dt><strong>pseudoxml</strong></dt><dd><p>Build compact pretty-printed “pseudo-XML” files displaying the
+internal structure of the intermediate document trees.</p>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="py class" id="module-sphinx.builders.html">
+<dt class="sig sig-object py" id="sphinx.builders.html.StandaloneHTMLBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.html.</span></span><span class="sig-name descname"><span class="pre">StandaloneHTMLBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/html.html#StandaloneHTMLBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.html.StandaloneHTMLBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This is the standard HTML builder.  Its output is a directory with HTML
+files, complete with style sheets and optionally the reStructuredText sources.
+There are quite a few configuration values that customize
+the output of this builder, see the chapter <a class="reference internal" href="../configuration.html#html-options"><span class="std std-ref">Options for HTML output</span></a> for details.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.html.StandaloneHTMLBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></span><a class="headerlink" href="#sphinx.builders.html.StandaloneHTMLBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.html.StandaloneHTMLBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></span><a class="headerlink" href="#sphinx.builders.html.StandaloneHTMLBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.html.StandaloneHTMLBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['image/svg+xml',</span> <span class="pre">'image/png',</span> <span class="pre">'image/gif',</span> <span class="pre">'image/jpeg']</span></span><a class="headerlink" href="#sphinx.builders.html.StandaloneHTMLBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-sphinx.builders.dirhtml">
+<dt class="sig sig-object py" id="sphinx.builders.dirhtml.DirectoryHTMLBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.dirhtml.</span></span><span class="sig-name descname"><span class="pre">DirectoryHTMLBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/dirhtml.html#DirectoryHTMLBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.dirhtml.DirectoryHTMLBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This is a subclass of the standard HTML builder.  Its output is a directory
+with HTML files, where each file is called <code class="docutils literal notranslate"><span class="pre">index.html</span></code> and placed in a
+subdirectory named like its page name.  For example, the document
+<code class="docutils literal notranslate"><span class="pre">markup/rest.rst</span></code> will not result in an output file <code class="docutils literal notranslate"><span class="pre">markup/rest.html</span></code>,
+but <code class="docutils literal notranslate"><span class="pre">markup/rest/index.html</span></code>.  When generating links between pages, the
+<code class="docutils literal notranslate"><span class="pre">index.html</span></code> is omitted, so that the URL would look like <code class="docutils literal notranslate"><span class="pre">markup/rest/</span></code>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.dirhtml.DirectoryHTMLBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dirhtml'</span></span><a class="headerlink" href="#sphinx.builders.dirhtml.DirectoryHTMLBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.dirhtml.DirectoryHTMLBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></span><a class="headerlink" href="#sphinx.builders.dirhtml.DirectoryHTMLBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.dirhtml.DirectoryHTMLBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['image/svg+xml',</span> <span class="pre">'image/png',</span> <span class="pre">'image/gif',</span> <span class="pre">'image/jpeg']</span></span><a class="headerlink" href="#sphinx.builders.dirhtml.DirectoryHTMLBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.6.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-sphinx.builders.singlehtml">
+<dt class="sig sig-object py" id="sphinx.builders.singlehtml.SingleFileHTMLBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.singlehtml.</span></span><span class="sig-name descname"><span class="pre">SingleFileHTMLBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/singlehtml.html#SingleFileHTMLBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.singlehtml.SingleFileHTMLBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This is an HTML builder that combines the whole project in one output file.
+(Obviously this only works with smaller projects.)  The file is named like
+the root document.  No indices will be generated.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.singlehtml.SingleFileHTMLBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'singlehtml'</span></span><a class="headerlink" href="#sphinx.builders.singlehtml.SingleFileHTMLBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.singlehtml.SingleFileHTMLBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></span><a class="headerlink" href="#sphinx.builders.singlehtml.SingleFileHTMLBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.singlehtml.SingleFileHTMLBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['image/svg+xml',</span> <span class="pre">'image/png',</span> <span class="pre">'image/gif',</span> <span class="pre">'image/jpeg']</span></span><a class="headerlink" href="#sphinx.builders.singlehtml.SingleFileHTMLBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-sphinxcontrib.htmlhelp">
+<dt class="sig sig-object py" id="sphinxcontrib.htmlhelp.HTMLHelpBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinxcontrib.htmlhelp.</span></span><span class="sig-name descname"><span class="pre">HTMLHelpBuilder</span></span><a class="reference internal" href="../../_modules/sphinxcontrib/htmlhelp.html#HTMLHelpBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinxcontrib.htmlhelp.HTMLHelpBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces the same output as the standalone HTML builder, but
+also generates HTML Help support files that allow the Microsoft HTML Help
+Workshop to compile them into a CHM file.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.htmlhelp.HTMLHelpBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'htmlhelp'</span></span><a class="headerlink" href="#sphinxcontrib.htmlhelp.HTMLHelpBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.htmlhelp.HTMLHelpBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></span><a class="headerlink" href="#sphinxcontrib.htmlhelp.HTMLHelpBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.htmlhelp.HTMLHelpBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['image/png',</span> <span class="pre">'image/gif',</span> <span class="pre">'image/jpeg']</span></span><a class="headerlink" href="#sphinxcontrib.htmlhelp.HTMLHelpBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-sphinxcontrib.qthelp">
+<dt class="sig sig-object py" id="sphinxcontrib.qthelp.QtHelpBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinxcontrib.qthelp.</span></span><span class="sig-name descname"><span class="pre">QtHelpBuilder</span></span><a class="reference internal" href="../../_modules/sphinxcontrib/qthelp.html#QtHelpBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinxcontrib.qthelp.QtHelpBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces the same output as the standalone HTML builder, but
+also generates <a class="reference external" href="https://doc.qt.io/qt-4.8/qthelp-framework.html">Qt help</a> collection support files that allow the Qt
+collection generator to compile them.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 2.0: </span>Moved to sphinxcontrib.qthelp from sphinx.builders package.</p>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.qthelp.QtHelpBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'qthelp'</span></span><a class="headerlink" href="#sphinxcontrib.qthelp.QtHelpBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.qthelp.QtHelpBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></span><a class="headerlink" href="#sphinxcontrib.qthelp.QtHelpBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.qthelp.QtHelpBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['image/svg+xml',</span> <span class="pre">'image/png',</span> <span class="pre">'image/gif',</span> <span class="pre">'image/jpeg']</span></span><a class="headerlink" href="#sphinxcontrib.qthelp.QtHelpBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-sphinxcontrib.applehelp">
+<dt class="sig sig-object py" id="sphinxcontrib.applehelp.AppleHelpBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinxcontrib.applehelp.</span></span><span class="sig-name descname"><span class="pre">AppleHelpBuilder</span></span><a class="reference internal" href="../../_modules/sphinxcontrib/applehelp.html#AppleHelpBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinxcontrib.applehelp.AppleHelpBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces an Apple Help Book based on the same output as the
+standalone HTML builder.</p>
+<p>If the source directory contains any <code class="docutils literal notranslate"><span class="pre">.lproj</span></code> folders, the one
+corresponding to the selected language will have its contents merged with
+the generated output.  These folders will be ignored by all other
+documentation types.</p>
+<p>In order to generate a valid help book, this builder requires the command
+line tool <strong class="program">hiutil</strong>, which is only available on Mac OS X 10.6 and
+above.  You can disable the indexing step by setting
+<a class="reference internal" href="../configuration.html#confval-applehelp_disable_external_tools"><code class="xref std std-confval docutils literal notranslate"><span class="pre">applehelp_disable_external_tools</span></code></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code>, in which case the
+output will not be valid until <strong class="program">hiutil</strong> has been run on all of the
+<code class="docutils literal notranslate"><span class="pre">.lproj</span></code> folders within the bundle.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.applehelp.AppleHelpBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'applehelp'</span></span><a class="headerlink" href="#sphinxcontrib.applehelp.AppleHelpBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.applehelp.AppleHelpBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></span><a class="headerlink" href="#sphinxcontrib.applehelp.AppleHelpBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.applehelp.AppleHelpBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['image/png',</span> <span class="pre">'image/gif',</span> <span class="pre">'image/jpeg',</span> <span class="pre">'image/tiff',</span> <span class="pre">'image/jp2',</span> <span class="pre">'image/svg+xml']</span></span><a class="headerlink" href="#sphinxcontrib.applehelp.AppleHelpBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 2.0: </span>Moved to sphinxcontrib.applehelp from sphinx.builders package.</p>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-sphinxcontrib.devhelp">
+<dt class="sig sig-object py" id="sphinxcontrib.devhelp.DevhelpBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinxcontrib.devhelp.</span></span><span class="sig-name descname"><span class="pre">DevhelpBuilder</span></span><a class="reference internal" href="../../_modules/sphinxcontrib/devhelp.html#DevhelpBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinxcontrib.devhelp.DevhelpBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces the same output as the standalone HTML builder, but
+also generates <a class="reference external" href="https://wiki.gnome.org/Apps/Devhelp">GNOME Devhelp</a>
+support file that allows the GNOME Devhelp reader to view them.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.devhelp.DevhelpBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'devhelp'</span></span><a class="headerlink" href="#sphinxcontrib.devhelp.DevhelpBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.devhelp.DevhelpBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></span><a class="headerlink" href="#sphinxcontrib.devhelp.DevhelpBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.devhelp.DevhelpBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['image/png',</span> <span class="pre">'image/gif',</span> <span class="pre">'image/jpeg']</span></span><a class="headerlink" href="#sphinxcontrib.devhelp.DevhelpBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 2.0: </span>Moved to sphinxcontrib.devhelp from sphinx.builders package.</p>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-sphinx.builders.epub3">
+<dt class="sig sig-object py" id="sphinx.builders.epub3.Epub3Builder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.epub3.</span></span><span class="sig-name descname"><span class="pre">Epub3Builder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/epub3.html#Epub3Builder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.epub3.Epub3Builder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces the same output as the standalone HTML builder, but
+also generates an <em>epub</em> file for ebook readers.  See <a class="reference internal" href="../../faq.html#epub-faq"><span class="std std-ref">Epub info</span></a> for
+details about it.  For definition of the epub format, have a look at
+<a class="reference external" href="https://idpf.org/epub">https://idpf.org/epub</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/EPUB">https://en.wikipedia.org/wiki/EPUB</a>.
+The builder creates <em>EPUB 3</em> files.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.epub3.Epub3Builder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'epub'</span></span><a class="headerlink" href="#sphinx.builders.epub3.Epub3Builder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.epub3.Epub3Builder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></span><a class="headerlink" href="#sphinx.builders.epub3.Epub3Builder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.epub3.Epub3Builder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['image/svg+xml',</span> <span class="pre">'image/png',</span> <span class="pre">'image/gif',</span> <span class="pre">'image/jpeg']</span></span><a class="headerlink" href="#sphinx.builders.epub3.Epub3Builder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.4.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.5: </span>Since Sphinx 1.5, the epub3 builder is used as the default epub builder.</p>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-sphinx.builders.latex">
+<dt class="sig sig-object py" id="sphinx.builders.latex.LaTeXBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.latex.</span></span><span class="sig-name descname"><span class="pre">LaTeXBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/latex.html#LaTeXBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.latex.LaTeXBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces LaTeX source files in the output directory.  The
+actual PDF builds happen inside this output directory and need to be
+triggered in a second step.  This can be done via
+<strong class="program">make all-pdf</strong> there.
+To combine the two steps into only one, use <a class="reference internal" href="../../man/sphinx-build.html#cmdoption-sphinx-build-M"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-M</span></code></a>
+(i.e. <code class="docutils literal notranslate"><span class="pre">-M</span> <span class="pre">latexpdf</span></code> not <code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">latexpdf</span></code>) or <strong class="program">make latexpdf</strong>
+at the project root.</p>
+<p>See <a class="reference internal" href="../configuration.html#confval-latex_documents"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_documents</span></code></a> and the chapter <a class="reference internal" href="../configuration.html#latex-options"><span class="std std-ref">Options for LaTeX output</span></a> for
+available options.</p>
+<p>PDF builds need a sufficiently complete LaTeX installation.
+The testing is currently (since 5.3.0) done on Ubuntu 22.04LTS,
+whose LaTeX distribution matches upstream TeXLive 2021 as of 2022/02/04,
+but PDF builds can be successfully done on much older LaTeX installations.</p>
+<p>At any rate, on Ubuntu for example, following packages must all be present:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">texlive-latex-recommended</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">texlive-fonts-recommended</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">texlive-fonts-extra</span></code> (needed for <code class="docutils literal notranslate"><span class="pre">fontawesome5</span></code>, see the 7.4.0
+change notice below)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tex-gyre</span></code> (if <a class="reference internal" href="../configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> left to default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">texlive-latex-extra</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">latexmk</span></code></p></li>
+</ul>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 4.0.0: </span>TeX Gyre fonts now required for <code class="docutils literal notranslate"><span class="pre">'pdflatex'</span></code> engine (default).</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 7.4.0: </span>LaTeX package <code class="docutils literal notranslate"><span class="pre">xcolor</span></code> is now required (it is part of Ubuntu
+<code class="docutils literal notranslate"><span class="pre">texlive-latex-recommended</span></code> anyhow).  The LaTeX package
+<code class="docutils literal notranslate"><span class="pre">fontawesome5</span></code> is recommended.  See the <a class="reference internal" href="../../latex.html#latexsphinxsetup"><span class="std std-ref">‘sphinxsetup’</span></a> <code class="docutils literal notranslate"><span class="pre">iconpackage</span></code> key for more.</p>
+</div>
+<p>Additional packages are needed in some circumstances:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">texlive-lang-cyrillic</span></code> for Cyrillic (and also then
+<code class="docutils literal notranslate"><span class="pre">cm-super</span></code> if using the default fonts),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">texlive-lang-greek</span></code> for Greek (and also then
+<code class="docutils literal notranslate"><span class="pre">cm-super</span></code> if using the default fonts),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">texlive-xetex</span></code> if <a class="reference internal" href="../configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> is <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">texlive-luatex</span></code> if <a class="reference internal" href="../configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> is <code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fonts-freefont-otf</span></code> if <a class="reference internal" href="../configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> is either
+<code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code> or <code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since 1.6, <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">latexpdf</span></code> uses on GNU/Linux and macOS
+<strong class="program">latexmk</strong>, as it
+makes sure the needed number of runs is automatically executed.
+On Windows the PDF builds execute a fix number of LaTeX runs
+(three, then <code class="docutils literal notranslate"><span class="pre">makeindex</span></code>, then two more).</p>
+<p>One can pass to <code class="docutils literal notranslate"><span class="pre">latexmk</span></code> options via the <code class="docutils literal notranslate"><span class="pre">LATEXMKOPTS</span></code>
+Makefile variable. For example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make latexpdf LATEXMKOPTS=&quot;-silent&quot;</span>
+</pre></div>
+</div>
+<p>reduces console output to a minimum.</p>
+<p>Also, if <code class="docutils literal notranslate"><span class="pre">latexmk</span></code> is at version 4.52b or higher (January 2017)
+<code class="docutils literal notranslate"><span class="pre">LATEXMKOPTS=&quot;-xelatex&quot;</span></code> speeds up PDF builds via XeLateX in case
+of numerous graphics inclusions.</p>
+<p>To pass options directly to the <code class="docutils literal notranslate"><span class="pre">(pdf|xe|lua)latex</span></code> binary, use
+variable <code class="docutils literal notranslate"><span class="pre">LATEXOPTS</span></code>, for example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make latexpdf LATEXOPTS=&quot;--halt-on-error&quot;</span>
+</pre></div>
+</div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.latex.LaTeXBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'latex'</span></span><a class="headerlink" href="#sphinx.builders.latex.LaTeXBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.latex.LaTeXBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'latex'</span></span><a class="headerlink" href="#sphinx.builders.latex.LaTeXBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.latex.LaTeXBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['application/pdf',</span> <span class="pre">'image/png',</span> <span class="pre">'image/jpeg']</span></span><a class="headerlink" href="#sphinx.builders.latex.LaTeXBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>Note that a direct PDF builder is being provided by <a class="reference external" href="https://github.com/brechtm/rinohtype">rinohtype</a>. The builder’s
+name is <code class="docutils literal notranslate"><span class="pre">rinoh</span></code>. Refer to the <a class="reference external" href="https://www.mos6581.org/rinohtype/master/quickstart.html#sphinx-builder">rinohtype manual</a> for details.</p>
+<dl class="py class" id="module-sphinx.builders.text">
+<dt class="sig sig-object py" id="sphinx.builders.text.TextBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.text.</span></span><span class="sig-name descname"><span class="pre">TextBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/text.html#TextBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.text.TextBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces a text file for each reStructuredText file.
+This is almost the same as the reStructuredText source,
+but with much of the markup stripped for better readability.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.text.TextBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'text'</span></span><a class="headerlink" href="#sphinx.builders.text.TextBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.text.TextBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'text'</span></span><a class="headerlink" href="#sphinx.builders.text.TextBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.text.TextBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></span><a class="headerlink" href="#sphinx.builders.text.TextBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-sphinx.builders.manpage">
+<dt class="sig sig-object py" id="sphinx.builders.manpage.ManualPageBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.manpage.</span></span><span class="sig-name descname"><span class="pre">ManualPageBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/manpage.html#ManualPageBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.manpage.ManualPageBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces manual pages in the groff format.  You have to specify
+which documents are to be included in which manual pages via the
+<a class="reference internal" href="../configuration.html#confval-man_pages"><code class="xref std std-confval docutils literal notranslate"><span class="pre">man_pages</span></code></a> configuration value.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.manpage.ManualPageBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'man'</span></span><a class="headerlink" href="#sphinx.builders.manpage.ManualPageBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.manpage.ManualPageBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'man'</span></span><a class="headerlink" href="#sphinx.builders.manpage.ManualPageBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.manpage.ManualPageBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></span><a class="headerlink" href="#sphinx.builders.manpage.ManualPageBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-sphinx.builders.texinfo">
+<dt class="sig sig-object py" id="sphinx.builders.texinfo.TexinfoBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.texinfo.</span></span><span class="sig-name descname"><span class="pre">TexinfoBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/texinfo.html#TexinfoBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.texinfo.TexinfoBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces Texinfo files that can be processed into Info files by
+the <strong class="program">makeinfo</strong> program.  You have to specify which documents are to
+be included in which Texinfo files via the <a class="reference internal" href="../configuration.html#confval-texinfo_documents"><code class="xref std std-confval docutils literal notranslate"><span class="pre">texinfo_documents</span></code></a>
+configuration value.</p>
+<p>The Info format is the basis of the on-line help system used by GNU Emacs and
+the terminal-based program <strong class="program">info</strong>.  See <a class="reference internal" href="../../faq.html#texinfo-faq"><span class="std std-ref">Texinfo info</span></a> for more
+details.  The Texinfo format is the official documentation system used by the
+GNU project.  More information on Texinfo can be found at
+<a class="reference external" href="https://www.gnu.org/software/texinfo/">https://www.gnu.org/software/texinfo/</a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.texinfo.TexinfoBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'texinfo'</span></span><a class="headerlink" href="#sphinx.builders.texinfo.TexinfoBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.texinfo.TexinfoBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'texinfo'</span></span><a class="headerlink" href="#sphinx.builders.texinfo.TexinfoBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.texinfo.TexinfoBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['image/png',</span> <span class="pre">'image/jpeg',</span> <span class="pre">'image/gif']</span></span><a class="headerlink" href="#sphinx.builders.texinfo.TexinfoBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.SerializingHTMLBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinxcontrib.serializinghtml.</span></span><span class="sig-name descname"><span class="pre">SerializingHTMLBuilder</span></span><a class="reference internal" href="../../_modules/sphinxcontrib/serializinghtml.html#SerializingHTMLBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder uses a module that implements the Python serialization API
+(<code class="docutils literal notranslate"><span class="pre">pickle</span></code>, <code class="docutils literal notranslate"><span class="pre">simplejson</span></code>, <code class="docutils literal notranslate"><span class="pre">phpserialize</span></code>, and others) to dump the
+generated HTML documentation.  The pickle builder is a subclass of it.</p>
+<p>A concrete subclass of this builder serializing to the <a class="reference external" href="https://pypi.org/project/phpserialize/">PHP serialization</a>
+format could look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">phpserialize</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PHPSerializedBuilder</span><span class="p">(</span><span class="n">SerializingHTMLBuilder</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;phpserialized&#39;</span>
+    <span class="n">implementation</span> <span class="o">=</span> <span class="n">phpserialize</span>
+    <span class="n">out_suffix</span> <span class="o">=</span> <span class="s1">&#39;.file.phpdump&#39;</span>
+    <span class="n">globalcontext_filename</span> <span class="o">=</span> <span class="s1">&#39;globalcontext.phpdump&#39;</span>
+    <span class="n">searchindex_filename</span> <span class="o">=</span> <span class="s1">&#39;searchindex.phpdump&#39;</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.SerializingHTMLBuilder.implementation">
+<span class="sig-name descname"><span class="pre">implementation</span></span><a class="headerlink" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder.implementation" title="Link to this definition">¶</a></dt>
+<dd><p>A module that implements <code class="docutils literal notranslate"><span class="pre">dump()</span></code>, <code class="docutils literal notranslate"><span class="pre">load()</span></code>, <code class="docutils literal notranslate"><span class="pre">dumps()</span></code> and <code class="docutils literal notranslate"><span class="pre">loads()</span></code>
+functions that conform to the functions with the same names from the
+pickle module.  Known modules implementing this interface are
+<code class="docutils literal notranslate"><span class="pre">simplejson</span></code>, <code class="docutils literal notranslate"><span class="pre">phpserialize</span></code>, <code class="docutils literal notranslate"><span class="pre">plistlib</span></code>, and others.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.SerializingHTMLBuilder.out_suffix">
+<span class="sig-name descname"><span class="pre">out_suffix</span></span><a class="headerlink" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder.out_suffix" title="Link to this definition">¶</a></dt>
+<dd><p>The suffix for all regular files.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.SerializingHTMLBuilder.globalcontext_filename">
+<span class="sig-name descname"><span class="pre">globalcontext_filename</span></span><a class="headerlink" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder.globalcontext_filename" title="Link to this definition">¶</a></dt>
+<dd><p>The filename for the file that contains the “global context”.  This
+is a dict with some general configuration values such as the name
+of the project.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.SerializingHTMLBuilder.searchindex_filename">
+<span class="sig-name descname"><span class="pre">searchindex_filename</span></span><a class="headerlink" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder.searchindex_filename" title="Link to this definition">¶</a></dt>
+<dd><p>The filename for the search index Sphinx generates.</p>
+</dd></dl>
+
+<p>See <a class="reference internal" href="#serialization-details"><span class="std std-ref">Serialization builder details</span></a> for details about the output format.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.5.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.PickleHTMLBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinxcontrib.serializinghtml.</span></span><span class="sig-name descname"><span class="pre">PickleHTMLBuilder</span></span><a class="reference internal" href="../../_modules/sphinxcontrib/serializinghtml.html#PickleHTMLBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinxcontrib.serializinghtml.PickleHTMLBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces a directory with pickle files containing mostly HTML
+fragments and TOC information, for use of a web application (or custom
+postprocessing tool) that doesn’t use the standard HTML templates.</p>
+<p>See <a class="reference internal" href="#serialization-details"><span class="std std-ref">Serialization builder details</span></a> for details about the output format.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.PickleHTMLBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pickle'</span></span><a class="headerlink" href="#sphinxcontrib.serializinghtml.PickleHTMLBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+<p>The old name <code class="docutils literal notranslate"><span class="pre">web</span></code> still works as well.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.PickleHTMLBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></span><a class="headerlink" href="#sphinxcontrib.serializinghtml.PickleHTMLBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.PickleHTMLBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['image/svg+xml',</span> <span class="pre">'image/png',</span> <span class="pre">'image/gif',</span> <span class="pre">'image/jpeg']</span></span><a class="headerlink" href="#sphinxcontrib.serializinghtml.PickleHTMLBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<p>The file suffix is <code class="docutils literal notranslate"><span class="pre">.fpickle</span></code>.  The global context is called
+<code class="docutils literal notranslate"><span class="pre">globalcontext.pickle</span></code>, the search index <code class="docutils literal notranslate"><span class="pre">searchindex.pickle</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.JSONHTMLBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinxcontrib.serializinghtml.</span></span><span class="sig-name descname"><span class="pre">JSONHTMLBuilder</span></span><a class="reference internal" href="../../_modules/sphinxcontrib/serializinghtml.html#JSONHTMLBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinxcontrib.serializinghtml.JSONHTMLBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces a directory with JSON files containing mostly HTML
+fragments and TOC information, for use of a web application (or custom
+postprocessing tool) that doesn’t use the standard HTML templates.</p>
+<p>See <a class="reference internal" href="#serialization-details"><span class="std std-ref">Serialization builder details</span></a> for details about the output format.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.JSONHTMLBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'json'</span></span><a class="headerlink" href="#sphinxcontrib.serializinghtml.JSONHTMLBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.JSONHTMLBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'html'</span></span><a class="headerlink" href="#sphinxcontrib.serializinghtml.JSONHTMLBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinxcontrib.serializinghtml.JSONHTMLBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['image/svg+xml',</span> <span class="pre">'image/png',</span> <span class="pre">'image/gif',</span> <span class="pre">'image/jpeg']</span></span><a class="headerlink" href="#sphinxcontrib.serializinghtml.JSONHTMLBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<p>The file suffix is <code class="docutils literal notranslate"><span class="pre">.fjson</span></code>.  The global context is called
+<code class="docutils literal notranslate"><span class="pre">globalcontext.json</span></code>, the search index <code class="docutils literal notranslate"><span class="pre">searchindex.json</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.5.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-sphinx.builders.gettext">
+<dt class="sig sig-object py" id="sphinx.builders.gettext.MessageCatalogBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.gettext.</span></span><span class="sig-name descname"><span class="pre">MessageCatalogBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/gettext.html#MessageCatalogBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.gettext.MessageCatalogBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces gettext-style message catalogs.  Each top-level file or
+subdirectory grows a single <code class="docutils literal notranslate"><span class="pre">.pot</span></code> catalog template.</p>
+<p>See the documentation on <a class="reference internal" href="../advanced/intl.html#intl"><span class="std std-ref">Internationalization</span></a> for further reference.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.gettext.MessageCatalogBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'gettext'</span></span><a class="headerlink" href="#sphinx.builders.gettext.MessageCatalogBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.gettext.MessageCatalogBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#sphinx.builders.gettext.MessageCatalogBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.gettext.MessageCatalogBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></span><a class="headerlink" href="#sphinx.builders.gettext.MessageCatalogBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-sphinx.builders.changes">
+<dt class="sig sig-object py" id="sphinx.builders.changes.ChangesBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.changes.</span></span><span class="sig-name descname"><span class="pre">ChangesBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/changes.html#ChangesBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.changes.ChangesBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces an HTML overview of all <a class="reference internal" href="../restructuredtext/directives.html#directive-versionadded" title="versionadded directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">versionadded</span></code></a>,
+<a class="reference internal" href="../restructuredtext/directives.html#directive-versionchanged" title="versionchanged directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">versionchanged</span></code></a>, <a class="reference internal" href="../restructuredtext/directives.html#directive-deprecated" title="deprecated directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">deprecated</span></code></a> and <a class="reference internal" href="../restructuredtext/directives.html#directive-versionremoved" title="versionremoved directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">versionremoved</span></code></a>
+directives for the current <a class="reference internal" href="../configuration.html#confval-version"><code class="xref std std-confval docutils literal notranslate"><span class="pre">version</span></code></a>.  This is useful to generate a
+changelog file, for example.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.changes.ChangesBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'changes'</span></span><a class="headerlink" href="#sphinx.builders.changes.ChangesBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.changes.ChangesBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#sphinx.builders.changes.ChangesBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.changes.ChangesBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></span><a class="headerlink" href="#sphinx.builders.changes.ChangesBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-sphinx.builders.dummy">
+<dt class="sig sig-object py" id="sphinx.builders.dummy.DummyBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.dummy.</span></span><span class="sig-name descname"><span class="pre">DummyBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/dummy.html#DummyBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.dummy.DummyBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces no output.  The input is only parsed and checked for
+consistency.  This is useful for linting purposes.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.dummy.DummyBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dummy'</span></span><a class="headerlink" href="#sphinx.builders.dummy.DummyBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.dummy.DummyBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></span><a class="headerlink" href="#sphinx.builders.dummy.DummyBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-sphinx.builders.linkcheck">
+<dt class="sig sig-object py" id="sphinx.builders.linkcheck.CheckExternalLinksBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.linkcheck.</span></span><span class="sig-name descname"><span class="pre">CheckExternalLinksBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/linkcheck.html#CheckExternalLinksBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.linkcheck.CheckExternalLinksBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder scans all documents for external links, tries to open them with
+<code class="docutils literal notranslate"><span class="pre">requests</span></code>, and writes an overview which ones are broken and redirected to
+standard output and to <code class="file docutils literal notranslate"><span class="pre">output.txt</span></code> in the output directory.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.linkcheck.CheckExternalLinksBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'linkcheck'</span></span><a class="headerlink" href="#sphinx.builders.linkcheck.CheckExternalLinksBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.linkcheck.CheckExternalLinksBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></span><a class="headerlink" href="#sphinx.builders.linkcheck.CheckExternalLinksBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.linkcheck.CheckExternalLinksBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></span><a class="headerlink" href="#sphinx.builders.linkcheck.CheckExternalLinksBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.5: </span>Since Sphinx 1.5, the linkcheck builder uses the requests module.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.4: </span>The linkcheck builder retries links when servers apply rate limits.</p>
+</div>
+</dd></dl>
+
+<dl class="py class" id="module-sphinx.builders.xml">
+<dt class="sig sig-object py" id="sphinx.builders.xml.XMLBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.xml.</span></span><span class="sig-name descname"><span class="pre">XMLBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/xml.html#XMLBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.xml.XMLBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder produces Docutils-native XML files.  The output can be
+transformed with standard XML tools such as XSLT processors into arbitrary
+final forms.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.xml.XMLBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'xml'</span></span><a class="headerlink" href="#sphinx.builders.xml.XMLBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.xml.XMLBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'xml'</span></span><a class="headerlink" href="#sphinx.builders.xml.XMLBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.xml.XMLBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></span><a class="headerlink" href="#sphinx.builders.xml.XMLBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.2.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.builders.xml.PseudoXMLBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">sphinx.builders.xml.</span></span><span class="sig-name descname"><span class="pre">PseudoXMLBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/builders/xml.html#PseudoXMLBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.xml.PseudoXMLBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>This builder is used for debugging the Sphinx/Docutils “Reader to Transform
+to Writer” pipeline. It produces compact pretty-printed “pseudo-XML”, files
+where nesting is indicated by indentation (no end-tags). External
+attributes for all elements are output, and internal attributes for any
+leftover “pending” elements are also given.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.xml.PseudoXMLBuilder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pseudoxml'</span></span><a class="headerlink" href="#sphinx.builders.xml.PseudoXMLBuilder.name" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s name.
+This is the value used to select builders on the command line.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.xml.PseudoXMLBuilder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pseudoxml'</span></span><a class="headerlink" href="#sphinx.builders.xml.PseudoXMLBuilder.format" title="Link to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.
+This is commonly the file extension, e.g. “html”,
+though any string value is accepted.
+The builder’s format string can be used by various components
+such as <a class="reference internal" href="../../extdev/utils.html#sphinx.transforms.post_transforms.SphinxPostTransform" title="sphinx.transforms.post_transforms.SphinxPostTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphinxPostTransform</span></code></a> or extensions to determine
+their compatibility with the builder.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.xml.PseudoXMLBuilder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></span><a class="headerlink" href="#sphinx.builders.xml.PseudoXMLBuilder.supported_image_types" title="Link to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.2.</span></p>
+</div>
+</dd></dl>
+
+<p>Built-in Sphinx extensions that offer more builders are:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../extensions/doctest.html#module-sphinx.ext.doctest" title="sphinx.ext.doctest: Test snippets in the documentation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">doctest</span></code></a></p></li>
+<li><p><a class="reference internal" href="../extensions/coverage.html#module-sphinx.ext.coverage" title="sphinx.ext.coverage: Check Python modules and C API for coverage in the documentation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">coverage</span></code></a></p></li>
+</ul>
+<section id="serialization-builder-details">
+<span id="serialization-details"></span><h2>Serialization builder details<a class="headerlink" href="#serialization-builder-details" title="Link to this heading">¶</a></h2>
+<p>All serialization builders outputs one file per source file and a few special
+files.  They also copy the reStructuredText source files
+to the <code class="docutils literal notranslate"><span class="pre">_sources</span></code> directory under the output directory.</p>
+<p>The <a class="reference internal" href="#sphinxcontrib.serializinghtml.PickleHTMLBuilder" title="sphinxcontrib.serializinghtml.PickleHTMLBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">PickleHTMLBuilder</span></code></a> is a builtin subclass that implements the pickle
+serialization interface.</p>
+<p>The files per source file have the extensions of
+<a class="reference internal" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder.out_suffix" title="sphinxcontrib.serializinghtml.SerializingHTMLBuilder.out_suffix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">out_suffix</span></code></a>, and are arranged in directories
+just as the source files are.  They unserialize to a dictionary (or dictionary
+like structure) with these keys:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">body</span></code></dt><dd><p>The HTML “body” (that is, the HTML rendering of the source file), as rendered
+by the HTML translator.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">title</span></code></dt><dd><p>The title of the document, as HTML (may contain markup).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">toc</span></code></dt><dd><p>The table of contents for the file, rendered as an HTML <code class="docutils literal notranslate"><span class="pre">&lt;ul&gt;</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">display_toc</span></code></dt><dd><p>A boolean that is <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <code class="docutils literal notranslate"><span class="pre">toc</span></code> contains more than one entry.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">current_page_name</span></code></dt><dd><p>The document name of the current file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">parents</span></code>, <code class="docutils literal notranslate"><span class="pre">prev</span></code> and <code class="docutils literal notranslate"><span class="pre">next</span></code></dt><dd><p>Information about related chapters in the TOC tree.  Each relation is a
+dictionary with the keys <code class="docutils literal notranslate"><span class="pre">link</span></code> (HREF for the relation) and <code class="docutils literal notranslate"><span class="pre">title</span></code>
+(title of the related document, as HTML).  <code class="docutils literal notranslate"><span class="pre">parents</span></code> is a list of
+relations, while <code class="docutils literal notranslate"><span class="pre">prev</span></code> and <code class="docutils literal notranslate"><span class="pre">next</span></code> are a single relation.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sourcename</span></code></dt><dd><p>The name of the source file under <code class="docutils literal notranslate"><span class="pre">_sources</span></code>.</p>
+</dd>
+</dl>
+<p>The special files are located in the root output directory.  They are:</p>
+<dl>
+<dt><a class="reference internal" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder.globalcontext_filename" title="sphinxcontrib.serializinghtml.SerializingHTMLBuilder.globalcontext_filename"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SerializingHTMLBuilder.globalcontext_filename</span></code></a></dt><dd><p>A pickled dict with these keys:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">project</span></code>, <code class="docutils literal notranslate"><span class="pre">copyright</span></code>, <code class="docutils literal notranslate"><span class="pre">release</span></code>, <code class="docutils literal notranslate"><span class="pre">version</span></code></dt><dd><p>The same values as given in the configuration file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">style</span></code></dt><dd><p><a class="reference internal" href="../configuration.html#confval-html_style"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_style</span></code></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">last_updated</span></code></dt><dd><p>Date of last build.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">builder</span></code></dt><dd><p>Name of the used builder, in the case of pickles this is always
+<code class="docutils literal notranslate"><span class="pre">'pickle'</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">titles</span></code></dt><dd><p>A dictionary of all documents’ titles, as HTML strings.</p>
+</dd>
+</dl>
+</dd>
+<dt><a class="reference internal" href="#sphinxcontrib.serializinghtml.SerializingHTMLBuilder.searchindex_filename" title="sphinxcontrib.serializinghtml.SerializingHTMLBuilder.searchindex_filename"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SerializingHTMLBuilder.searchindex_filename</span></code></a></dt><dd><p>An index that can be used for searching the documentation.  It is a pickled
+list with these entries:</p>
+<ul class="simple">
+<li><p>A list of indexed docnames.</p></li>
+<li><p>A list of document titles, as HTML strings, in the same order as the first
+list.</p></li>
+<li><p>A dict mapping word roots (processed by an English-language stemmer) to a
+list of integers, which are indices into the first list.</p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">environment.pickle</span></code></dt><dd><p>The build environment.  This is always a pickle file, independent of the
+builder and a copy of the environment that was used when the builder was
+started.</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>Document common members.</p>
+</div>
+<p>Unlike the other pickle files this pickle file requires that the <code class="docutils literal notranslate"><span class="pre">sphinx</span></code>
+package is available on unpickling.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="../configuration.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Configuration</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="../domains/index.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">Domains</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; Copyright 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+</div>
+  </body>
+</html>

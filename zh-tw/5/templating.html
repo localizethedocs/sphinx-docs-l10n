@@ -1,0 +1,757 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Templating &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx13.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/templating.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="_static/favicon.svg"/>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜尋" href="search.html" />
+    <link rel="next" title="LaTeX customization" href="latex.html" />
+    <link rel="prev" title="HTML 主題開發" href="development/theming.html" />
+
+ 
+
+<script type="text/javascript" src="ltd-provenance.js"></script>
+<script type="text/javascript" src="ltd-current.js"></script>
+<script type="text/javascript" src="../../ltd-config.js"></script>
+<script type="text/javascript" src="../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="index.html">
+  <img src="_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="index.html">Documentation</a> &raquo;</li>
+    <li class="nav-item nav-item-this"><a href="">Templating</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">Templating</a><ul>
+<li><a class="reference internal" href="#do-i-need-to-use-sphinx-s-templates-to-produce-html">Do I need to use Sphinx’s templates to produce HTML?</a></li>
+<li><a class="reference internal" href="#jinja-sphinx-templating-primer">Jinja/Sphinx Templating Primer</a></li>
+<li><a class="reference internal" href="#working-with-the-builtin-templates">Working with the builtin templates</a><ul>
+<li><a class="reference internal" href="#blocks">Blocks</a></li>
+<li><a class="reference internal" href="#configuration-variables">組態變數</a><ul>
+<li><a class="reference internal" href="#reldelim1"><code class="docutils literal notranslate"><span class="pre">reldelim1</span></code></a></li>
+<li><a class="reference internal" href="#reldelim2"><code class="docutils literal notranslate"><span class="pre">reldelim2</span></code></a></li>
+<li><a class="reference internal" href="#script_files"><code class="docutils literal notranslate"><span class="pre">script_files</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#helper-functions">Helper Functions</a><ul>
+<li><a class="reference internal" href="#pathto"><code class="docutils literal notranslate"><span class="pre">pathto()</span></code></a></li>
+<li><a class="reference internal" href="#hasdoc"><code class="docutils literal notranslate"><span class="pre">hasdoc()</span></code></a></li>
+<li><a class="reference internal" href="#sidebar"><code class="docutils literal notranslate"><span class="pre">sidebar()</span></code></a></li>
+<li><a class="reference internal" href="#relbar"><code class="docutils literal notranslate"><span class="pre">relbar()</span></code></a></li>
+<li><a class="reference internal" href="#warning"><code class="docutils literal notranslate"><span class="pre">warning()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#global-variables">Global Variables</a><ul>
+<li><a class="reference internal" href="#builder"><code class="docutils literal notranslate"><span class="pre">builder</span></code></a></li>
+<li><a class="reference internal" href="#copyright"><code class="docutils literal notranslate"><span class="pre">copyright</span></code></a></li>
+<li><a class="reference internal" href="#docstitle"><code class="docutils literal notranslate"><span class="pre">docstitle</span></code></a></li>
+<li><a class="reference internal" href="#embedded"><code class="docutils literal notranslate"><span class="pre">embedded</span></code></a></li>
+<li><a class="reference internal" href="#favicon"><code class="docutils literal notranslate"><span class="pre">favicon</span></code></a></li>
+<li><a class="reference internal" href="#favicon_url"><code class="docutils literal notranslate"><span class="pre">favicon_url</span></code></a></li>
+<li><a class="reference internal" href="#file_suffix"><code class="docutils literal notranslate"><span class="pre">file_suffix</span></code></a></li>
+<li><a class="reference internal" href="#has_source"><code class="docutils literal notranslate"><span class="pre">has_source</span></code></a></li>
+<li><a class="reference internal" href="#language"><code class="docutils literal notranslate"><span class="pre">language</span></code></a></li>
+<li><a class="reference internal" href="#last_updated"><code class="docutils literal notranslate"><span class="pre">last_updated</span></code></a></li>
+<li><a class="reference internal" href="#logo"><code class="docutils literal notranslate"><span class="pre">logo</span></code></a></li>
+<li><a class="reference internal" href="#logo_url"><code class="docutils literal notranslate"><span class="pre">logo_url</span></code></a></li>
+<li><a class="reference internal" href="#master_doc"><code class="docutils literal notranslate"><span class="pre">master_doc</span></code></a></li>
+<li><a class="reference internal" href="#root_doc"><code class="docutils literal notranslate"><span class="pre">root_doc</span></code></a></li>
+<li><a class="reference internal" href="#pagename"><code class="docutils literal notranslate"><span class="pre">pagename</span></code></a></li>
+<li><a class="reference internal" href="#project"><code class="docutils literal notranslate"><span class="pre">project</span></code></a></li>
+<li><a class="reference internal" href="#release"><code class="docutils literal notranslate"><span class="pre">release</span></code></a></li>
+<li><a class="reference internal" href="#rellinks"><code class="docutils literal notranslate"><span class="pre">rellinks</span></code></a></li>
+<li><a class="reference internal" href="#shorttitle"><code class="docutils literal notranslate"><span class="pre">shorttitle</span></code></a></li>
+<li><a class="reference internal" href="#show_source"><code class="docutils literal notranslate"><span class="pre">show_source</span></code></a></li>
+<li><a class="reference internal" href="#sphinx_version"><code class="docutils literal notranslate"><span class="pre">sphinx_version</span></code></a></li>
+<li><a class="reference internal" href="#sphinx_version_tuple"><code class="docutils literal notranslate"><span class="pre">sphinx_version_tuple</span></code></a></li>
+<li><a class="reference internal" href="#docutils_version_info"><code class="docutils literal notranslate"><span class="pre">docutils_version_info</span></code></a></li>
+<li><a class="reference internal" href="#styles"><code class="docutils literal notranslate"><span class="pre">styles</span></code></a></li>
+<li><a class="reference internal" href="#style"><code class="docutils literal notranslate"><span class="pre">style</span></code></a></li>
+<li><a class="reference internal" href="#title"><code class="docutils literal notranslate"><span class="pre">title</span></code></a></li>
+<li><a class="reference internal" href="#use_opensearch"><code class="docutils literal notranslate"><span class="pre">use_opensearch</span></code></a></li>
+<li><a class="reference internal" href="#version"><code class="docutils literal notranslate"><span class="pre">version</span></code></a></li>
+<li><a class="reference internal" href="#body"><code class="docutils literal notranslate"><span class="pre">body</span></code></a></li>
+<li><a class="reference internal" href="#display_toc"><code class="docutils literal notranslate"><span class="pre">display_toc</span></code></a></li>
+<li><a class="reference internal" href="#meta"><code class="docutils literal notranslate"><span class="pre">meta</span></code></a></li>
+<li><a class="reference internal" href="#metatags"><code class="docutils literal notranslate"><span class="pre">metatags</span></code></a></li>
+<li><a class="reference internal" href="#next"><code class="docutils literal notranslate"><span class="pre">next</span></code></a></li>
+<li><a class="reference internal" href="#page_source_suffix"><code class="docutils literal notranslate"><span class="pre">page_source_suffix</span></code></a></li>
+<li><a class="reference internal" href="#parents"><code class="docutils literal notranslate"><span class="pre">parents</span></code></a></li>
+<li><a class="reference internal" href="#prev"><code class="docutils literal notranslate"><span class="pre">prev</span></code></a></li>
+<li><a class="reference internal" href="#sourcename"><code class="docutils literal notranslate"><span class="pre">sourcename</span></code></a></li>
+<li><a class="reference internal" href="#toc"><code class="docutils literal notranslate"><span class="pre">toc</span></code></a></li>
+<li><a class="reference internal" href="#toctree"><code class="docutils literal notranslate"><span class="pre">toctree</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">開始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage/quickstart.html">開始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使用者指南</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">使用 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extdev/index.html">Developing extensions for Sphinx</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Sphinx 常見問題</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="man/index.html">命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="templating">
+<span id="id1"></span><h1>Templating<a class="headerlink" href="#templating" title="本標頭的永久連結">¶</a></h1>
+<p>Sphinx uses the <a class="reference external" href="https://jinja.palletsprojects.com/">Jinja</a> templating engine
+for its HTML templates.  Jinja is a text-based engine, inspired by Django
+templates, so anyone having used Django will already be familiar with it. It
+also has excellent documentation for those who need to make themselves familiar
+with it.</p>
+<section id="do-i-need-to-use-sphinx-s-templates-to-produce-html">
+<h2>Do I need to use Sphinx’s templates to produce HTML?<a class="headerlink" href="#do-i-need-to-use-sphinx-s-templates-to-produce-html" title="本標頭的永久連結">¶</a></h2>
+<p>No.  You have several other options:</p>
+<ul class="simple">
+<li><p>You can write a <a class="reference internal" href="extdev/appapi.html#sphinx.application.TemplateBridge" title="sphinx.application.TemplateBridge"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemplateBridge</span></code></a> subclass that
+calls your template engine of choice, and set the <a class="reference internal" href="usage/configuration.html#confval-template_bridge"><code class="xref std std-confval docutils literal notranslate"><span class="pre">template_bridge</span></code></a>
+configuration value accordingly.</p></li>
+<li><p>You can <a class="reference internal" href="extdev/builderapi.html#writing-builders"><span class="std std-ref">write a custom builder</span></a> that derives from
+<a class="reference internal" href="usage/builders/index.html#sphinx.builders.html.StandaloneHTMLBuilder" title="sphinx.builders.html.StandaloneHTMLBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">StandaloneHTMLBuilder</span></code></a> and calls your template
+engine of choice.</p></li>
+<li><p>You can use the <code class="xref py py-class docutils literal notranslate"><span class="pre">PickleHTMLBuilder</span></code> that produces
+pickle files with the page contents, and postprocess them using a custom tool,
+or use them in your Web application.</p></li>
+</ul>
+</section>
+<section id="jinja-sphinx-templating-primer">
+<h2>Jinja/Sphinx Templating Primer<a class="headerlink" href="#jinja-sphinx-templating-primer" title="本標頭的永久連結">¶</a></h2>
+<p>The default templating language in Sphinx is Jinja.  It’s Django/Smarty inspired
+and easy to understand.  The most important concept in Jinja is <em class="dfn">template
+inheritance</em>, which means that you can overwrite only specific blocks within a
+template, customizing it while also keeping the changes at a minimum.</p>
+<p>To customize the output of your documentation you can override all the templates
+(both the layout templates and the child templates) by adding files with the
+same name as the original filename into the template directory of the structure
+the Sphinx quickstart generated for you.</p>
+<p>Sphinx will look for templates in the folders of <a class="reference internal" href="usage/configuration.html#confval-templates_path"><code class="xref std std-confval docutils literal notranslate"><span class="pre">templates_path</span></code></a>
+first, and if it can’t find the template it’s looking for there, it falls back
+to the selected theme’s templates.</p>
+<p>A template contains <strong>variables</strong>, which are replaced with values when the
+template is evaluated, <strong>tags</strong>, which control the logic of the template and
+<strong>blocks</strong> which are used for template inheritance.</p>
+<p>Sphinx’s <em>basic</em> theme provides base templates with a couple of blocks it will
+fill with data.  These are located in the <code class="file docutils literal notranslate"><span class="pre">themes/basic</span></code> subdirectory of
+the Sphinx installation directory, and used by all builtin Sphinx themes.
+Templates with the same name in the <a class="reference internal" href="usage/configuration.html#confval-templates_path"><code class="xref std std-confval docutils literal notranslate"><span class="pre">templates_path</span></code></a> override templates
+supplied by the selected theme.</p>
+<p>For example, to add a new link to the template area containing related links all
+you have to do is to add a new template called <code class="docutils literal notranslate"><span class="pre">layout.html</span></code> with the
+following contents:</p>
+<div class="highlight-html+jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;!layout.html&quot;</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">rootrellink</span> <span class="cp">%}</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://project.invalid/&quot;</span><span class="p">&gt;</span>Project Homepage<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> <span class="ni">&amp;raquo;</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="cp">{{</span> <span class="nb">super</span><span class="o">()</span> <span class="cp">}}</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+</pre></div>
+</div>
+<p>By prefixing the name of the overridden template with an exclamation mark,
+Sphinx will load the layout template from the underlying HTML theme.</p>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>If you override a block, call <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">super()</span> <span class="pre">}}</span></code> somewhere to render the
+block’s original content in the extended template – unless you don’t want
+that content to show up.</p>
+</div>
+</section>
+<section id="working-with-the-builtin-templates">
+<h2>Working with the builtin templates<a class="headerlink" href="#working-with-the-builtin-templates" title="本標頭的永久連結">¶</a></h2>
+<p>The builtin <strong>basic</strong> theme supplies the templates that all builtin Sphinx
+themes are based on.  It has the following elements you can override or use:</p>
+<section id="blocks">
+<h3>Blocks<a class="headerlink" href="#blocks" title="本標頭的永久連結">¶</a></h3>
+<p>The following blocks exist in the <code class="docutils literal notranslate"><span class="pre">layout.html</span></code> template:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">doctype</span></code></dt><dd><p>The doctype of the output format.  By default this is XHTML 1.0 Transitional
+as this is the closest to what Sphinx and Docutils generate and it’s a good
+idea not to change it unless you want to switch to HTML 5 or a different but
+compatible XHTML doctype.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">linktags</span></code></dt><dd><p>This block adds a couple of <code class="docutils literal notranslate"><span class="pre">&lt;link&gt;</span></code> tags to the head section of the
+template.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">extrahead</span></code></dt><dd><p>This block is empty by default and can be used to add extra contents into
+the <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span></code> tag of the generated HTML file.  This is the right place to
+add references to JavaScript or extra CSS files.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">relbar1</span></code>, <code class="docutils literal notranslate"><span class="pre">relbar2</span></code></dt><dd><p>This block contains the <em>relation bar</em>, the list of related links (the
+parent documents on the left, and the links to index, modules etc. on the
+right).  <code class="docutils literal notranslate"><span class="pre">relbar1</span></code> appears before the document, <code class="docutils literal notranslate"><span class="pre">relbar2</span></code> after the
+document.  By default, both blocks are filled; to show the relbar only
+before the document, you would override <cite>relbar2</cite> like this:</p>
+<div class="highlight-html+jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">relbar2</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">rootrellink</span></code>, <code class="docutils literal notranslate"><span class="pre">relbaritems</span></code></dt><dd><p>Inside the relbar there are three sections: The <code class="docutils literal notranslate"><span class="pre">rootrellink</span></code>, the links
+from the documentation and the custom <code class="docutils literal notranslate"><span class="pre">relbaritems</span></code>.  The <code class="docutils literal notranslate"><span class="pre">rootrellink</span></code>
+is a block that by default contains a list item pointing to the root
+document by default, the <code class="docutils literal notranslate"><span class="pre">relbaritems</span></code> is an empty block.  If you
+override them to add extra links into the bar make sure that they are list
+items and end with the <a class="reference internal" href="#reldelim1" title="reldelim1"><code class="xref py py-data docutils literal notranslate"><span class="pre">reldelim1</span></code></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">document</span></code></dt><dd><p>The contents of the document itself.  It contains the block 「body」 where
+the individual content is put by subtemplates like <code class="docutils literal notranslate"><span class="pre">page.html</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>In order for the built-in JavaScript search to show a page preview on
+the results page, the document or body content should be wrapped in an
+HTML element containing the <code class="docutils literal notranslate"><span class="pre">role=&quot;main&quot;</span></code> attribute. For example:</p>
+<div class="highlight-html+jinja notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;main&quot;</span><span class="p">&gt;</span>
+  <span class="cp">{%</span> <span class="k">block</span> <span class="nv">document</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sidebar1</span></code>, <code class="docutils literal notranslate"><span class="pre">sidebar2</span></code></dt><dd><p>A possible location for a sidebar.  <code class="docutils literal notranslate"><span class="pre">sidebar1</span></code> appears before the document
+and is empty by default, <code class="docutils literal notranslate"><span class="pre">sidebar2</span></code> after the document and contains the
+default sidebar.  If you want to swap the sidebar location override this and
+call the <code class="docutils literal notranslate"><span class="pre">sidebar</span></code> helper:</p>
+<div class="highlight-html+jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">block</span> <span class="nv">sidebar1</span> <span class="cp">%}{{</span> <span class="nv">sidebar</span><span class="o">()</span> <span class="cp">}}{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">sidebar2</span> <span class="cp">%}{%</span> <span class="k">endblock</span> <span class="cp">%}</span>
+</pre></div>
+</div>
+<p>(The <code class="docutils literal notranslate"><span class="pre">sidebar2</span></code> location for the sidebar is needed by the <code class="docutils literal notranslate"><span class="pre">sphinxdoc.css</span></code>
+stylesheet, for example.)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sidebarlogo</span></code></dt><dd><p>The logo location within the sidebar.  Override this if you want to place
+some content at the top of the sidebar.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">footer</span></code></dt><dd><p>The block for the footer div.  If you want a custom footer or markup before
+or after it, override this one.</p>
+</dd>
+</dl>
+<p>The following four blocks are <em>only</em> used for pages that do not have assigned a
+list of custom sidebars in the <a class="reference internal" href="usage/configuration.html#confval-html_sidebars"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_sidebars</span></code></a> config value.  Their use
+is deprecated in favor of separate sidebar templates, which can be included via
+<a class="reference internal" href="usage/configuration.html#confval-html_sidebars"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_sidebars</span></code></a>.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">sidebartoc</span></code></dt><dd><p>側邊條中的目次表。</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 1.0 版本開始棄用.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sidebarrel</span></code></dt><dd><p>The relation links (previous, next document) within the sidebar.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 1.0 版本開始棄用.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sidebarsourcelink</span></code></dt><dd><p>The 「Show source」 link within the sidebar (normally only shown if this is
+enabled by <a class="reference internal" href="usage/configuration.html#confval-html_show_sourcelink"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_show_sourcelink</span></code></a>).</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 1.0 版本開始棄用.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sidebarsearch</span></code></dt><dd><p>The search box within the sidebar.  Override this if you want to place some
+content at the bottom of the sidebar.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 1.0 版本開始棄用.</span></p>
+</div>
+</dd>
+</dl>
+</section>
+<section id="configuration-variables">
+<h3>組態變數<a class="headerlink" href="#configuration-variables" title="本標頭的永久連結">¶</a></h3>
+<p>Inside templates you can set a couple of variables used by the layout template
+using the <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">set</span> <span class="pre">%}</span></code> tag:</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="reldelim1">
+<span class="sig-name descname"><span class="pre">reldelim1</span></span><a class="headerlink" href="#reldelim1" title="本定義的永久連結">¶</a></dt>
+<dd><p>The delimiter for the items on the left side of the related bar.  This
+defaults to <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">&amp;raquo;'</span></code> Each item in the related bar ends with the value
+of this variable.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="reldelim2">
+<span class="sig-name descname"><span class="pre">reldelim2</span></span><a class="headerlink" href="#reldelim2" title="本定義的永久連結">¶</a></dt>
+<dd><p>The delimiter for the items on the right side of the related bar.  This
+defaults to <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">|'</span></code>.  Each item except of the last one in the related bar
+ends with the value of this variable.</p>
+</dd></dl>
+
+<p>Overriding works like this:</p>
+<div class="highlight-html+jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;!layout.html&quot;</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">set</span> <span class="nv">reldelim1</span> <span class="o">=</span> <span class="s1">&#39; &amp;gt;&#39;</span> <span class="cp">%}</span>
+</pre></div>
+</div>
+<dl class="py data">
+<dt class="sig sig-object py" id="script_files">
+<span class="sig-name descname"><span class="pre">script_files</span></span><a class="headerlink" href="#script_files" title="本定義的永久連結">¶</a></dt>
+<dd><p>Add additional script files here, like this:</p>
+<div class="highlight-html+jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">set</span> <span class="nv">script_files</span> <span class="o">=</span> <span class="nv">script_files</span> <span class="o">+</span> <span class="o">[</span><span class="s2">&quot;_static/myscript.js&quot;</span><span class="o">]</span> <span class="cp">%}</span>
+</pre></div>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 1.8.0 版本開始棄用: </span>請改用 <code class="docutils literal notranslate"><span class="pre">.Sphinx.add_js_file()</span></code>。</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="helper-functions">
+<h3>Helper Functions<a class="headerlink" href="#helper-functions" title="本標頭的永久連結">¶</a></h3>
+<p>Sphinx provides various Jinja functions as helpers in the template.  You can use
+them to generate links or output multiply used elements.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pathto">
+<span class="sig-name descname"><span class="pre">pathto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pathto" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return the path to a Sphinx document as a URL.  Use this to refer to built
+documents.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">pathto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">1</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Return the path to a <em>file</em> which is a filename relative to the root of the
+generated output.  Use this to refer to static files.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hasdoc">
+<span class="sig-name descname"><span class="pre">hasdoc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hasdoc" title="本定義的永久連結">¶</a></dt>
+<dd><p>Check if a document with the name <em>document</em> exists.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sidebar">
+<span class="sig-name descname"><span class="pre">sidebar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sidebar" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return the rendered sidebar.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="relbar">
+<span class="sig-name descname"><span class="pre">relbar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#relbar" title="本定義的永久連結">¶</a></dt>
+<dd><p>Return the rendered relation bar.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="warning">
+<span class="sig-name descname"><span class="pre">warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warning" title="本定義的永久連結">¶</a></dt>
+<dd><p>發出警告訊息。</p>
+</dd></dl>
+
+</section>
+<section id="global-variables">
+<h3>Global Variables<a class="headerlink" href="#global-variables" title="本標頭的永久連結">¶</a></h3>
+<p>These global variables are available in every template and are safe to use.
+There are more, but most of them are an implementation detail and might change
+in the future.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="builder">
+<span class="sig-name descname"><span class="pre">builder</span></span><a class="headerlink" href="#builder" title="本定義的永久連結">¶</a></dt>
+<dd><p>The name of the builder (e.g. <code class="docutils literal notranslate"><span class="pre">html</span></code> or <code class="docutils literal notranslate"><span class="pre">htmlhelp</span></code>).</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="copyright">
+<span class="sig-name descname"><span class="pre">copyright</span></span><a class="headerlink" href="#copyright" title="本定義的永久連結">¶</a></dt>
+<dd><p><a class="reference internal" href="usage/configuration.html#confval-copyright"><code class="xref std std-confval docutils literal notranslate"><span class="pre">copyright</span></code></a> 的值。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="docstitle">
+<span class="sig-name descname"><span class="pre">docstitle</span></span><a class="headerlink" href="#docstitle" title="本定義的永久連結">¶</a></dt>
+<dd><p>The title of the documentation (the value of <a class="reference internal" href="usage/configuration.html#confval-html_title"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_title</span></code></a>), except
+when the 「single-file」 builder is used, when it is set to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="embedded">
+<span class="sig-name descname"><span class="pre">embedded</span></span><a class="headerlink" href="#embedded" title="本定義的永久連結">¶</a></dt>
+<dd><p>True if the built HTML is meant to be embedded in some viewing application
+that handles navigation, not the web browser, such as for HTML help or Qt
+help formats.  In this case, the sidebar is not included.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="favicon">
+<span class="sig-name descname"><span class="pre">favicon</span></span><a class="headerlink" href="#favicon" title="本定義的永久連結">¶</a></dt>
+<dd><p>The path to the HTML favicon in the static path, or URL to the favicon, or
+<code class="docutils literal notranslate"><span class="pre">''</span></code>.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 4.0 版本開始棄用: </span>Recommend to use <code class="docutils literal notranslate"><span class="pre">favicon_url</span></code> instead.</p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="favicon_url">
+<span class="sig-name descname"><span class="pre">favicon_url</span></span><a class="headerlink" href="#favicon_url" title="本定義的永久連結">¶</a></dt>
+<dd><p>The relative path to the HTML favicon image from the current document, or
+URL to the favicon, or <code class="docutils literal notranslate"><span class="pre">''</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 4.0 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="file_suffix">
+<span class="sig-name descname"><span class="pre">file_suffix</span></span><a class="headerlink" href="#file_suffix" title="本定義的永久連結">¶</a></dt>
+<dd><p>The value of the builder’s <a class="reference internal" href="usage/builders/index.html#sphinxcontrib.serializinghtml.SerializingHTMLBuilder.out_suffix" title="sphinxcontrib.serializinghtml.SerializingHTMLBuilder.out_suffix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">out_suffix</span></code></a>
+attribute, i.e. the file name extension that the output files will get.  For
+a standard HTML builder, this is usually <code class="docutils literal notranslate"><span class="pre">.html</span></code>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="has_source">
+<span class="sig-name descname"><span class="pre">has_source</span></span><a class="headerlink" href="#has_source" title="本定義的永久連結">¶</a></dt>
+<dd><p>True if the reST document sources are copied (if <a class="reference internal" href="usage/configuration.html#confval-html_copy_source"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_copy_source</span></code></a>
+is <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="language">
+<span class="sig-name descname"><span class="pre">language</span></span><a class="headerlink" href="#language" title="本定義的永久連結">¶</a></dt>
+<dd><p><a class="reference internal" href="usage/configuration.html#confval-language"><code class="xref std std-confval docutils literal notranslate"><span class="pre">language</span></code></a> 的值。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="last_updated">
+<span class="sig-name descname"><span class="pre">last_updated</span></span><a class="headerlink" href="#last_updated" title="本定義的永久連結">¶</a></dt>
+<dd><p>建置日期。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="logo">
+<span class="sig-name descname"><span class="pre">logo</span></span><a class="headerlink" href="#logo" title="本定義的永久連結">¶</a></dt>
+<dd><p>The path to the HTML logo image in the static path, or URL to the logo, or
+<code class="docutils literal notranslate"><span class="pre">''</span></code>.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 4.0 版本開始棄用: </span>Recommend to use <code class="docutils literal notranslate"><span class="pre">logo_url</span></code> instead.</p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="logo_url">
+<span class="sig-name descname"><span class="pre">logo_url</span></span><a class="headerlink" href="#logo_url" title="本定義的永久連結">¶</a></dt>
+<dd><p>The relative path to the HTML logo image from the current document, or URL
+to the logo, or <code class="docutils literal notranslate"><span class="pre">''</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 4.0 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="master_doc">
+<span class="sig-name descname"><span class="pre">master_doc</span></span><a class="headerlink" href="#master_doc" title="本定義的永久連結">¶</a></dt>
+<dd><p>Same as <a class="reference internal" href="#root_doc" title="root_doc"><code class="xref py py-data docutils literal notranslate"><span class="pre">root_doc</span></code></a>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 4.0 版本變更: </span>Renamed to <code class="docutils literal notranslate"><span class="pre">root_doc</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="root_doc">
+<span class="sig-name descname"><span class="pre">root_doc</span></span><a class="headerlink" href="#root_doc" title="本定義的永久連結">¶</a></dt>
+<dd><p>The value of <a class="reference internal" href="usage/configuration.html#confval-root_doc"><code class="xref std std-confval docutils literal notranslate"><span class="pre">root_doc</span></code></a>, for usage with <a class="reference internal" href="#pathto" title="pathto"><code class="xref py py-func docutils literal notranslate"><span class="pre">pathto()</span></code></a>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 4.0 版本變更: </span>Renamed from <code class="docutils literal notranslate"><span class="pre">master_doc</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="pagename">
+<span class="sig-name descname"><span class="pre">pagename</span></span><a class="headerlink" href="#pagename" title="本定義的永久連結">¶</a></dt>
+<dd><p>The 「page name」 of the current file, i.e. either the document name if the
+file is generated from a reST source, or the equivalent hierarchical name
+relative to the output directory
+(<code class="docutils literal notranslate"><span class="pre">[directory/]filename_without_extension</span></code>).</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="project">
+<span class="sig-name descname"><span class="pre">project</span></span><a class="headerlink" href="#project" title="本定義的永久連結">¶</a></dt>
+<dd><p><a class="reference internal" href="usage/configuration.html#confval-project"><code class="xref std std-confval docutils literal notranslate"><span class="pre">project</span></code></a> 的值。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="release">
+<span class="sig-name descname"><span class="pre">release</span></span><a class="headerlink" href="#release" title="本定義的永久連結">¶</a></dt>
+<dd><p><a class="reference internal" href="usage/configuration.html#confval-release"><code class="xref std std-confval docutils literal notranslate"><span class="pre">release</span></code></a> 的值。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="rellinks">
+<span class="sig-name descname"><span class="pre">rellinks</span></span><a class="headerlink" href="#rellinks" title="本定義的永久連結">¶</a></dt>
+<dd><p>A list of links to put at the left side of the relbar, next to 「next」 and
+「prev」.  This usually contains links to the general index and other indices,
+such as the Python module index.  If you add something yourself, it must be a
+tuple <code class="docutils literal notranslate"><span class="pre">(pagename,</span> <span class="pre">link</span> <span class="pre">title,</span> <span class="pre">accesskey,</span> <span class="pre">link</span> <span class="pre">text)</span></code>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="shorttitle">
+<span class="sig-name descname"><span class="pre">shorttitle</span></span><a class="headerlink" href="#shorttitle" title="本定義的永久連結">¶</a></dt>
+<dd><p><a class="reference internal" href="usage/configuration.html#confval-html_short_title"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_short_title</span></code></a> 的值。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="show_source">
+<span class="sig-name descname"><span class="pre">show_source</span></span><a class="headerlink" href="#show_source" title="本定義的永久連結">¶</a></dt>
+<dd><p>True if <a class="reference internal" href="usage/configuration.html#confval-html_show_sourcelink"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_show_sourcelink</span></code></a> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sphinx_version">
+<span class="sig-name descname"><span class="pre">sphinx_version</span></span><a class="headerlink" href="#sphinx_version" title="本定義的永久連結">¶</a></dt>
+<dd><p>The version of Sphinx used to build represented as a string for example 「3.5.1」.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sphinx_version_tuple">
+<span class="sig-name descname"><span class="pre">sphinx_version_tuple</span></span><a class="headerlink" href="#sphinx_version_tuple" title="本定義的永久連結">¶</a></dt>
+<dd><p>The version of Sphinx used to build represented as a tuple of five elements.
+For Sphinx version 3.5.1 beta 3 this would be <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">5,</span> <span class="pre">1,</span> <span class="pre">'beta',</span> <span class="pre">3)</span></code>.
+The fourth element can be one of: <code class="docutils literal notranslate"><span class="pre">alpha</span></code>, <code class="docutils literal notranslate"><span class="pre">beta</span></code>, <code class="docutils literal notranslate"><span class="pre">rc</span></code>, <code class="docutils literal notranslate"><span class="pre">final</span></code>.
+<code class="docutils literal notranslate"><span class="pre">final</span></code> always has 0 as the last element.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 4.2 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="docutils_version_info">
+<span class="sig-name descname"><span class="pre">docutils_version_info</span></span><a class="headerlink" href="#docutils_version_info" title="本定義的永久連結">¶</a></dt>
+<dd><p>The version of Docutils used to build represented as a tuple of five elements.
+For Docutils version 0.16.1 beta 2 this would be <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">16,</span> <span class="pre">1,</span> <span class="pre">'beta',</span> <span class="pre">2)</span></code>.
+The fourth element can be one of: <code class="docutils literal notranslate"><span class="pre">alpha</span></code>, <code class="docutils literal notranslate"><span class="pre">beta</span></code>, <code class="docutils literal notranslate"><span class="pre">candidate</span></code>, <code class="docutils literal notranslate"><span class="pre">final</span></code>.
+<code class="docutils literal notranslate"><span class="pre">final</span></code> always has 0 as the last element.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 5.0.2 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="styles">
+<span class="sig-name descname"><span class="pre">styles</span></span><a class="headerlink" href="#styles" title="本定義的永久連結">¶</a></dt>
+<dd><p>A list of the names of the main stylesheets as given by the theme or
+<a class="reference internal" href="usage/configuration.html#confval-html_style"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_style</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 5.1 版本新加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="style">
+<span class="sig-name descname"><span class="pre">style</span></span><a class="headerlink" href="#style" title="本定義的永久連結">¶</a></dt>
+<dd><p>The name of the main stylesheet, as given by the theme or
+<a class="reference internal" href="usage/configuration.html#confval-html_style"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_style</span></code></a>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 5.1 版本變更: </span>The theme or <a class="reference internal" href="usage/configuration.html#confval-html_style"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_style</span></code></a> are now able to specify multiple
+stylesheets, the <code class="docutils literal notranslate"><span class="pre">style</span></code> key returns the last stylesheet when more than
+one is specified.</p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">在 5.1 版本開始棄用: </span>Use the <a class="reference internal" href="#styles" title="styles"><code class="xref py py-data docutils literal notranslate"><span class="pre">styles</span></code></a> key instead, as there is no longer a single main
+stylesheet. The <code class="docutils literal notranslate"><span class="pre">style</span></code> key will be removed in Sphinx 7.0.</p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="title">
+<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#title" title="本定義的永久連結">¶</a></dt>
+<dd><p>The title of the current document, as used in the <code class="docutils literal notranslate"><span class="pre">&lt;title&gt;</span></code> tag.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="use_opensearch">
+<span class="sig-name descname"><span class="pre">use_opensearch</span></span><a class="headerlink" href="#use_opensearch" title="本定義的永久連結">¶</a></dt>
+<dd><p><a class="reference internal" href="usage/configuration.html#confval-html_use_opensearch"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_use_opensearch</span></code></a> 的值。</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="version">
+<span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#version" title="本定義的永久連結">¶</a></dt>
+<dd><p><a class="reference internal" href="usage/configuration.html#confval-version"><code class="xref std std-confval docutils literal notranslate"><span class="pre">version</span></code></a> 的值。</p>
+</dd></dl>
+
+<p>In addition to these values, there are also all <strong>theme options</strong> available
+(prefixed by <code class="docutils literal notranslate"><span class="pre">theme_</span></code>), as well as the values given by the user in
+<a class="reference internal" href="usage/configuration.html#confval-html_context"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_context</span></code></a>.</p>
+<p>In documents that are created from source files (as opposed to
+automatically-generated files like the module index, or documents that already
+are in HTML form), these variables are also available:</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="body">
+<span class="sig-name descname"><span class="pre">body</span></span><a class="headerlink" href="#body" title="本定義的永久連結">¶</a></dt>
+<dd><p>A string containing the content of the page in HTML form as produced by the
+HTML builder, before the theme is applied.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="display_toc">
+<span class="sig-name descname"><span class="pre">display_toc</span></span><a class="headerlink" href="#display_toc" title="本定義的永久連結">¶</a></dt>
+<dd><p>A boolean that is True if the toc contains more than one entry.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="meta">
+<span class="sig-name descname"><span class="pre">meta</span></span><a class="headerlink" href="#meta" title="本定義的永久連結">¶</a></dt>
+<dd><p>Document metadata (a dictionary), see <a class="reference internal" href="usage/restructuredtext/field-lists.html#metadata"><span class="std std-ref">File-wide metadata</span></a>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="metatags">
+<span class="sig-name descname"><span class="pre">metatags</span></span><a class="headerlink" href="#metatags" title="本定義的永久連結">¶</a></dt>
+<dd><p>A string containing the page’s HTML <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#meta">meta</a> tags.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="next">
+<span class="sig-name descname"><span class="pre">next</span></span><a class="headerlink" href="#next" title="本定義的永久連結">¶</a></dt>
+<dd><p>The next document for the navigation.  This variable is either false or has
+two attributes <cite>link</cite> and <cite>title</cite>.  The title contains HTML markup.  For
+example, to generate a link to the next page, you can use this snippet:</p>
+<div class="highlight-html+jinja notranslate"><div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">next</span> <span class="cp">%}</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">next.link</span><span class="o">|</span><span class="nf">e</span> <span class="cp">}}</span><span class="s">&quot;</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">next.title</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="page_source_suffix">
+<span class="sig-name descname"><span class="pre">page_source_suffix</span></span><a class="headerlink" href="#page_source_suffix" title="本定義的永久連結">¶</a></dt>
+<dd><p>The suffix of the file that was rendered. Since we support a list of
+<a class="reference internal" href="usage/configuration.html#confval-source_suffix"><code class="xref std std-confval docutils literal notranslate"><span class="pre">source_suffix</span></code></a>, this will allow you to properly link to the
+original source file.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="parents">
+<span class="sig-name descname"><span class="pre">parents</span></span><a class="headerlink" href="#parents" title="本定義的永久連結">¶</a></dt>
+<dd><p>A list of parent documents for navigation, structured like the <a class="reference internal" href="#next" title="next"><code class="xref py py-data docutils literal notranslate"><span class="pre">next</span></code></a>
+item.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="prev">
+<span class="sig-name descname"><span class="pre">prev</span></span><a class="headerlink" href="#prev" title="本定義的永久連結">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#next" title="next"><code class="xref py py-data docutils literal notranslate"><span class="pre">next</span></code></a>, but for the previous page.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="sourcename">
+<span class="sig-name descname"><span class="pre">sourcename</span></span><a class="headerlink" href="#sourcename" title="本定義的永久連結">¶</a></dt>
+<dd><p>The name of the copied source file for the current document.  This is only
+nonempty if the <a class="reference internal" href="usage/configuration.html#confval-html_copy_source"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_copy_source</span></code></a> value is <code class="docutils literal notranslate"><span class="pre">True</span></code>.
+This has empty value on creating automatically-generated files.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="toc">
+<span class="sig-name descname"><span class="pre">toc</span></span><a class="headerlink" href="#toc" title="本定義的永久連結">¶</a></dt>
+<dd><p>The local table of contents for the current page, rendered as HTML bullet
+lists.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="toctree">
+<span class="sig-name descname"><span class="pre">toctree</span></span><a class="headerlink" href="#toctree" title="本定義的永久連結">¶</a></dt>
+<dd><p>A callable yielding the global TOC tree containing the current page, rendered
+as HTML bullet lists.  Optional keyword arguments:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">collapse</span></code></dt><dd><p>If true, all TOC entries that are not ancestors of the current page are
+collapsed.
+<code class="docutils literal notranslate"><span class="pre">True</span></code> by default.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">maxdepth</span></code></dt><dd><p>The maximum depth of the tree. Set it to <code class="docutils literal notranslate"><span class="pre">-1</span></code> to allow unlimited depth.
+Defaults to the max depth selected in the toctree directive.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">titles_only</span></code></dt><dd><p>If true, put only top-level document titles in the tree.
+<code class="docutils literal notranslate"><span class="pre">False</span></code> by default.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">includehidden</span></code></dt><dd><p>If true, the ToC tree will also contain hidden entries.
+<code class="docutils literal notranslate"><span class="pre">False</span></code> by default.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="copyright.html">版權所有</a> 2007-2026, the Sphinx developers。
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0 建立。
+</div>
+  </body>
+</html>

@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+
+<html lang="en-US" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Event callbacks API &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../_static/documentation_options.js?v=4a9a0b2a"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/event_callbacks.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Project API" href="projectapi.html" />
+    <link rel="prev" title="Application API" href="appapi.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../index.html">
+      <img src="../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Sphinx API</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Event callbacks API</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Event callbacks API</a><ul>
+<li><a class="reference internal" href="#core-events-overview">Core events overview</a></li>
+<li><a class="reference internal" href="#core-event-details">Core event details</a></li>
+<li><a class="reference internal" href="#builder-specific-events">Builder specific events</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Sphinx API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="appapi.html">Application API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Event callbacks API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projectapi.html">Project API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="envapi.html">Build environment API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builderapi.html">Builder API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventapi.html">Event Manager API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collectorapi.html">Environment Collector API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markupapi.html">Docutils markup API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domainapi.html">Domain API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parserapi.html">Parser API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html">Doctree node classes added by Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html">i18n API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecated.html">Deprecated APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes/index.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="event-callbacks-api">
+<span id="events"></span><h1>Event callbacks API<a class="headerlink" href="#event-callbacks-api" title="Link to this heading">¶</a></h1>
+<p>Connecting callback functions to events is a simple way to extend Sphinx,
+by hooking into the build process at various points.</p>
+<p>Use <a class="reference internal" href="appapi.html#sphinx.application.Sphinx.connect" title="sphinx.application.Sphinx.connect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Sphinx.connect()</span></code></a> in an extension’s <code class="docutils literal notranslate"><span class="pre">setup</span></code> function,
+or a <code class="docutils literal notranslate"><span class="pre">setup</span></code> function in your project’s <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>,
+to connect functions to the events:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">source_read_handler</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;do something here...&#39;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;source-read&#39;</span><span class="p">,</span> <span class="n">source_read_handler</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Extensions can add their own events by using <a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_event" title="sphinx.application.Sphinx.add_event"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Sphinx.add_event()</span></code></a>,
+and calling them them with
+<a class="reference internal" href="eventapi.html#sphinx.events.EventManager.emit" title="sphinx.events.EventManager.emit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EventManager.emit()</span></code></a> or <a class="reference internal" href="eventapi.html#sphinx.events.EventManager.emit_firstresult" title="sphinx.events.EventManager.emit_firstresult"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EventManager.emit_firstresult()</span></code></a>.</p>
+</div>
+<section id="core-events-overview">
+<h2>Core events overview<a class="headerlink" href="#core-events-overview" title="Link to this heading">¶</a></h2>
+<p>Below is an overview of the core event that happens during a build.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. event.config-inited(app,config)
+2. event.builder-inited(app)
+3. event.env-get-outdated(app, env, added, changed, removed)
+4. event.env-before-read-docs(app, env, docnames)
+
+for docname in docnames:
+   5. event.env-purge-doc(app, env, docname)
+
+   if doc changed and not removed:
+      6. source-read(app, docname, source)
+      7. run source parsers: text -&gt; docutils.document
+         - parsers can be added with the app.add_source_parser() API
+         - event.include-read(app, relative_path, parent_docname, content)
+           is called for each include directive
+      8. apply transforms based on priority: docutils.document -&gt; docutils.document
+         - event.doctree-read(app, doctree) is called in the middle of transforms,
+           transforms come before/after this event depending on their priority.
+
+9. event.env-merge-info(app, env, docnames, other)
+   - if running in parallel mode, this event will be emitted for each process
+
+10. event.env-updated(app, env)
+11. event.env-get-updated(app, env)
+
+if environment is written to disk:
+   12. event.env-check-consistency(app, env)
+
+13. event.write-started(app, builder)
+    - This is called after ``app.parallel_ok`` has been set,
+      which must not be altered by any event handler.
+
+# The updated-docs list can be builder dependent, but generally includes all new/changed documents,
+# plus any output from `env-get-updated`, and then all &quot;parent&quot; documents in the ToC tree
+# For builders that output a single page, they are first joined into a single doctree before post-transforms
+# or the doctree-resolved event is emitted
+for docname in updated-docs:
+   14. apply post-transforms (by priority): docutils.document -&gt; docutils.document
+   15. event.doctree-resolved(app, doctree, docname)
+       - In the event that any reference nodes fail to resolve, the following may emit:
+       - event.missing-reference(app, env, node, contnode)
+       - event.warn-missing-reference(app, domain, node)
+
+16. Generate output files
+17. event.build-finished(app, exception)
+</pre></div>
+</div>
+<p>Here is also a flow diagram of the events,
+within the context of the Sphinx build process:</p>
+<figure class="align-default" id="id1">
+// A flow graph of the Sphinx build process, highlighting event callbacks
+
+digraph events {
+    graph [
+        rankdir=TB
+    ];
+    node [
+        shape=rect
+        style=rounded
+    ];
+    &quot;Sphinx&quot; [
+        shape=record
+        label = &quot;&lt;init&gt; Sphinx.__init__() | &lt;build&gt; Sphinx.build()&quot;
+    ];
+
+    // During initialization
+    &quot;config-inited&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;Sphinx&quot;:init -&gt; &quot;config-inited&quot;;
+    &quot;builder-inited&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;Sphinx&quot;:init -&gt; &quot;builder-inited&quot;;
+
+    // During build
+    &quot;Builder&quot; [label = &quot;Builder.build()&quot;]
+    &quot;Sphinx&quot;:build -&gt; &quot;Builder&quot;;
+    &quot;Builder.build&quot; [
+        shape=record
+        label = &quot;
+            &lt;before_read&gt; before read |
+            &lt;read&gt; read |
+            &lt;after_read&gt; after read |
+            &lt;write&gt; write |
+            &lt;finalize&gt; finalize&quot;
+    ];
+    &quot;Builder&quot; -&gt; &quot;Builder.build&quot;;
+
+    &quot;env-get-outdated&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;Builder.build&quot;:before_read -&gt; &quot;env-get-outdated&quot;;
+    remove_each_doc [shape=&quot;ellipse&quot;, label=&quot;for removed&quot;];
+    &quot;Builder.build&quot;:before_read -&gt; &quot;remove_each_doc&quot;;
+    &quot;env-purge-doc&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;remove_each_doc&quot; -&gt; &quot;env-purge-doc&quot;;
+    &quot;env-before-read-docs&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;Builder.build&quot;:before_read -&gt; &quot;env-before-read-docs&quot;;
+
+    // during read phase
+    &quot;Builder.read&quot; [label = &quot;Builder.read()&quot;]
+    &quot;Builder.build&quot;:read -&gt; &quot;Builder.read&quot;;
+    read_each_doc [shape=&quot;ellipse&quot;, label=&quot;for added | changed&quot;];
+    &quot;Builder.read&quot; -&gt; &quot;read_each_doc&quot;;
+    merge_each_process [
+    shape=&quot;ellipse&quot;, label=&quot;for each process\n(parallel only)&quot;
+    ];
+    &quot;Builder.read&quot; -&gt; merge_each_process;
+    &quot;env-updated&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;Builder.read&quot; -&gt; &quot;env-updated&quot;
+
+    // during read phase, for each document/process
+    &quot;env-purge-doc&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;read_each_doc&quot; -&gt; &quot;env-purge-doc&quot;;
+    &quot;source-read&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;read_each_doc&quot; -&gt; &quot;source-read&quot;;
+    &quot;Include&quot; [label=&quot;Include\ndirective&quot;]
+    &quot;read_each_doc&quot; -&gt; &quot;Include&quot;;
+    &quot;include-read&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;Include&quot; -&gt; &quot;include-read&quot;;
+    &quot;ObjectDescription&quot; [label=&quot;ObjectDescription\ndirective&quot;]
+    &quot;read_each_doc&quot; -&gt; &quot;ObjectDescription&quot;;
+    &quot;object-description-transform&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;ObjectDescription&quot; -&gt; &quot;object-description-transform&quot;;
+    &quot;doctree-read&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;read_each_doc&quot; -&gt; &quot;doctree-read&quot;;
+    &quot;env-merge-info&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;merge_each_process&quot; -&gt; &quot;env-merge-info&quot;;
+
+    // after read phase
+    &quot;env-get-updated&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;Builder.build&quot;:after_read -&gt; &quot;env-get-updated&quot;;
+    if_read_changes [shape=&quot;diamond&quot;, label=&quot;if changed\ndocuments&quot;];
+    &quot;Builder.build&quot;:after_read -&gt; if_read_changes;
+    if_read_changes -&gt; &quot;cache the\nBuild.Environment&quot;;
+    &quot;env-check-consistency&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    if_read_changes -&gt; &quot;env-check-consistency&quot;;
+
+    // during write phase
+    &quot;write-started&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;Builder.write&quot; [label = &quot;Builder.write()&quot;]
+    &quot;Builder.build&quot;:write -&gt; &quot;Builder.write&quot;;
+    &quot;Builder.write&quot; -&gt; &quot;write-started&quot;;
+    write_each_doc [shape=&quot;ellipse&quot;, label=&quot;for updated&quot;];
+    &quot;Builder.write&quot; -&gt; write_each_doc;
+    &quot;ReferenceResolver&quot; [
+    label=&quot;ReferenceResolver\nPost-transform&quot;
+    ]
+    write_each_doc -&gt; &quot;ReferenceResolver&quot;;
+    &quot;missing-reference&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    ReferenceResolver -&gt; &quot;missing-reference&quot;;
+    &quot;warn-missing-reference&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    ReferenceResolver -&gt; &quot;warn-missing-reference&quot;;
+    &quot;HyperlinkCollector&quot; [
+    label=&quot;HyperlinkCollector\nPost-transform&quot;
+    ]
+    write_each_doc -&gt; &quot;HyperlinkCollector&quot;;
+    &quot;linkcheck-process-uri&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    HyperlinkCollector -&gt; &quot;linkcheck-process-uri&quot;;
+    &quot;doctree-resolved&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    write_each_doc -&gt; &quot;doctree-resolved&quot;;
+    &quot;html-page-context&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    write_each_doc -&gt; &quot;html-page-context&quot;;
+
+    // html only
+    &quot;html-collect-pages&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;Builder.build&quot;:finalize -&gt; &quot;html-collect-pages&quot;;
+
+    // finalize build
+    &quot;build-finished&quot;[style=filled fillcolor=&quot;#D5FFFF&quot; color=blue penwidth=2];
+    &quot;Builder.build&quot;:finalize -&gt; &quot;build-finished&quot;;
+
+    // constrain layout ordering
+    {rank=same &quot;config-inited&quot; &quot;builder-inited&quot;};
+    {rank=same; &quot;env-get-outdated&quot; &quot;env-before-read-docs&quot; &quot;env-get-updated&quot;};
+    {rank=same; &quot;env-purge-doc&quot; &quot;source-read&quot; &quot;doctree-read&quot;, &quot;merge_each_process&quot;};
+    {rank=same; &quot;env-updated&quot; &quot;env-check-consistency&quot;};
+    {rank=same; &quot;env-merge-info&quot; &quot;Builder.write&quot;};
+    {rank=max; &quot;build-finished&quot;};
+}
+<figcaption>
+<p><span class="caption-text">Sphinx core events flow</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="core-event-details">
+<h2>Core event details<a class="headerlink" href="#core-event-details" title="Link to this heading">¶</a></h2>
+<p>Here is a more detailed list of these events.</p>
+<dl class="std event">
+<dt class="sig sig-object std" id="event-config-inited">
+<span class="sig-name descname"><span class="pre">config-inited</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-config-inited" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>config</strong> – <a class="reference internal" href="appapi.html#sphinx.config.Config" title="sphinx.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<p>Emitted when the config object has been initialized.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.8.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-builder-inited">
+<span class="sig-name descname"><span class="pre">builder-inited</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-builder-inited" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p>
+</dd>
+</dl>
+<p>Emitted when the builder object has been created
+(available as <code class="docutils literal notranslate"><span class="pre">app.builder</span></code>).</p>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-env-get-outdated">
+<span class="sig-name descname"><span class="pre">env-get-outdated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">env</span></em>, <em class="sig-param"><span class="pre">added</span></em>, <em class="sig-param"><span class="pre">changed</span></em>, <em class="sig-param"><span class="pre">removed</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-env-get-outdated" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>env</strong> – <a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code></a></p></li>
+<li><p><strong>added</strong> – <code class="docutils literal notranslate"><span class="pre">Set[str]</span></code></p></li>
+<li><p><strong>changed</strong> – <code class="docutils literal notranslate"><span class="pre">Set[str]</span></code></p></li>
+<li><p><strong>removed</strong> – <code class="docutils literal notranslate"><span class="pre">Set[str]</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">Sequence[str]</span></code> of additional docnames to re-read</p>
+</dd>
+</dl>
+<p>Emitted when the environment determines which source files have changed and
+should be re-read.
+<em>added</em>, <em>changed</em> and <em>removed</em> are sets of docnames
+that the environment has determined.
+You can return a list of docnames to re-read in addition to these.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-env-purge-doc">
+<span class="sig-name descname"><span class="pre">env-purge-doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">env</span></em>, <em class="sig-param"><span class="pre">docname</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-env-purge-doc" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>env</strong> – <a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code></a></p></li>
+<li><p><strong>docname</strong> – <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Emitted when all traces of a source file should be cleaned from the
+environment, that is, if the source file is removed or before it is freshly read.
+This is for extensions that keep their own caches
+in attributes of the environment.</p>
+<p>For example, there is a cache of all modules on the environment.
+When a source file has been changed, the cache’s entries for the file are cleared,
+since the module declarations could have been removed from the file.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.5.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-env-before-read-docs">
+<span class="sig-name descname"><span class="pre">env-before-read-docs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">env</span></em>, <em class="sig-param"><span class="pre">docnames</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-env-before-read-docs" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>env</strong> – <a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code></a></p></li>
+<li><p><strong>docnames</strong> – <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Emitted after the environment has determined the list of all added and
+changed files and just before it reads them.
+It allows extension authors to reorder
+the list of docnames (<em>inplace</em>) before processing,
+or add more docnames that Sphinx did not consider changed
+(but never add any docnames that are not in <a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment.found_docs" title="sphinx.environment.BuildEnvironment.found_docs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">found_docs</span></code></a>).</p>
+<p>You can also remove document names; do this with caution since it will make
+Sphinx treat changed files as unchanged.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-source-read">
+<span class="sig-name descname"><span class="pre">source-read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">docname</span></em>, <em class="sig-param"><span class="pre">content</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-source-read" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>docname</strong> – <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+<li><p><strong>content</strong> – <code class="docutils literal notranslate"><span class="pre">list[str]</span></code>
+with a single element,
+representing the content of the source file.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Emitted when a source file has been read.</p>
+<p>You can process the <code class="docutils literal notranslate"><span class="pre">content</span></code> and
+replace this item to implement source-level transformations.</p>
+<p>For example, if you want to use <code class="docutils literal notranslate"><span class="pre">$</span></code> signs to delimit inline math, like in
+LaTeX, you can use a regular expression to replace <code class="docutils literal notranslate"><span class="pre">$...$</span></code> by
+<code class="docutils literal notranslate"><span class="pre">:math:`...`</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.5.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-include-read">
+<span class="sig-name descname"><span class="pre">include-read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">relative_path</span></em>, <em class="sig-param"><span class="pre">parent_docname</span></em>, <em class="sig-param"><span class="pre">content</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-include-read" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>relative_path</strong> – <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>
+representing the included file
+relative to the <a class="reference internal" href="../glossary.html#term-source-directory"><span class="xref std std-term">source directory</span></a>.</p></li>
+<li><p><strong>parent_docname</strong> – <code class="docutils literal notranslate"><span class="pre">str</span></code>
+of the document name that
+contains the <a class="extlink-dudir reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#include">include</a> directive.</p></li>
+<li><p><strong>content</strong> – <code class="docutils literal notranslate"><span class="pre">list[str]</span></code>
+with a single element,
+representing the content of the included file.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Emitted when a file has been read with the <a class="extlink-dudir reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#include">include</a> directive.</p>
+<p>You can process the <code class="docutils literal notranslate"><span class="pre">content</span></code> and replace this item
+to transform the included content, as with the <a class="reference internal" href="#event-source-read"><code class="xref std std-event docutils literal notranslate"><span class="pre">source-read</span></code></a> event.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.2.5.</span></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="extlink-dudir reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#include">include</a> directive and the <a class="reference internal" href="#event-source-read"><code class="xref std std-event docutils literal notranslate"><span class="pre">source-read</span></code></a> event.</p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-object-description-transform">
+<span class="sig-name descname"><span class="pre">object-description-transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">domain</span></em>, <em class="sig-param"><span class="pre">objtype</span></em>, <em class="sig-param"><span class="pre">contentnode</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-object-description-transform" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>domain</strong> – <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+<li><p><strong>objtype</strong> – <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+<li><p><strong>contentnode</strong> – <a class="reference internal" href="nodes.html#sphinx.addnodes.desc_content" title="sphinx.addnodes.desc_content"><code class="xref py py-class docutils literal notranslate"><span class="pre">desc_content</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<p>Emitted when an object description directive has run.  The <em>domain</em> and
+<em>objtype</em> arguments are strings indicating object description of the object.
+And <em>contentnode</em> is a content for the object.  It can be modified in-place.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-doctree-read">
+<span class="sig-name descname"><span class="pre">doctree-read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">doctree</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-doctree-read" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>doctree</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">docutils.nodes.document</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Emitted when a doctree has been parsed and read by the environment, and is
+about to be pickled.
+The <code class="docutils literal notranslate"><span class="pre">doctree</span></code> can be modified in-place.</p>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-missing-reference">
+<span class="sig-name descname"><span class="pre">missing-reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">env</span></em>, <em class="sig-param"><span class="pre">node</span></em>, <em class="sig-param"><span class="pre">contnode</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-missing-reference" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>env</strong> – <a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code></a></p></li>
+<li><p><strong>node</strong> – The <a class="reference internal" href="nodes.html#sphinx.addnodes.pending_xref" title="sphinx.addnodes.pending_xref"><code class="xref py py-class docutils literal notranslate"><span class="pre">pending_xref</span></code></a> node to be resolved.
+Its <code class="docutils literal notranslate"><span class="pre">reftype</span></code>, <code class="docutils literal notranslate"><span class="pre">reftarget</span></code>, <code class="docutils literal notranslate"><span class="pre">modname</span></code> and <code class="docutils literal notranslate"><span class="pre">classname</span></code> attributes
+determine the type and target of the reference.</p></li>
+<li><p><strong>contnode</strong> – The node that carries the text and formatting inside the
+future reference and should be a child of the returned reference node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new node to be inserted in the document tree in place of the node,
+or <code class="docutils literal notranslate"><span class="pre">None</span></code> to let other handlers try.</p>
+</dd>
+</dl>
+<p>Emitted when a cross-reference to an object cannot be resolved.
+If the event handler can resolve the reference, it should return a
+new docutils node to be inserted in the document tree in place of the node
+<em>node</em>.  Usually this node is a <code class="xref py py-class docutils literal notranslate"><span class="pre">reference</span></code> node containing
+<em>contnode</em> as a child.
+If the handler can not resolve the cross-reference,
+it can either return <code class="docutils literal notranslate"><span class="pre">None</span></code> to let other handlers try,
+or raise <code class="xref py py-class docutils literal notranslate"><span class="pre">NoUri</span></code> to prevent other handlers in
+trying and suppress a warning about this cross-reference being unresolved.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.5.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-warn-missing-reference">
+<span class="sig-name descname"><span class="pre">warn-missing-reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">domain</span></em>, <em class="sig-param"><span class="pre">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-warn-missing-reference" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>domain</strong> – The <a class="reference internal" href="domainapi.html#sphinx.domains.Domain" title="sphinx.domains.Domain"><code class="xref py py-class docutils literal notranslate"><span class="pre">Domain</span></code></a> of the missing reference.</p></li>
+<li><p><strong>node</strong> – The <a class="reference internal" href="nodes.html#sphinx.addnodes.pending_xref" title="sphinx.addnodes.pending_xref"><code class="xref py py-class docutils literal notranslate"><span class="pre">pending_xref</span></code></a> node that could not be resolved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if a warning was emitted, else <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+<p>Emitted when a cross-reference to an object cannot be resolved even after
+<a class="reference internal" href="#event-missing-reference"><code class="xref std std-event docutils literal notranslate"><span class="pre">missing-reference</span></code></a>.
+If the event handler can emit warnings for the missing reference,
+it should return <code class="docutils literal notranslate"><span class="pre">True</span></code>.
+The configuration variables
+<a class="reference internal" href="../usage/configuration.html#confval-nitpick_ignore"><code class="xref std std-confval docutils literal notranslate"><span class="pre">nitpick_ignore</span></code></a> and <a class="reference internal" href="../usage/configuration.html#confval-nitpick_ignore_regex"><code class="xref std std-confval docutils literal notranslate"><span class="pre">nitpick_ignore_regex</span></code></a>
+prevent the event from being emitted for the corresponding nodes.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-doctree-resolved">
+<span class="sig-name descname"><span class="pre">doctree-resolved</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">doctree</span></em>, <em class="sig-param"><span class="pre">docname</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-doctree-resolved" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>doctree</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">docutils.nodes.document</span></code></p></li>
+<li><p><strong>docname</strong> – <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Emitted when a doctree has been “resolved” by the environment, that is, all
+references have been resolved and TOCs have been inserted.  The <em>doctree</em> can
+be modified in place.</p>
+<p>Here is the place to replace custom nodes that don’t have visitor methods in
+the writers, so that they don’t cause errors when the writers encounter them.</p>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-env-merge-info">
+<span class="sig-name descname"><span class="pre">env-merge-info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">env</span></em>, <em class="sig-param"><span class="pre">docnames</span></em>, <em class="sig-param"><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-env-merge-info" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>env</strong> – <a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code></a></p></li>
+<li><p><strong>docnames</strong> – <code class="docutils literal notranslate"><span class="pre">list[str]</span></code></p></li>
+<li><p><strong>other</strong> – <a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<p>This event is only emitted when parallel reading of documents is enabled.  It
+is emitted once for every subprocess that has read some documents.</p>
+<p>You must handle this event in an extension that stores data in the
+environment in a custom location.  Otherwise the environment in the main
+process will not be aware of the information stored in the subprocess.</p>
+<p><em>other</em> is the environment object from the subprocess, <em>env</em> is the
+environment from the main process.  <em>docnames</em> is a set of document names
+that have been read in the subprocess.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-env-updated">
+<span class="sig-name descname"><span class="pre">env-updated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">env</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-env-updated" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>env</strong> – <a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code></a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>iterable of <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+<p>Emitted after reading all documents, when the environment and all
+doctrees are now up-to-date.</p>
+<p>You can return an iterable of docnames from the handler.  These documents
+will then be considered updated, and will be (re-)written during the writing
+phase.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.5.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.3: </span>The handlers’ return value is now used.</p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-env-get-updated">
+<span class="sig-name descname"><span class="pre">env-get-updated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">env</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-env-get-updated" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>env</strong> – <a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code></a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>iterable of <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+<p>Emitted when the environment determines which source files have changed and
+should be re-read.
+You can return an iterable of docnames to re-read.</p>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-env-check-consistency">
+<span class="sig-name descname"><span class="pre">env-check-consistency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">env</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-env-check-consistency" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>env</strong> – <a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<p>Emitted when Consistency checks phase.  You can check consistency of
+metadata for whole of documents.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.6.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-write-started">
+<span class="sig-name descname"><span class="pre">write-started</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">builder</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-write-started" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>builder</strong> – <a class="reference internal" href="builderapi.html#sphinx.builders.Builder" title="sphinx.builders.Builder"><code class="xref py py-class docutils literal notranslate"><span class="pre">Builder</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<p>Emitted before the builder starts to
+resolve and write documents.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-build-finished">
+<span class="sig-name descname"><span class="pre">build-finished</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">exception</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-build-finished" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>exception</strong> – <code class="docutils literal notranslate"><span class="pre">Exception</span></code> or <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Emitted when a build has finished, before Sphinx exits, usually used for
+cleanup.  This event is emitted even when the build process raised an
+exception, given as the <em>exception</em> argument.  The exception is reraised in
+the application after the event handlers have run.  If the build process
+raised no exception, <em>exception</em> will be <code class="docutils literal notranslate"><span class="pre">None</span></code>.  This allows to customize
+cleanup actions depending on the exception status.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.5.</span></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="builder-specific-events">
+<h2>Builder specific events<a class="headerlink" href="#builder-specific-events" title="Link to this heading">¶</a></h2>
+<p>These events are emitted by specific builders.</p>
+<dl class="std event">
+<dt class="sig sig-object std" id="event-html-collect-pages">
+<span class="sig-name descname"><span class="pre">html-collect-pages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-html-collect-pages" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>iterable of <code class="docutils literal notranslate"><span class="pre">(pagename,</span> <span class="pre">context,</span> <span class="pre">templatename)</span></code>
+where <em>pagename</em> and <em>templatename</em> are strings and
+<em>context</em> is a <code class="docutils literal notranslate"><span class="pre">dict[str,</span> <span class="pre">Any]</span></code>.</p>
+</dd>
+</dl>
+<p>Emitted when the HTML builder is starting to write non-document pages.</p>
+<p>You can add pages to write by returning an iterable from this event.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-html-page-context">
+<span class="sig-name descname"><span class="pre">html-page-context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">pagename</span></em>, <em class="sig-param"><span class="pre">templatename</span></em>, <em class="sig-param"><span class="pre">context</span></em>, <em class="sig-param"><span class="pre">doctree</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-html-page-context" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>pagename</strong> – <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+<li><p><strong>templatename</strong> – <code class="docutils literal notranslate"><span class="pre">str</span></code></p></li>
+<li><p><strong>context</strong> – <code class="docutils literal notranslate"><span class="pre">dict[str,</span> <span class="pre">Any]</span></code></p></li>
+<li><p><strong>doctree</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">docutils.nodes.document</span></code> or <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+<p>Emitted when the HTML builder has created a context dictionary to render a
+template with – this can be used to add custom elements to the context.</p>
+<p>The <em>pagename</em> argument is the canonical name of the page being rendered,
+that is, without <code class="docutils literal notranslate"><span class="pre">.html</span></code> suffix and using slashes as path separators.
+The <em>templatename</em> is the name of the template to render, this will be
+<code class="docutils literal notranslate"><span class="pre">'page.html'</span></code> for all pages from reStructuredText documents.</p>
+<p>The <em>context</em> argument is a dictionary of values that are given to the
+template engine to render the page and can be modified to include custom
+values.</p>
+<p>The <em>doctree</em> argument will be a doctree when
+the page is created from a reStructuredText documents;
+it will be <code class="docutils literal notranslate"><span class="pre">None</span></code> when the page is created from an HTML template alone.</p>
+<p>You can return a string from the handler, it will then replace
+<code class="docutils literal notranslate"><span class="pre">'page.html'</span></code> as the HTML template for this page.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can install JS/CSS files for the specific page via
+<a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_js_file" title="sphinx.application.Sphinx.add_js_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Sphinx.add_js_file()</span></code></a> and <a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_css_file" title="sphinx.application.Sphinx.add_css_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Sphinx.add_css_file()</span></code></a>
+(since v3.5.0).</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.4.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.3: </span>The return value can now specify a template name.</p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt class="sig sig-object std" id="event-linkcheck-process-uri">
+<span class="sig-name descname"><span class="pre">linkcheck-process-uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">uri</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-linkcheck-process-uri" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a></p></li>
+<li><p><strong>uri</strong> – <code class="docutils literal notranslate"><span class="pre">str</span></code> of the collected URI</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+<p>Emitted when the linkcheck builder collects hyperlinks from document.</p>
+<p>The event handlers can modify the URI by returning a string.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.1.</span></p>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="appapi.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Application API</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="projectapi.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">Project API</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; Copyright 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+</div>
+  </body>
+</html>
