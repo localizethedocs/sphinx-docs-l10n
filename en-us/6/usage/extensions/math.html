@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Math support for HTML outputs in Sphinx &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/math.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sphinx.ext.napoleon – Support for NumPy and Google style docstrings" href="napoleon.html" />
+    <link rel="prev" title="sphinx.ext.linkcode – Add external links to source code" href="linkcode.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../../index.html">
+  <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Extensions</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Math support for HTML outputs in Sphinx</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">Math support for HTML outputs in Sphinx</a><ul>
+<li><a class="reference internal" href="#module-sphinx.ext.imgmath"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgmath</span></code> – Render math as images</a></li>
+<li><a class="reference internal" href="#module-sphinx.ext.mathjax"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.mathjax</span></code> – Render math via JavaScript</a></li>
+<li><a class="reference internal" href="#module-sphinx.ext.jsmath"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.jsmath</span></code> – Render math via JavaScript</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial: Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">Builders</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Extensions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> – Include documentation from docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> – Allow reference sections using its title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> – Test snippets in the documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> – Measure durations of Sphinx processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> – Markup to shorten external links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> – Publish HTML docs in GitHub Pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> – A reference image converter using Imagemagick</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inheritance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intersphinx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – Link to other projects’ documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> – Add external links to source code</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Math support for HTML outputs in Sphinx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="napoleon.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> – Support for todo items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML Theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/setuptools.html">Setuptools integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Writing Sphinx Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx Extensions API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extensions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> – Include documentation from docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> – Allow reference sections using its title</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coverage.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> – Test snippets in the documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> – Measure durations of Sphinx processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> – Markup to shorten external links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> – Publish HTML docs in GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphviz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> – A reference image converter using Imagemagick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intersphinx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – Link to other projects’ documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> – Add external links to source code</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Math support for HTML outputs in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="napoleon.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> – Support for todo items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="module-sphinx.ext.mathbase">
+<span id="math-support-for-html-outputs-in-sphinx"></span><span id="math-support"></span><h1>Math support for HTML outputs in Sphinx<a class="headerlink" href="#module-sphinx.ext.mathbase" title="Permalink to this heading">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.5.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.8: </span>Math support for non-HTML builders is integrated to sphinx-core.
+So mathbase extension is no longer needed.</p>
+</div>
+<p>Since mathematical notation isn’t natively supported by HTML in any way, Sphinx
+gives a math support to HTML document with several extensions.  These use the
+reStructuredText math <a class="reference internal" href="../restructuredtext/directives.html#directive-math" title="math directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">directive</span></code></a> and <a class="reference internal" href="../restructuredtext/roles.html#role-math" title="math role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">role</span></code></a>.</p>
+<section id="module-sphinx.ext.imgmath">
+<span id="sphinx-ext-imgmath-render-math-as-images"></span><h2><a class="reference internal" href="#module-sphinx.ext.imgmath" title="sphinx.ext.imgmath: Render math as PNG or SVG images."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgmath</span></code></a> – Render math as images<a class="headerlink" href="#module-sphinx.ext.imgmath" title="Permalink to this heading">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.4.</span></p>
+</div>
+<p>This extension renders math via LaTeX and <a class="reference external" href="https://savannah.nongnu.org/projects/dvipng/">dvipng</a> or <a class="reference external" href="https://dvisvgm.de/">dvisvgm</a> into PNG or SVG
+images. This of course means that the computer where the docs are built must
+have both programs available.</p>
+<p>There are various configuration values you can set to influence how the images
+are built:</p>
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-imgmath_image_format">
+<span class="sig-name descname"><span class="pre">imgmath_image_format</span></span><a class="headerlink" href="#confval-imgmath_image_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>The output image format. The default is <code class="docutils literal notranslate"><span class="pre">'png'</span></code>. It should be either
+<code class="docutils literal notranslate"><span class="pre">'png'</span></code> or <code class="docutils literal notranslate"><span class="pre">'svg'</span></code>. The image is produced by first executing <code class="docutils literal notranslate"><span class="pre">latex</span></code>
+on the TeX mathematical mark-up then (depending on the requested format)
+either <a class="reference external" href="https://savannah.nongnu.org/projects/dvipng/">dvipng</a> or <a class="reference external" href="https://dvisvgm.de/">dvisvgm</a>.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-imgmath_use_preview">
+<span class="sig-name descname"><span class="pre">imgmath_use_preview</span></span><a class="headerlink" href="#confval-imgmath_use_preview" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">dvipng</span></code> and <code class="docutils literal notranslate"><span class="pre">dvisvgm</span></code> both have the ability to collect from LaTeX the
+“depth” of the rendered math: an inline image should use this “depth” in a
+<code class="docutils literal notranslate"><span class="pre">vertical-align</span></code> style to get correctly aligned with surrounding text.</p>
+<p>This mechanism requires the <a class="reference external" href="https://www.gnu.org/software/auctex/preview-latex.html">LaTeX preview package</a> (available as
+<code class="docutils literal notranslate"><span class="pre">preview-latex-style</span></code> on Ubuntu xenial).  Therefore, the default for this
+option is <code class="docutils literal notranslate"><span class="pre">False</span></code> but it is strongly recommended to set it to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 2.2: </span>This option can be used with the <code class="docutils literal notranslate"><span class="pre">'svg'</span></code> <a class="reference internal" href="#confval-imgmath_image_format"><code class="xref std std-confval docutils literal notranslate"><span class="pre">imgmath_image_format</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-imgmath_add_tooltips">
+<span class="sig-name descname"><span class="pre">imgmath_add_tooltips</span></span><a class="headerlink" href="#confval-imgmath_add_tooltips" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default: <code class="docutils literal notranslate"><span class="pre">True</span></code>.  If false, do not add the LaTeX code as an “alt” attribute
+for math images.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-imgmath_font_size">
+<span class="sig-name descname"><span class="pre">imgmath_font_size</span></span><a class="headerlink" href="#confval-imgmath_font_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>The font size (in <code class="docutils literal notranslate"><span class="pre">pt</span></code>) of the displayed math.  The default value is
+<code class="docutils literal notranslate"><span class="pre">12</span></code>.  It must be a positive integer.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-imgmath_latex">
+<span class="sig-name descname"><span class="pre">imgmath_latex</span></span><a class="headerlink" href="#confval-imgmath_latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>The command name with which to invoke LaTeX.  The default is <code class="docutils literal notranslate"><span class="pre">'latex'</span></code>; you
+may need to set this to a full path if <code class="docutils literal notranslate"><span class="pre">latex</span></code> is not in the executable
+search path.</p>
+<p>Since this setting is not portable from system to system, it is normally not
+useful to set it in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>; rather, giving it on the
+<strong class="program">sphinx-build</strong> command line via the <a class="reference internal" href="../../man/sphinx-build.html#cmdoption-sphinx-build-D"><code class="xref std std-option docutils literal notranslate"><span class="pre">-D</span></code></a>
+option should be preferable, like this:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span>sphinx-build -b html -D imgmath_latex=C:\tex\latex.exe . _build/html
+</pre></div>
+</div>
+<p>This value should only contain the path to the latex executable, not further
+arguments; use <a class="reference internal" href="#confval-imgmath_latex_args"><code class="xref std std-confval docutils literal notranslate"><span class="pre">imgmath_latex_args</span></code></a> for that purpose.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>To use <a class="reference external" href="https://tex.stackexchange.com/questions/425098/which-opentype-math-fonts-are-available">OpenType Math fonts</a> with <code class="docutils literal notranslate"><span class="pre">unicode-math</span></code>, via a custom
+<a class="reference internal" href="#confval-imgmath_latex_preamble"><code class="xref std std-confval docutils literal notranslate"><span class="pre">imgmath_latex_preamble</span></code></a>, you can set <a class="reference internal" href="#confval-imgmath_latex"><code class="xref std std-confval docutils literal notranslate"><span class="pre">imgmath_latex</span></code></a>
+to <code class="docutils literal notranslate"><span class="pre">'dvilualatex'</span></code>, but must then set <a class="reference internal" href="#confval-imgmath_image_format"><code class="xref std std-confval docutils literal notranslate"><span class="pre">imgmath_image_format</span></code></a>
+to <code class="docutils literal notranslate"><span class="pre">'svg'</span></code>.  Note: this has only been tested with <code class="docutils literal notranslate"><span class="pre">dvisvgm</span> <span class="pre">3.0.3</span></code>.
+It significantly increases image production duration compared to using
+standard <code class="docutils literal notranslate"><span class="pre">'latex'</span></code> with traditional TeX math fonts.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Some fancy LaTeX mark-up (an example was reported which used TikZ to add
+various decorations to the equation) require multiple runs of the LaTeX
+executable.  To handle this, set this configuration setting to
+<code class="docutils literal notranslate"><span class="pre">'latexmk'</span></code> (or a full path to it) as this Perl script reliably
+chooses dynamically how many latex runs are needed.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 6.2.0: </span>Using <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code> (or a full path to it) is now supported.  But you
+must then add <code class="docutils literal notranslate"><span class="pre">'-no-pdf'</span></code> to the <a class="reference internal" href="#confval-imgmath_latex_args"><code class="xref std std-confval docutils literal notranslate"><span class="pre">imgmath_latex_args</span></code></a> list of
+the command options.  The <code class="docutils literal notranslate"><span class="pre">'svg'</span></code> <a class="reference internal" href="#confval-imgmath_image_format"><code class="xref std std-confval docutils literal notranslate"><span class="pre">imgmath_image_format</span></code></a> is
+required.  Also, you may need the <code class="docutils literal notranslate"><span class="pre">dvisvgm</span></code> binary to be relatively
+recent (testing was done only with its <code class="docutils literal notranslate"><span class="pre">3.0.3</span></code> release).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Regarding the previous note, it is currently not supported to use
+<code class="docutils literal notranslate"><span class="pre">latexmk</span></code> with option <code class="docutils literal notranslate"><span class="pre">-xelatex</span></code>.</p>
+</div>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-imgmath_latex_args">
+<span class="sig-name descname"><span class="pre">imgmath_latex_args</span></span><a class="headerlink" href="#confval-imgmath_latex_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Additional arguments to give to latex, as a list.  The default is an empty
+list.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-imgmath_latex_preamble">
+<span class="sig-name descname"><span class="pre">imgmath_latex_preamble</span></span><a class="headerlink" href="#confval-imgmath_latex_preamble" title="Permalink to this definition">¶</a></dt>
+<dd><p>Additional LaTeX code to put into the preamble of the LaTeX files used to
+translate the math snippets.  This is left empty by default.  Use it
+e.g. to add packages which modify the fonts used for math, such as
+<code class="docutils literal notranslate"><span class="pre">'\\usepackage{newtxsf}'</span></code> for sans-serif fonts, or
+<code class="docutils literal notranslate"><span class="pre">'\\usepackage{fouriernc}'</span></code> for serif fonts.  Indeed, the default LaTeX
+math fonts have rather thin glyphs which (in HTML output) often do not
+match well with the font for text.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-imgmath_dvipng">
+<span class="sig-name descname"><span class="pre">imgmath_dvipng</span></span><a class="headerlink" href="#confval-imgmath_dvipng" title="Permalink to this definition">¶</a></dt>
+<dd><p>The command name to invoke <code class="docutils literal notranslate"><span class="pre">dvipng</span></code>.  The default is
+<code class="docutils literal notranslate"><span class="pre">'dvipng'</span></code>; you may need to set this to a full path if <code class="docutils literal notranslate"><span class="pre">dvipng</span></code> is not in
+the executable search path. This option is only used when
+<code class="docutils literal notranslate"><span class="pre">imgmath_image_format</span></code> is set to <code class="docutils literal notranslate"><span class="pre">'png'</span></code>.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-imgmath_dvipng_args">
+<span class="sig-name descname"><span class="pre">imgmath_dvipng_args</span></span><a class="headerlink" href="#confval-imgmath_dvipng_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Additional arguments to give to dvipng, as a list.  The default value is
+<code class="docutils literal notranslate"><span class="pre">['-gamma',</span> <span class="pre">'1.5',</span> <span class="pre">'-D',</span> <span class="pre">'110',</span> <span class="pre">'-bg',</span> <span class="pre">'Transparent']</span></code> which makes the
+image a bit darker and larger then it is by default (this compensates
+somewhat for the thinness of default LaTeX math fonts), and produces PNGs with a
+transparent background.  This option is used only when
+<code class="docutils literal notranslate"><span class="pre">imgmath_image_format</span></code> is <code class="docutils literal notranslate"><span class="pre">'png'</span></code>.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-imgmath_dvisvgm">
+<span class="sig-name descname"><span class="pre">imgmath_dvisvgm</span></span><a class="headerlink" href="#confval-imgmath_dvisvgm" title="Permalink to this definition">¶</a></dt>
+<dd><p>The command name to invoke <code class="docutils literal notranslate"><span class="pre">dvisvgm</span></code>.  The default is
+<code class="docutils literal notranslate"><span class="pre">'dvisvgm'</span></code>; you may need to set this to a full path if <code class="docutils literal notranslate"><span class="pre">dvisvgm</span></code> is not
+in the executable search path.  This option is only used when
+<code class="docutils literal notranslate"><span class="pre">imgmath_image_format</span></code> is <code class="docutils literal notranslate"><span class="pre">'svg'</span></code>.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-imgmath_dvisvgm_args">
+<span class="sig-name descname"><span class="pre">imgmath_dvisvgm_args</span></span><a class="headerlink" href="#confval-imgmath_dvisvgm_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Additional arguments to give to dvisvgm, as a list. The default value is
+<code class="docutils literal notranslate"><span class="pre">['--no-fonts']</span></code>, which means that <code class="docutils literal notranslate"><span class="pre">dvisvgm</span></code> will render glyphs as path
+elements (cf the <a class="reference external" href="https://dvisvgm.de/FAQ">dvisvgm FAQ</a>). This option is used only when
+<code class="docutils literal notranslate"><span class="pre">imgmath_image_format</span></code> is <code class="docutils literal notranslate"><span class="pre">'svg'</span></code>.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-imgmath_embed">
+<span class="sig-name descname"><span class="pre">imgmath_embed</span></span><a class="headerlink" href="#confval-imgmath_embed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.  If true, encode LaTeX output images within HTML files
+(base64 encoded) and do not save separate png/svg files to disk.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 5.2.</span></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-sphinx.ext.mathjax">
+<span id="sphinx-ext-mathjax-render-math-via-javascript"></span><h2><a class="reference internal" href="#module-sphinx.ext.mathjax" title="sphinx.ext.mathjax: Render math using JavaScript via MathJax."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.mathjax</span></code></a> – Render math via JavaScript<a class="headerlink" href="#module-sphinx.ext.mathjax" title="Permalink to this heading">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Version 4.0 changes the version of MathJax used to version 3. You may need to
+override <code class="docutils literal notranslate"><span class="pre">mathjax_path</span></code> to
+<code class="docutils literal notranslate"><span class="pre">https://cdn.jsdelivr.net/npm/mathjax&#64;2/MathJax.js?config=TeX-AMS-MML_HTMLorMML</span></code>
+or update your configuration options for version 3
+(see <a class="reference internal" href="#confval-mathjax3_config"><code class="xref std std-confval docutils literal notranslate"><span class="pre">mathjax3_config</span></code></a>).</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.</span></p>
+</div>
+<p>This extension puts math as-is into the HTML files.  The JavaScript package
+<a class="reference external" href="https://www.mathjax.org/">MathJax</a> is then loaded and transforms the LaTeX markup to readable math live in
+the browser.</p>
+<p>Because MathJax (and the necessary fonts) is very large, it is not included in
+Sphinx but is set to automatically include it from a third-party site.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>You should use the math <a class="reference internal" href="../restructuredtext/directives.html#directive-math" title="math directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">directive</span></code></a> and
+<a class="reference internal" href="../restructuredtext/roles.html#role-math" title="math role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">role</span></code></a>, not the native MathJax <code class="docutils literal notranslate"><span class="pre">$$</span></code>, <code class="docutils literal notranslate"><span class="pre">\(</span></code>, etc.</p>
+</div>
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-mathjax_path">
+<span class="sig-name descname"><span class="pre">mathjax_path</span></span><a class="headerlink" href="#confval-mathjax_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The path to the JavaScript file to include in the HTML files in order to load
+MathJax.</p>
+<p>The default is the <code class="docutils literal notranslate"><span class="pre">https://</span></code> URL that loads the JS files from the
+<a class="reference external" href="https://www.jsdelivr.com/">jsdelivr</a> Content Delivery Network. See the <a class="reference external" href="https://www.mathjax.org/#gettingstarted">MathJax Getting Started
+page</a> for details. If you want MathJax to be available offline or
+without including resources from a third-party site, you have to
+download it and set this value to a different path.</p>
+<p>The path can be absolute or relative; if it is relative, it is relative to
+the <code class="docutils literal notranslate"><span class="pre">_static</span></code> directory of the built docs.</p>
+<p>For example, if you put MathJax into the static path of the Sphinx docs, this
+value would be <code class="docutils literal notranslate"><span class="pre">MathJax/MathJax.js</span></code>.  If you host more than one Sphinx
+documentation set on one server, it is advisable to install MathJax in a
+shared location.</p>
+<p>You can also give a full <code class="docutils literal notranslate"><span class="pre">https://</span></code> URL different from the CDN URL.</p>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-mathjax_options">
+<span class="sig-name descname"><span class="pre">mathjax_options</span></span><a class="headerlink" href="#confval-mathjax_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>The options to script tag for mathjax.  For example, you can set integrity
+option with following setting:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span>mathjax_options = {
+    &#39;integrity&#39;: &#39;sha384-......&#39;,
+}
+</pre></div>
+</div>
+<p>The default is empty (<code class="docutils literal notranslate"><span class="pre">{}</span></code>).</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.8.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 4.4.1: </span>Allow to change the loading method (async or defer) of MathJax if “async”
+or “defer” key is set.</p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-mathjax3_config">
+<span class="sig-name descname"><span class="pre">mathjax3_config</span></span><a class="headerlink" href="#confval-mathjax3_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>The configuration options for MathJax v3 (which is used by default).
+The given dictionary is assigned to the JavaScript variable
+<code class="docutils literal notranslate"><span class="pre">window.MathJax</span></code>.
+For more information, please read <a class="reference external" href="https://docs.mathjax.org/en/latest/web/configuration.html#configuration">Configuring MathJax</a>.</p>
+<p>The default is empty (not configured).</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-mathjax2_config">
+<span class="sig-name descname"><span class="pre">mathjax2_config</span></span><a class="headerlink" href="#confval-mathjax2_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>The configuration options for MathJax v2 (which can be loaded via
+<a class="reference internal" href="#confval-mathjax_path"><code class="xref std std-confval docutils literal notranslate"><span class="pre">mathjax_path</span></code></a>).
+The value is used as a parameter of <code class="docutils literal notranslate"><span class="pre">MathJax.Hub.Config()</span></code>.
+For more information, please read <a class="reference external" href="https://docs.mathjax.org/en/v2.7-latest/configuration.html#using-in-line-configuration-options">Using in-line configuration options</a>.</p>
+<p>For example:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span>mathjax2_config = {
+    &#39;extensions&#39;: [&#39;tex2jax.js&#39;],
+    &#39;jax&#39;: [&#39;input/TeX&#39;, &#39;output/HTML-CSS&#39;],
+}
+</pre></div>
+</div>
+<p>The default is empty (not configured).</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 4.0: </span><a class="reference internal" href="#confval-mathjax_config"><code class="xref std std-confval docutils literal notranslate"><span class="pre">mathjax_config</span></code></a> has been renamed to <a class="reference internal" href="#confval-mathjax2_config"><code class="xref std std-confval docutils literal notranslate"><span class="pre">mathjax2_config</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-mathjax_config">
+<span class="sig-name descname"><span class="pre">mathjax_config</span></span><a class="headerlink" href="#confval-mathjax_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Former name of <a class="reference internal" href="#confval-mathjax2_config"><code class="xref std std-confval docutils literal notranslate"><span class="pre">mathjax2_config</span></code></a>.</p>
+<p>For help converting your old MathJax configuration to to the new
+<a class="reference internal" href="#confval-mathjax3_config"><code class="xref std std-confval docutils literal notranslate"><span class="pre">mathjax3_config</span></code></a>, see <a class="reference external" href="https://docs.mathjax.org/en/latest/web/configuration.html#converting-your-v2-configuration-to-v3">Converting Your v2 Configuration to v3</a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.8.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 4.0: </span>This has been renamed to <a class="reference internal" href="#confval-mathjax2_config"><code class="xref std std-confval docutils literal notranslate"><span class="pre">mathjax2_config</span></code></a>.
+<a class="reference internal" href="#confval-mathjax_config"><code class="xref std std-confval docutils literal notranslate"><span class="pre">mathjax_config</span></code></a> is still supported for backwards compatibility.</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-sphinx.ext.jsmath">
+<span id="sphinx-ext-jsmath-render-math-via-javascript"></span><h2><a class="reference internal" href="#module-sphinx.ext.jsmath" title="sphinx.ext.jsmath: Render math using JavaScript via JSMath."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.jsmath</span></code></a> – Render math via JavaScript<a class="headerlink" href="#module-sphinx.ext.jsmath" title="Permalink to this heading">¶</a></h2>
+<p>This extension works just as the MathJax extension does, but uses the older
+package <a class="reference external" href="http://www.math.union.edu/~dpvc/jsmath/">jsMath</a>.  It provides this config value:</p>
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-jsmath_path">
+<span class="sig-name descname"><span class="pre">jsmath_path</span></span><a class="headerlink" href="#confval-jsmath_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The path to the JavaScript file to include in the HTML files in order to load
+JSMath.  There is no default.</p>
+<p>The path can be absolute or relative; if it is relative, it is relative to
+the <code class="docutils literal notranslate"><span class="pre">_static</span></code> directory of the built docs.</p>
+<p>For example, if you put JSMath into the static path of the Sphinx docs, this
+value would be <code class="docutils literal notranslate"><span class="pre">jsMath/easy/load.js</span></code>.  If you host more than one
+Sphinx documentation set on one server, it is advisable to install jsMath in
+a shared location.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../../copyright.html">Copyright</a> 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+</div>
+  </body>
+</html>

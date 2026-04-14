@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Configuring builders &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/development/builders.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="HTML theme development" href="theming.html" />
+    <link rel="prev" title="Developing autodoc extension for IntEnum" href="tutorials/autodoc_ext.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../index.html">
+  <img src="../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>导航</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Extending Sphinx</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Configuring builders</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">Configuring builders</a><ul>
+<li><a class="reference internal" href="#discover-builders-by-entry-point">Discover builders by entry point</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extending Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Developing extensions overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/index.html">Extension tutorials</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Configuring builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theming.html">HTML theme development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../templating.html">Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extdev/index.html">Developing extensions for Sphinx</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="configuring-builders">
+<h1>Configuring builders<a class="headerlink" href="#configuring-builders" title="此标题的永久链接">¶</a></h1>
+<section id="discover-builders-by-entry-point">
+<h2>Discover builders by entry point<a class="headerlink" href="#discover-builders-by-entry-point" title="此标题的永久链接">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.6 版本加入.</span></p>
+</div>
+<p><a class="reference internal" href="../glossary.html#term-builder"><span class="xref std std-term">builder</span></a> extensions can be discovered by means of <a class="reference external" href="https://setuptools.readthedocs.io/en/latest/setuptools.html#dynamic-discovery-of-services-and-plugins">entry points</a> so
+that they do not have to be listed in the <a class="reference internal" href="../usage/configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">extensions</span></code></a> configuration
+value.</p>
+<p>Builder extensions should define an entry point in the <code class="docutils literal notranslate"><span class="pre">sphinx.builders</span></code>
+group. The name of the entry point needs to match your builder’s
+<a class="reference internal" href="../extdev/builderapi.html#sphinx.builders.Builder.name" title="sphinx.builders.Builder.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a> attribute, which is the name passed to the
+<a class="reference internal" href="../man/sphinx-build.html#cmdoption-sphinx-build-b"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-b</span></code></a> option. The entry point value should equal the
+dotted name of the extension module. Here is an example of how an entry point
+for ‘mybuilder’ can be defined in the extension’s <code class="docutils literal notranslate"><span class="pre">setup.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">setup</span><span class="p">(</span>
+    <span class="c1"># ...</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;sphinx.builders&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;mybuilder = my.extension.module&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that it is still necessary to register the builder using
+<a class="reference internal" href="../extdev/appapi.html#sphinx.application.Sphinx.add_builder" title="sphinx.application.Sphinx.add_builder"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_builder()</span></code></a> in the extension’s <code class="xref py py-func docutils literal notranslate"><span class="pre">setup()</span></code> function.</p>
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../copyright.html"> 版权所有</a> 2007-2026, the Sphinx developers.
+  由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0创建。
+</div>
+  </body>
+</html>

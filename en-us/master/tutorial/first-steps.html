@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="en-US" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>First steps to document your project using Sphinx &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../_static/documentation_options.js?v=4a9a0b2a"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/tutorial/first-steps.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="More Sphinx customization" href="more-sphinx-customization.html" />
+    <link rel="prev" title="Getting started" href="getting-started.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../index.html">
+      <img src="../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Build your first project</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">First steps to document your project using Sphinx</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">First steps to document your project using Sphinx</a><ul>
+<li><a class="reference internal" href="#building-your-html-documentation">Building your HTML documentation</a></li>
+<li><a class="reference internal" href="#building-your-documentation-in-other-formats">Building your documentation in other formats</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Build your first project</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">First steps to document your project using Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="more-sphinx-customization.html">More Sphinx customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="narrative-documentation.html">Narrative documentation in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="describing-code.html">Describing code in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automatic-doc-generation.html">Automatic documentation generation from code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploying.html">Appendix: Deploying a Sphinx project online</a></li>
+<li class="toctree-l2"><a class="reference internal" href="end.html">Where to go from here</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes/index.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="first-steps-to-document-your-project-using-sphinx">
+<h1>First steps to document your project using Sphinx<a class="headerlink" href="#first-steps-to-document-your-project-using-sphinx" title="Link to this heading">¶</a></h1>
+<section id="building-your-html-documentation">
+<h2>Building your HTML documentation<a class="headerlink" href="#building-your-html-documentation" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file that <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> created has some content
+already, and it gets rendered as the front page of your HTML documentation.  It
+is written in reStructuredText, a powerful markup language.</p>
+<p>Modify the file as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">docs/source/index.rst</span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Welcome to Lumache&#39;s documentation!</span>
+<span class="gh">===================================</span>
+
+<span class="gs">**Lumache**</span> (/lu&#39;make/) is a Python library for cooks and food lovers that
+creates recipes mixing random ingredients.  It pulls data from the `Open Food
+Facts database &lt;https://world.openfoodfacts.org/&gt;`_ and offers a <span class="ge">*simple*</span> and
+<span class="ge">*intuitive*</span> API.
+
+<span class="p">..</span> <span class="ow">note</span><span class="p">::</span>
+
+   This project is under active development.
+</pre></div>
+</div>
+</div>
+<p>This showcases several features of the reStructuredText syntax, including:</p>
+<ul class="simple">
+<li><p>a <strong>section header</strong> using <code class="docutils literal notranslate"><span class="pre">===</span></code> for the underline,</p></li>
+<li><p>two examples of <a class="reference internal" href="../usage/restructuredtext/basics.html#rst-inline-markup"><span class="std std-ref">Inline markup</span></a>: <code class="docutils literal notranslate"><span class="pre">**strong</span> <span class="pre">emphasis**</span></code> (typically
+bold) and <code class="docutils literal notranslate"><span class="pre">*emphasis*</span></code> (typically italics),</p></li>
+<li><p>an <strong>inline external link</strong>,</p></li>
+<li><p>and a <code class="docutils literal notranslate"><span class="pre">note</span></code> <strong>admonition</strong> (one of the available <a class="reference internal" href="../usage/restructuredtext/basics.html#rst-directives"><span class="std std-ref">directives</span></a>)</p></li>
+</ul>
+<p>Now to render it with the new content, you can use the <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> command
+as before, or leverage the convenience script as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>docs
+<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>make<span class="w"> </span>html
+</pre></div>
+</div>
+<p>After running this command, you will see that <code class="docutils literal notranslate"><span class="pre">index.html</span></code> reflects the new
+changes!</p>
+</section>
+<section id="building-your-documentation-in-other-formats">
+<h2>Building your documentation in other formats<a class="headerlink" href="#building-your-documentation-in-other-formats" title="Link to this heading">¶</a></h2>
+<p>Sphinx supports a variety of formats apart from HTML, including PDF, EPUB,
+<a class="reference internal" href="../usage/builders/index.html#builders"><span class="std std-ref">and more</span></a>.  For example, to build your documentation
+in EPUB format, run this command from the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>make<span class="w"> </span>epub
+</pre></div>
+</div>
+<p>After that, you will see the files corresponding to the e-book under
+<code class="docutils literal notranslate"><span class="pre">docs/build/epub/</span></code>.  You can either open <code class="docutils literal notranslate"><span class="pre">Lumache.epub</span></code> with an
+EPUB-compatible e-book viewer, like <a class="reference external" href="https://calibre-ebook.com/">Calibre</a>,
+or preview <code class="docutils literal notranslate"><span class="pre">index.xhtml</span></code> on a web browser.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To quickly display a complete list of possible output formats, plus some
+extra useful commands, you can run <code class="code docutils literal notranslate"><span class="pre">make</span> <span class="pre">help</span></code>.</p>
+</div>
+<p>Each output format has some specific configuration options that you can tune,
+<a class="reference internal" href="../usage/configuration.html#epub-options"><span class="std std-ref">including EPUB</span></a>.  For instance, the default value of
+<a class="reference internal" href="../usage/configuration.html#confval-epub_show_urls"><code class="xref std std-confval docutils literal notranslate"><span class="pre">epub_show_urls</span></code></a> is <code class="docutils literal notranslate"><span class="pre">inline</span></code>, which means that, by default, URLs are
+shown right after the corresponding link, in parentheses.  You can change that
+behavior by adding the following code at the end of your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">docs/source/conf.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># EPUB options</span>
+<span class="n">epub_show_urls</span> <span class="o">=</span> <span class="s1">&#39;footnote&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>With this configuration value, and after running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">epub</span></code> again, you will
+notice that URLs appear now as footnotes, which avoids cluttering the text.
+Sweet! Read on to explore <a class="reference internal" href="more-sphinx-customization.html"><span class="doc">other ways to customize
+Sphinx</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Generating a PDF using Sphinx can be done running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">latexpdf</span></code>,
+provided that the system has a working LaTeX installation,
+as explained in the documentation of <a class="reference internal" href="../usage/builders/index.html#sphinx.builders.latex.LaTeXBuilder" title="sphinx.builders.latex.LaTeXBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">sphinx.builders.latex.LaTeXBuilder</span></code></a>.
+Although this is perfectly feasible, such installations are often big,
+and in general LaTeX requires careful configuration in some cases,
+so PDF generation is out of scope for this tutorial.</p>
+</div>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="getting-started.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Getting started</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="more-sphinx-customization.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">More Sphinx customization</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; Copyright 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+</div>
+  </body>
+</html>
