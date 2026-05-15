@@ -7,7 +7,7 @@
 </div>
 
 <div align="center">
-<h1 id="localization-of-sphinx-documentation">Sphinx 文档的本地化</h1>
+<h1 id="localization-of-the-sphinx-documentation">Localization of The Sphinx Documentation</h1>
 </div>
 
 <details><summary><strong>切换语言</strong></summary>
@@ -66,7 +66,7 @@
 
 <p></p>
 
-The goal of this project is to translate the Sphinx Documentation into multiple languages. Translations are contributed via the Crowdin platform, automatically synchronized with the GitHub repository, and can be previewed on GitHub Pages.
+The goal of this project is to translate The Sphinx Documentation into multiple languages. Translations are contributed via the Crowdin platform, automatically synchronized with the GitHub repository, and can be previewed on GitHub Pages.
 
 > [!NOTE]
 > The translation is <strong>unofficial</strong> and <strong>community-driven</strong>. If you find any inaccuracies, always refer to the <a href="https://www.sphinx-doc.org">official documentation</a> or the <a href="https://github.com/sphinx-doc/sphinx">source repository</a> of the upstream project for the most reliable information.
