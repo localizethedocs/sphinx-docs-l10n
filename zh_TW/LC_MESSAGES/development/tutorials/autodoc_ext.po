@@ -1,0 +1,334 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2025, the Sphinx developers
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 7\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-03 20:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../development/tutorials/autodoc_ext.rst:4
+msgid "Developing autodoc extensions"
+msgstr "開發 autodoc 擴充功能"
+
+#: ../../../development/tutorials/autodoc_ext.rst:6
+msgid ""
+"The objective of this tutorial is to create an extension that adds support "
+"for new type for autodoc. This autodoc extension will format the ``IntEnum`` "
+"class from Python standard library. (module ``enum``)"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:11
+msgid "Overview"
+msgstr "概覽"
+
+#: ../../../development/tutorials/autodoc_ext.rst:13
+msgid ""
+"We want the extension that will create auto-documentation for IntEnum. "
+"``IntEnum`` is the integer enum class from standard library ``enum`` module."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:16
+msgid "Currently this class has no special auto documentation behavior."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:18
+msgid "We want to add following to autodoc:"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:20
+msgid ""
+"A new ``autointenum`` directive that will document the ``IntEnum`` class."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:21
+msgid ""
+"The generated documentation will have all the enum possible values with "
+"names."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:23
+msgid ""
+"The ``autointenum`` directive will have an option ``:hex:`` which will cause "
+"the integers be printed in hexadecimal form."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:28
+msgid "Prerequisites"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:30
+msgid ""
+"We need the same setup as in :ref:`the previous extensions <tutorial-extend-"
+"build>`. This time, we will be putting out extension in a file called :file:"
+"`autodoc_intenum.py`. The :file:`my_enums.py` will contain the sample enums "
+"we will document."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:36
+msgid "Here is an example of the folder structure you might obtain:"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:38
+msgid ""
+"└── source\n"
+"    ├── _ext\n"
+"    │   └── autodoc_intenum.py\n"
+"    ├── conf.py\n"
+"    ├── index.rst\n"
+"    └── my_enums.py"
+msgstr ""
+"└── source\n"
+"    ├── _ext\n"
+"    │   └── autodoc_intenum.py\n"
+"    ├── conf.py\n"
+"    ├── index.rst\n"
+"    └── my_enums.py"
+
+#: ../../../development/tutorials/autodoc_ext.rst:49
+msgid "Writing the extension"
+msgstr "編寫擴充套件"
+
+#: ../../../development/tutorials/autodoc_ext.rst:51
+msgid "Start with ``setup`` function for the extension."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:53
+msgid ""
+"def setup(app: Sphinx) -> ExtensionMetadata:\n"
+"    app.setup_extension('sphinx.ext.autodoc')  # Require autodoc extension\n"
+"    app.add_autodocumenter(IntEnumDocumenter)\n"
+"    return {\n"
+"        'version': '1',\n"
+"        'parallel_read_safe': True,\n"
+"    }\n"
+msgstr ""
+"def setup(app: Sphinx) -> ExtensionMetadata:\n"
+"    app.setup_extension('sphinx.ext.autodoc')  # 需要 autodoc 擴充功能\n"
+"    app.add_autodocumenter(IntEnumDocumenter)\n"
+"    return {\n"
+"        'version': '1',\n"
+"        'parallel_read_safe': True,\n"
+"    }\n"
+
+#: ../../../development/tutorials/autodoc_ext.rst:59
+msgid ""
+"The :meth:`~sphinx.application.Sphinx.setup_extension` method will pull the "
+"autodoc extension because our new extension depends on autodoc. :meth:"
+"`~sphinx.application.Sphinx.add_autodocumenter` is the method that registers "
+"our new auto documenter class."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:64
+msgid "We want to import certain objects from the autodoc extension:"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:66
+msgid ""
+"from __future__ import annotations\n"
+"\n"
+"from enum import IntEnum\n"
+"from typing import TYPE_CHECKING, Any\n"
+"\n"
+"from sphinx.ext.autodoc import ClassDocumenter, bool_option\n"
+"\n"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:72
+msgid ""
+"There are several different documenter classes such as ``MethodDocumenter`` "
+"or ``AttributeDocumenter`` available in the autodoc extension but our new "
+"class is the subclass of ``ClassDocumenter`` which a documenter class used "
+"by autodoc to document classes."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:77
+msgid "This is the definition of our new the auto-documenter class:"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:79
+msgid ""
+"class IntEnumDocumenter(ClassDocumenter):\n"
+"    objtype = 'intenum'\n"
+"    directivetype = ClassDocumenter.objtype\n"
+"    priority = 10 + ClassDocumenter.priority\n"
+"    option_spec = dict(ClassDocumenter.option_spec)\n"
+"    option_spec['hex'] = bool_option\n"
+"\n"
+"    @classmethod\n"
+"    def can_document_member(\n"
+"        cls, member: Any, membername: str, isattr: bool, parent: Any\n"
+"    ) -> bool:\n"
+"        try:\n"
+"            return issubclass(member, IntEnum)\n"
+"        except TypeError:\n"
+"            return False\n"
+"\n"
+"    def add_directive_header(self, sig: str) -> None:\n"
+"        super().add_directive_header(sig)\n"
+"        self.add_line('   :final:', self.get_sourcename())\n"
+"\n"
+"    def add_content(\n"
+"        self,\n"
+"        more_content: StringList | None,\n"
+"        no_docstring: bool = False,\n"
+"    ) -> None:\n"
+"        super().add_content(more_content, no_docstring)\n"
+"\n"
+"        source_name = self.get_sourcename()\n"
+"        enum_object: IntEnum = self.object\n"
+"        use_hex = self.options.hex\n"
+"        self.add_line('', source_name)\n"
+"\n"
+"        for the_member_name, enum_member in enum_object.__members__."
+"items():\n"
+"            the_member_value = enum_member.value\n"
+"            if use_hex:\n"
+"                the_member_value = hex(the_member_value)\n"
+"\n"
+"            self.add_line(f'**{the_member_name}**: {the_member_value}', "
+"source_name)\n"
+"            self.add_line('', source_name)\n"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:85
+msgid "Important attributes of the new class:"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:87
+msgid "**objtype**"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:88
+msgid ""
+"This attribute determines the ``auto`` directive name. In this case the auto "
+"directive will be ``autointenum``."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:91
+msgid "**directivetype**"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:92
+msgid ""
+"This attribute sets the generated directive name. In this example the "
+"generated directive will be ``.. :py:class::``."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:95
+msgid "**priority**"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:96
+msgid ""
+"the larger the number the higher is the priority. We want our documenter be "
+"higher priority than the parent."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:99
+msgid "**option_spec**"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:100
+msgid ""
+"option specifications. We copy the parent class options and add a new option "
+"*hex*."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:104
+msgid "Overridden members:"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:106
+msgid "**can_document_member**"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:107
+msgid ""
+"This member is important to override. It should return *True* when the "
+"passed object can be documented by this class."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:110
+msgid "**add_directive_header**"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:111
+msgid ""
+"This method generates the directive header. We add **:final:** directive "
+"option. Remember to call **super** or no directive will be generated."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:115
+msgid "**add_content**"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:116
+msgid ""
+"This method generates the body of the class documentation. After calling the "
+"super method we generate lines for enum description."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:121
+msgid "Using the extension"
+msgstr "使用擴充套件"
+
+#: ../../../development/tutorials/autodoc_ext.rst:123
+msgid "You can now use the new autodoc directive to document any ``IntEnum``."
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:125
+msgid "For example, you have the following ``IntEnum``:"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:127
+msgid "my_enums.py"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:127
+msgid ""
+"class Colors(IntEnum):\n"
+"    \"\"\"Colors enumerator\"\"\"\n"
+"    NONE = 0\n"
+"    RED = 1\n"
+"    GREEN = 2\n"
+"    BLUE = 3"
+msgstr ""
+"class Colors(IntEnum):\n"
+"    \"\"\"Colors enumerator\"\"\"\n"
+"    NONE = 0\n"
+"    RED = 1\n"
+"    GREEN = 2\n"
+"    BLUE = 3"
+
+#: ../../../development/tutorials/autodoc_ext.rst:138
+msgid "This will be the documentation file with auto-documentation directive:"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:140
+msgid "index.rst"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:140
+msgid ".. autointenum:: my_enums.Colors"
+msgstr ""
+
+#: ../../../development/tutorials/autodoc_ext.rst:146
+msgid "Further reading"
+msgstr "延伸閱讀"
+
+#: ../../../development/tutorials/autodoc_ext.rst:148
+msgid ""
+"If you wish to share your extension across multiple projects or with others, "
+"check out the :ref:`third-party-extensions` section."
+msgstr ""
