@@ -1,0 +1,242 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2019, Georg Brandl and the Sphinx team
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-03 20:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../setuptools.rst:4
+msgid "Setuptools integration"
+msgstr ""
+
+#: ../../../setuptools.rst:6
+msgid ""
+"Sphinx supports integration with setuptools and distutils through a custom "
+"command - :class:`~sphinx.setup_command.BuildDoc`."
+msgstr ""
+
+#: ../../../setuptools.rst:10
+msgid "Using setuptools integration"
+msgstr ""
+
+#: ../../../setuptools.rst:12
+msgid ""
+"The Sphinx build can then be triggered from distutils, and some Sphinx "
+"options can be set in ``setup.py`` or ``setup.cfg`` instead of Sphinx's own "
+"configuration file."
+msgstr ""
+
+#: ../../../setuptools.rst:16
+msgid "For instance, from ``setup.py``::"
+msgstr ""
+
+#: ../../../setuptools.rst:18
+msgid ""
+"# this is only necessary when not using setuptools/distribute\n"
+"from sphinx.setup_command import BuildDoc\n"
+"cmdclass = {'build_sphinx': BuildDoc}\n"
+"\n"
+"name = 'My project'\n"
+"version = '1.2'\n"
+"release = '1.2.0'\n"
+"setup(\n"
+"    name=name,\n"
+"    author='Bernard Montgomery',\n"
+"    version=release,\n"
+"    cmdclass=cmdclass,\n"
+"    # these are optional and override conf.py settings\n"
+"    command_options={\n"
+"        'build_sphinx': {\n"
+"            'project': ('setup.py', name),\n"
+"            'version': ('setup.py', version),\n"
+"            'release': ('setup.py', release),\n"
+"            'source_dir': ('setup.py', 'doc')}},\n"
+")"
+msgstr ""
+
+#: ../../../setuptools.rst:41
+msgid ""
+"If you set Sphinx options directly in the ``setup()`` command, replace "
+"hyphens in variable names with underscores. In the example above, ``source-"
+"dir`` becomes ``source_dir``."
+msgstr ""
+
+#: ../../../setuptools.rst:45
+msgid "Or add this section in ``setup.cfg``::"
+msgstr ""
+
+#: ../../../setuptools.rst:47
+msgid ""
+"[build_sphinx]\n"
+"project = 'My project'\n"
+"version = 1.2\n"
+"release = 1.2.0\n"
+"source-dir = 'doc'"
+msgstr ""
+
+#: ../../../setuptools.rst:53
+msgid ""
+"Once configured, call this by calling the relevant command on ``setup.py``::"
+msgstr ""
+
+#: ../../../setuptools.rst:55
+msgid "$ python setup.py build_sphinx"
+msgstr ""
+
+#: ../../../setuptools.rst:58
+msgid "Options for setuptools integration"
+msgstr ""
+
+#: ../../../setuptools.rst:62
+msgid ""
+"A boolean that determines whether the saved environment should be discarded "
+"on build. Default is false."
+msgstr ""
+
+#: ../../../setuptools.rst:65
+msgid "This can also be set by passing the `-E` flag to ``setup.py``:"
+msgstr ""
+
+#: ../../../setuptools.rst:67
+msgid "$ python setup.py build_sphinx -E"
+msgstr ""
+
+#: ../../../setuptools.rst:73
+msgid ""
+"A boolean that determines whether all files should be built from scratch. "
+"Default is false."
+msgstr ""
+
+#: ../../../setuptools.rst:76
+msgid "This can also be set by passing the `-a` flag to ``setup.py``:"
+msgstr ""
+
+#: ../../../setuptools.rst:78
+msgid "$ python setup.py build_sphinx -a"
+msgstr ""
+
+#: ../../../setuptools.rst:84
+msgid ""
+"The target source directory. This can be relative to the ``setup.py`` or "
+"``setup.cfg`` file, or it can be absolute.  It defaults to ``./doc`` or ``./"
+"docs`` if either contains a file named ``conf.py`` (checking ``./doc`` "
+"first); otherwise it defaults to the current directory."
+msgstr ""
+
+#: ../../../setuptools.rst:89
+msgid "This can also be set by passing the `-s` flag to ``setup.py``:"
+msgstr ""
+
+#: ../../../setuptools.rst:91
+msgid "$ python setup.py build_sphinx -s $SOURCE_DIR"
+msgstr ""
+
+#: ../../../setuptools.rst:97
+msgid ""
+"The target build directory. This can be relative to the ``setup.py`` or "
+"``setup.cfg`` file, or it can be absolute. Default is ``./build/sphinx``."
+msgstr ""
+
+#: ../../../setuptools.rst:102
+msgid ""
+"Location of the configuration directory. This can be relative to the ``setup."
+"py`` or ``setup.cfg`` file, or it can be absolute. Default is to use `source-"
+"dir`."
+msgstr ""
+
+#: ../../../setuptools.rst:106
+msgid "This can also be set by passing the `-c` flag to ``setup.py``:"
+msgstr ""
+
+#: ../../../setuptools.rst:108
+msgid "$ python setup.py build_sphinx -c $CONFIG_DIR"
+msgstr ""
+
+#: ../../../setuptools.rst:116
+msgid "The builder or list of builders to use. Default is ``html``."
+msgstr ""
+
+#: ../../../setuptools.rst:118
+msgid "This can also be set by passing the `-b` flag to ``setup.py``:"
+msgstr ""
+
+#: ../../../setuptools.rst:120
+msgid "$ python setup.py build_sphinx -b $BUILDER"
+msgstr ""
+
+#: ../../../setuptools.rst:124
+msgid "This can now be a comma- or space-separated list of builders"
+msgstr ""
+
+#: ../../../setuptools.rst:129
+msgid ""
+"A boolean that ensures Sphinx warnings will result in a failed build. "
+"Default is false."
+msgstr ""
+
+#: ../../../setuptools.rst:132
+msgid "This can also be set by passing the `-W` flag to ``setup.py``:"
+msgstr ""
+
+#: ../../../setuptools.rst:134
+msgid "$ python setup.py build_sphinx -W"
+msgstr ""
+
+#: ../../../setuptools.rst:142
+msgid "The documented project's name. Default is ``''``."
+msgstr ""
+
+#: ../../../setuptools.rst:148
+msgid "The short X.Y version. Default is ``''``."
+msgstr ""
+
+#: ../../../setuptools.rst:154
+msgid "The full version, including alpha/beta/rc tags. Default is ``''``."
+msgstr ""
+
+#: ../../../setuptools.rst:160
+msgid ""
+"How to format the current date, used as the replacement for ``|today|``. "
+"Default is ``''``."
+msgstr ""
+
+#: ../../../setuptools.rst:167
+msgid ""
+"A boolean that ensures index.html will be linked to the master doc. Default "
+"is false."
+msgstr ""
+
+#: ../../../setuptools.rst:170
+msgid "This can also be set by passing the `-i` flag to ``setup.py``:"
+msgstr ""
+
+#: ../../../setuptools.rst:172
+msgid "$ python setup.py build_sphinx -i"
+msgstr ""
+
+#: ../../../setuptools.rst:180
+msgid "The copyright string. Default is ``''``."
+msgstr ""
+
+#: ../../../setuptools.rst:186
+msgid ""
+"Run in nit-picky mode.  Currently, this generates warnings for all missing "
+"references.  See the config value :confval:`nitpick_ignore` for a way to "
+"exclude some references as \"known missing\"."
+msgstr ""
+
+#: ../../../setuptools.rst:194
+msgid "A boolean to configure ``pdb`` on exception. Default is false."
+msgstr ""
