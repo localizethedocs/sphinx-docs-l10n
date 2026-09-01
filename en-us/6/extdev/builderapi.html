@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Builder API &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/builderapi.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Environment Collector API" href="collectorapi.html" />
+    <link rel="prev" title="Build environment API" href="envapi.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../index.html">
+  <img src="../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Sphinx Extensions API</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Builder API</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">Builder API</a><ul>
+<li><a class="reference internal" href="#sphinx.builders.Builder"><code class="docutils literal notranslate"><span class="pre">Builder</span></code></a><ul>
+<li><a class="reference internal" href="#sphinx.builders.Builder.name"><code class="docutils literal notranslate"><span class="pre">Builder.name</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.format"><code class="docutils literal notranslate"><span class="pre">Builder.format</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.epilog"><code class="docutils literal notranslate"><span class="pre">Builder.epilog</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.allow_parallel"><code class="docutils literal notranslate"><span class="pre">Builder.allow_parallel</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.supported_image_types"><code class="docutils literal notranslate"><span class="pre">Builder.supported_image_types</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.supported_remote_images"><code class="docutils literal notranslate"><span class="pre">Builder.supported_remote_images</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.supported_data_uri_images"><code class="docutils literal notranslate"><span class="pre">Builder.supported_data_uri_images</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.default_translator_class"><code class="docutils literal notranslate"><span class="pre">Builder.default_translator_class</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.get_relative_uri"><code class="docutils literal notranslate"><span class="pre">Builder.get_relative_uri()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.build_all"><code class="docutils literal notranslate"><span class="pre">Builder.build_all()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.build_specific"><code class="docutils literal notranslate"><span class="pre">Builder.build_specific()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.build_update"><code class="docutils literal notranslate"><span class="pre">Builder.build_update()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.build"><code class="docutils literal notranslate"><span class="pre">Builder.build()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.init"><code class="docutils literal notranslate"><span class="pre">Builder.init()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.get_outdated_docs"><code class="docutils literal notranslate"><span class="pre">Builder.get_outdated_docs()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.get_target_uri"><code class="docutils literal notranslate"><span class="pre">Builder.get_target_uri()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.prepare_writing"><code class="docutils literal notranslate"><span class="pre">Builder.prepare_writing()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.write_doc"><code class="docutils literal notranslate"><span class="pre">Builder.write_doc()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.finish"><code class="docutils literal notranslate"><span class="pre">Builder.finish()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx.builders.Builder.events"><code class="docutils literal notranslate"><span class="pre">Builder.events</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial: Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Writing Sphinx Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Sphinx Extensions API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="appapi.html">Application API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projectapi.html">Project API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="envapi.html">Build environment API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Builder API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collectorapi.html">Environment Collector API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markupapi.html">Docutils markup API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domainapi.html">Domain API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parserapi.html">Parser API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html">Doctree node classes added by Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html">i18n API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecated.html">Deprecated APIs</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="builder-api">
+<span id="writing-builders"></span><h1>Builder API<a class="headerlink" href="#builder-api" title="Permalink to this heading">¶</a></h1>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Expand this.</p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.builders.Builder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.builders.</span></span><span class="sig-name descname"><span class="pre">Builder</span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the base class for all builders.</p>
+<p>These attributes should be set on builder classes:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#sphinx.builders.Builder.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The builder’s name, for the -b command line option.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.format">
+<span class="sig-name descname"><span class="pre">format</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#sphinx.builders.Builder.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>The builder’s output format, or ‘’ if no document output is produced.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.epilog">
+<span class="sig-name descname"><span class="pre">epilog</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#sphinx.builders.Builder.epilog" title="Permalink to this definition">¶</a></dt>
+<dd><p>The message emitted upon successful build completion. This can be a
+printf-style template string with the following keys: <code class="docutils literal notranslate"><span class="pre">outdir</span></code>,
+<code class="docutils literal notranslate"><span class="pre">project</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.allow_parallel">
+<span class="sig-name descname"><span class="pre">allow_parallel</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx.builders.Builder.allow_parallel" title="Permalink to this definition">¶</a></dt>
+<dd><p>allow parallel write_doc() calls</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.supported_image_types">
+<span class="sig-name descname"><span class="pre">supported_image_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#sphinx.builders.Builder.supported_image_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>The list of MIME types of image formats supported by the builder.
+Image files are searched in the order in which they appear here.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.supported_remote_images">
+<span class="sig-name descname"><span class="pre">supported_remote_images</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx.builders.Builder.supported_remote_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>The builder supports remote images or not.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.supported_data_uri_images">
+<span class="sig-name descname"><span class="pre">supported_data_uri_images</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#sphinx.builders.Builder.supported_data_uri_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>The builder supports data URIs or not.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.default_translator_class">
+<span class="sig-name descname"><span class="pre">default_translator_class</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><span class="pre">nodes.NodeVisitor</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sphinx.builders.Builder.default_translator_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>default translator class for the builder.  This can be overridden by
+<a class="reference internal" href="appapi.html#sphinx.application.Sphinx.set_translator" title="sphinx.application.Sphinx.set_translator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_translator()</span></code></a>.</p>
+</dd></dl>
+
+<p>These methods are predefined and will be called from the application:</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.get_relative_uri">
+<span class="sig-name descname"><span class="pre">get_relative_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">typ</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.get_relative_uri"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.get_relative_uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a relative URI between two source filenames.</p>
+<p>May raise environment.NoUri if there’s no way to return a sensible URI.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.build_all">
+<span class="sig-name descname"><span class="pre">build_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.build_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.build_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build all source files.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.build_specific">
+<span class="sig-name descname"><span class="pre">build_specific</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filenames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.build_specific"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.build_specific" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only rebuild as much as needed for changes in the <em>filenames</em>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.build_update">
+<span class="sig-name descname"><span class="pre">build_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.build_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.build_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only rebuild what was changed or added since last build.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docnames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.14)"><span class="pre">Iterable</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'update'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main build method.</p>
+<p>First updates the environment, and then calls
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code>.</p>
+</dd></dl>
+
+<p>These methods can be overridden in concrete builder classes:</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load necessary templates and perform initialization.  The default
+implementation does nothing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.get_outdated_docs">
+<span class="sig-name descname"><span class="pre">get_outdated_docs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.14)"><span class="pre">Iterable</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.get_outdated_docs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.get_outdated_docs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterable of output files that are outdated, or a string
+describing what an update build will build.</p>
+<p>If the builder does not output individual files corresponding to
+source files, return a string here.  If it does, return an iterable
+of those files that need to be written.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.get_target_uri">
+<span class="sig-name descname"><span class="pre">get_target_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">typ</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.get_target_uri"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.get_target_uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the target URI for a document name.</p>
+<p><em>typ</em> can be used to qualify the link characteristic for individual
+builders.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.prepare_writing">
+<span class="sig-name descname"><span class="pre">prepare_writing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docnames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.14)"><span class="pre">set</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.prepare_writing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.prepare_writing" title="Permalink to this definition">¶</a></dt>
+<dd><p>A place where you can add logic before <a class="reference internal" href="#sphinx.builders.Builder.write_doc" title="sphinx.builders.Builder.write_doc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_doc()</span></code></a> is run</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.write_doc">
+<span class="sig-name descname"><span class="pre">write_doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">docname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">doctree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">document</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.write_doc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.write_doc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where you actually write something to the filesystem.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.finish">
+<span class="sig-name descname"><span class="pre">finish</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/sphinx/builders.html#Builder.finish"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.builders.Builder.finish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finish the building process.</p>
+<p>The default implementation does nothing.</p>
+</dd></dl>
+
+<p><strong>Attributes</strong></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sphinx.builders.Builder.events">
+<span class="sig-name descname"><span class="pre">events</span></span><a class="headerlink" href="#sphinx.builders.Builder.events" title="Permalink to this definition">¶</a></dt>
+<dd><p>An <a class="reference internal" href="utils.html#sphinx.events.EventManager" title="sphinx.events.EventManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventManager</span></code></a> object.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../copyright.html">Copyright</a> 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+</div>
+  </body>
+</html>

@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_TW">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Sphinx development &#8212; Sphinx 2.4.5 說明文件</title>
+    <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/develop.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx 2.4.5 說明文件 中搜尋"
+          href="_static/opensearch.xml"/>
+
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜尋" href="search.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/develop.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="ltd-provenance.js"></script>
+<script type="text/javascript" src="ltd-current.js"></script>
+<script type="text/javascript" src="../../ltd-config.js"></script>
+<script type="text/javascript" src="../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="usage/installation.html">Get it</a></li>
+    <li><a href="contents.html">Docs</a></li>
+    <li><a href="#">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="index.html">
+      <img src="_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li><a href="index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="contents.html">目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sphinx development</a></li>
+<li><a class="reference internal" href="#extensions">擴充功能</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>本頁</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/develop.rst.txt"
+            rel="nofollow">顯示原始碼</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="搜" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sphinx-development">
+<h1>Sphinx development<a class="headerlink" href="#sphinx-development" title="本標題的永久連結">¶</a></h1>
+<p>Sphinx is a maintained by a group of volunteers.  We value every contribution!</p>
+<ul class="simple">
+<li><p>The code can be found in a Git repository, at
+<a class="reference external" href="https://github.com/sphinx-doc/sphinx/">https://github.com/sphinx-doc/sphinx/</a>.</p></li>
+<li><p>Issues and feature requests should be raised in the <a class="reference external" href="https://github.com/sphinx-doc/sphinx/issues">tracker</a>.</p></li>
+<li><p>The mailing list for development is at <a class="reference external" href="https://groups.google.com/forum/#!forum/sphinx-dev">Google Groups</a>.</p></li>
+<li><p>There is also the #sphinx-doc IRC channel on <a class="reference external" href="https://freenode.net/">freenode</a>.</p></li>
+</ul>
+<p>For more about our development process and methods, see the <a class="reference internal" href="devguide.html"><span class="doc">Sphinx Developer’s Guide</span></a>.</p>
+</section>
+<section id="extensions">
+<h1>擴充功能<a class="headerlink" href="#extensions" title="本標題的永久連結">¶</a></h1>
+<p>To learn how to write your own extension, see <a class="reference internal" href="extdev/index.html#dev-extensions"><span class="std std-ref">Developing extensions for Sphinx</span></a>.</p>
+<p>The <a class="reference external" href="https://bitbucket.org/birkenfeld/sphinx-contrib/">sphinx-contrib</a>
+repository contains many contributed extensions.  Some of them have their own
+releases on PyPI, others you can install from a checkout.</p>
+<p>This is the current list of contributed extensions in that repository:</p>
+<ul class="simple">
+<li><p>aafig: render embedded ASCII art as nice images using <a class="reference external" href="https://launchpad.net/aafigure">aafigure</a></p></li>
+<li><p>actdiag: embed activity diagrams by using <a class="reference external" href="http://blockdiag.com/en/">actdiag</a></p></li>
+<li><p>adadomain: an extension for Ada support (Sphinx 1.0 needed)</p></li>
+<li><p>ansi: parse ANSI color sequences inside documents</p></li>
+<li><p>argdoc: automatically generate documentation for command-line arguments,
+descriptions and help text</p></li>
+<li><p>astah: embed diagram by using astah</p></li>
+<li><p>autoanysrc: Gather reST documentation from any source files</p></li>
+<li><p>autorun: Execute code in a <code class="docutils literal notranslate"><span class="pre">runblock</span></code> directive</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-beamer/">beamer</a>: A builder for Beamer (LaTeX) output.</p></li>
+<li><p>blockdiag: embed block diagrams by using <a class="reference external" href="http://blockdiag.com/en/">blockdiag</a></p></li>
+<li><p>cacoo: embed diagram from Cacoo</p></li>
+<li><p>cf3domain: a domain for CFEngine 3 policies</p></li>
+<li><p>cheader: The missing c:header directive for Sphinx’s built-in C domain</p></li>
+<li><p>cheeseshop: easily link to PyPI packages</p></li>
+<li><p>clearquest: create tables from <a class="reference external" href="https://www.ibm.com/us-en/marketplace/rational-clearquest">ClearQuest</a> queries</p></li>
+<li><p><a class="reference external" href="https://bitbucket.org/klorenz/sphinxcontrib-cmakedomain">cmakedomain</a>: a domain for <a class="reference external" href="https://cmake.org">CMake</a></p></li>
+<li><p>coffeedomain: a domain for (auto)documenting CoffeeScript source code</p></li>
+<li><p>context: a builder for ConTeXt</p></li>
+<li><p>disqus: embed Disqus comments in documents</p></li>
+<li><p>documentedlist: converts a Python list to a table in the generated
+documentation</p></li>
+<li><p>doxylink: Link to external Doxygen-generated HTML documentation</p></li>
+<li><p><a class="reference external" href="https://bitbucket.org/klorenz/sphinxcontrib-domaintools">domaintools</a>: A tool for easy domain creation</p></li>
+<li><p>email: obfuscate email addresses</p></li>
+<li><p>erlangdomain: an extension for Erlang support (Sphinx 1.0 needed)</p></li>
+<li><p>exceltable: embed Excel spreadsheets into documents using <a class="reference external" href="https://pythonhosted.org/sphinxcontrib-exceltable/">exceltable</a></p></li>
+<li><p>feed: an extension for creating syndication feeds and time-based overviews
+from your site content</p></li>
+<li><p><a class="reference external" href="https://bitbucket.org/klorenz/sphinxcontrib-findanything">findanything</a>: an extension to add Sublime Text 2-like findanything panels
+to your documentation to find pages, sections and index entries while typing</p></li>
+<li><p>gnuplot: produces images using <a class="reference external" href="http://www.gnuplot.info/">gnuplot</a> language</p></li>
+<li><p>googleanalytics: track web visitor statistics by using <a class="reference external" href="https://www.google.com/analytics/">Google Analytics</a></p></li>
+<li><p>googlechart: embed charts by using <a class="reference external" href="https://developers.google.com/chart/">Google Chart</a></p></li>
+<li><p>googlemaps: embed maps by using <a class="reference external" href="https://www.google.com/maps">Google Maps</a></p></li>
+<li><p>httpdomain: a domain for documenting RESTful HTTP APIs</p></li>
+<li><p>hyphenator: client-side hyphenation of HTML using <a class="reference external" href="https://github.com/mnater/hyphenator">hyphenator</a></p></li>
+<li><p>imgur: embed Imgur images, albums, and metadata in documents</p></li>
+<li><p><a class="reference external" href="https://sphinxcontrib-inlinesyntaxhighlight.readthedocs.io/">inlinesyntaxhighlight</a>: inline syntax highlighting</p></li>
+<li><p>lassodomain: a domain for documenting <a class="reference external" href="http://www.lassosoft.com/">Lasso</a> source code</p></li>
+<li><p>libreoffice: an extension to include any drawing supported by LibreOffice
+(e.g. odg, vsd, …)</p></li>
+<li><p>lilypond: an extension inserting music scripts from <a class="reference external" href="http://lilypond.org/">Lilypond</a> in PNG format</p></li>
+<li><p><a class="reference external" href="https://bitbucket.org/klorenz/sphinxcontrib-makedomain">makedomain</a>: a domain for <a class="reference external" href="https://www.gnu.org/software/make/">GNU Make</a></p></li>
+<li><p>matlabdomain: document <a class="reference external" href="https://www.mathworks.com/products/matlab.html">MATLAB</a> code</p></li>
+<li><p>mockautodoc: mock imports</p></li>
+<li><p>mscgen: embed mscgen-formatted MSC (Message Sequence Chart)s</p></li>
+<li><p>napoleon: supports <a class="reference external" href="https://google.github.io/styleguide/pyguide.html">Google style</a> and <a class="reference external" href="https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt">NumPy style</a> docstrings</p></li>
+<li><p>nicovideo: embed videos from nicovideo</p></li>
+<li><p>nwdiag: embed network diagrams by using <a class="reference external" href="http://blockdiag.com/en/">nwdiag</a></p></li>
+<li><p>omegat: support tools to collaborate with <a class="reference external" href="https://omegat.org/">OmegaT</a> (Sphinx 1.1 needed)</p></li>
+<li><p>osaka: convert standard Japanese doc to Osaka dialect (this is a joke
+extension)</p></li>
+<li><p>paverutils: an alternate integration of Sphinx with <a class="reference external" href="https://paver.readthedocs.io/en/latest/">Paver</a></p></li>
+<li><p>phpdomain: an extension for PHP support</p></li>
+<li><p>plantuml: embed UML diagram by using <a class="reference external" href="http://plantuml.com/">PlantUML</a></p></li>
+<li><p>py_directive: Execute python code in a <code class="docutils literal notranslate"><span class="pre">py</span></code> directive and return a math
+node</p></li>
+<li><p>rawfiles: copy raw files, like a CNAME</p></li>
+<li><p>requirements: declare requirements wherever you need (e.g. in test
+docstrings), mark statuses and collect them in a single list</p></li>
+<li><p>restbuilder: a builder for reST (reStructuredText) files</p></li>
+<li><p>rubydomain: an extension for Ruby support (Sphinx 1.0 needed)</p></li>
+<li><p>sadisplay: display SqlAlchemy model <a class="reference external" href="https://bitbucket.org/estin/sadisplay/wiki/Home">sadisplay</a></p></li>
+<li><p>sdedit: an extension inserting sequence diagram by using Quick Sequence
+Diagram Editor (<a class="reference external" href="http://sdedit.sourceforge.net/">sdedit</a>)</p></li>
+<li><p>seqdiag: embed sequence diagrams by using <a class="reference external" href="http://blockdiag.com/en/">seqdiag</a></p></li>
+<li><p>slide: embed presentation slides on <a class="reference external" href="https://www.slideshare.net/">slideshare</a> and other sites</p></li>
+<li><p><a class="reference external" href="https://bitbucket.org/klorenz/sphinxcontrib-swf">swf</a>: embed flash files</p></li>
+<li><p>sword: an extension inserting Bible verses from <a class="reference external" href="https://www.crosswire.org/sword/">Sword</a></p></li>
+<li><p>tikz: draw pictures with the <a class="reference external" href="https://sourceforge.net/projects/pgf/">TikZ/PGF LaTeX package</a></p></li>
+<li><p>traclinks: create <a class="reference external" href="https://trac.edgewall.org/wiki/TracLinks">TracLinks</a> to a <a class="reference external" href="https://trac.edgewall.org/">Trac</a> instance from within Sphinx</p></li>
+<li><p>versioning: Sphinx extension that allows building versioned docs for
+self-hosting</p></li>
+<li><p>whooshindex: whoosh indexer extension</p></li>
+<li><p>youtube: embed videos from <a class="reference external" href="https://www.youtube.com/">YouTube</a></p></li>
+<li><p>zopeext: provide an <code class="docutils literal notranslate"><span class="pre">autointerface</span></code> directive for using <a class="reference external" href="https://zopeinterface.readthedocs.io/en/latest/README.html">Zope interfaces</a></p></li>
+</ul>
+<p>See the <a class="reference internal" href="development/tutorials/index.html"><span class="doc">extension tutorials</span></a> on getting
+started with writing your own extensions.</p>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li><a href="index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2019, Georg Brandl and the Sphinx team。
+      使用 <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5 創建。
+    </div>
+  </body>
+</html>

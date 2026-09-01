@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sphinx.ext.viewcode – Add links to highlighted source code &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/viewcode.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="HTML Theming" href="../theming.html" />
+    <link rel="prev" title="sphinx.ext.todo – Support for todo items" href="todo.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../installation.html">Get it</a></li>
+    <li><a href="../../contents.html">Docs</a></li>
+    <li><a href="../../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../../index.html">
+      <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../theming.html" title="HTML Theming"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="todo.html" title="sphinx.ext.todo – Support for todo items"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Extensions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="todo.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> – Support for todo items</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../theming.html"
+                        title="next chapter">HTML Theming</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/usage/extensions/viewcode.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-sphinx.ext.viewcode">
+<span id="sphinx-ext-viewcode-add-links-to-highlighted-source-code"></span><h1><a class="reference internal" href="#module-sphinx.ext.viewcode" title="sphinx.ext.viewcode: Add links to a highlighted version of the source code."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code></a> – Add links to highlighted source code<a class="headerlink" href="#module-sphinx.ext.viewcode" title="Permalink to this headline">¶</a></h1>
+<p><em>Module author: Georg Brandl</em></p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.</span></p>
+</div>
+<p>This extension looks at your Python object descriptions (<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">class::</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span>
+<span class="pre">function::</span></code> etc.) and tries to find the source files where the objects are
+contained.  When found, a separate HTML page will be output for each module with
+a highlighted version of the source code, and a link will be added to all object
+descriptions that leads to the source code of the described object.  A link back
+from the source to the description will also be inserted.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Basically, <code class="docutils literal notranslate"><span class="pre">viewcode</span></code> extension will import the modules being linked to.
+If any modules have side effects on import, these will be executed when
+<code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> is run.</p>
+<p>If you document scripts (as opposed to library modules), make sure their
+main routine is protected by a <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> condition.</p>
+<p>In addition, if you don’t want to import the modules by <code class="docutils literal notranslate"><span class="pre">viewcode</span></code>,
+you can tell the location of the location of source code to <code class="docutils literal notranslate"><span class="pre">viewcode</span></code>
+using the <a class="reference internal" href="#event-viewcode-find-source"><code class="xref std std-event docutils literal notranslate"><span class="pre">viewcode-find-source</span></code></a> event.</p>
+<p>If <a class="reference internal" href="#confval-viewcode_follow_imported_members"><code class="xref std std-confval docutils literal notranslate"><span class="pre">viewcode_follow_imported_members</span></code></a> is enabled,
+you will also need to resolve imported attributes
+using the <a class="reference internal" href="#event-viewcode-follow-imported"><code class="xref std std-event docutils literal notranslate"><span class="pre">viewcode-follow-imported</span></code></a> event.</p>
+</div>
+<p>This extension works only on HTML related builders like <code class="docutils literal notranslate"><span class="pre">html</span></code>,
+<code class="docutils literal notranslate"><span class="pre">applehelp</span></code>, <code class="docutils literal notranslate"><span class="pre">devhelp</span></code>, <code class="docutils literal notranslate"><span class="pre">htmlhelp</span></code>, <code class="docutils literal notranslate"><span class="pre">qthelp</span></code> and so on except
+<code class="docutils literal notranslate"><span class="pre">singlehtml</span></code>. By default <code class="docutils literal notranslate"><span class="pre">epub</span></code> builder doesn’t
+support this extension (see <a class="reference internal" href="#confval-viewcode_enable_epub"><code class="xref std std-confval docutils literal notranslate"><span class="pre">viewcode_enable_epub</span></code></a>).</p>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<dl class="std confval">
+<dt id="confval-viewcode_follow_imported_members">
+<code class="sig-name descname"><span class="pre">viewcode_follow_imported_members</span></code><a class="headerlink" href="#confval-viewcode_follow_imported_members" title="Permalink to this definition">¶</a></dt>
+<dd><p>If this is <code class="docutils literal notranslate"><span class="pre">True</span></code>, viewcode extension will emit
+<a class="reference internal" href="#event-viewcode-follow-imported"><code class="xref std std-event docutils literal notranslate"><span class="pre">viewcode-follow-imported</span></code></a> event to resolve the name of the module
+by other extensions.  The default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.8: </span>Renamed from <code class="docutils literal notranslate"><span class="pre">viewcode_import</span></code> to <code class="docutils literal notranslate"><span class="pre">viewcode_follow_imported_members</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt id="confval-viewcode_enable_epub">
+<code class="sig-name descname"><span class="pre">viewcode_enable_epub</span></code><a class="headerlink" href="#confval-viewcode_enable_epub" title="Permalink to this definition">¶</a></dt>
+<dd><p>If this is <code class="docutils literal notranslate"><span class="pre">True</span></code>, viewcode extension is also enabled even if you use
+epub builders. This extension generates pages outside toctree, but this
+is not preferred as epub format.</p>
+<p>Until 1.4.x, this extension is always enabled. If you want to generate
+epub as same as 1.4.x, you should set <code class="docutils literal notranslate"><span class="pre">True</span></code>, but epub format checker’s
+score becomes worse.</p>
+<p>The default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.5.</span></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Not all epub readers support pages generated by viewcode extension.
+These readers ignore links to pages are not under toctree.</p>
+<p>Some reader’s rendering result are corrupted and
+<a class="reference external" href="https://github.com/IDPF/epubcheck">epubcheck</a>’s score
+becomes worse even if the reader supports.</p>
+</div>
+</dd></dl>
+
+<dl class="std event">
+<dt id="event-viewcode-find-source">
+<code class="sig-name descname"><span class="pre">viewcode-find-source</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">modname</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-viewcode-find-source" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.8.</span></p>
+</div>
+<p>Find the source code for a module.
+An event handler for this event should return
+a tuple of the source code itself and a dictionary of tags.
+The dictionary maps the name of a class, function, attribute, etc
+to a tuple of its type, the start line number, and the end line number.
+The type should be one of “class”, “def”, or “other”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – The Sphinx application object.</p></li>
+<li><p><strong>modname</strong> – The name of the module to find source code for.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std event">
+<dt id="event-viewcode-follow-imported">
+<code class="sig-name descname"><span class="pre">viewcode-follow-imported</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">app</span></em>, <em class="sig-param"><span class="pre">modname</span></em>, <em class="sig-param"><span class="pre">attribute</span></em><span class="sig-paren">)</span><a class="headerlink" href="#event-viewcode-follow-imported" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.8.</span></p>
+</div>
+<p>Find the name of the original module for an attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app</strong> – The Sphinx application object.</p></li>
+<li><p><strong>modname</strong> – The name of the module that the attribute belongs to.</p></li>
+<li><p><strong>attribute</strong> – The name of the member to follow.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../theming.html" title="HTML Theming"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="todo.html" title="sphinx.ext.todo – Support for todo items"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Extensions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2021, Georg Brandl and the Sphinx team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+  </body>
+</html>

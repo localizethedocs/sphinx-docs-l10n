@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Docutils markup API &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/markupapi.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="領域 API" href="domainapi.html" />
+    <link rel="prev" title="Environment Collector API" href="collectorapi.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="domainapi.html" title="領域 API"
+             accesskey="N">下一頁</a> |</li>
+        <li class="right" >
+          <a href="collectorapi.html" title="Environment Collector API"
+             accesskey="P">上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Developing extensions for Sphinx</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Docutils markup API</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">目次表</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Docutils markup API</a><ul>
+<li><a class="reference internal" href="#roles">角色</a></li>
+<li><a class="reference internal" href="#directives">指示詞</a><ul>
+<li><a class="reference internal" href="#viewlists">ViewLists</a></li>
+<li><a class="reference internal" href="#parsing-directive-content-as-rest">Parsing directive content as ReST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>上個主題</h4>
+  <p class="topless"><a href="collectorapi.html"
+                        title="上一章">Environment Collector API</a></p>
+  <h4>下個主題</h4>
+  <p class="topless"><a href="domainapi.html"
+                        title="下一章">領域 API</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本頁</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/extdev/markupapi.rst.txt"
+            rel="nofollow">顯示原始碼</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="搜" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="docutils-markup-api">
+<h1>Docutils markup API<a class="headerlink" href="#docutils-markup-api" title="本標題的永久連結">¶</a></h1>
+<p>This section describes the API for adding ReST markup elements (roles and
+directives).</p>
+<div class="section" id="roles">
+<h2>角色<a class="headerlink" href="#roles" title="本標題的永久連結">¶</a></h2>
+</div>
+<div class="section" id="directives">
+<h2>指示詞<a class="headerlink" href="#directives" title="本標題的永久連結">¶</a></h2>
+<p>Directives are handled by classes derived from
+<code class="docutils literal notranslate"><span class="pre">docutils.parsers.rst.Directive</span></code>.  They have to be registered by an extension
+using <a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_directive" title="sphinx.application.Sphinx.add_directive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Sphinx.add_directive()</span></code></a> or <a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_directive_to_domain" title="sphinx.application.Sphinx.add_directive_to_domain"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Sphinx.add_directive_to_domain()</span></code></a>.</p>
+<span class="target" id="module-docutils.parsers.rst"></span><dl class="py class">
+<dt id="docutils.parsers.rst.Directive">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">docutils.parsers.rst.</span></code><code class="sig-name descname"><span class="pre">Directive</span></code><a class="reference internal" href="../_modules/docutils/parsers/rst.html#Directive"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#docutils.parsers.rst.Directive" title="本定義的永久連結">¶</a></dt>
+<dd><p>The markup syntax of the new directive is determined by the follow five class
+attributes:</p>
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.required_arguments">
+<code class="sig-name descname"><span class="pre">required_arguments</span></code><em class="property"> <span class="pre">=</span> <span class="pre">0</span></em><a class="headerlink" href="#docutils.parsers.rst.Directive.required_arguments" title="本定義的永久連結">¶</a></dt>
+<dd><p>Number of required directive arguments.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.optional_arguments">
+<code class="sig-name descname"><span class="pre">optional_arguments</span></code><em class="property"> <span class="pre">=</span> <span class="pre">0</span></em><a class="headerlink" href="#docutils.parsers.rst.Directive.optional_arguments" title="本定義的永久連結">¶</a></dt>
+<dd><p>Number of optional arguments after the required arguments.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.final_argument_whitespace">
+<code class="sig-name descname"><span class="pre">final_argument_whitespace</span></code><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#docutils.parsers.rst.Directive.final_argument_whitespace" title="本定義的永久連結">¶</a></dt>
+<dd><p>May the final argument contain whitespace?</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.option_spec">
+<code class="sig-name descname"><span class="pre">option_spec</span></code><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#docutils.parsers.rst.Directive.option_spec" title="本定義的永久連結">¶</a></dt>
+<dd><p>Mapping of option names to validator functions.</p>
+<p>Option validator functions take a single parameter, the option argument
+(or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not given), and should validate it or convert it to the
+proper form.  They raise <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(於 Python v3.14)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(於 Python v3.14)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> to indicate
+failure.</p>
+<p>There are several predefined and possibly useful validators in the
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">docutils.parsers.rst.directives</span></code> module.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.has_content">
+<code class="sig-name descname"><span class="pre">has_content</span></code><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#docutils.parsers.rst.Directive.has_content" title="本定義的永久連結">¶</a></dt>
+<dd><p>May the directive have content?</p>
+</dd></dl>
+
+<p>New directives must implement the <a class="reference internal" href="#docutils.parsers.rst.Directive.run" title="docutils.parsers.rst.Directive.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> method:</p>
+<dl class="py method">
+<dt id="docutils.parsers.rst.Directive.run">
+<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/docutils/parsers/rst.html#Directive.run"><span class="viewcode-link"><span class="pre">[原始碼]</span></span></a><a class="headerlink" href="#docutils.parsers.rst.Directive.run" title="本定義的永久連結">¶</a></dt>
+<dd><p>This method must process the directive arguments, options and content, and
+return a list of Docutils/Sphinx nodes that will be inserted into the
+document tree at the point where the directive was encountered.</p>
+</dd></dl>
+
+<p>Instance attributes that are always set on the directive are:</p>
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.name">
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#docutils.parsers.rst.Directive.name" title="本定義的永久連結">¶</a></dt>
+<dd><p>The directive name (useful when registering the same directive class under
+multiple names).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.arguments">
+<code class="sig-name descname"><span class="pre">arguments</span></code><a class="headerlink" href="#docutils.parsers.rst.Directive.arguments" title="本定義的永久連結">¶</a></dt>
+<dd><p>The arguments given to the directive, as a list.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.options">
+<code class="sig-name descname"><span class="pre">options</span></code><a class="headerlink" href="#docutils.parsers.rst.Directive.options" title="本定義的永久連結">¶</a></dt>
+<dd><p>The options given to the directive, as a dictionary mapping option names
+to validated/converted values.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.content">
+<code class="sig-name descname"><span class="pre">content</span></code><a class="headerlink" href="#docutils.parsers.rst.Directive.content" title="本定義的永久連結">¶</a></dt>
+<dd><p>The directive content, if given, as a <code class="xref py py-class docutils literal notranslate"><span class="pre">ViewList</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.lineno">
+<code class="sig-name descname"><span class="pre">lineno</span></code><a class="headerlink" href="#docutils.parsers.rst.Directive.lineno" title="本定義的永久連結">¶</a></dt>
+<dd><p>The absolute line number on which the directive appeared.  This is not
+always a useful value; use <code class="xref py py-attr docutils literal notranslate"><span class="pre">srcline</span></code> instead.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.content_offset">
+<code class="sig-name descname"><span class="pre">content_offset</span></code><a class="headerlink" href="#docutils.parsers.rst.Directive.content_offset" title="本定義的永久連結">¶</a></dt>
+<dd><p>Internal offset of the directive content.  Used when calling
+<code class="docutils literal notranslate"><span class="pre">nested_parse</span></code> (see below).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.block_text">
+<code class="sig-name descname"><span class="pre">block_text</span></code><a class="headerlink" href="#docutils.parsers.rst.Directive.block_text" title="本定義的永久連結">¶</a></dt>
+<dd><p>The string containing the entire directive.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="docutils.parsers.rst.Directive.state">
+<code class="sig-name descname"><span class="pre">state</span></code><a class="headerlink" href="#docutils.parsers.rst.Directive.state" title="本定義的永久連結">¶</a></dt>
+<dt id="docutils.parsers.rst.Directive.state_machine">
+<code class="sig-name descname"><span class="pre">state_machine</span></code><a class="headerlink" href="#docutils.parsers.rst.Directive.state_machine" title="本定義的永久連結">¶</a></dt>
+<dd><p>The state and state machine which controls the parsing.  Used for
+<code class="docutils literal notranslate"><span class="pre">nested_parse</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="viewlists">
+<h3>ViewLists<a class="headerlink" href="#viewlists" title="本標題的永久連結">¶</a></h3>
+<p>Docutils represents document source lines in a class
+<code class="docutils literal notranslate"><span class="pre">docutils.statemachine.ViewList</span></code>.  This is a list with extended functionality
+– for one, slicing creates views of the original list, and also the list
+contains information about the source line numbers.</p>
+<p>The <a class="reference internal" href="#docutils.parsers.rst.Directive.content" title="docutils.parsers.rst.Directive.content"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Directive.content</span></code></a> attribute is a ViewList.  If you generate content
+to be parsed as ReST, you have to create a ViewList yourself.  Important for
+content generation are the following points:</p>
+<ul class="simple">
+<li><p>The constructor takes a list of strings (lines) and a source (document) name.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">.append()</span></code> method takes a line and a source name as well.</p></li>
+</ul>
+</div>
+<div class="section" id="parsing-directive-content-as-rest">
+<h3>Parsing directive content as ReST<a class="headerlink" href="#parsing-directive-content-as-rest" title="本標題的永久連結">¶</a></h3>
+<p>Many directives will contain more markup that must be parsed.  To do this, use
+one of the following APIs from the <a class="reference internal" href="#docutils.parsers.rst.Directive.run" title="docutils.parsers.rst.Directive.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Directive.run()</span></code></a> method:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self.state.nested_parse</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">sphinx.util.nodes.nested_parse_with_titles()</span></code> – this allows titles in
+the parsed content.</p></li>
+</ul>
+<p>Both APIs parse the content into a given node. They are used like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">node</span> <span class="o">=</span> <span class="n">docutils</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">()</span>
+<span class="c1"># either</span>
+<span class="n">nested_parse_with_titles</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+<span class="c1"># or</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">nested_parse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p><code class="docutils literal notranslate"><span class="pre">sphinx.util.docutils.switch_source_input()</span></code> allows to change a target file
+during nested_parse.  It is useful to mixed contents.  For example, <code class="docutils literal notranslate"><span class="pre">sphinx.</span>
+<span class="pre">ext.autodoc</span></code> uses it to parse docstrings:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sphinx.util.docutils</span> <span class="kn">import</span> <span class="n">switch_source_input</span>
+
+<span class="c1"># Switch source_input between parsing content.</span>
+<span class="c1"># Inside this context, all parsing errors and warnings are reported as</span>
+<span class="c1"># happened in new source_input (in this case, ``self.result``).</span>
+<span class="k">with</span> <span class="n">switch_source_input</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">):</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">docutils</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">nested_parse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">1.7 版後已棄用: </span>Until Sphinx-1.6, <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.AutodocReporter</span></code> is used for this
+purpose.  For now, it is replaced by <code class="docutils literal notranslate"><span class="pre">switch_source_input()</span></code>.</p>
+</div>
+</div>
+<p>If you don’t need the wrapping node, you can use any concrete node type and
+return <code class="docutils literal notranslate"><span class="pre">node.children</span></code> from the Directive.</p>
+<div class="admonition seealso">
+<p class="admonition-title">另請參見</p>
+<p><a class="reference external" href="http://docutils.sourceforge.net/docs/howto/rst-directives.html">Creating directives</a> HOWTO of the Docutils documentation</p>
+</div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="domainapi.html" title="領域 API"
+             >下一頁</a> |</li>
+        <li class="right" >
+          <a href="collectorapi.html" title="Environment Collector API"
+             >上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Developing extensions for Sphinx</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Docutils markup API</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2021, Georg Brandl and the Sphinx team。
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+  </body>
+</html>

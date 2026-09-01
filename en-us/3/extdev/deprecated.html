@@ -1,0 +1,1797 @@
+
+<!DOCTYPE html>
+
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deprecated APIs &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/deprecated.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sphinx internals" href="../internals/index.html" />
+    <link rel="prev" title="Utilities" href="utils.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../internals/index.html" title="Sphinx internals"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="utils.html" title="Utilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Developing extensions for Sphinx</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Deprecated APIs</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="utils.html"
+                        title="previous chapter">Utilities</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../internals/index.html"
+                        title="next chapter">Sphinx internals</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/extdev/deprecated.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="deprecated-apis">
+<span id="dev-deprecated-apis"></span><h1>Deprecated APIs<a class="headerlink" href="#deprecated-apis" title="Permalink to this headline">¶</a></h1>
+<p>On developing Sphinx, we are always careful to the compatibility of our APIs.
+But, sometimes, the change of interface are needed for some reasons.  In such
+cases, we’ve marked them as deprecated. And they are kept during the two
+major versions (for more details, please see <a class="reference internal" href="../internals/release-process.html#deprecation-policy"><span class="std std-ref">Deprecation policy</span></a>).</p>
+<p>The following is a list of deprecated interfaces.</p>
+<table class="colwidths-given deprecated docutils align-default" id="id1">
+<caption><span class="caption-text">deprecated APIs</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Target</p></th>
+<th class="head"><p>Deprecated</p></th>
+<th class="head"><p>(will be) Removed</p></th>
+<th class="head"><p>Alternatives</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pending_xref node for viewcode extension</p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.viewcode.viewcode_anchor</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.linkcheck.CheckExternalLinksBuilder.anchors_ignore</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.linkcheck.CheckExternalLinksBuilder.auth</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.linkcheck.CheckExternalLinksBuilder.broken</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.linkcheck.CheckExternalLinksBuilder.good</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.linkcheck.CheckExternalLinksBuilder.redirected</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.linkcheck.CheckExternalLinksBuilder.rqueue</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.linkcheck.CheckExternalLinksBuilder.to_ignore</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.linkcheck.CheckExternalLinksBuilder.workers</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.linkcheck.CheckExternalLinksBuilder.wqueue</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.linkcheck.node_line_or_0()</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.nodes.get_node_line()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.AttributeDocumenter.isinstanceattribute()</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer.get_module_members()</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.ModuleDocumenter.get_module_members()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate._simple_info()</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p><a class="reference internal" href="logging.html#logging-api"><span class="std std-ref">Logging API</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate._simple_warn()</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p><a class="reference internal" href="logging.html#logging-api"><span class="std std-ref">Logging API</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html.HTMLTranslator.permalink_text</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p><a class="reference internal" href="../usage/configuration.html#confval-html_permalinks_icon"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_permalinks_icon</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html5.HTML5Translator.permalink_text</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p><a class="reference internal" href="../usage/configuration.html#confval-html_permalinks_icon"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_permalinks_icon</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>The <code class="docutils literal notranslate"><span class="pre">follow_wrapped</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.signature()</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>The <code class="docutils literal notranslate"><span class="pre">no_docstring</span></code> argument of
+<code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.Documenter.add_content()</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.Documenter.get_doc()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.Documenter.get_object_members()</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>6.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.ClassDocumenter.get_object_members()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.DataDeclarationDocumenter</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.DataDocumenter</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.GenericAliasDocumenter</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.DataDocumenter</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.InstanceAttributeDocumenter</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.AttributeDocumenter</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.SlotsAttributeDocumenter</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.AttributeDocumenter</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.TypeVarDocumenter</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.DataDocumenter</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.directive.DocumenterBridge.reporter</span></code></p></td>
+<td><p>3.5</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.logging</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._getannotations()</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.getannotations()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._getmro()</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.getmro()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.pycode.ModuleAnalyzer.parse()</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.pycode.ModuleAnalyzer.analyze()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.osutil.movefile()</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">os.replace()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.requests.is_ssl_error()</span></code></p></td>
+<td><p>3.4</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.latex.LaTeXBuilder.usepackages</span></code></p></td>
+<td><p>3.3</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.latex.LaTeXBuilder.usepackages_afger_hyperref</span></code></p></td>
+<td><p>3.3</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.SingledispatchFunctionDocumenter</span></code></p></td>
+<td><p>3.3</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.FunctionDocumenter</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.SingledispatchMethodDocumenter</span></code></p></td>
+<td><p>3.3</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.MethodDocumenter</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.members_set_option()</span></code></p></td>
+<td><p>3.2</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.merge_special_members_option()</span></code></p></td>
+<td><p>3.2</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.merge_members_option()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.texinfo.TexinfoWriter.desc</span></code></p></td>
+<td><p>3.2</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.texinfo.TexinfoWriter.descs</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>The first argument for
+<code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.AutosummaryRenderer</span></code> has been changed
+to Sphinx object</p></td>
+<td><p>3.1</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.AutosummaryRenderer</span></code> takes an object
+type as an argument</p></td>
+<td><p>3.1</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>The <code class="docutils literal notranslate"><span class="pre">ignore</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.Documenter.get_doc()</span></code></p></td>
+<td><p>3.1</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>The <code class="docutils literal notranslate"><span class="pre">template_dir</span></code> argument of
+<code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.AutosummaryRenderer</span></code></p></td>
+<td><p>3.1</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>The <code class="docutils literal notranslate"><span class="pre">module</span></code> argument of
+<code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.find_autosummary_in_docstring()</span></code></p></td>
+<td><p>3.0</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>The <code class="docutils literal notranslate"><span class="pre">builder</span></code> argument of
+<code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.generate_autosummary_docs()</span></code></p></td>
+<td><p>3.1</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>The <code class="docutils literal notranslate"><span class="pre">template_dir</span></code> argument of
+<code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.generate_autosummary_docs()</span></code></p></td>
+<td><p>3.1</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.AutosummaryRenderer.exists()</span></code></p></td>
+<td><p>3.1</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>The <code class="docutils literal notranslate"><span class="pre">ignore</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.util.docstring.prepare_docstring()</span></code></p></td>
+<td><p>3.1</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.rpartition()</span></code></p></td>
+<td><p>3.1</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str.rpartition()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">desc_signature['first']</span></code></p></td>
+<td></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.DescDirective</span></code></p></td>
+<td><p>3.0</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.ObjectDescription</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.std.StandardDomain.add_object()</span></code></p></td>
+<td><p>3.0</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.std.StandardDomain.note_object()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.python.PyDecoratorMixin</span></code></p></td>
+<td><p>3.0</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.get_documenters()</span></code></p></td>
+<td><p>3.0</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.registry.documenters</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.process_autosummary_toc()</span></code></p></td>
+<td><p>3.0</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.parsers.Parser.app</span></code></p></td>
+<td><p>3.0</p></td>
+<td><p>5.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.testing.path.Path.text()</span></code></p></td>
+<td><p>3.0</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.testing.path.Path.read_text()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.testing.path.Path.bytes()</span></code></p></td>
+<td><p>3.0</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.testing.path.Path.read_bytes()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.getargspec()</span></code></p></td>
+<td><p>3.0</p></td>
+<td><p>5.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">inspect.getargspec()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXWriter.format_docclass()</span></code></p></td>
+<td><p>3.0</p></td>
+<td><p>5.0</p></td>
+<td><p>LaTeX Themes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">decode</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.pycode.ModuleAnalyzer()</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.Index</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.index.IndexDirective</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.environment.temp_data['gloss_entries']</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">documents.nameids</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.environment.BuildEnvironment.indexentries</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.index.IndexDomain</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.environment.collectors.indexentries.IndexEntriesCollector</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.index.IndexDomain</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.FiletypeNotFoundError</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.errors.FiletypeNotFoundError</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.apidoc.INITPY</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.apidoc.shall_skip()</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.apidoc.is_skipped_package</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.get_filetype()</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.get_filetype()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.pycode.ModuleAnalyzer.encoding</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.Index</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.index.IndexRole</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.detect_encoding()</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tokenize.detect_encoding()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.get_module_source()</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.Signature</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.signature</span></code> and
+<code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.stringify_signature()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.safe_getmembers()</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">inspect.getmembers()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.settings.author</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.settings.contentsname</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">document['contentsname']</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.settings.docclass</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">document['docclass']</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.settings.docname</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.settings.title</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.ADDITIONAL_SETTINGS</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.latex.constants.ADDITIONAL_SETTINGS</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.DEFAULT_SETTINGS</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.latex.constants.DEFAULT_SETTINGS</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LUALATEX_DEFAULT_FONTPKG</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.latex.constants.LUALATEX_DEFAULT_FONTPKG</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.PDFLATEX_DEFAULT_FONTPKG</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.latex.constants.PDFLATEX_DEFAULT_FONTPKG</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.XELATEX_DEFAULT_FONTPKG</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.latex.constants.XELATEX_DEFAULT_FONTPKG</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.XELATEX_GREEK_DEFAULT_FONTPKG</span></code></p></td>
+<td><p>2.4</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.latex.constants.XELATEX_GREEK_DEFAULT_FONTPKG</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.gettext.POHEADER</span></code></p></td>
+<td><p>2.3</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx/templates/gettext/message.pot_t</span></code> (template file)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxStandaloneReader.app</span></code></p></td>
+<td><p>2.3</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxStandaloneReader.setup()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxStandaloneReader.env</span></code></p></td>
+<td><p>2.3</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxStandaloneReader.setup()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.texescape.tex_escape_map</span></code></p></td>
+<td><p>2.3</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.texescape.escape()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.texescape.tex_hl_escape_map_new</span></code></p></td>
+<td><p>2.3</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.texescape.hlescape()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.no_contractions</span></code></p></td>
+<td><p>2.3</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.math.MathDomain.add_equation()</span></code></p></td>
+<td><p>2.2</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.math.MathDomain.note_equation()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.math.MathDomain.get_next_equation_number()</span></code></p></td>
+<td><p>2.2</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.math.MathDomain.note_equation()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>The <code class="docutils literal notranslate"><span class="pre">info</span></code> and <code class="docutils literal notranslate"><span class="pre">warn</span></code> arguments of
+<code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate.generate_autosummary_docs()</span></code></p></td>
+<td><p>2.2</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logging.info()</span></code> and <code class="docutils literal notranslate"><span class="pre">logging.warning()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate._simple_info()</span></code></p></td>
+<td><p>2.2</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logging.info()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.generate._simple_warn()</span></code></p></td>
+<td><p>2.2</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logging.warning()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.todo.merge_info()</span></code></p></td>
+<td><p>2.2</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.todo.TodoDomain</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.todo.process_todo_nodes()</span></code></p></td>
+<td><p>2.2</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.todo.TodoDomain</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.todo.process_todos()</span></code></p></td>
+<td><p>2.2</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.todo.TodoDomain</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.todo.purge_todos()</span></code></p></td>
+<td><p>2.2</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.todo.TodoDomain</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.latex.LaTeXBuilder.apply_transforms()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders._epub_base.EpubBuilder.esc()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">html.escape()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.Acks</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.Acks</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.Author</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.Author</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.Centered</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.Centered</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.Class</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.Class</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.CodeBlock</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.code.CodeBlock</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.Figure</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.patches.Figure</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.HList</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.HList</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.Highlight</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.code.Highlight</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.Include</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.Include</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.Index</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.Index</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.LiteralInclude</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.code.LiteralInclude</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.Meta</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.patches.Meta</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.Only</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.Only</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.SeeAlso</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.SeeAlso</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.TabularColumns</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.TabularColumns</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.TocTree</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.TocTree</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.VersionChange</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.VersionChange</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.python.PyClassmember</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.python.PyAttribute</span></code>,
+<code class="docutils literal notranslate"><span class="pre">sphinx.domains.python.PyMethod</span></code>,
+<code class="docutils literal notranslate"><span class="pre">sphinx.domains.python.PyClassMethod</span></code>,
+<code class="docutils literal notranslate"><span class="pre">sphinx.domains.python.PyObject</span></code> and
+<code class="docutils literal notranslate"><span class="pre">sphinx.domains.python.PyStaticMethod</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.python.PyModulelevel</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.python.PyFunction</span></code>,
+<code class="docutils literal notranslate"><span class="pre">sphinx.domains.python.PyObject</span></code> and
+<code class="docutils literal notranslate"><span class="pre">sphinx.domains.python.PyVariable</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.std.StandardDomain._resolve_citation_xref()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.citation.CitationDomain.resolve_xref()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.std.StandardDomain.note_citations()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.citation.CitationDomain.note_citation()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.std.StandardDomain.note_citation_refs()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.citation.CitationDomain.note_citation_reference()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.std.StandardDomain.note_labels()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.std.StandardDomain.process_doc()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.environment.NoUri</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.errors.NoUri</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.apidoc.format_directive()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.apidoc.format_heading()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.apidoc.makename()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.apidoc.module_join()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer.MockFinder</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.mock.MockFinder</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer.MockLoader</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.mock.MockLoader</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer.mock()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.mock.mock()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.autolink_role()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.AutoLink</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.imgmath.DOC_BODY</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.imgmath.DOC_BODY_PREVIEW</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.imgmath.DOC_HEAD</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.transforms.CitationReferences</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.citation.CitationReferenceTransform</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.transforms.SmartQuotesSkipper</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.citation.CitationDefinitionTransform</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.docfields.DocFieldTransformer.preprocess_fieldtypes()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.ObjectDescription.get_field_type_map()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.node.find_source_node()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.node.get_node_source()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.i18n.find_catalog()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.i18n.docname_to_domain()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.i18n.find_catalog_files()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.i18n.CatalogRepository</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.i18n.find_catalog_source_files()</span></code></p></td>
+<td><p>2.1</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.i18n.CatalogRepository</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">encoding</span></code> argument of <code class="docutils literal notranslate"><span class="pre">autodoc.Documenter.get_doc()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">autodoc.DocstringSignatureMixin.get_doc()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">autodoc.DocstringSignatureMixin._find_signature()</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">autodoc.ClassDocumenter.get_doc()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>arguments of <code class="docutils literal notranslate"><span class="pre">EpubBuilder.build_mimetype()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">EpubBuilder.build_container()</span></code>, <code class="docutils literal notranslate"><span class="pre">EpubBuilder.build_content()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">EpubBuilder.build_toc()</span></code> and <code class="docutils literal notranslate"><span class="pre">EpubBuilder.build_epub()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>arguments of <code class="docutils literal notranslate"><span class="pre">Epub3Builder.build_navigation_doc()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nodetype</span></code> argument of
+<code class="docutils literal notranslate"><span class="pre">sphinx.search.WordCollector.is_meta_keywords()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">suffix</span></code> argument of <code class="docutils literal notranslate"><span class="pre">BuildEnvironment.doc2path()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>string style <code class="docutils literal notranslate"><span class="pre">base</span></code> argument of <code class="docutils literal notranslate"><span class="pre">BuildEnvironment.doc2path()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">os.path.join()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.addnodes.abbreviation</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">docutils.nodes.abbreviation</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.applehelp</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinxcontrib.applehelp</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.devhelp</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinxcontrib.devhelp</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.epub3.Epub3Builder.validate_config_value()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.epub3.validate_config_values()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.html.JSONHTMLBuilder</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.serializinghtml.JSONHTMLBuilder</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.html.PickleHTMLBuilder</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.serializinghtml.PickleHTMLBuilder</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.html.SerializingHTMLBuilder</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.serializinghtml.SerializingHTMLBuilder</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.html.SingleFileHTMLBuilder</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.singlehtml.SingleFileHTMLBuilder</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.html.WebHTMLBuilder</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.serializinghtml.PickleHTMLBuilder</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.htmlhelp</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinxcontrib.htmlhelp</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.htmlhelp.HTMLHelpBuilder.open_file()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">open()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.qthelp</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinxcontrib.qthelp</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.cmd.quickstart.term_decode()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.cmd.quickstart.TERM_ENCODING</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sys.stdin.encoding</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.config.check_unicode()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.config.string_classes</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[str]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.cpp.DefinitionError.description</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str(exc)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.cpp.NoOldIdError.description</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str(exc)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.cpp.UnsupportedMultiCharacterCharLiteral.decoded</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str(exc)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.Autosummary.warn()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.Autosummary.genopt</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.Autosummary.warnings</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.Autosummary.result</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.doctest.doctest_encode()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.jsmath</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinxcontrib.jsmath</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.abbr_role()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.Abbreviation</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.emph_literal_role()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.EmphasizedLiteral</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.menusel_role()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.GUILabel</span></code> or <code class="docutils literal notranslate"><span class="pre">sphinx.roles.MenuSelection</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.index_role()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.Index</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.indexmarkup_role()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.PEP</span></code> or <code class="docutils literal notranslate"><span class="pre">sphinx.roles.RFC</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.testing.util.remove_unicode_literal()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.attrdict</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.force_decode()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.get_matching_docs()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.get_matching_files()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.Parameter</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.jsonimpl</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinxcontrib.serializinghtml.jsonimpl</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.osutil.EEXIST</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">errno.EEXIST</span></code> or <code class="docutils literal notranslate"><span class="pre">FileExistsError</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.osutil.EINVAL</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">errno.EINVAL</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.osutil.ENOENT</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">errno.ENOENT</span></code> or <code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.osutil.EPIPE</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">errno.ENOENT</span></code> or <code class="docutils literal notranslate"><span class="pre">BrokenPipeError</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.osutil.walk()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">os.walk()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.NoneType</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.typing.NoneType</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.TextIOWrapper</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">io.TextIOWrapper</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.UnicodeMixin</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.htmlescape()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">html.escape()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.indent()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">textwrap.indent()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.sys_encoding</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sys.getdefaultencoding()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.terminal_safe()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.console.terminal_safe()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.u</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.PeekableIterator</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>Omitting the <code class="docutils literal notranslate"><span class="pre">filename</span></code> argument in an overriddent
+<code class="docutils literal notranslate"><span class="pre">IndexBuilder.feed()</span></code> method.</p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IndexBuilder.feed(docname,</span> <span class="pre">filename,</span> <span class="pre">title,</span> <span class="pre">doctree)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.ExtBabel</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.latex.util.ExtBabel</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.babel_defmacro()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.application.Sphinx._setting_up_extension</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>The <code class="docutils literal notranslate"><span class="pre">importer</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._MockModule</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._MockImporter</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxBaseFileInput</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxFileInput.supported</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxRSTFileInput</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.registry.SphinxComponentRegistry.add_source_input()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator._make_visit_admonition()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.collect_footnotes()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.texinfo.TexinfoTranslator._make_visit_admonition()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.text.TextTranslator._make_depart_admonition()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.generate_numfig_format()</span></code></p></td>
+<td><p>2.0</p></td>
+<td><p>4.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">highlightlang</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>4.0</p></td>
+<td><p><a class="reference internal" href="../usage/restructuredtext/directives.html#directive-highlight" title="highlight directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">highlight</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stylesheet()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>4.0</p></td>
+<td><p><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_css_file" title="sphinx.application.Sphinx.add_css_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_css_file()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_javascript()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>4.0</p></td>
+<td><p><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_js_file" title="sphinx.application.Sphinx.add_js_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_js_file()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../usage/extensions/autodoc.html#confval-autodoc_default_flags"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autodoc_default_flags</span></code></a></p></td>
+<td><p>1.8</p></td>
+<td><p>4.0</p></td>
+<td><p><a class="reference internal" href="../usage/extensions/autodoc.html#confval-autodoc_default_options"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autodoc_default_options</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">content</span></code> arguments of <code class="docutils literal notranslate"><span class="pre">sphinx.util.image.guess_mimetype()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gettext_compact</span></code> arguments of
+<code class="docutils literal notranslate"><span class="pre">sphinx.util.i18n.find_catalog_source_files()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxI18nReader.set_lineno_for_reporter()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxI18nReader.line</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.other.VersionChanges</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.changeset.VersionChanges</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.highlighting.PygmentsBridge.unhighlight()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">trim_doctest_flags</span></code> arguments of
+<code class="docutils literal notranslate"><span class="pre">sphinx.highlighting.PygmentsBridge</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.MathDomain</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.math.MathDomain</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.MathDirective</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.directives.patches.MathDirective</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.math_role()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">docutils.parsers.rst.roles.math_role()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.setup_math()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_html_math_renderer" title="sphinx.application.Sphinx.add_html_math_renderer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_html_math_renderer()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.is_in_section_title()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.get_node_equation_number()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.math.get_node_equation_number()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.wrap_displaymath()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.math.wrap_displaymath()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.math</span></code> (node)</p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">docutils.nodes.math</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.displaymath</span></code> (node)</p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">docutils.nodes.math_block</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.mathbase.eqref</span></code> (node)</p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.latex.nodes.math_reference</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">viewcode_import</span></code> (config value)</p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><a class="reference internal" href="../usage/extensions/viewcode.html#confval-viewcode_follow_imported_members"><code class="xref std std-confval docutils literal notranslate"><span class="pre">viewcode_follow_imported_members</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.Table.caption_footnotetexts</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.Table.header_footnotetexts</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.footnotestack</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.in_container_literal_block</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.next_section_ids</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.next_hyperlink_ids</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.restrict_footnote()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.unrestrict_footnote()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.push_hyperlink_ids()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.pop_hyperlink_ids()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.bibitems</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.hlsettingstack</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.ExtBabel.get_shorthandoff()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html.HTMLTranslator.highlightlang()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html.HTMLTranslator.highlightlang_base()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html.HTMLTranslator.highlightlangopts()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html.HTMLTranslator.highlightlinenothreshold()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html5.HTMLTranslator.highlightlang()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html5.HTMLTranslator.highlightlang_base()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html5.HTMLTranslator.highlightlangopts()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.html5.HTMLTranslator.highlightlinenothreshold()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.check_latex_elements()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>Nothing</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.application.CONFIG_FILENAME</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.config.CONFIG_FILENAME</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Config.check_unicode()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.config.check_unicode()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Config.check_types()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.config.check_confval_types()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dirname</span></code>, <code class="docutils literal notranslate"><span class="pre">filename</span></code> and <code class="docutils literal notranslate"><span class="pre">tags</span></code> arguments of
+<code class="docutils literal notranslate"><span class="pre">Config.__init__()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Config.read()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>The value of <a class="reference internal" href="../usage/configuration.html#confval-html_search_options"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_search_options</span></code></a></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>see <a class="reference internal" href="../usage/configuration.html#confval-html_search_options"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_search_options</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.versioning.prepare()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.versioning.UIDTransform</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Sphinx.override_domain()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_domain" title="sphinx.application.Sphinx.add_domain"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_domain()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Sphinx.import_object()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.import_object()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">suffix</span></code> argument of
+<a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_source_parser" title="sphinx.application.Sphinx.add_source_parser"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_source_parser()</span></code></a></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_source_suffix" title="sphinx.application.Sphinx.add_source_suffix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_source_suffix()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.load()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pickle.load()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.loads()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pickle.loads()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.frompickle()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pickle.load()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.dump()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pickle.dump()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.dumps()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pickle.dumps()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.topickle()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pickle.dump()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment._nitpick_ignore</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><a class="reference internal" href="../usage/configuration.html#confval-nitpick_ignore"><code class="xref std std-confval docutils literal notranslate"><span class="pre">nitpick_ignore</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.versionchanges</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.update()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Builder.read()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.read_doc()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Builder.read_doc()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment._read_serial()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Builder.read()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment._read_parallel()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Builder.read()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.write_doctree()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Builder.write_doctree()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.note_versionchange()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ChangesDomain.note_changeset()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">warn()</span></code> (template helper function)</p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">warning()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../usage/configuration.html#confval-source_parsers"><code class="xref std std-confval docutils literal notranslate"><span class="pre">source_parsers</span></code></a></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_source_parser" title="sphinx.application.Sphinx.add_source_parser"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_source_parser()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.docutils.directive_helper()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Directive</span></code> class of docutils</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.cmdline</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.cmd.build</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.make_mode</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.cmd.make_mode</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.locale.l_()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><a class="reference internal" href="i18n.html#sphinx.locale._" title="sphinx.locale._"><code class="xref py py-func docutils literal notranslate"><span class="pre">sphinx.locale._()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.locale.lazy_gettext()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><a class="reference internal" href="i18n.html#sphinx.locale._" title="sphinx.locale._"><code class="xref py py-func docutils literal notranslate"><span class="pre">sphinx.locale._()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.locale.mygettext()</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>3.0</p></td>
+<td><p><a class="reference internal" href="i18n.html#sphinx.locale._" title="sphinx.locale._"><code class="xref py py-func docutils literal notranslate"><span class="pre">sphinx.locale._()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.copy_static_entry()</span></code></p></td>
+<td><p>1.5</p></td>
+<td><p>3.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.fileutil.copy_asset()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.build_main()</span></code></p></td>
+<td><p>1.7</p></td>
+<td><p>2.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.cmd.build.build_main()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx.debug()</span></code></p></td>
+<td><p>1.7</p></td>
+<td><p>2.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx.inspect_main()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.format_annotation()</span></code></p></td>
+<td><p>1.7</p></td>
+<td><p>2.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.Signature</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.formatargspec()</span></code></p></td>
+<td><p>1.7</p></td>
+<td><p>2.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.Signature</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.AutodocReporter</span></code></p></td>
+<td><p>1.7</p></td>
+<td><p>2.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.docutils.switch_source_input()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.add_documenter()</span></code></p></td>
+<td><p>1.7</p></td>
+<td><p>2.0</p></td>
+<td><p><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_autodocumenter" title="sphinx.application.Sphinx.add_autodocumenter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_autodocumenter()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.AutoDirective._register</span></code></p></td>
+<td><p>1.7</p></td>
+<td><p>2.0</p></td>
+<td><p><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_autodocumenter" title="sphinx.application.Sphinx.add_autodocumenter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_autodocumenter()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AutoDirective._special_attrgetters</span></code></p></td>
+<td><p>1.7</p></td>
+<td><p>2.0</p></td>
+<td><p><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_autodoc_attrgetter" title="sphinx.application.Sphinx.add_autodoc_attrgetter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_autodoc_attrgetter()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Sphinx.warn()</span></code>, <code class="docutils literal notranslate"><span class="pre">Sphinx.info()</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>2.0</p></td>
+<td><p><a class="reference internal" href="logging.html#logging-api"><span class="std std-ref">Logging API</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.set_warnfunc()</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>2.0</p></td>
+<td><p><a class="reference internal" href="logging.html#logging-api"><span class="std std-ref">Logging API</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.note_toctree()</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>2.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Toctree.note()</span></code> (in <code class="docutils literal notranslate"><span class="pre">sphinx.environment.adapters.toctree</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.get_toc_for()</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>2.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Toctree.get_toc_for()</span></code> (in <code class="docutils literal notranslate"><span class="pre">sphinx.environment.adapters.toctree</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.get_toctree_for()</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>2.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Toctree.get_toctree_for()</span></code> (in <code class="docutils literal notranslate"><span class="pre">sphinx.environment.adapters.toctree</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BuildEnvironment.create_index()</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>2.0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IndexEntries.create_index()</span></code> (in <code class="docutils literal notranslate"><span class="pre">sphinx.environment.adapters.indexentries</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.websupport</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>2.0</p></td>
+<td><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-websupport/">sphinxcontrib-websupport</a></p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">StandaloneHTMLBuilder.css_files</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>2.0</p></td>
+<td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stylesheet()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">document.settings.gettext_compact</span></code></p></td>
+<td><p>1.8</p></td>
+<td><p>1.8</p></td>
+<td><p><a class="reference internal" href="../usage/configuration.html#confval-gettext_compact"><code class="xref std std-confval docutils literal notranslate"><span class="pre">gettext_compact</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Sphinx.status_iterator()</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>1.7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.status_iterator()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Sphinx.old_status_iterator()</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>1.7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.old_status_iterator()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Sphinx._directive_helper()</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>1.7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.docutils.directive_helper()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.compat.Directive</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>1.7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">docutils.parsers.rst.Directive</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.compat.docutils_version</span></code></p></td>
+<td><p>1.6</p></td>
+<td><p>1.7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.docutils.__version_info__</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On deprecating on public APIs (internal functions and classes),
+we also follow the policy as much as possible.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../internals/index.html" title="Sphinx internals"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="utils.html" title="Utilities"
+             >previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Developing extensions for Sphinx</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Deprecated APIs</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2021, Georg Brandl and the Sphinx team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+  </body>
+</html>

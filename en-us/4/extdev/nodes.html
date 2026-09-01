@@ -1,0 +1,483 @@
+
+<!DOCTYPE html>
+
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Doctree node classes added by Sphinx &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/nodes.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Logging API" href="logging.html" />
+    <link rel="prev" title="Parser API" href="parserapi.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="logging.html" title="Logging API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="parserapi.html" title="Parser API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Developing extensions for Sphinx</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Doctree node classes added by Sphinx</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Doctree node classes added by Sphinx</a><ul>
+<li><a class="reference internal" href="#nodes-for-domain-specific-object-descriptions">Nodes for domain-specific object descriptions</a><ul>
+<li><a class="reference internal" href="#top-level-nodes">Top-level nodes</a></li>
+<li><a class="reference internal" href="#nodes-for-high-level-structure-in-signatures">Nodes for high-level structure in signatures</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#new-admonition-like-constructs">New admonition-like constructs</a></li>
+<li><a class="reference internal" href="#other-paragraph-level-nodes">Other paragraph-level nodes</a></li>
+<li><a class="reference internal" href="#new-inline-nodes">New inline nodes</a></li>
+<li><a class="reference internal" href="#special-nodes">Special nodes</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="parserapi.html"
+                          title="previous chapter">Parser API</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="logging.html"
+                          title="next chapter">Logging API</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/extdev/nodes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-sphinx.addnodes">
+<span id="doctree-node-classes-added-by-sphinx"></span><span id="nodes"></span><h1>Doctree node classes added by Sphinx<a class="headerlink" href="#module-sphinx.addnodes" title="Permalink to this headline">¶</a></h1>
+<section id="nodes-for-domain-specific-object-descriptions">
+<h2>Nodes for domain-specific object descriptions<a class="headerlink" href="#nodes-for-domain-specific-object-descriptions" title="Permalink to this headline">¶</a></h2>
+<section id="top-level-nodes">
+<h3>Top-level nodes<a class="headerlink" href="#top-level-nodes" title="Permalink to this headline">¶</a></h3>
+<p>These nodes form the top-most levels of object descriptions.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for a list of object signatures and a common description of them.</p>
+<p>Contains one or more <a class="reference internal" href="#sphinx.addnodes.desc_signature" title="sphinx.addnodes.desc_signature"><code class="xref py py-class docutils literal notranslate"><span class="pre">desc_signature</span></code></a> nodes
+and then a single <a class="reference internal" href="#sphinx.addnodes.desc_content" title="sphinx.addnodes.desc_content"><code class="xref py py-class docutils literal notranslate"><span class="pre">desc_content</span></code></a> node.</p>
+<p>This node always has two classes:</p>
+<ul class="simple">
+<li><p>The name of the domain it belongs to, e.g., <code class="docutils literal notranslate"><span class="pre">py</span></code> or <code class="docutils literal notranslate"><span class="pre">cpp</span></code>.</p></li>
+<li><p>The name of the object type in the domain, e.g., <code class="docutils literal notranslate"><span class="pre">function</span></code>.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc_signature">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc_signature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc_signature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for a single object signature.</p>
+<p>As default the signature is a single-line signature.
+Set <code class="docutils literal notranslate"><span class="pre">is_multiline</span> <span class="pre">=</span> <span class="pre">True</span></code> to describe a multi-line signature.
+In that case all child nodes must be <a class="reference internal" href="#sphinx.addnodes.desc_signature_line" title="sphinx.addnodes.desc_signature_line"><code class="xref py py-class docutils literal notranslate"><span class="pre">desc_signature_line</span></code></a> nodes.</p>
+<p>This node always has the classes <code class="docutils literal notranslate"><span class="pre">sig</span></code>, <code class="docutils literal notranslate"><span class="pre">sig-object</span></code>, and the domain it belongs to.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc_signature_line">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc_signature_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc_signature_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc_signature_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for a line in a multi-line object signature.</p>
+<p>It should only be used as a child of a <a class="reference internal" href="#sphinx.addnodes.desc_signature" title="sphinx.addnodes.desc_signature"><code class="xref py py-class docutils literal notranslate"><span class="pre">desc_signature</span></code></a>
+with <code class="docutils literal notranslate"><span class="pre">is_multiline</span></code> set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.
+Set <code class="docutils literal notranslate"><span class="pre">add_permalink</span> <span class="pre">=</span> <span class="pre">True</span></code> for the line that should get the permalink.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc_content">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for object description content.</p>
+<p>Must be the last child node in a <a class="reference internal" href="#sphinx.addnodes.desc" title="sphinx.addnodes.desc"><code class="xref py py-class docutils literal notranslate"><span class="pre">desc</span></code></a> node.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc_inline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc_inline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc_inline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc_inline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for a signature fragment in inline text.</p>
+<p>This is for example used for roles like <a class="reference internal" href="../usage/restructuredtext/domains.html#role-cpp-expr" title="cpp:expr role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:expr</span></code></a>.</p>
+<p>This node always has the classes <code class="docutils literal notranslate"><span class="pre">sig</span></code>, <code class="docutils literal notranslate"><span class="pre">sig-inline</span></code>,
+and the name of the domain it belongs to.</p>
+</dd></dl>
+
+</section>
+<section id="nodes-for-high-level-structure-in-signatures">
+<h3>Nodes for high-level structure in signatures<a class="headerlink" href="#nodes-for-high-level-structure-in-signatures" title="Permalink to this headline">¶</a></h3>
+<p>These nodes occur in in non-multiline <a class="reference internal" href="#sphinx.addnodes.desc_signature" title="sphinx.addnodes.desc_signature"><code class="xref py py-class docutils literal notranslate"><span class="pre">desc_signature</span></code></a> nodes
+and in <a class="reference internal" href="#sphinx.addnodes.desc_signature_line" title="sphinx.addnodes.desc_signature_line"><code class="xref py py-class docutils literal notranslate"><span class="pre">desc_signature_line</span></code></a> nodes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc_name">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for the main object name.</p>
+<p>For example, in the declaration of a Python class <code class="docutils literal notranslate"><span class="pre">MyModule.MyClass</span></code>,
+the main name is <code class="docutils literal notranslate"><span class="pre">MyClass</span></code>.</p>
+<p>This node always has the class <code class="docutils literal notranslate"><span class="pre">sig-name</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc_addname">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc_addname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc_addname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc_addname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for additional name parts for an object.</p>
+<p>For example, in the declaration of a Python class <code class="docutils literal notranslate"><span class="pre">MyModule.MyClass</span></code>,
+the additional name part is <code class="docutils literal notranslate"><span class="pre">MyModule.</span></code>.</p>
+<p>This node always has the class <code class="docutils literal notranslate"><span class="pre">sig-prename</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc_type">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for return types or object type names.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc_returns">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc_returns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc_returns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc_returns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for a “returns” annotation (a la -&gt; in Python).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc_parameterlist">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc_parameterlist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc_parameterlist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc_parameterlist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for a general parameter list.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc_parameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for a single parameter.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc_optional">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc_optional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc_optional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc_optional" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for marking optional parts of the parameter list.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.desc_annotation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">desc_annotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#desc_annotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.desc_annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for signature annotations (not Python 3-style annotations).</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="new-admonition-like-constructs">
+<h2>New admonition-like constructs<a class="headerlink" href="#new-admonition-like-constructs" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.versionmodified">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">versionmodified</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#versionmodified"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.versionmodified" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for version change entries.</p>
+<p>Currently used for “versionadded”, “versionchanged” and “deprecated”
+directives.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.seealso">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">seealso</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#seealso"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.seealso" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom “see also” admonition.</p>
+</dd></dl>
+
+</section>
+<section id="other-paragraph-level-nodes">
+<h2>Other paragraph-level nodes<a class="headerlink" href="#other-paragraph-level-nodes" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.compact_paragraph">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">compact_paragraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#compact_paragraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.compact_paragraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for a compact paragraph (which never makes a &lt;p&gt; node).</p>
+</dd></dl>
+
+</section>
+<section id="new-inline-nodes">
+<h2>New inline nodes<a class="headerlink" href="#new-inline-nodes" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.index">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for index entries.</p>
+<p>This node is created by the <code class="docutils literal notranslate"><span class="pre">index</span></code> directive and has one attribute,
+<code class="docutils literal notranslate"><span class="pre">entries</span></code>.  Its value is a list of 5-tuples of <code class="docutils literal notranslate"><span class="pre">(entrytype,</span> <span class="pre">entryname,</span>
+<span class="pre">target,</span> <span class="pre">ignored,</span> <span class="pre">key)</span></code>.</p>
+<p><em>entrytype</em> is one of “single”, “pair”, “double”, “triple”.</p>
+<p><em>key</em> is categorization characters (usually a single character) for
+general index page. For the details of this, please see also:
+<a class="reference internal" href="../usage/restructuredtext/directives.html#directive-glossary" title="glossary directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">glossary</span></code></a> and issue #2320.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.pending_xref">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">pending_xref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#pending_xref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.pending_xref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for cross-references that cannot be resolved without complete
+information about all documents.</p>
+<p>These nodes are resolved before writing output, in
+BuildEnvironment.resolve_references.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.pending_xref_condition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">pending_xref_condition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#pending_xref_condition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.pending_xref_condition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for cross-references that are used to choose appropriate
+content of the reference by conditions on the resolving phase.</p>
+<p>When the <a class="reference internal" href="#sphinx.addnodes.pending_xref" title="sphinx.addnodes.pending_xref"><code class="xref py py-class docutils literal notranslate"><span class="pre">pending_xref</span></code></a> node contains one or more
+<strong>pending_xref_condition</strong> nodes, the cross-reference resolver
+should choose the content of the reference using defined conditions
+in <code class="docutils literal notranslate"><span class="pre">condition</span></code> attribute of each pending_xref_condition nodes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">pending_xref</span> <span class="n">refdomain</span><span class="o">=</span><span class="s2">&quot;py&quot;</span> <span class="n">reftarget</span><span class="o">=</span><span class="s2">&quot;io.StringIO ...&gt;</span>
+    <span class="o">&lt;</span><span class="n">pending_xref_condition</span> <span class="n">condition</span><span class="o">=</span><span class="s2">&quot;resolved&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">literal</span><span class="o">&gt;</span>
+            <span class="n">StringIO</span>
+    <span class="o">&lt;</span><span class="n">pending_xref_condition</span> <span class="n">condition</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">literal</span><span class="o">&gt;</span>
+            <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span>
+</pre></div>
+</div>
+<p>After the processing of cross-reference resolver, one of the content node
+under pending_xref_condition node is chosen by its condition and to be
+removed all of pending_xref_condition nodes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># When resolved the cross-reference successfully</span>
+<span class="o">&lt;</span><span class="n">reference</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">literal</span><span class="o">&gt;</span>
+        <span class="n">StringIO</span>
+
+<span class="c1"># When resolution is failed</span>
+<span class="o">&lt;</span><span class="n">reference</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">literal</span><span class="o">&gt;</span>
+        <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This node is only allowed to be placed under pending_xref node.
+It is not allows to place it under other nodes.  In addition,
+pending_xref node must contain only pending_xref_condition
+nodes if it contains one or more pending_xref_condition nodes.</p>
+</div>
+<p>The pending_xref_condition node should have <strong>condition</strong> attribute.
+Domains can be store their individual conditions into the attribute to
+filter contents on resolving phase.  As a reserved condition name,
+<code class="docutils literal notranslate"><span class="pre">condition=&quot;*&quot;</span></code> is used for the fallback of resolution failure.
+Additionally, as a recommended condition name, <code class="docutils literal notranslate"><span class="pre">condition=&quot;resolved&quot;</span></code>
+is used for the representation of resolstion success in the intersphinx
+module.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 4.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.literal_emphasis">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">literal_emphasis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#literal_emphasis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.literal_emphasis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node that behaves like <cite>emphasis</cite>, but further text processors are not
+applied (e.g. smartypants for HTML output).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.download_reference">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">download_reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#download_reference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.download_reference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for download references, similar to pending_xref.</p>
+</dd></dl>
+
+</section>
+<section id="special-nodes">
+<h2>Special nodes<a class="headerlink" href="#special-nodes" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.only">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">only</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#only"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.only" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for “only” directives (conditional inclusion based on tags).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for meta directive – same as docutils’ standard meta node,
+but pickleable.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.highlightlang">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">highlightlang</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#highlightlang"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.highlightlang" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inserted to set the highlight language and line number options for
+subsequent code blocks.</p>
+</dd></dl>
+
+<p>You should not need to generate the nodes below in extensions.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.glossary">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">glossary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#glossary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.glossary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node to insert a glossary.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.toctree">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">toctree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#toctree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.toctree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for inserting a “TOC tree”.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.start_of_file">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">start_of_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#start_of_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.start_of_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node to mark start of a new file, used in the LaTeX builder only.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.productionlist">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">productionlist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#productionlist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.productionlist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for grammar production lists.</p>
+<p>Contains <code class="docutils literal notranslate"><span class="pre">production</span></code> nodes.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.addnodes.production">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.addnodes.</span></span><span class="sig-name descname"><span class="pre">production</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rawsource</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">children</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sphinx/addnodes.html#production"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.addnodes.production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node for a single grammar production rule.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="logging.html" title="Logging API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="parserapi.html" title="Parser API"
+             >previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Developing extensions for Sphinx</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Doctree node classes added by Sphinx</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2022, Georg Brandl and the Sphinx team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

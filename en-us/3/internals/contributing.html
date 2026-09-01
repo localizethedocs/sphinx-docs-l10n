@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contributing to Sphinx &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/internals/contributing.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sphinx’s release process" href="release-process.html" />
+    <link rel="prev" title="Sphinx internals" href="index.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="release-process.html" title="Sphinx’s release process"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Sphinx internals"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Sphinx internals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Contributing to Sphinx</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Contributing to Sphinx</a><ul>
+<li><a class="reference internal" href="#getting-help">Getting help</a></li>
+<li><a class="reference internal" href="#bug-reports-and-feature-requests">Bug Reports and Feature Requests</a></li>
+<li><a class="reference internal" href="#writing-code">Writing code</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting started</a></li>
+<li><a class="reference internal" href="#coding-style">Coding style</a></li>
+<li><a class="reference internal" href="#unit-tests">Unit tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#writing-documentation">Writing documentation</a><ul>
+<li><a class="reference internal" href="#translations">Translations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#debugging-tips">Debugging tips</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Sphinx internals</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="release-process.html"
+                        title="next chapter">Sphinx’s release process</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/internals/contributing.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="contributing-to-sphinx">
+<h1>Contributing to Sphinx<a class="headerlink" href="#contributing-to-sphinx" title="Permalink to this headline">¶</a></h1>
+<p>There are many ways you can contribute to Sphinx, be it filing bug reports or
+feature requests, writing new documentation or submitting patches for new or
+fixed behavior. This guide serves to illustrate how you can get started with
+this.</p>
+<div class="section" id="getting-help">
+<h2>Getting help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
+<p>The Sphinx community maintains a number of mailing lists and IRC channels.</p>
+<dl class="simple">
+<dt>Stack Overflow with tag <a class="reference external" href="https://stackoverflow.com/questions/tagged/python-sphinx">python-sphinx</a></dt><dd><p>Questions and answers about use and development.</p>
+</dd>
+<dt>sphinx-users &lt;<a class="reference external" href="mailto:sphinx-users&#37;&#52;&#48;googlegroups&#46;com">sphinx-users<span>&#64;</span>googlegroups<span>&#46;</span>com</a>&gt;</dt><dd><p>Mailing list for user support.</p>
+</dd>
+<dt>sphinx-dev &lt;<a class="reference external" href="mailto:sphinx-dev&#37;&#52;&#48;googlegroups&#46;com">sphinx-dev<span>&#64;</span>googlegroups<span>&#46;</span>com</a>&gt;</dt><dd><p>Mailing list for development related discussions.</p>
+</dd>
+<dt>#sphinx-doc on irc.freenode.net</dt><dd><p>IRC channel for development questions and user support.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="bug-reports-and-feature-requests">
+<h2>Bug Reports and Feature Requests<a class="headerlink" href="#bug-reports-and-feature-requests" title="Permalink to this headline">¶</a></h2>
+<p>If you have encountered a problem with Sphinx or have an idea for a new
+feature, please submit it to the <a class="reference external" href="https://github.com/sphinx-doc/sphinx/issues">issue tracker</a> on GitHub or discuss it
+on the <a class="reference external" href="mailto:sphinx-dev&#37;&#52;&#48;googlegroups&#46;com">sphinx-dev</a> mailing list.</p>
+<p>For bug reports, please include the output produced during the build process
+and also the log file Sphinx creates after it encounters an unhandled
+exception.  The location of this file should be shown towards the end of the
+error message.</p>
+<p>Including or providing a link to the source files involved may help us fix the
+issue.  If possible, try to create a minimal project that produces the error
+and post that instead.</p>
+</div>
+<div class="section" id="writing-code">
+<h2>Writing code<a class="headerlink" href="#writing-code" title="Permalink to this headline">¶</a></h2>
+<p>The Sphinx source code is managed using Git and is hosted on <a class="reference external" href="https://github.com/sphinx-doc/sphinx">GitHub</a>.  The
+recommended way for new contributors to submit code to Sphinx is to fork this
+repository and submit a pull request after committing changes to their fork.
+The pull request will then need to be approved by one of the core developers
+before it is merged into the main repository.</p>
+<div class="section" id="getting-started">
+<h3>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
+<p>Before starting on a patch, we recommend checking for open issues or open a
+fresh issue to start a discussion around a feature idea or a bug. If you feel
+uncomfortable or uncertain about an issue or your changes, feel free to email
+the <em>sphinx-dev</em> mailing list.</p>
+<p>These are the basic steps needed to start developing on Sphinx.</p>
+<ol class="arabic">
+<li><p>Create an account on GitHub.</p></li>
+<li><p>Fork the main Sphinx repository (<a class="reference external" href="https://github.com/sphinx-doc/sphinx">sphinx-doc/sphinx</a>) using the GitHub interface.</p></li>
+<li><p>Clone the forked repository to your machine.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">USERNAME</span><span class="o">/</span><span class="n">sphinx</span>
+<span class="n">cd</span> <span class="n">sphinx</span>
+</pre></div>
+</div>
+</li>
+<li><p>Checkout the appropriate branch.</p>
+<p>Sphinx adopts Semantic Versioning 2.0.0 (refs: <a class="reference external" href="https://semver.org/">https://semver.org/</a> ).</p>
+<p>For changes that preserves backwards-compatibility of API and features,
+they should be included in the next MINOR release, use the <code class="docutils literal notranslate"><span class="pre">A.x</span></code> branch.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">A</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+<p>For incompatible or other substantial changes that should wait until the
+next MAJOR release, use the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.</p>
+<p>For urgent release, a new PATCH branch must be branched from the newest
+release tag (see <a class="reference internal" href="release-process.html"><span class="doc">Sphinx’s release process</span></a> for detail).</p>
+</li>
+<li><p>Setup a virtual environment.</p>
+<p>This is not necessary for unit testing, thanks to <code class="docutils literal notranslate"><span class="pre">tox</span></code>, but it is
+necessary if you wish to run <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> locally or run unit tests
+without the help of <code class="docutils literal notranslate"><span class="pre">tox</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">virtualenv</span> <span class="o">~/.</span><span class="n">venv</span>
+<span class="o">.</span> <span class="o">~/.</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create a new working branch. Choose any name you like.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">feature</span><span class="o">-</span><span class="n">xyz</span>
+</pre></div>
+</div>
+</li>
+<li><p>Hack, hack, hack.</p>
+<p>Write your code along with tests that shows that the bug was fixed or that
+the feature works as expected.</p>
+</li>
+<li><p>Add a bullet point to <code class="file docutils literal notranslate"><span class="pre">CHANGES</span></code> if the fix or feature is not trivial
+(small doc updates, typo fixes), then commit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s1">&#39;#42: Add useful new feature that does this.&#39;</span>
+</pre></div>
+</div>
+<p>GitHub recognizes certain phrases that can be used to automatically
+update the issue tracker. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s1">&#39;Closes #42: Fix invalid markup in docstring of Foo.bar.&#39;</span>
+</pre></div>
+</div>
+<p>would close issue #42.</p>
+</li>
+<li><p>Push changes in the branch to your forked repository on GitHub:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">feature</span><span class="o">-</span><span class="n">xyz</span>
+</pre></div>
+</div>
+</li>
+<li><p>Submit a pull request from your branch to the respective branch (<code class="docutils literal notranslate"><span class="pre">master</span></code>
+or <code class="docutils literal notranslate"><span class="pre">A.x</span></code>).</p></li>
+<li><p>Wait for a core developer to review your changes.</p></li>
+</ol>
+</div>
+<div class="section" id="coding-style">
+<h3>Coding style<a class="headerlink" href="#coding-style" title="Permalink to this headline">¶</a></h3>
+<p>Please follow these guidelines when writing code for Sphinx:</p>
+<ul class="simple">
+<li><p>Try to use the same code style as used in the rest of the project.</p></li>
+<li><p>For non-trivial changes, please update the <code class="file docutils literal notranslate"><span class="pre">CHANGES</span></code> file.  If your
+changes alter existing behavior, please document this.</p></li>
+<li><p>New features should be documented.  Include examples and use cases where
+appropriate.  If possible, include a sample that is displayed in the
+generated output.</p></li>
+<li><p>When adding a new configuration variable, be sure to document it and update
+<code class="file docutils literal notranslate"><span class="pre">sphinx/cmd/quickstart.py</span></code> if it’s important enough.</p></li>
+<li><p>Add appropriate unit tests.</p></li>
+</ul>
+<p>Style and type checks can be run using <code class="docutils literal notranslate"><span class="pre">tox</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tox</span> <span class="o">-</span><span class="n">e</span> <span class="n">mypy</span>
+<span class="n">tox</span> <span class="o">-</span><span class="n">e</span> <span class="n">flake8</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unit-tests">
+<h3>Unit tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h3>
+<p>Sphinx is tested using <a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a> for Python code and <a class="reference external" href="https://karma-runner.github.io">Karma</a> for JavaScript.</p>
+<p>To run Python unit tests, we recommend using <code class="docutils literal notranslate"><span class="pre">tox</span></code>, which provides a number
+of targets and allows testing against multiple different Python environments:</p>
+<ul>
+<li><p>To list all possible targets:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tox</span> <span class="o">-</span><span class="n">av</span>
+</pre></div>
+</div>
+</li>
+<li><p>To run unit tests for a specific Python version, such as Python 3.6:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tox</span> <span class="o">-</span><span class="n">e</span> <span class="n">py36</span>
+</pre></div>
+</div>
+</li>
+<li><p>To run unit tests for a specific Python version and turn on deprecation
+warnings on so they’re shown in the test output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PYTHONWARNINGS</span><span class="o">=</span><span class="nb">all</span> <span class="n">tox</span> <span class="o">-</span><span class="n">e</span> <span class="n">py36</span>
+</pre></div>
+</div>
+</li>
+<li><p>Arguments to <code class="docutils literal notranslate"><span class="pre">pytest</span></code> can be passed via <code class="docutils literal notranslate"><span class="pre">tox</span></code>, e.g. in order to run a
+particular test:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tox</span> <span class="o">-</span><span class="n">e</span> <span class="n">py36</span> <span class="n">tests</span><span class="o">/</span><span class="n">test_module</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_new_feature</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>You can also test by installing dependencies in your local environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span><span class="p">[</span><span class="n">test</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To run JavaScript tests, use <code class="docutils literal notranslate"><span class="pre">npm</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span>
+<span class="n">npm</span> <span class="n">run</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>New unit tests should be included in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory where
+necessary:</p>
+<ul class="simple">
+<li><p>For bug fixes, first add a test that fails without your changes and passes
+after they are applied.</p></li>
+<li><p>Tests that need a <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> run should be integrated in one of the
+existing test modules if possible.  New tests that to <code class="docutils literal notranslate"><span class="pre">&#64;with_app</span></code> and
+then <code class="docutils literal notranslate"><span class="pre">build_all</span></code> for a few assertions are not good since <em>the test suite
+should not take more than a minute to run</em>.</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.8: </span>Sphinx also runs JavaScript tests.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.6: </span><code class="docutils literal notranslate"><span class="pre">sphinx.testing</span></code> is added as a experimental.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.5.2: </span>Sphinx was switched from nose to pytest.</p>
+</div>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">Todo</p>
+<p>The below belongs in the developer guide</p>
+</div>
+<p>Utility functions and pytest fixtures for testing are provided in
+<code class="docutils literal notranslate"><span class="pre">sphinx.testing</span></code>. If you are a developer of Sphinx extensions, you can write
+unit tests with using pytest. At this time, <code class="docutils literal notranslate"><span class="pre">sphinx.testing</span></code> will help your
+test implementation.</p>
+<p>How to use pytest fixtures that are provided by <code class="docutils literal notranslate"><span class="pre">sphinx.testing</span></code>?  You can
+require <code class="docutils literal notranslate"><span class="pre">'sphinx.testing.fixtures'</span></code> in your test modules or <code class="docutils literal notranslate"><span class="pre">conftest.py</span></code>
+files like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest_plugins</span> <span class="o">=</span> <span class="s1">&#39;sphinx.testing.fixtures&#39;</span>
+</pre></div>
+</div>
+<p>If you want to know more detailed usage, please refer to <code class="docutils literal notranslate"><span class="pre">tests/conftest.py</span></code>
+and other <code class="docutils literal notranslate"><span class="pre">test_*.py</span></code> files under <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory.</p>
+</div>
+</div>
+<div class="section" id="writing-documentation">
+<h2>Writing documentation<a class="headerlink" href="#writing-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">Todo</p>
+<p>Add a more extensive documentation contribution guide.</p>
+</div>
+<p>You can build documentation using <code class="docutils literal notranslate"><span class="pre">tox</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tox</span> <span class="o">-</span><span class="n">e</span> <span class="n">docs</span>
+</pre></div>
+</div>
+<div class="section" id="translations">
+<h3>Translations<a class="headerlink" href="#translations" title="Permalink to this headline">¶</a></h3>
+<p>The parts of messages in Sphinx that go into builds are translated into several
+locales.  The translations are kept as gettext <code class="docutils literal notranslate"><span class="pre">.po</span></code> files translated from the
+master template <code class="file docutils literal notranslate"><span class="pre">sphinx/locale/sphinx.pot</span></code>.</p>
+<p>Sphinx uses <a class="reference external" href="http://babel.pocoo.org/en/latest/">Babel</a> to extract messages
+and maintain the catalog files.  It is integrated in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>:</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">extract_messages</span></code> to update the <code class="docutils literal notranslate"><span class="pre">.pot</span></code> template.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">update_catalog</span></code> to update all existing language
+catalogs in <code class="docutils literal notranslate"><span class="pre">sphinx/locale/*/LC_MESSAGES</span></code> with the current messages in the
+template file.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">compile_catalog</span></code> to compile the <code class="docutils literal notranslate"><span class="pre">.po</span></code> files to binary
+<code class="docutils literal notranslate"><span class="pre">.mo</span></code> files and <code class="docutils literal notranslate"><span class="pre">.js</span></code> files.</p></li>
+</ul>
+<p>When an updated <code class="docutils literal notranslate"><span class="pre">.po</span></code> file is submitted, run compile_catalog to commit both
+the source and the compiled catalogs.</p>
+<p>When a new locale is submitted, add a new directory with the ISO 639-1 language
+identifier and put <code class="docutils literal notranslate"><span class="pre">sphinx.po</span></code> in there.  Don’t forget to update the possible
+values for <a class="reference internal" href="../usage/configuration.html#confval-language"><code class="xref std std-confval docutils literal notranslate"><span class="pre">language</span></code></a> in <code class="docutils literal notranslate"><span class="pre">doc/usage/configuration.rst</span></code>.</p>
+<p>The Sphinx core messages can also be translated on <a class="reference external" href="https://www.transifex.com/sphinx-doc/sphinx-1/">Transifex</a>.  There <code class="docutils literal notranslate"><span class="pre">tx</span></code> client tool,
+which is provided by the <code class="docutils literal notranslate"><span class="pre">transifex_client</span></code> Python package, can be used to
+pull translations in <code class="docutils literal notranslate"><span class="pre">.po</span></code> format from Transifex.  To do this, go to
+<code class="docutils literal notranslate"><span class="pre">sphinx/locale</span></code> and then run <code class="docutils literal notranslate"><span class="pre">tx</span> <span class="pre">pull</span> <span class="pre">-f</span> <span class="pre">-l</span> <span class="pre">LANG</span></code> where <code class="docutils literal notranslate"><span class="pre">LANG</span></code> is an
+existing language identifier.  It is good practice to run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span>
+<span class="pre">update_catalog</span></code> afterwards to make sure the <code class="docutils literal notranslate"><span class="pre">.po</span></code> file has the canonical
+Babel formatting.</p>
+</div>
+</div>
+<div class="section" id="debugging-tips">
+<h2>Debugging tips<a class="headerlink" href="#debugging-tips" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Delete the build cache before building documents if you make changes in the
+code by running the command <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> or using the
+<a class="reference internal" href="../man/sphinx-build.html#cmdoption-sphinx-build-E"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-E</span></code></a> option.</p></li>
+<li><p>Use the <a class="reference internal" href="../man/sphinx-build.html#cmdoption-sphinx-build-P"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-P</span></code></a> option to run <code class="docutils literal notranslate"><span class="pre">pdb</span></code> on exceptions.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">node.pformat()</span></code> and <code class="docutils literal notranslate"><span class="pre">node.asdom().toxml()</span></code> to generate a printable
+representation of the document structure.</p></li>
+<li><p>Set the configuration variable <a class="reference internal" href="../usage/configuration.html#confval-keep_warnings"><code class="xref std std-confval docutils literal notranslate"><span class="pre">keep_warnings</span></code></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code> so
+warnings will be displayed in the generated output.</p></li>
+<li><p>Set the configuration variable <a class="reference internal" href="../usage/configuration.html#confval-nitpicky"><code class="xref std std-confval docutils literal notranslate"><span class="pre">nitpicky</span></code></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code> so that Sphinx
+will complain about references without a known target.</p></li>
+<li><p>Set the debugging options in the <a class="reference external" href="http://docutils.sourceforge.net/docs/user/config.html">Docutils configuration file</a>.</p></li>
+<li><p>JavaScript stemming algorithms in <code class="docutils literal notranslate"><span class="pre">sphinx/search/*.py</span></code> (except <code class="docutils literal notranslate"><span class="pre">en.py</span></code>)
+are generated by this <a class="reference external" href="https://github.com/shibukawa/snowball">modified snowballcode generator</a>.  Generated <a class="reference external" href="https://jsx.github.io/">JSX</a> files are in <a class="reference external" href="https://github.com/shibukawa/snowball-stemmer.jsx">this repository</a>.  You can get the
+resulting JavaScript files using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span>
+<span class="n">node_modules</span><span class="o">/.</span><span class="n">bin</span><span class="o">/</span><span class="n">grunt</span> <span class="n">build</span> <span class="c1"># -&gt; dest/*.global.js</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="release-process.html" title="Sphinx’s release process"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Sphinx internals"
+             >previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Sphinx internals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Contributing to Sphinx</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2021, Georg Brandl and the Sphinx team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+  </body>
+</html>

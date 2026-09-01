@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>sphinx.ext.imgconverter – A reference image converter using Imagemagick &#8212; Sphinx 2.4.5 文档</title>
+    <link rel="stylesheet" href="../../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/imgconverter.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx 2.4.5 文档 中搜索"
+          href="../../_static/opensearch.xml"/>
+
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="sphinx.ext.inheritance_diagram – Include inheritance diagrams" href="inheritance.html" />
+    <link rel="prev" title="sphinx.ext.ifconfig – Include content based on configuration" href="ifconfig.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/usage/extensions/imgconverter.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../installation.html">Get it</a></li>
+    <li><a href="../../contents.html">Docs</a></li>
+    <li><a href="../../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../../index.html">
+      <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="inheritance.html" title="sphinx.ext.inheritance_diagram – Include inheritance diagrams"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="ifconfig.html" title="sphinx.ext.ifconfig – Include content based on configuration"
+             accesskey="P">上一页</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Extensions</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> – A reference image converter using Imagemagick</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="ifconfig.html"
+                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="inheritance.html"
+                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/usage/extensions/imgconverter.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-sphinx.ext.imgconverter">
+<span id="sphinx-ext-imgconverter-a-reference-image-converter-using-imagemagick"></span><span id="sphinx-ext-imgconverter"></span><h1><a class="reference internal" href="#module-sphinx.ext.imgconverter" title="sphinx.ext.imgconverter: Convert images to appropriate format for builders"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code></a> – A reference image converter using Imagemagick<a class="headerlink" href="#module-sphinx.ext.imgconverter" title="永久链接至标题">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">1.6 新版功能.</span></p>
+</div>
+<p>This extension converts images in your document to appropriate format for
+builders.  For example, it allows you to use SVG images with LaTeX builder.
+As a result, you don’t mind what image format the builder supports.</p>
+<p>Internally, this extension uses <a class="reference external" href="https://www.imagemagick.org/script/index.php">Imagemagick</a> to convert images.</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>Imagemagick rasterizes a SVG image on conversion.  As a result, the image
+becomes not scalable.  To avoid that, please use other image converters like
+<a class="reference external" href="https://github.com/missinglinkelectronics/sphinxcontrib-svg2pdfconverter">sphinxcontrib-svg2pdfconverter</a> (which uses Inkscape or
+<code class="docutils literal notranslate"><span class="pre">rsvg-convert</span></code>).</p>
+</div>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="永久链接至标题">¶</a></h2>
+<dl class="confval">
+<dt id="confval-image_converter">
+<code class="sig-name descname">image_converter</code><a class="headerlink" href="#confval-image_converter" title="永久链接至目标">¶</a></dt>
+<dd><p>A path to <strong class="command">convert</strong> command.  By default, the imgconverter uses
+the command from search paths.</p>
+</dd></dl>
+
+<dl class="confval">
+<dt id="confval-image_converter_args">
+<code class="sig-name descname">image_converter_args</code><a class="headerlink" href="#confval-image_converter_args" title="永久链接至目标">¶</a></dt>
+<dd><p>Additional command-line arguments to give to <strong class="command">convert</strong>, as a list.
+The default is an empty list <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="inheritance.html" title="sphinx.ext.inheritance_diagram – Include inheritance diagrams"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="ifconfig.html" title="sphinx.ext.ifconfig – Include content based on configuration"
+             >上一页</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Extensions</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2007-2019, Georg Brandl and the Sphinx team.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5 创建。
+    </div>
+  </body>
+</html>

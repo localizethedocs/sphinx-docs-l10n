@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>HTML &#8212; Sphinx 2.4.5 文档</title>
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/theming.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx 2.4.5 文档 中搜索"
+          href="../_static/opensearch.xml"/>
+
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Internationalization" href="advanced/intl.html" />
+    <link rel="prev" title="sphinx.ext.viewcode – Add links to highlighted source code" href="extensions/viewcode.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/usage/theming.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="advanced/intl.html" title="Internationalization"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="extensions/viewcode.html" title="sphinx.ext.viewcode – Add links to highlighted source code"
+             accesskey="P">上一页</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">HTML</a><ul>
+<li><a class="reference internal" href="#builders">Builders</a></li>
+<li><a class="reference internal" href="#themes">Themes</a><ul>
+<li><a class="reference internal" href="#using-a-theme">Using a theme</a></li>
+<li><a class="reference internal" href="#builtin-themes">Builtin themes</a></li>
+<li><a class="reference internal" href="#third-party-themes">Third Party Themes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="extensions/viewcode.html"
+                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="advanced/intl.html"
+                        title="下一章">Internationalization</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/usage/theming.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="html">
+<h1>HTML<a class="headerlink" href="#html" title="永久链接至标题">¶</a></h1>
+<p>Sphinx provides a number of builders for HTML and HTML-based formats.</p>
+<section id="builders">
+<h2>Builders<a class="headerlink" href="#builders" title="永久链接至标题">¶</a></h2>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">待处理</p>
+<p>Populate when the ‘builders’ document is split up.</p>
+</div>
+</section>
+<section id="themes">
+<h2>Themes<a class="headerlink" href="#themes" title="永久链接至标题">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">0.6 新版功能.</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>This section provides information about using pre-existing HTML themes. If
+you wish to create your own theme, refer to <a class="reference internal" href="../theming.html"><span class="doc">HTML theming support</span></a>.</p>
+</div>
+<p>Sphinx supports changing the appearance of its HTML output via <em>themes</em>.  A
+theme is a collection of HTML templates, stylesheet(s) and other static files.
+Additionally, it has a configuration file which specifies from which theme to
+inherit, which highlighting style to use, and what options exist for customizing
+the theme’s look and feel.</p>
+<p>Themes are meant to be project-unaware, so they can be used for different
+projects without change.</p>
+<section id="using-a-theme">
+<h3>Using a theme<a class="headerlink" href="#using-a-theme" title="永久链接至标题">¶</a></h3>
+<p>Using a <a class="reference internal" href="#builtin-themes"><span class="std std-ref">theme provided with Sphinx</span></a> is easy. Since these
+do not need to be installed, you only need to set the <a class="reference internal" href="configuration.html#confval-html_theme"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_theme</span></code></a>
+config value. For example, to enable the <code class="docutils literal notranslate"><span class="pre">classic</span></code> theme, add the following
+to <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme</span> <span class="o">=</span> <span class="s2">&quot;classic&quot;</span>
+</pre></div>
+</div>
+<p>You can also set theme-specific options using the <a class="reference internal" href="configuration.html#confval-html_theme_options"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_theme_options</span></code></a>
+config value.  These options are generally used to change the look and feel of
+the theme. For example, to place the sidebar on the right side and a black
+background for the relation bar (the bar with the navigation links at the
+page’s top and bottom), add the following <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;rightsidebar&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;relbarbgcolor&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the theme does not come with Sphinx, it can be in two static forms or as a
+Python package. For the static forms, either a directory (containing
+<code class="file docutils literal notranslate"><span class="pre">theme.conf</span></code> and other needed files), or a zip file with the same
+contents is supported. The directory or zipfile must be put where Sphinx can
+find it; for this there is the config value <a class="reference internal" href="configuration.html#confval-html_theme_path"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_theme_path</span></code></a>. This
+can be a list of directories, relative to the directory containing
+<code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>, that can contain theme directories or zip files.  For example,
+if you have a theme in the file <code class="file docutils literal notranslate"><span class="pre">blue.zip</span></code>, you can put it right in the
+directory containing <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> and use this configuration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span>
+<span class="n">html_theme_path</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;.&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The third form is a Python package.  If a theme you want to use is distributed
+as a Python package, you can use it after installing</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># installing theme package</span>
+$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>sphinxjp.themes.dotted
+</pre></div>
+</div>
+<p>Once installed, this can be used in the same manner as a directory or
+zipfile-based theme:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme</span> <span class="o">=</span> <span class="s2">&quot;dotted&quot;</span>
+</pre></div>
+</div>
+<p>For more information on the design of themes, including information about
+writing your own themes, refer to <a class="reference internal" href="../theming.html"><span class="doc">HTML theming support</span></a>.</p>
+</section>
+<section id="builtin-themes">
+<span id="id2"></span><h3>Builtin themes<a class="headerlink" href="#builtin-themes" title="永久链接至标题">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Theme overview</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><img alt="alabaster" src="../_images/alabaster.png" /></p>
+<p><em>alabaster</em></p>
+</td>
+<td><p><img alt="classic" src="../_images/classic.png" /></p>
+<p><em>classic</em></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><img alt="sphinxdoc" src="../_images/sphinxdoc.png" /></p>
+<p><em>sphinxdoc</em></p>
+</td>
+<td><p><img alt="scrolls" src="../_images/scrolls.png" /></p>
+<p><em>scrolls</em></p>
+</td>
+</tr>
+<tr class="row-even"><td><p><img alt="agogo" src="../_images/agogo.png" /></p>
+<p><em>agogo</em></p>
+</td>
+<td><p><img alt="traditional" src="../_images/traditional.png" /></p>
+<p><em>traditional</em></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><img alt="nature" src="../_images/nature.png" /></p>
+<p><em>nature</em></p>
+</td>
+<td><p><img alt="haiku" src="../_images/haiku.png" /></p>
+<p><em>haiku</em></p>
+</td>
+</tr>
+<tr class="row-even"><td><p><img alt="pyramid" src="../_images/pyramid.png" /></p>
+<p><em>pyramid</em></p>
+</td>
+<td><p><img alt="bizstyle" src="../_images/bizstyle.png" /></p>
+<p><em>bizstyle</em></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Sphinx comes with a selection of themes to choose from.</p>
+<p class="clear">These themes are:</p>
+<dl>
+<dt><strong>basic</strong></dt><dd><p>This is a basically unstyled layout used as the base for the
+other themes, and usable as the base for custom themes as well.  The HTML
+contains all important elements like sidebar and relation bar.  There are
+these options (which are inherited by the other themes):</p>
+<ul class="simple">
+<li><p><strong>nosidebar</strong> (true or false): Don’t include the sidebar.  Defaults to
+<code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>sidebarwidth</strong> (int or str): Width of the sidebar in pixels.
+This can be an int, which is interpreted as pixels or a valid CSS
+dimension string such as ‘70em’ or ‘50%’.  Defaults to 230 pixels.</p></li>
+<li><p><strong>body_min_width</strong> (int or str): Minimal width of the document body.
+This can be an int, which is interpreted as pixels or a valid CSS
+dimension string such as ‘70em’ or ‘50%’. Use 0 if you don’t want
+a width limit. Defaults may depend on the theme (often 450px).</p></li>
+<li><p><strong>body_max_width</strong> (int or str): Maximal width of the document body.
+This can be an int, which is interpreted as pixels or a valid CSS
+dimension string such as ‘70em’ or ‘50%’. Use ‘none’ if you don’t
+want a width limit. Defaults may depend on the theme (often 800px).</p></li>
+<li><p><strong>navigation_with_keys</strong> (true or false): Allow navigating to the
+previous/next page using the keyboard’s left and right arrows.  Defaults to
+<code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</dd>
+<dt><strong>alabaster</strong></dt><dd><p><a class="reference external" href="https://pypi.org/project/alabaster/">Alabaster theme</a> is a modified “Kr” Sphinx theme from &#64;kennethreitz
+(especially as used in his Requests project), which was itself originally
+based on &#64;mitsuhiko’s theme used for Flask &amp; related projects.  Refer to its
+<a class="reference external" href="https://alabaster.readthedocs.io/en/latest/installation.html">installation page</a> for information on how to configure
+<a class="reference internal" href="configuration.html#confval-html_sidebars"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_sidebars</span></code></a> for its use.</p>
+</dd>
+<dt><strong>classic</strong></dt><dd><p>This is the classic theme, which looks like <a class="reference external" href="https://docs.python.org/2/">the Python 2
+documentation</a>.  It can be customized via
+these options:</p>
+<ul class="simple">
+<li><p><strong>rightsidebar</strong> (true or false): Put the sidebar on the right side.
+Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>stickysidebar</strong> (true or false): Make the sidebar “fixed” so that it
+doesn’t scroll out of view for long body content.  This may not work well
+with all browsers.  Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>collapsiblesidebar</strong> (true or false): Add an <em>experimental</em> JavaScript
+snippet that makes the sidebar collapsible via a button on its side.
+Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>externalrefs</strong> (true or false): Display external links differently from
+internal links.  Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+<p>There are also various color and font options that can change the color scheme
+without having to write a custom stylesheet:</p>
+<ul class="simple">
+<li><p><strong>footerbgcolor</strong> (CSS color): Background color for the footer line.</p></li>
+<li><p><strong>footertextcolor</strong> (CSS color): Text color for the footer line.</p></li>
+<li><p><strong>sidebarbgcolor</strong> (CSS color): Background color for the sidebar.</p></li>
+<li><p><strong>sidebarbtncolor</strong> (CSS color): Background color for the sidebar collapse
+button (used when <em>collapsiblesidebar</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p></li>
+<li><p><strong>sidebartextcolor</strong> (CSS color): Text color for the sidebar.</p></li>
+<li><p><strong>sidebarlinkcolor</strong> (CSS color): Link color for the sidebar.</p></li>
+<li><p><strong>relbarbgcolor</strong> (CSS color): Background color for the relation bar.</p></li>
+<li><p><strong>relbartextcolor</strong> (CSS color): Text color for the relation bar.</p></li>
+<li><p><strong>relbarlinkcolor</strong> (CSS color): Link color for the relation bar.</p></li>
+<li><p><strong>bgcolor</strong> (CSS color): Body background color.</p></li>
+<li><p><strong>textcolor</strong> (CSS color): Body text color.</p></li>
+<li><p><strong>linkcolor</strong> (CSS color): Body link color.</p></li>
+<li><p><strong>visitedlinkcolor</strong> (CSS color): Body color for visited links.</p></li>
+<li><p><strong>headbgcolor</strong> (CSS color): Background color for headings.</p></li>
+<li><p><strong>headtextcolor</strong> (CSS color): Text color for headings.</p></li>
+<li><p><strong>headlinkcolor</strong> (CSS color): Link color for headings.</p></li>
+<li><p><strong>codebgcolor</strong> (CSS color): Background color for code blocks.</p></li>
+<li><p><strong>codetextcolor</strong> (CSS color): Default text color for code blocks, if not
+set differently by the highlighting style.</p></li>
+<li><p><strong>bodyfont</strong> (CSS font-family): Font for normal text.</p></li>
+<li><p><strong>headfont</strong> (CSS font-family): Font for headings.</p></li>
+</ul>
+</dd>
+<dt><strong>sphinxdoc</strong></dt><dd><p>The theme originally used by this documentation. It features
+a sidebar on the right side. There are currently no options beyond
+<em>nosidebar</em> and <em>sidebarwidth</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>The Sphinx documentation now uses
+<a class="reference external" href="https://github.com/sphinx-doc/sphinx/tree/master/doc/_themes/sphinx13">an adjusted version of the sphinxdoc theme</a>.</p>
+</div>
+</dd>
+<dt><strong>scrolls</strong></dt><dd><p>A more lightweight theme, based on <a class="reference external" href="http://jinja.pocoo.org/">the Jinja documentation</a>.  The following color options are available:</p>
+<ul class="simple">
+<li><p><strong>headerbordercolor</strong></p></li>
+<li><p><strong>subheadlinecolor</strong></p></li>
+<li><p><strong>linkcolor</strong></p></li>
+<li><p><strong>visitedlinkcolor</strong></p></li>
+<li><p><strong>admonitioncolor</strong></p></li>
+</ul>
+</dd>
+<dt><strong>agogo</strong></dt><dd><p>A theme created by Andi Albrecht.  The following options are supported:</p>
+<ul class="simple">
+<li><p><strong>bodyfont</strong> (CSS font family): Font for normal text.</p></li>
+<li><p><strong>headerfont</strong> (CSS font family): Font for headings.</p></li>
+<li><p><strong>pagewidth</strong> (CSS length): Width of the page content, default 70em.</p></li>
+<li><p><strong>documentwidth</strong> (CSS length): Width of the document (without sidebar),
+default 50em.</p></li>
+<li><p><strong>sidebarwidth</strong> (CSS length): Width of the sidebar, default 20em.</p></li>
+<li><p><strong>rightsidebar</strong> (true or false): Put the sidebar on the right side.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>bgcolor</strong> (CSS color): Background color.</p></li>
+<li><p><strong>headerbg</strong> (CSS value for “background”): background for the header area,
+default a grayish gradient.</p></li>
+<li><p><strong>footerbg</strong> (CSS value for “background”): background for the footer area,
+default a light gray gradient.</p></li>
+<li><p><strong>linkcolor</strong> (CSS color): Body link color.</p></li>
+<li><p><strong>headercolor1</strong>, <strong>headercolor2</strong> (CSS color): colors for &lt;h1&gt; and &lt;h2&gt;
+headings.</p></li>
+<li><p><strong>headerlinkcolor</strong> (CSS color): Color for the backreference link in
+headings.</p></li>
+<li><p><strong>textalign</strong> (CSS <em>text-align</em> value): Text alignment for the body, default
+is <code class="docutils literal notranslate"><span class="pre">justify</span></code>.</p></li>
+</ul>
+</dd>
+<dt><strong>nature</strong></dt><dd><p>A greenish theme.  There are currently no options beyond
+<em>nosidebar</em> and <em>sidebarwidth</em>.</p>
+</dd>
+<dt><strong>pyramid</strong></dt><dd><p>A theme from the Pyramid web framework project, designed by Blaise Laflamme.
+There are currently no options beyond <em>nosidebar</em> and <em>sidebarwidth</em>.</p>
+</dd>
+<dt><strong>haiku</strong></dt><dd><p>A theme without sidebar inspired by the <a class="reference external" href="https://www.haiku-os.org/docs/userguide/en/contents.html">Haiku OS user guide</a>.  The following
+options are supported:</p>
+<ul class="simple">
+<li><p><strong>full_logo</strong> (true or false, default <code class="docutils literal notranslate"><span class="pre">False</span></code>): If this is true, the
+header will only show the <a class="reference internal" href="configuration.html#confval-html_logo"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_logo</span></code></a>.  Use this for large logos.
+If this is false, the logo (if present) will be shown floating right, and
+the documentation title will be put in the header.</p></li>
+<li><p><strong>textcolor</strong>, <strong>headingcolor</strong>, <strong>linkcolor</strong>, <strong>visitedlinkcolor</strong>,
+<strong>hoverlinkcolor</strong> (CSS colors): Colors for various body elements.</p></li>
+</ul>
+</dd>
+<dt><strong>traditional</strong></dt><dd><p>A theme resembling the old Python documentation.  There are
+currently no options beyond <em>nosidebar</em> and <em>sidebarwidth</em>.</p>
+</dd>
+<dt><strong>epub</strong></dt><dd><p>A theme for the epub builder.  This theme tries to save visual
+space which is a sparse resource on ebook readers.  The following options
+are supported:</p>
+<ul class="simple">
+<li><p><strong>relbar1</strong> (true or false, default <code class="docutils literal notranslate"><span class="pre">True</span></code>): If this is true, the
+<cite>relbar1</cite> block is inserted in the epub output, otherwise it is omitted.</p></li>
+<li><p><strong>footer</strong>  (true or false, default <code class="docutils literal notranslate"><span class="pre">True</span></code>): If this is true, the
+<cite>footer</cite> block is inserted in the epub output, otherwise it is omitted.</p></li>
+</ul>
+</dd>
+<dt><strong>bizstyle</strong></dt><dd><p>A simple bluish theme. The following options are supported
+beyond <em>nosidebar</em> and <em>sidebarwidth</em>:</p>
+<ul class="simple">
+<li><p><strong>rightsidebar</strong> (true or false): Put the sidebar on the right side.
+Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">1.3 新版功能: </span>‘alabaster’, ‘sphinx_rtd_theme’ and ‘bizstyle’ theme.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.3 版更改: </span>The ‘default’ theme has been renamed to ‘classic’. ‘default’ is still
+available, however it will emit a notice that it is an alias for the new
+‘alabaster’ theme.</p>
+</div>
+</section>
+<section id="third-party-themes">
+<h3>Third Party Themes<a class="headerlink" href="#third-party-themes" title="永久链接至标题">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Theme overview</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><img alt="sphinx_rtd_theme" src="../_images/sphinx_rtd_theme.png" /></p>
+<p><em>sphinx_rtd_theme</em></p>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>There are many third-party themes available. Some of these are general use,
+while others are specific to an individual project. A section of third-party
+themes is listed below. Many more can be found on <a class="reference external" href="https://pypi.org/search/?q=&amp;o=&amp;c=Framework+%3A%3A+Sphinx+%3A%3A+Theme">PyPI</a>, <a class="reference external" href="https://github.com/search?utf8=%E2%9C%93&amp;q=sphinx+theme&amp;type=">GitHub</a> and
+<a class="reference external" href="https://sphinx-themes.org/">sphinx-themes.org</a>.</p>
+<dl class="clear">
+<dt><strong>sphinx_rtd_theme</strong></dt><dd><p><a class="reference external" href="https://pypi.org/project/sphinx_rtd_theme/">Read the Docs Sphinx Theme</a>.
+This is a mobile-friendly sphinx theme that was made for readthedocs.org.
+View a working demo over on readthedocs.org. You can get install and options
+information at <a class="reference external" href="https://pypi.org/project/sphinx_rtd_theme/">Read the Docs Sphinx Theme</a> page.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 1.4 版更改: </span><strong>sphinx_rtd_theme</strong> has become optional.</p>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="advanced/intl.html" title="Internationalization"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="extensions/viewcode.html" title="sphinx.ext.viewcode – Add links to highlighted source code"
+             >上一页</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2007-2019, Georg Brandl and the Sphinx team.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5 创建。
+    </div>
+  </body>
+</html>

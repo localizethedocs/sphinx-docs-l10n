@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <title>sphinx.builders.epub3 &#8212; Sphinx 2.4.5 documentation</title>
+    <link rel="stylesheet" href="../../../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/_modules/sphinx/builders/epub3.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx 2.4.5 documentation"
+          href="../../../_static/opensearch.xml"/>
+
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/_modules/sphinx/builders/epub3.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../../index.html">Home</a></li>
+    <li><a href="../../../usage/installation.html">Get it</a></li>
+    <li><a href="../../../contents.html">Docs</a></li>
+    <li><a href="../../../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../../../index.html">
+      <img src="../../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../builders.html" accesskey="U">sphinx.builders</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for sphinx.builders.epub3</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    sphinx.builders.epub3</span>
+<span class="sd">    ~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">    Build epub3 files.</span>
+<span class="sd">    Originally derived from epub.py.</span>
+
+<span class="sd">    :copyright: Copyright 2007-2015 by the Sphinx team, see AUTHORS.</span>
+<span class="sd">    :license: BSD, see LICENSE for details.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">html</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">sphinx</span> <span class="kn">import</span> <span class="n">package_dir</span>
+<span class="kn">from</span> <span class="nn">sphinx.application</span> <span class="kn">import</span> <span class="n">Sphinx</span>
+<span class="kn">from</span> <span class="nn">sphinx.builders</span> <span class="kn">import</span> <span class="n">_epub_base</span>
+<span class="kn">from</span> <span class="nn">sphinx.config</span> <span class="kn">import</span> <span class="n">Config</span><span class="p">,</span> <span class="n">ENUM</span>
+<span class="kn">from</span> <span class="nn">sphinx.deprecation</span> <span class="kn">import</span> <span class="n">RemovedInSphinx40Warning</span>
+<span class="kn">from</span> <span class="nn">sphinx.locale</span> <span class="kn">import</span> <span class="n">__</span>
+<span class="kn">from</span> <span class="nn">sphinx.util</span> <span class="kn">import</span> <span class="n">logging</span><span class="p">,</span> <span class="n">xmlname_checker</span>
+<span class="kn">from</span> <span class="nn">sphinx.util.fileutil</span> <span class="kn">import</span> <span class="n">copy_asset_file</span>
+<span class="kn">from</span> <span class="nn">sphinx.util.i18n</span> <span class="kn">import</span> <span class="n">format_date</span>
+<span class="kn">from</span> <span class="nn">sphinx.util.osutil</span> <span class="kn">import</span> <span class="n">make_filename</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="n">NavPoint</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;NavPoint&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;refuri&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">])</span>
+
+<span class="c1"># writing modes</span>
+<span class="n">PAGE_PROGRESSION_DIRECTIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;horizontal&#39;</span><span class="p">:</span> <span class="s1">&#39;ltr&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;vertical&#39;</span><span class="p">:</span> <span class="s1">&#39;rtl&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">IBOOK_SCROLL_AXIS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;horizontal&#39;</span><span class="p">:</span> <span class="s1">&#39;vertical&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;vertical&#39;</span><span class="p">:</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">THEME_WRITING_MODES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;vertical&#39;</span><span class="p">:</span> <span class="s1">&#39;vertical-rl&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;horizontal&#39;</span><span class="p">:</span> <span class="s1">&#39;horizontal-tb&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">DOCTYPE</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;&lt;!DOCTYPE html&gt;&#39;&#39;&#39;</span>
+
+<span class="n">HTML_TAG</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; &#39;</span>
+    <span class="s1">&#39;xmlns:epub=&quot;http://www.idpf.org/2007/ops&quot;&gt;&#39;</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="Epub3Builder"><a class="viewcode-back" href="../../../usage/builders/index.html#sphinx.builders.epub3.Epub3Builder">[docs]</a><span class="k">class</span> <span class="nc">Epub3Builder</span><span class="p">(</span><span class="n">_epub_base</span><span class="o">.</span><span class="n">EpubBuilder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builder that outputs epub3 files.</span>
+
+<span class="sd">    It creates the metainfo files content.opf, nav.xhtml, toc.ncx, mimetype,</span>
+<span class="sd">    and META-INF/container.xml. Afterwards, all necessary files are zipped to</span>
+<span class="sd">    an epub file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;epub&#39;</span>
+    <span class="n">epilog</span> <span class="o">=</span> <span class="n">__</span><span class="p">(</span><span class="s1">&#39;The ePub file is in </span><span class="si">%(outdir)s</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+    <span class="n">supported_remote_images</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">template_dir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">package_dir</span><span class="p">,</span> <span class="s1">&#39;templates&#39;</span><span class="p">,</span> <span class="s1">&#39;epub3&#39;</span><span class="p">)</span>
+    <span class="n">doctype</span> <span class="o">=</span> <span class="n">DOCTYPE</span>
+    <span class="n">html_tag</span> <span class="o">=</span> <span class="n">HTML_TAG</span>
+    <span class="n">use_meta_charset</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># Finish by building the epub file</span>
+    <span class="k">def</span> <span class="nf">handle_finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create the metainfo files and finally the epub.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_toc</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_mimetype</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_container</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_content</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_navigation_doc</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_toc</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_epub</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">validate_config_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Epub3Builder.validate_config_value() is deprecated.&#39;</span><span class="p">,</span>
+                      <span class="n">RemovedInSphinx40Warning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">content_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a dictionary with all metadata for the content.opf</span>
+<span class="sd">        file properly escaped.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">writing_mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_writing_mode</span>
+
+        <span class="n">metadata</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">content_metadata</span><span class="p">()</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_description</span><span class="p">)</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;contributor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_contributor</span><span class="p">)</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;page_progression_direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PAGE_PROGRESSION_DIRECTIONS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">writing_mode</span><span class="p">)</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;ibook_scroll_axis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">IBOOK_SCROLL_AXIS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">writing_mode</span><span class="p">)</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">format_date</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%SZ&quot;</span><span class="p">))</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;epub_version&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_version</span>
+        <span class="k">return</span> <span class="n">metadata</span>
+
+    <span class="k">def</span> <span class="nf">prepare_writing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docnames</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">prepare_writing</span><span class="p">(</span><span class="n">docnames</span><span class="p">)</span>
+
+        <span class="n">writing_mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_writing_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globalcontext</span><span class="p">[</span><span class="s1">&#39;theme_writing_mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">THEME_WRITING_MODES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">writing_mode</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globalcontext</span><span class="p">[</span><span class="s1">&#39;html_tag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">html_tag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globalcontext</span><span class="p">[</span><span class="s1">&#39;use_meta_charset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_meta_charset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globalcontext</span><span class="p">[</span><span class="s1">&#39;skip_ua_compatible&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">build_navlist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">navnodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">NavPoint</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create the toc navigation structure.</span>
+
+<span class="sd">        This method is almost same as build_navpoints method in epub.py.</span>
+<span class="sd">        This is because the logical navigation structure of epub3 is not</span>
+<span class="sd">        different from one of epub2.</span>
+
+<span class="sd">        The difference from build_navpoints method is templates which are used</span>
+<span class="sd">        when generating navigation documents.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">navstack</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># type: List[NavPoint]</span>
+        <span class="n">navstack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NavPoint</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">[]))</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">navnodes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]:</span>
+                <span class="k">continue</span>
+            <span class="n">file</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;refuri&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">file</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignored_files</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_tocdepth</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">navpoint</span> <span class="o">=</span> <span class="n">NavPoint</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;refuri&#39;</span><span class="p">],</span> <span class="p">[])</span>
+            <span class="k">if</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">level</span><span class="p">:</span>
+                <span class="n">navstack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">navstack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">navpoint</span><span class="p">)</span>
+                <span class="n">navstack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">navpoint</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">navstack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">navpoint</span><span class="p">)</span>
+                <span class="n">navstack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">navpoint</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">level</span><span class="p">:</span>
+                <span class="k">while</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">navstack</span><span class="p">):</span>
+                    <span class="n">navstack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">level</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]</span>
+                <span class="n">navstack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">navpoint</span><span class="p">)</span>
+                <span class="n">navstack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">navpoint</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Should never reach here. It might be a bug.&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">navstack</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">children</span>
+
+    <span class="k">def</span> <span class="nf">navigation_doc_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">navlist</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">NavPoint</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a dictionary with all metadata for the nav.xhtml file</span>
+<span class="sd">        properly escaped.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;lang&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_language</span><span class="p">)</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;toc_locale&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">guide_titles</span><span class="p">[</span><span class="s1">&#39;toc&#39;</span><span class="p">])</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;navlist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">navlist</span>
+        <span class="k">return</span> <span class="n">metadata</span>
+
+    <span class="k">def</span> <span class="nf">build_navigation_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outdir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">outname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;nav.xhtml&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write the metainfo file nav.xhtml.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">outdir</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The arguments of Epub3Builder.build_navigation_doc() &#39;</span>
+                          <span class="s1">&#39;is deprecated.&#39;</span><span class="p">,</span> <span class="n">RemovedInSphinx40Warning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">outdir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outdir</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;writing </span><span class="si">%s</span><span class="s1"> file...&#39;</span><span class="p">),</span> <span class="n">outname</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_tocscope</span> <span class="o">==</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span>
+            <span class="n">doctree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">get_and_resolve_doctree</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">master_doc</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span>
+                <span class="n">prune_toctrees</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">includehidden</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">refnodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_refnodes</span><span class="p">(</span><span class="n">doctree</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">toc_add_files</span><span class="p">(</span><span class="n">refnodes</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># &#39;includehidden&#39;</span>
+            <span class="n">refnodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">refnodes</span>
+        <span class="n">navlist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_navlist</span><span class="p">(</span><span class="n">refnodes</span><span class="p">)</span>
+        <span class="n">copy_asset_file</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">template_dir</span><span class="p">,</span> <span class="s1">&#39;nav.xhtml_t&#39;</span><span class="p">),</span>
+                        <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="n">outname</span><span class="p">),</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">navigation_doc_metadata</span><span class="p">(</span><span class="n">navlist</span><span class="p">))</span>
+
+        <span class="c1"># Add nav.xhtml to epub file</span>
+        <span class="k">if</span> <span class="n">outname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">outname</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">validate_config_values</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s1">&#39;epub&#39;</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="c1"># &lt;package&gt; lang attribute, dc:language</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_language</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;conf value &quot;epub_language&quot; (or &quot;language&quot;) &#39;</span>
+                          <span class="s1">&#39;should not be empty for EPUB3&#39;</span><span class="p">))</span>
+    <span class="c1"># &lt;package&gt; unique-identifier attribute</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">xmlname_checker</span><span class="p">()</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_uid</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;conf value &quot;epub_uid&quot; should be XML NAME for EPUB3&#39;</span><span class="p">))</span>
+    <span class="c1"># dc:title</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_title</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;conf value &quot;epub_title&quot; (or &quot;html_title&quot;) &#39;</span>
+                          <span class="s1">&#39;should not be empty for EPUB3&#39;</span><span class="p">))</span>
+    <span class="c1"># dc:creator</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_author</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;conf value &quot;epub_author&quot; should not be empty for EPUB3&#39;</span><span class="p">))</span>
+    <span class="c1"># dc:contributor</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_contributor</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;conf value &quot;epub_contributor&quot; should not be empty for EPUB3&#39;</span><span class="p">))</span>
+    <span class="c1"># dc:description</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_description</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;conf value &quot;epub_description&quot; should not be empty for EPUB3&#39;</span><span class="p">))</span>
+    <span class="c1"># dc:publisher</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_publisher</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;conf value &quot;epub_publisher&quot; should not be empty for EPUB3&#39;</span><span class="p">))</span>
+    <span class="c1"># dc:rights</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_copyright</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;conf value &quot;epub_copyright&quot; (or &quot;copyright&quot;)&#39;</span>
+                          <span class="s1">&#39;should not be empty for EPUB3&#39;</span><span class="p">))</span>
+    <span class="c1"># dc:identifier</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">epub_identifier</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;conf value &quot;epub_identifier&quot; should not be empty for EPUB3&#39;</span><span class="p">))</span>
+    <span class="c1"># meta ibooks:version</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">version</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;conf value &quot;version&quot; should not be empty for EPUB3&#39;</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">convert_epub_css_files</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This converts string styled epub_css_files to tuple styled one.&quot;&quot;&quot;</span>
+    <span class="n">epub_css_files</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># type: List[Tuple[str, Dict]]</span>
+    <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">epub_css_files</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">epub_css_files</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">entry</span><span class="p">,</span> <span class="p">{}))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">filename</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">entry</span>
+                <span class="n">epub_css_files</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">filename</span><span class="p">,</span> <span class="n">attrs</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;invalid css_file: </span><span class="si">%r</span><span class="s1">, ignored&#39;</span><span class="p">),</span> <span class="n">entry</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+    <span class="n">config</span><span class="o">.</span><span class="n">epub_css_files</span> <span class="o">=</span> <span class="n">epub_css_files</span>  <span class="c1"># type: ignore</span>
+
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_builder</span><span class="p">(</span><span class="n">Epub3Builder</span><span class="p">)</span>
+
+    <span class="c1"># config values</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_basename&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="n">make_filename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_version&#39;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>  <span class="c1"># experimental</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_theme&#39;</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_theme_options&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_title&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_author&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">author</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_language&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span> <span class="ow">or</span> <span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_publisher&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">author</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_copyright&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">copyright</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_identifier&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown&#39;</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_scheme&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown&#39;</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_uid&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown&#39;</span><span class="p">,</span> <span class="s1">&#39;env&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_cover&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="s1">&#39;env&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_guide&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="s1">&#39;env&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_pre_files&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="s1">&#39;env&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_post_files&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="s1">&#39;env&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_css_files&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">config</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">html_css_files</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_exclude_files&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="s1">&#39;env&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_tocdepth&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;env&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_tocdup&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;env&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_tocscope&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;env&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_fix_images&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;env&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_max_image_width&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;env&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_show_urls&#39;</span><span class="p">,</span> <span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_use_index&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">html_use_index</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_description&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown&#39;</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_contributor&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown&#39;</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;epub_writing_mode&#39;</span><span class="p">,</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="s1">&#39;epub&#39;</span><span class="p">,</span>
+                         <span class="n">ENUM</span><span class="p">(</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="s1">&#39;vertical&#39;</span><span class="p">))</span>
+
+    <span class="c1"># event handlers</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;config-inited&#39;</span><span class="p">,</span> <span class="n">convert_epub_css_files</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;builder-inited&#39;</span><span class="p">,</span> <span class="n">validate_config_values</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;builtin&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../builders.html" >sphinx.builders</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2019, Georg Brandl and the Sphinx team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5.
+    </div>
+  </body>
+</html>

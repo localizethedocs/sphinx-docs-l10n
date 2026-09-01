@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Sphinx’s release process &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/internals/release-process.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="Organization of the Sphinx project" href="organization.html" />
+    <link rel="prev" title="貢獻 Sphinx" href="contributing.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="organization.html" title="Organization of the Sphinx project"
+             accesskey="N">下一頁</a> |</li>
+        <li class="right" >
+          <a href="contributing.html" title="貢獻 Sphinx"
+             accesskey="P">上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Sphinx internals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Sphinx’s release process</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">目次表</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Sphinx’s release process</a><ul>
+<li><a class="reference internal" href="#branch-model">Branch Model</a></li>
+<li><a class="reference internal" href="#deprecating-a-feature">Deprecating a feature</a></li>
+<li><a class="reference internal" href="#deprecation-policy">Deprecation policy</a><ul>
+<li><a class="reference internal" href="#deprecation-warnings">棄用警告</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#release-procedures">發行程序</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>上個主題</h4>
+    <p class="topless"><a href="contributing.html"
+                          title="上一章">貢獻 Sphinx</a></p>
+  </div>
+  <div>
+    <h4>下個主題</h4>
+    <p class="topless"><a href="organization.html"
+                          title="下一章">Organization of the Sphinx project</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>本頁</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/internals/release-process.rst.txt"
+            rel="nofollow">顯示原始碼</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sphinx-s-release-process">
+<h1>Sphinx’s release process<a class="headerlink" href="#sphinx-s-release-process" title="本標題的永久連結">¶</a></h1>
+<section id="branch-model">
+<h2>Branch Model<a class="headerlink" href="#branch-model" title="本標題的永久連結">¶</a></h2>
+<p>Sphinx project uses following branches for developing that conforms to Semantic
+Versioning 2.0.0 (refs: <a class="reference external" href="https://semver.org/">https://semver.org/</a> ).</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">master</span></code></dt><dd><p>Development for MAJOR version.
+All changes including incompatible behaviors and public API updates are
+allowed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">A.x</span></code> (ex. <code class="docutils literal notranslate"><span class="pre">2.x</span></code>)</dt><dd><p>Where <code class="docutils literal notranslate"><span class="pre">A.x</span></code> is the <code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR</span></code> release.  Used to maintain current
+MINOR release. All changes are allowed if the change preserves
+backwards-compatibility of API and features.</p>
+<p>Only the most recent <code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR</span></code> branch is currently retained. When a
+new MAJOR version is released, the old <code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR</span></code> branch will be
+deleted and replaced by an equivalent tag.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">A.B.x</span></code> (ex. <code class="docutils literal notranslate"><span class="pre">2.4.x</span></code>)</dt><dd><p>Where <code class="docutils literal notranslate"><span class="pre">A.B.x</span></code> is the <code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR.PATCH</span></code> release.  Only
+backwards-compatible bug fixes are allowed. In Sphinx project, PATCH
+version is used for urgent bug fix.</p>
+<p><code class="docutils literal notranslate"><span class="pre">MAJOR.MINOR.PATCH</span></code> branch will be branched from the <code class="docutils literal notranslate"><span class="pre">v</span></code> prefixed
+release tag (ex. make 2.3.1 that branched from v2.3.0) when a urgent
+release is needed. When new PATCH version is released, the branch will be
+deleted and replaced by an equivalent tag (ex. v2.3.1).</p>
+</dd>
+</dl>
+</section>
+<section id="deprecating-a-feature">
+<h2>Deprecating a feature<a class="headerlink" href="#deprecating-a-feature" title="本標題的永久連結">¶</a></h2>
+<p>There are a couple reasons that code in Sphinx might be deprecated:</p>
+<ul class="simple">
+<li><p>If a feature has been improved or modified in a backwards-incompatible way,
+the old feature or behavior will be deprecated.</p></li>
+<li><p>Sometimes Sphinx will include a backport of a Python library that’s not
+included in a version of Python that Sphinx currently supports. When Sphinx
+no longer needs to support the older version of Python that doesn’t include
+the library, the library will be deprecated in Sphinx.</p></li>
+</ul>
+<p>As the <a class="reference internal" href="#deprecation-policy"><span class="std std-ref">Deprecation policy</span></a> describes, the first release of Sphinx that
+deprecates a feature (<code class="docutils literal notranslate"><span class="pre">A.B</span></code>) should raise a <code class="docutils literal notranslate"><span class="pre">RemovedInSphinxXXWarning</span></code>
+(where <code class="docutils literal notranslate"><span class="pre">XX</span></code> is the Sphinx version where the feature will be removed) when the
+deprecated feature is invoked. Assuming we have good test coverage, these
+warnings are converted to errors when running the test suite with warnings
+enabled:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="o">-</span><span class="n">Wall</span>
+</pre></div>
+</div>
+<p>Thus, when adding a <code class="docutils literal notranslate"><span class="pre">RemovedInSphinxXXWarning</span></code> you need to eliminate or
+silence any warnings generated when running the tests.</p>
+</section>
+<section id="deprecation-policy">
+<span id="id1"></span><h2>Deprecation policy<a class="headerlink" href="#deprecation-policy" title="本標題的永久連結">¶</a></h2>
+<p>MAJOR and MINOR releases may deprecate certain features from previous
+releases. If a feature is deprecated in a release A.x, it will continue to
+work in all A.x.x versions (for all versions of x). It will continue to work
+in all B.x.x versions but raise deprecation warnings. Deprecated features
+will be removed at the C.0.0. It means the deprecated feature will work during
+2 MAJOR releases at least.</p>
+<p>So, for example, if we decided to start the deprecation of a function in
+Sphinx 2.x:</p>
+<ul class="simple">
+<li><p>Sphinx 2.x will contain a backwards-compatible replica of the function
+which will raise a <code class="docutils literal notranslate"><span class="pre">RemovedInSphinx40Warning</span></code>.
+This is a subclass of <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#PendingDeprecationWarning" title="(於 Python v3.14)"><code class="docutils literal notranslate"><span class="pre">PendingDeprecationWarning</span></code></a>, i.e. it
+will not get displayed by default.</p></li>
+<li><p>Sphinx 3.x will still contain the backwards-compatible replica, but
+<code class="docutils literal notranslate"><span class="pre">RemovedInSphinx40Warning</span></code> will be a subclass of
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#DeprecationWarning" title="(於 Python v3.14)"><code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a> then, and gets displayed by default.</p></li>
+<li><p>Sphinx 4.0 will remove the feature outright.</p></li>
+</ul>
+<section id="deprecation-warnings">
+<h3>棄用警告<a class="headerlink" href="#deprecation-warnings" title="本標題的永久連結">¶</a></h3>
+<p>Sphinx will enable its <code class="docutils literal notranslate"><span class="pre">RemovedInNextVersionWarning</span></code> warnings by default, if
+<span class="target" id="index-0"></span><a class="reference external" href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONWARNINGS" title="(於 Python v3.14)"><code class="docutils literal notranslate"><span class="pre">PYTHONWARNINGS</span></code></a> is not set.  Therefore you can disable them
+using:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PYTHONWARNINGS=</span> <span class="pre">make</span> <span class="pre">html</span></code> (Linux/Mac)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PYTHONWARNINGS=</span></code> 並執行 <a href="#id1"><span class="problematic" id="id2">``</span></a>make html``（Linux/Mac）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">PYTHONWARNINGS=</span></code> 並執行 <a href="#id1"><span class="problematic" id="id2">``</span></a>make html``（Windows）</p></li>
+</ul>
+<p>But you can also explicitly enable the pending ones using e.g.
+<code class="docutils literal notranslate"><span class="pre">PYTHONWARNINGS=default</span></code> (see the <a class="reference external" href="https://docs.python.org/3/library/warnings.html#describing-warning-filters" title="(於 Python v3.14)"><span class="xref std std-ref">Python docs on configuring warnings</span></a>) for more details.</p>
+</section>
+</section>
+<section id="release-procedures">
+<h2>發行程序<a class="headerlink" href="#release-procedures" title="本標題的永久連結">¶</a></h2>
+<p>The release procedures are listed in <code class="docutils literal notranslate"><span class="pre">utils/release-checklist</span></code>.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li class="right" >
+          <a href="organization.html" title="Organization of the Sphinx project"
+             >下一頁</a> |</li>
+        <li class="right" >
+          <a href="contributing.html" title="貢獻 Sphinx"
+             >上一頁</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Sphinx internals</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Sphinx’s release process</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2022, Georg Brandl and the Sphinx team。
+      使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0 建立。
+    </div>
+  </body>
+</html>
