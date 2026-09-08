@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The C++ Domain &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../../_static/documentation_options.js?v=cafd1c67"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=beaddf03"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/domains/cpp.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="The JavaScript Domain" href="javascript.html" />
+    <link rel="prev" title="The C Domain" href="c.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../index.html">
+      <img src="../../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>导航</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Domains</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">The C++ Domain</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">The C++ Domain</a><ul>
+<li><a class="reference internal" href="#directives-for-declaring-entities">Directives for Declaring Entities</a><ul>
+<li><a class="reference internal" href="#directive-cpp-class"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:class::</span></code></a></li>
+<li><a class="reference internal" href="#directive-cpp-struct"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:struct::</span></code></a></li>
+<li><a class="reference internal" href="#directive-cpp-function"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:function::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-cpp-function-single-line-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-parameter-list:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-cpp-member"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:member::</span></code></a></li>
+<li><a class="reference internal" href="#directive-cpp-var"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:var::</span></code></a></li>
+<li><a class="reference internal" href="#directive-cpp-type"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:type::</span></code></a></li>
+<li><a class="reference internal" href="#directive-cpp-enum"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:enum::</span></code></a></li>
+<li><a class="reference internal" href="#directive-cpp-enum-struct"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:enum-struct::</span></code></a></li>
+<li><a class="reference internal" href="#directive-cpp-enum-class"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:enum-class::</span></code></a></li>
+<li><a class="reference internal" href="#directive-cpp-enumerator"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:enumerator::</span></code></a></li>
+<li><a class="reference internal" href="#directive-cpp-union"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:union::</span></code></a></li>
+<li><a class="reference internal" href="#directive-cpp-concept"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:concept::</span></code></a><ul>
+<li><a class="reference internal" href="#_CPPv4NSt8Iterator1rE"><code class="docutils literal notranslate"><span class="pre">Iterator::r</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#options">Options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#anonymous-entities">Anonymous Entities</a></li>
+<li><a class="reference internal" href="#aliasing-declarations">Aliasing Declarations</a><ul>
+<li><a class="reference internal" href="#directive-cpp-alias"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:alias::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-cpp-alias-maxdepth"><code class="docutils literal notranslate"><span class="pre">:maxdepth:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-cpp-alias-noroot"><code class="docutils literal notranslate"><span class="pre">:noroot:</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#constrained-templates">Constrained Templates</a><ul>
+<li><a class="reference internal" href="#placeholders">Placeholders</a></li>
+<li><a class="reference internal" href="#template-introductions">Template Introductions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inline-expressions-and-types">Inline Expressions and Types</a><ul>
+<li><a class="reference internal" href="#role-cpp-expr"><code class="docutils literal notranslate"><span class="pre">:cpp:expr:</span></code></a></li>
+<li><a class="reference internal" href="#role-cpp-texpr"><code class="docutils literal notranslate"><span class="pre">:cpp:texpr:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#namespacing">Namespacing</a><ul>
+<li><a class="reference internal" href="#directive-cpp-namespace"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:namespace::</span></code></a></li>
+<li><a class="reference internal" href="#directive-cpp-namespace-push"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:namespace-push::</span></code></a></li>
+<li><a class="reference internal" href="#directive-cpp-namespace-pop"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:namespace-pop::</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#info-field-lists">Info field lists</a></li>
+<li><a class="reference internal" href="#cross-referencing">Cross-referencing</a><ul>
+<li><a class="reference internal" href="#role-cpp-any"><code class="docutils literal notranslate"><span class="pre">:cpp:any:</span></code></a></li>
+<li><a class="reference internal" href="#role-cpp-class"><code class="docutils literal notranslate"><span class="pre">:cpp:class:</span></code></a></li>
+<li><a class="reference internal" href="#role-cpp-struct"><code class="docutils literal notranslate"><span class="pre">:cpp:struct:</span></code></a></li>
+<li><a class="reference internal" href="#role-cpp-func"><code class="docutils literal notranslate"><span class="pre">:cpp:func:</span></code></a></li>
+<li><a class="reference internal" href="#role-cpp-member"><code class="docutils literal notranslate"><span class="pre">:cpp:member:</span></code></a></li>
+<li><a class="reference internal" href="#role-cpp-var"><code class="docutils literal notranslate"><span class="pre">:cpp:var:</span></code></a></li>
+<li><a class="reference internal" href="#role-cpp-type"><code class="docutils literal notranslate"><span class="pre">:cpp:type:</span></code></a></li>
+<li><a class="reference internal" href="#role-cpp-concept"><code class="docutils literal notranslate"><span class="pre">:cpp:concept:</span></code></a></li>
+<li><a class="reference internal" href="#role-cpp-enum"><code class="docutils literal notranslate"><span class="pre">:cpp:enum:</span></code></a></li>
+<li><a class="reference internal" href="#role-cpp-enumerator"><code class="docutils literal notranslate"><span class="pre">:cpp:enumerator:</span></code></a></li>
+<li><a class="reference internal" href="#declarations-without-template-parameters-and-template-arguments">Declarations without template parameters and template arguments</a></li>
+<li><a class="reference internal" href="#overloaded-member-functions">Overloaded (member) functions</a></li>
+<li><a class="reference internal" href="#templated-declarations">Templated declarations</a></li>
+<li><a class="reference internal" href="#full-template-specialisations">(Full) Template Specialisations</a></li>
+<li><a class="reference internal" href="#partial-template-specialisations">Partial Template Specialisations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration-variables">Configuration Variables</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencing.html">Cross-references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">Builders</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Domains</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="standard.html">The Standard Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html">The C Domain</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The C++ Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript.html">The JavaScript Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematics.html">The Mathematics Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python.html">The Python Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="restructuredtext.html">The reStructuredText Domain</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes/index.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="the-c-domain">
+<h1>The C++ Domain<a class="headerlink" href="#the-c-domain" title="Link to this heading">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.0.</span></p>
+</div>
+<p>The C++ domain (name <strong>cpp</strong>) supports documenting C++ projects.</p>
+<section id="directives-for-declaring-entities">
+<h2>Directives for Declaring Entities<a class="headerlink" href="#directives-for-declaring-entities" title="Link to this heading">¶</a></h2>
+<p>The following directives are available. All declarations can start with a
+visibility statement (<code class="docutils literal notranslate"><span class="pre">public</span></code>, <code class="docutils literal notranslate"><span class="pre">private</span></code> or <code class="docutils literal notranslate"><span class="pre">protected</span></code>).</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-cpp-class">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:class::</span></span><span class="sig-prename descclassname"> <span class="pre">class</span> <span class="pre">specifier</span></span><a class="headerlink" href="#directive-cpp-class" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="directive-cpp-struct">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:struct::</span></span><span class="sig-prename descclassname"> <span class="pre">class</span> <span class="pre">specifier</span></span><a class="headerlink" href="#directive-cpp-struct" title="Link to this definition">¶</a></dt>
+<dd><p>Describe a class/struct, possibly with specification of inheritance, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> MyClass : public MyBase, MyOtherBase
+</pre></div>
+</div>
+<p>The difference between <a class="reference internal" href="#directive-cpp-class" title="cpp:class directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">cpp:class</span></code></a> and <a class="reference internal" href="#directive-cpp-struct" title="cpp:struct directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">cpp:struct</span></code></a> is
+only cosmetic: the prefix rendered in the output, and the specifier shown
+in the index.</p>
+<p>The class can be directly declared inside a nested scope, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> OuterScope::MyClass : public MyBase, MyOtherBase
+</pre></div>
+</div>
+<p>A class template can be declared:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T, std::size_t N&gt; std::array
+</pre></div>
+</div>
+<p>or with a line break:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T, std::size_t N&gt; \
+               std::array
+</pre></div>
+</div>
+<p>Full and partial template specialisations can be declared:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;&gt; \
+               std::array&lt;bool, 256&gt;
+
+<span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T&gt; \
+               std::array&lt;T, 42&gt;
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.0: </span>The <a class="reference internal" href="#directive-cpp-struct" title="cpp:struct directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">cpp:struct</span></code></a> directive.</p>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-cpp-function">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:function::</span></span><span class="sig-prename descclassname"> <span class="pre">(member)</span> <span class="pre">function</span> <span class="pre">prototype</span></span><a class="headerlink" href="#directive-cpp-function" title="Link to this definition">¶</a></dt>
+<dd><p>Describe a function or member function, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> bool myMethod(int arg1, std::string arg2)
+
+   A function with parameters and types.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> bool myMethod(int, double)
+
+   A function with unnamed parameters.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> const T &amp;MyClass::operator[](std::size_t i) const
+
+   An overload for the indexing operator.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> operator bool() const
+
+   A casting operator.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> constexpr void foo(std::string &amp;bar[2]) noexcept
+
+   A constexpr function.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> MyClass::MyClass(const MyClass&amp;) = default
+
+   A copy constructor with default implementation.
+</pre></div>
+</div>
+<p>Function templates can also be described:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> template&lt;typename U&gt; \
+                  void print(U &amp;&amp;u)
+</pre></div>
+</div>
+<p>and function template specialisations:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> template&lt;&gt; \
+                  void print(int i)
+</pre></div>
+</div>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-cpp-function-single-line-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-parameter-list:</span></span><em class="property"> <span class="pre">(no</span> <span class="pre">value)</span></em><a class="headerlink" href="#directive-option-cpp-function-single-line-parameter-list" title="Link to this definition">¶</a></dt>
+<dd><p>Ensures that the function's parameters will be emitted on a single logical
+line, overriding <a class="reference internal" href="../configuration.html#confval-cpp_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">cpp_maximum_signature_line_length</span></code></a> and
+<a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 7.1.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-cpp-member">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:member::</span></span><span class="sig-prename descclassname"> <span class="pre">(member)</span> <span class="pre">variable</span> <span class="pre">declaration</span></span><a class="headerlink" href="#directive-cpp-member" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="directive-cpp-var">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:var::</span></span><span class="sig-prename descclassname"> <span class="pre">(member)</span> <span class="pre">variable</span> <span class="pre">declaration</span></span><a class="headerlink" href="#directive-cpp-var" title="Link to this definition">¶</a></dt>
+<dd><p>Describe a variable or member variable, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:member</span><span class="p">::</span> std::string MyClass::myMember
+
+<span class="p">..</span> <span class="ow">cpp:var</span><span class="p">::</span> std::string MyClass::myOtherMember[N][M]
+
+<span class="p">..</span> <span class="ow">cpp:member</span><span class="p">::</span> int a = 42
+</pre></div>
+</div>
+<p>Variable templates can also be described:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:member</span><span class="p">::</span> template&lt;class T&gt; \
+                constexpr T pi = T(3.1415926535897932385)
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-cpp-type">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:type::</span></span><span class="sig-prename descclassname"> <span class="pre">typedef</span> <span class="pre">declaration</span></span><a class="headerlink" href="#directive-cpp-type" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:type::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:type::</span></span><span class="sig-prename descclassname"> <span class="pre">type</span> <span class="pre">alias</span> <span class="pre">declaration</span></span></dt>
+<dd><p>Describe a type as in a typedef declaration, a type alias declaration, or
+simply the name of a type with unspecified type, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> std::vector&lt;int&gt; MyList
+
+   A typedef-like declaration of a type.
+
+<span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> MyContainer::const_iterator
+
+   Declaration of a type alias with unspecified type.
+
+<span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> MyType = std::unordered_map&lt;int, std::string&gt;
+
+   Declaration of a type alias.
+</pre></div>
+</div>
+<p>A type alias can also be templated:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> template&lt;typename T&gt; \
+              MyContainer = std::vector&lt;T&gt;
+</pre></div>
+</div>
+<p>The example are rendered as follows.</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv46MyList">
+<span id="_CPPv36MyList"></span><span id="_CPPv26MyList"></span><span id="MyList"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MyList</span></span></span><a class="headerlink" href="#_CPPv46MyList" title="Link to this definition">¶</a><br /></dt>
+<dd><p>A typedef-like declaration of a type.</p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N11MyContainer14const_iteratorE">
+<span id="_CPPv3N11MyContainer14const_iteratorE"></span><span id="_CPPv2N11MyContainer14const_iteratorE"></span><span id="MyContainer::const_iterator"></span><span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">MyContainer</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">const_iterator</span></span></span><a class="headerlink" href="#_CPPv4N11MyContainer14const_iteratorE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Declaration of a type alias with unspecified type.</p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv46MyType">
+<span id="_CPPv36MyType"></span><span id="_CPPv26MyType"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MyType</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unordered_map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv46MyType" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Declaration of a type alias.</p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4I0E11MyContainer">
+<span id="_CPPv3I0E11MyContainer"></span><span id="_CPPv2I0E11MyContainer"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MyContainer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E11MyContainer" title="MyContainer::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I0E11MyContainer" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-cpp-enum">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:enum::</span></span><span class="sig-prename descclassname"> <span class="pre">unscoped</span> <span class="pre">enum</span> <span class="pre">declaration</span></span><a class="headerlink" href="#directive-cpp-enum" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="directive-cpp-enum-struct">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:enum-struct::</span></span><span class="sig-prename descclassname"> <span class="pre">scoped</span> <span class="pre">enum</span> <span class="pre">declaration</span></span><a class="headerlink" href="#directive-cpp-enum-struct" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="directive-cpp-enum-class">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:enum-class::</span></span><span class="sig-prename descclassname"> <span class="pre">scoped</span> <span class="pre">enum</span> <span class="pre">declaration</span></span><a class="headerlink" href="#directive-cpp-enum-class" title="Link to this definition">¶</a></dt>
+<dd><p>Describe a (scoped) enum, possibly with the underlying type specified.  Any
+enumerators declared inside an unscoped enum will be declared both in the
+enum scope and in the parent scope.  Examples:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:enum</span><span class="p">::</span> MyEnum
+
+   An unscoped enum.
+
+<span class="p">..</span> <span class="ow">cpp:enum</span><span class="p">::</span> MySpecificEnum : long
+
+   An unscoped enum with specified underlying type.
+
+<span class="p">..</span> <span class="ow">cpp:enum-class</span><span class="p">::</span> MyScopedEnum
+
+   A scoped enum.
+
+<span class="p">..</span> <span class="ow">cpp:enum-struct</span><span class="p">::</span> protected MyScopedVisibilityEnum : std::underlying_type&lt;MySpecificEnum&gt;::type
+
+   A scoped enum with non-default visibility, and with a specified
+   underlying type.
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-cpp-enumerator">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:enumerator::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-cpp-enumerator" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:enumerator::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span> <span class="pre">=</span> <span class="pre">constant</span></span></dt>
+<dd><p>Describe an enumerator, optionally with its value defined, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:enumerator</span><span class="p">::</span> MyEnum::myEnumerator
+
+<span class="p">..</span> <span class="ow">cpp:enumerator</span><span class="p">::</span> MyEnum::myOtherEnumerator = 42
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-cpp-union">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:union::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-cpp-union" title="Link to this definition">¶</a></dt>
+<dd><p>Describe a union.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.8.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-cpp-concept">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:concept::</span></span><span class="sig-prename descclassname"> <span class="pre">template-parameter-list</span> <span class="pre">name</span></span><a class="headerlink" href="#directive-cpp-concept" title="Link to this definition">¶</a></dt>
+<dd><div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>The support for concepts is experimental. It is based on the
+current draft standard and the Concepts Technical Specification.
+The features may change as they evolve.</p>
+</div>
+<p>Describe a concept. It must have exactly 1 template parameter list. The name
+may be a nested name. Example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:concept</span><span class="p">::</span> template&lt;typename It&gt; std::Iterator
+
+   Proxy to an element of a notional sequence that can be compared,
+   indirected, or incremented.
+
+   <span class="gs">**Notation**</span>
+
+<span class="p">   ..</span> <span class="ow">cpp:var</span><span class="p">::</span> It r
+
+      An lvalue.
+
+   <span class="gs">**Valid Expressions**</span>
+
+   <span class="m">-</span> <span class="na">:cpp:expr:</span><span class="nv">`*r`</span>, when <span class="na">:cpp:expr:</span><span class="nv">`r`</span> is dereferenceable.
+   <span class="m">-</span> <span class="na">:cpp:expr:</span><span class="nv">`++r`</span>, with return type <span class="na">:cpp:expr:</span><span class="nv">`It&amp;`</span>, when
+     <span class="na">:cpp:expr:</span><span class="nv">`r`</span> is incrementable.
+</pre></div>
+</div>
+<p>This will render as follows:</p>
+<dl class="cpp concept">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENSt8IteratorE">
+<span id="_CPPv3I0ENSt8IteratorE"></span><span id="_CPPv2I0ENSt8IteratorE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">It</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="k"><span class="pre">concept</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Iterator</span></span></span><a class="headerlink" href="#_CPPv4I0ENSt8IteratorE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Proxy to an element of a notional sequence that can be compared,
+indirected, or incremented.</p>
+<p><strong>Notation</strong></p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4NSt8Iterator1rE">
+<span id="_CPPv3NSt8Iterator1rE"></span><span id="_CPPv2NSt8Iterator1rE"></span><span id="std::Iterator::r__It"></span><a class="reference internal" href="#_CPPv4I0ENSt8IteratorE" title="std::Iterator::It"><span class="n"><span class="pre">It</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">r</span></span></span><a class="headerlink" href="#_CPPv4NSt8Iterator1rE" title="Link to this definition">¶</a><br /></dt>
+<dd><p>An lvalue.</p>
+</dd></dl>
+
+<p><strong>Valid Expressions</strong></p>
+<ul class="simple">
+<li><p><span class="cpp-expr sig sig-inline cpp"><span class="o">*</span><a class="reference internal" href="#_CPPv4NSt8Iterator1rE" title="std::Iterator::r"><span class="n">r</span></a></span>, when <span class="cpp-expr sig sig-inline cpp"><a class="reference internal" href="#_CPPv4NSt8Iterator1rE" title="std::Iterator::r"><span class="n">r</span></a></span> is dereferenceable.</p></li>
+<li><p><span class="cpp-expr sig sig-inline cpp"><span class="o">++</span><a class="reference internal" href="#_CPPv4NSt8Iterator1rE" title="std::Iterator::r"><span class="n">r</span></a></span>, with return type <span class="cpp-expr sig sig-inline cpp"><a class="reference internal" href="#_CPPv4I0ENSt8IteratorE" title="std::Iterator::It"><span class="n">It</span></a><span class="p">&amp;</span></span>, when <span class="cpp-expr sig sig-inline cpp"><a class="reference internal" href="#_CPPv4NSt8Iterator1rE" title="std::Iterator::r"><span class="n">r</span></a></span>
+is incrementable.</p></li>
+</ul>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.5.</span></p>
+</div>
+</dd></dl>
+
+<section id="options">
+<h3>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h3>
+<p>Some directives support options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">:no-index-entry:</span></code> and <code class="docutils literal notranslate"><span class="pre">:no-contents-entry:</span></code>, see <a class="reference internal" href="index.html#basic-domain-markup"><span class="std std-ref">Basic Markup</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">:tparam-line-spec:</span></code>, for templated declarations.
+If specified, each template parameter will be rendered on a separate line.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.6.</span></p>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="anonymous-entities">
+<h2>Anonymous Entities<a class="headerlink" href="#anonymous-entities" title="Link to this heading">¶</a></h2>
+<p>C++ supports anonymous namespaces, classes, enums, and unions.
+For the sake of documentation they must be given some name that starts with
+<code class="docutils literal notranslate"><span class="pre">&#64;</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">&#64;42</span></code> or <code class="docutils literal notranslate"><span class="pre">&#64;data</span></code>.
+These names can also be used in cross-references and (type) expressions,
+though nested symbols will be found even when omitted.
+The <code class="docutils literal notranslate"><span class="pre">&#64;...</span></code> name will always be rendered as <strong>[anonymous]</strong> (possibly as a
+link).</p>
+<p>Example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> Data
+
+<span class="p">   ..</span> <span class="ow">cpp:union</span><span class="p">::</span> @data
+
+<span class="p">      ..</span> <span class="ow">cpp:var</span><span class="p">::</span> int a
+
+<span class="p">      ..</span> <span class="ow">cpp:var</span><span class="p">::</span> double b
+
+Explicit ref: <span class="na">:cpp:var:</span><span class="nv">`Data::@data::a`</span>. Short-hand ref: <span class="na">:cpp:var:</span><span class="nv">`Data::a`</span>.
+</pre></div>
+</div>
+<p>This will be rendered as:</p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv44Data">
+<span id="_CPPv34Data"></span><span id="_CPPv24Data"></span><span id="Data"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Data</span></span></span><a class="headerlink" href="#_CPPv44Data" title="Link to this definition">¶</a><br /></dt>
+<dd><dl class="cpp union">
+<dt class="sig sig-object cpp" id="_CPPv4N4DataUt4_dataE">
+<span id="_CPPv3N4DataUt4_dataE"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">[anonymous]</span></span></span><a class="headerlink" href="#_CPPv4N4DataUt4_dataE" title="Link to this definition">¶</a><br /></dt>
+<dd><dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N4DataUt4_data1aE">
+<span id="_CPPv3N4DataUt4_data1aE"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">a</span></span></span><a class="headerlink" href="#_CPPv4N4DataUt4_data1aE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N4DataUt4_data1bE">
+<span id="_CPPv3N4DataUt4_data1bE"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">b</span></span></span><a class="headerlink" href="#_CPPv4N4DataUt4_data1bE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<p>Explicit ref: <a class="reference internal" href="#_CPPv4N4DataUt4_data1aE" title="Data::[anonymous]::a"><code class="xref cpp cpp-var docutils literal notranslate"><span class="pre">Data::[anonymous]::a</span></code></a>. Short-hand ref: <a class="reference internal" href="#_CPPv4N4DataUt4_data1aE" title="Data::[anonymous]::a"><code class="xref cpp cpp-var docutils literal notranslate"><span class="pre">Data::a</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.8.</span></p>
+</div>
+</section>
+<section id="aliasing-declarations">
+<h2>Aliasing Declarations<a class="headerlink" href="#aliasing-declarations" title="Link to this heading">¶</a></h2>
+<p>Sometimes it may be helpful list declarations elsewhere than their main
+documentation, e.g., when creating a synopsis of a class interface.
+The following directive can be used for this purpose.</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-cpp-alias">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:alias::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span> <span class="pre">or</span> <span class="pre">function</span> <span class="pre">signature</span></span><a class="headerlink" href="#directive-cpp-alias" title="Link to this definition">¶</a></dt>
+<dd><p>Insert one or more alias declarations. Each entity can be specified
+as they can in the <a class="reference internal" href="#role-cpp-any" title="cpp:any role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:any</span></code></a> role.
+If the name of a function is given (as opposed to the complete signature),
+then all overloads of the function will be listed.</p>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:alias</span><span class="p">::</span> Data::a
+               overload_example::C::f
+</pre></div>
+</div>
+<p>becomes</p>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N4DataUt4_data1aE" title="Data::[anonymous]::a"><span class="n"><span class="pre">a</span></span></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="overload_example::C::f"><span class="n"><span class="pre">f</span></span></a><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N16overload_example1C1fEd" title="overload_example::C::f"><span class="n"><span class="pre">f</span></span></a><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">)</span></span><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N16overload_example1C1fEi" title="overload_example::C::f"><span class="n"><span class="pre">f</span></span></a><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">)</span></span><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N16overload_example1C1fEv" title="overload_example::C::f"><span class="n"><span class="pre">f</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><br /></dt>
+<dd></dd></dl>
+
+<p>whereas:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:alias</span><span class="p">::</span> void overload_example::C::f(double d) const
+               void overload_example::C::f(double d)
+</pre></div>
+</div>
+<p>becomes</p>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="overload_example::C::f"><span class="n"><span class="pre">f</span></span></a><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N16overload_example1C1fEd" title="overload_example::C::f"><span class="n"><span class="pre">f</span></span></a><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">)</span></span><br /></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.0.</span></p>
+</div>
+<p class="rubric">Options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-cpp-alias-maxdepth">
+<span class="sig-name descname"><span class="pre">:maxdepth:</span></span><em class="property"> <span class="pre">int</span></em><a class="headerlink" href="#directive-option-cpp-alias-maxdepth" title="Link to this definition">¶</a></dt>
+<dd><p>Insert nested declarations as well, up to the total depth given.
+Use 0 for infinite depth and 1 for just the mentioned declaration.
+Defaults to 1.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.5.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-cpp-alias-noroot">
+<span class="sig-name descname"><span class="pre">:noroot:</span></span><a class="headerlink" href="#directive-option-cpp-alias-noroot" title="Link to this definition">¶</a></dt>
+<dd><p>Skip the mentioned declarations and only render nested declarations.
+Requires <code class="docutils literal notranslate"><span class="pre">maxdepth</span></code> either 0 or at least 2.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.5.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="constrained-templates">
+<h2>Constrained Templates<a class="headerlink" href="#constrained-templates" title="Link to this heading">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>The support for concepts is experimental. It is based on the
+current draft standard and the Concepts Technical Specification.
+The features may change as they evolve.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Sphinx does not currently support <code class="docutils literal notranslate"><span class="pre">requires</span></code> clauses.</p>
+</div>
+<section id="placeholders">
+<h3>Placeholders<a class="headerlink" href="#placeholders" title="Link to this heading">¶</a></h3>
+<p>Declarations may use the name of a concept to introduce constrained template
+parameters, or the keyword <code class="docutils literal notranslate"><span class="pre">auto</span></code> to introduce unconstrained template
+parameters:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> void f(auto &amp;&amp;arg)
+
+   A function template with a single unconstrained template parameter.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> void f(std::Iterator it)
+
+   A function template with a single template parameter, constrained by the
+   Iterator concept.
+</pre></div>
+</div>
+</section>
+<section id="template-introductions">
+<h3>Template Introductions<a class="headerlink" href="#template-introductions" title="Link to this heading">¶</a></h3>
+<p>Simple constrained function or class templates can be declared with a <cite>template
+introduction</cite> instead of a template parameter list:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> std::Iterator{It} void advance(It &amp;it)
+
+    A function template with a template parameter constrained to be an
+    Iterator.
+
+<span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> std::LessThanComparable{T} MySortedContainer
+
+    A class template with a template parameter constrained to be
+    LessThanComparable.
+</pre></div>
+</div>
+<p>They are rendered as follows.</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EXNSt8IteratorEI2ItEE7advancevR2It">
+<span id="_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It"></span><span id="_CPPv2I0EXNSt8IteratorEI2ItEE7advanceR2It"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4I0ENSt8IteratorE" title="std::Iterator"><span class="n"><span class="pre">Iterator</span></span></a><span class="p"><span class="pre">{</span></span><span class="sig-name descname"><span class="n"><span class="pre">It</span></span></span><span class="p"><span class="pre">}</span></span><br /><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">advance</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EXNSt8IteratorEI2ItEE7advancevR2It" title="advance::It"><span class="n"><span class="pre">It</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">it</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EXNSt8IteratorEI2ItEE7advancevR2It" title="Link to this definition">¶</a><br /></dt>
+<dd><p>A function template with a template parameter constrained to be an Iterator.</p>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EXNSt18LessThanComparableEI1TEE17MySortedContainer">
+<span id="_CPPv3I0EXNSt18LessThanComparableEI1TEE17MySortedContainer"></span><span id="_CPPv2I0EXNSt18LessThanComparableEI1TEE17MySortedContainer"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">LessThanComparable</span></span><span class="p"><span class="pre">{</span></span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">}</span></span><br /><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MySortedContainer</span></span></span><a class="headerlink" href="#_CPPv4I0EXNSt18LessThanComparableEI1TEE17MySortedContainer" title="Link to this definition">¶</a><br /></dt>
+<dd><p>A class template with a template parameter constrained to be
+LessThanComparable.</p>
+</dd></dl>
+
+<p>Note however that no checking is performed with respect to parameter
+compatibility. E.g., <code class="docutils literal notranslate"><span class="pre">Iterator{A,</span> <span class="pre">B,</span> <span class="pre">C}</span></code> will be accepted as an introduction
+even though it would not be valid C++.</p>
+</section>
+</section>
+<section id="inline-expressions-and-types">
+<h2>Inline Expressions and Types<a class="headerlink" href="#inline-expressions-and-types" title="Link to this heading">¶</a></h2>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-cpp-expr">
+<span class="sig-name descname"><span class="pre">:cpp:expr:</span></span><a class="headerlink" href="#role-cpp-expr" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="role-cpp-texpr">
+<span class="sig-name descname"><span class="pre">:cpp:texpr:</span></span><a class="headerlink" href="#role-cpp-texpr" title="Link to this definition">¶</a></dt>
+<dd><p>Insert a C++ expression or type either as inline code (<code class="docutils literal notranslate"><span class="pre">cpp:expr</span></code>)
+or inline text (<code class="docutils literal notranslate"><span class="pre">cpp:texpr</span></code>). For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:var</span><span class="p">::</span> int a = 42
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> int f(int i)
+
+An expression: <span class="na">:cpp:expr:</span><span class="nv">`a * f(a)`</span> (or as text: <span class="na">:cpp:texpr:</span><span class="nv">`a * f(a)`</span>).
+
+A type: <span class="na">:cpp:expr:</span><span class="nv">`const MySortedContainer&lt;int&gt;&amp;`</span>
+(or as text <span class="na">:cpp:texpr:</span><span class="nv">`const MySortedContainer&lt;int&gt;&amp;`</span>).
+</pre></div>
+</div>
+<p>will be rendered as follows:</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv41a">
+<span id="_CPPv31a"></span><span id="_CPPv21a"></span><span id="a__i"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">a</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">42</span></span><a class="headerlink" href="#_CPPv41a" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv41fi">
+<span id="_CPPv31fi"></span><span id="_CPPv21fi"></span><span id="f__i"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">f</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv41fi" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p>An expression: <span class="cpp-expr sig sig-inline cpp"><a class="reference internal" href="#_CPPv41a" title="a"><span class="n">a</span></a><span class="w"> </span><span class="o">*</span><span class="w"> </span><a class="reference internal" href="#_CPPv41fi" title="f"><span class="n">f</span></a><span class="p">(</span><a class="reference internal" href="#_CPPv41a" title="a"><span class="n">a</span></a><span class="p">)</span></span> (or as text: <span class="cpp-texpr sig sig-inline cpp"><a class="reference internal" href="#_CPPv41a" title="a"><span class="n">a</span></a><span class="w"> </span><span class="o">*</span><span class="w"> </span><a class="reference internal" href="#_CPPv41fi" title="f"><span class="n">f</span></a><span class="p">(</span><a class="reference internal" href="#_CPPv41a" title="a"><span class="n">a</span></a><span class="p">)</span></span>).</p>
+<p>A type: <span class="cpp-expr sig sig-inline cpp"><span class="k">const</span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EXNSt18LessThanComparableEI1TEE17MySortedContainer" title="MySortedContainer"><span class="n">MySortedContainer</span></a><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span><span class="p">&amp;</span></span>
+(or as text <span class="cpp-texpr sig sig-inline cpp"><span class="k">const</span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EXNSt18LessThanComparableEI1TEE17MySortedContainer" title="MySortedContainer"><span class="n">MySortedContainer</span></a><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span><span class="p">&amp;</span></span>).</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.7: </span>The <a class="reference internal" href="#role-cpp-expr" title="cpp:expr role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:expr</span></code></a> role.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.8: </span>The <a class="reference internal" href="#role-cpp-texpr" title="cpp:texpr role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:texpr</span></code></a> role.</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="namespacing">
+<h2>Namespacing<a class="headerlink" href="#namespacing" title="Link to this heading">¶</a></h2>
+<p>Declarations in the C++ domain are as default placed in global scope.  The
+current scope can be changed using three namespace directives.  They manage a
+stack declarations where <code class="docutils literal notranslate"><span class="pre">cpp:namespace</span></code> resets the stack and changes a given
+scope.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cpp:namespace-push</span></code> directive changes the scope to a given inner scope
+of the current one.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cpp:namespace-pop</span></code> directive undoes the most recent
+<code class="docutils literal notranslate"><span class="pre">cpp:namespace-push</span></code> directive.</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-cpp-namespace">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:namespace::</span></span><span class="sig-prename descclassname"> <span class="pre">scope</span> <span class="pre">specification</span></span><a class="headerlink" href="#directive-cpp-namespace" title="Link to this definition">¶</a></dt>
+<dd><p>Changes the current scope for the subsequent objects to the given scope, and
+resets the namespace directive stack.  Note that the namespace does not need
+to correspond to C++ namespaces, but can end in names of classes, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> Namespace1::Namespace2::SomeClass::AnInnerClass
+</pre></div>
+</div>
+<p>All subsequent objects will be defined as if their name were declared with
+the scope prepended. The subsequent cross-references will be searched for
+starting in the current scope.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, or <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> as the scope will change to global
+scope.</p>
+<p>A namespace declaration can also be templated, e.g.,:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T&gt; \
+               std::vector
+
+<span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> template&lt;typename T&gt; std::vector
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> std::size_t size() const
+</pre></div>
+</div>
+<p>declares <code class="docutils literal notranslate"><span class="pre">size</span></code> as a member function of the class template
+<code class="docutils literal notranslate"><span class="pre">std::vector</span></code>.  Equivalently this could have been declared using:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T&gt; \
+               std::vector
+
+<span class="p">   ..</span> <span class="ow">cpp:function</span><span class="p">::</span> std::size_t size() const
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T&gt; \
+               std::vector
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-cpp-namespace-push">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:namespace-push::</span></span><span class="sig-prename descclassname"> <span class="pre">scope</span> <span class="pre">specification</span></span><a class="headerlink" href="#directive-cpp-namespace-push" title="Link to this definition">¶</a></dt>
+<dd><p>Change the scope relatively to the current scope. For example, after:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> A::B
+
+<span class="p">..</span> <span class="ow">cpp:namespace-push</span><span class="p">::</span> C::D
+</pre></div>
+</div>
+<p>the current scope will be <code class="docutils literal notranslate"><span class="pre">A::B::C::D</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-cpp-namespace-pop">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">cpp:namespace-pop::</span></span><a class="headerlink" href="#directive-cpp-namespace-pop" title="Link to this definition">¶</a></dt>
+<dd><p>Undo the previous <code class="docutils literal notranslate"><span class="pre">cpp:namespace-push</span></code> directive (<em>not</em> just pop a scope).
+For example, after:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> A::B
+
+<span class="p">..</span> <span class="ow">cpp:namespace-push</span><span class="p">::</span> C::D
+
+<span class="p">..</span> <span class="ow">cpp:namespace-pop</span><span class="p">::</span>
+</pre></div>
+</div>
+<p>the current scope will be <code class="docutils literal notranslate"><span class="pre">A::B</span></code> (<em>not</em> <code class="docutils literal notranslate"><span class="pre">A::B::C</span></code>).</p>
+<p>If no previous <code class="docutils literal notranslate"><span class="pre">cpp:namespace-push</span></code> directive has been used, but only a
+<code class="docutils literal notranslate"><span class="pre">cpp:namespace</span></code> directive, then the current scope will be reset to global
+scope.  That is, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">cpp:namespace::</span> <span class="pre">A::B</span></code> is equivalent to:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> nullptr
+
+<span class="p">..</span> <span class="ow">cpp:namespace-push</span><span class="p">::</span> A::B
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.4.</span></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="info-field-lists">
+<h2>Info field lists<a class="headerlink" href="#info-field-lists" title="Link to this heading">¶</a></h2>
+<p>All the C++ directives for declaring entities support the following
+info fields (see also <a class="reference internal" href="python.html#info-field-lists"><span class="std std-ref">Info field lists</span></a>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tparam</span></code>: Description of a template parameter.</p></li>
+</ul>
+<p>The <a class="reference internal" href="#directive-cpp-function" title="cpp:function directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">cpp:function</span></code></a> directive additionally supports the
+following fields:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">param</span></code>, <code class="docutils literal notranslate"><span class="pre">parameter</span></code>, <code class="docutils literal notranslate"><span class="pre">arg</span></code>, <code class="docutils literal notranslate"><span class="pre">argument</span></code>: Description of a parameter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">returns</span></code>, <code class="docutils literal notranslate"><span class="pre">return</span></code>: Description of a return value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">retval</span></code>, <code class="docutils literal notranslate"><span class="pre">retvals</span></code>: An alternative to <code class="docutils literal notranslate"><span class="pre">returns</span></code> for describing
+the result of the function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">throws</span></code>, <code class="docutils literal notranslate"><span class="pre">throw</span></code>, <code class="docutils literal notranslate"><span class="pre">exception</span></code>: Description of a possibly thrown exception.</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 4.3: </span>The <code class="docutils literal notranslate"><span class="pre">retval</span></code> field type.</p>
+</div>
+</section>
+<section id="cross-referencing">
+<span id="cpp-xref-roles"></span><h2>Cross-referencing<a class="headerlink" href="#cross-referencing" title="Link to this heading">¶</a></h2>
+<p>These roles link to the given declaration types:</p>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-cpp-any">
+<span class="sig-name descname"><span class="pre">:cpp:any:</span></span><a class="headerlink" href="#role-cpp-any" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="role-cpp-class">
+<span class="sig-name descname"><span class="pre">:cpp:class:</span></span><a class="headerlink" href="#role-cpp-class" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="role-cpp-struct">
+<span class="sig-name descname"><span class="pre">:cpp:struct:</span></span><a class="headerlink" href="#role-cpp-struct" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="role-cpp-func">
+<span class="sig-name descname"><span class="pre">:cpp:func:</span></span><a class="headerlink" href="#role-cpp-func" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="role-cpp-member">
+<span class="sig-name descname"><span class="pre">:cpp:member:</span></span><a class="headerlink" href="#role-cpp-member" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="role-cpp-var">
+<span class="sig-name descname"><span class="pre">:cpp:var:</span></span><a class="headerlink" href="#role-cpp-var" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="role-cpp-type">
+<span class="sig-name descname"><span class="pre">:cpp:type:</span></span><a class="headerlink" href="#role-cpp-type" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="role-cpp-concept">
+<span class="sig-name descname"><span class="pre">:cpp:concept:</span></span><a class="headerlink" href="#role-cpp-concept" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="role-cpp-enum">
+<span class="sig-name descname"><span class="pre">:cpp:enum:</span></span><a class="headerlink" href="#role-cpp-enum" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object rst" id="role-cpp-enumerator">
+<span class="sig-name descname"><span class="pre">:cpp:enumerator:</span></span><a class="headerlink" href="#role-cpp-enumerator" title="Link to this definition">¶</a></dt>
+<dd><p>Reference a C++ declaration by name (see below for details).  The name must
+be properly qualified relative to the position of the link.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.0: </span>The <a class="reference internal" href="#role-cpp-struct" title="cpp:struct role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:struct</span></code></a> role as alias for the <a class="reference internal" href="#role-cpp-class" title="cpp:class role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:class</span></code></a>
+role.</p>
+</div>
+</dd></dl>
+
+<div class="admonition-note-on-references-with-templates-parameters-arguments admonition">
+<p class="admonition-title">Note on References with Templates Parameters/Arguments</p>
+<p>These roles follow the Sphinx <a class="reference internal" href="../referencing.html#xref-syntax"><span class="std std-ref">Syntax</span></a> rules. This means care must
+be taken when referencing a (partial) template specialization, e.g. if the
+link looks like this: <code class="docutils literal notranslate"><span class="pre">:cpp:class:`MyClass&lt;int&gt;`</span></code>.
+This is interpreted as a link to <code class="docutils literal notranslate"><span class="pre">int</span></code> with a title of <code class="docutils literal notranslate"><span class="pre">MyClass</span></code>.
+In this case, escape the opening angle bracket with a backslash,
+like this: <code class="docutils literal notranslate"><span class="pre">:cpp:class:`MyClass\&lt;int&gt;`</span></code>.</p>
+<p>When a custom title is not needed it may be useful to use the roles for
+inline expressions, <a class="reference internal" href="#role-cpp-expr" title="cpp:expr role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:expr</span></code></a> and <a class="reference internal" href="#role-cpp-texpr" title="cpp:texpr role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:texpr</span></code></a>, where
+angle brackets do not need escaping.</p>
+</div>
+<section id="declarations-without-template-parameters-and-template-arguments">
+<h3>Declarations without template parameters and template arguments<a class="headerlink" href="#declarations-without-template-parameters-and-template-arguments" title="Link to this heading">¶</a></h3>
+<p>For linking to non-templated declarations the name must be a nested name, e.g.,
+<code class="docutils literal notranslate"><span class="pre">f</span></code> or <code class="docutils literal notranslate"><span class="pre">MyClass::f</span></code>.</p>
+</section>
+<section id="overloaded-member-functions">
+<h3>Overloaded (member) functions<a class="headerlink" href="#overloaded-member-functions" title="Link to this heading">¶</a></h3>
+<p>When a (member) function is referenced using just its name, the reference
+will point to an arbitrary matching overload.
+The <a class="reference internal" href="#role-cpp-any" title="cpp:any role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:any</span></code></a> and <a class="reference internal" href="#role-cpp-func" title="cpp:func role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:func</span></code></a> roles use an alternative
+format, which simply is a complete function declaration.
+This will resolve to the exact matching overload.
+As example, consider the following class declaration:</p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N16overload_example1CE">
+<span id="_CPPv3N16overload_example1CE"></span><span id="_CPPv2N16overload_example1CE"></span><span id="overload_example::C"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">C</span></span></span><a class="headerlink" href="#_CPPv4N16overload_example1CE" title="Link to this definition">¶</a><br /></dt>
+<dd><dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16overload_example1C1fEd">
+<span id="_CPPv3NK16overload_example1C1fEd"></span><span id="_CPPv2NK16overload_example1C1fEd"></span><span id="overload_example::C::f__doubleC"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">f</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">d</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16overload_example1C1fEd" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16overload_example1C1fEd">
+<span id="_CPPv3N16overload_example1C1fEd"></span><span id="_CPPv2N16overload_example1C1fEd"></span><span id="overload_example::C::f__double"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">f</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">d</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16overload_example1C1fEd" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16overload_example1C1fEi">
+<span id="_CPPv3N16overload_example1C1fEi"></span><span id="_CPPv2N16overload_example1C1fEi"></span><span id="overload_example::C::f__i"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">f</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16overload_example1C1fEi" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16overload_example1C1fEv">
+<span id="_CPPv3N16overload_example1C1fEv"></span><span id="_CPPv2N16overload_example1C1fEv"></span><span id="overload_example::C::f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">f</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16overload_example1C1fEv" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<p>References using the <a class="reference internal" href="#role-cpp-func" title="cpp:func role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:func</span></code></a> role:</p>
+<ul class="simple">
+<li><p>Arbitrary overload: <code class="docutils literal notranslate"><span class="pre">C::f</span></code>, <a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="overload_example::C::f"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">C::f()</span></code></a></p></li>
+<li><p>Also arbitrary overload: <code class="docutils literal notranslate"><span class="pre">C::f()</span></code>, <a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="overload_example::C::f"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">C::f()</span></code></a></p></li>
+<li><p>Specific overload: <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f()</span></code>, <a class="reference internal" href="#_CPPv4N16overload_example1C1fEv" title="void C::f()"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f()</span></code></a></p></li>
+<li><p>Specific overload: <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f(int)</span></code>, <a class="reference internal" href="#_CPPv4N16overload_example1C1fEi" title="void C::f(int)"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f(int)</span></code></a></p></li>
+<li><p>Specific overload: <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f(double)</span></code>, <a class="reference internal" href="#_CPPv4N16overload_example1C1fEd" title="void C::f(double)"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f(double)</span></code></a></p></li>
+<li><p>Specific overload: <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f(double)</span> <span class="pre">const</span></code>,
+<a class="reference internal" href="#_CPPv4NK16overload_example1C1fEd" title="void C::f(double) const"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">void</span> <span class="pre">C::f(double)</span> <span class="pre">const</span></code></a></p></li>
+</ul>
+<p>Note that the <a class="reference internal" href="../configuration.html#confval-add_function_parentheses"><code class="xref std std-confval docutils literal notranslate"><span class="pre">add_function_parentheses</span></code></a> configuration variable
+does not influence specific overload references.</p>
+</section>
+<section id="templated-declarations">
+<h3>Templated declarations<a class="headerlink" href="#templated-declarations" title="Link to this heading">¶</a></h3>
+<p>Assume the following declarations.</p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv47Wrapper">
+<span id="_CPPv37Wrapper"></span><span id="_CPPv27Wrapper"></span><span id="Wrapper"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Wrapper</span></span></span><a class="headerlink" href="#_CPPv47Wrapper" title="Link to this definition">¶</a><br /></dt>
+<dd><dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN7Wrapper5OuterE">
+<span id="_CPPv3I0EN7Wrapper5OuterE"></span><span id="_CPPv2I0EN7Wrapper5OuterE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TOuter</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Outer</span></span></span><a class="headerlink" href="#_CPPv4I0EN7Wrapper5OuterE" title="Link to this definition">¶</a><br /></dt>
+<dd><dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN7Wrapper5Outer5InnerE">
+<span id="_CPPv3I0EN7Wrapper5Outer5InnerE"></span><span id="_CPPv2I0EN7Wrapper5Outer5InnerE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TInner</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Inner</span></span></span><a class="headerlink" href="#_CPPv4I0EN7Wrapper5Outer5InnerE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<p>In general the reference must include the template parameter declarations,
+and template arguments for the prefix of qualified names. For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">template\&lt;typename</span> <span class="pre">TOuter&gt;</span> <span class="pre">Wrapper::Outer</span></code>
+(<a class="reference internal" href="#_CPPv4I0EN7Wrapper5OuterE" title="Wrapper::Outer"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">template&lt;typename</span> <span class="pre">TOuter&gt;</span> <span class="pre">Wrapper::Outer</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">template\&lt;typename</span> <span class="pre">TOuter&gt;</span> <span class="pre">template\&lt;typename</span> <span class="pre">TInner&gt;</span> <span class="pre">Wrapper::Outer&lt;TOuter&gt;::Inner</span></code>
+(<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">template&lt;typename</span> <span class="pre">TOuter&gt;</span> <span class="pre">template&lt;typename</span> <span class="pre">TInner&gt;</span> <span class="pre">Wrapper::Outer&lt;TOuter&gt;::Inner</span></code>)</p></li>
+</ul>
+<p>Currently the lookup only succeed if the template parameter identifiers are
+equal strings.  That is, <code class="docutils literal notranslate"><span class="pre">template\&lt;typename</span> <span class="pre">UOuter&gt;</span> <span class="pre">Wrapper::Outer</span></code> will not
+work.</p>
+<p>As a shorthand notation, if a template parameter list is omitted,
+then the lookup will assume either a primary template or a non-template,
+but not a partial template specialisation.
+This means the following references work as well:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Wrapper::Outer</span></code>
+(<a class="reference internal" href="#_CPPv4I0EN7Wrapper5OuterE" title="Wrapper::Outer"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Wrapper::Outer</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Wrapper::Outer::Inner</span></code>
+(<a class="reference internal" href="#_CPPv4I0EN7Wrapper5Outer5InnerE" title="Wrapper::Outer::Inner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Wrapper::Outer::Inner</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">template\&lt;typename</span> <span class="pre">TInner&gt;</span> <span class="pre">Wrapper::Outer::Inner</span></code>
+(<a class="reference internal" href="#_CPPv4I0EN7Wrapper5Outer5InnerE" title="Wrapper::Outer::Inner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">template&lt;typename</span> <span class="pre">TInner&gt;</span> <span class="pre">Wrapper::Outer::Inner</span></code></a>)</p></li>
+</ul>
+</section>
+<section id="full-template-specialisations">
+<h3>(Full) Template Specialisations<a class="headerlink" href="#full-template-specialisations" title="Link to this heading">¶</a></h3>
+<p>Assume the following declarations.</p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0E5Outer">
+<span id="_CPPv3I0E5Outer"></span><span id="_CPPv2I0E5Outer"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TOuter</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Outer</span></span></span><a class="headerlink" href="#_CPPv4I0E5Outer" title="Link to this definition">¶</a><br /></dt>
+<dd><dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN5Outer5InnerE">
+<span id="_CPPv3I0EN5Outer5InnerE"></span><span id="_CPPv2I0EN5Outer5InnerE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TInner</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Inner</span></span></span><a class="headerlink" href="#_CPPv4I0EN5Outer5InnerE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4IE5OuterIiE">
+<span id="_CPPv3IE5OuterIiE"></span><span id="_CPPv2IE5OuterIiE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Outer</span></span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4IE5OuterIiE" title="Link to this definition">¶</a><br /></dt>
+<dd><dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN5OuterIiE5InnerE">
+<span id="_CPPv3I0EN5OuterIiE5InnerE"></span><span id="_CPPv2I0EN5OuterIiE5InnerE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TInner</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Inner</span></span></span><a class="headerlink" href="#_CPPv4I0EN5OuterIiE5InnerE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4IEN5OuterIiE5InnerIbEE">
+<span id="_CPPv3IEN5OuterIiE5InnerIbEE"></span><span id="_CPPv2IEN5OuterIiE5InnerIbEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Inner</span></span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4IEN5OuterIiE5InnerIbEE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<p>In general the reference must include a template parameter list for each
+template argument list.  The full specialisation above can therefore be
+referenced with <code class="docutils literal notranslate"><span class="pre">template\&lt;&gt;</span> <span class="pre">Outer\&lt;int&gt;</span></code> (<a class="reference internal" href="#_CPPv4IE5OuterIiE" title="Outer&lt;int&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">template&lt;&gt;</span>
+<span class="pre">Outer&lt;int&gt;</span></code></a>) and <code class="docutils literal notranslate"><span class="pre">template\&lt;&gt;</span> <span class="pre">template\&lt;&gt;</span> <span class="pre">Outer\&lt;int&gt;::Inner\&lt;bool&gt;</span></code>
+(<a class="reference internal" href="#_CPPv4IEN5OuterIiE5InnerIbEE" title="Outer&lt;int&gt;::Inner&lt;bool&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">template&lt;&gt;</span> <span class="pre">template&lt;&gt;</span> <span class="pre">Outer&lt;int&gt;::Inner&lt;bool&gt;</span></code></a>).  As a
+shorthand the empty template parameter list can be omitted, e.g.,
+<code class="docutils literal notranslate"><span class="pre">Outer\&lt;int&gt;</span></code> (<a class="reference internal" href="#_CPPv4IE5OuterIiE" title="Outer&lt;int&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Outer&lt;int&gt;</span></code></a>) and <code class="docutils literal notranslate"><span class="pre">Outer\&lt;int&gt;::Inner\&lt;bool&gt;</span></code>
+(<a class="reference internal" href="#_CPPv4IEN5OuterIiE5InnerIbEE" title="Outer&lt;int&gt;::Inner&lt;bool&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Outer&lt;int&gt;::Inner&lt;bool&gt;</span></code></a>).</p>
+</section>
+<section id="partial-template-specialisations">
+<h3>Partial Template Specialisations<a class="headerlink" href="#partial-template-specialisations" title="Link to this heading">¶</a></h3>
+<p>Assume the following declaration.</p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0E5OuterIP1TE">
+<span id="_CPPv3I0E5OuterIP1TE"></span><span id="_CPPv2I0E5OuterIP1TE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Outer</span></span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E5OuterIP1TE" title="Outer&lt;T*&gt;::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I0E5OuterIP1TE" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p>References to partial specialisations must always include the template
+parameter lists, e.g., <code class="docutils literal notranslate"><span class="pre">template\&lt;typename</span> <span class="pre">T&gt;</span> <span class="pre">Outer\&lt;T*&gt;</span></code>
+(<a class="reference internal" href="#_CPPv4I0E5OuterIP1TE" title="Outer&lt;T*&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">template&lt;typename</span> <span class="pre">T&gt;</span> <span class="pre">Outer&lt;T*&gt;</span></code></a>).  Currently the lookup only
+succeed if the template parameter identifiers are equal strings.</p>
+</section>
+</section>
+<section id="configuration-variables">
+<h2>Configuration Variables<a class="headerlink" href="#configuration-variables" title="Link to this heading">¶</a></h2>
+<p>See <a class="reference internal" href="../configuration.html#cpp-config"><span class="std std-ref">Options for the C++ domain</span></a>.</p>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="c.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">The C Domain</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="javascript.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">The JavaScript Domain</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版权所有 2007-2026, the Sphinx developers.
+  由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3创建。
+</div>
+  </body>
+</html>

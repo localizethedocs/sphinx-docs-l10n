@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>sphinx.ext.githubpages – Publish HTML docs in GitHub Pages &#8212; Sphinx 2.4.5 文档</title>
+    <link rel="stylesheet" href="../../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/githubpages.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx 2.4.5 文档 中搜索"
+          href="../../_static/opensearch.xml"/>
+
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="sphinx.ext.graphviz – Add Graphviz graphs" href="graphviz.html" />
+    <link rel="prev" title="sphinx.ext.extlinks – Markup to shorten external links" href="extlinks.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/usage/extensions/githubpages.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../installation.html">Get it</a></li>
+    <li><a href="../../contents.html">Docs</a></li>
+    <li><a href="../../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../../index.html">
+      <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="graphviz.html" title="sphinx.ext.graphviz – Add Graphviz graphs"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="extlinks.html" title="sphinx.ext.extlinks – Markup to shorten external links"
+             accesskey="P">上一页</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Extensions</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="extlinks.html"
+                        title="上一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> – Markup to shorten external links</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="graphviz.html"
+                        title="下一章"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/usage/extensions/githubpages.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-sphinx.ext.githubpages">
+<span id="sphinx-ext-githubpages-publish-html-docs-in-github-pages"></span><h1><a class="reference internal" href="#module-sphinx.ext.githubpages" title="sphinx.ext.githubpages: Publish HTML docs in GitHub Pages"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code></a> – Publish HTML docs in GitHub Pages<a class="headerlink" href="#module-sphinx.ext.githubpages" title="永久链接至标题">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">1.4 新版功能.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 2.0 版更改: </span>Support <code class="docutils literal notranslate"><span class="pre">CNAME</span></code> file</p>
+</div>
+<p>This extension creates <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file on generated HTML directory to publish
+the document on GitHub Pages.</p>
+<p>It also creates a <code class="docutils literal notranslate"><span class="pre">CNAME</span></code> file for custom domains when <a class="reference internal" href="../configuration.html#confval-html_baseurl"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_baseurl</span></code></a>
+set.</p>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="graphviz.html" title="sphinx.ext.graphviz – Add Graphviz graphs"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="extlinks.html" title="sphinx.ext.extlinks – Markup to shorten external links"
+             >上一页</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Extensions</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2007-2019, Georg Brandl and the Sphinx team.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5 创建。
+    </div>
+  </body>
+</html>

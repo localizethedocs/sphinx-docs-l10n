@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>sphinx.ext.coverage – Collect doc coverage stats &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/extensions/coverage.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sphinx.ext.doctest – Test snippets in the documentation" href="doctest.html" />
+    <link rel="prev" title="sphinx.ext.autosummary – Generate autodoc summaries" href="autosummary.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../../index.html">
+  <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Extensions</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a><ul>
+<li><a class="reference internal" href="#sphinx.ext.coverage.CoverageBuilder"><code class="docutils literal notranslate"><span class="pre">CoverageBuilder</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial: Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">Builders</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Extensions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> – Include documentation from docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> – Allow reference sections using its title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> – Test snippets in the documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> – Measure durations of Sphinx processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> – Markup to shorten external links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> – Publish HTML docs in GitHub Pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphviz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> – A reference image converter using Imagemagick</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inheritance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intersphinx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – Link to other projects’ documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> – Add external links to source code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="math.html">Math support for HTML outputs in Sphinx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="napoleon.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> – Support for todo items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML Theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/setuptools.html">Setuptools integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Writing Sphinx Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx Extensions API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Extensions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="autodoc.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> – Include documentation from docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosectionlabel.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosectionlabel</span></code> – Allow reference sections using its title</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autosummary.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autosummary</span></code> – Generate autodoc summaries</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code> – Collect doc coverage stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doctest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.doctest</span></code> – Test snippets in the documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="duration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.duration</span></code> – Measure durations of Sphinx processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extlinks.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.extlinks</span></code> – Markup to shorten external links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="githubpages.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.githubpages</span></code> – Publish HTML docs in GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphviz.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ifconfig.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imgconverter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.imgconverter</span></code> – A reference image converter using Imagemagick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.inheritance_diagram</span></code> – Include inheritance diagrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intersphinx.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code> – Link to other projects’ documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.linkcode</span></code> – Add external links to source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">Math support for HTML outputs in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="napoleon.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> – Support for NumPy and Google style docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="todo.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> – Support for todo items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="viewcode.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> – Add links to highlighted source code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="module-sphinx.ext.coverage">
+<span id="sphinx-ext-coverage-collect-doc-coverage-stats"></span><h1><a class="reference internal" href="#module-sphinx.ext.coverage" title="sphinx.ext.coverage: Check Python modules and C API for coverage in the documentation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.coverage</span></code></a> – Collect doc coverage stats<a class="headerlink" href="#module-sphinx.ext.coverage" title="Permalink to this heading">¶</a></h1>
+<p>This extension features one additional builder, the <a class="reference internal" href="#sphinx.ext.coverage.CoverageBuilder" title="sphinx.ext.coverage.CoverageBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">CoverageBuilder</span></code></a>.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sphinx.ext.coverage.CoverageBuilder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx.ext.coverage.</span></span><span class="sig-name descname"><span class="pre">CoverageBuilder</span></span><a class="reference internal" href="../../_modules/sphinx/ext/coverage.html#CoverageBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sphinx.ext.coverage.CoverageBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>To use this builder, activate the coverage extension in your configuration
+file and give <code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">coverage</span></code> on the command line.</p>
+</dd></dl>
+
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Write this section.</p>
+</div>
+<p>Several configuration values can be used to specify what the builder
+should check:</p>
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-coverage_ignore_modules">
+<span class="sig-name descname"><span class="pre">coverage_ignore_modules</span></span><a class="headerlink" href="#confval-coverage_ignore_modules" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-coverage_ignore_functions">
+<span class="sig-name descname"><span class="pre">coverage_ignore_functions</span></span><a class="headerlink" href="#confval-coverage_ignore_functions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-coverage_ignore_classes">
+<span class="sig-name descname"><span class="pre">coverage_ignore_classes</span></span><a class="headerlink" href="#confval-coverage_ignore_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-coverage_ignore_pyobjects">
+<span class="sig-name descname"><span class="pre">coverage_ignore_pyobjects</span></span><a class="headerlink" href="#confval-coverage_ignore_pyobjects" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of <a class="reference external" href="https://docs.python.org/library/re">Python regular expressions</a>.</p>
+<p>If any of these regular expressions matches any part of the full import path
+of a Python object, that Python object is excluded from the documentation
+coverage report.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-coverage_c_path">
+<span class="sig-name descname"><span class="pre">coverage_c_path</span></span><a class="headerlink" href="#confval-coverage_c_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-coverage_c_regexes">
+<span class="sig-name descname"><span class="pre">coverage_c_regexes</span></span><a class="headerlink" href="#confval-coverage_c_regexes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-coverage_ignore_c_items">
+<span class="sig-name descname"><span class="pre">coverage_ignore_c_items</span></span><a class="headerlink" href="#confval-coverage_ignore_c_items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-coverage_write_headline">
+<span class="sig-name descname"><span class="pre">coverage_write_headline</span></span><a class="headerlink" href="#confval-coverage_write_headline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set to <code class="docutils literal notranslate"><span class="pre">False</span></code> to not write headlines.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-coverage_skip_undoc_in_source">
+<span class="sig-name descname"><span class="pre">coverage_skip_undoc_in_source</span></span><a class="headerlink" href="#confval-coverage_skip_undoc_in_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Skip objects that are not documented in the source with a docstring.
+<code class="docutils literal notranslate"><span class="pre">False</span></code> by default.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.</span></p>
+</div>
+</dd></dl>
+
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-coverage_show_missing_items">
+<span class="sig-name descname"><span class="pre">coverage_show_missing_items</span></span><a class="headerlink" href="#confval-coverage_show_missing_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print objects that are missing to standard output also.
+<code class="docutils literal notranslate"><span class="pre">False</span></code> by default.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.1.</span></p>
+</div>
+</dd></dl>
+
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../../copyright.html">Copyright</a> 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+</div>
+  </body>
+</html>

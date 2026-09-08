@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+<html lang="en-US" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Sphinx 2.0 &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../_static/documentation_options.js?v=7baa5e64"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/changes/2.0.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sphinx 1.8" href="1.8.html" />
+    <link rel="prev" title="Sphinx 2.1" href="2.1.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../index.html">
+      <img src="../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Changelog</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Sphinx 2.0</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Sphinx 2.0</a><ul>
+<li><a class="reference internal" href="#release-2-0-1-released-apr-08-2019">Release 2.0.1 (released Apr 08, 2019)</a><ul>
+<li><a class="reference internal" href="#bugs-fixed">Bugs fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#release-2-0-0-released-mar-29-2019">Release 2.0.0 (released Mar 29, 2019)</a><ul>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#incompatible-changes">Incompatible changes</a></li>
+<li><a class="reference internal" href="#deprecated">Deprecated</a></li>
+<li><a class="reference internal" href="#features-added">Features added</a></li>
+<li><a class="reference internal" href="#id2">Bugs fixed</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Changelog</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="8.2.html">Sphinx 8.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8.1.html">Sphinx 8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8.0.html">Sphinx 8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.4.html">Sphinx 7.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.3.html">Sphinx 7.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.2.html">Sphinx 7.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.1.html">Sphinx 7.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.0.html">Sphinx 7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.2.html">Sphinx 6.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.1.html">Sphinx 6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.0.html">Sphinx 6.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.3.html">Sphinx 5.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.2.html">Sphinx 5.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.1.html">Sphinx 5.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.0.html">Sphinx 5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.5.html">Sphinx 4.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.4.html">Sphinx 4.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.3.html">Sphinx 4.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.2.html">Sphinx 4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.1.html">Sphinx 4.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0.html">Sphinx 4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.5.html">Sphinx 3.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.4.html">Sphinx 3.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.3.html">Sphinx 3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.2.html">Sphinx 3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.html">Sphinx 3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0.html">Sphinx 3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.4.html">Sphinx 2.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.3.html">Sphinx 2.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2.html">Sphinx 2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.1.html">Sphinx 2.1</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sphinx 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.8.html">Sphinx 1.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.7.html">Sphinx 1.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.6.html">Sphinx 1.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.5.html">Sphinx 1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.4.html">Sphinx 1.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.html">Sphinx 1.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.html">Sphinx 1.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.html">Sphinx 1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0.html">Sphinx 1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.6.html">Sphinx 0.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.5.html">Sphinx 0.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.4.html">Sphinx 0.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.3.html">Sphinx 0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.2.html">Sphinx 0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.1.html">Sphinx 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="sphinx-2-0">
+<h1>Sphinx 2.0<a class="headerlink" href="#sphinx-2-0" title="Link to this heading">¶</a></h1>
+<section id="release-2-0-1-released-apr-08-2019">
+<h2>Release 2.0.1 (released Apr 08, 2019)<a class="headerlink" href="#release-2-0-1-released-apr-08-2019" title="Link to this heading">¶</a></h2>
+<section id="bugs-fixed">
+<h3>Bugs fixed<a class="headerlink" href="#bugs-fixed" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>LaTeX: some system labels are not translated</p></li>
+<li><p>RemovedInSphinx30Warning is marked as pending</p></li>
+<li><p>deprecation warnings are not emitted</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.application.CONFIG_FILENAME</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.htmlhelp</span></code></p></li>
+<li><p><code class="xref std std-confval docutils literal notranslate"><span class="pre">viewcode_import</span></code></p></li>
+</ul>
+</li>
+<li><p>#6208: C++, properly parse full xrefs that happen to have a short xref as
+prefix</p></li>
+<li><p>#6220, #6225: napoleon: AttributeError is raised for raised section having
+references</p></li>
+<li><p>#6245: circular import error on importing SerializingHTMLBuilder</p></li>
+<li><p>#6243: LaTeX: ‘releasename’ setting for latex_elements is ignored</p></li>
+<li><p>#6244: html: Search function is broken with 3rd party themes</p></li>
+<li><p>#6263: html: HTML5Translator crashed with invalid field node</p></li>
+<li><p>#6262: html theme: The style of field lists has changed in bizstyle theme</p></li>
+</ul>
+</section>
+</section>
+<section id="release-2-0-0-released-mar-29-2019">
+<h2>Release 2.0.0 (released Mar 29, 2019)<a class="headerlink" href="#release-2-0-0-released-mar-29-2019" title="Link to this heading">¶</a></h2>
+<section id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">¶</a></h3>
+<p>2.0.0b1</p>
+<ul class="simple">
+<li><p>LaTeX builder now depends on TeX Live 2015 or above.</p></li>
+<li><p>LaTeX builder (with <code class="docutils literal notranslate"><span class="pre">'pdflatex'</span></code> <a class="reference internal" href="../usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a>) will process
+Unicode Greek letters in text (not in math mark-up) via the text font and
+will not escape them to math mark-up. See the discussion of the
+<code class="docutils literal notranslate"><span class="pre">'fontenc'</span></code> key of <a class="reference internal" href="../usage/configuration.html#confval-latex_elements"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_elements</span></code></a>; such (optional) support for
+Greek adds, for example on Ubuntu xenial, the <code class="docutils literal notranslate"><span class="pre">texlive-lang-greek</span></code> and (if
+default font set-up is not modified) <code class="docutils literal notranslate"><span class="pre">cm-super(-minimal)</span></code> as additional
+Sphinx LaTeX requirements.</p></li>
+<li><p>LaTeX builder with <a class="reference internal" href="../usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> set to <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code> or to
+<code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code> requires (by default) the <code class="docutils literal notranslate"><span class="pre">FreeFont</span></code> fonts,
+which in Ubuntu xenial are provided by package <code class="docutils literal notranslate"><span class="pre">fonts-freefont-otf</span></code>, and
+e.g. in Fedora 29 via package <code class="docutils literal notranslate"><span class="pre">texlive-gnu-freefont</span></code>.</p></li>
+<li><p>requests 2.5.0 or above</p></li>
+<li><p>The six package is no longer a dependency</p></li>
+<li><p>The sphinxcontrib-websupport package is no longer a dependency</p></li>
+<li><p>Some packages are separated to sub packages:</p>
+<ul>
+<li><p>sphinxcontrib.applehelp</p></li>
+<li><p>sphinxcontrib.devhelp</p></li>
+<li><p>sphinxcontrib.htmlhelp</p></li>
+<li><p>sphinxcontrib.jsmath</p></li>
+<li><p>sphinxcontrib.serializinghtml</p></li>
+<li><p>sphinxcontrib.qthelp</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="incompatible-changes">
+<h3>Incompatible changes<a class="headerlink" href="#incompatible-changes" title="Link to this heading">¶</a></h3>
+<p>2.0.0b1</p>
+<ul class="simple">
+<li><p>Drop python 2.7 and 3.4 support</p></li>
+<li><p>Drop Docutils 0.11 support</p></li>
+<li><p>Drop features and APIs deprecated in 1.7.x</p></li>
+<li><p>The default setting for <a class="reference internal" href="../usage/configuration.html#confval-master_doc"><code class="xref std std-confval docutils literal notranslate"><span class="pre">master_doc</span></code></a> is changed to <code class="docutils literal notranslate"><span class="pre">'index'</span></code> which
+has been longly used as default of sphinx-quickstart.</p></li>
+<li><p>LaTeX: Move message resources to <code class="docutils literal notranslate"><span class="pre">sphinxmessage.sty</span></code></p></li>
+<li><p>LaTeX: Stop using <code class="docutils literal notranslate"><span class="pre">\captions&lt;lang&gt;</span></code> macro for some labels</p></li>
+<li><p>LaTeX: for <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code> and <code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code>, use the <code class="docutils literal notranslate"><span class="pre">FreeFont</span></code> OpenType
+fonts as default choice (refs: #5645)</p></li>
+<li><p>LaTeX: <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code> and <code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code> now use <code class="docutils literal notranslate"><span class="pre">\small</span></code> in code-blocks
+(due to <code class="docutils literal notranslate"><span class="pre">FreeMono</span></code> character width) like <code class="docutils literal notranslate"><span class="pre">'pdflatex'</span></code> already did (due
+to <code class="docutils literal notranslate"><span class="pre">Courier</span></code> character width).  You may need to adjust this via
+<a class="reference internal" href="../usage/configuration.html#confval-latex_elements"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_elements</span></code></a> <code class="docutils literal notranslate"><span class="pre">'fvset'</span></code> key, in case of usage of some other
+OpenType fonts (refs: #5768)</p></li>
+<li><p>LaTeX: Greek letters in text are not escaped to math mode mark-up, and they
+will use the text font not the math font. The <code class="docutils literal notranslate"><span class="pre">LGR</span></code> font encoding must be
+added to the <code class="docutils literal notranslate"><span class="pre">'fontenc'</span></code> key of <a class="reference internal" href="../usage/configuration.html#confval-latex_elements"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_elements</span></code></a> for this to work
+(only if it is needed by the document, of course).</p></li>
+<li><p>LaTeX: setting the <a class="reference internal" href="../usage/configuration.html#confval-language"><code class="xref std std-confval docutils literal notranslate"><span class="pre">language</span></code></a> to <code class="docutils literal notranslate"><span class="pre">'en'</span></code> triggered <code class="docutils literal notranslate"><span class="pre">Sonny</span></code> option
+of <code class="docutils literal notranslate"><span class="pre">fncychap</span></code>, now it is <code class="docutils literal notranslate"><span class="pre">Bjarne</span></code> to match case of no language specified.
+(refs: #5772)</p></li>
+<li><p>#5770: doctest: Follow <a class="reference internal" href="../usage/configuration.html#confval-highlight_language"><code class="xref std std-confval docutils literal notranslate"><span class="pre">highlight_language</span></code></a> on highlighting doctest
+block.  As a result, they are highlighted as python3 by default.</p></li>
+<li><p>The order of argument for <code class="docutils literal notranslate"><span class="pre">HTMLTranslator</span></code>, <code class="docutils literal notranslate"><span class="pre">HTML5Translator</span></code> and
+<code class="docutils literal notranslate"><span class="pre">ManualPageTranslator</span></code> are changed</p></li>
+<li><p>LaTeX: hard-coded redefinitions of <code class="docutils literal notranslate"><span class="pre">\l&#64;section</span></code> and <code class="docutils literal notranslate"><span class="pre">\l&#64;subsection</span></code>
+formerly done during loading of <code class="docutils literal notranslate"><span class="pre">'manual'</span></code> docclass get executed later, at
+time of <code class="docutils literal notranslate"><span class="pre">\sphinxtableofcontents</span></code>.  This means that custom user definitions
+from LaTeX preamble now get overwritten.  Use <code class="docutils literal notranslate"><span class="pre">\sphinxtableofcontentshook</span></code>
+to insert custom user definitions.  See <a class="reference internal" href="../latex.html#latex-macros"><span class="std std-ref">Macros</span></a>.</p></li>
+<li><p>quickstart: Simplify generated <code class="docutils literal notranslate"><span class="pre">conf.py</span></code></p></li>
+<li><p>#4148: quickstart: some questions are removed.  They are still able to specify
+via command line options</p></li>
+<li><p>websupport: unbundled from Sphinx core. Please use sphinxcontrib-websupport</p></li>
+<li><p>C++, the visibility of base classes is now always rendered as present in the
+input. That is, <code class="docutils literal notranslate"><span class="pre">private</span></code> is now shown, where it was ellided before.</p></li>
+<li><p>LaTeX: graphics inclusion of oversized images rescales to not exceed
+the text width and height, even if width and/or height option were used.
+(refs: #5956)</p></li>
+<li><p>epub: <code class="docutils literal notranslate"><span class="pre">epub_title</span></code> defaults to the <a class="reference internal" href="../usage/configuration.html#confval-project"><code class="xref std std-confval docutils literal notranslate"><span class="pre">project</span></code></a> option</p></li>
+<li><p>#4550: All tables and figures without <code class="docutils literal notranslate"><span class="pre">align</span></code> option are displayed to center</p></li>
+<li><p>#4587: html: Output HTML5 by default</p></li>
+</ul>
+<p>2.0.0b2</p>
+<ul class="simple">
+<li><p>texinfo: image files are copied into <code class="docutils literal notranslate"><span class="pre">name-figure</span></code> directory</p></li>
+</ul>
+</section>
+<section id="deprecated">
+<h3>Deprecated<a class="headerlink" href="#deprecated" title="Link to this heading">¶</a></h3>
+<p>2.0.0b1</p>
+<ul class="simple">
+<li><p>Support for evaluating Python 2 syntax is deprecated. This includes
+configuration files which should be converted to Python 3.</p></li>
+<li><p>The arguments of <code class="docutils literal notranslate"><span class="pre">EpubBuilder.build_mimetype()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">EpubBuilder.build_container()</span></code>, <code class="docutils literal notranslate"><span class="pre">EpubBuilder.bulid_content()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">EpubBuilder.build_toc()</span></code> and <code class="docutils literal notranslate"><span class="pre">EpubBuilder.build_epub()</span></code></p></li>
+<li><p>The arguments of <code class="docutils literal notranslate"><span class="pre">Epub3Builder.build_navigation_doc()</span></code></p></li>
+<li><p>The config variables</p>
+<ul>
+<li><p><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_experimental_html5_writer</span></code></p></li>
+</ul>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">encoding</span></code> argument of <code class="docutils literal notranslate"><span class="pre">autodoc.Documenter.get_doc()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">autodoc.DocstringSignatureMixin.get_doc()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">autodoc.DocstringSignatureMixin._find_signature()</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">autodoc.ClassDocumenter.get_doc()</span></code> are deprecated.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">importer</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._MockModule</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">nodetype</span></code> argument of <code class="docutils literal notranslate"><span class="pre">sphinx.search.WordCollector.</span>
+<span class="pre">is_meta_keywords()</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">suffix</span></code> argument of <code class="docutils literal notranslate"><span class="pre">env.doc2path()</span></code> is deprecated.</p></li>
+<li><p>The string style <code class="docutils literal notranslate"><span class="pre">base</span></code> argument of <code class="docutils literal notranslate"><span class="pre">env.doc2path()</span></code> is deprecated.</p></li>
+<li><p>The fallback to allow omitting the <code class="docutils literal notranslate"><span class="pre">filename</span></code> argument from an overridden
+<code class="docutils literal notranslate"><span class="pre">IndexBuilder.feed()</span></code> method is deprecated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.addnodes.abbreviation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.application.Sphinx._setting_up_extension</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.epub3.Epub3Builder.validate_config_value()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.html.SingleFileHTMLBuilder</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.builders.htmlhelp.HTMLHelpBuilder.open_file()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.cmd.quickstart.term_decode()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.cmd.quickstart.TERM_ENCODING</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.config.check_unicode()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.config.string_classes</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.cpp.DefinitionError.description</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.cpp.NoOldIdError.description</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.domains.cpp.UnsupportedMultiCharacterCharLiteral.decoded</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.importer._MockImporter</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.Autosummary.warn()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.Autosummary.genopt</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.Autosummary.warnings</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autosummary.Autosummary.result</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.doctest.doctest_encode()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxBaseFileInput</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxFileInput.supported</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.io.SphinxRSTFileInput</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.registry.SphinxComponentRegistry.add_source_input()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.abbr_role()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.emph_literal_role()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.menusel_role()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.index_role()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.roles.indexmarkup_role()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.testing.util.remove_unicode_literal()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.attrdict</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.force_decode()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.get_matching_docs()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.inspect.Parameter</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.jsonimpl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.osutil.EEXIST</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.osutil.EINVAL</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.osutil.ENOENT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.osutil.EPIPE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.osutil.walk()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.PeekableIterator</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.NoneType</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.TextIOWrapper</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.UnicodeMixin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.htmlescape</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.indent</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.sys_encoding</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.terminal_safe()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat.u</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.ExtBabel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator._make_visit_admonition()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.babel_defmacro()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.collect_footnotes()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.latex.LaTeXTranslator.generate_numfig_format()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.texinfo.TexinfoTranslator._make_visit_admonition()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.writers.text.TextTranslator._make_depart_admonition()</span></code></p></li>
+<li><p>template variables for LaTeX template</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">logo</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numfig_format</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pageautorefname</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">translatablestrings</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>For more details, see <a class="reference internal" href="../extdev/deprecated.html#dev-deprecated-apis"><span class="std std-ref">deprecation APIs list</span></a>.</p>
+</section>
+<section id="features-added">
+<h3>Features added<a class="headerlink" href="#features-added" title="Link to this heading">¶</a></h3>
+<p>2.0.0b1</p>
+<ul class="simple">
+<li><p>#1618: The search results preview of generated HTML documentation is
+reader-friendlier: instead of showing the snippets as raw reStructuredText
+markup, Sphinx now renders the corresponding HTML.  This means the Sphinx
+extension <a class="reference external" href="https://github.com/sphinx-contrib/sphinx-pretty-searchresults">Sphinx: pretty search results</a> is no longer necessary.  Note that
+changes to the search function of your custom or 3rd-party HTML template might
+overwrite this improvement.</p>
+</li>
+<li><p>#4182: autodoc: Support <a class="reference internal" href="../usage/configuration.html#confval-suppress_warnings"><code class="xref std std-confval docutils literal notranslate"><span class="pre">suppress_warnings</span></code></a></p></li>
+<li><p>#5533: autodoc: <a class="reference internal" href="../usage/extensions/autodoc.html#confval-autodoc_default_options"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autodoc_default_options</span></code></a> supports <code class="docutils literal notranslate"><span class="pre">member-order</span></code></p></li>
+<li><p>#5394: autodoc: Display readable names in type annotations for mocked objects</p></li>
+<li><p>#5459: autodoc: <a class="reference internal" href="../usage/extensions/autodoc.html#confval-autodoc_default_options"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autodoc_default_options</span></code></a> accepts <code class="docutils literal notranslate"><span class="pre">True</span></code> as a value</p></li>
+<li><p>#1148: autodoc: Add <a class="reference internal" href="../usage/extensions/autodoc.html#directive-autodecorator" title="autodecorator directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">autodecorator</span></code></a> directive for decorators</p></li>
+<li><p>#5635: autosummary: Add <a class="reference internal" href="../usage/extensions/autosummary.html#confval-autosummary_mock_imports"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autosummary_mock_imports</span></code></a> to mock external
+libraries on importing targets</p></li>
+<li><p>#4018: htmlhelp: Add <a class="reference internal" href="../usage/configuration.html#confval-htmlhelp_file_suffix"><code class="xref std std-confval docutils literal notranslate"><span class="pre">htmlhelp_file_suffix</span></code></a> and
+<a class="reference internal" href="../usage/configuration.html#confval-htmlhelp_link_suffix"><code class="xref std std-confval docutils literal notranslate"><span class="pre">htmlhelp_link_suffix</span></code></a></p></li>
+<li><p>#5559: text: Support complex tables (colspan and rowspan)</p></li>
+<li><p>LaTeX: support rendering (not in math, yet) of Greek and Cyrillic Unicode
+letters in non-Cyrillic document even with <code class="docutils literal notranslate"><span class="pre">'pdflatex'</span></code> as
+<a class="reference internal" href="../usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> (refs: #5645)</p></li>
+<li><p>#5660: The <code class="docutils literal notranslate"><span class="pre">versionadded</span></code>, <code class="docutils literal notranslate"><span class="pre">versionchanged</span></code> and <code class="docutils literal notranslate"><span class="pre">deprecated</span></code> directives
+are now generated with their own specific CSS classes
+(<code class="docutils literal notranslate"><span class="pre">added</span></code>, <code class="docutils literal notranslate"><span class="pre">changed</span></code> and <code class="docutils literal notranslate"><span class="pre">deprecated</span></code>, respectively) in addition to the
+generic <code class="docutils literal notranslate"><span class="pre">versionmodified</span></code> class.</p></li>
+<li><p>#5841: apidoc: Add –extensions option to sphinx-apidoc</p></li>
+<li><p>#4981: C++, added an alias directive for inserting lists of declarations,
+that references existing declarations (e.g., for making a synopsis).</p></li>
+<li><p>C++: add <code class="docutils literal notranslate"><span class="pre">cpp:struct</span></code> to complement <code class="docutils literal notranslate"><span class="pre">cpp:class</span></code>.</p></li>
+<li><p>#1341: the HTML search considers words that contain a search term of length
+three or longer a match.</p></li>
+<li><p>#4611: epub: Show warning for duplicated ToC entries</p></li>
+<li><p>#1851: Allow to omit an argument for <a class="reference internal" href="../usage/restructuredtext/directives.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">code-block</span></code></a> directive.  If
+omitted, it follows <a class="reference internal" href="../usage/restructuredtext/directives.html#directive-highlight" title="highlight directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">highlight</span></code></a> or <a class="reference internal" href="../usage/configuration.html#confval-highlight_language"><code class="xref std std-confval docutils literal notranslate"><span class="pre">highlight_language</span></code></a></p></li>
+<li><p>#4587: html: Add <code class="xref std std-confval docutils literal notranslate"><span class="pre">html4_writer</span></code> to use old HTML4 writer</p></li>
+<li><p>#6016: HTML search: A placeholder for the search summary prevents search
+result links from changing their position when the search terminates.  This
+makes navigating search results easier.</p></li>
+<li><p>#5196: linkcheck also checks remote images exist</p></li>
+<li><p>#5924: githubpages: create CNAME file for custom domains when
+<a class="reference internal" href="../usage/configuration.html#confval-html_baseurl"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_baseurl</span></code></a> set</p></li>
+<li><p>#4261: autosectionlabel: restrict the labeled sections by new config value;
+<a class="reference internal" href="../usage/extensions/autosectionlabel.html#confval-autosectionlabel_maxdepth"><code class="xref std std-confval docutils literal notranslate"><span class="pre">autosectionlabel_maxdepth</span></code></a></p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Bugs fixed<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<p>2.0.0b1</p>
+<ul class="simple">
+<li><p>#1682: LaTeX: writer should not translate Greek unicode, but use textgreek
+package</p></li>
+<li><p>#5247: LaTeX: PDF does not build with default font config for Russian
+language and <code class="docutils literal notranslate"><span class="pre">'xelatex'</span></code> or <code class="docutils literal notranslate"><span class="pre">'lualatex'</span></code> as <a class="reference internal" href="../usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a>
+(refs: #5251)</p></li>
+<li><p>#5248: LaTeX: Greek letters in section titles disappear from PDF bookmarks</p></li>
+<li><p>#5249: LaTeX: Unicode Greek letters in math directive break PDF build
+(fix requires extra set-up, see <a class="reference internal" href="../usage/configuration.html#confval-latex_elements"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_elements</span></code></a> <code class="docutils literal notranslate"><span class="pre">'textgreek'</span></code> key
+and/or <a class="reference internal" href="../usage/configuration.html#confval-latex_engine"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_engine</span></code></a> setting)</p></li>
+<li><p>#5772: LaTeX: should the Bjarne style of fncychap be used for English also
+if passed as language option?</p></li>
+<li><p>#5179: LaTeX: (lualatex only) escaping of <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> by <code class="docutils literal notranslate"><span class="pre">\textgreater{}</span></code> is not
+enough as <code class="docutils literal notranslate"><span class="pre">\textgreater{}\textgreater{}</span></code> applies TeX-ligature</p></li>
+<li><p>LaTeX: project name is not escaped if <a class="reference internal" href="../usage/configuration.html#confval-latex_documents"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_documents</span></code></a> omitted</p></li>
+<li><p>LaTeX: authors are not shown if <a class="reference internal" href="../usage/configuration.html#confval-latex_documents"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_documents</span></code></a> omitted</p></li>
+<li><p>HTML: Invalid HTML5 file is generated for a glossary having multiple terms for
+one description (refs: #4611)</p></li>
+<li><p>QtHelp: OS dependent path separator is used in .qhp file</p></li>
+<li><p>HTML search: search always returns nothing when multiple search terms are
+used and one term is shorter than three characters</p></li>
+</ul>
+<p>2.0.0b2</p>
+<ul class="simple">
+<li><p>#6096: html: Anchor links are not added to figures</p></li>
+<li><p>#3620: html: Defer searchindex.js rather than loading it via ajax</p></li>
+<li><p>#6113: html: Table cells and list items have large margins</p></li>
+<li><p>#5508: <code class="docutils literal notranslate"><span class="pre">linenothreshold</span></code> option for <code class="docutils literal notranslate"><span class="pre">highlight</span></code> directive was ignored</p></li>
+<li><p>texinfo: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install-info</span></code> causes syntax error</p></li>
+<li><p>texinfo: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install-info</span></code> fails on macOS</p></li>
+<li><p>#3079: texinfo: image files are not copied on <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install-info</span></code></p></li>
+<li><p>#5391: A cross reference in heading is rendered as literal</p></li>
+<li><p>#5946: C++, fix <code class="docutils literal notranslate"><span class="pre">cpp:alias</span></code> problems in LaTeX (and singlehtml)</p></li>
+<li><p>#6147: classes attribute of <code class="docutils literal notranslate"><span class="pre">citation_reference</span></code> node is lost</p></li>
+<li><p>AssertionError is raised when custom <code class="docutils literal notranslate"><span class="pre">citation_reference</span></code> node having
+classes attribute refers missing citation (refs: #6147)</p></li>
+<li><p>#2155: Support <code class="docutils literal notranslate"><span class="pre">code</span></code> directive</p></li>
+<li><p>C++, fix parsing of braced initializers.</p></li>
+<li><p>#6172: AttributeError is raised for old styled index nodes</p></li>
+<li><p>#4872: inheritance_diagram: correctly describe behavior of <code class="docutils literal notranslate"><span class="pre">parts</span></code> option in
+docs, allow negative values.</p></li>
+<li><p>#6178: i18n: Captions missing in translations for hidden TOCs</p></li>
+</ul>
+<p>2.0.0 final</p>
+<ul class="simple">
+<li><p>#6196: py domain: unexpected prefix is generated</p></li>
+</ul>
+</section>
+<section id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h3>
+<p>2.0.0b1</p>
+<ul class="simple">
+<li><p>Stop to use <code class="docutils literal notranslate"><span class="pre">SPHINX_TEST_TEMPDIR</span></code> envvar</p></li>
+</ul>
+<p>2.0.0b2</p>
+<ul class="simple">
+<li><p>Add a helper function: <code class="docutils literal notranslate"><span class="pre">sphinx.testing.restructuredtext.parse()</span></code></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="2.1.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Sphinx 2.1</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="1.8.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">Sphinx 1.8</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; Copyright 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+</div>
+  </body>
+</html>

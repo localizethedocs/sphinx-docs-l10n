@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en_US">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>HTML theming support &#8212; Sphinx 2.4.5 documentation</title>
+    <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/theming.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx 2.4.5 documentation"
+          href="_static/opensearch.xml"/>
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Templating" href="templating.html" />
+    <link rel="prev" title="sphinx-autogen" href="man/sphinx-autogen.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/theming.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="ltd-provenance.js"></script>
+<script type="text/javascript" src="ltd-current.js"></script>
+<script type="text/javascript" src="../../ltd-config.js"></script>
+<script type="text/javascript" src="../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="usage/installation.html">Get it</a></li>
+    <li><a href="contents.html">Docs</a></li>
+    <li><a href="develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="index.html">
+      <img src="_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="templating.html" title="Templating"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="man/sphinx-autogen.html" title="sphinx-autogen"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">HTML theming support</a><ul>
+<li><a class="reference internal" href="#creating-themes">Creating themes</a></li>
+<li><a class="reference internal" href="#distribute-your-theme-as-a-python-package">Distribute your theme as a Python package</a></li>
+<li><a class="reference internal" href="#templating">Templating</a><ul>
+<li><a class="reference internal" href="#static-templates">Static templates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="man/sphinx-autogen.html"
+                        title="previous chapter">sphinx-autogen</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="templating.html"
+                        title="next chapter">Templating</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/theming.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="html-theming-support">
+<h1>HTML theming support<a class="headerlink" href="#html-theming-support" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.6.</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This document provides information about creating your own theme. If you
+simply wish to use a pre-existing HTML themes, refer to
+<a class="reference internal" href="usage/theming.html"><span class="doc">HTML</span></a>.</p>
+</div>
+<p>Sphinx supports changing the appearance of its HTML output via <em>themes</em>.  A
+theme is a collection of HTML templates, stylesheet(s) and other static files.
+Additionally, it has a configuration file which specifies from which theme to
+inherit, which highlighting style to use, and what options exist for customizing
+the theme’s look and feel.</p>
+<p>Themes are meant to be project-unaware, so they can be used for different
+projects without change.</p>
+<section id="creating-themes">
+<h2>Creating themes<a class="headerlink" href="#creating-themes" title="Permalink to this headline">¶</a></h2>
+<p>Themes take the form of either a directory or a zipfile (whose name is the
+theme name), containing the following:</p>
+<ul class="simple">
+<li><p>A <code class="file docutils literal notranslate"><span class="pre">theme.conf</span></code> file.</p></li>
+<li><p>HTML templates, if needed.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">static/</span></code> directory containing any static files that will be copied to the
+output static directory on build.  These can be images, styles, script files.</p></li>
+</ul>
+<p>The <code class="file docutils literal notranslate"><span class="pre">theme.conf</span></code> file is in INI format <a class="footnote-reference brackets" href="#id2" id="id1">1</a> (readable by the standard
+Python <code class="xref py py-mod docutils literal notranslate"><span class="pre">ConfigParser</span></code> module) and has the following structure:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[theme]</span>
+<span class="na">inherit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">base theme</span>
+<span class="na">stylesheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">main CSS name</span>
+<span class="na">pygments_style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">stylename</span>
+<span class="na">sidebars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localtoc.html, relations.html, sourcelink.html, searchbox.html</span>
+
+<span class="k">[options]</span>
+<span class="na">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">default value</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The <strong>inherit</strong> setting gives the name of a “base theme”, or <code class="docutils literal notranslate"><span class="pre">none</span></code>.  The
+base theme will be used to locate missing templates (most themes will not have
+to supply most templates if they use <code class="docutils literal notranslate"><span class="pre">basic</span></code> as the base theme), its options
+will be inherited, and all of its static files will be used as well. If you
+want to also inherit the stylesheet, include it via CSS’ <code class="docutils literal notranslate"><span class="pre">&#64;import</span></code> in your
+own.</p></li>
+<li><p>The <strong>stylesheet</strong> setting gives the name of a CSS file which will be
+referenced in the HTML header.  If you need more than one CSS file, either
+include one from the other via CSS’ <code class="docutils literal notranslate"><span class="pre">&#64;import</span></code>, or use a custom HTML template
+that adds <code class="docutils literal notranslate"><span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;&gt;</span></code> tags as necessary.  Setting the
+<a class="reference internal" href="usage/configuration.html#confval-html_style"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_style</span></code></a> config value will override this setting.</p></li>
+<li><p>The <strong>pygments_style</strong> setting gives the name of a Pygments style to use for
+highlighting.  This can be overridden by the user in the
+<a class="reference internal" href="usage/configuration.html#confval-pygments_style"><code class="xref std std-confval docutils literal notranslate"><span class="pre">pygments_style</span></code></a> config value.</p></li>
+<li><p>The <strong>sidebars</strong> setting gives the comma separated list of sidebar templates
+for constructing sidebars.  This can be overridden by the user in the
+<a class="reference internal" href="usage/configuration.html#confval-html_sidebars"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_sidebars</span></code></a> config value.</p></li>
+<li><p>The <strong>options</strong> section contains pairs of variable names and default values.
+These options can be overridden by the user in <a class="reference internal" href="usage/configuration.html#confval-html_theme_options"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_theme_options</span></code></a>
+and are accessible from all templates as <code class="docutils literal notranslate"><span class="pre">theme_&lt;name&gt;</span></code>.</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.7: </span>sidebar settings</p>
+</div>
+</section>
+<section id="distribute-your-theme-as-a-python-package">
+<span id="distribute-your-theme"></span><h2>Distribute your theme as a Python package<a class="headerlink" href="#distribute-your-theme-as-a-python-package" title="Permalink to this headline">¶</a></h2>
+<p>As a way to distribute your theme, you can use Python package.  Python package
+brings to users easy setting up ways.</p>
+<p>To distribute your theme as a Python package, please define an entry point
+called <code class="docutils literal notranslate"><span class="pre">sphinx.html_themes</span></code> in your <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file, and write a <code class="docutils literal notranslate"><span class="pre">setup()</span></code>
+function to register your themes using <code class="docutils literal notranslate"><span class="pre">add_html_theme()</span></code> API in it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># &#39;setup.py&#39;</span>
+<span class="n">setup</span><span class="p">(</span>
+    <span class="o">...</span>
+    <span class="n">entry_points</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;sphinx.html_themes&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;name_of_theme = your_package&#39;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+
+<span class="c1"># &#39;your_package.py&#39;</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_html_theme</span><span class="p">(</span><span class="s1">&#39;name_of_theme&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>If your theme package contains two or more themes, please call
+<code class="docutils literal notranslate"><span class="pre">add_html_theme()</span></code> twice or more.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.2: </span>‘sphinx_themes’ entry_points feature.</p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 1.6: </span><code class="docutils literal notranslate"><span class="pre">sphinx_themes</span></code> entry_points has been deprecated.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.6: </span><code class="docutils literal notranslate"><span class="pre">sphinx.html_themes</span></code> entry_points feature.</p>
+</div>
+</section>
+<section id="templating">
+<h2>Templating<a class="headerlink" href="#templating" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="templating.html"><span class="doc">guide to templating</span></a> is helpful if you want to write your
+own templates.  What is important to keep in mind is the order in which Sphinx
+searches for templates:</p>
+<ul class="simple">
+<li><p>First, in the user’s <code class="docutils literal notranslate"><span class="pre">templates_path</span></code> directories.</p></li>
+<li><p>Then, in the selected theme.</p></li>
+<li><p>Then, in its base theme, its base’s base theme, etc.</p></li>
+</ul>
+<p>When extending a template in the base theme with the same name, use the theme
+name as an explicit directory: <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">extends</span> <span class="pre">&quot;basic/layout.html&quot;</span> <span class="pre">%}</span></code>.  From a
+user <code class="docutils literal notranslate"><span class="pre">templates_path</span></code> template, you can still use the “exclamation mark”
+syntax as described in the templating document.</p>
+<section id="static-templates">
+<h3>Static templates<a class="headerlink" href="#static-templates" title="Permalink to this headline">¶</a></h3>
+<p>Since theme options are meant for the user to configure a theme more easily,
+without having to write a custom stylesheet, it is necessary to be able to
+template static files as well as HTML files.  Therefore, Sphinx supports
+so-called “static templates”, like this:</p>
+<p>If the name of a file in the <code class="docutils literal notranslate"><span class="pre">static/</span></code> directory of a theme (or in the user’s
+static path, for that matter) ends with <code class="docutils literal notranslate"><span class="pre">_t</span></code>, it will be processed by the
+template engine.  The <code class="docutils literal notranslate"><span class="pre">_t</span></code> will be left from the final file name.  For
+example, the <em>classic</em> theme has a file <code class="docutils literal notranslate"><span class="pre">static/classic.css_t</span></code> which uses
+templating to put the color options into the stylesheet.  When a documentation
+is built with the classic theme, the output directory will contain a
+<code class="docutils literal notranslate"><span class="pre">_static/classic.css</span></code> file where all template tags have been processed.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>It is not an executable Python file, as opposed to <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>,
+because that would pose an unnecessary security risk if themes are
+shared.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="templating.html" title="Templating"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="man/sphinx-autogen.html" title="sphinx-autogen"
+             >previous</a> |</li>
+        <li><a href="index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2019, Georg Brandl and the Sphinx team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sphinx.project &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/_modules/sphinx/project.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../search.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../usage/installation.html">Get it</a></li>
+    <li><a href="../../contents.html">Docs</a></li>
+    <li><a href="../../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../../index.html">
+      <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="總索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">模組原始碼</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sphinx.project</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>sphinx.project 的原始碼</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Utility function and classes for Sphinx projects.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.locale</span><span class="w"> </span><span class="kn">import</span> <span class="n">__</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_matching_files</span><span class="p">,</span> <span class="n">logging</span><span class="p">,</span> <span class="n">path_stabilize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.matching</span><span class="w"> </span><span class="kn">import</span> <span class="n">compile_matchers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.osutil</span><span class="w"> </span><span class="kn">import</span> <span class="n">SEP</span><span class="p">,</span> <span class="n">relpath</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">EXCLUDE_PATHS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;**/_sources&#39;</span><span class="p">,</span> <span class="s1">&#39;.#*&#39;</span><span class="p">,</span> <span class="s1">&#39;**/.#*&#39;</span><span class="p">,</span> <span class="s1">&#39;*.lproj/**&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Project"><a class="viewcode-back" href="../../extdev/projectapi.html#sphinx.project.Project">[文件]</a><span class="k">class</span><span class="w"> </span><span class="nc">Project</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A project is the source code set of the Sphinx document(s).&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">srcdir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source_suffix</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1">#: Source directory.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">srcdir</span> <span class="o">=</span> <span class="n">srcdir</span>
+
+        <span class="c1">#: source_suffix. Same as :confval:`source_suffix`.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source_suffix</span> <span class="o">=</span> <span class="n">source_suffix</span>
+
+        <span class="c1">#: The name of documents belongs to this project.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">docnames</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Project.restore"><a class="viewcode-back" href="../../extdev/projectapi.html#sphinx.project.Project.restore">[文件]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">restore</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Project&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Take over a result of last build.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">docnames</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">docnames</span></div>
+
+<div class="viewcode-block" id="Project.discover"><a class="viewcode-back" href="../../extdev/projectapi.html#sphinx.project.Project.discover">[文件]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">discover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclude_paths</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Find all document files in the source directory and put them in</span>
+<span class="sd">        :attr:`docnames`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">docnames</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">excludes</span> <span class="o">=</span> <span class="n">compile_matchers</span><span class="p">(</span><span class="n">exclude_paths</span> <span class="o">+</span> <span class="n">EXCLUDE_PATHS</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">get_matching_files</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">srcdir</span><span class="p">,</span> <span class="n">excludes</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
+            <span class="n">docname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path2doc</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">docname</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">docname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">docnames</span><span class="p">:</span>
+                    <span class="n">pattern</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">srcdir</span><span class="p">,</span> <span class="n">docname</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.*&#39;</span>
+                    <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">relpath</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">srcdir</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="n">pattern</span><span class="p">)]</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;multiple files found for the document &quot;</span><span class="si">%s</span><span class="s1">&quot;: </span><span class="si">%r</span><span class="se">\n</span><span class="s1">&#39;</span>
+                                      <span class="s1">&#39;Use </span><span class="si">%r</span><span class="s1"> for the build.&#39;</span><span class="p">),</span>
+                                   <span class="n">docname</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">doc2path</span><span class="p">(</span><span class="n">docname</span><span class="p">),</span> <span class="n">once</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">srcdir</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">R_OK</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">docnames</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">docname</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s2">&quot;document not readable. Ignored.&quot;</span><span class="p">),</span> <span class="n">location</span><span class="o">=</span><span class="n">docname</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">docnames</span></div>
+
+<div class="viewcode-block" id="Project.path2doc"><a class="viewcode-back" href="../../extdev/projectapi.html#sphinx.project.Project.path2doc">[文件]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">path2doc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the docname for the filename if the file is a document.</span>
+
+<span class="sd">        *filename* should be absolute or relative to the source directory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">srcdir</span><span class="p">):</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">relpath</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">srcdir</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_suffix</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">suffix</span><span class="p">):</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">path_stabilize</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">filename</span><span class="p">[:</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">suffix</span><span class="p">)]</span>
+
+        <span class="c1"># the file does not have docname</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="Project.doc2path"><a class="viewcode-back" href="../../extdev/projectapi.html#sphinx.project.Project.doc2path">[文件]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">doc2path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">basedir</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the filename for the document name.</span>
+
+<span class="sd">        If *basedir* is True, return as an absolute path.</span>
+<span class="sd">        Else, return as a relative path to the source directory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">docname</span> <span class="o">=</span> <span class="n">docname</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">SEP</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span>
+        <span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">srcdir</span><span class="p">,</span> <span class="n">docname</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_suffix</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">basename</span> <span class="o">+</span> <span class="n">suffix</span><span class="p">):</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># document does not exist</span>
+            <span class="n">suffix</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_suffix</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">basedir</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">basename</span> <span class="o">+</span> <span class="n">suffix</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">docname</span> <span class="o">+</span> <span class="n">suffix</span></div></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>瀏覽</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="總索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模組索引"
+             >模組</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >模組原始碼</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sphinx.project</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版權所有 2007-2022, Georg Brandl and the Sphinx team。
+      使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0 建立。
+    </div>
+  </body>
+</html>

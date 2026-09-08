@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Describing code in Sphinx &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/tutorial/describing-code.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Automatic documentation generation from code" href="automatic-doc-generation.html" />
+    <link rel="prev" title="Narrative documentation in Sphinx" href="narrative-documentation.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="automatic-doc-generation.html" title="Automatic documentation generation from code"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="narrative-documentation.html" title="Narrative documentation in Sphinx"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Sphinx tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Describing code in Sphinx</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Describing code in Sphinx</a><ul>
+<li><a class="reference internal" href="#python">Python</a><ul>
+<li><a class="reference internal" href="#documenting-python-objects">Documenting Python objects</a></li>
+<li><a class="reference internal" href="#cross-referencing-python-objects">Cross-referencing Python objects</a></li>
+<li><a class="reference internal" href="#including-doctests-in-your-documentation">Including doctests in your documentation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-languages-c-c-others">Other languages (C, C++, others)</a><ul>
+<li><a class="reference internal" href="#documenting-and-cross-referencing-objects">Documenting and cross-referencing objects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="narrative-documentation.html"
+                          title="previous chapter">Narrative documentation in Sphinx</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="automatic-doc-generation.html"
+                          title="next chapter">Automatic documentation generation from code</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/describing-code.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="describing-code-in-sphinx">
+<h1>Describing code in Sphinx<a class="headerlink" href="#describing-code-in-sphinx" title="Permalink to this headline">¶</a></h1>
+<p>In the <a class="reference internal" href="index.html"><span class="doc">previous sections of the tutorial</span></a> you can read
+how to write narrative or prose documentation in Sphinx. In this section you
+will describe code objects instead.</p>
+<p>Sphinx supports documenting code objects in several languages, namely Python,
+C, C++, JavaScript, and reStructuredText. Each of them can be documented using
+a series of directives and roles grouped by
+<a class="reference internal" href="../usage/restructuredtext/domains.html"><span class="doc">domain</span></a>. For the remainder of the
+tutorial you will use the Python domain, but all the concepts seen in this
+section apply for the other domains as well.</p>
+<section id="python">
+<span id="tutorial-describing-objects"></span><h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<section id="documenting-python-objects">
+<h3>Documenting Python objects<a class="headerlink" href="#documenting-python-objects" title="Permalink to this headline">¶</a></h3>
+<p>Sphinx offers several roles and directives to document Python objects,
+all grouped together in <a class="reference internal" href="../usage/restructuredtext/domains.html#python-domain"><span class="std std-ref">the Python domain</span></a>. For example,
+you can use the <a class="reference internal" href="../usage/restructuredtext/domains.html#directive-py-function" title="py:function directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:function</span></code></a> directive to document a Python function,
+as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">docs/source/usage.rst</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Creating recipes</span>
+<span class="gh">----------------</span>
+
+To retrieve a list of random ingredients,
+you can use the <span class="s">``lumache.get_random_ingredients()``</span> function:
+
+<span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> lumache.get_random_ingredients(kind=None)
+
+   Return a list of random ingredients as strings.
+
+   <span class="nc">:param kind:</span> Optional &quot;kind&quot; of ingredients.
+   <span class="nc">:type kind:</span> list[str] or None
+   <span class="nc">:return:</span> The ingredients list.
+   <span class="nc">:rtype:</span> list[str]
+</pre></div>
+</div>
+</div>
+<p>Which will render like this:</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/lumache-py-function.png"><img alt="HTML result of documenting a Python function in Sphinx" src="../_images/lumache-py-function.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-text">The rendered result of documenting a Python function in Sphinx</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Notice several things:</p>
+<ul class="simple">
+<li><p>Sphinx parsed the argument of the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:function</span></code> directive and
+highlighted the module, the function name, and the parameters appropriately.</p></li>
+<li><p>The directive content includes a one-line description of the function,
+as well as a <a class="reference internal" href="../usage/restructuredtext/domains.html#info-field-lists"><span class="std std-ref">info field list</span></a> containing the function
+parameter, its expected type, the return value, and the return type.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">py:</span></code> prefix specifies the <a class="reference internal" href="../glossary.html#term-domain"><span class="xref std std-term">domain</span></a>. You may configure the
+default domain so you can omit the prefix, either globally using the
+<a class="reference internal" href="../usage/configuration.html#confval-primary_domain"><code class="xref std std-confval docutils literal notranslate"><span class="pre">primary_domain</span></code></a> configuration, or use the
+<a class="reference internal" href="../usage/restructuredtext/domains.html#directive-default-domain" title="default-domain directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">default-domain</span></code></a> directive to change it from the point it is called
+until the end of the file.
+For example, if you set it to <code class="docutils literal notranslate"><span class="pre">py</span></code> (the default), you can write
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">function::</span></code> directly.</p>
+</div>
+</section>
+<section id="cross-referencing-python-objects">
+<h3>Cross-referencing Python objects<a class="headerlink" href="#cross-referencing-python-objects" title="Permalink to this headline">¶</a></h3>
+<p>By default, most of these directives generate entities that can be
+cross-referenced from any part of the documentation by using
+<a class="reference internal" href="../usage/restructuredtext/domains.html#python-roles"><span class="std std-ref">a corresponding role</span></a>. For the case of functions,
+you can use <a class="reference internal" href="../usage/restructuredtext/domains.html#role-py-func" title="py:func role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">py:func</span></code></a> for that, as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">docs/source/usage.rst</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>The <span class="s">``kind``</span> parameter should be either <span class="s">``&quot;meat&quot;``</span>, <span class="s">``&quot;fish&quot;``</span>,
+or <span class="s">``&quot;veggies&quot;``</span>. Otherwise, <span class="na">:py:func:</span><span class="nv">`lumache.get_random_ingredients`</span>
+will raise an exception.
+</pre></div>
+</div>
+</div>
+<p>When generating code documentation, Sphinx will generate a cross-reference automatically just
+by using the name of the object, without you having to explicitly use a role
+for that. For example, you can describe the custom exception raised by the
+function using the <a class="reference internal" href="../usage/restructuredtext/domains.html#directive-py-exception" title="py:exception directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:exception</span></code></a> directive:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">docs/source/usage.rst</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:exception</span><span class="p">::</span> lumache.InvalidKindError
+
+   Raised if the kind is invalid.
+</pre></div>
+</div>
+</div>
+<p>Then, add this exception to the original description of the function:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">docs/source/usage.rst</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> lumache.get_random_ingredients(kind=None)
+
+   Return a list of random ingredients as strings.
+
+   <span class="nc">:param kind:</span> Optional &quot;kind&quot; of ingredients.
+   <span class="nc">:type kind:</span> list[str] or None
+<span class="hll">   <span class="nc">:raise lumache.InvalidKindError:</span> If the kind is invalid.
+</span>   <span class="nc">:return:</span> The ingredients list.
+   <span class="nc">:rtype:</span> list[str]
+</pre></div>
+</div>
+</div>
+<p>And finally, this is how the result would look:</p>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="../_images/lumache-py-function-full.png"><img alt="HTML result of documenting a Python function in Sphinx with cross-references" src="../_images/lumache-py-function-full.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-text">HTML result of documenting a Python function in Sphinx with cross-references</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Beautiful, isn’t it?</p>
+</section>
+<section id="including-doctests-in-your-documentation">
+<h3>Including doctests in your documentation<a class="headerlink" href="#including-doctests-in-your-documentation" title="Permalink to this headline">¶</a></h3>
+<p>Since you are now describing code from a Python library, it will become useful
+to keep both the documentation and the code as synchronized as possible.
+One of the ways to do that in Sphinx is to include code snippets in the
+documentation, called <em>doctests</em>, that are executed when the documentation is
+built.</p>
+<p>To demonstrate doctests and other Sphinx features covered in this tutorial,
+Sphinx will need to be able to import the code. To achieve that, write this
+at the beginning of <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">docs/source/conf.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># If extensions (or modules to document with autodoc) are in another directory,</span>
+<span class="c1"># add these directories to sys.path here.</span>
+<span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+</span><span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span class="hll"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">as_posix</span><span class="p">())</span>
+</span></pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An alternative to changing the <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.path" title="(in Python v3.14)"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a> variable is to create a
+<code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file and make the code installable,
+so it behaves like any other Python library. However, the <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>
+approach is simpler.</p>
+</div>
+<p>Then, before adding doctests to your documentation, enable the
+<a class="reference internal" href="../usage/extensions/doctest.html"><span class="doc">doctest</span></a> extension in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">docs/source/conf.py</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinx.ext.duration&#39;</span><span class="p">,</span>
+<span class="hll">    <span class="s1">&#39;sphinx.ext.doctest&#39;</span><span class="p">,</span>
+</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Next, write a doctest block as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">docs/source/usage.rst</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; import lumache
+&gt;&gt;&gt; lumache.get_random_ingredients()
+[&#39;shells&#39;, &#39;gorgonzola&#39;, &#39;parsley&#39;]
+</pre></div>
+</div>
+</div>
+<p>Doctests include the Python instructions to be run preceded by <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>,
+the standard Python interpreter prompt, as well as the expected output
+of each instruction. This way, Sphinx can check whether the actual output
+matches the expected one.</p>
+<p>To observe how a doctest failure looks like (rather than a code error as
+above), let’s write the return value incorrectly first. Therefore, add a
+function <code class="docutils literal notranslate"><span class="pre">get_random_ingredients</span></code> like this:</p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">lumache.py</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_random_ingredients</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;eggs&quot;</span><span class="p">,</span> <span class="s2">&quot;bacon&quot;</span><span class="p">,</span> <span class="s2">&quot;spam&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>You can now run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">doctest</span></code> to execute the doctests of your documentation.
+Initially this will display an error, since the actual code does not behave
+as specified:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>make<span class="w"> </span>doctest
+<span class="go">Running Sphinx v4.2.0</span>
+<span class="go">loading pickled environment... done</span>
+<span class="go">...</span>
+<span class="go">running tests...</span>
+
+<span class="go">Document: usage</span>
+<span class="go">---------------</span>
+<span class="go">**********************************************************************</span>
+<span class="go">File &quot;usage.rst&quot;, line 44, in default</span>
+<span class="go">Failed example:</span>
+<span class="go">    lumache.get_random_ingredients()</span>
+<span class="go">Expected:</span>
+<span class="go">    [&#39;shells&#39;, &#39;gorgonzola&#39;, &#39;parsley&#39;]</span>
+<span class="go">Got:</span>
+<span class="go">    [&#39;eggs&#39;, &#39;bacon&#39;, &#39;spam&#39;]</span>
+<span class="go">**********************************************************************</span>
+<span class="go">...</span>
+<span class="go">make: *** [Makefile:20: doctest] Error 1</span>
+</pre></div>
+</div>
+<p>As you can see, doctest reports the expected and the actual results,
+for easy examination. It is now time to fix the function:</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">lumache.py</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_random_ingredients</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="hll">    <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;shells&quot;</span><span class="p">,</span> <span class="s2">&quot;gorgonzola&quot;</span><span class="p">,</span> <span class="s2">&quot;parsley&quot;</span><span class="p">]</span>
+</span></pre></div>
+</div>
+</div>
+<p>And finally, <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code> reports success!</p>
+<p>For big projects though, this manual approach can become a bit tedious.
+In the next section, you will see <a class="reference internal" href="automatic-doc-generation.html"><span class="doc">how to automate the
+process</span></a>.</p>
+</section>
+</section>
+<section id="other-languages-c-c-others">
+<h2>Other languages (C, C++, others)<a class="headerlink" href="#other-languages-c-c-others" title="Permalink to this headline">¶</a></h2>
+<section id="documenting-and-cross-referencing-objects">
+<h3>Documenting and cross-referencing objects<a class="headerlink" href="#documenting-and-cross-referencing-objects" title="Permalink to this headline">¶</a></h3>
+<p>Sphinx also supports documenting and cross-referencing objects written in
+other programming languages. There are four additional built-in domains:
+C, C++, JavaScript, and reStructuredText. Third-party extensions may
+define domains for more languages, such as</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://sphinx-fortran.readthedocs.io">Fortran</a>,</p></li>
+<li><p><a class="reference external" href="http://bastikr.github.io/sphinx-julia">Julia</a>, or</p></li>
+<li><p><a class="reference external" href="https://github.com/markstory/sphinxcontrib-phpdomain">PHP</a>.</p></li>
+</ul>
+<p>For example, to document a C++ type definition, you would use the built-in
+<a class="reference internal" href="../usage/restructuredtext/domains.html#directive-cpp-type" title="cpp:type directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">cpp:type</span></code></a> directive, as follows:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> std::vector&lt;int&gt; CustomList
+
+   A typedef-like declaration of a type.
+</pre></div>
+</div>
+<p>Which would give the following result:</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv410CustomList">
+<span id="_CPPv310CustomList"></span><span id="_CPPv210CustomList"></span><span id="CustomList"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CustomList</span></span></span><a class="headerlink" href="#_CPPv410CustomList" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A typedef-like declaration of a type.</p>
+</dd></dl>
+
+<p>All such directives then generate references that can be
+cross-referenced by using the corresponding role. For example, to reference
+the previous type definition, you can use the <a class="reference internal" href="../usage/restructuredtext/domains.html#role-cpp-type" title="cpp:type role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">cpp:type</span></code></a> role
+as follows:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>Cross reference to <span class="na">:cpp:type:</span><span class="nv">`CustomList`</span>.
+</pre></div>
+</div>
+<p>Which would produce a hyperlink to the previous definition: <a class="reference internal" href="#_CPPv410CustomList" title="CustomList"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">CustomList</span></code></a>.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="automatic-doc-generation.html" title="Automatic documentation generation from code"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="narrative-documentation.html" title="Narrative documentation in Sphinx"
+             >previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Sphinx tutorial</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Describing code in Sphinx</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2022, Georg Brandl and the Sphinx team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

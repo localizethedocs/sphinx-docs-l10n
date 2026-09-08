@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Developing extensions for Sphinx &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/index.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Application API" href="appapi.html" />
+    <link rel="prev" title="LaTeX customization" href="../latex.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../index.html">
+  <img src="../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+    <li class="nav-item nav-item-this"><a href="">Developing extensions for Sphinx</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">Developing extensions for Sphinx</a><ul>
+<li><a class="reference internal" href="#important-objects">Important objects</a></li>
+<li><a class="reference internal" href="#build-phases">Build Phases</a></li>
+<li><a class="reference internal" href="#extension-metadata">Extension metadata</a></li>
+<li><a class="reference internal" href="#apis-used-for-writing-extensions">APIs used for writing extensions</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../templating.html">Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developing extensions for Sphinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html">Application API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projectapi.html">Project API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="envapi.html">Build environment API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builderapi.html">Builder API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collectorapi.html">Environment Collector API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markupapi.html">Docutils markup API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domainapi.html">Domain API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parserapi.html">Parser API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html">Doctree node classes added by Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html">i18n API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deprecated.html">Deprecated APIs</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="developing-extensions-for-sphinx">
+<span id="dev-extensions"></span><h1>Developing extensions for Sphinx<a class="headerlink" href="#developing-extensions-for-sphinx" title="Permalink to this heading">¶</a></h1>
+<p>Since many projects will need special features in their documentation, Sphinx
+is designed to be extensible on several levels.</p>
+<p>Here are a few things you can do in an extension:</p>
+<ul class="simple">
+<li><p>Add new <a class="reference internal" href="../glossary.html#term-builder"><span class="xref std std-term">builder</span></a>s to support new output formats or actions on the
+parsed documents.</p></li>
+<li><p>Register custom reStructuredText roles and directives, extending the markup
+using the <a class="reference internal" href="markupapi.html"><span class="doc">Docutils markup API</span></a>.</p></li>
+<li><p>Add custom code to so-called “hook points” at strategic places throughout the
+build process, allowing you to register a hook and run specialized code.
+For example, see the <a class="reference internal" href="appapi.html#events"><span class="std std-ref">Sphinx core events</span></a>.</p></li>
+</ul>
+<p>An extension is simply a Python module with a <code class="docutils literal notranslate"><span class="pre">setup()</span></code> function. A user
+activates the extension by placing the extension’s module name
+(or a sub-module) in their <a class="reference internal" href="../usage/configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">extensions</span></code></a> configuration value.</p>
+<p>When <strong class="program">sphinx-build</strong> is executed, Sphinx will attempt to import each
+module that is listed, and execute <code class="docutils literal notranslate"><span class="pre">yourmodule.setup(app)</span></code>. This
+function is used to prepare the extension (e.g., by executing Python code),
+linking resources that Sphinx uses in the build process (like CSS or HTML
+files), and notifying Sphinx of everything the extension offers (such
+as directive or role definitions). The <code class="docutils literal notranslate"><span class="pre">app</span></code> argument is an instance of
+<a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a> and gives you control over most aspects of the Sphinx build.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The configuration file itself can be treated as an extension if it
+contains a <code class="docutils literal notranslate"><span class="pre">setup()</span></code> function.  All other extensions to load must be
+listed in the <a class="reference internal" href="../usage/configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">extensions</span></code></a> configuration value.</p>
+</div>
+<p>The rest of this page describes some high-level aspects of developing
+extensions and various parts of Sphinx’s behavior that you can control.
+For some examples of how extensions can be built and used to control different
+parts of Sphinx, see the <a class="reference internal" href="../development/tutorials/index.html#extension-tutorials-index"><span class="std std-ref">Extension tutorials</span></a>.</p>
+<section id="important-objects">
+<span id="id1"></span><h2>Important objects<a class="headerlink" href="#important-objects" title="Permalink to this heading">¶</a></h2>
+<p>There are several key objects whose API you will use while writing an
+extension. These are:</p>
+<dl>
+<dt><strong>Application</strong></dt><dd><p>The application object (usually called <code class="docutils literal notranslate"><span class="pre">app</span></code>) is an instance of
+<a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a>.  It controls most high-level functionality, such as the
+setup of extensions, event dispatching and producing output (logging).</p>
+<p>If you have the environment object, the application is available as
+<code class="docutils literal notranslate"><span class="pre">env.app</span></code>.</p>
+</dd>
+<dt><strong>Environment</strong></dt><dd><p>The build environment object (usually called <code class="docutils literal notranslate"><span class="pre">env</span></code>) is an instance of
+<a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment" title="sphinx.environment.BuildEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildEnvironment</span></code></a>.  It is responsible for parsing the source
+documents, stores all metadata about the document collection and is
+serialized to disk after each build.</p>
+<p>Its API provides methods to do with access to metadata, resolving references,
+etc.  It can also be used by extensions to cache information that should
+persist for incremental rebuilds.</p>
+<p>If you have the application or builder object, the environment is available
+as <code class="docutils literal notranslate"><span class="pre">app.env</span></code> or <code class="docutils literal notranslate"><span class="pre">builder.env</span></code>.</p>
+</dd>
+<dt><strong>Builder</strong></dt><dd><p>The builder object (usually called <code class="docutils literal notranslate"><span class="pre">builder</span></code>) is an instance of a specific
+subclass of <a class="reference internal" href="builderapi.html#sphinx.builders.Builder" title="sphinx.builders.Builder"><code class="xref py py-class docutils literal notranslate"><span class="pre">Builder</span></code></a>.  Each builder class knows how to convert the
+parsed documents into an output format, or otherwise process them (e.g. check
+external links).</p>
+<p>If you have the application object, the builder is available as
+<code class="docutils literal notranslate"><span class="pre">app.builder</span></code>.</p>
+</dd>
+<dt><strong>Config</strong></dt><dd><p>The config object (usually called <code class="docutils literal notranslate"><span class="pre">config</span></code>) provides the values of
+configuration values set in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> as attributes.  It is an instance
+of <a class="reference internal" href="appapi.html#sphinx.config.Config" title="sphinx.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a>.</p>
+<p>The config is available as <code class="docutils literal notranslate"><span class="pre">app.config</span></code> or <code class="docutils literal notranslate"><span class="pre">env.config</span></code>.</p>
+</dd>
+</dl>
+<p>To see an example of use of these objects, refer to
+<a class="reference internal" href="../development/tutorials/index.html"><span class="doc">Extension tutorials</span></a>.</p>
+</section>
+<section id="build-phases">
+<span id="id2"></span><h2>Build Phases<a class="headerlink" href="#build-phases" title="Permalink to this heading">¶</a></h2>
+<p>One thing that is vital in order to understand extension mechanisms is the way
+in which a Sphinx project is built: this works in several phases.</p>
+<p><strong>Phase 0: Initialization</strong></p>
+<p>In this phase, almost nothing of interest to us happens.  The source
+directory is searched for source files, and extensions are initialized.
+Should a stored build environment exist, it is loaded, otherwise a new one is
+created.</p>
+<p><strong>Phase 1: Reading</strong></p>
+<p>In Phase 1, all source files (and on subsequent builds, those that are new or
+changed) are read and parsed.  This is the phase where directives and roles
+are encountered by docutils, and the corresponding code is executed.  The
+output of this phase is a <em>doctree</em> for each source file; that is a tree of
+docutils nodes.  For document elements that aren’t fully known until all
+existing files are read, temporary nodes are created.</p>
+<p>There are nodes provided by docutils, which are documented <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/doctree.html">in the docutils
+documentation</a>.
+Additional nodes are provided by Sphinx and <a class="reference internal" href="nodes.html#nodes"><span class="std std-ref">documented here</span></a>.</p>
+<p>During reading, the build environment is updated with all meta- and cross
+reference data of the read documents, such as labels, the names of headings,
+described Python objects and index entries.  This will later be used to
+replace the temporary nodes.</p>
+<p>The parsed doctrees are stored on the disk, because it is not possible to
+hold all of them in memory.</p>
+<p><strong>Phase 2: Consistency checks</strong></p>
+<p>Some checking is done to ensure no surprises in the built documents.</p>
+<p><strong>Phase 3: Resolving</strong></p>
+<p>Now that the metadata and cross-reference data of all existing documents is
+known, all temporary nodes are replaced by nodes that can be converted into
+output using components called transforms.  For example, links are created
+for object references that exist, and simple literal nodes are created for
+those that don’t.</p>
+<p><strong>Phase 4: Writing</strong></p>
+<p>This phase converts the resolved doctrees to the desired output format, such
+as HTML or LaTeX.  This happens via a so-called docutils writer that visits
+the individual nodes of each doctree and produces some output in the process.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some builders deviate from this general build plan, for example, the builder
+that checks external links does not need anything more than the parsed
+doctrees and therefore does not have phases 2–4.</p>
+</div>
+<p>To see an example of application, refer to <a class="reference internal" href="../development/tutorials/todo.html"><span class="doc">Developing a “TODO” extension</span></a>.</p>
+</section>
+<section id="extension-metadata">
+<span id="ext-metadata"></span><h2>Extension metadata<a class="headerlink" href="#extension-metadata" title="Permalink to this heading">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.</span></p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">setup()</span></code> function can return a dictionary.  This is treated by Sphinx
+as metadata of the extension.  Metadata keys currently recognized are:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'version'</span></code>: a string that identifies the extension version.  It is used for
+extension version requirement checking (see <a class="reference internal" href="../usage/configuration.html#confval-needs_extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">needs_extensions</span></code></a>) and
+informational purposes.  If not given, <code class="docutils literal notranslate"><span class="pre">&quot;unknown</span> <span class="pre">version&quot;</span></code> is substituted.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'env_version'</span></code>: an integer that identifies the version of env data
+structure if the extension stores any data to environment.  It is used to
+detect the data structure has been changed from last build.  The extensions
+have to increment the version when data structure has changed.  If not given,
+Sphinx considers the extension does not stores any data to environment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'parallel_read_safe'</span></code>: a boolean that specifies if parallel reading of
+source files can be used when the extension is loaded.  It defaults to
+<code class="docutils literal notranslate"><span class="pre">False</span></code>, i.e. you have to explicitly specify your extension to be
+parallel-read-safe after checking that it is.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>parallel-read-safe</em> extension must satisfy the following
+conditions:</p>
+<ul class="simple">
+<li><p>The core logic of the extension is parallelly executable during
+the reading phase.</p></li>
+<li><p>It has event handlers for <a class="reference internal" href="appapi.html#event-env-merge-info"><code class="xref std std-event docutils literal notranslate"><span class="pre">env-merge-info</span></code></a> and
+<a class="reference internal" href="appapi.html#event-env-purge-doc"><code class="xref std std-event docutils literal notranslate"><span class="pre">env-purge-doc</span></code></a> events if it stores data to the build
+environment object (env) during the reading phase.</p></li>
+</ul>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'parallel_write_safe'</span></code>: a boolean that specifies if parallel writing of
+output files can be used when the extension is loaded.  Since extensions
+usually don’t negatively influence the process, this defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>parallel-write-safe</em> extension must satisfy the following
+conditions:</p>
+<ul class="simple">
+<li><p>The core logic of the extension is parallelly executable during
+the writing phase.</p></li>
+</ul>
+</div>
+</li>
+</ul>
+</section>
+<section id="apis-used-for-writing-extensions">
+<h2>APIs used for writing extensions<a class="headerlink" href="#apis-used-for-writing-extensions" title="Permalink to this heading">¶</a></h2>
+<p>These sections provide a more complete description of the tools at your
+disposal when developing Sphinx extensions. Some are core to Sphinx
+(such as the <a class="reference internal" href="appapi.html"><span class="doc">Application API</span></a>) while others trigger specific behavior
+(such as the <a class="reference internal" href="i18n.html"><span class="doc">i18n API</span></a>)</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="appapi.html">Application API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#sphinx.application.Sphinx"><code class="docutils literal notranslate"><span class="pre">Sphinx</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#extension-setup">Extension setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#emitting-events">Emitting events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#sphinx-runtime-information">Sphinx runtime information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#sphinx-core-events">Sphinx core events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#checking-the-sphinx-version">Checking the Sphinx version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#the-config-object">The Config object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#the-template-bridge">The template bridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appapi.html#exceptions">Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="projectapi.html">Project API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="projectapi.html#sphinx.project.Project"><code class="docutils literal notranslate"><span class="pre">Project</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="envapi.html">Build environment API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="envapi.html#sphinx.environment.BuildEnvironment"><code class="docutils literal notranslate"><span class="pre">BuildEnvironment</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="builderapi.html">Builder API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="builderapi.html#sphinx.builders.Builder"><code class="docutils literal notranslate"><span class="pre">Builder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="collectorapi.html">Environment Collector API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="collectorapi.html#sphinx.environment.collectors.EnvironmentCollector"><code class="docutils literal notranslate"><span class="pre">EnvironmentCollector</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="markupapi.html">Docutils markup API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="markupapi.html#roles">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markupapi.html#directives">Directives</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="domainapi.html">Domain API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="domainapi.html#sphinx.domains.Domain"><code class="docutils literal notranslate"><span class="pre">Domain</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="domainapi.html#sphinx.domains.ObjType"><code class="docutils literal notranslate"><span class="pre">ObjType</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="domainapi.html#sphinx.domains.Index"><code class="docutils literal notranslate"><span class="pre">Index</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="domainapi.html#sphinx.directives.ObjectDescription"><code class="docutils literal notranslate"><span class="pre">ObjectDescription</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="domainapi.html#module-sphinx.domains.python">Python Domain</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parserapi.html">Parser API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parserapi.html#sphinx.parsers.Parser"><code class="docutils literal notranslate"><span class="pre">Parser</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nodes.html">Doctree node classes added by Sphinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#nodes-for-domain-specific-object-descriptions">Nodes for domain-specific object descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#new-admonition-like-constructs">New admonition-like constructs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#other-paragraph-level-nodes">Other paragraph-level nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#new-inline-nodes">New inline nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodes.html#special-nodes">Special nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#sphinx.util.logging.getLogger"><code class="docutils literal notranslate"><span class="pre">getLogger()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#sphinx.util.logging.SphinxLoggerAdapter"><code class="docutils literal notranslate"><span class="pre">SphinxLoggerAdapter</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#sphinx.util.logging.pending_logging"><code class="docutils literal notranslate"><span class="pre">pending_logging()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#sphinx.util.logging.pending_warnings"><code class="docutils literal notranslate"><span class="pre">pending_warnings()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#sphinx.util.logging.prefixed_warnings"><code class="docutils literal notranslate"><span class="pre">prefixed_warnings()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="i18n.html">i18n API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#sphinx.locale.init"><code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#sphinx.locale.init_console"><code class="docutils literal notranslate"><span class="pre">init_console()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#sphinx.locale.get_translation"><code class="docutils literal notranslate"><span class="pre">get_translation()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#sphinx.locale._"><code class="docutils literal notranslate"><span class="pre">_()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#sphinx.locale.__"><code class="docutils literal notranslate"><span class="pre">__()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="i18n.html#extension-internationalization-i18n-and-localization-l10n-using-i18n-api">Extension internationalization (<cite>i18n</cite>) and localization (<cite>l10n</cite>) using i18n API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#base-classes-for-components">Base classes for components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utility-components">Utility components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deprecated.html">Deprecated APIs</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../copyright.html">Copyright</a> 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+</div>
+  </body>
+</html>
