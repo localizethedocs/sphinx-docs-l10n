@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <title>sphinx.builders.singlehtml &#8212; Sphinx 2.4.5 documentation</title>
+    <link rel="stylesheet" href="../../../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/_modules/sphinx/builders/singlehtml.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx 2.4.5 documentation"
+          href="../../../_static/opensearch.xml"/>
+
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/_modules/sphinx/builders/singlehtml.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../../index.html">Home</a></li>
+    <li><a href="../../../usage/installation.html">Get it</a></li>
+    <li><a href="../../../contents.html">Docs</a></li>
+    <li><a href="../../../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../../../index.html">
+      <img src="../../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../builders.html" accesskey="U">sphinx.builders</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for sphinx.builders.singlehtml</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    sphinx.builders.singlehtml</span>
+<span class="sd">    ~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">    Single HTML builders.</span>
+
+<span class="sd">    :copyright: Copyright 2007-2020 by the Sphinx team, see AUTHORS.</span>
+<span class="sd">    :license: BSD, see LICENSE for details.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">docutils</span> <span class="kn">import</span> <span class="n">nodes</span>
+<span class="kn">from</span> <span class="nn">docutils.nodes</span> <span class="kn">import</span> <span class="n">Node</span>
+
+<span class="kn">from</span> <span class="nn">sphinx.application</span> <span class="kn">import</span> <span class="n">Sphinx</span>
+<span class="kn">from</span> <span class="nn">sphinx.builders.html</span> <span class="kn">import</span> <span class="n">StandaloneHTMLBuilder</span>
+<span class="kn">from</span> <span class="nn">sphinx.deprecation</span> <span class="kn">import</span> <span class="n">RemovedInSphinx40Warning</span><span class="p">,</span> <span class="n">deprecated_alias</span>
+<span class="kn">from</span> <span class="nn">sphinx.environment.adapters.toctree</span> <span class="kn">import</span> <span class="n">TocTree</span>
+<span class="kn">from</span> <span class="nn">sphinx.locale</span> <span class="kn">import</span> <span class="n">__</span>
+<span class="kn">from</span> <span class="nn">sphinx.util</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">sphinx.util</span> <span class="kn">import</span> <span class="n">progress_message</span>
+<span class="kn">from</span> <span class="nn">sphinx.util.console</span> <span class="kn">import</span> <span class="n">darkgreen</span>  <span class="c1"># type: ignore</span>
+<span class="kn">from</span> <span class="nn">sphinx.util.nodes</span> <span class="kn">import</span> <span class="n">inline_all_toctrees</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SingleFileHTMLBuilder"><a class="viewcode-back" href="../../../usage/builders/index.html#sphinx.builders.singlehtml.SingleFileHTMLBuilder">[docs]</a><span class="k">class</span> <span class="nc">SingleFileHTMLBuilder</span><span class="p">(</span><span class="n">StandaloneHTMLBuilder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A StandaloneHTMLBuilder subclass that puts the whole document tree on one</span>
+<span class="sd">    HTML page.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;singlehtml&#39;</span>
+    <span class="n">epilog</span> <span class="o">=</span> <span class="n">__</span><span class="p">(</span><span class="s1">&#39;The HTML page is in </span><span class="si">%(outdir)s</span><span class="s1">.&#39;</span><span class="p">)</span>
+
+    <span class="n">copysource</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">get_outdated_docs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>  <span class="c1"># type: ignore</span>
+        <span class="k">return</span> <span class="s1">&#39;all documents&#39;</span>
+
+    <span class="k">def</span> <span class="nf">get_target_uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">typ</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">docname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">all_docs</span><span class="p">:</span>
+            <span class="c1"># all references are on the same page...</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">master_doc</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_suffix</span> <span class="o">+</span> \
+                <span class="s1">&#39;#document-&#39;</span> <span class="o">+</span> <span class="n">docname</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># chances are this is a html_additional_page</span>
+            <span class="k">return</span> <span class="n">docname</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_suffix</span>
+
+    <span class="k">def</span> <span class="nf">get_relative_uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">typ</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="c1"># ignore source</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_target_uri</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="n">typ</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fix_refuris</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># fix refuris with double anchor</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">master_doc</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_suffix</span>
+        <span class="k">for</span> <span class="n">refnode</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">traverse</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">reference</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;refuri&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">refnode</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">refuri</span> <span class="o">=</span> <span class="n">refnode</span><span class="p">[</span><span class="s1">&#39;refuri&#39;</span><span class="p">]</span>
+            <span class="n">hashindex</span> <span class="o">=</span> <span class="n">refuri</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">hashindex</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">hashindex</span> <span class="o">=</span> <span class="n">refuri</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">hashindex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">hashindex</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">refnode</span><span class="p">[</span><span class="s1">&#39;refuri&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fname</span> <span class="o">+</span> <span class="n">refuri</span><span class="p">[</span><span class="n">hashindex</span><span class="p">:]</span>
+
+    <span class="k">def</span> <span class="nf">_get_local_toctree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">collapse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;includehidden&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;includehidden&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">toctree</span> <span class="o">=</span> <span class="n">TocTree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">)</span><span class="o">.</span><span class="n">get_toctree_for</span><span class="p">(</span><span class="n">docname</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">collapse</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">toctree</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fix_refuris</span><span class="p">(</span><span class="n">toctree</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_partial</span><span class="p">(</span><span class="n">toctree</span><span class="p">)[</span><span class="s1">&#39;fragment&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">assemble_doctree</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nodes</span><span class="o">.</span><span class="n">document</span><span class="p">:</span>
+        <span class="n">master</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">master_doc</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">get_doctree</span><span class="p">(</span><span class="n">master</span><span class="p">)</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">inline_all_toctrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">set</span><span class="p">(),</span> <span class="n">master</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">darkgreen</span><span class="p">,</span> <span class="p">[</span><span class="n">master</span><span class="p">])</span>
+        <span class="n">tree</span><span class="p">[</span><span class="s1">&#39;docname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">master</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">resolve_references</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fix_refuris</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tree</span>
+
+    <span class="k">def</span> <span class="nf">assemble_toc_secnumbers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]:</span>
+        <span class="c1"># Assemble toc_secnumbers to resolve section numbers on SingleHTML.</span>
+        <span class="c1"># Merge all secnumbers to single secnumber.</span>
+        <span class="c1">#</span>
+        <span class="c1"># Note: current Sphinx has refid confliction in singlehtml mode.</span>
+        <span class="c1">#       To avoid the problem, it replaces key of secnumbers to</span>
+        <span class="c1">#       tuple of docname and refid.</span>
+        <span class="c1">#</span>
+        <span class="c1">#       There are related codes in inline_all_toctres() and</span>
+        <span class="c1">#       HTMLTranslter#add_secnumber().</span>
+        <span class="n">new_secnumbers</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, Tuple[int, ...]]</span>
+        <span class="k">for</span> <span class="n">docname</span><span class="p">,</span> <span class="n">secnums</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">toc_secnumbers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">secnum</span> <span class="ow">in</span> <span class="n">secnums</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">alias</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">docname</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+                <span class="n">new_secnumbers</span><span class="p">[</span><span class="n">alias</span><span class="p">]</span> <span class="o">=</span> <span class="n">secnum</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">master_doc</span><span class="p">:</span> <span class="n">new_secnumbers</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">assemble_toc_fignumbers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]]:</span>
+        <span class="c1"># Assemble toc_fignumbers to resolve figure numbers on SingleHTML.</span>
+        <span class="c1"># Merge all fignumbers to single fignumber.</span>
+        <span class="c1">#</span>
+        <span class="c1"># Note: current Sphinx has refid confliction in singlehtml mode.</span>
+        <span class="c1">#       To avoid the problem, it replaces key of secnumbers to</span>
+        <span class="c1">#       tuple of docname and refid.</span>
+        <span class="c1">#</span>
+        <span class="c1">#       There are related codes in inline_all_toctres() and</span>
+        <span class="c1">#       HTMLTranslter#add_fignumber().</span>
+        <span class="n">new_fignumbers</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: Dict[str, Dict[str, Tuple[int, ...]]]</span>
+        <span class="c1"># {&#39;foo&#39;: {&#39;figure&#39;: {&#39;id2&#39;: (2,), &#39;id1&#39;: (1,)}}, &#39;bar&#39;: {&#39;figure&#39;: {&#39;id1&#39;: (3,)}}}</span>
+        <span class="k">for</span> <span class="n">docname</span><span class="p">,</span> <span class="n">fignumlist</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">toc_fignumbers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">figtype</span><span class="p">,</span> <span class="n">fignums</span> <span class="ow">in</span> <span class="n">fignumlist</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">alias</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">docname</span><span class="p">,</span> <span class="n">figtype</span><span class="p">)</span>
+                <span class="n">new_fignumbers</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">alias</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">fignum</span> <span class="ow">in</span> <span class="n">fignums</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">new_fignumbers</span><span class="p">[</span><span class="n">alias</span><span class="p">][</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">fignum</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">master_doc</span><span class="p">:</span> <span class="n">new_fignumbers</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">get_doc_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">body</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metatags</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="c1"># no relation links...</span>
+        <span class="n">toctree</span> <span class="o">=</span> <span class="n">TocTree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">)</span><span class="o">.</span><span class="n">get_toctree_for</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">master_doc</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="c1"># if there is no toctree, toc is None</span>
+        <span class="k">if</span> <span class="n">toctree</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fix_refuris</span><span class="p">(</span><span class="n">toctree</span><span class="p">)</span>
+            <span class="n">toc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">render_partial</span><span class="p">(</span><span class="n">toctree</span><span class="p">)[</span><span class="s1">&#39;fragment&#39;</span><span class="p">]</span>
+            <span class="n">display_toc</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">toc</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">display_toc</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;parents&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;prev&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;next&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;docstitle&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">html_title</span><span class="p">,</span>
+            <span class="s1">&#39;meta&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="n">body</span><span class="p">,</span>
+            <span class="s1">&#39;metatags&#39;</span><span class="p">:</span> <span class="n">metatags</span><span class="p">,</span>
+            <span class="s1">&#39;rellinks&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;sourcename&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;toc&#39;</span><span class="p">:</span> <span class="n">toc</span><span class="p">,</span>
+            <span class="s1">&#39;display_toc&#39;</span><span class="p">:</span> <span class="n">display_toc</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">ignored</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">docnames</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">all_docs</span>
+
+        <span class="k">with</span> <span class="n">progress_message</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;preparing documents&#39;</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">prepare_writing</span><span class="p">(</span><span class="n">docnames</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+
+        <span class="k">with</span> <span class="n">progress_message</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;assembling single document&#39;</span><span class="p">)):</span>
+            <span class="n">doctree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assemble_doctree</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">toc_secnumbers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assemble_toc_secnumbers</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">toc_fignumbers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assemble_toc_fignumbers</span><span class="p">()</span>
+
+        <span class="k">with</span> <span class="n">progress_message</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;writing&#39;</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_doc_serialized</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">master_doc</span><span class="p">,</span> <span class="n">doctree</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_doc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">master_doc</span><span class="p">,</span> <span class="n">doctree</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_additional_files</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">copy_image_files</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">copy_download_files</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">copy_static_files</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">copy_extra_files</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_buildinfo</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump_inventory</span><span class="p">()</span>
+
+    <span class="nd">@progress_message</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;writing additional files&#39;</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">write_additional_files</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># no indices or search pages are supported</span>
+
+        <span class="c1"># additional pages from conf.py</span>
+        <span class="k">for</span> <span class="n">pagename</span><span class="p">,</span> <span class="n">template</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">html_additional_pages</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pagename</span><span class="p">,</span> <span class="n">nonl</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">handle_page</span><span class="p">(</span><span class="n">pagename</span><span class="p">,</span> <span class="p">{},</span> <span class="n">template</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">html_use_opensearch</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39; opensearch&#39;</span><span class="p">,</span> <span class="n">nonl</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">fn</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outdir</span><span class="p">,</span> <span class="s1">&#39;_static&#39;</span><span class="p">,</span> <span class="s1">&#39;opensearch.xml&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">handle_page</span><span class="p">(</span><span class="s1">&#39;opensearch&#39;</span><span class="p">,</span> <span class="p">{},</span> <span class="s1">&#39;opensearch.xml&#39;</span><span class="p">,</span> <span class="n">outfilename</span><span class="o">=</span><span class="n">fn</span><span class="p">)</span></div>
+
+
+<span class="c1"># for compatibility</span>
+<span class="n">deprecated_alias</span><span class="p">(</span><span class="s1">&#39;sphinx.builders.html&#39;</span><span class="p">,</span>
+                 <span class="p">{</span>
+                     <span class="s1">&#39;SingleFileHTMLBuilder&#39;</span><span class="p">:</span> <span class="n">SingleFileHTMLBuilder</span><span class="p">,</span>
+                 <span class="p">},</span>
+                 <span class="n">RemovedInSphinx40Warning</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">setup_extension</span><span class="p">(</span><span class="s1">&#39;sphinx.builders.html&#39;</span><span class="p">)</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">add_builder</span><span class="p">(</span><span class="n">SingleFileHTMLBuilder</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;singlehtml_sidebars&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">html_sidebars</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;builtin&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../builders.html" >sphinx.builders</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2019, Georg Brandl and the Sphinx team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Sphinx 1.5 &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../_static/documentation_options.js?v=bae23c90"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=cbf116e0"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/changes/1.5.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜尋" href="../search.html" />
+    <link rel="next" title="Sphinx 1.4" href="1.4.html" />
+    <link rel="prev" title="Sphinx 1.6" href="1.6.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../index.html">
+      <img src="../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">變更日誌</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Sphinx 1.5</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Sphinx 1.5</a><ul>
+<li><a class="reference internal" href="#release-1-5-6-released-may-15-2017">Release 1.5.6 (released May 15, 2017)</a><ul>
+<li><a class="reference internal" href="#bugs-fixed">修復的臭蟲</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#release-1-5-5-released-apr-03-2017">Release 1.5.5 (released Apr 03, 2017)</a><ul>
+<li><a class="reference internal" href="#id1">修復的臭蟲</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#release-1-5-4-released-apr-02-2017">Release 1.5.4 (released Apr 02, 2017)</a><ul>
+<li><a class="reference internal" href="#features-added">增添的功能</a></li>
+<li><a class="reference internal" href="#id2">修復的臭蟲</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#release-1-5-3-released-feb-26-2017">Release 1.5.3 (released Feb 26, 2017)</a><ul>
+<li><a class="reference internal" href="#id3">增添的功能</a></li>
+<li><a class="reference internal" href="#id4">修復的臭蟲</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#release-1-5-2-released-jan-22-2017">發行版 1.5.2（發行於 2017 年 1 月 22 日）</a><ul>
+<li><a class="reference internal" href="#incompatible-changes">不相容的變更</a></li>
+<li><a class="reference internal" href="#id5">增添的功能</a></li>
+<li><a class="reference internal" href="#id6">修復的臭蟲</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#release-1-5-1-released-dec-13-2016">發行版 1.5.1（發行於 2016 年 12 月 13 日）</a><ul>
+<li><a class="reference internal" href="#id7">增添的功能</a></li>
+<li><a class="reference internal" href="#id8">修復的臭蟲</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#release-1-5-released-dec-5-2016">發行版 1.5（發行於 2016 年 12 月 5 日）</a><ul>
+<li><a class="reference internal" href="#id9">不相容的變更</a></li>
+<li><a class="reference internal" href="#deprecated">Deprecated</a></li>
+<li><a class="reference internal" href="#id10">增添的功能</a></li>
+<li><a class="reference internal" href="#id11">修復的臭蟲</a></li>
+<li><a class="reference internal" href="#testing">測試</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">基礎知識</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">開始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">建置您的第一個專案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使用者指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">使用 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">擴充 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx 常見問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx 作者群</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">組態</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">擴充功能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">詞彙表</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">變更日誌</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="8.2.html">Sphinx 8.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8.1.html">Sphinx 8.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8.0.html">Sphinx 8.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.4.html">Sphinx 7.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.3.html">Sphinx 7.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.2.html">Sphinx 7.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.1.html">Sphinx 7.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.0.html">Sphinx 7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.2.html">Sphinx 6.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.1.html">Sphinx 6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.0.html">Sphinx 6.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.3.html">Sphinx 5.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.2.html">Sphinx 5.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.1.html">Sphinx 5.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.0.html">Sphinx 5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.5.html">Sphinx 4.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.4.html">Sphinx 4.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.3.html">Sphinx 4.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.2.html">Sphinx 4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.1.html">Sphinx 4.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.0.html">Sphinx 4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.5.html">Sphinx 3.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.4.html">Sphinx 3.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.3.html">Sphinx 3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.2.html">Sphinx 3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.html">Sphinx 3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.0.html">Sphinx 3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.4.html">Sphinx 2.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.3.html">Sphinx 2.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2.html">Sphinx 2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.1.html">Sphinx 2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.0.html">Sphinx 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.8.html">Sphinx 1.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.7.html">Sphinx 1.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.6.html">Sphinx 1.6</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sphinx 1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.4.html">Sphinx 1.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.html">Sphinx 1.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.html">Sphinx 1.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.html">Sphinx 1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0.html">Sphinx 1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.6.html">Sphinx 0.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.5.html">Sphinx 0.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.4.html">Sphinx 0.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.3.html">Sphinx 0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.2.html">Sphinx 0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.1.html">Sphinx 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="sphinx-1-5">
+<h1>Sphinx 1.5<a class="headerlink" href="#sphinx-1-5" title="連結到這個標頭">¶</a></h1>
+<section id="release-1-5-6-released-may-15-2017">
+<h2>Release 1.5.6 (released May 15, 2017)<a class="headerlink" href="#release-1-5-6-released-may-15-2017" title="連結到這個標頭">¶</a></h2>
+<section id="bugs-fixed">
+<h3>修復的臭蟲<a class="headerlink" href="#bugs-fixed" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>#3614: Sphinx crashes with requests-2.5.0</p></li>
+<li><p>#3618: autodoc crashes with tupled arguments</p></li>
+<li><p>#3664: No space after the bullet in items of a latex list produced by Sphinx</p></li>
+<li><p>#3657: EPUB builder crashes if a document starting with genindex exists</p></li>
+<li><p>#3588: No compact (p tag) html output in the i18n document build even when
+<a class="reference internal" href="../usage/configuration.html#confval-html_compact_lists"><code class="xref std std-confval docutils literal notranslate"><span class="pre">html_compact_lists</span></code></a> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p>#3685: AttributeError when using 3rd party domains</p></li>
+<li><p>#3702: LaTeX writer styles figure legends with a hard-coded <code class="docutils literal notranslate"><span class="pre">\small</span></code></p></li>
+<li><p>#3708: LaTeX writer allows irc scheme</p></li>
+<li><p>#3717: Stop enforcing that favicon's must be .ico</p></li>
+<li><p>#3731, #3732: Protect isenumclass predicate against non-class arguments</p></li>
+<li><p>#3320: Warning about reference target not being found for container types</p></li>
+<li><p>Misspelled ARCHIVEPREFIX in Makefile for latex build repertory</p></li>
+</ul>
+</section>
+</section>
+<section id="release-1-5-5-released-apr-03-2017">
+<h2>Release 1.5.5 (released Apr 03, 2017)<a class="headerlink" href="#release-1-5-5-released-apr-03-2017" title="連結到這個標頭">¶</a></h2>
+<section id="id1">
+<h3>修復的臭蟲<a class="headerlink" href="#id1" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>#3597: python domain raises UnboundLocalError if invalid name given</p></li>
+<li><p>#3599: Move to new MathJax CDN</p></li>
+</ul>
+</section>
+</section>
+<section id="release-1-5-4-released-apr-02-2017">
+<h2>Release 1.5.4 (released Apr 02, 2017)<a class="headerlink" href="#release-1-5-4-released-apr-02-2017" title="連結到這個標頭">¶</a></h2>
+<section id="features-added">
+<h3>增添的功能<a class="headerlink" href="#features-added" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>#3470: Make genindex support all kinds of letters, not only Latin ones</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>修復的臭蟲<a class="headerlink" href="#id2" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>#3445: setting <code class="docutils literal notranslate"><span class="pre">'inputenc'</span></code> key to <code class="docutils literal notranslate"><span class="pre">\\usepackage[utf8x]{inputenc}</span></code> leads
+to failed PDF build</p></li>
+<li><p>EPUB file has duplicated <code class="docutils literal notranslate"><span class="pre">nav.xhtml</span></code> link in <code class="docutils literal notranslate"><span class="pre">content.opf</span></code>
+except first time build</p></li>
+<li><p>#3488: objects.inv has broken when <code class="docutils literal notranslate"><span class="pre">release</span></code> or <code class="docutils literal notranslate"><span class="pre">version</span></code> contain
+return code</p></li>
+<li><p>#2073, #3443, #3490: gettext builder that writes pot files unless the content
+are same without creation date. Thanks to Yoshiki Shibukawa.</p></li>
+<li><p>#3487: intersphinx: failed to refer options</p></li>
+<li><p>#3496: latex longtable's last column may be much wider than its contents</p></li>
+<li><p>#3507: wrong quotes in latex output for productionlist directive</p></li>
+<li><p>#3533: Moving from Sphinx 1.3.1 to 1.5.3 breaks LaTeX compilation of links
+rendered as code</p></li>
+<li><p>#2665, #2607: Link names in C++ docfields, and make it possible for other
+domains.</p></li>
+<li><p>#3542: C++, fix parsing error of non-type template argument with template.</p></li>
+<li><p>#3065, #3520: python domain fails to recognize nested class</p></li>
+<li><p>#3575: Problems with pdflatex in a Turkish document built with Sphinx has
+reappeared (refs #2997, #2397)</p></li>
+<li><p>#3577: Fix intersphinx debug tool</p></li>
+<li><p>A LaTeX command such as <code class="docutils literal notranslate"><span class="pre">\\large</span></code> inserted in the title items of
+<a class="reference internal" href="../usage/configuration.html#confval-latex_documents"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_documents</span></code></a> causes failed PDF build (refs #3551, #3567)</p></li>
+</ul>
+</section>
+</section>
+<section id="release-1-5-3-released-feb-26-2017">
+<h2>Release 1.5.3 (released Feb 26, 2017)<a class="headerlink" href="#release-1-5-3-released-feb-26-2017" title="連結到這個標頭">¶</a></h2>
+<section id="id3">
+<h3>增添的功能<a class="headerlink" href="#id3" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>Support requests-2.0.0 (experimental) (refs: #3367)</p></li>
+<li><p>(latex) PDF page margin dimensions may be customized (refs: #3387)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">literalinclude</span></code> directive allows combination of <code class="docutils literal notranslate"><span class="pre">:pyobject:</span></code> and
+<code class="docutils literal notranslate"><span class="pre">:lines:</span></code> options (refs: #3416)</p></li>
+<li><p>#3400: make-mode doesn't use subprocess on building docs</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>修復的臭蟲<a class="headerlink" href="#id4" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>#3370: the caption of code-block is not picked up for translation</p></li>
+<li><p>LaTeX: <a class="reference internal" href="../usage/configuration.html#confval-release"><code class="xref std std-confval docutils literal notranslate"><span class="pre">release</span></code></a> is not escaped (refs: #3362)</p></li>
+<li><p>#3364: sphinx-quickstart prompts overflow on Console with 80 chars width</p></li>
+<li><p>since 1.5, PDF's TOC and bookmarks lack an entry for general Index
+(refs: #3383)</p></li>
+<li><p>#3392: <code class="docutils literal notranslate"><span class="pre">'releasename'</span></code> in <a class="reference internal" href="../usage/configuration.html#confval-latex_elements"><code class="xref std std-confval docutils literal notranslate"><span class="pre">latex_elements</span></code></a> is not working</p></li>
+<li><p>#3356: Page layout for Japanese <code class="docutils literal notranslate"><span class="pre">'manual'</span></code> docclass has a shorter text area</p></li>
+<li><p>#3394: When <code class="docutils literal notranslate"><span class="pre">'pointsize'</span></code> is not <code class="docutils literal notranslate"><span class="pre">10pt</span></code>, Japanese <code class="docutils literal notranslate"><span class="pre">'manual'</span></code> document
+gets wrong PDF page dimensions</p></li>
+<li><p>#3399: quickstart: conf.py was not overwritten by template</p></li>
+<li><p>#3366: option directive does not allow punctuations</p></li>
+<li><p>#3410: return code in <a class="reference internal" href="../usage/configuration.html#confval-release"><code class="xref std std-confval docutils literal notranslate"><span class="pre">release</span></code></a> breaks html search</p></li>
+<li><p>#3427: autodoc: memory addresses are not stripped on Windows</p></li>
+<li><p>#3428: xetex build tests fail due to fontspec v2.6 defining <code class="docutils literal notranslate"><span class="pre">\strong</span></code></p></li>
+<li><p>#3349: Result of <code class="docutils literal notranslate"><span class="pre">IndexBuilder.load()</span></code> is broken</p></li>
+<li><p>#3450: &amp;nbsp is appeared in EPUB docs</p></li>
+<li><p>#3418: Search button is misaligned in nature and pyramid theme</p></li>
+<li><p>#3421: Could not translate a caption of tables</p></li>
+<li><p>#3552: linkcheck raises UnboundLocalError</p></li>
+</ul>
+</section>
+</section>
+<section id="release-1-5-2-released-jan-22-2017">
+<h2>發行版 1.5.2（發行於 2017 年 1 月 22 日）<a class="headerlink" href="#release-1-5-2-released-jan-22-2017" title="連結到這個標頭">¶</a></h2>
+<section id="incompatible-changes">
+<h3>不相容的變更<a class="headerlink" href="#incompatible-changes" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>Dependency requirement updates: requests 2.4.0 or above (refs: #3268, #3310)</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>增添的功能<a class="headerlink" href="#id5" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>#3241: emit latex warning if buggy titlesec (ref #3210)</p></li>
+<li><p>#3194: Refer the $MAKE environment variable to determine <code class="docutils literal notranslate"><span class="pre">make</span></code> command</p></li>
+<li><p>Emit warning for nested numbered toctrees (refs: #3142)</p></li>
+<li><p>#978: <code class="docutils literal notranslate"><span class="pre">intersphinx_mapping</span></code> also allows a list as a parameter</p></li>
+<li><p>#3340: (LaTeX) long lines in <a class="extlink-dudir reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#parsed-literal">parsed-literal</a> are wrapped like in
+<a class="reference internal" href="../usage/restructuredtext/directives.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">code-block</span></code></a>, inline math and footnotes are fully functional.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>修復的臭蟲<a class="headerlink" href="#id6" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>#3246: xapian search adapter crashes</p></li>
+<li><p>#3253: In Py2 environment, building another locale with a non-captioned
+toctree produces <code class="docutils literal notranslate"><span class="pre">None</span></code> captions</p></li>
+<li><p>#185: References to section title including raw node has broken</p></li>
+<li><p>#3255: In Py3.4 environment, autodoc doesn't support documentation for
+attributes of Enum class correctly.</p></li>
+<li><p>#3261: <code class="docutils literal notranslate"><span class="pre">latex_use_parts</span></code> makes Sphinx crash</p></li>
+<li><p>The warning type <code class="docutils literal notranslate"><span class="pre">misc.highlighting_failure</span></code> does not work</p></li>
+<li><p>#3294: <code class="docutils literal notranslate"><span class="pre">add_latex_package()</span></code> make crashes non-LaTeX builders</p></li>
+<li><p>The caption of table are rendered as invalid HTML (refs: #3287)</p></li>
+<li><p>#3268: Sphinx crashes with requests package from Debian jessie</p></li>
+<li><p>#3284: Sphinx crashes on parallel build with an extension which raises
+unserializable exception</p></li>
+<li><p>#3315: Bibliography crashes on latex build with docclass 'memoir'</p></li>
+<li><p>#3328: Could not refer rubric implicitly</p></li>
+<li><p>#3329: emit warnings if po file is invalid and can't read it. Also writing mo</p></li>
+<li><p>#3337: Ugly rendering of definition list term's classifier</p></li>
+<li><p>#3335: gettext does not extract field_name of a field in a field_list</p></li>
+<li><p>#2952: C++, fix refs to operator() functions.</p></li>
+<li><p>Fix Unicode super- and subscript digits in <a class="reference internal" href="../usage/restructuredtext/directives.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">code-block</span></code></a> and
+parsed-literal LaTeX output (ref #3342)</p></li>
+<li><p>LaTeX writer: leave <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> character inside parsed-literal as is (ref #3341)</p></li>
+<li><p>#3234: intersphinx failed for encoded inventories</p></li>
+<li><p>#3158: too much space after captions in PDF output</p></li>
+<li><p>#3317: An URL in parsed-literal contents gets wrongly rendered in PDF if
+with hyphen</p></li>
+<li><p>LaTeX crash if the filename of an image inserted in parsed-literal
+via a substitution contains an hyphen (ref #3340)</p></li>
+<li><p>LaTeX rendering of inserted footnotes in parsed-literal is wrong (ref #3340)</p></li>
+<li><p>Inline math in parsed-literal is not rendered well by LaTeX (ref #3340)</p></li>
+<li><p>#3308: Parsed-literals don't wrap very long lines with pdf builder (ref #3340)</p></li>
+<li><p>#3295: Could not import extension sphinx.builders.linkcheck</p></li>
+<li><p>#3285: autosummary: asterisks are escaped twice</p></li>
+<li><p>LaTeX, pass dvipdfm option to geometry package for Japanese documents (ref
+#3363)</p></li>
+<li><p>Fix parselinenos() could not parse left half open range (cf. &quot;-4&quot;)</p></li>
+</ul>
+</section>
+</section>
+<section id="release-1-5-1-released-dec-13-2016">
+<h2>發行版 1.5.1（發行於 2016 年 12 月 13 日）<a class="headerlink" href="#release-1-5-1-released-dec-13-2016" title="連結到這個標頭">¶</a></h2>
+<section id="id7">
+<h3>增添的功能<a class="headerlink" href="#id7" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>#3214: Allow to suppress &quot;unknown mimetype&quot; warnings from epub builder using
+<a class="reference internal" href="../usage/configuration.html#confval-suppress_warnings"><code class="xref std std-confval docutils literal notranslate"><span class="pre">suppress_warnings</span></code></a>.</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>修復的臭蟲<a class="headerlink" href="#id8" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>#3195: Can not build in parallel</p></li>
+<li><p>#3198: AttributeError is raised when toctree has 'self'</p></li>
+<li><p>#3211: Remove untranslated Sphinx locale catalogs (it was covered by
+untranslated it_IT)</p></li>
+<li><p>#3212: HTML Builders crashes with Docutils 0.13</p></li>
+<li><p>#3207: more latex problems with references inside parsed-literal directive
+(<code class="docutils literal notranslate"><span class="pre">\DUrole</span></code>)</p></li>
+<li><p>#3205: sphinx.util.requests crashes with old pyOpenSSL (&lt; 0.14)</p></li>
+<li><p>#3220: KeyError when having a duplicate citation</p></li>
+<li><p>#3200: LaTeX: xref inside desc_name not allowed</p></li>
+<li><p>#3228: <code class="docutils literal notranslate"><span class="pre">build_sphinx</span></code> command crashes when missing dependency</p></li>
+<li><p>#2469: Ignore updates of catalog files for gettext builder. Thanks to
+Hiroshi Ohkubo.</p></li>
+<li><p>#3183: Randomized jump box order in generated index page.</p></li>
+</ul>
+</section>
+</section>
+<section id="release-1-5-released-dec-5-2016">
+<h2>發行版 1.5（發行於 2016 年 12 月 5 日）<a class="headerlink" href="#release-1-5-released-dec-5-2016" title="連結到這個標頭">¶</a></h2>
+<section id="id9">
+<h3>不相容的變更<a class="headerlink" href="#id9" title="連結到這個標頭">¶</a></h3>
+<p>1.5a1</p>
+<ul class="simple">
+<li><p>latex, package fancybox is not any longer a dependency of sphinx.sty</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">'locales'</span></code> as a default value of <code class="docutils literal notranslate"><span class="pre">locale_dirs</span></code></p></li>
+<li><p>latex, package ifthen is not any longer a dependency of sphinx.sty</p></li>
+<li><p>latex, style file does not modify fancyvrb's Verbatim (also available as
+OriginalVerbatim) but uses sphinxVerbatim for name of custom wrapper.</p></li>
+<li><p>latex, package newfloat is not used (and not included) anymore (ref #2660;
+it was used since 1.3.4 and shipped with Sphinx since 1.4).</p></li>
+<li><p>latex, literal blocks in tables do not use OriginalVerbatim but
+sphinxVerbatimintable which handles captions and wraps lines (ref #2704).</p></li>
+<li><p>latex, replace <code class="docutils literal notranslate"><span class="pre">pt</span></code> by TeX equivalent <code class="docutils literal notranslate"><span class="pre">bp</span></code> if found in <code class="docutils literal notranslate"><span class="pre">width</span></code> or
+<code class="docutils literal notranslate"><span class="pre">height</span></code> attribute of an image.</p></li>
+<li><p>latex, if <code class="docutils literal notranslate"><span class="pre">width</span></code> or <code class="docutils literal notranslate"><span class="pre">height</span></code> attribute of an image is given with no unit,
+use <code class="docutils literal notranslate"><span class="pre">px</span></code> rather than ignore it.</p></li>
+<li><p>latex: Separate stylesheets of pygments to independent .sty file</p></li>
+<li><p>#2454: The filename of sourcelink is now changed.  The value of
+<code class="docutils literal notranslate"><span class="pre">html_sourcelink_suffix</span></code> will be appended to the original filename (like
+<code class="docutils literal notranslate"><span class="pre">index.rst.txt</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.copy_static_entry()</span></code> is now deprecated.
+Use <code class="docutils literal notranslate"><span class="pre">sphinx.util.fileutil.copy_asset()</span></code> instead.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.util.osutil.filecopy()</span></code> skips copying if the file has not been
+changed (ref: #2510, #2753)</p></li>
+<li><p>Internet Explorer 6-8, Opera 12.1x or Safari 5.1+ support is dropped
+because jQuery version is updated from 1.11.0 to 3.1.0 (ref: #2634, #2773)</p></li>
+<li><p>QtHelpBuilder doesn't generate search page (ref: #2352)</p></li>
+<li><p>QtHelpBuilder uses <code class="docutils literal notranslate"><span class="pre">nonav</span></code> theme instead of default one
+to improve readability.</p></li>
+<li><p>latex: To provide good default settings to Japanese documents, Sphinx uses
+<code class="docutils literal notranslate"><span class="pre">jreport</span></code> and <code class="docutils literal notranslate"><span class="pre">jsbook</span></code> as docclass if <a class="reference internal" href="../usage/configuration.html#confval-language"><code class="xref std std-confval docutils literal notranslate"><span class="pre">language</span></code></a> is
+<code class="docutils literal notranslate"><span class="pre">ja</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> now allows a project version is empty</p></li>
+<li><p>Fix :download: role on epub/qthelp builder. They ignore the role because they
+don't support it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> doesn't work on epub building by default.
+<code class="docutils literal notranslate"><span class="pre">viewcode_enable_epub</span></code> option</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.viewcode</span></code> disabled on singlehtml builder.</p></li>
+<li><p>Use make-mode of <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> by default.  To disable this, use
+<code class="docutils literal notranslate"><span class="pre">-M</span></code> option</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">genindex.html</span></code>, Sphinx's document template, link address to itself to
+satisfy xhtml standard.</p></li>
+<li><p>Use epub3 builder by default.  And the old epub builder is renamed to epub2.</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">epub</span></code> and <code class="docutils literal notranslate"><span class="pre">epub3</span></code> builders that contained links to <code class="docutils literal notranslate"><span class="pre">genindex</span></code> even
+if <code class="docutils literal notranslate"><span class="pre">epub_use_index</span> <span class="pre">=</span> <span class="pre">False</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">html_translator_class</span></code> is now deprecated.
+Use <a class="reference internal" href="../extdev/appapi.html#sphinx.application.Sphinx.set_translator" title="sphinx.application.Sphinx.set_translator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_translator()</span></code></a> API instead.</p></li>
+<li><p>Drop python 2.6 and 3.3 support</p></li>
+<li><p>Drop epub3 builder's <code class="docutils literal notranslate"><span class="pre">epub3_page_progression_direction</span></code> option (use
+<code class="docutils literal notranslate"><span class="pre">epub3_writing_mode</span></code>).</p></li>
+<li><p>#2877: Rename <code class="docutils literal notranslate"><span class="pre">latex_elements['footer']</span></code> to
+<code class="docutils literal notranslate"><span class="pre">latex_elements['atendofbody']</span></code></p></li>
+</ul>
+<p>1.5a2</p>
+<ul class="simple">
+<li><p>#2983: Rename <code class="docutils literal notranslate"><span class="pre">epub3_description</span></code> and <code class="docutils literal notranslate"><span class="pre">epub3_contributor</span></code> to
+<code class="docutils literal notranslate"><span class="pre">epub_description</span></code> and <code class="docutils literal notranslate"><span class="pre">epub_contributor</span></code>.</p></li>
+<li><p>Remove themes/basic/defindex.html; no longer used</p></li>
+<li><p>Sphinx does not ship anymore (but still uses) LaTeX style file <code class="docutils literal notranslate"><span class="pre">fncychap</span></code></p></li>
+<li><p>#2435: Slim down quickstarted conf.py</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">sphinx.sty</span></code> latex package does not load itself &quot;hyperref&quot;, as this
+is done later in the preamble of the latex output via <code class="docutils literal notranslate"><span class="pre">'hyperref'</span></code> key.</p></li>
+<li><p>Sphinx does not ship anymore a custom modified LaTeX style file <code class="docutils literal notranslate"><span class="pre">tabulary</span></code>.
+The non-modified package is used.</p></li>
+<li><p>#3057: By default, footnote marks in latex PDF output are not preceded by a
+space anymore, <code class="docutils literal notranslate"><span class="pre">\sphinxBeforeFootnote</span></code> allows user customization if needed.</p></li>
+<li><p>LaTeX target requires that option <code class="docutils literal notranslate"><span class="pre">hyperfootnotes</span></code> of package <code class="docutils literal notranslate"><span class="pre">hyperref</span></code>
+be left unchanged to its default (i.e. <code class="docutils literal notranslate"><span class="pre">true</span></code>) (refs: #3022)</p></li>
+</ul>
+<p>1.5 final</p>
+<ul class="simple">
+<li><p>#2986: <code class="docutils literal notranslate"><span class="pre">themes/basic/defindex.html</span></code> is now deprecated</p></li>
+<li><p>Emit warnings that will be deprecated in Sphinx 1.6 by default.
+Users can change the behavior by setting the environment variable
+PYTHONWARNINGS. Please refer <a class="reference internal" href="../man/sphinx-build.html#when-deprecation-warnings-are-displayed"><span class="std std-ref">棄用警告</span></a>.</p></li>
+<li><p>#2454: new JavaScript variable <code class="docutils literal notranslate"><span class="pre">SOURCELINK_SUFFIX</span></code> is added</p></li>
+</ul>
+</section>
+<section id="deprecated">
+<h3>Deprecated<a class="headerlink" href="#deprecated" title="連結到這個標頭">¶</a></h3>
+<p>These features are removed in Sphinx 1.6:</p>
+<ul class="simple">
+<li><p>LDML format support in i18n feature</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.addnodes.termsep</span></code></p></li>
+<li><p>Some functions and classes in <code class="docutils literal notranslate"><span class="pre">sphinx.util.pycompat</span></code>:
+<code class="docutils literal notranslate"><span class="pre">zip_longest</span></code>, <code class="docutils literal notranslate"><span class="pre">product</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">any</span></code>, <code class="docutils literal notranslate"><span class="pre">next</span></code>, <code class="docutils literal notranslate"><span class="pre">open</span></code>,
+<code class="docutils literal notranslate"><span class="pre">class_types</span></code>, <code class="docutils literal notranslate"><span class="pre">base_exception</span></code>, <code class="docutils literal notranslate"><span class="pre">relpath</span></code>, <code class="docutils literal notranslate"><span class="pre">StringIO</span></code>, <code class="docutils literal notranslate"><span class="pre">BytesIO</span></code>.
+Please use the standard library version instead;</p></li>
+</ul>
+<p>If any deprecation warning like <code class="docutils literal notranslate"><span class="pre">RemovedInSphinxXXXWarning</span></code> are displayed,
+please refer <a class="reference internal" href="../man/sphinx-build.html#when-deprecation-warnings-are-displayed"><span class="std std-ref">棄用警告</span></a>.</p>
+</section>
+<section id="id10">
+<h3>增添的功能<a class="headerlink" href="#id10" title="連結到這個標頭">¶</a></h3>
+<p>1.5a1</p>
+<ul class="simple">
+<li><p>#2951: Add <code class="docutils literal notranslate"><span class="pre">--implicit-namespaces</span></code> PEP-0420 support to apidoc.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">:caption:</span></code> option for sphinx.ext.inheritance_diagram.</p></li>
+<li><p>#2471: Add config variable for default doctest flags.</p></li>
+<li><p>Convert linkcheck builder to requests for better encoding handling</p></li>
+<li><p>#2463, #2516: Add keywords of &quot;meta&quot; directive to search index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">:maxdepth:</span></code> option of toctree affects <code class="docutils literal notranslate"><span class="pre">secnumdepth</span></code> (ref: #2547)</p></li>
+<li><p>#2575: Now <code class="docutils literal notranslate"><span class="pre">sphinx.ext.graphviz</span></code> allows <code class="docutils literal notranslate"><span class="pre">:align:</span></code> option</p></li>
+<li><p>Show warnings if unknown key is specified to <code class="docutils literal notranslate"><span class="pre">latex_elements</span></code></p></li>
+<li><p>Show warnings if no domains match with <code class="docutils literal notranslate"><span class="pre">primary_domain</span></code> (ref: #2001)</p></li>
+<li><p>C++, show warnings when the kind of role is misleading for the kind
+of target it refers to (e.g., using the <code class="docutils literal notranslate"><span class="pre">class</span></code> role for a function).</p></li>
+<li><p>latex, writer abstracts more of text styling into customizable macros, e.g.
+the <code class="docutils literal notranslate"><span class="pre">visit_emphasis</span></code> will output <code class="docutils literal notranslate"><span class="pre">\sphinxstyleemphasis</span></code> rather than
+<code class="docutils literal notranslate"><span class="pre">\emph</span></code> (which may be in use elsewhere or in an added LaTeX package). See
+list at end of <code class="docutils literal notranslate"><span class="pre">sphinx.sty</span></code> (ref: #2686)</p></li>
+<li><p>latex, public names for environments and parameters used by note, warning,
+and other admonition types, allowing full customizability from the
+<code class="docutils literal notranslate"><span class="pre">'preamble'</span></code> key or an input file (ref: feature request #2674, #2685)</p></li>
+<li><p>latex, better computes column widths of some tables (as a result, there will
+be slight changes as tables now correctly fill the line width; ref: #2708)</p></li>
+<li><p>latex, sphinxVerbatim environment is more easily customizable (ref: #2704).
+In addition to already existing VerbatimColor and VerbatimBorderColor:</p>
+<ul>
+<li><p>two lengths <code class="docutils literal notranslate"><span class="pre">\sphinxverbatimsep</span></code> and <code class="docutils literal notranslate"><span class="pre">\sphinxverbatimborder</span></code>,</p></li>
+<li><p>booleans <code class="docutils literal notranslate"><span class="pre">\ifsphinxverbatimwithframe</span></code> and <code class="docutils literal notranslate"><span class="pre">\ifsphinxverbatimwrapslines</span></code>.</p></li>
+</ul>
+</li>
+<li><p>latex, captions for literal blocks inside tables are handled, and long code
+lines wrapped to fit table cell (ref: #2704)</p></li>
+<li><p>#2597: Show warning messages as darkred</p></li>
+<li><p>latex, allow image dimensions using px unit (default is 96px=1in)</p></li>
+<li><p>Show warnings if invalid dimension units found</p></li>
+<li><p>#2650: Add <code class="docutils literal notranslate"><span class="pre">--pdb</span></code> option to setup.py command</p></li>
+<li><p>latex, make the use of <code class="docutils literal notranslate"><span class="pre">\small</span></code> for code listings customizable (ref #2721)</p></li>
+<li><p>#2663: Add <code class="docutils literal notranslate"><span class="pre">--warning-is-error</span></code> option to setup.py command</p></li>
+<li><p>Show warnings if deprecated latex options are used</p></li>
+<li><p>Add sphinx.config.ENUM to check the config values is in candidates</p></li>
+<li><p>math: Add hyperlink marker to each equations in HTML output</p></li>
+<li><p>Add new theme <code class="docutils literal notranslate"><span class="pre">nonav</span></code> that doesn't include any navigation links.
+This is for any help generator like qthelp.</p></li>
+<li><p>#2680: <code class="docutils literal notranslate"><span class="pre">sphinx.ext.todo</span></code> now emits warnings if <code class="docutils literal notranslate"><span class="pre">todo_emit_warnings</span></code> enabled.
+Also, it emits an additional event named <code class="docutils literal notranslate"><span class="pre">todo-defined</span></code> to handle the TODO
+entries in 3rd party extensions.</p></li>
+<li><p>Python domain signature parser now uses the xref mixin for 'exceptions',
+allowing exception classes to be autolinked.</p></li>
+<li><p>#2513: Add <code class="docutils literal notranslate"><span class="pre">latex_engine</span></code> to switch the LaTeX engine by conf.py</p></li>
+<li><p>#2682: C++, basic support for attributes (C++11 style and GNU style).
+The new configuration variables 'cpp_id_attributes' and 'cpp_paren_attributes'
+can be used to introduce custom attributes.</p></li>
+<li><p>#1958: C++, add configuration variable 'cpp_index_common_prefix' for removing
+prefixes from the index text of C++ objects.</p></li>
+<li><p>C++, added concept directive. Thanks to mickk-on-cpp.</p></li>
+<li><p>C++, added support for template introduction syntax. Thanks to mickk-on-cpp.</p></li>
+<li><p>#2725: latex builder: allow to use user-defined template file (experimental)</p></li>
+<li><p>apidoc now avoids invalidating cached files by not writing to files whose
+content doesn't change. This can lead to significant performance wins if
+apidoc is run frequently.</p></li>
+<li><p>#2851: <code class="docutils literal notranslate"><span class="pre">sphinx.ext.math</span></code> emits missing-reference event if equation not found</p></li>
+<li><p>#1210: <code class="docutils literal notranslate"><span class="pre">eqref</span></code> role now supports cross reference</p></li>
+<li><p>#2892: Added <code class="docutils literal notranslate"><span class="pre">-a</span></code> (<code class="docutils literal notranslate"><span class="pre">--append-syspath</span></code>) option to <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code></p></li>
+<li><p>#1604: epub3 builder: Obey font-related CSS when viewing in iBooks.</p></li>
+<li><p>#646: <code class="docutils literal notranslate"><span class="pre">option</span></code> directive support '.' character as a part of options</p></li>
+<li><p>Add document about kindlegen and fix document structure for it.</p></li>
+<li><p>#2474: Add <code class="docutils literal notranslate"><span class="pre">intersphinx_timeout</span></code> option to <code class="docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code></p></li>
+<li><p>#2926: EPUB3 builder supports vertical mode (<code class="docutils literal notranslate"><span class="pre">epub3_writing_mode</span></code> option)</p></li>
+<li><p>#2695: <code class="docutils literal notranslate"><span class="pre">build_sphinx</span></code> subcommand for setuptools handles exceptions as same
+as <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> does</p></li>
+<li><p>#326: <code class="docutils literal notranslate"><span class="pre">numref</span></code> role can also refer sections</p></li>
+<li><p>#2916: <code class="docutils literal notranslate"><span class="pre">numref</span></code> role can also refer caption as an its linktext</p></li>
+</ul>
+<p>1.5a2</p>
+<ul class="simple">
+<li><p>#3008: <code class="docutils literal notranslate"><span class="pre">linkcheck</span></code> builder ignores self-signed certificate URL</p></li>
+<li><p>#3020: new <code class="docutils literal notranslate"><span class="pre">'geometry'</span></code> key to <code class="docutils literal notranslate"><span class="pre">latex_elements</span></code> whose default uses
+LaTeX style file <code class="docutils literal notranslate"><span class="pre">geometry.sty</span></code> to set page layout</p></li>
+<li><p>#2843: Add :start-at: and :end-at: options to literalinclude directive</p></li>
+<li><p>#2527: Add <code class="docutils literal notranslate"><span class="pre">:reversed:</span></code> option to toctree directive</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">-t</span></code> and <code class="docutils literal notranslate"><span class="pre">-d</span></code> option to <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> to support templating
+generated Sphinx project.</p></li>
+<li><p>#3028: Add <code class="docutils literal notranslate"><span class="pre">{path}</span></code> and <code class="docutils literal notranslate"><span class="pre">{basename}</span></code> to the format of
+<code class="docutils literal notranslate"><span class="pre">figure_language_filename</span></code></p></li>
+<li><p>new <code class="docutils literal notranslate"><span class="pre">'hyperref'</span></code> key in the <code class="docutils literal notranslate"><span class="pre">latex_elements</span></code> dictionary (ref #3030)</p></li>
+<li><p>#3022: Allow code-blocks in footnotes for LaTeX PDF output</p></li>
+</ul>
+<p>1.5b1</p>
+<ul class="simple">
+<li><p>#2513: A better default settings for XeLaTeX</p></li>
+<li><p>#3096: <code class="docutils literal notranslate"><span class="pre">'maxlistdepth'</span></code> key to work around LaTeX list limitations</p></li>
+<li><p>#3060: autodoc supports documentation for attributes of Enum class. Now
+autodoc render just the value of Enum attributes instead of Enum attribute
+representation.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">--extensions</span></code> to <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> to support enable arbitrary
+extensions from command line (ref: #2904)</p></li>
+<li><p>#3104, #3122: <code class="docutils literal notranslate"><span class="pre">'sphinxsetup'</span></code> for key=value styling of Sphinx LaTeX</p></li>
+<li><p>#3071: Autodoc: Allow mocked module decorators to pass-through functions
+unchanged</p></li>
+<li><p>#2495: linkcheck: Allow skipping anchor checking using
+<a class="reference internal" href="../usage/configuration.html#confval-linkcheck_anchors_ignore"><code class="xref std std-confval docutils literal notranslate"><span class="pre">linkcheck_anchors_ignore</span></code></a></p></li>
+<li><p>#3083: let Unicode no-break space act like LaTeX <code class="docutils literal notranslate"><span class="pre">~</span></code> (fixed #3019)</p></li>
+<li><p>#3116: allow word wrap in PDF output for inline literals (ref #3110)</p></li>
+<li><p>#930: sphinx-apidoc allow wildcards for excluding paths. Thanks to Nick
+Coghlan.</p></li>
+<li><p>#3121: add <code class="docutils literal notranslate"><span class="pre">inlineliteralwraps</span></code> option to control if inline literal
+word-wraps in latex</p></li>
+</ul>
+<p>1.5 final</p>
+<ul class="simple">
+<li><p>#3095: Add <a class="reference internal" href="../usage/configuration.html#confval-tls_verify"><code class="xref std std-confval docutils literal notranslate"><span class="pre">tls_verify</span></code></a> and <a class="reference internal" href="../usage/configuration.html#confval-tls_cacerts"><code class="xref std std-confval docutils literal notranslate"><span class="pre">tls_cacerts</span></code></a> to support
+self-signed HTTPS servers in linkcheck and intersphinx</p></li>
+<li><p>#2215: make.bat generated by sphinx-quickstart can be called from another dir.
+Thanks to Timotheus Kampik.</p></li>
+<li><p>#3185: Add new warning type <code class="docutils literal notranslate"><span class="pre">misc.highlighting_failure</span></code></p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>修復的臭蟲<a class="headerlink" href="#id11" title="連結到這個標頭">¶</a></h3>
+<p>1.5a1</p>
+<ul class="simple">
+<li><p>#2707: (latex) the column width is badly computed for tabular</p></li>
+<li><p>#2799: Sphinx installs roles and directives automatically on importing sphinx
+module.  Now Sphinx installs them on running application.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code> crashes if target code imports * from mock modules
+by <code class="docutils literal notranslate"><span class="pre">autodoc_mock_imports</span></code>.</p></li>
+<li><p>#1953: <code class="docutils literal notranslate"><span class="pre">Sphinx.add_node</span></code> does not add handlers the translator installed by
+<code class="docutils literal notranslate"><span class="pre">html_translator_class</span></code></p></li>
+<li><p>#1797: text builder inserts blank line on top</p></li>
+<li><p>#2894: quickstart main() doesn't use argv argument</p></li>
+<li><p>#2874: gettext builder could not extract all text under the <code class="docutils literal notranslate"><span class="pre">only</span></code>
+directives</p></li>
+<li><p>#2485: autosummary crashes with multiple source_suffix values</p></li>
+<li><p>#1734: Could not translate the caption of toctree directive</p></li>
+<li><p>Could not translate the content of meta directive (ref: #1734)</p></li>
+<li><p>#2550: external links are opened in help viewer</p></li>
+<li><p>#2687: Running Sphinx multiple times produces 'already registered' warnings</p></li>
+</ul>
+<p>1.5a2</p>
+<ul class="simple">
+<li><p>#2810: Problems with pdflatex in an Italian document</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">latex_elements.papersize</span></code> to specify papersize of LaTeX in Makefile</p></li>
+<li><p>#2988: linkcheck: retry with GET request if denied HEAD request</p></li>
+<li><p>#2990: linkcheck raises &quot;Can't convert 'bytes' object to str implicitly&quot; error
+if linkcheck_anchors enabled</p></li>
+<li><p>#3004: Invalid link types &quot;top&quot; and &quot;up&quot; are used</p></li>
+<li><p>#3009: Bad rendering of parsed-literals in LaTeX since Sphinx 1.4.4</p></li>
+<li><p>#3000: <code class="docutils literal notranslate"><span class="pre">option</span></code> directive generates invalid HTML anchors</p></li>
+<li><p>#2984: Invalid HTML has been generated if <code class="docutils literal notranslate"><span class="pre">html_split_index</span></code> enabled</p></li>
+<li><p>#2986: themes/basic/defindex.html should be changed for html5 friendly</p></li>
+<li><p>#2987: Invalid HTML has been generated if multiple IDs are assigned to a list</p></li>
+<li><p>#2891: HTML search does not provide all the results</p></li>
+<li><p>#1986: Title in PDF Output</p></li>
+<li><p>#147: Problem with latex chapter style</p></li>
+<li><p>#3018: LaTeX problem with page layout dimensions and chapter titles</p></li>
+<li><p>Fix an issue with <code class="docutils literal notranslate"><span class="pre">\pysigline</span></code> in LaTeX style file (ref #3023)</p></li>
+<li><p>#3038: <code class="docutils literal notranslate"><span class="pre">sphinx.ext.math*</span></code> raises TypeError if labels are duplicated</p></li>
+<li><p>#3031: incompatibility with LaTeX package <code class="docutils literal notranslate"><span class="pre">tocloft</span></code></p></li>
+<li><p>#3003: literal blocks in footnotes are not supported by Latex</p></li>
+<li><p>#3047: spacing before footnote in pdf output is not coherent and allows breaks</p></li>
+<li><p>#3045: HTML search index creator should ignore &quot;raw&quot; content if now html</p></li>
+<li><p>#3039: English stemmer returns wrong word if the word is capitalized</p></li>
+<li><p>Fix make-mode Makefile template (ref #3056, #2936)</p></li>
+</ul>
+<p>1.5b1</p>
+<ul class="simple">
+<li><p>#2432: Fix unwanted * between varargs and keyword only args. Thanks to Alex
+Grönholm.</p></li>
+<li><p>#3062: Failed to build PDF using 1.5a2 (undefined <code class="docutils literal notranslate"><span class="pre">\hypersetup</span></code> for
+Japanese documents since PR#3030)</p></li>
+<li><p>Better rendering of multiline signatures in html.</p></li>
+<li><p>#777: LaTeX output &quot;too deeply nested&quot; (ref #3096)</p></li>
+<li><p>Let LaTeX image inclusion obey <code class="docutils literal notranslate"><span class="pre">scale</span></code> before textwidth fit (ref #2865,
+#3059)</p></li>
+<li><p>#3019: LaTeX fails on description of C function with arguments (ref #3083)</p></li>
+<li><p>fix latex inline literals where <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">&gt;</span> <span class="pre">-</span></code> gobbled a space</p></li>
+</ul>
+<p>1.5 final</p>
+<ul class="simple">
+<li><p>#3069: Even if <code class="docutils literal notranslate"><span class="pre">'babel'</span></code> key is set to empty string, LaTeX output contains
+one <code class="docutils literal notranslate"><span class="pre">\addto\captions...</span></code></p></li>
+<li><p>#3123: user <code class="docutils literal notranslate"><span class="pre">'babel'</span></code> key setting is not obeyed anymore</p></li>
+<li><p>#3155: Fix JavaScript for <code class="docutils literal notranslate"><span class="pre">html_sourcelink_suffix</span></code> fails with IE and Opera</p></li>
+<li><p>#3085: keep current directory after breaking build documentation. Thanks to
+Timotheus Kampik.</p></li>
+<li><p>#3181: pLaTeX crashes with a section contains endash</p></li>
+<li><p>#3180: latex: add stretch/shrink between successive singleline or
+multipleline cpp signatures (ref #3072)</p></li>
+<li><p>#3128: globing images does not support .svgz file</p></li>
+<li><p>#3015: fix a broken test on Windows.</p></li>
+<li><p>#1843: Fix documentation of descriptor classes that have a custom metaclass.
+Thanks to Erik Bray.</p></li>
+<li><p>#3190: util.split_docinfo fails to parse multi-line field bodies</p></li>
+<li><p>#3024, #3037: In Python3, application.Sphinx._log crushed when the log message
+cannot be encoded into console encoding.</p></li>
+</ul>
+</section>
+<section id="testing">
+<h3>測試<a class="headerlink" href="#testing" title="連結到這個標頭">¶</a></h3>
+<ul class="simple">
+<li><p>To simplify, Sphinx uses external mock package even if <code class="docutils literal notranslate"><span class="pre">unittest.mock</span></code> exists.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="1.6.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Sphinx 1.6</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="1.4.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">Sphinx 1.4</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版權所有 2007-2026, the Sphinx developers.
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3 建立。
+</div>
+  </body>
+</html>

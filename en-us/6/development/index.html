@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Writing Sphinx Extensions &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/development/index.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developing extensions overview" href="overview.html" />
+    <link rel="prev" title="Storage Backends" href="../usage/advanced/websupport/storagebackends.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../index.html">
+  <img src="../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+    <li class="nav-item nav-item-this"><a href="">Writing Sphinx Extensions</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">Writing Sphinx Extensions</a><ul>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial: Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Writing Sphinx Extensions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Developing extensions overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/index.html">Extension tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builders.html">Configuring builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templating.html">Templating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theming.html">HTML theme development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extdev/index.html">Sphinx Extensions API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="writing-sphinx-extensions">
+<h1>Writing Sphinx Extensions<a class="headerlink" href="#writing-sphinx-extensions" title="Permalink to this heading">¶</a></h1>
+<p>This guide is aimed at giving a quick introduction for those wishing to
+develop their own extensions for Sphinx. Sphinx possesses significant
+extensibility capabilities including the ability to hook into almost every
+point of the build process.  If you simply wish to use Sphinx with existing
+extensions, refer to <a class="reference internal" href="../usage/index.html"><span class="doc">Using Sphinx</span></a>. For a more detailed discussion of
+the extension interface see <a class="reference internal" href="../extdev/index.html"><span class="doc">Sphinx Extensions API</span></a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Developing extensions overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#make-an-extension-depend-on-another-extension">Make an extension depend on another extension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Extension tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/helloworld.html">Developing a “Hello world” extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/todo.html">Developing a “TODO” extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/recipe.html">Developing a “recipe” extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/autodoc_ext.html">Developing autodoc extension for IntEnum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="builders.html">Configuring builders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="builders.html#discover-builders-by-entry-point">Discover builders by entry point</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Theming</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="templating.html">Templating</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="templating.html#do-i-need-to-use-sphinx-s-templates-to-produce-html">Do I need to use Sphinx’s templates to produce HTML?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templating.html#jinja-sphinx-templating-primer">Jinja/Sphinx Templating Primer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templating.html#working-with-the-builtin-templates">Working with the builtin templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="theming.html">HTML theme development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="theming.html#creating-themes">Creating themes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theming.html#distribute-your-theme-as-a-python-package">Distribute your theme as a Python package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theming.html#templating">Templating</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../copyright.html">Copyright</a> 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+</div>
+  </body>
+</html>
