@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The JavaScript Domain &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../../_static/documentation_options.js?v=fbcd4929"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/domains/javascript.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="The Mathematics Domain" href="mathematics.html" />
+    <link rel="prev" title="The C++ Domain" href="cpp.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../index.html">
+      <img src="../../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>导航</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Domains</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">The JavaScript Domain</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">The JavaScript Domain</a><ul>
+<li><a class="reference internal" href="#directive-js-module"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">js:module::</span></code></a></li>
+<li><a class="reference internal" href="#directive-js-function"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">js:function::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-js-function-single-line-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-parameter-list:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-js-method"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">js:method::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-js-method-single-line-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-parameter-list:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-js-class"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">js:class::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-js-class-single-line-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-parameter-list:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-js-data"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">js:data::</span></code></a></li>
+<li><a class="reference internal" href="#directive-js-attribute"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">js:attribute::</span></code></a></li>
+<li><a class="reference internal" href="#role-js-mod"><code class="docutils literal notranslate"><span class="pre">:js:mod:</span></code></a></li>
+<li><a class="reference internal" href="#role-js-func"><code class="docutils literal notranslate"><span class="pre">:js:func:</span></code></a></li>
+<li><a class="reference internal" href="#role-js-meth"><code class="docutils literal notranslate"><span class="pre">:js:meth:</span></code></a></li>
+<li><a class="reference internal" href="#role-js-class"><code class="docutils literal notranslate"><span class="pre">:js:class:</span></code></a></li>
+<li><a class="reference internal" href="#role-js-data"><code class="docutils literal notranslate"><span class="pre">:js:data:</span></code></a></li>
+<li><a class="reference internal" href="#role-js-attr"><code class="docutils literal notranslate"><span class="pre">:js:attr:</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencing.html">Cross-references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">Builders</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Domains</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="standard.html">The Standard Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html">The C Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpp.html">The C++ Domain</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The JavaScript Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematics.html">The Mathematics Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python.html">The Python Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="restructuredtext.html">The reStructuredText Domain</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes/index.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="the-javascript-domain">
+<h1>The JavaScript Domain<a class="headerlink" href="#the-javascript-domain" title="链接到此标题。">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.0 版本加入.</span></p>
+</div>
+<p>The JavaScript domain (name <strong>js</strong>) provides the following directives:</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-js-module">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">js:module::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-js-module" title="链接到此定义。">¶</a></dt>
+<dd><p>This directive sets the module name for object declarations that follow
+after. The module name is used in the global module index and in cross
+references. This directive does not create an object heading like
+<a class="reference internal" href="python.html#directive-py-class" title="py:class directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:class</span></code></a> would, for example.</p>
+<p>By default, this directive will create a linkable entity and will cause an
+entry in the global module index, unless the <code class="docutils literal notranslate"><span class="pre">no-index</span></code> option is
+specified.  If this option is specified, the directive will only update the
+current module name.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.6 版本加入.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 5.2 版本发生变更: </span>Module directives support body content.</p>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-js-function">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">js:function::</span></span><span class="sig-prename descclassname"> <span class="pre">name(signature)</span></span><a class="headerlink" href="#directive-js-function" title="链接到此定义。">¶</a></dt>
+<dd><p>Describes a JavaScript function or method.  If you want to describe
+arguments as optional use square brackets as <a class="reference internal" href="python.html#signatures"><span class="std std-ref">documented</span></a>
+for Python signatures.</p>
+<p>You can use fields to give more details about arguments and their expected
+types, errors which may be thrown by the function, and the value being
+returned:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">js:function</span><span class="p">::</span> $.getJSON(href, callback[, errback])
+
+   <span class="nc">:param string href:</span> An URI to the location of the resource.
+   <span class="nc">:param callback:</span> Gets called with the object.
+   <span class="nc">:param errback:</span>
+       Gets called in case the request fails. And a lot of other
+       text so we need multiple lines.
+   <span class="nc">:throws SomeError:</span> For whatever reason in that case.
+   <span class="nc">:returns:</span> Something.
+</pre></div>
+</div>
+<p>This is rendered as:</p>
+<dl class="js function">
+<dt class="sig sig-object js" id="getJSON">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">$</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">getJSON</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">href</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">errback</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#getJSON" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>href</strong> (<span><code class="xref js js-class docutils literal notranslate"><span class="pre">string</span></code></span>) -- An URI to the location of the resource.</p></li>
+<li><p><strong>callback</strong> -- Gets called with the object.</p></li>
+<li><p><strong>errback</strong> -- Gets called in case the request fails. And a lot of other
+text so we need multiple lines.</p></li>
+</ul>
+</dd>
+<dt class="field-even">抛出<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref js js-class docutils literal notranslate"><span class="pre">SomeError</span></code></span> -- For whatever reason in that case.</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Something.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-js-function-single-line-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-parameter-list:</span></span><span class="property"> <span class="pre">(no</span> <span class="pre">value)</span></span><a class="headerlink" href="#directive-option-js-function-single-line-parameter-list" title="链接到此定义。">¶</a></dt>
+<dd><p>Ensures that the function's parameters will be emitted on a single logical
+line, overriding <a class="reference internal" href="../configuration.html#confval-javascript_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">javascript_maximum_signature_line_length</span></code></a> and
+<a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 7.1 版本加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-js-method">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">js:method::</span></span><span class="sig-prename descclassname"> <span class="pre">name(signature)</span></span><a class="headerlink" href="#directive-js-method" title="链接到此定义。">¶</a></dt>
+<dd><p>This directive is an alias for <a class="reference internal" href="#directive-js-function" title="js:function directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">js:function</span></code></a>, however it describes
+a function that is implemented as a method on a class object.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.6 版本加入.</span></p>
+</div>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-js-method-single-line-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-parameter-list:</span></span><span class="property"> <span class="pre">(no</span> <span class="pre">value)</span></span><a class="headerlink" href="#directive-option-js-method-single-line-parameter-list" title="链接到此定义。">¶</a></dt>
+<dd><p>Ensures that the function's parameters will be emitted on a single logical
+line, overriding <a class="reference internal" href="../configuration.html#confval-javascript_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">javascript_maximum_signature_line_length</span></code></a> and
+<a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 7.1 版本加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-js-class">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">js:class::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-js-class" title="链接到此定义。">¶</a></dt>
+<dd><p>Describes a constructor that creates an object.  This is basically like a
+function but will show up with a <cite>class</cite> prefix:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">js:class</span><span class="p">::</span> MyAnimal(name[, age])
+
+   <span class="nc">:param string name:</span> The name of the animal
+   <span class="nc">:param number age:</span> an optional age for the animal
+</pre></div>
+</div>
+<p>This is rendered as:</p>
+<dl class="js class">
+<dt class="sig sig-object js" id="MyAnimal">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="n"><span class="pre">MyAnimal</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">age</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#MyAnimal" title="链接到此定义。">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span><code class="xref js js-class docutils literal notranslate"><span class="pre">string</span></code></span>) -- The name of the animal</p></li>
+<li><p><strong>age</strong> (<span><code class="xref js js-class docutils literal notranslate"><span class="pre">number</span></code></span>) -- an optional age for the animal</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-js-class-single-line-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-parameter-list:</span></span><span class="property"> <span class="pre">(no</span> <span class="pre">value)</span></span><a class="headerlink" href="#directive-option-js-class-single-line-parameter-list" title="链接到此定义。">¶</a></dt>
+<dd><p>Ensures that the function's parameters will be emitted on a single logical
+line, overriding <a class="reference internal" href="../configuration.html#confval-javascript_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">javascript_maximum_signature_line_length</span></code></a> and
+<a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 7.1 版本加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-js-data">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">js:data::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-js-data" title="链接到此定义。">¶</a></dt>
+<dd><p>Describes a global variable or constant.</p>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-js-attribute">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">js:attribute::</span></span><span class="sig-prename descclassname"> <span class="pre">object.name</span></span><a class="headerlink" href="#directive-js-attribute" title="链接到此定义。">¶</a></dt>
+<dd><p>Describes the attribute <em>name</em> of <em>object</em>.</p>
+</dd></dl>
+
+<p id="js-xref-roles">These roles are provided to refer to the described objects:</p>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-js-mod">
+<span class="sig-name descname"><span class="pre">:js:mod:</span></span><a class="headerlink" href="#role-js-mod" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-js-func">
+<span class="sig-name descname"><span class="pre">:js:func:</span></span><a class="headerlink" href="#role-js-func" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-js-meth">
+<span class="sig-name descname"><span class="pre">:js:meth:</span></span><a class="headerlink" href="#role-js-meth" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-js-class">
+<span class="sig-name descname"><span class="pre">:js:class:</span></span><a class="headerlink" href="#role-js-class" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-js-data">
+<span class="sig-name descname"><span class="pre">:js:data:</span></span><a class="headerlink" href="#role-js-data" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-js-attr">
+<span class="sig-name descname"><span class="pre">:js:attr:</span></span><a class="headerlink" href="#role-js-attr" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="cpp.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">The C++ Domain</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="mathematics.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">The Mathematics Domain</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版权所有 2007-2026, the Sphinx developers.
+  由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0创建。
+</div>
+  </body>
+</html>

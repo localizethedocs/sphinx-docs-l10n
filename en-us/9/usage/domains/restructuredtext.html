@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en-US" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The reStructuredText Domain &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../../_static/documentation_options.js?v=4a9a0b2a"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/domains/restructuredtext.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Extensions" href="../extensions/index.html" />
+    <link rel="prev" title="The Python Domain" href="python.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../index.html">
+      <img src="../../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Domains</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">The reStructuredText Domain</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">The reStructuredText Domain</a><ul>
+<li><a class="reference internal" href="#directive-rst-directive"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">rst:directive::</span></code></a></li>
+<li><a class="reference internal" href="#directive-rst-directive-option"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">rst:directive:option::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-rst-directive-option-type"><code class="docutils literal notranslate"><span class="pre">:type:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-rst-role"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">rst:role::</span></code></a></li>
+<li><a class="reference internal" href="#role-rst-dir"><code class="docutils literal notranslate"><span class="pre">:rst:dir:</span></code></a></li>
+<li><a class="reference internal" href="#role-rst-role"><code class="docutils literal notranslate"><span class="pre">:rst:role:</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencing.html">Cross-references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">Builders</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Domains</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="standard.html">The Standard Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html">The C Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpp.html">The C++ Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript.html">The JavaScript Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematics.html">The Mathematics Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python.html">The Python Domain</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The reStructuredText Domain</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes/index.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="the-restructuredtext-domain">
+<h1>The reStructuredText Domain<a class="headerlink" href="#the-restructuredtext-domain" title="Link to this heading">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.0.</span></p>
+</div>
+<p>The reStructuredText domain (name <strong>rst</strong>) provides the following directives:</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-rst-directive">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">rst:directive::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-rst-directive" title="Link to this definition">¶</a></dt>
+<dd><p>Describes a reStructuredText directive.
+The <em>name</em> can be a single directive name or actual directive syntax
+(<cite>..</cite> prefix and <cite>::</cite> suffix) with arguments that will be rendered differently.
+For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">rst:directive</span><span class="p">::</span> foo
+
+   Foo description.
+
+<span class="p">..</span> <span class="ow">rst:directive</span><span class="p">::</span> .. bar:: baz
+
+   Bar description.
+</pre></div>
+</div>
+<p>will be rendered as:</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-foo">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">foo::</span></span><a class="headerlink" href="#directive-foo" title="Link to this definition">¶</a></dt>
+<dd><p>Foo description.</p>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-bar">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">bar::</span></span><span class="sig-prename descclassname"> <span class="pre">baz</span></span><a class="headerlink" href="#directive-bar" title="Link to this definition">¶</a></dt>
+<dd><p>Bar description.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-rst-directive-option">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">rst:directive:option::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-rst-directive-option" title="Link to this definition">¶</a></dt>
+<dd><p>Describes an option for reStructuredText directive.  The <em>name</em> can be a single option
+name or option name with arguments which separated with colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>).
+For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">rst:directive</span><span class="p">::</span> toctree
+
+<span class="p">   ..</span> <span class="ow">rst:directive:option</span><span class="p">::</span> caption: caption of ToC
+
+<span class="p">   ..</span> <span class="ow">rst:directive:option</span><span class="p">::</span> glob
+</pre></div>
+</div>
+<p>will be rendered as:</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">toctree::</span></span></dt>
+<dd><dl class="rst directive:option">
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">:caption:</span></span><span class="property"> <span class="pre">caption</span> <span class="pre">of</span> <span class="pre">ToC</span></span></dt>
+<dd></dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">:glob:</span></span></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<p class="rubric">options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-rst-directive-option-type">
+<span class="sig-name descname"><span class="pre">:type:</span></span><span class="property"> <span class="pre">description</span> <span class="pre">of</span> <span class="pre">argument</span></span><span class="property"> <span class="pre">(text)</span></span><a class="headerlink" href="#directive-option-rst-directive-option-type" title="Link to this definition">¶</a></dt>
+<dd><p>Describe the type of option value.</p>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">rst:directive</span><span class="p">::</span> toctree
+
+<span class="p">   ..</span> <span class="ow">rst:directive:option</span><span class="p">::</span> maxdepth
+      <span class="nc">:type:</span> integer or no value
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 2.1.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-rst-role">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">rst:role::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-rst-role" title="Link to this definition">¶</a></dt>
+<dd><p>Describes a reStructuredText role.  For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">rst:role</span><span class="p">::</span> foo
+
+   Foo description.
+</pre></div>
+</div>
+<p>will be rendered as:</p>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-foo">
+<span class="sig-name descname"><span class="pre">:foo:</span></span><a class="headerlink" href="#role-foo" title="Link to this definition">¶</a></dt>
+<dd><p>Foo description.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p id="rst-xref-roles">These roles are provided to refer to the described objects:</p>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-rst-dir">
+<span class="sig-name descname"><span class="pre">:rst:dir:</span></span><a class="headerlink" href="#role-rst-dir" title="Link to this definition">¶</a></dt>
+<dd><p>Reference directives and directive options. Examples:</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">:rst:dir:`my-directive`</span></code> to reference a directive.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">:rst:dir:`my-directive:my-option`</span></code> to reference a
+directive option.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-rst-role">
+<span class="sig-name descname"><span class="pre">:rst:role:</span></span><a class="headerlink" href="#role-rst-role" title="Link to this definition">¶</a></dt>
+<dd><p>Reference a role. Example: <code class="docutils literal notranslate"><span class="pre">:rst:role:`my-role`</span></code>.</p>
+</dd></dl>
+
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="python.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">The Python Domain</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="../extensions/index.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">Extensions</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; Copyright 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+</div>
+  </body>
+</html>
