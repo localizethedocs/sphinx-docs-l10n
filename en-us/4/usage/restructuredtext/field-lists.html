@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Field Lists &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/restructuredtext/field-lists.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Domains" href="domains.html" />
+    <link rel="prev" title="Directives" href="directives.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../installation.html">Get it</a></li>
+    <li><a href="../../contents.html">Docs</a></li>
+    <li><a href="../../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../../index.html">
+      <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="domains.html" title="Domains"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="directives.html" title="Directives"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">reStructuredText</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Field Lists</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../contents.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Field Lists</a><ul>
+<li><a class="reference internal" href="#file-wide-metadata">File-wide metadata</a></li>
+<li><a class="reference internal" href="#special-metadata-fields">Special metadata fields</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="directives.html"
+                          title="previous chapter">Directives</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="domains.html"
+                          title="next chapter">Domains</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/usage/restructuredtext/field-lists.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="field-lists">
+<h1>Field Lists<a class="headerlink" href="#field-lists" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="basics.html#rst-field-lists"><span class="std std-ref">As previously discussed</span></a>, field lists are sequences of
+fields marked up like this:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:fieldname:</span> Field content
+</pre></div>
+</div>
+<p>Sphinx extends standard docutils behavior for field lists and adds some extra
+functionality that is covered in this section.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The values of field lists will be parsed as
+strings. You cannot use Python collections such as lists or dictionaries.</p>
+</div>
+<section id="file-wide-metadata">
+<span id="metadata"></span><h2>File-wide metadata<a class="headerlink" href="#file-wide-metadata" title="Permalink to this headline">¶</a></h2>
+<p>A field list near the top of a file is normally parsed by docutils as the
+<em>docinfo</em> and shown on the page.  However, in Sphinx, a field list preceding
+any other markup is moved from the <em>docinfo</em> to the Sphinx environment as
+document metadata, and is not displayed in the output.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A field list appearing after the document title <em>will</em> be part of the
+<em>docinfo</em> as normal and will be displayed in the output.</p>
+</div>
+</section>
+<section id="special-metadata-fields">
+<h2>Special metadata fields<a class="headerlink" href="#special-metadata-fields" title="Permalink to this headline">¶</a></h2>
+<p>Sphinx provides custom behavior for bibliographic fields compared to docutils.</p>
+<p>At the moment, these metadata fields are recognized:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">tocdepth</span></code></dt><dd><p>The maximum depth for a table of contents of this file.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:tocdepth:</span> 2
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This metadata effects to the depth of local toctree.  But it does not
+effect to the depth of <em>global</em> toctree.  So this would not be change
+the sidebar of some themes which uses global one.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.4.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">nocomments</span></code></dt><dd><p>If set, the web application won’t display a comment form for a page
+generated from this source file.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:nocomments:</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">orphan</span></code></dt><dd><p>If set, warnings about this file not being included in any toctree will be
+suppressed.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:orphan:</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.</span></p>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">nosearch</span></code></dt><dd><p>If set, full text search for this file is disabled.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:nosearch:</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>object search is still available even if <cite>nosearch</cite> option is set.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 3.0.</span></p>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="domains.html" title="Domains"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="directives.html" title="Directives"
+             >previous</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >reStructuredText</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Field Lists</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2022, Georg Brandl and the Sphinx team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

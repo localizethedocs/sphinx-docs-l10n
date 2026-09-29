@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html lang="en-US" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cross-referencing syntax &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=fb9458d3" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css?v=4e502a7e" />
+    <script src="../_static/documentation_options.js?v=384ed2c4"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/referencing.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="prev" title="Markdown" href="markdown.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../index.html">
+      <img src="../_static/sphinx-logo.svg" alt="logo" />
+    </a>
+    <h1>Sphinx</h1>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Using Sphinx</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Cross-referencing syntax</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Cross-referencing syntax</a><ul>
+<li><a class="reference internal" href="#cross-referencing-anything">Cross-referencing anything</a><ul>
+<li><a class="reference internal" href="#role-any"><code class="docutils literal notranslate"><span class="pre">:any:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cross-referencing-objects">Cross-referencing objects</a></li>
+<li><a class="reference internal" href="#cross-referencing-arbitrary-locations">Cross-referencing arbitrary locations</a><ul>
+<li><a class="reference internal" href="#role-ref"><code class="docutils literal notranslate"><span class="pre">:ref:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cross-referencing-documents">Cross-referencing documents</a><ul>
+<li><a class="reference internal" href="#role-doc"><code class="docutils literal notranslate"><span class="pre">:doc:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#referencing-downloadable-files">Referencing downloadable files</a><ul>
+<li><a class="reference internal" href="#role-download"><code class="docutils literal notranslate"><span class="pre">:download:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cross-referencing-figures-by-figure-number">Cross-referencing figures by figure number</a><ul>
+<li><a class="reference internal" href="#role-numref"><code class="docutils literal notranslate"><span class="pre">:numref:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cross-referencing-other-items-of-interest">Cross-referencing other items of interest</a><ul>
+<li><a class="reference internal" href="#role-confval"><code class="docutils literal notranslate"><span class="pre">:confval:</span></code></a></li>
+<li><a class="reference internal" href="#role-envvar"><code class="docutils literal notranslate"><span class="pre">:envvar:</span></code></a></li>
+<li><a class="reference internal" href="#role-token"><code class="docutils literal notranslate"><span class="pre">:token:</span></code></a></li>
+<li><a class="reference internal" href="#role-keyword"><code class="docutils literal notranslate"><span class="pre">:keyword:</span></code></a></li>
+<li><a class="reference internal" href="#role-option"><code class="docutils literal notranslate"><span class="pre">:option:</span></code></a></li>
+<li><a class="reference internal" href="#role-term"><code class="docutils literal notranslate"><span class="pre">:term:</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markdown.html">Markdown</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cross-referencing syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builders/index.html">Builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains/index.html">Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extensions/index.html">Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theming.html">HTML Theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="cross-referencing-syntax">
+<span id="xref-syntax"></span><h1>Cross-referencing syntax<a class="headerlink" href="#cross-referencing-syntax" title="Link to this heading">¶</a></h1>
+<p>Cross-references are generated by many semantic interpreted text roles.
+Basically, you only need to write <code class="docutils literal notranslate"><span class="pre">:role:`target`</span></code>, and a link will be
+created to the item named <em>target</em> of the type indicated by <em>role</em>.  The link’s
+text will be the same as <em>target</em>.</p>
+<p>There are some additional facilities, however, that make cross-referencing
+roles more versatile:</p>
+<ul>
+<li><p>You may supply an explicit title and reference target,
+like in reStructuredText direct hyperlinks:
+<code class="docutils literal notranslate"><span class="pre">:role:`title</span> <span class="pre">&lt;target&gt;`</span></code> will refer to <em>target</em>,
+but the link text will be <em>title</em>.</p></li>
+<li><p>If you prefix the content with <code class="docutils literal notranslate"><span class="pre">!</span></code>, no reference/hyperlink will be created.</p></li>
+<li><p>If you prefix the content with <code class="docutils literal notranslate"><span class="pre">~</span></code>, the link text will only be the last
+component of the target.  For example, <code class="docutils literal notranslate"><span class="pre">:py:meth:`~Queue.Queue.get`</span></code> will
+refer to <code class="docutils literal notranslate"><span class="pre">Queue.Queue.get</span></code> but only display <code class="docutils literal notranslate"><span class="pre">get</span></code> as the link text.  This
+does not work with all cross-reference roles, but is domain specific.</p>
+<p>In HTML output, the link’s <code class="docutils literal notranslate"><span class="pre">title</span></code> attribute (that is e.g. shown as a
+tool-tip on mouse-hover) will always be the full target name.</p>
+</li>
+</ul>
+<section id="cross-referencing-anything">
+<span id="any-role"></span><h2>Cross-referencing anything<a class="headerlink" href="#cross-referencing-anything" title="Link to this heading">¶</a></h2>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-any">
+<span class="sig-name descname"><span class="pre">:any:</span></span><a class="headerlink" href="#role-any" title="Link to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+<p>This convenience role tries to do its best to find a valid target for its
+reference text.</p>
+<ul>
+<li><p>First, it tries standard cross-reference targets that would be referenced
+by <a class="reference internal" href="#role-doc" title="doc role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">doc</span></code></a>, <a class="reference internal" href="#role-ref" title="ref role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">ref</span></code></a> or <a class="reference internal" href="#role-option" title="option role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">option</span></code></a>.</p>
+<p>Custom objects added to the standard domain by extensions (see
+<a class="reference internal" href="../extdev/appapi.html#sphinx.application.Sphinx.add_object_type" title="sphinx.application.Sphinx.add_object_type"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Sphinx.add_object_type()</span></code></a>) are also searched.</p>
+</li>
+<li><p>Then, it looks for objects (targets) in all loaded domains.  It is up to
+the domains how specific a match must be.  For example, in the Python
+domain a reference of <code class="docutils literal notranslate"><span class="pre">:any:`Builder`</span></code> would match the
+<code class="docutils literal notranslate"><span class="pre">sphinx.builders.Builder</span></code> class.</p></li>
+</ul>
+<p>If none or multiple targets are found, a warning will be emitted.  In the
+case of multiple targets, you can change “any” to a specific role.</p>
+<p>This role is a good candidate for setting <a class="reference internal" href="configuration.html#confval-default_role"><code class="xref std std-confval docutils literal notranslate"><span class="pre">default_role</span></code></a>.  If you
+do, you can write cross-references without a lot of markup overhead.  For
+example, in this Python function documentation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. function:: install()
+
+   This function installs a `handler` for every signal known by the
+   `signal` module.  See the section `about-signals` for more information.
+</pre></div>
+</div>
+<p>there could be references to a glossary term (usually <code class="docutils literal notranslate"><span class="pre">:term:`handler`</span></code>), a
+Python module (usually <code class="docutils literal notranslate"><span class="pre">:py:mod:`signal`</span></code> or <code class="docutils literal notranslate"><span class="pre">:mod:`signal`</span></code>) and a
+section (usually <code class="docutils literal notranslate"><span class="pre">:ref:`about-signals`</span></code>).</p>
+<p>The <a class="reference internal" href="#role-any" title="any role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">any</span></code></a> role also works together with the
+<a class="reference internal" href="extensions/intersphinx.html#module-sphinx.ext.intersphinx" title="sphinx.ext.intersphinx: Link to other Sphinx documentation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">intersphinx</span></code></a> extension: when no local cross-reference is
+found, all object types of intersphinx inventories are also searched.</p>
+</dd></dl>
+
+</section>
+<section id="cross-referencing-objects">
+<h2>Cross-referencing objects<a class="headerlink" href="#cross-referencing-objects" title="Link to this heading">¶</a></h2>
+<p>These roles are described with their respective domains:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="domains/python.html#python-xref-roles"><span class="std std-ref">Python</span></a></p></li>
+<li><p><a class="reference internal" href="domains/c.html#c-xref-roles"><span class="std std-ref">C</span></a></p></li>
+<li><p><a class="reference internal" href="domains/cpp.html#cpp-xref-roles"><span class="std std-ref">C++</span></a></p></li>
+<li><p><a class="reference internal" href="domains/javascript.html#js-xref-roles"><span class="std std-ref">JavaScript</span></a></p></li>
+<li><p><a class="reference internal" href="domains/restructuredtext.html#rst-xref-roles"><span class="std std-ref">reStructuredText</span></a></p></li>
+</ul>
+</section>
+<section id="cross-referencing-arbitrary-locations">
+<span id="ref-role"></span><h2>Cross-referencing arbitrary locations<a class="headerlink" href="#cross-referencing-arbitrary-locations" title="Link to this heading">¶</a></h2>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-ref">
+<span class="sig-name descname"><span class="pre">:ref:</span></span><a class="headerlink" href="#role-ref" title="Link to this definition">¶</a></dt>
+<dd><p>To support cross-referencing to arbitrary locations in any document,
+the standard reStructuredText labels are used.
+For this to work label names must be unique
+throughout the entire documentation.
+There are two ways in which you can refer to labels:</p>
+<ul>
+<li><p>If you place a label directly before a section title, you can reference to
+it with <code class="docutils literal notranslate"><span class="pre">:ref:`label-name`</span></code>.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. _my-reference-label:
+
+Section to cross-reference
+--------------------------
+
+This is the text of the section.
+
+It refers to the section itself, see :ref:`my-reference-label`.
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">:ref:</span></code> role would then generate a link to the section, with the
+link title being “Section to cross-reference”.  This works just as well
+when section and reference are in different source files.</p>
+<p>Automatic labels also work with figures. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">_my</span><span class="o">-</span><span class="n">figure</span><span class="p">:</span>
+
+<span class="o">..</span> <span class="n">figure</span><span class="p">::</span> <span class="n">whatever</span>
+
+   <span class="n">Figure</span> <span class="n">caption</span>
+</pre></div>
+</div>
+<p>In this case, a  reference <code class="docutils literal notranslate"><span class="pre">:ref:`my-figure`</span></code> would insert a reference
+to the figure with link text “Figure caption”.</p>
+<p>The same works for tables that are given an explicit caption using the
+<a class="extlink-dudir reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html#table">table</a> directive.</p>
+</li>
+<li><p>Labels that aren’t placed before a section title can still be referenced,
+but you must give the link an explicit title, using this syntax:
+<code class="docutils literal notranslate"><span class="pre">:ref:`Link</span> <span class="pre">title</span> <span class="pre">&lt;label-name&gt;`</span></code>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Reference labels must start with an underscore. When referencing a label,
+the underscore must be omitted (see examples above).</p>
+</div>
+<p>Using <a class="reference internal" href="#role-ref" title="ref role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">ref</span></code></a> is advised over standard reStructuredText links to
+sections (like <code class="docutils literal notranslate"><span class="pre">`Section</span> <span class="pre">title`_</span></code>) because it works across files, when
+section headings are changed, will raise warnings if incorrect, and works
+for all builders that support cross-references.</p>
+</dd></dl>
+
+</section>
+<section id="cross-referencing-documents">
+<h2>Cross-referencing documents<a class="headerlink" href="#cross-referencing-documents" title="Link to this heading">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.6.</span></p>
+</div>
+<p>There is also a way to directly link to documents:</p>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-doc">
+<span class="sig-name descname"><span class="pre">:doc:</span></span><a class="headerlink" href="#role-doc" title="Link to this definition">¶</a></dt>
+<dd><p>Link to the specified document; the document name can be specified in
+absolute or relative fashion.  For example, if the reference
+<code class="docutils literal notranslate"><span class="pre">:doc:`parrot`</span></code> occurs in the document <code class="docutils literal notranslate"><span class="pre">sketches/index</span></code>, then the link
+refers to <code class="docutils literal notranslate"><span class="pre">sketches/parrot</span></code>.  If the reference is <code class="docutils literal notranslate"><span class="pre">:doc:`/people`</span></code> or
+<code class="docutils literal notranslate"><span class="pre">:doc:`../people`</span></code>, the link refers to <code class="docutils literal notranslate"><span class="pre">people</span></code>.</p>
+<p>If no explicit link text is given (like usual: <code class="docutils literal notranslate"><span class="pre">:doc:`Monty</span> <span class="pre">Python</span> <span class="pre">members</span>
+<span class="pre">&lt;/people&gt;`</span></code>), the link caption will be the title of the given document.</p>
+</dd></dl>
+
+</section>
+<section id="referencing-downloadable-files">
+<h2>Referencing downloadable files<a class="headerlink" href="#referencing-downloadable-files" title="Link to this heading">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.6.</span></p>
+</div>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-download">
+<span class="sig-name descname"><span class="pre">:download:</span></span><a class="headerlink" href="#role-download" title="Link to this definition">¶</a></dt>
+<dd><p>This role lets you link to files within your source tree
+that are not reStructuredText documents that can be viewed,
+but files that can be downloaded.</p>
+<p>When you use this role, the referenced file is automatically marked for
+inclusion in the output when building (obviously, for HTML output only).
+All downloadable files are put into a <code class="docutils literal notranslate"><span class="pre">_downloads/&lt;unique</span> <span class="pre">hash&gt;/</span></code>
+subdirectory of the output directory; duplicate filenames are handled.</p>
+<p>An example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>See :download:`this example script &lt;../example.py&gt;`.
+</pre></div>
+</div>
+<p>The given filename is usually relative to the directory the current source
+file is contained in, but if it absolute (starting with <code class="docutils literal notranslate"><span class="pre">/</span></code>), it is taken
+as relative to the top source directory.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">example.py</span></code> file will be copied to the output directory, and a
+suitable link generated to it.</p>
+<p>Not to show unavailable download links, you should wrap whole paragraphs that
+have this role:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. only:: builder_html
+
+   See :download:`this example script &lt;../example.py&gt;`.
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cross-referencing-figures-by-figure-number">
+<h2>Cross-referencing figures by figure number<a class="headerlink" href="#cross-referencing-figures-by-figure-number" title="Link to this heading">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.5: </span><a class="reference internal" href="#role-numref" title="numref role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">numref</span></code></a> role can also refer sections.
+And <a class="reference internal" href="#role-numref" title="numref role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">numref</span></code></a> allows <code class="docutils literal notranslate"><span class="pre">{name}</span></code> for the link text.</p>
+</div>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-numref">
+<span class="sig-name descname"><span class="pre">:numref:</span></span><a class="headerlink" href="#role-numref" title="Link to this definition">¶</a></dt>
+<dd><p>Link to the specified figures, tables, code-blocks and sections;
+the standard reStructuredText labels are used.
+When you use this role, it will insert a reference to
+the figure with link text by its figure number like “Fig. 1.1”.</p>
+<p>If an explicit link text is given (as usual: <code class="docutils literal notranslate"><span class="pre">:numref:`Image</span> <span class="pre">of</span> <span class="pre">Sphinx</span> <span class="pre">(Fig.</span>
+<span class="pre">%s)</span> <span class="pre">&lt;my-figure&gt;`</span></code>), the link caption will serve as title of the reference.
+As placeholders, <cite>%s</cite> and <cite>{number}</cite> get replaced by the figure
+number and  <cite>{name}</cite> by the figure caption.
+If no explicit link text is given, the <a class="reference internal" href="configuration.html#confval-numfig_format"><code class="xref std std-confval docutils literal notranslate"><span class="pre">numfig_format</span></code></a> setting is
+used as fall-back default.</p>
+<p>If <a class="reference internal" href="configuration.html#confval-numfig"><code class="xref std std-confval docutils literal notranslate"><span class="pre">numfig</span></code></a> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, figures are not numbered,
+so this role inserts not a reference but the label or the link text.</p>
+</dd></dl>
+
+</section>
+<section id="cross-referencing-other-items-of-interest">
+<h2>Cross-referencing other items of interest<a class="headerlink" href="#cross-referencing-other-items-of-interest" title="Link to this heading">¶</a></h2>
+<p>The following roles do possibly create a cross-reference, but do not refer to
+objects:</p>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-confval">
+<span class="sig-name descname"><span class="pre">:confval:</span></span><a class="headerlink" href="#role-confval" title="Link to this definition">¶</a></dt>
+<dd><p>A configuration value or setting.
+Index entries are generated.
+Also generates a link to the matching <a class="reference internal" href="domains/standard.html#directive-confval" title="confval directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">confval</span></code></a> directive,
+if it exists.</p>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-envvar">
+<span class="sig-name descname"><span class="pre">:envvar:</span></span><a class="headerlink" href="#role-envvar" title="Link to this definition">¶</a></dt>
+<dd><p>An environment variable.  Index entries are generated.  Also generates a link
+to the matching <a class="reference internal" href="domains/standard.html#directive-envvar" title="envvar directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">envvar</span></code></a> directive, if it exists.</p>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-token">
+<span class="sig-name descname"><span class="pre">:token:</span></span><a class="headerlink" href="#role-token" title="Link to this definition">¶</a></dt>
+<dd><p>The name of a grammar token (used to create links between
+<a class="reference internal" href="restructuredtext/directives.html#directive-productionlist" title="productionlist directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">productionlist</span></code></a> directives).</p>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-keyword">
+<span class="sig-name descname"><span class="pre">:keyword:</span></span><a class="headerlink" href="#role-keyword" title="Link to this definition">¶</a></dt>
+<dd><p>The name of a keyword in Python.  This creates a link to a reference label
+with that name, if it exists.</p>
+</dd></dl>
+
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-option">
+<span class="sig-name descname"><span class="pre">:option:</span></span><a class="headerlink" href="#role-option" title="Link to this definition">¶</a></dt>
+<dd><p>A command-line option to an executable program.  This generates a link to
+a <a class="reference internal" href="domains/standard.html#directive-option" title="option directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">option</span></code></a> directive, if it exists.</p>
+</dd></dl>
+
+<p>The following role creates a cross-reference to a term in a
+<a class="reference internal" href="restructuredtext/directives.html#glossary-directive"><span class="std std-ref">glossary</span></a>:</p>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-term">
+<span class="sig-name descname"><span class="pre">:term:</span></span><a class="headerlink" href="#role-term" title="Link to this definition">¶</a></dt>
+<dd><p>Reference to a term in a glossary.  A glossary is created using the
+<code class="docutils literal notranslate"><span class="pre">glossary</span></code> directive containing a definition list with terms and
+definitions.  It does not have to be in the same file as the <code class="docutils literal notranslate"><span class="pre">term</span></code> markup,
+for example the Python docs have one global glossary in the <code class="docutils literal notranslate"><span class="pre">glossary.rst</span></code>
+file.</p>
+<p>If you use a term that’s not explained in a glossary, you’ll get a warning
+during build.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="markdown.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Markdown</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="configuration.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">Configuration</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; Copyright 2007-2026, the Sphinx developers.
+  Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+</div>
+  </body>
+</html>
