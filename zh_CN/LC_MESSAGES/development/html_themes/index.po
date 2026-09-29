@@ -1,0 +1,749 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2025, the Sphinx developers
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 9\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-06 10:32+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../development/html_themes/index.rst:4
+msgid "HTML theme development"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:10
+msgid ""
+"This document provides information about creating your own theme. If you "
+"simply wish to use a pre-existing HTML themes, refer to :doc:`/usage/"
+"theming`."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:14
+msgid ""
+"Sphinx supports changing the appearance of its HTML output via *themes*.  A "
+"theme is a collection of HTML templates, stylesheet(s) and other static "
+"files. Additionally, it has a configuration file which specifies from which "
+"theme to inherit, which highlighting style to use, and what options exist "
+"for customizing the theme's look and feel."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:20
+msgid ""
+"Themes are meant to be project-unaware, so they can be used for different "
+"projects without change."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:25
+msgid ""
+"See :ref:`dev-extensions` for more information that may be helpful in "
+"developing themes."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:30
+msgid "Creating themes"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:32
+msgid ""
+"Themes take the form of either a directory or a zipfile (whose name is the "
+"theme name), containing the following:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:35
+msgid ""
+"Either a :file:`theme.toml` file (preferred) or a :file:`theme.conf` file."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:36
+msgid "HTML templates, if needed."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:37
+msgid ""
+"A ``static/`` directory containing any static files that will be copied to "
+"the output static directory on build.  These can be images, styles, script "
+"files."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:41
+msgid "Theme configuration (``theme.toml``)"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:43
+msgid ""
+"The :file:`theme.toml` file is a TOML_ document, containing two tables: "
+"``[theme]`` and ``[options]``."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:46
+msgid "The ``[theme]`` table defines the theme's settings:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:48
+msgid ""
+"**inherit** (string): The name of the base theme from which to inherit "
+"settings, options, templates, and static files. All static files from theme "
+"'ancestors' will be used. The theme will use all options defined in "
+"inherited themes. Finally, inherited themes will be used to locate missing "
+"templates (for example, if ``\"basic\"`` is used as the base theme, most "
+"templates will already be defined)."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:56
+msgid ""
+"If set to ``\"none\"``, the theme will not inherit from any other theme. "
+"Inheritance is recursive, forming a chain of inherited themes (e.g. "
+"``default`` -> ``classic`` -> ``basic`` -> ``none``)."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:60
+msgid ""
+"**stylesheets** (list of strings): A list of CSS filenames which will be "
+"included in generated HTML header. Setting the   :confval:`html_style` "
+"config value will override this setting."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:64
+msgid ""
+"Other mechanisms for including multiple stylesheets include ``@import`` in "
+"CSS or using a custom HTML template with appropriate ``<link "
+"rel=\"stylesheet\">`` tags."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:67
+msgid ""
+"**sidebars** (list of strings): A list of sidebar templates. This can be "
+"overridden by the user via the :confval:`html_sidebars` config value."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:70
+msgid ""
+"**pygments_style** (table): A TOML table defining the names of Pygments "
+"styles to use for highlighting syntax. The table has two recognised keys: "
+"``default`` and ``dark``. The style defined in the ``dark`` key will be used "
+"when the CSS media query ``(prefers-color-scheme: dark)`` evaluates to true."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:76
+msgid ""
+"``[theme.pygments_style.default]`` can be overridden by the user via the :"
+"confval:`pygments_style` config value."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:79
+msgid ""
+"The ``[options]`` table defines the options for the theme. It is structured "
+"such that each key-value pair corresponds to a variable name and the "
+"corresponding default value. These options can be overridden by the user in :"
+"confval:`html_theme_options` and are accessible from all templates as "
+"``theme_<name>``."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:85
+msgid "``theme.toml`` support."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:90
+msgid "Exemplar :file:`theme.toml` file:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:92
+msgid ""
+"[theme]\n"
+"inherit = \"basic\"\n"
+"stylesheets = [\n"
+"    \"main-CSS-stylesheet.css\",\n"
+"]\n"
+"sidebars = [\n"
+"    \"localtoc.html\",\n"
+"    \"relations.html\",\n"
+"    \"sourcelink.html\",\n"
+"    \"searchbox.html\",\n"
+"]\n"
+"# Style names from https://pygments.org/styles/\n"
+"pygments_style = { default = \"style_name\", dark = \"dark_style\" }\n"
+"\n"
+"[options]\n"
+"variable = \"default value\""
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:112
+msgid "Theme configuration (``theme.conf``)"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:114
+msgid ""
+"The :file:`theme.conf` file is in INI format [1]_ (readable by the standard "
+"Python :mod:`configparser` module) and has the following structure:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:117
+msgid ""
+"[theme]\n"
+"inherit = base theme\n"
+"stylesheet = main CSS name\n"
+"pygments_style = stylename\n"
+"sidebars = localtoc.html, relations.html, sourcelink.html, searchbox.html\n"
+"\n"
+"[options]\n"
+"variable = default value"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:128
+msgid ""
+"The **inherit** setting gives the name of a \"base theme\", or ``none``.  "
+"The base theme will be used to locate missing templates (most themes will "
+"not have to supply most templates if they use ``basic`` as the base theme), "
+"its options will be inherited, and all of its static files will be used as "
+"well. If you want to also inherit the stylesheet, include it via CSS' "
+"``@import`` in your own."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:135
+msgid ""
+"The **stylesheet** setting gives a list of CSS filenames separated commas "
+"which will be referenced in the HTML header.  You can also use CSS' "
+"``@import`` technique to include one from the other, or use a custom HTML "
+"template that adds ``<link rel=\"stylesheet\">`` tags as necessary.  Setting "
+"the :confval:`html_style` config value will override this setting."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:141
+msgid ""
+"The **pygments_style** setting gives the name of a Pygments style to use for "
+"highlighting.  This can be overridden by the user in the :confval:"
+"`pygments_style` config value."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:145
+msgid ""
+"The **pygments_dark_style** setting gives the name of a Pygments style to "
+"use for highlighting when the CSS media query ``(prefers-color-scheme: "
+"dark)`` evaluates to true. It is injected into the page using :meth:`~sphinx."
+"application.Sphinx.add_css_file`."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:150
+msgid ""
+"The **sidebars** setting gives the comma separated list of sidebar templates "
+"for constructing sidebars.  This can be overridden by the user in the :"
+"confval:`html_sidebars` config value."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:154
+msgid ""
+"The **options** section contains pairs of variable names and default values. "
+"These options can be overridden by the user in :confval:`html_theme_options` "
+"and are accessible from all templates as ``theme_<name>``."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:158
+msgid "sidebar settings"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:163
+msgid "The stylesheet setting accepts multiple CSS filenames"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:166
+msgid "Convert ``theme.conf`` to ``theme.toml``"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:168
+msgid ""
+"INI-style theme configuration files (``theme.conf``) can be converted to "
+"TOML via a helper programme distributed with Sphinx. This is intended for "
+"one-time use, and may be removed without notice in a future version of "
+"Sphinx."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:173
+msgid "$ python -m sphinx.theming conf_to_toml [THEME DIRECTORY PATH]"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:177
+msgid ""
+"The required argument is a path to a directory containing a ``theme.conf`` "
+"file. The programme will write a ``theme.toml`` file in the same directory, "
+"and will not modify the original ``theme.conf`` file."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:186
+msgid "Distribute your theme as a Python package"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:188
+msgid ""
+"As a way to distribute your theme, you can use a Python package.  This makes "
+"it easier for users to set up your theme."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:191
+msgid ""
+"To distribute your theme as a Python package, please define an entry point "
+"called ``sphinx.html_themes`` in your ``pyproject.toml`` file, and write a "
+"``setup()`` function to register your theme using the :meth:`~sphinx."
+"application.Sphinx.add_html_theme` API:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:196
+msgid ""
+"# pyproject.toml\n"
+"\n"
+"[project.entry-points.\"sphinx.html_themes\"]\n"
+"name_of_theme = \"your_theme_package\""
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:203
+msgid ""
+"# your_theme_package.py\n"
+"from pathlib import Path\n"
+"\n"
+"def setup(app):\n"
+"    app.add_html_theme('name_of_theme', Path(__file__).resolve().parent)"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:211
+msgid ""
+"If your theme package contains two or more themes, please call "
+"``add_html_theme()`` twice or more."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:214
+msgid "'sphinx_themes' entry_points feature."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:217
+msgid "``sphinx_themes`` entry_points has been deprecated."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:220
+msgid "``sphinx.html_themes`` entry_points feature."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:225
+msgid "Styling with CSS"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:227
+msgid ""
+"The :confval:`!stylesheets` setting can be used to add custom CSS files to a "
+"theme."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:231
+msgid ""
+"The structure of the HTML elements and their classes are currently not a "
+"well-defined public API. Please infer them from inspecting the built HTML "
+"pages. While we cannot guarantee full stability, they tend to be fairly "
+"stable."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:237
+msgid "Styling search result entries by category"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:243
+msgid ""
+"The CSS classes named below are generated by Sphinx's standalone search "
+"code.  If you are using a third-party search provider, such as ReadTheDocs_, "
+"to provide search results, then the theming options available may vary."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:250
+msgid ""
+"The search result items have classes indicating the context in which the "
+"search term was found. You can use the CSS selectors:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:253
+msgid ""
+"``ul.search li.kind-index``: For results in an index, such as the glossary"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:255
+msgid ""
+"``ul.search li.kind-object``: For results in source code, like Python "
+"function definitions"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:257
+msgid "``ul.search li.kind-title``: For results found in section headings"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:259
+msgid ""
+"``ul.search li.kind-text``: For results found anywhere else in the "
+"documentation text"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:262
+msgid ""
+"As a base for inheritance by other themes, the ``basic`` theme is "
+"intentionally minimal and does not define CSS rules using these. Derived "
+"themes are encouraged to use these selectors as they see fit. For example, "
+"the following stylesheet adds contextual icons to the search result list:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:268
+msgid ""
+"ul.search {\n"
+"    padding-left: 30px;\n"
+"}\n"
+"ul.search li {\n"
+"    padding: 5px 0 5px 10px;\n"
+"    list-style-type: \"\\25A1\";  /* Unicode: White Square */\n"
+"}\n"
+"ul.search li.kind-index {\n"
+"    list-style-type: \"\\1F4D1\";  /* Unicode: Bookmark Tabs */\n"
+"}\n"
+"ul.search li.kind-object {\n"
+"    list-style-type: \"\\1F4E6\";  /* Unicode: Package */\n"
+"}\n"
+"ul.search li.kind-title {\n"
+"    list-style-type: \"\\1F4C4\";  /* Unicode: Page Facing Up */\n"
+"}\n"
+"ul.search li.kind-text {\n"
+"    list-style-type: \"\\1F4C4\";  /* Unicode: Page Facing Up */\n"
+"}"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:292
+msgid "Templating"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:299
+msgid ""
+"The :doc:`guide to templating <templating>` is helpful if you want to write "
+"your own templates.  What is important to keep in mind is the order in which "
+"Sphinx searches for templates:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:303
+msgid "First, in the user's ``templates_path`` directories."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:304
+msgid "Then, in the selected theme."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:305
+msgid "Then, in its base theme, its base's base theme, etc."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:307
+msgid ""
+"When extending a template in the base theme with the same name, use the "
+"theme name as an explicit directory: ``{% extends \"basic/layout.html\" %}"
+"``.  From a user ``templates_path`` template, you can still use the "
+"\"exclamation mark\" syntax as :ref:`described in the templating document "
+"<templating-primer>`."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:316
+msgid "Static templates"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:318
+msgid ""
+"Since theme options are meant for the user to configure a theme more easily, "
+"without having to write a custom stylesheet, it is necessary to be able to "
+"template static files as well as HTML files.  Therefore, Sphinx supports so-"
+"called \"static templates\", like this:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:323
+msgid ""
+"If the name of a file in the ``static/`` directory of a theme (or in the "
+"user's static path) ends with ``.jinja`` or ``_t``, it will be processed by "
+"the template engine.  The suffix will be removed from the final file name."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:327
+msgid ""
+"For example, a theme with a ``static/theme_styles.css.jinja`` file could use "
+"templating to put options into the stylesheet. When a documentation project "
+"is built with that theme, the output directory will contain a ``_static/"
+"theme_styles.css`` file where all template tags have been processed."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:335
+msgid ""
+"The preferred suffix for static templates is now ``.jinja``, in line with "
+"the Jinja project's `recommended file extension`_."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:338
+msgid ""
+"The ``_t`` file suffix for static templates is now considered 'legacy', and "
+"support may eventually be removed."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:341
+msgid ""
+"If a static template with either a ``_t`` suffix or a ``.jinja`` suffix is "
+"detected, it will be processed by the template engine, with the suffix "
+"removed from the final file name."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:349
+msgid "Use custom page metadata in HTML templates"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:351
+msgid ""
+"Any key / value pairs in :doc:`field lists </usage/restructuredtext/field-"
+"lists>` that are placed *before* the page's title will be available to the "
+"Jinja template when building the page within the :data:`meta` attribute. For "
+"example, if a page had the following text before its first title:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:356
+msgid ""
+":mykey: My value\n"
+"\n"
+"My first title\n"
+"--------------"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:363
+msgid "Then it could be accessed within a Jinja template like so:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:365
+msgid ""
+"{%- if meta is mapping %}\n"
+"    {{ meta.get(\"mykey\") }}\n"
+"{%- endif %}"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:371
+msgid ""
+"Note the check that ``meta`` is a dictionary (\"mapping\" in Jinja "
+"terminology) to ensure that using it in this way is valid."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:376
+msgid "Defining custom template functions"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:378
+msgid ""
+"Sometimes it is useful to define your own function in Python that you wish "
+"to then use in a template. For example, if you'd like to insert a template "
+"value with logic that depends on the user's configuration in the project, or "
+"if you'd like to include non-trivial checks and provide friendly error "
+"messages for incorrect configuration in the template."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:384
+msgid ""
+"To define your own template function, you'll need to define two functions "
+"inside your module:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:387
+msgid ""
+"A **page context event handler** (or **registration**) function. This is "
+"connected to the :class:`.Sphinx` application via an event callback."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:389
+msgid "A **template function** that you will use in your Jinja template."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:391
+msgid ""
+"First, define the registration function, which accepts the arguments for :"
+"event:`html-page-context`."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:394
+msgid ""
+"Within the registration function, define the template function that you'd "
+"like to use within Jinja. The template function should return a string or "
+"Python objects (lists, dictionaries) with strings inside that Jinja uses in "
+"the templating process"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:400
+msgid ""
+"The template function will have access to all of the variables that are "
+"passed to the registration function."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:403
+msgid ""
+"At the end of the registration function, add the template function to the "
+"Sphinx application's context with ``context['template_func'] = "
+"template_func``."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:406
+msgid ""
+"Finally, in your extension's ``setup()`` function, add your registration "
+"function as a callback for :event:`html-page-context`."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:409
+msgid ""
+"# The registration function\n"
+" def setup_my_func(app, pagename, templatename, context, doctree):\n"
+"     # The template function\n"
+"     def my_func(mystring):\n"
+"         return \"Your string is %s\" % mystring\n"
+"     # Add it to the page's context\n"
+"     context['my_func'] = my_func\n"
+"\n"
+" # Your extension's setup function\n"
+" def setup(app):\n"
+"     app.connect(\"html-page-context\", setup_my_func)"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:423
+msgid "Now, you will have access to this function in jinja like so:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:425
+msgid ""
+"<div>\n"
+"{{ my_func(\"some string\") }}\n"
+"</div>"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:433
+msgid "Add your own static files to the build assets"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:435
+msgid ""
+"By default, Sphinx copies static files on the ``static/`` directory of the "
+"template directory.  However, if your package needs to place static files "
+"outside of the ``static/`` directory for some reasons, you need to copy them "
+"to the ``_static/`` directory of HTML outputs manually at the build via an "
+"event hook.  Here is an example of code to accomplish this:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:441
+msgid ""
+"import shutil\n"
+"\n"
+"def copy_custom_files(app, exc):\n"
+"    if app.builder.format == 'html' and not exc:\n"
+"        static_dir = app.outdir / '_static'\n"
+"        shutil.copyfile('path/to/myextension/_static/myjsfile.js', "
+"static_dir)\n"
+"\n"
+"def setup(app):\n"
+"    app.connect('build-finished', copy_custom_files)"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:455
+msgid "Inject JavaScript based on user configuration"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:457
+msgid ""
+"If your extension makes use of JavaScript, it can be useful to allow users "
+"to control its behavior using their Sphinx configuration. However, this can "
+"be difficult to do if your JavaScript comes in the form of a static library "
+"(which will not be built with Jinja)."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:462
+msgid ""
+"There are two ways to inject variables into the JavaScript space based on "
+"user configuration."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:465
+msgid ""
+"First, you may append ``_t`` to the end of any static files included with "
+"your extension. This will cause Sphinx to process these files with the "
+"templating engine, allowing you to embed variables and control behavior."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:469
+msgid "For example, the following JavaScript structure:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:471
+msgid ""
+"mymodule/\n"
+"├── _static\n"
+"│   └── myjsfile.js_t\n"
+"└── mymodule.py"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:478
+msgid ""
+"Will result in the following static file placed in your HTML's build output:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:480
+msgid ""
+"_build/\n"
+"└── html\n"
+"    └── _static\n"
+"        └── myjsfile.js"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:487
+msgid "See :ref:`theming-static-templates` for more information."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:489
+msgid ""
+"Second, you may use the :meth:`.Sphinx.add_js_file` method without pointing "
+"it to a file. Normally, this method is used to insert a new JavaScript file "
+"into your site. However, if you do *not* pass a file path, but instead pass "
+"a string to the \"body\" argument, then this text will be inserted as "
+"JavaScript into your site's head. This allows you to insert variables into "
+"your project's JavaScript from Python."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:496
+msgid ""
+"For example, the following code will read in a user-configured value and "
+"then insert this value as a JavaScript variable, which your extension's "
+"JavaScript code may use:"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:500
+msgid ""
+"# This function reads in a variable and inserts it into JavaScript\n"
+"def add_js_variable(app):\n"
+"    # This is a configuration that you've specified for users in `conf.py`\n"
+"    js_variable = app.config['my_javascript_variable']\n"
+"    js_text = \"var my_variable = '%s';\" % js_variable\n"
+"    app.add_js_file(None, body=js_text)\n"
+"# We connect this function to the step after the builder is initialized\n"
+"def setup(app):\n"
+"    # Tell Sphinx about this configuration variable\n"
+"    app.add_config_value('my_javascript_variable', 0, 'html')\n"
+"    # Run the function after the builder is initialized\n"
+"    app.connect('builder-inited', add_js_variable)"
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:515
+msgid ""
+"As a result, in your theme you can use code that depends on the presence of "
+"this variable. Users can control the variable's value by defining it in "
+"their :file:`conf.py` file."
+msgstr ""
+
+#: ../../../development/html_themes/index.rst:520
+msgid ""
+"It is not an executable Python file, as opposed to :file:`conf.py`, because "
+"that would pose an unnecessary security risk if themes are shared."
+msgstr ""
