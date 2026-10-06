@@ -1,0 +1,393 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2025, the Sphinx developers
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 9\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-06 10:32+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../usage/advanced/websupport/quickstart.rst:4
+msgid "Web Support Quick Start"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:7
+msgid "Building documentation data"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:9
+msgid ""
+"To make use of the web support package in your application you'll need to "
+"build the data it uses.  This data includes pickle files representing "
+"documents, search indices, and node data that is used to track where "
+"comments and other things are in a document.  To do this you will need to "
+"create an instance of the :class:`~.WebSupport` class and call its :meth:`~."
+"WebSupport.build` method::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:15
+msgid ""
+"from sphinxcontrib.websupport import WebSupport\n"
+"\n"
+"support = WebSupport(srcdir='/path/to/rst/sources/',\n"
+"                     builddir='/path/to/build/outdir',\n"
+"                     search='xapian')\n"
+"\n"
+"support.build()"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:23
+msgid ""
+"This will read reStructuredText sources from ``srcdir`` and place the "
+"necessary data in ``builddir``.  The ``builddir`` will contain two "
+"subdirectories: one named \"data\" that contains all the data needed to "
+"display documents, search through documents, and add comments to documents.  "
+"The other directory will be called \"static\" and contains static files that "
+"should be served from \"/static\"."
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:31
+msgid ""
+"If you wish to serve static files from a path other than \"/static\", you "
+"can do so by providing the *staticdir* keyword argument when creating the :"
+"class:`~.WebSupport` object."
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:37
+msgid "Integrating Sphinx documents into your web-app"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:39
+msgid ""
+"Now that the data is built, it's time to do something useful with it.  Start "
+"off by creating a :class:`~.WebSupport` object for your application::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:42
+msgid ""
+"from sphinxcontrib.websupport import WebSupport\n"
+"\n"
+"support = WebSupport(datadir='/path/to/the/data',\n"
+"                     search='xapian')"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:47
+msgid ""
+"You'll only need one of these for each set of documentation you will be "
+"working with.  You can then call its :meth:`~.WebSupport.get_document` "
+"method to access individual documents::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:51
+msgid "contents = support.get_document('contents')"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:53
+msgid "This will return a dictionary containing the following items:"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:55
+msgid "**body**: The main body of the document as HTML"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:56
+msgid "**sidebar**: The sidebar of the document as HTML"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:57
+msgid "**relbar**: A div containing links to related documents"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:58
+msgid "**title**: The title of the document"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:59
+msgid "**css**: Links to CSS files used by Sphinx"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:60
+msgid "**script**: JavaScript containing comment options"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:62
+msgid ""
+"This dict can then be used as context for templates.  The goal is to be easy "
+"to integrate with your existing templating system.  An example using `Jinja2 "
+"<https://jinja.palletsprojects.com/>`_ is:"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:66
+msgid ""
+"{%- extends \"layout.html\" %}\n"
+"\n"
+"{%- block title %}\n"
+"    {{ document.title }}\n"
+"{%- endblock %}\n"
+"\n"
+"{% block css %}\n"
+"    {{ super() }}\n"
+"    {{ document.css|safe }}\n"
+"    <link rel=\"stylesheet\" href=\"/static/websupport-custom.css\" "
+"type=\"text/css\">\n"
+"{% endblock %}\n"
+"\n"
+"{%- block script %}\n"
+"    {{ super() }}\n"
+"    {{ document.script|safe }}\n"
+"{%- endblock %}\n"
+"\n"
+"{%- block relbar %}\n"
+"    {{ document.relbar|safe }}\n"
+"{%- endblock %}\n"
+"\n"
+"{%- block body %}\n"
+"    {{ document.body|safe }}\n"
+"{%- endblock %}\n"
+"\n"
+"{%- block sidebar %}\n"
+"    {{ document.sidebar|safe }}\n"
+"{%- endblock %}"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:99
+msgid "Authentication"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:101
+msgid ""
+"To use certain features such as voting, it must be possible to authenticate "
+"users.  The details of the authentication are left to your application.  "
+"Once a user has been authenticated you can pass the user's details to "
+"certain :class:`~.WebSupport` methods using the *username* and *moderator* "
+"keyword arguments.  The web support package will store the username with "
+"comments and votes.  The only caveat is that if you allow users to change "
+"their username you must update the websupport package's data::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:109
+msgid "support.update_username(old_username, new_username)"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:111
+msgid ""
+"*username* should be a unique string which identifies a user, and "
+"*moderator* should be a boolean representing whether the user has moderation "
+"privileges. The default value for *moderator* is ``False``."
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:115
+msgid ""
+"An example `Flask <https://flask.palletsprojects.com/>`_ function that "
+"checks whether a user is logged in and then retrieves a document is::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:118
+msgid ""
+"from sphinxcontrib.websupport.errors import *\n"
+"\n"
+"@app.route('/<path:docname>')\n"
+"def doc(docname):\n"
+"    username = g.user.name if g.user else ''\n"
+"    moderator = g.user.moderator if g.user else False\n"
+"    try:\n"
+"        document = support.get_document(docname, username, moderator)\n"
+"    except DocumentNotFoundError:\n"
+"        abort(404)\n"
+"    return render_template('doc.html', document=document)"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:130
+msgid ""
+"The first thing to notice is that the *docname* is just the request path.  "
+"This makes accessing the correct document easy from a single view.  If the "
+"user is authenticated, then the username and moderation status are passed "
+"along with the docname to :meth:`~.WebSupport.get_document`.  The web "
+"support package will then add this data to the ``COMMENT_OPTIONS`` that are "
+"used in the template."
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:138
+msgid ""
+"This only works if your documentation is served from your document root. If "
+"it is served from another directory, you will need to prefix the url route "
+"with that directory, and give the *docroot* keyword argument when creating "
+"the web support object::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:143
+msgid ""
+"support = WebSupport(..., docroot='docs')\n"
+"\n"
+"@app.route('/docs/<path:docname>')"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:149
+msgid "Performing searches"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:151
+msgid ""
+"To use the search form built-in to the Sphinx sidebar, create a function to "
+"handle requests to the URL 'search' relative to the documentation root.  The "
+"user's search query will be in the GET parameters, with the key ``q``.  Then "
+"use the :meth:`~sphinxcontrib.websupport.WebSupport.get_search_results` "
+"method to retrieve search results. In `Flask <https://flask.palletsprojects."
+"com/>`_ that would be like this::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:158
+msgid ""
+"@app.route('/search')\n"
+"def search():\n"
+"    q = request.args.get('q')\n"
+"    document = support.get_search_results(q)\n"
+"    return render_template('doc.html', document=document)"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:164
+msgid ""
+"Note that we used the same template to render our search results as we did "
+"to render our documents.  That's because :meth:`~.WebSupport."
+"get_search_results` returns a context dict in the same format that :meth:`~."
+"WebSupport.get_document` does."
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:171
+msgid "Comments & proposals"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:173
+msgid ""
+"Now that this is done it's time to define the functions that handle the AJAX "
+"calls from the script.  You will need three functions.  The first function "
+"is used to add a new comment, and will call the web support method :meth:`~."
+"WebSupport.add_comment`::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:178
+msgid ""
+"@app.route('/docs/add_comment', methods=['POST'])\n"
+"def add_comment():\n"
+"    parent_id = request.form.get('parent', '')\n"
+"    node_id = request.form.get('node', '')\n"
+"    text = request.form.get('text', '')\n"
+"    proposal = request.form.get('proposal', '')\n"
+"    username = g.user.name if g.user is not None else 'Anonymous'\n"
+"    comment = support.add_comment(text, node_id='node_id',\n"
+"                                  parent_id='parent_id',\n"
+"                                  username=username, proposal=proposal)\n"
+"    return jsonify(comment=comment)"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:190
+msgid ""
+"You'll notice that both a ``parent_id`` and ``node_id`` are sent with the "
+"request. If the comment is being attached directly to a node, ``parent_id`` "
+"will be empty. If the comment is a child of another comment, then "
+"``node_id`` will be empty. Then next function handles the retrieval of "
+"comments for a specific node, and is aptly named :meth:`~sphinxcontrib."
+"websupport.WebSupport.get_data`::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:197
+msgid ""
+"@app.route('/docs/get_comments')\n"
+"def get_comments():\n"
+"    username = g.user.name if g.user else None\n"
+"    moderator = g.user.moderator if g.user else False\n"
+"    node_id = request.args.get('node', '')\n"
+"    data = support.get_data(node_id, username, moderator)\n"
+"    return jsonify(**data)"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:205
+msgid ""
+"The final function that is needed will call :meth:`~.WebSupport."
+"process_vote`, and will handle user votes on comments::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:208
+msgid ""
+"@app.route('/docs/process_vote', methods=['POST'])\n"
+"def process_vote():\n"
+"    if g.user is None:\n"
+"        abort(401)\n"
+"    comment_id = request.form.get('comment_id')\n"
+"    value = request.form.get('value')\n"
+"    if value is None or comment_id is None:\n"
+"        abort(400)\n"
+"    support.process_vote(comment_id, g.user.id, value)\n"
+"    return \"success\""
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:221
+msgid "Comment moderation"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:223
+msgid ""
+"By default, all comments added through :meth:`~.WebSupport.add_comment` are "
+"automatically displayed.  If you wish to have some form of moderation, you "
+"can pass the ``displayed`` keyword argument::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:227
+msgid ""
+"comment = support.add_comment(text, node_id='node_id',\n"
+"                              parent_id='parent_id',\n"
+"                              username=username, proposal=proposal,\n"
+"                              displayed=False)"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:232
+msgid ""
+"You can then create a new view to handle the moderation of comments.  It "
+"will be called when a moderator decides a comment should be accepted and "
+"displayed::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:236
+msgid ""
+"@app.route('/docs/accept_comment', methods=['POST'])\n"
+"def accept_comment():\n"
+"    moderator = g.user.moderator if g.user else False\n"
+"    comment_id = request.form.get('id')\n"
+"    support.accept_comment(comment_id, moderator=moderator)\n"
+"    return 'OK'"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:243
+msgid "Rejecting comments happens via comment deletion."
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:245
+msgid ""
+"To perform a custom action (such as emailing a moderator) when a new comment "
+"is added but not displayed, you can pass callable to the :class:`~."
+"WebSupport` class when instantiating your support object::"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:249
+msgid ""
+"def moderation_callback(comment):\n"
+"    \"\"\"Do something...\"\"\"\n"
+"\n"
+"support = WebSupport(..., moderation_callback=moderation_callback)"
+msgstr ""
+
+#: ../../../usage/advanced/websupport/quickstart.rst:254
+msgid ""
+"The moderation callback must take one argument, which will be the same "
+"comment dict that is returned by :meth:`.WebSupport.add_comment`."
+msgstr ""
