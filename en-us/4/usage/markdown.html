@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Markdown &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/markdown.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Sphinx documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="prev" title="Domains" href="restructuredtext/domains.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="Configuration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="restructuredtext/domains.html" title="Domains"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Using Sphinx</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Markdown</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Markdown</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="restructuredtext/domains.html"
+                          title="previous chapter">Domains</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="configuration.html"
+                          title="next chapter">Configuration</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/usage/markdown.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="markdown">
+<span id="id1"></span><h1>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://daringfireball.net/projects/markdown/">Markdown</a> is a lightweight markup language with a simplistic plain text
+formatting syntax.  It exists in many syntactically different <em>flavors</em>.  To
+support Markdown-based documentation, Sphinx can use <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">MyST-Parser</a>.
+MyST-Parser is a Docutils bridge to <a class="reference external" href="https://github.com/executablebooks/markdown-it-py">markdown-it-py</a>, a Python package for
+parsing the <a class="reference external" href="https://commonmark.org/">CommonMark</a> Markdown flavor.</p>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>To configure your Sphinx project for Markdown support, proceed as follows:</p>
+<ol class="arabic">
+<li><p>Install the Markdown parser <em>MyST-Parser</em>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">myst</span><span class="o">-</span><span class="n">parser</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add <em>myst_parser</em> to the
+<a class="reference internal" href="configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">list</span> <span class="pre">of</span> <span class="pre">configured</span> <span class="pre">extensions</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;myst_parser&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>MyST-Parser requires Sphinx 2.1 or newer.</p>
+</div>
+</li>
+<li><p>If you want to use Markdown files with extensions other than <code class="docutils literal notranslate"><span class="pre">.md</span></code>, adjust
+the <a class="reference internal" href="configuration.html#confval-source_suffix"><code class="xref std std-confval docutils literal notranslate"><span class="pre">source_suffix</span></code></a> variable.  The following example configures
+Sphinx to parse all files with the extensions <code class="docutils literal notranslate"><span class="pre">.md</span></code> and <code class="docutils literal notranslate"><span class="pre">.txt</span></code> as
+Markdown:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">source_suffix</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;.rst&#39;</span><span class="p">:</span> <span class="s1">&#39;restructuredtext&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;.txt&#39;</span><span class="p">:</span> <span class="s1">&#39;markdown&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;.md&#39;</span><span class="p">:</span> <span class="s1">&#39;markdown&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>You can further configure <em>MyST-Parser</em> to allow custom syntax that
+standard <em>CommonMark</em> doesn’t support.  Read more in the <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html">MyST-Parser
+documentation</a>.</p></li>
+</ol>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="Configuration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="restructuredtext/domains.html" title="Domains"
+             >previous</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Using Sphinx</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Markdown</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2022, Georg Brandl and the Sphinx team.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>

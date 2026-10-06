@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The C Domain &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=29da98fa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css?v=ba1752c5" />
+    <script src="../../_static/documentation_options.js?v=fbcd4929"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/translations.js?v=540d3cec"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/domains/c.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../../_static/opensearch.xml"/>
+    <link rel="icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="The C++ Domain" href="cpp.html" />
+    <link rel="prev" title="The Standard Domain" href="standard.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../../index.html">
+      <img src="../../_static/sphinx-logo.svg" alt="logo" />
+      <span>Sphinx</span>
+    </a>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>导航</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" >Using Sphinx</a> &#187;</li>
+      <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Domains</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">The C Domain</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">The C Domain</a><ul>
+<li><a class="reference internal" href="#directive-c-member"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:member::</span></code></a></li>
+<li><a class="reference internal" href="#directive-c-var"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:var::</span></code></a></li>
+<li><a class="reference internal" href="#directive-c-function"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:function::</span></code></a><ul>
+<li><a class="reference internal" href="#c.PyType_GenericAlloc"><code class="docutils literal notranslate"><span class="pre">PyType_GenericAlloc()</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-c-function-single-line-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-parameter-list:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-c-macro"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:macro::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-c-macro-single-line-parameter-list"><code class="docutils literal notranslate"><span class="pre">:single-line-parameter-list:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#directive-c-struct"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:struct::</span></code></a></li>
+<li><a class="reference internal" href="#directive-c-union"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:union::</span></code></a></li>
+<li><a class="reference internal" href="#directive-c-enum"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:enum::</span></code></a></li>
+<li><a class="reference internal" href="#directive-c-enumerator"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:enumerator::</span></code></a></li>
+<li><a class="reference internal" href="#directive-c-type"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:type::</span></code></a></li>
+<li><a class="reference internal" href="#cross-referencing-c-constructs">Cross-referencing C constructs</a><ul>
+<li><a class="reference internal" href="#role-c-member"><code class="docutils literal notranslate"><span class="pre">:c:member:</span></code></a></li>
+<li><a class="reference internal" href="#role-c-data"><code class="docutils literal notranslate"><span class="pre">:c:data:</span></code></a></li>
+<li><a class="reference internal" href="#role-c-var"><code class="docutils literal notranslate"><span class="pre">:c:var:</span></code></a></li>
+<li><a class="reference internal" href="#role-c-func"><code class="docutils literal notranslate"><span class="pre">:c:func:</span></code></a></li>
+<li><a class="reference internal" href="#role-c-macro"><code class="docutils literal notranslate"><span class="pre">:c:macro:</span></code></a></li>
+<li><a class="reference internal" href="#role-c-struct"><code class="docutils literal notranslate"><span class="pre">:c:struct:</span></code></a></li>
+<li><a class="reference internal" href="#role-c-union"><code class="docutils literal notranslate"><span class="pre">:c:union:</span></code></a></li>
+<li><a class="reference internal" href="#role-c-enum"><code class="docutils literal notranslate"><span class="pre">:c:enum:</span></code></a></li>
+<li><a class="reference internal" href="#role-c-enumerator"><code class="docutils literal notranslate"><span class="pre">:c:enumerator:</span></code></a></li>
+<li><a class="reference internal" href="#role-c-type"><code class="docutils literal notranslate"><span class="pre">:c:type:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#anonymous-entities">Anonymous Entities</a></li>
+<li><a class="reference internal" href="#aliasing-declarations">Aliasing Declarations</a><ul>
+<li><a class="reference internal" href="#directive-c-alias"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:alias::</span></code></a><ul>
+<li><a class="reference internal" href="#directive-option-c-alias-maxdepth"><code class="docutils literal notranslate"><span class="pre">:maxdepth:</span></code></a></li>
+<li><a class="reference internal" href="#directive-option-c-alias-noroot"><code class="docutils literal notranslate"><span class="pre">:noroot:</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inline-expressions-and-types">Inline Expressions and Types</a><ul>
+<li><a class="reference internal" href="#role-c-expr"><code class="docutils literal notranslate"><span class="pre">:c:expr:</span></code></a></li>
+<li><a class="reference internal" href="#role-c-texpr"><code class="docutils literal notranslate"><span class="pre">:c:texpr:</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#namespacing">Namespacing</a><ul>
+<li><a class="reference internal" href="#directive-c-namespace"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:namespace::</span></code></a></li>
+<li><a class="reference internal" href="#directive-c-namespace-push"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:namespace-push::</span></code></a></li>
+<li><a class="reference internal" href="#directive-c-namespace-pop"><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:namespace-pop::</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration-variables">Configuration Variables</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Using Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencing.html">Cross-references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">Builders</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Domains</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="standard.html">The Standard Domain</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The C Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpp.html">The C++ Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript.html">The JavaScript Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematics.html">The Mathematics Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python.html">The Python Domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="restructuredtext.html">The reStructuredText Domain</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">Internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Get support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">Contribute to Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes/index.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="the-c-domain">
+<h1>The C Domain<a class="headerlink" href="#the-c-domain" title="链接到此标题。">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">在 1.0 版本加入.</span></p>
+</div>
+<p>The C domain (name <strong>c</strong>) is suited for documentation of C API.</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-c-member">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:member::</span></span><span class="sig-prename descclassname"> <span class="pre">declaration</span></span><a class="headerlink" href="#directive-c-member" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="directive-c-var">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:var::</span></span><span class="sig-prename descclassname"> <span class="pre">declaration</span></span><a class="headerlink" href="#directive-c-var" title="链接到此定义。">¶</a></dt>
+<dd><p>Describes a C struct member or variable. Example signature:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:member</span><span class="p">::</span> PyObject *PyTypeObject.tp_bases
+</pre></div>
+</div>
+<p>The difference between the two directives is only cosmetic.</p>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-c-function">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:function::</span></span><span class="sig-prename descclassname"> <span class="pre">function</span> <span class="pre">prototype</span></span><a class="headerlink" href="#directive-c-function" title="链接到此定义。">¶</a></dt>
+<dd><p>Describes a C function. The signature should be given as in C, e.g.:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:function</span><span class="p">::</span> PyObject <span class="ge">*PyType_GenericAlloc(PyTypeObject *</span>type, Py_ssize_t nitems)
+</pre></div>
+</div>
+<p>Note that you don't have to backslash-escape asterisks in the signature, as
+it is not parsed by the reStructuredText inliner.</p>
+<p>In the description of a function you can use the following info fields
+(see also <a class="reference internal" href="python.html#info-field-lists"><span class="std std-ref">Info field lists</span></a>).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">param</span></code>, <code class="docutils literal notranslate"><span class="pre">parameter</span></code>, <code class="docutils literal notranslate"><span class="pre">arg</span></code>, <code class="docutils literal notranslate"><span class="pre">argument</span></code>,
+Description of a parameter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: Type of a parameter,
+written as if passed to the <a class="reference internal" href="#role-c-expr" title="c:expr role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">c:expr</span></code></a> role.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">returns</span></code>, <code class="docutils literal notranslate"><span class="pre">return</span></code>: Description of the return value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rtype</span></code>: Return type,
+written as if passed to the <a class="reference internal" href="#role-c-expr" title="c:expr role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">c:expr</span></code></a> role.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">retval</span></code>, <code class="docutils literal notranslate"><span class="pre">retvals</span></code>: An alternative to <code class="docutils literal notranslate"><span class="pre">returns</span></code> for describing
+the result of the function.</p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">在 4.3 版本加入: </span>The <code class="docutils literal notranslate"><span class="pre">retval</span></code> field type.</p>
+</div>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:function</span><span class="p">::</span> PyObject <span class="ge">*PyType_GenericAlloc(PyTypeObject *</span>type, Py_ssize_t nitems)
+
+   <span class="nc">:param type:</span> description of the first parameter.
+   <span class="nc">:param nitems:</span> description of the second parameter.
+   <span class="nc">:returns:</span> a result.
+   <span class="nc">:retval NULL:</span> under some conditions.
+   <span class="nc">:retval NULL:</span> under some other conditions as well.
+</pre></div>
+</div>
+<p>which renders as</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.PyType_GenericAlloc">
+<a class="reference external" href="https://docs.python.org/3/c-api/structures.html#c.PyObject" title="(位于 Python v3.14)"><span class="n"><span class="pre">PyObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">PyType_GenericAlloc</span></span></span><span class="sig-paren">(</span><a class="reference external" href="https://docs.python.org/3/c-api/type.html#c.PyTypeObject" title="(位于 Python v3.14)"><span class="n"><span class="pre">PyTypeObject</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">type</span></span>, <a class="reference external" href="https://docs.python.org/3/c-api/intro.html#c.Py_ssize_t" title="(位于 Python v3.14)"><span class="n"><span class="pre">Py_ssize_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">nitems</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.PyType_GenericAlloc" title="链接到此定义。">¶</a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">No-contents-entry<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">No-index-entry<span class="colon">:</span></dt>
+<dd class="field-even"><p></p></dd>
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> -- description of the first parameter.</p></li>
+<li><p><strong>nitems</strong> -- description of the second parameter.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>a result.</p>
+</dd>
+<dt class="field-odd">返回值<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>NULL</strong> -- under some conditions.</p></li>
+<li><p><strong>NULL</strong> -- under some other conditions as well.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-c-function-single-line-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-parameter-list:</span></span><span class="property"> <span class="pre">(no</span> <span class="pre">value)</span></span><a class="headerlink" href="#directive-option-c-function-single-line-parameter-list" title="链接到此定义。">¶</a></dt>
+<dd><p>Ensures that the function's parameters will be emitted on a single logical
+line, overriding <a class="reference internal" href="../configuration.html#confval-c_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">c_maximum_signature_line_length</span></code></a> and
+<a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 7.1 版本加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-c-macro">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:macro::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-c-macro" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:macro::</span></span><span class="sig-prename descclassname"> <span class="pre">name(arg</span> <span class="pre">list)</span></span></dt>
+<dd><p>Describes a C macro, i.e., a C-language <code class="docutils literal notranslate"><span class="pre">#define</span></code>, without the replacement
+text.</p>
+<p>In the description of a macro you can use the same info fields as for the
+<a class="reference internal" href="#directive-c-function" title="c:function directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">c:function</span></code></a> directive.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.0 版本加入: </span>The function style variant.</p>
+</div>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-c-macro-single-line-parameter-list">
+<span class="sig-name descname"><span class="pre">:single-line-parameter-list:</span></span><span class="property"> <span class="pre">(no</span> <span class="pre">value)</span></span><a class="headerlink" href="#directive-option-c-macro-single-line-parameter-list" title="链接到此定义。">¶</a></dt>
+<dd><p>Ensures that the macro's parameters will be emitted on a single logical
+line, overriding <a class="reference internal" href="../configuration.html#confval-c_maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">c_maximum_signature_line_length</span></code></a> and
+<a class="reference internal" href="../configuration.html#confval-maximum_signature_line_length"><code class="xref std std-confval docutils literal notranslate"><span class="pre">maximum_signature_line_length</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 7.1 版本加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-c-struct">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:struct::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-c-struct" title="链接到此定义。">¶</a></dt>
+<dd><p>Describes a C struct.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.0 版本加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-c-union">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:union::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-c-union" title="链接到此定义。">¶</a></dt>
+<dd><p>Describes a C union.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.0 版本加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-c-enum">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:enum::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-c-enum" title="链接到此定义。">¶</a></dt>
+<dd><p>Describes a C enum.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.0 版本加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-c-enumerator">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:enumerator::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-c-enumerator" title="链接到此定义。">¶</a></dt>
+<dd><p>Describes a C enumerator.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.0 版本加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-c-type">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:type::</span></span><span class="sig-prename descclassname"> <span class="pre">typedef-like</span> <span class="pre">declaration</span></span><a class="headerlink" href="#directive-c-type" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:type::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span></dt>
+<dd><p>Describes a C type, either as a typedef, or the alias for an unspecified
+type.</p>
+</dd></dl>
+
+<section id="cross-referencing-c-constructs">
+<span id="c-xref-roles"></span><h2>Cross-referencing C constructs<a class="headerlink" href="#cross-referencing-c-constructs" title="链接到此标题。">¶</a></h2>
+<p>The following roles create cross-references to C-language constructs if they
+are defined in the documentation:</p>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-c-member">
+<span class="sig-name descname"><span class="pre">:c:member:</span></span><a class="headerlink" href="#role-c-member" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-c-data">
+<span class="sig-name descname"><span class="pre">:c:data:</span></span><a class="headerlink" href="#role-c-data" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-c-var">
+<span class="sig-name descname"><span class="pre">:c:var:</span></span><a class="headerlink" href="#role-c-var" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-c-func">
+<span class="sig-name descname"><span class="pre">:c:func:</span></span><a class="headerlink" href="#role-c-func" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-c-macro">
+<span class="sig-name descname"><span class="pre">:c:macro:</span></span><a class="headerlink" href="#role-c-macro" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-c-struct">
+<span class="sig-name descname"><span class="pre">:c:struct:</span></span><a class="headerlink" href="#role-c-struct" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-c-union">
+<span class="sig-name descname"><span class="pre">:c:union:</span></span><a class="headerlink" href="#role-c-union" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-c-enum">
+<span class="sig-name descname"><span class="pre">:c:enum:</span></span><a class="headerlink" href="#role-c-enum" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-c-enumerator">
+<span class="sig-name descname"><span class="pre">:c:enumerator:</span></span><a class="headerlink" href="#role-c-enumerator" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-c-type">
+<span class="sig-name descname"><span class="pre">:c:type:</span></span><a class="headerlink" href="#role-c-type" title="链接到此定义。">¶</a></dt>
+<dd><p>Reference a C declaration, as defined above.
+Note that <a class="reference internal" href="#role-c-member" title="c:member role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">c:member</span></code></a>, <a class="reference internal" href="#role-c-data" title="c:data role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">c:data</span></code></a>, and
+<a class="reference internal" href="#role-c-var" title="c:var role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">c:var</span></code></a> are equivalent.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.0 版本加入: </span>The var, struct, union, enum, and enumerator roles.</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="anonymous-entities">
+<h2>Anonymous Entities<a class="headerlink" href="#anonymous-entities" title="链接到此标题。">¶</a></h2>
+<p>C supports anonymous structs, enums, and unions.
+For the sake of documentation they must be given some name that starts with
+<code class="docutils literal notranslate"><span class="pre">&#64;</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">&#64;42</span></code> or <code class="docutils literal notranslate"><span class="pre">&#64;data</span></code>.
+These names can also be used in cross-references,
+though nested symbols will be found even when omitted.
+The <code class="docutils literal notranslate"><span class="pre">&#64;...</span></code> name will always be rendered as <strong>[anonymous]</strong> (possibly as a
+link).</p>
+<p>Example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:struct</span><span class="p">::</span> Data
+
+<span class="p">   ..</span> <span class="ow">c:union</span><span class="p">::</span> @data
+
+<span class="p">      ..</span> <span class="ow">c:var</span><span class="p">::</span> int a
+
+<span class="p">      ..</span> <span class="ow">c:var</span><span class="p">::</span> double b
+
+Explicit ref: <span class="na">:c:var:</span><span class="nv">`Data.@data.a`</span>. Short-hand ref: <span class="na">:c:var:</span><span class="nv">`Data.a`</span>.
+</pre></div>
+</div>
+<p>This will be rendered as:</p>
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.Data">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Data</span></span></span><a class="headerlink" href="#c.Data" title="链接到此定义。">¶</a><br /></dt>
+<dd><dl class="c union">
+<dt class="sig sig-object c" id="c.Data.&#64;data">
+<span class="k"><span class="pre">union</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">[anonymous]</span></span></span><a class="headerlink" href="#c.Data.@data" title="链接到此定义。">¶</a><br /></dt>
+<dd><dl class="c var">
+<dt class="sig sig-object c" id="c.Data.&#64;data.a">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">a</span></span></span><a class="headerlink" href="#c.Data.@data.a" title="链接到此定义。">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.Data.&#64;data.b">
+<span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">b</span></span></span><a class="headerlink" href="#c.Data.@data.b" title="链接到此定义。">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<p>Explicit ref: <a class="reference internal" href="#c.Data.&#64;data.a" title="Data.[anonymous].a"><code class="xref c c-var docutils literal notranslate"><span class="pre">Data.[anonymous].a</span></code></a>. Short-hand ref: <a class="reference internal" href="#c.Data.&#64;data.a" title="Data.a"><code class="xref c c-var docutils literal notranslate"><span class="pre">Data.a</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.0 版本加入.</span></p>
+</div>
+</section>
+<section id="aliasing-declarations">
+<h2>Aliasing Declarations<a class="headerlink" href="#aliasing-declarations" title="链接到此标题。">¶</a></h2>
+<p>Sometimes it may be helpful list declarations elsewhere than their main
+documentation, e.g., when creating a synopsis of an interface.
+The following directive can be used for this purpose.</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-c-alias">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:alias::</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#directive-c-alias" title="链接到此定义。">¶</a></dt>
+<dd><p>Insert one or more alias declarations. Each entity can be specified
+as they can in the <code class="xref rst rst-role docutils literal notranslate"><span class="pre">c:any</span></code> role.</p>
+<p>For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:var</span><span class="p">::</span> int data
+<span class="p">..</span> <span class="ow">c:function</span><span class="p">::</span> int f(double k)
+
+<span class="p">..</span> <span class="ow">c:alias</span><span class="p">::</span> data
+             f
+</pre></div>
+</div>
+<p>becomes</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.&#64;alias.data">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><a class="headerlink" href="#c.@alias.data" title="链接到此定义。">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.&#64;alias.f">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">f</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.@alias.f" title="链接到此定义。">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object c">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><a class="reference internal" href="#c.&#64;alias.data" title="data"><span class="n"><span class="pre">data</span></span></a><br /></dt>
+<dt class="sig sig-object c">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><a class="reference internal" href="#c.&#64;alias.f" title="f"><span class="n"><span class="pre">f</span></span></a><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">)</span></span><br /></dt>
+</dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.2 版本加入.</span></p>
+</div>
+<p class="rubric">Options</p>
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-c-alias-maxdepth">
+<span class="sig-name descname"><span class="pre">:maxdepth:</span></span><span class="property"> <span class="pre">int</span></span><a class="headerlink" href="#directive-option-c-alias-maxdepth" title="链接到此定义。">¶</a></dt>
+<dd><p>Insert nested declarations as well, up to the total depth given.
+Use 0 for infinite depth and 1 for just the mentioned declaration.
+Defaults to 1.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.3 版本加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="rst directive:option">
+<dt class="sig sig-object rst" id="directive-option-c-alias-noroot">
+<span class="sig-name descname"><span class="pre">:noroot:</span></span><a class="headerlink" href="#directive-option-c-alias-noroot" title="链接到此定义。">¶</a></dt>
+<dd><p>Skip the mentioned declarations and only render nested declarations.
+Requires <code class="docutils literal notranslate"><span class="pre">maxdepth</span></code> either 0 or at least 2.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.5 版本加入.</span></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="inline-expressions-and-types">
+<h2>Inline Expressions and Types<a class="headerlink" href="#inline-expressions-and-types" title="链接到此标题。">¶</a></h2>
+<dl class="rst role">
+<dt class="sig sig-object rst" id="role-c-expr">
+<span class="sig-name descname"><span class="pre">:c:expr:</span></span><a class="headerlink" href="#role-c-expr" title="链接到此定义。">¶</a></dt>
+<dt class="sig sig-object rst" id="role-c-texpr">
+<span class="sig-name descname"><span class="pre">:c:texpr:</span></span><a class="headerlink" href="#role-c-texpr" title="链接到此定义。">¶</a></dt>
+<dd><p>Insert a C expression or type either as inline code (<code class="docutils literal notranslate"><span class="pre">cpp:expr</span></code>)
+or inline text (<code class="docutils literal notranslate"><span class="pre">cpp:texpr</span></code>). For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:var</span><span class="p">::</span> int a = 42
+
+<span class="p">..</span> <span class="ow">c:function</span><span class="p">::</span> int f(int i)
+
+An expression: <span class="na">:c:expr:</span><span class="nv">`a * f(a)`</span> (or as text: <span class="na">:c:texpr:</span><span class="nv">`a * f(a)`</span>).
+
+A type: <span class="na">:c:expr:</span><span class="nv">`const Data*`</span>
+(or as text <span class="na">:c:texpr:</span><span class="nv">`const Data*`</span>).
+</pre></div>
+</div>
+<p>will be rendered as follows:</p>
+<dl class="c var">
+<dt class="sig sig-object c" id="c.a">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">a</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">42</span></span><a class="headerlink" href="#c.a" title="链接到此定义。">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.f">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">f</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">i</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.f" title="链接到此定义。">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p>An expression: <span class="c-expr sig sig-inline c"><a class="reference internal" href="#c.a" title="a"><span class="n">a</span></a><span class="w"> </span><span class="o">*</span><span class="w"> </span><a class="reference internal" href="#c.f" title="f"><span class="n">f</span></a><span class="p">(</span><a class="reference internal" href="#c.a" title="a"><span class="n">a</span></a><span class="p">)</span></span> (or as text: <span class="c-texpr sig sig-inline c"><a class="reference internal" href="#c.a" title="a"><span class="n">a</span></a><span class="w"> </span><span class="o">*</span><span class="w"> </span><a class="reference internal" href="#c.f" title="f"><span class="n">f</span></a><span class="p">(</span><a class="reference internal" href="#c.a" title="a"><span class="n">a</span></a><span class="p">)</span></span>).</p>
+<p>A type: <span class="c-expr sig sig-inline c"><span class="k">const</span><span class="w"> </span><a class="reference internal" href="#c.Data" title="Data"><span class="n">Data</span></a><span class="p">*</span></span>
+(or as text <span class="c-texpr sig sig-inline c"><span class="k">const</span><span class="w"> </span><a class="reference internal" href="#c.Data" title="Data"><span class="n">Data</span></a><span class="p">*</span></span>).</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.0 版本加入.</span></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="namespacing">
+<h2>Namespacing<a class="headerlink" href="#namespacing" title="链接到此标题。">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.1 版本加入.</span></p>
+</div>
+<p>The C language it self does not support namespacing, but it can sometimes be
+useful to emulate it in documentation, e.g., to show alternate declarations.
+The feature may also be used to document members of structs/unions/enums
+separate from their parent declaration.</p>
+<p>The current scope can be changed using three namespace directives.  They manage
+a stack declarations where <code class="docutils literal notranslate"><span class="pre">c:namespace</span></code> resets the stack and changes a given
+scope.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">c:namespace-push</span></code> directive changes the scope to a given inner scope
+of the current one.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">c:namespace-pop</span></code> directive undoes the most recent
+<code class="docutils literal notranslate"><span class="pre">c:namespace-push</span></code> directive.</p>
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-c-namespace">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:namespace::</span></span><span class="sig-prename descclassname"> <span class="pre">scope</span> <span class="pre">specification</span></span><a class="headerlink" href="#directive-c-namespace" title="链接到此定义。">¶</a></dt>
+<dd><p>Changes the current scope for the subsequent objects to the given scope, and
+resets the namespace directive stack. Note that nested scopes can be
+specified by separating with a dot, e.g.:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:namespace</span><span class="p">::</span> Namespace1.Namespace2.SomeStruct.AnInnerStruct
+</pre></div>
+</div>
+<p>All subsequent objects will be defined as if their name were declared with
+the scope prepended. The subsequent cross-references will be searched for
+starting in the current scope.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">NULL</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code> as the scope will change to global scope.</p>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-c-namespace-push">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:namespace-push::</span></span><span class="sig-prename descclassname"> <span class="pre">scope</span> <span class="pre">specification</span></span><a class="headerlink" href="#directive-c-namespace-push" title="链接到此定义。">¶</a></dt>
+<dd><p>Change the scope relatively to the current scope. For example, after:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:namespace</span><span class="p">::</span> A.B
+
+<span class="p">..</span> <span class="ow">c:namespace-push</span><span class="p">::</span> C.D
+</pre></div>
+</div>
+<p>the current scope will be <code class="docutils literal notranslate"><span class="pre">A.B.C.D</span></code>.</p>
+</dd></dl>
+
+<dl class="rst directive">
+<dt class="sig sig-object rst" id="directive-c-namespace-pop">
+<span class="sig-name descname"><span class="pre">..</span> <span class="pre">c:namespace-pop::</span></span><a class="headerlink" href="#directive-c-namespace-pop" title="链接到此定义。">¶</a></dt>
+<dd><p>Undo the previous <code class="docutils literal notranslate"><span class="pre">c:namespace-push</span></code> directive (<em>not</em> just pop a scope).
+For example, after:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:namespace</span><span class="p">::</span> A.B
+
+<span class="p">..</span> <span class="ow">c:namespace-push</span><span class="p">::</span> C.D
+
+<span class="p">..</span> <span class="ow">c:namespace-pop</span><span class="p">::</span>
+</pre></div>
+</div>
+<p>the current scope will be <code class="docutils literal notranslate"><span class="pre">A.B</span></code> (<em>not</em> <code class="docutils literal notranslate"><span class="pre">A.B.C</span></code>).</p>
+<p>If no previous <code class="docutils literal notranslate"><span class="pre">c:namespace-push</span></code> directive has been used, but only a
+<code class="docutils literal notranslate"><span class="pre">c:namespace</span></code> directive, then the current scope will be reset to global
+scope.  That is, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">c:namespace::</span> <span class="pre">A.B</span></code> is equivalent to:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:namespace</span><span class="p">::</span> NULL
+
+<span class="p">..</span> <span class="ow">c:namespace-push</span><span class="p">::</span> A.B
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="configuration-variables">
+<h2>Configuration Variables<a class="headerlink" href="#configuration-variables" title="链接到此标题。">¶</a></h2>
+<p>See <a class="reference internal" href="../configuration.html#c-config"><span class="std std-ref">Options for the C domain</span></a>.</p>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="standard.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">The Standard Domain</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="cpp.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">The C++ Domain</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版权所有 2007-2026, the Sphinx developers.
+  由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0创建。
+</div>
+  </body>
+</html>
