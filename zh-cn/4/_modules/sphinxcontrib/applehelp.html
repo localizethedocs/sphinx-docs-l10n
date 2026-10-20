@@ -1,0 +1,420 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sphinxcontrib.applehelp &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/_modules/sphinxcontrib/applehelp.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../usage/installation.html">Get it</a></li>
+    <li><a href="../../contents.html">Docs</a></li>
+    <li><a href="../../development/index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../../index.html">
+      <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">模块代码</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sphinxcontrib.applehelp</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>sphinxcontrib.applehelp 源代码</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    sphinxcontrib.applehelp</span>
+<span class="sd">    ~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="sd">    Build Apple help books.</span>
+
+<span class="sd">    :copyright: Copyright 2007-2019 by the Sphinx team, see README.</span>
+<span class="sd">    :license: BSD, see LICENSE for details.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">plistlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shlex</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">environ</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">subprocess</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalledProcessError</span><span class="p">,</span> <span class="n">PIPE</span><span class="p">,</span> <span class="n">STDOUT</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">sphinx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.application</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sphinx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.builders.html</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandaloneHTMLBuilder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">SphinxError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.locale</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_translation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.fileutil</span><span class="w"> </span><span class="kn">import</span> <span class="n">copy_asset</span><span class="p">,</span> <span class="n">copy_asset_file</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.matching</span><span class="w"> </span><span class="kn">import</span> <span class="n">Matcher</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.osutil</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensuredir</span><span class="p">,</span> <span class="n">make_filename</span>
+
+<span class="k">if</span> <span class="n">sphinx</span><span class="o">.</span><span class="n">version_info</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">SkipProgressMessage</span><span class="p">,</span> <span class="n">progress_message</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sphinx.util</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>  <span class="c1"># type: ignore[attr-defined,no-redef]</span>
+        <span class="n">SkipProgressMessage</span><span class="p">,</span> <span class="n">progress_message</span>
+    <span class="p">)</span>
+
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.0.4&#39;</span>
+<span class="n">__version_info__</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="n">package_dir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="n">template_dir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">package_dir</span><span class="p">,</span> <span class="s1">&#39;templates&#39;</span><span class="p">)</span>
+
+<span class="n">__</span> <span class="o">=</span> <span class="n">get_translation</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;console&#39;</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">AppleHelpIndexerFailed</span><span class="p">(</span><span class="n">SphinxError</span><span class="p">):</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">__</span><span class="p">(</span><span class="s1">&#39;Help indexer failed&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">AppleHelpCodeSigningFailed</span><span class="p">(</span><span class="n">SphinxError</span><span class="p">):</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">__</span><span class="p">(</span><span class="s1">&#39;Code signing failed&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="AppleHelpBuilder"><a class="viewcode-back" href="../../usage/builders/index.html#sphinxcontrib.applehelp.AppleHelpBuilder">[文档]</a><span class="k">class</span><span class="w"> </span><span class="nc">AppleHelpBuilder</span><span class="p">(</span><span class="n">StandaloneHTMLBuilder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builder that outputs an Apple help book.  Requires Mac OS X as it relies</span>
+<span class="sd">    on the ``hiutil`` command line tool.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;applehelp&#39;</span>
+    <span class="n">epilog</span> <span class="o">=</span> <span class="n">__</span><span class="p">(</span><span class="s1">&#39;The help book is in </span><span class="si">%(outdir)s</span><span class="s1">.</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="s1">&#39;Note that won</span><span class="se">\&#39;</span><span class="s1">t be able to view it unless you put it in &#39;</span>
+                <span class="s1">&#39;~/Library/Documentation/Help or install it in your application &#39;</span>
+                <span class="s1">&#39;bundle.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># don&#39;t copy the reST source</span>
+    <span class="n">copysource</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">supported_image_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;image/png&#39;</span><span class="p">,</span> <span class="s1">&#39;image/gif&#39;</span><span class="p">,</span> <span class="s1">&#39;image/jpeg&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;image/tiff&#39;</span><span class="p">,</span> <span class="s1">&#39;image/jp2&#39;</span><span class="p">,</span> <span class="s1">&#39;image/svg+xml&#39;</span><span class="p">]</span>
+
+    <span class="c1"># don&#39;t add links</span>
+    <span class="n">add_permalinks</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># this is an embedded HTML format</span>
+    <span class="n">embedded</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># don&#39;t generate the search index or include the search page</span>
+    <span class="n">search</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+        <span class="c1"># the output files for HTML help must be .html only</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_suffix</span> <span class="o">=</span> <span class="s1">&#39;.html&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link_suffix</span> <span class="o">=</span> <span class="s1">&#39;.html&#39;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_bundle_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SphinxError</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;You must set applehelp_bundle_id before &#39;</span>
+                                 <span class="s1">&#39;building Apple Help output&#39;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bundle_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outdir</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_bundle_name</span> <span class="o">+</span> <span class="s1">&#39;.help&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outdir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bundle_path</span><span class="p">,</span>
+                                <span class="s1">&#39;Contents&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;Resources&#39;</span><span class="p">,</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_locale</span> <span class="o">+</span> <span class="s1">&#39;.lproj&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">handle_finish</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">finish_tasks</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">copy_localized_files</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">finish_tasks</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_helpbook</span><span class="p">)</span>
+
+    <span class="nd">@progress_message</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;copying localized files&#39;</span><span class="p">))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">copy_localized_files</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">source_dir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">confdir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_locale</span> <span class="o">+</span> <span class="s1">&#39;.lproj&#39;</span><span class="p">)</span>  <span class="c1"># type: ignore  # NOQA</span>
+        <span class="n">target_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outdir</span>
+
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">source_dir</span><span class="p">):</span>
+            <span class="n">excluded</span> <span class="o">=</span> <span class="n">Matcher</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">exclude_patterns</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;**/.*&#39;</span><span class="p">])</span>
+            <span class="n">copy_asset</span><span class="p">(</span><span class="n">source_dir</span><span class="p">,</span> <span class="n">target_dir</span><span class="p">,</span> <span class="n">excluded</span><span class="p">,</span>
+                       <span class="n">context</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">globalcontext</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">build_helpbook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">contents_dir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bundle_path</span><span class="p">,</span> <span class="s1">&#39;Contents&#39;</span><span class="p">)</span>
+        <span class="n">resources_dir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">contents_dir</span><span class="p">,</span> <span class="s1">&#39;Resources&#39;</span><span class="p">)</span>
+        <span class="n">language_dir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">resources_dir</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_locale</span> <span class="o">+</span> <span class="s1">&#39;.lproj&#39;</span><span class="p">)</span>
+        <span class="n">ensuredir</span><span class="p">(</span><span class="n">language_dir</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_info_plist</span><span class="p">(</span><span class="n">contents_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">copy_applehelp_icon</span><span class="p">(</span><span class="n">resources_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_access_page</span><span class="p">(</span><span class="n">language_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_helpindex</span><span class="p">(</span><span class="n">language_dir</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_codesign_identity</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">do_codesign</span><span class="p">()</span>
+
+    <span class="nd">@progress_message</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;writing Info.plist&#39;</span><span class="p">))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build_info_plist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct the Info.plist file.&quot;&quot;&quot;</span>
+        <span class="n">info_plist</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;CFBundleDevelopmentRegion&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_dev_region</span><span class="p">,</span>
+            <span class="s1">&#39;CFBundleIdentifier&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_bundle_id</span><span class="p">,</span>
+            <span class="s1">&#39;CFBundleInfoDictionaryVersion&#39;</span><span class="p">:</span> <span class="s1">&#39;6.0&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;CFBundlePackageType&#39;</span><span class="p">:</span> <span class="s1">&#39;BNDL&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;CFBundleShortVersionString&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">release</span><span class="p">,</span>
+            <span class="s1">&#39;CFBundleSignature&#39;</span><span class="p">:</span> <span class="s1">&#39;hbwr&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;CFBundleVersion&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_bundle_version</span><span class="p">,</span>
+            <span class="s1">&#39;HPDBookAccessPath&#39;</span><span class="p">:</span> <span class="s1">&#39;_access.html&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;HPDBookIndexPath&#39;</span><span class="p">:</span> <span class="s1">&#39;search.helpindex&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;HPDBookTitle&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_title</span><span class="p">,</span>
+            <span class="s1">&#39;HPDBookType&#39;</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;HPDBookUsesExternalViewer&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_icon</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">info_plist</span><span class="p">[</span><span class="s1">&#39;HPDBookIconPath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_icon</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_kb_url</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">info_plist</span><span class="p">[</span><span class="s1">&#39;HPDBookKBProduct&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_kb_product</span>
+            <span class="n">info_plist</span><span class="p">[</span><span class="s1">&#39;HPDBookKBURL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_kb_url</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_remote_url</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">info_plist</span><span class="p">[</span><span class="s1">&#39;HPDBookRemoteURL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_remote_url</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">contents_dir</span><span class="p">,</span> <span class="s1">&#39;Info.plist&#39;</span><span class="p">),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">plistlib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">info_plist</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">copy_applehelp_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resources_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Copy the icon, if one is supplied.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_icon</span><span class="p">:</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">progress_message</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;copying icon... &#39;</span><span class="p">)):</span>
+                    <span class="n">applehelp_icon</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">srcdir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_icon</span><span class="p">)</span>
+                    <span class="n">copy_asset_file</span><span class="p">(</span><span class="n">applehelp_icon</span><span class="p">,</span> <span class="n">resources_dir</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;cannot copy icon file </span><span class="si">%r</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">),</span> <span class="n">applehelp_icon</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="nd">@progress_message</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;building access page&#39;</span><span class="p">))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build_access_page</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">language_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build the access page.&quot;&quot;&quot;</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;toc&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">master_doc</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_suffix</span><span class="p">,</span>
+            <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_title</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">copy_asset_file</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">template_dir</span><span class="p">,</span> <span class="s1">&#39;_access.html_t&#39;</span><span class="p">),</span> <span class="n">language_dir</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+    <span class="nd">@progress_message</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;generating help index&#39;</span><span class="p">))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build_helpindex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">language_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate the help index.&quot;&quot;&quot;</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_indexer_path</span><span class="p">,</span>
+            <span class="s1">&#39;-Cf&#39;</span><span class="p">,</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">language_dir</span><span class="p">,</span> <span class="s1">&#39;search.helpindex&#39;</span><span class="p">),</span>
+            <span class="n">language_dir</span>
+        <span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_index_anchors</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_min_term_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_min_term_length</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_stopwords</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_stopwords</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_locale</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_locale</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_disable_external_tools</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SkipProgressMessage</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;you will need to index this help book with:</span><span class="se">\n</span><span class="s1">  </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">),</span>
+                                      <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">shlex</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">STDOUT</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">AppleHelpIndexerFailed</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;Command not found: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">except</span> <span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">AppleHelpIndexerFailed</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+
+    <span class="nd">@progress_message</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;signing help book&#39;</span><span class="p">))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">do_codesign</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;If we&#39;ve been asked to, sign the bundle.&quot;&quot;&quot;</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_codesign_path</span><span class="p">,</span>
+            <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_codesign_identity</span><span class="p">,</span>
+            <span class="s1">&#39;-f&#39;</span>
+        <span class="p">]</span>
+
+        <span class="n">args</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_codesign_flags</span>
+
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bundle_path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">applehelp_disable_external_tools</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SkipProgressMessage</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;you will need to sign this help book with:</span><span class="se">\n</span><span class="s1">  </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">),</span>
+                                      <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">shlex</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">STDOUT</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">AppleHelpCodeSigningFailed</span><span class="p">(</span><span class="n">__</span><span class="p">(</span><span class="s1">&#39;Command not found: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">except</span> <span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">AppleHelpCodeSigningFailed</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span></div>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">setup_extension</span><span class="p">(</span><span class="s1">&#39;sphinx.builders.html&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_builder</span><span class="p">(</span><span class="n">AppleHelpBuilder</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_message_catalog</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">package_dir</span><span class="p">,</span> <span class="s1">&#39;locales&#39;</span><span class="p">))</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_bundle_name&#39;</span><span class="p">,</span>
+                         <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="n">make_filename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="p">),</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_bundle_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">])</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_dev_region&#39;</span><span class="p">,</span> <span class="s1">&#39;en-us&#39;</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_bundle_version&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_icon&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">])</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_kb_product&#39;</span><span class="p">,</span>
+                         <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">-</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">make_filename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">),</span>
+                         <span class="s1">&#39;applehelp&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_kb_url&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">])</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_remote_url&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">])</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_index_anchors&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">])</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_min_term_length&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">str</span><span class="p">])</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_stopwords&#39;</span><span class="p">,</span>
+                         <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span> <span class="ow">or</span> <span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_locale&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span> <span class="ow">or</span> <span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_title&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">+</span> <span class="s1">&#39; Help&#39;</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_codesign_identity&#39;</span><span class="p">,</span>
+                         <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CODE_SIGN_IDENTITY&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                         <span class="s1">&#39;applehelp&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_codesign_flags&#39;</span><span class="p">,</span>
+                         <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;OTHER_CODE_SIGN_FLAGS&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)),</span>
+                         <span class="s1">&#39;applehelp&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_indexer_path&#39;</span><span class="p">,</span> <span class="s1">&#39;/usr/bin/hiutil&#39;</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_codesign_path&#39;</span><span class="p">,</span> <span class="s1">&#39;/usr/bin/codesign&#39;</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;applehelp_disable_external_tools&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;applehelp&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="n">__version__</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >模块代码</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sphinxcontrib.applehelp</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2007-2022, Georg Brandl and the Sphinx team.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0创建。
+    </div>
+  </body>
+</html>
