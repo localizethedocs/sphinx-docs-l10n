@@ -1,0 +1,1210 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2022, Georg Brandl and the Sphinx team
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-03 20:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../usage/extensions/autodoc.rst:4
+msgid ":mod:`sphinx.ext.autodoc` -- Include documentation from docstrings"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:12
+msgid ""
+"This extension can import the modules you are documenting, and pull in "
+"documentation from docstrings in a semi-automatic way."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:17
+msgid ""
+"For Sphinx (actually, the Python interpreter that executes Sphinx) to find "
+"your module, it must be importable.  That means that the module or the "
+"package must be in one of the directories on :data:`sys.path` -- adapt your :"
+"data:`sys.path` in the configuration file accordingly."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:24
+msgid ""
+":mod:`~sphinx.ext.autodoc` **imports** the modules to be documented.  If any "
+"modules have side effects on import, these will be executed by ``autodoc`` "
+"when ``sphinx-build`` is run."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:28
+msgid ""
+"If you document scripts (as opposed to library modules), make sure their "
+"main routine is protected by a ``if __name__ == '__main__'`` condition."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:31
+msgid ""
+"For this to work, the docstrings must of course be written in correct "
+"reStructuredText.  You can then use all of the usual Sphinx markup in the "
+"docstrings, and it will end up correctly in the documentation.  Together "
+"with hand-written documentation, this technique eases the pain of having to "
+"maintain two locations for documentation, while at the same time avoiding "
+"auto-generated-looking pure API documentation."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:38
+msgid ""
+"If you prefer `NumPy`_ or `Google`_ style docstrings over reStructuredText, "
+"you can also enable the :mod:`napoleon <sphinx.ext.napoleon>` extension. :"
+"mod:`napoleon <sphinx.ext.napoleon>` is a preprocessor that converts your "
+"docstrings to correct reStructuredText before :mod:`autodoc` processes them."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:48
+msgid "Directives"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:50
+msgid ""
+":mod:`autodoc` provides several directives that are versions of the usual :"
+"rst:dir:`py:module`, :rst:dir:`py:class` and so forth.  On parsing time, "
+"they import the corresponding module and extract the docstring of the given "
+"objects, inserting them into the page source under a suitable :rst:dir:`py:"
+"module`, :rst:dir:`py:class` etc.  directive."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:58
+msgid ""
+"Just as :rst:dir:`py:class` respects the current :rst:dir:`py:module`, :rst:"
+"dir:`autoclass` will also do so.  Likewise, :rst:dir:`automethod` will "
+"respect the current :rst:dir:`py:class`."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:67
+msgid ""
+"Document a module, class or exception.  All three directives will by default "
+"only insert the docstring of the object itself::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:70
+msgid ".. autoclass:: Noodle"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:72
+msgid "will produce source like this::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:74
+msgid ""
+".. class:: Noodle\n"
+"\n"
+"   Noodle's docstring."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:78
+msgid ""
+"The \"auto\" directives can also contain content of their own, it will be "
+"inserted into the resulting non-auto directive source after the docstring "
+"(but before any automatic member documentation)."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:82
+msgid ""
+"Therefore, you can also mix automatic and non-automatic member "
+"documentation, like so::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:85
+msgid ""
+".. autoclass:: Noodle\n"
+"   :members: eat, slurp\n"
+"\n"
+"   .. method:: boil(time=10)\n"
+"\n"
+"      Boil the noodle *time* minutes."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:93
+msgid "Options"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:97
+msgid ""
+"If set, autodoc will generate document for the members of the target module, "
+"class or exception."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:100
+msgid "For example::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:102
+msgid ""
+".. automodule:: noodle\n"
+"   :members:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:105
+msgid "will document all module members (recursively), and ::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:107
+msgid ""
+".. autoclass:: Noodle\n"
+"   :members:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:110
+msgid "will document all class member methods and properties."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:112
+msgid ""
+"By default, autodoc will not generate document for the members that are "
+"private, not having docstrings, inherited from super class, or special "
+"members."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:116
+msgid ""
+"For modules, ``__all__`` will be respected when looking for members unless "
+"you give the ``ignore-module-all`` flag option.  Without ``ignore-module-"
+"all``, the order of the members will also be the order in ``__all__``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:121
+msgid ""
+"You can also give an explicit list of members; only these will then be "
+"documented::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:124
+msgid ""
+".. autoclass:: Noodle\n"
+"   :members: eat, slurp"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:130
+msgid ""
+"If set, autodoc will also generate document for the members not having "
+"docstrings::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:133
+msgid ""
+".. automodule:: noodle\n"
+"   :members:\n"
+"   :undoc-members:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:140
+msgid ""
+"If set, autodoc will also generate document for the private members (that "
+"is, those named like ``_private`` or ``__private``)::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:143
+msgid ""
+".. automodule:: noodle\n"
+"   :members:\n"
+"   :private-members:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:147
+#: ../../../usage/extensions/autodoc.rst:168
+msgid ""
+"It can also take an explicit list of member names to be documented as "
+"arguments::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:150
+msgid ""
+".. automodule:: noodle\n"
+"   :members:\n"
+"   :private-members: _spicy, _garlickly"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:155
+msgid "The option can now take arguments."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:161
+msgid ""
+"If set, autodoc will also generate document for the special members (that "
+"is, those named like ``__special__``)::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:164
+msgid ""
+".. autoclass:: my.Class\n"
+"   :members:\n"
+"   :special-members:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:171
+msgid ""
+".. autoclass:: my.Class\n"
+"   :members:\n"
+"   :special-members: __init__, __name__"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:177
+msgid "The option can now take arguments"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:180
+msgid "**Options and advanced usage**"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:182
+msgid ""
+"If you want to make the ``members`` option (or other options described "
+"below) the default, see :confval:`autodoc_default_options`."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:187
+msgid ""
+"You can use a negated form, :samp:`'no-{flag}'`, as an option of autodoc "
+"directive, to disable it temporarily.  For example::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:190
+msgid ""
+".. automodule:: foo\n"
+"   :no-undoc-members:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:195
+msgid ""
+"You can use autodoc directive options to temporarily override or extend "
+"default options which takes list as an input. For example::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:198
+msgid ""
+".. autoclass:: Noodle\n"
+"   :members: eat\n"
+"   :private-members: +_spicy, _garlickly"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:202
+msgid "The default options can be overridden or extended temporarily."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:205
+msgid ""
+"autodoc considers a member private if its docstring contains ``:meta private:"
+"`` in its :ref:`info-field-lists`. For example:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:209
+msgid ""
+"def my_function(my_arg, my_other_arg):\n"
+"    \"\"\"blah blah blah\n"
+"\n"
+"    :meta private:\n"
+"    \"\"\""
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:219
+msgid ""
+"autodoc considers a member public if its docstring contains ``:meta public:"
+"`` in its :ref:`info-field-lists`, even if it starts with an underscore. For "
+"example:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:224
+msgid ""
+"def _my_function(my_arg, my_other_arg):\n"
+"    \"\"\"blah blah blah\n"
+"\n"
+"    :meta public:\n"
+"    \"\"\""
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:234
+msgid ""
+"autodoc considers a variable member does not have any default value if its "
+"docstring contains ``:meta hide-value:`` in its :ref:`info-field-lists`. "
+"Example:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:238
+msgid "var1 = None  #: :meta hide-value:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:244
+msgid ""
+"For classes and exceptions, members inherited from base classes will be left "
+"out when documenting all members, unless you give the ``inherited-members`` "
+"option, in addition to ``members``::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:248
+msgid ""
+".. autoclass:: Noodle\n"
+"   :members:\n"
+"   :inherited-members:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:252
+msgid ""
+"This can be combined with ``undoc-members`` to document *all* available "
+"members of the class or module."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:255
+msgid ""
+"It can take an ancestor class not to document inherited members from it. By "
+"default, members of ``object`` class are not documented.  To show them all, "
+"give ``None`` to the option."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:259
+msgid ""
+"For example; If your class ``Foo`` is derived from ``list`` class and you "
+"don't want to document ``list.__len__()``, you should specify a option ``:"
+"inherited-members: list`` to avoid special members of list class."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:264
+msgid ""
+"Another example; If your class Foo has ``__str__`` special method and "
+"autodoc directive has both ``inherited-members`` and ``special-members``, "
+"``__str__`` will be documented as in the past, but other special method that "
+"are not implemented in your class ``Foo``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:269
+msgid ""
+"Note: this will lead to markup errors if the inherited members come from a "
+"module whose docstrings are not reST formatted."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:276
+msgid "It takes an ancestor class name as an argument."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:278
+msgid ""
+"It's possible to override the signature for explicitly documented callable "
+"objects (functions, methods, classes) with the regular syntax that will "
+"override the signature gained from introspection::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:282
+msgid ""
+".. autoclass:: Noodle(type)\n"
+"\n"
+"   .. automethod:: eat(persona)"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:286
+msgid ""
+"This is useful if the signature from the method is hidden by a decorator."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:290
+msgid ""
+"The :rst:dir:`automodule`, :rst:dir:`autoclass` and :rst:dir:`autoexception` "
+"directives also support a flag option called ``show-inheritance``.  When "
+"given, a list of base classes will be inserted just below the class "
+"signature (when used with :rst:dir:`automodule`, this will be inserted for "
+"every class that is documented in the module)."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:298
+msgid ""
+"All autodoc directives support the ``noindex`` flag option that has the same "
+"effect as for standard :rst:dir:`py:function` etc. directives: no index "
+"entries are generated for the documented object (and all autodocumented "
+"members)."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:305
+msgid ""
+":rst:dir:`automodule` also recognizes the ``synopsis``, ``platform`` and "
+"``deprecated`` options that the standard :rst:dir:`py:module` directive "
+"supports."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:311
+msgid ""
+":rst:dir:`automodule` and :rst:dir:`autoclass` also has an ``member-order`` "
+"option that can be used to override the global value of :confval:"
+"`autodoc_member_order` for one directive."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:317
+msgid ""
+"The directives supporting member documentation also have a ``exclude-"
+"members`` option that can be used to exclude single member names from "
+"documentation, if all members are to be documented."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:323
+msgid ""
+"In an :rst:dir:`automodule` directive with the ``members`` option set, only "
+"module members whose ``__module__`` attribute is equal to the module name as "
+"given to ``automodule`` will be documented.  This is to prevent "
+"documentation of imported classes or functions.  Set the ``imported-"
+"members`` option if you want to prevent this behavior and document all "
+"available members.  Note that attributes from imported modules will not be "
+"documented, because attribute documentation is discovered by parsing the "
+"source file of the current module."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:334
+msgid ""
+"Add a list of modules in the :confval:`autodoc_mock_imports` to prevent "
+"import errors to halt the building process when some external dependencies "
+"are not importable at build time."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:340
+msgid ""
+"As a hint to autodoc extension, you can put a ``::`` separator in between "
+"module name and object name to let autodoc know the correct module name if "
+"it is ambiguous. ::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:344
+msgid ".. autoclass:: module.name::Noodle"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:346
+msgid ""
+":rst:dir:`autoclass` also recognizes the ``class-doc-from`` option that can "
+"be used to override the global value of :confval:`autoclass_content`."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:358
+msgid ""
+"These work exactly like :rst:dir:`autoclass` etc., but do not offer the "
+"options used for automatic member documentation."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:361
+msgid ""
+":rst:dir:`autodata` and :rst:dir:`autoattribute` support the ``annotation`` "
+"option.  The option controls how the value of variable is shown.  If "
+"specified without arguments, only the name of the variable will be printed, "
+"and its value is not shown::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:366
+msgid ""
+".. autodata:: CD_DRIVE\n"
+"   :annotation:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:369
+msgid ""
+"If the option specified with arguments, it is printed after the name as a "
+"value of the variable::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:372
+msgid ""
+".. autodata:: CD_DRIVE\n"
+"   :annotation: = your CD device name"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:375
+msgid ""
+"By default, without ``annotation`` option, Sphinx tries to obtain the value "
+"of the variable and print it after the name."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:378
+msgid ""
+"The ``no-value`` option can be used instead of a blank ``annotation`` to "
+"show the type hint but not the value::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:381
+msgid ""
+".. autodata:: CD_DRIVE\n"
+"   :no-value:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:384
+msgid ""
+"If both the ``annotation`` and ``no-value`` options are used, ``no-value`` "
+"has no effect."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:387
+msgid ""
+"For module data members and class attributes, documentation can either be "
+"put into a comment with special formatting (using a ``#:`` to start the "
+"comment instead of just ``#``), or in a docstring *after* the definition.  "
+"Comments need to be either on a line of their own *before* the definition, "
+"or immediately after the assignment *on the same line*.  The latter form is "
+"restricted to one line only."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:394
+msgid ""
+"This means that in the following class definition, all attributes can be "
+"autodocumented::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:397
+msgid ""
+"class Foo:\n"
+"    \"\"\"Docstring for class Foo.\"\"\"\n"
+"\n"
+"    #: Doc comment for class attribute Foo.bar.\n"
+"    #: It can have multiple lines.\n"
+"    bar = 1\n"
+"\n"
+"    flox = 1.5   #: Doc comment for Foo.flox. One line only.\n"
+"\n"
+"    baz = 2\n"
+"    \"\"\"Docstring for class attribute Foo.baz.\"\"\"\n"
+"\n"
+"    def __init__(self):\n"
+"        #: Doc comment for instance attribute qux.\n"
+"        self.qux = 3\n"
+"\n"
+"        self.spam = 4\n"
+"        \"\"\"Docstring for instance attribute spam.\"\"\""
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:416
+msgid ""
+":rst:dir:`autodata` and :rst:dir:`autoattribute` can now extract docstrings."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:419
+msgid "Comment docs are now allowed on the same line after an assignment."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:421
+msgid ""
+":rst:dir:`autodata` and :rst:dir:`autoattribute` have an ``annotation`` "
+"option."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:424
+msgid ":rst:dir:`autodecorator` added."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:426
+msgid ":rst:dir:`autoproperty` added."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:428
+msgid ""
+":rst:dir:`autodata` and :rst:dir:`autoattribute` now have a ``no-value`` "
+"option."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:434
+msgid ""
+"If you document decorated functions or methods, keep in mind that autodoc "
+"retrieves its docstrings by importing the module and inspecting the "
+"``__doc__`` attribute of the given function or method.  That means that if a "
+"decorator replaces the decorated function with another, it must copy the "
+"original ``__doc__`` to the new function."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:442
+msgid "Configuration"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:444
+msgid "There are also config values that you can set:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:448
+msgid ""
+"This value selects what content will be inserted into the main body of an :"
+"rst:dir:`autoclass` directive.  The possible values are:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:453
+msgid "``\"class\"``"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:452
+msgid ""
+"Only the class' docstring is inserted.  This is the default.  You can still "
+"document ``__init__`` as a separate method using :rst:dir:`automethod` or "
+"the ``members`` option to :rst:dir:`autoclass`."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:456
+msgid "``\"both\"``"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:456
+msgid ""
+"Both the class' and the ``__init__`` method's docstring are concatenated and "
+"inserted."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:459
+msgid "``\"init\"``"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:459
+msgid "Only the ``__init__`` method's docstring is inserted."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:463
+msgid ""
+"If the class has no ``__init__`` method or if the ``__init__`` method's "
+"docstring is empty, but the class has a ``__new__`` method's docstring, it "
+"is used instead."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:471
+msgid ""
+"This value selects how the signautre will be displayed for the class defined "
+"by :rst:dir:`autoclass` directive.  The possible values are:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:474
+msgid "``\"mixed\"``"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:475
+msgid "Display the signature with the class name."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:477
+msgid "``\"separated\"``"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:477
+msgid "Display the signature as a method."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:479
+msgid "The default is ``\"mixed\"``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:485
+msgid ""
+"This value selects if automatically documented members are sorted "
+"alphabetical (value ``'alphabetical'``), by member type (value "
+"``'groupwise'``) or by source order (value ``'bysource'``).  The default is "
+"alphabetical."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:490
+msgid ""
+"Note that for source order, the module must be a Python module with the "
+"source code available."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:494
+msgid "Support for ``'bysource'``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:499
+msgid ""
+"This value is a list of autodoc directive flags that should be automatically "
+"applied to all autodoc directives.  The supported flags are ``'members'``, "
+"``'undoc-members'``, ``'private-members'``, ``'special-members'``, "
+"``'inherited-members'``, ``'show-inheritance'``, ``'ignore-module-all'`` and "
+"``'exclude-members'``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:509
+msgid "Integrated into :confval:`autodoc_default_options`."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:513
+msgid ""
+"The default options for autodoc directives.  They are applied to all autodoc "
+"directives automatically.  It must be a dictionary which maps option names "
+"to the values.  For example::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:517
+msgid ""
+"autodoc_default_options = {\n"
+"    'members': 'var1, var2',\n"
+"    'member-order': 'bysource',\n"
+"    'special-members': '__init__',\n"
+"    'undoc-members': True,\n"
+"    'exclude-members': '__weakref__'\n"
+"}"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:525
+msgid ""
+"Setting ``None`` or ``True`` to the value is equivalent to giving only the "
+"option name to the directives."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:528
+msgid ""
+"The supported options are ``'members'``, ``'member-order'``, ``'undoc-"
+"members'``, ``'private-members'``, ``'special-members'``, ``'inherited-"
+"members'``, ``'show-inheritance'``, ``'ignore-module-all'``, ``'imported-"
+"members'``, ``'exclude-members'``, ``'class-doc-from'`` and ``'no-value'``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:536
+msgid "Accepts ``True`` as a value."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:539
+msgid "Added ``'imported-members'``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:542
+msgid "Added ``'class-doc-from'``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:545
+msgid "Added ``'no-value'``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:550
+msgid ""
+"Functions imported from C modules cannot be introspected, and therefore the "
+"signature for such functions cannot be automatically determined.  However, "
+"it is an often-used convention to put the signature into the first line of "
+"the function's docstring."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:555
+msgid ""
+"If this boolean value is set to ``True`` (which is the default), autodoc "
+"will look at the first line of the docstring for functions and methods, and "
+"if it looks like a signature, use the line as the signature and remove it "
+"from the docstring content."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:560
+msgid ""
+"autodoc will continue to look for multiple signature lines, stopping at the "
+"first line that does not look like a signature. This is useful for declaring "
+"overloaded function signatures."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:567
+msgid "Support overloaded signatures"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:571
+msgid "Overloaded signatures do not need to be separated by a backslash"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:575
+msgid ""
+"This value contains a list of modules to be mocked up. This is useful when "
+"some external dependencies are not met at build time and break the building "
+"process. You may only specify the root package of the dependencies "
+"themselves and omit the sub-modules:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:580
+msgid "autodoc_mock_imports = [\"django\"]"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:584
+msgid "Will mock all imports under the ``django`` package."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:588
+msgid ""
+"This config value only requires to declare the top-level modules that should "
+"be mocked."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:594
+msgid ""
+"This value controls how to represent typehints.  The setting takes the "
+"following values:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:597
+msgid "``'signature'`` -- Show typehints in the signature (default)"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:598
+msgid ""
+"``'description'`` -- Show typehints as content of the function or method The "
+"typehints of overloaded functions or methods will still be represented in "
+"the signature."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:601
+msgid "``'none'`` -- Do not show typehints"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:602
+msgid ""
+"``'both'`` -- Show typehints in the signature and as content of the function "
+"or method"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:605
+msgid ""
+"Overloaded functions or methods will not have typehints included in the "
+"description because it is impossible to accurately represent all possible "
+"overloads as a list of parameters."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:612
+msgid "New option ``'description'`` is added."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:616
+msgid "New option ``'both'`` is added."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:620
+msgid ""
+"This value controls whether the types of undocumented parameters and return "
+"values are documented when ``autodoc_typehints`` is set to ``description``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:623
+msgid ""
+"The default value is ``\"all\"``, meaning that types are documented for all "
+"parameters and return values, whether they are documented or not."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:626
+msgid ""
+"When set to ``\"documented\"``, types will only be documented for a "
+"parameter or a return value that is already documented by the docstring."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:633
+msgid ""
+"A dictionary for users defined `type aliases`__ that maps a type name to the "
+"full-qualified object name.  It is used to keep type aliases not evaluated "
+"in the document.  Defaults to empty (``{}``)."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:637
+msgid ""
+"The type aliases are only available if your program enables :pep:`Postponed "
+"Evaluation of Annotations (PEP 563) <563>` feature via ``from __future__ "
+"import annotations``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:641
+msgid "For example, there is code using a type alias::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:643
+msgid ""
+"from __future__ import annotations\n"
+"\n"
+"AliasType = Union[List[Dict[Tuple[int, str], Set[int]]], Tuple[str, "
+"List[str]]]\n"
+"\n"
+"def f() -> AliasType:\n"
+"    ..."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:650
+msgid ""
+"If ``autodoc_type_aliases`` is not set, autodoc will generate internal mark-"
+"up from this code as following::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:653
+msgid ""
+".. py:function:: f() -> Union[List[Dict[Tuple[int, str], Set[int]]], "
+"Tuple[str, List[str]]]\n"
+"\n"
+"   ..."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:657
+msgid ""
+"If you set ``autodoc_type_aliases`` as ``{'AliasType': 'your.module."
+"AliasType'}``, it generates the following document internally::"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:661
+msgid ""
+".. py:function:: f() -> your.module.AliasType:\n"
+"\n"
+"   ..."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:670
+msgid ""
+"This value controls the format of typehints.  The setting takes the "
+"following values:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:673
+msgid ""
+"``'fully-qualified'`` -- Show the module name and its name of typehints "
+"(default)"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:675
+msgid ""
+"``'short'`` -- Suppress the leading module names of the typehints (ex. ``io."
+"StringIO`` -> ``StringIO``)"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:682
+msgid ""
+"If True, the default argument values of functions will be not evaluated on "
+"generating document.  It preserves them as is in the source code."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:687
+msgid ""
+"Added as an experimental feature.  This will be integrated into autodoc core "
+"in the future."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:692
+msgid ""
+"This value controls the behavior of :option:`sphinx-build -W` during "
+"importing modules. If ``False`` is given, autodoc forcedly suppresses the "
+"error if the imported module emits warnings.  By default, ``True``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:699
+msgid ""
+"This value controls the docstrings inheritance. If set to True the docstring "
+"for classes or methods, if not explicitly set, is inherited from parents."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:703
+msgid "The default is ``True``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:710
+msgid ""
+":mod:`autodoc` supports to suppress warning messages via :confval:"
+"`suppress_warnings`.  It allows following warnings types in addition:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:714
+msgid "autodoc"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:715
+msgid "autodoc.import_object"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:719
+msgid "Docstring preprocessing"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:721
+msgid "autodoc provides the following additional events:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:727
+msgid ""
+"Emitted when autodoc has read and processed a docstring.  *lines* is a list "
+"of strings -- the lines of the processed docstring -- that the event handler "
+"can modify **in place** to change what Sphinx puts into the output."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:731
+#: ../../../usage/extensions/autodoc.rst:750
+#: ../../../usage/extensions/autodoc.rst:762
+#: ../../../usage/extensions/autodoc.rst:791
+#: ../../../usage/extensions/autodoc.rst:823
+msgid "the Sphinx application object"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:732
+#: ../../../usage/extensions/autodoc.rst:763
+#: ../../../usage/extensions/autodoc.rst:824
+msgid ""
+"the type of the object which the docstring belongs to (one of "
+"``\"module\"``, ``\"class\"``, ``\"exception\"``, ``\"function\"``, "
+"``\"method\"``, ``\"attribute\"``)"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:735
+#: ../../../usage/extensions/autodoc.rst:766
+#: ../../../usage/extensions/autodoc.rst:792
+#: ../../../usage/extensions/autodoc.rst:827
+msgid "the fully qualified name of the object"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:736
+#: ../../../usage/extensions/autodoc.rst:751
+#: ../../../usage/extensions/autodoc.rst:767
+#: ../../../usage/extensions/autodoc.rst:793
+#: ../../../usage/extensions/autodoc.rst:828
+msgid "the object itself"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:737
+#: ../../../usage/extensions/autodoc.rst:768
+#: ../../../usage/extensions/autodoc.rst:831
+msgid ""
+"the options given to the directive: an object with attributes "
+"``inherited_members``, ``undoc_members``, ``show_inheritance`` and "
+"``noindex`` that are true if the flag option of same name was given to the "
+"auto directive"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:741
+msgid "the lines of the docstring, see above"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:747
+msgid ""
+"Emitted before autodoc formats a signature for an object. The event handler "
+"can modify an object to change its signature."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:752
+msgid "a boolean indicates an object is bound method or not"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:758
+msgid ""
+"Emitted when autodoc has formatted a signature for an object. The event "
+"handler can return a new tuple ``(signature, return_annotation)`` to change "
+"what Sphinx puts into the output."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:772
+msgid ""
+"function signature, as a string of the form ``\"(parameter_1, "
+"parameter_2)\"``, or ``None`` if introspection didn't succeed and signature "
+"wasn't specified in the directive."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:775
+msgid ""
+"function return annotation as a string of the form ``\" -> annotation\"``, "
+"or ``None`` if there is no return annotation"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:778
+msgid ""
+"The :mod:`sphinx.ext.autodoc` module provides factory functions for commonly "
+"needed docstring processing in event :event:`autodoc-process-docstring`:"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/ext/autodoc/__init__.py:docstring
+#: of sphinx.ext.autodoc.cut_lines:1
+msgid ""
+"Return a listener that removes the first *pre* and last *post* lines of "
+"every docstring.  If *what* is a sequence of strings, only docstrings of a "
+"type in *what* will be processed."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/ext/autodoc/__init__.py:docstring
+#: of sphinx.ext.autodoc.cut_lines:5
+msgid "Use like this (e.g. in the ``setup()`` function of :file:`conf.py`)::"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/ext/autodoc/__init__.py:docstring
+#: of sphinx.ext.autodoc.cut_lines:7
+msgid ""
+"from sphinx.ext.autodoc import cut_lines\n"
+"app.connect('autodoc-process-docstring', cut_lines(4, what=['module']))"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/ext/autodoc/__init__.py:docstring
+#: of sphinx.ext.autodoc.cut_lines:10
+msgid ""
+"This can (and should) be used in place of :confval:`automodule_skip_lines`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/ext/autodoc/__init__.py:docstring
+#: of sphinx.ext.autodoc.between:1
+msgid ""
+"Return a listener that either keeps, or if *exclude* is True excludes, lines "
+"between lines that match the *marker* regular expression.  If no line "
+"matches, the resulting docstring would be empty, so no change will be made "
+"unless *keepempty* is true."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/ext/autodoc/__init__.py:docstring
+#: of sphinx.ext.autodoc.between:6
+msgid ""
+"If *what* is a sequence of strings, only docstrings of a type in *what* will "
+"be processed."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:786
+msgid ""
+"Emitted when autodoc has read and processed a class to determine the base-"
+"classes.  *bases* is a list of classes that the event handler can modify "
+"**in place** to change what Sphinx puts into the output.  It's emitted only "
+"if ``show-inheritance`` option given."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:794
+msgid "the options given to the class directive"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:795
+msgid "the list of base classes signature. see above."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:800
+msgid ""
+"``bases`` can contain a string as a base class name.  It will be processed "
+"as reST mark-up'ed text."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:805
+msgid "Skipping members"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:807
+msgid ""
+"autodoc allows the user to define a custom method for determining whether a "
+"member should be included in the documentation by using the following event:"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:814
+msgid ""
+"Emitted when autodoc has to decide whether a member should be included in "
+"the documentation.  The member is excluded if a handler returns ``True``.  "
+"It is included if the handler returns ``False``."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:818
+msgid ""
+"If more than one enabled extension handles the ``autodoc-skip-member`` "
+"event, autodoc will use the first non-``None`` value returned by a handler. "
+"Handlers should return ``None`` to fall back to the skipping behavior of "
+"autodoc and other enabled extensions."
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:829
+msgid ""
+"a boolean indicating if autodoc will skip this member if the user handler "
+"does not override the decision"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:9
+msgid "automatic"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:9
+msgid "documentation"
+msgstr ""
+
+#: ../../../usage/extensions/autodoc.rst:9
+msgid "docstring"
+msgstr ""
