@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sphinx master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-05 09:05+0000\n"
+"POT-Creation-Date: 2026-10-26 16:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,8 +43,8 @@ msgstr ""
 
 #: ../../../extdev/appapi.rst:23
 msgid ""
-"Examples of using the Sphinx extension API can be seen in the :mod:`sphinx."
-"ext` package."
+"Examples of using the Sphinx extension API can be seen in "
+"the :mod:`sphinx.ext` package."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
@@ -165,7 +165,7 @@ msgstr ""
 #: sphinx.application.Sphinx.add_domain:9
 #: sphinx.application.Sphinx.add_generic_role:11
 #: sphinx.application.Sphinx.add_index_to_domain:12
-#: sphinx.application.Sphinx.add_object_type:57
+#: sphinx.application.Sphinx.add_object_type:58
 #: sphinx.application.Sphinx.add_role:12
 #: sphinx.application.Sphinx.add_role_to_domain:14
 #: sphinx.application.Sphinx.add_source_parser:11
@@ -351,8 +351,8 @@ msgid ""
 "can be given as keyword arguments: the keyword should be one or more of "
 "``'html'``, ``'latex'``, ``'text'``, ``'man'``, ``'texinfo'`` or any other "
 "supported translators, the value a 2-tuple of ``(visit, depart)`` methods.  "
-"``depart`` can be ``None`` if the ``visit`` function raises :exc:`docutils."
-"nodes.SkipNode`.  Example:"
+"``depart`` can be ``None`` if the ``visit`` function "
+"raises :exc:`docutils.nodes.SkipNode`.  Example:"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
@@ -649,37 +649,39 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
 #: of sphinx.application.Sphinx.add_object_type:13
 msgid ""
-"If you provide *parse_node*, it must be a function that takes a string and a "
-"docutils node, and it must populate the node with children parsed from the "
-"string.  It must then return the name of the item to be used in cross-"
-"referencing and index entries.  See the :file:`conf.py` file in the source "
-"for this documentation for an example."
+"If you provide *parse_node*, it must be a function with the signature "
+"``parse_node(env, sig, signode) -> str``.  *env* is the current build "
+"environment, *sig* is the signature string, and *signode* is the signature "
+"node.  The function must populate *signode* with children parsed from *sig* "
+"and return the name of the item to be used in cross-referencing and index "
+"entries.  See the :file:`conf.py` file in the source for this documentation "
+"for an example."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_object_type:19
+#: of sphinx.application.Sphinx.add_object_type:20
 msgid ""
 "The *objname* (if not given, will default to *directivename*) names the type "
 "of object.  It is used when listing objects, e.g. in search results."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_object_type:23
+#: of sphinx.application.Sphinx.add_object_type:24
 msgid "For example, if you have this call in a custom Sphinx extension::"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_object_type:25
+#: of sphinx.application.Sphinx.add_object_type:26
 msgid "app.add_object_type('directive', 'dir', 'pair: %s; directive')"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_object_type:27
+#: of sphinx.application.Sphinx.add_object_type:28
 msgid "you can use this markup in your documents::"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_object_type:29
+#: of sphinx.application.Sphinx.add_object_type:30
 msgid ""
 ".. rst:directive:: function\n"
 "\n"
@@ -691,19 +693,19 @@ msgid ""
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_object_type:37
+#: of sphinx.application.Sphinx.add_object_type:38
 msgid ""
 "For the directive, an index entry will be generated as if you had "
 "prepended ::"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_object_type:39
+#: of sphinx.application.Sphinx.add_object_type:40
 msgid ".. index:: pair: function; directive"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_object_type:41
+#: of sphinx.application.Sphinx.add_object_type:42
 msgid ""
 "The reference node will be of class ``literal`` (so it will be rendered in a "
 "proportional font, as appropriate for code) unless you give the "
@@ -716,14 +718,14 @@ msgid ""
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_object_type:51
+#: of sphinx.application.Sphinx.add_object_type:52
 msgid ""
 "For the role content, you have the same syntactical possibilities as for "
 "standard Sphinx roles (see :ref:`xref-syntax`)."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_object_type:54
+#: of sphinx.application.Sphinx.add_object_type:55
 msgid ""
 "If *override* is True, the given object_type is forcedly installed even if "
 "an object_type having the same name is already installed."
@@ -815,15 +817,15 @@ msgid "priority range categories for Sphinx transforms"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:29
-#: sphinx.application.Sphinx.add_js_file:34
+#: of sphinx.application.Sphinx.add_css_file:54
+#: sphinx.application.Sphinx.add_js_file:58
 #: sphinx.application.Sphinx.add_transform:12
 msgid "Priority"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:30
-#: sphinx.application.Sphinx.add_js_file:35
+#: of sphinx.application.Sphinx.add_css_file:55
+#: sphinx.application.Sphinx.add_js_file:59
 #: sphinx.application.Sphinx.add_transform:13
 msgid "Main purpose in Sphinx"
 msgstr ""
@@ -964,85 +966,124 @@ msgstr ""
 #: of sphinx.application.Sphinx.add_js_file:22
 msgid ""
 "app.add_js_file('example.js')\n"
-"# => <script src=\"_static/example.js\"></script>\n"
+"# => <script src=\"_static/example.js?v=a1b2c3d4\"></script>\n"
 "\n"
 "app.add_js_file('example.js', loading_method='async')\n"
-"# => <script src=\"_static/example.js\" async=\"async\"></script>\n"
+"# => <script src=\"_static/example.js?v=a1b2c3d4\" async=\"async\"></"
+"script>\n"
 "\n"
 "app.add_js_file(None, body=\"var myVariable = 'foo';\")\n"
 "# => <script>var myVariable = 'foo';</script>"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_js_file:31
+#: of sphinx.application.Sphinx.add_css_file:29
+#: sphinx.application.Sphinx.add_js_file:33
+msgid ""
+"For the file to be included in the output, it must be present in the "
+"``_static`` directory at build time. Extension developers should "
+"use :meth:`add_static_dir` to register a directory whose contents will be "
+"copied to ``_static``. Site authors can place files into a directory listed "
+"in :confval:`html_static_path` instead."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
+#: of sphinx.application.Sphinx.add_js_file:42
+msgid ""
+"Site authors (as opposed to extension developers) who wish to add custom "
+"JavaScript files may find it easier to use the :confval:`html_js_files` "
+"configuration value in combination with :confval:`html_static_path`, rather "
+"than writing an extension."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
+#: of sphinx.application.Sphinx.add_css_file:45
+#: sphinx.application.Sphinx.add_js_file:49
+msgid ""
+"Files registered by extensions can be overridden by site authors by placing "
+"a file with the same name into their :confval:`html_static_path`. Note that "
+"this may not work in all cases; see `#12096 <https://github.com/sphinx-doc/"
+"sphinx/issues/12096>`__ for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
+#: of sphinx.application.Sphinx.add_js_file:55
 msgid "priority range for JavaScript files"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:31
-#: sphinx.application.Sphinx.add_js_file:36
+#: of sphinx.application.Sphinx.add_css_file:56
+#: sphinx.application.Sphinx.add_js_file:60
 msgid "200"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_js_file:37
+#: of sphinx.application.Sphinx.add_js_file:61
 msgid "default priority for built-in JavaScript files"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:33
-#: sphinx.application.Sphinx.add_js_file:38
+#: of sphinx.application.Sphinx.add_css_file:58
+#: sphinx.application.Sphinx.add_js_file:62
 msgid "500"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:34
-#: sphinx.application.Sphinx.add_js_file:39
+#: of sphinx.application.Sphinx.add_css_file:59
+#: sphinx.application.Sphinx.add_js_file:63
 msgid "default priority for extensions"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:35
-#: sphinx.application.Sphinx.add_js_file:40
+#: of sphinx.application.Sphinx.add_css_file:60
+#: sphinx.application.Sphinx.add_js_file:64
 msgid "800"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_js_file:41
+#: of sphinx.application.Sphinx.add_js_file:65
 msgid "default priority for :confval:`html_js_files`"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_js_file:43
+#: of sphinx.application.Sphinx.add_js_file:67
 msgid ""
 "A JavaScript file can be added to the specific HTML page when an extension "
 "calls this method on :event:`html-page-context` event."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:42
-#: sphinx.application.Sphinx.add_js_file:47
+#: of sphinx.application.Sphinx.add_css_file:67
+#: sphinx.application.Sphinx.add_js_file:71
 msgid ":meth:`add_static_dir` for copying static files to the output directory"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_js_file:51
+#: of sphinx.application.Sphinx.add_js_file:75
 msgid ""
 "Renamed from ``app.add_javascript()``. And it allows keyword arguments as "
 "attributes of script tag."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_js_file:55
+#: of sphinx.application.Sphinx.add_js_file:79
 msgid ""
 "Take priority argument.  Allow to add a JavaScript file to the specific page."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_js_file:57
+#: of sphinx.application.Sphinx.add_js_file:81
 msgid ""
 "Take loading_method argument.  Allow to change the loading method of the "
 "JavaScript file."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
+#: of sphinx.application.Sphinx.add_css_file:85
+#: sphinx.application.Sphinx.add_js_file:84
+msgid ""
+"A checksum is appended as a query parameter to local asset URIs (e.g. ``?"
+"v=a1b2c3d4``) for cache-busting purposes."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
@@ -1075,42 +1116,52 @@ msgstr ""
 #: of sphinx.application.Sphinx.add_css_file:15
 msgid ""
 "app.add_css_file('custom.css')\n"
-"# => <link rel=\"stylesheet\" href=\"_static/custom.css\" type=\"text/css\" /"
-">\n"
+"# => <link rel=\"stylesheet\" href=\"_static/custom.css?v=a1b2c3d4\"\n"
+"#          type=\"text/css\" />\n"
 "\n"
 "app.add_css_file('print.css', media='print')\n"
-"# => <link rel=\"stylesheet\" href=\"_static/print.css\"\n"
+"# => <link rel=\"stylesheet\" href=\"_static/print.css?v=a1b2c3d4\"\n"
 "#          type=\"text/css\" media=\"print\" />\n"
 "\n"
 "app.add_css_file('fancy.css', rel='alternate stylesheet', title='fancy')\n"
-"# => <link rel=\"alternate stylesheet\" href=\"_static/fancy.css\"\n"
+"# => <link rel=\"alternate stylesheet\" href=\"_static/fancy.css?"
+"v=a1b2c3d4\"\n"
 "#          type=\"text/css\" title=\"fancy\" />"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:26
+#: of sphinx.application.Sphinx.add_css_file:38
+msgid ""
+"Site authors (as opposed to extension developers) who wish to add custom CSS "
+"files may find it easier to use the :confval:`html_css_files` configuration "
+"value in combination with :confval:`html_static_path`, rather than writing "
+"an extension."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
+#: of sphinx.application.Sphinx.add_css_file:51
 msgid "priority range for CSS files"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:32
+#: of sphinx.application.Sphinx.add_css_file:57
 msgid "default priority for built-in CSS files"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:36
+#: of sphinx.application.Sphinx.add_css_file:61
 msgid "default priority for :confval:`html_css_files`"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:38
+#: of sphinx.application.Sphinx.add_css_file:63
 msgid ""
 "A CSS file can be added to the specific HTML page when an extension calls "
 "this method on :event:`html-page-context` event."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:46
+#: of sphinx.application.Sphinx.add_css_file:71
 msgid ""
 "Optional ``alternate`` and/or ``title`` attributes can be supplied with the "
 "arguments *alternate* (a Boolean) and *title* (a string). The default is no "
@@ -1119,14 +1170,14 @@ msgid ""
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:53
+#: of sphinx.application.Sphinx.add_css_file:78
 msgid ""
 "Renamed from ``app.add_stylesheet()``. And it allows keyword arguments as "
 "attributes of link tag."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
-#: of sphinx.application.Sphinx.add_css_file:57
+#: of sphinx.application.Sphinx.add_css_file:82
 msgid "Take priority argument.  Allow to add a CSS file to the specific page."
 msgstr ""
 
@@ -1232,10 +1283,10 @@ msgstr ""
 #: of sphinx.application.Sphinx.add_autodocumenter:3
 msgid ""
 "Add *cls* as a new documenter class for the :mod:`sphinx.ext.autodoc` "
-"extension.  It must be a subclass of :class:`sphinx.ext.autodoc."
-"Documenter`.  This allows auto-documenting new types of objects.  See the "
-"source of the autodoc module for examples on how to subclass :class:`~sphinx."
-"ext.autodoc.Documenter`."
+"extension.  It must be a subclass "
+"of :class:`sphinx.ext.autodoc.Documenter`.  This allows auto-documenting new "
+"types of objects.  See the source of the autodoc module for examples on how "
+"to subclass :class:`~sphinx.ext.autodoc.Documenter`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
@@ -1258,10 +1309,11 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
 #: of sphinx.application.Sphinx.add_autodoc_attrgetter:3
 msgid ""
-"Add *getter*, which must be a function with an interface compatible to the :"
-"func:`getattr` builtin, as the autodoc attribute getter for objects that are "
-"instances of *typ*.  All cases where autodoc needs to get an attribute of a "
-"type are then handled by this function instead of :func:`getattr`."
+"Add *getter*, which must be a function with an interface compatible to "
+"the :func:`getattr` builtin, as the autodoc attribute getter for objects "
+"that are instances of *typ*.  All cases where autodoc needs to get an "
+"attribute of a type are then handled by this function instead "
+"of :func:`getattr`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
@@ -1272,10 +1324,11 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
 #: of sphinx.application.Sphinx.add_search_language:3
 msgid ""
-"Add *cls*, which must be a subclass of :class:`sphinx.search."
-"SearchLanguage`, as a support language for building the HTML full-text "
-"search index.  The class must have a *lang* attribute that indicates the "
-"language it should be used for.  See :confval:`html_search_language`."
+"Add *cls*, which must be a subclass "
+"of :class:`sphinx.search.SearchLanguage`, as a support language for building "
+"the HTML full-text search index.  The class must have a *lang* attribute "
+"that indicates the language it should be used for.  "
+"See :confval:`html_search_language`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
@@ -1312,8 +1365,8 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
 #: of sphinx.application.Sphinx.add_source_parser:8
 msgid ""
-"*suffix* argument is deprecated.  It only accepts *parser* argument. Use :"
-"meth:`add_source_suffix` API to register suffix instead."
+"*suffix* argument is deprecated.  It only accepts *parser* argument. "
+"Use :meth:`add_source_suffix` API to register suffix instead."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
@@ -1411,8 +1464,9 @@ msgstr ""
 #: ../../../extdev/appapi.rst:113
 msgid ""
 "Extension developers should prefer using the event manager (``events``) "
-"object directly, via :meth:`.EventManager.emit` and :meth:`.EventManager."
-"emit_firstresult`, which have identical behaviour to the methods below."
+"object directly, via :meth:`.EventManager.emit` "
+"and :meth:`.EventManager.emit_firstresult`, which have identical behaviour "
+"to the methods below."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/sphinx/application.py:docstring
