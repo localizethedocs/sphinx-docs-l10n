@@ -43,8 +43,8 @@ msgstr ""
 
 #: ../../../extdev/appapi.rst:23
 msgid ""
-"Examples of using the Sphinx extension API can be seen in the :mod:`sphinx."
-"ext` package."
+"Examples of using the Sphinx extension API can be seen in "
+"the :mod:`sphinx.ext` package."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/application.py:docstring
@@ -352,8 +352,8 @@ msgid ""
 "can be given as keyword arguments: the keyword should be one or more of "
 "``'html'``, ``'latex'``, ``'text'``, ``'man'``, ``'texinfo'`` or any other "
 "supported translators, the value a 2-tuple of ``(visit, depart)`` methods.  "
-"``depart`` can be ``None`` if the ``visit`` function raises :exc:`docutils."
-"nodes.SkipNode`.  Example:"
+"``depart`` can be ``None`` if the ``visit`` function "
+"raises :exc:`docutils.nodes.SkipNode`.  Example:"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/application.py:docstring
@@ -1180,10 +1180,10 @@ msgstr ""
 #: of sphinx.application.Sphinx.add_autodocumenter:3
 msgid ""
 "Add *cls* as a new documenter class for the :mod:`sphinx.ext.autodoc` "
-"extension.  It must be a subclass of :class:`sphinx.ext.autodoc."
-"Documenter`.  This allows auto-documenting new types of objects.  See the "
-"source of the autodoc module for examples on how to subclass :class:"
-"`Documenter`."
+"extension.  It must be a subclass "
+"of :class:`sphinx.ext.autodoc.Documenter`.  This allows auto-documenting new "
+"types of objects.  See the source of the autodoc module for examples on how "
+"to subclass :class:`Documenter`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/application.py:docstring
@@ -1206,10 +1206,11 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/application.py:docstring
 #: of sphinx.application.Sphinx.add_autodoc_attrgetter:3
 msgid ""
-"Add *getter*, which must be a function with an interface compatible to the :"
-"func:`getattr` builtin, as the autodoc attribute getter for objects that are "
-"instances of *typ*.  All cases where autodoc needs to get an attribute of a "
-"type are then handled by this function instead of :func:`getattr`."
+"Add *getter*, which must be a function with an interface compatible to "
+"the :func:`getattr` builtin, as the autodoc attribute getter for objects "
+"that are instances of *typ*.  All cases where autodoc needs to get an "
+"attribute of a type are then handled by this function instead "
+"of :func:`getattr`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/application.py:docstring
@@ -1220,10 +1221,11 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/application.py:docstring
 #: of sphinx.application.Sphinx.add_search_language:3
 msgid ""
-"Add *cls*, which must be a subclass of :class:`sphinx.search."
-"SearchLanguage`, as a support language for building the HTML full-text "
-"search index.  The class must have a *lang* attribute that indicates the "
-"language it should be used for.  See :confval:`html_search_language`."
+"Add *cls*, which must be a subclass "
+"of :class:`sphinx.search.SearchLanguage`, as a support language for building "
+"the HTML full-text search index.  The class must have a *lang* attribute "
+"that indicates the language it should be used for.  "
+"See :confval:`html_search_language`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/application.py:docstring
@@ -1260,8 +1262,8 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/application.py:docstring
 #: of sphinx.application.Sphinx.add_source_parser:7
 msgid ""
-"*suffix* argument is deprecated.  It only accepts *parser* argument. Use :"
-"meth:`add_source_suffix` API to register suffix instead."
+"*suffix* argument is deprecated.  It only accepts *parser* argument. "
+"Use :meth:`add_source_suffix` API to register suffix instead."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/application.py:docstring
@@ -1453,8 +1455,8 @@ msgid ""
 "      6. source-read(app, docname, source)\n"
 "      7. run source parsers: text -> docutils.document\n"
 "         - parsers can be added with the app.add_source_parser() API\n"
-"      8. apply transforms based on priority: docutils.document -> docutils."
-"document\n"
+"      8. apply transforms based on priority: docutils.document -> "
+"docutils.document\n"
 "         - event.doctree-read(app, doctree) is called in the middle of "
 "transforms,\n"
 "           transforms come before/after this event depending on their "
@@ -1476,8 +1478,8 @@ msgid ""
 "single doctree before post-transforms\n"
 "# or the doctree-resolved event is emitted\n"
 "for docname in updated-docs:\n"
-"   13. apply post-transforms (by priority): docutils.document -> docutils."
-"document\n"
+"   13. apply post-transforms (by priority): docutils.document -> "
+"docutils.document\n"
 "   14. event.doctree-resolved(app, doctree, docname)\n"
 "       - In the event that any reference nodes fail to resolve, the "
 "following may emit:\n"
@@ -1494,8 +1496,8 @@ msgstr ""
 
 #: ../../../extdev/appapi.rst:207
 msgid ""
-"Emitted when the builder object has been created.  It is available as ``app."
-"builder``."
+"Emitted when the builder object has been created.  It is available as "
+"``app.builder``."
 msgstr ""
 
 #: ../../../extdev/appapi.rst:212
@@ -1550,8 +1552,8 @@ msgstr ""
 #: ../../../extdev/appapi.rst:257
 msgid ""
 "For example, if you want to use ``$`` signs to delimit inline math, like in "
-"LaTeX, you can use a regular expression to replace ``$...$`` by ``:math:`..."
-"```."
+"LaTeX, you can use a regular expression to replace ``$...$`` by "
+"``:math:`...```."
 msgstr ""
 
 #: ../../../extdev/appapi.rst:265
@@ -1597,11 +1599,11 @@ msgstr ""
 
 #: ../../../extdev/appapi.rst:299
 msgid ""
-"Emitted when a cross-reference to an object cannot be resolved even after :"
-"event:`missing-reference`.  If the event handler can emit warnings for the "
-"missing reference, it should return ``True``. The configuration variables :"
-"confval:`nitpick_ignore` and :confval:`nitpick_ignore_regex` prevent the "
-"event from being emitted for the corresponding nodes."
+"Emitted when a cross-reference to an object cannot be resolved even "
+"after :event:`missing-reference`.  If the event handler can emit warnings "
+"for the missing reference, it should return ``True``. The configuration "
+"variables :confval:`nitpick_ignore` and :confval:`nitpick_ignore_regex` "
+"prevent the event from being emitted for the corresponding nodes."
 msgstr ""
 
 #: ../../../extdev/appapi.rst:309
@@ -1681,8 +1683,8 @@ msgstr ""
 msgid ""
 "The *pagename* argument is the canonical name of the page being rendered, "
 "that is, without ``.html`` suffix and using slashes as path separators.  The "
-"*templatename* is the name of the template to render, this will be ``'page."
-"html'`` for all pages from reST documents."
+"*templatename* is the name of the template to render, this will be "
+"``'page.html'`` for all pages from reST documents."
 msgstr ""
 
 #: ../../../extdev/appapi.rst:372
@@ -1701,14 +1703,14 @@ msgstr ""
 
 #: ../../../extdev/appapi.rst:380
 msgid ""
-"You can return a string from the handler, it will then replace ``'page."
-"html'`` as the HTML template for this page."
+"You can return a string from the handler, it will then replace "
+"``'page.html'`` as the HTML template for this page."
 msgstr ""
 
 #: ../../../extdev/appapi.rst:383
 msgid ""
-"You can install JS/CSS files for the specific page via :meth:`Sphinx."
-"add_js_file` and :meth:`Sphinx.add_css_file` since v3.5.0."
+"You can install JS/CSS files for the specific page "
+"via :meth:`Sphinx.add_js_file` and :meth:`Sphinx.add_css_file` since v3.5.0."
 msgstr ""
 
 #: ../../../extdev/appapi.rst:389
@@ -1774,10 +1776,10 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.8/site-packages/sphinx/config.py:docstring
 #: of sphinx.config.Config:6
 msgid ""
-"It is exposed via the :py:attr:`sphinx.application.Application.config` and :"
-"py:attr:`sphinx.environment.Environment.config` attributes. For example, to "
-"get the value of :confval:`language`, use either ``app.config.language`` or "
-"``env.config.language``."
+"It is exposed via the :py:attr:`sphinx.application.Application.config` "
+"and :py:attr:`sphinx.environment.Environment.config` attributes. For "
+"example, to get the value of :confval:`language`, use either "
+"``app.config.language`` or ``env.config.language``."
 msgstr ""
 
 #: ../../../extdev/appapi.rst:433

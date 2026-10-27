@@ -23,10 +23,10 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:12
 msgid ""
-"The :term:`configuration directory` must contain a file named :file:`conf."
-"py`. This file (containing Python code) is called the \"build configuration "
-"file\" and contains (almost) all configuration needed to customize Sphinx "
-"input and output behavior."
+"The :term:`configuration directory` must contain a file "
+"named :file:`conf.py`. This file (containing Python code) is called the "
+"\"build configuration file\" and contains (almost) all configuration needed "
+"to customize Sphinx input and output behavior."
 msgstr ""
 
 #: ../../../usage/configuration.rst:17
@@ -38,10 +38,10 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:24
 msgid ""
-"The configuration file is executed as Python code at build time (using :func:"
-"`importlib.import_module`, and with the current directory set to its "
-"containing directory), and therefore can execute arbitrarily complex code. "
-"Sphinx then reads simple names from the file's namespace as its "
+"The configuration file is executed as Python code at build time "
+"(using :func:`importlib.import_module`, and with the current directory set "
+"to its containing directory), and therefore can execute arbitrarily complex "
+"code. Sphinx then reads simple names from the file's namespace as its "
 "configuration."
 msgstr ""
 
@@ -58,9 +58,9 @@ msgstr ""
 #: ../../../usage/configuration.rst:34
 msgid ""
 "The term \"fully-qualified name\" refers to a string that names an "
-"importable Python object inside a module; for example, the FQN ``\"sphinx."
-"builders.Builder\"`` means the ``Builder`` class in the ``sphinx.builders`` "
-"module."
+"importable Python object inside a module; for example, the FQN "
+"``\"sphinx.builders.Builder\"`` means the ``Builder`` class in the "
+"``sphinx.builders`` module."
 msgstr ""
 
 #: ../../../usage/configuration.rst:39
@@ -86,12 +86,12 @@ msgstr ""
 #: ../../../usage/configuration.rst:52
 msgid ""
 "There is a special object named ``tags`` available in the config file. It "
-"can be used to query and change the tags (see :ref:`tags`).  Use ``tags."
-"has('tag')`` to query, ``tags.add('tag')`` and ``tags.remove('tag')`` to "
-"change. Only tags set via the ``-t`` command-line option or via ``tags."
-"add('tag')`` can be queried using ``tags.has('tag')``. Note that the current "
-"builder tag is not available in ``conf.py``, as it is created *after* the "
-"builder is initialized."
+"can be used to query and change the tags (see :ref:`tags`).  Use "
+"``tags.has('tag')`` to query, ``tags.add('tag')`` and ``tags.remove('tag')`` "
+"to change. Only tags set via the ``-t`` command-line option or via "
+"``tags.add('tag')`` can be queried using ``tags.has('tag')``. Note that the "
+"current builder tag is not available in ``conf.py``, as it is created "
+"*after* the builder is initialized."
 msgstr ""
 
 #: ../../../usage/configuration.rst:62
@@ -130,8 +130,8 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:93
 msgid ""
-"If you don't need the separation provided between :confval:`version` and :"
-"confval:`release`, just set them both to the same value."
+"If you don't need the separation provided between :confval:`version` "
+"and :confval:`release`, just set them both to the same value."
 msgstr ""
 
 #: ../../../usage/configuration.rst:98
@@ -328,8 +328,8 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:228
 msgid ""
-"As these files are not meant to be built, they are automatically added to :"
-"confval:`exclude_patterns`."
+"As these files are not meant to be built, they are automatically added "
+"to :confval:`exclude_patterns`."
 msgstr ""
 
 #: ../../../usage/configuration.rst:234
@@ -345,8 +345,8 @@ msgstr ""
 msgid ""
 "A string of reStructuredText that will be included at the end of every "
 "source file that is read.  This is a possible place to add substitutions "
-"that should be available in every file (another being :confval:"
-"`rst_prolog`).  An example::"
+"that should be available in every file (another "
+"being :confval:`rst_prolog`).  An example::"
 msgstr ""
 
 #: ../../../usage/configuration.rst:249
@@ -360,8 +360,8 @@ msgstr ""
 msgid ""
 "A string of reStructuredText that will be included at the beginning of every "
 "source file that is read.  This is a possible place to add substitutions "
-"that should be available in every file (another being :confval:"
-"`rst_epilog`).  An example::"
+"that should be available in every file (another "
+"being :confval:`rst_epilog`).  An example::"
 msgstr ""
 
 #: ../../../usage/configuration.rst:264
@@ -384,8 +384,8 @@ msgstr ""
 #: ../../../usage/configuration.rst:288
 msgid ""
 "The name of a reST role (builtin or Sphinx extension) to use as the default "
-"role, that is, for text marked up ```like this```.  This can be set to ``'py:"
-"obj'`` to make ```filter``` a cross-reference to the Python function "
+"role, that is, for text marked up ```like this```.  This can be set to "
+"``'py:obj'`` to make ```filter``` a cross-reference to the Python function "
 "\"filter\".  The default is ``None``, which doesn't reassign the default "
 "role."
 msgstr ""
@@ -575,8 +575,8 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:394
 msgid ""
-"This requires that the extension specifies its version to Sphinx (see :ref:"
-"`dev-extensions` for how to do that)."
+"This requires that the extension specifies its version to Sphinx "
+"(see :ref:`dev-extensions` for how to do that)."
 msgstr ""
 
 #: ../../../usage/configuration.rst:401
@@ -619,8 +619,8 @@ msgstr ""
 msgid ""
 "A list of ``(type, target)`` tuples (by default empty) that should be "
 "ignored when generating warnings in \"nitpicky mode\".  Note that ``type`` "
-"should include the domain name if present.  Example entries would be ``('py:"
-"func', 'int')`` or ``('envvar', 'LD_LIBRARY_PATH')``."
+"should include the domain name if present.  Example entries would be "
+"``('py:func', 'int')`` or ``('envvar', 'LD_LIBRARY_PATH')``."
 msgstr ""
 
 #: ../../../usage/configuration.rst:436
@@ -635,8 +635,8 @@ msgstr ""
 msgid ""
 "For example, ``(r'py:.*', r'foo.*bar\\.B.*')`` will ignore nitpicky warnings "
 "for all python entities that start with ``'foo'`` and have ``'bar.B'`` in "
-"them, such as ``('py:const', 'foo_package.bar.BAZ_VALUE')`` or ``('py:"
-"class', 'food.bar.Barman')``."
+"them, such as ``('py:const', 'foo_package.bar.BAZ_VALUE')`` or "
+"``('py:class', 'food.bar.Barman')``."
 msgstr ""
 
 #: ../../../usage/configuration.rst:450
@@ -676,8 +676,8 @@ msgstr ""
 msgid ""
 "if ``1`` (default) numbers will be ``x.1``, ``x.2``, ... with ``x`` the "
 "section number (top level sectioning; no ``x.`` if no section). This "
-"naturally applies only if section numbering has been activated via the ``:"
-"numbered:`` option of the :rst:dir:`toctree` directive."
+"naturally applies only if section numbering has been activated via the "
+"``:numbered:`` option of the :rst:dir:`toctree` directive."
 msgstr ""
 
 #: ../../../usage/configuration.rst:481
@@ -708,8 +708,8 @@ msgstr ""
 #: ../../../usage/configuration.rst:502
 msgid ""
 "It replaces deprecated :confval:`html_use_smartypants`. It applies by "
-"default to all builders except ``man`` and ``text`` (see :confval:"
-"`smartquotes_excludes`.)"
+"default to all builders except ``man`` and ``text`` "
+"(see :confval:`smartquotes_excludes`.)"
 msgstr ""
 
 #: ../../../usage/configuration.rst:507
@@ -722,10 +722,10 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:517
 msgid ""
-"This string customizes the Smart Quotes transform.  See the file :file:"
-"`smartquotes.py` at the `Docutils repository`__ for details.  The default "
-"``'qDe'`` educates normal **q**\\ uote characters ``\"``, ``'``, em- and en-"
-"**D**\\ ashes ``---``, ``--``, and **e**\\ llipses ``...``."
+"This string customizes the Smart Quotes transform.  See the "
+"file :file:`smartquotes.py` at the `Docutils repository`__ for details.  The "
+"default ``'qDe'`` educates normal **q**\\ uote characters ``\"``, ``'``, em- "
+"and en-**D**\\ ashes ``---``, ``--``, and **e**\\ llipses ``...``."
 msgstr ""
 
 #: ../../../usage/configuration.rst:528
@@ -774,8 +774,8 @@ msgstr ""
 #: ../../../usage/configuration.rst:561
 msgid ""
 "A User-Agent of Sphinx.  It is used for a header on HTTP access (ex. "
-"linkcheck, intersphinx and so on).  Default is ``\"Sphinx/X.Y.Z requests/X.Y."
-"Z python/X.Y.Z\"``."
+"linkcheck, intersphinx and so on).  Default is ``\"Sphinx/X.Y.Z requests/"
+"X.Y.Z python/X.Y.Z\"``."
 msgstr ""
 
 #: ../../../usage/configuration.rst:569
@@ -899,23 +899,25 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:661
 msgid ""
-"A boolean that decides whether module names are prepended to all :term:"
-"`object` names (for object types where a \"module\" of some kind is "
-"defined), e.g. for :rst:dir:`py:function` directives.  Default is ``True``."
+"A boolean that decides whether module names are prepended to "
+"all :term:`object` names (for object types where a \"module\" of some kind "
+"is defined), e.g. for :rst:dir:`py:function` directives.  Default is "
+"``True``."
 msgstr ""
 
 #: ../../../usage/configuration.rst:667
 msgid ""
-"A boolean that decides whether :rst:dir:`codeauthor` and :rst:dir:"
-"`sectionauthor` directives produce any output in the built files."
+"A boolean that decides whether :rst:dir:`codeauthor` "
+"and :rst:dir:`sectionauthor` directives produce any output in the built "
+"files."
 msgstr ""
 
 #: ../../../usage/configuration.rst:672
 msgid ""
-"A list of prefixes that are ignored for sorting the Python module index (e."
-"g., if this is set to ``['foo.']``, then ``foo.bar`` is shown under ``B``, "
-"not ``F``). This can be handy if you document a project that consists of a "
-"single package.  Works only for the HTML builder currently.  Default is "
+"A list of prefixes that are ignored for sorting the Python module index "
+"(e.g., if this is set to ``['foo.']``, then ``foo.bar`` is shown under "
+"``B``, not ``F``). This can be handy if you document a project that consists "
+"of a single package.  Works only for the HTML builder currently.  Default is "
 "``[]``."
 msgstr ""
 
@@ -1199,9 +1201,9 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:798
 msgid ""
-"Directories in which to search for additional message catalogs (see :confval:"
-"`language`), relative to the source directory.  The directories on this path "
-"are searched by the standard :mod:`gettext` module."
+"Directories in which to search for additional message catalogs "
+"(see :confval:`language`), relative to the source directory.  The "
+"directories on this path are searched by the standard :mod:`gettext` module."
 msgstr ""
 
 #: ../../../usage/configuration.rst:802
@@ -1359,9 +1361,9 @@ msgstr ""
 #: ../../../usage/configuration.rst:896
 msgid ""
 "The filename format for language-specific figures.  The default value is "
-"``{root}.{language}{ext}``.  It will be expanded to ``dirname/filename.en."
-"png`` from ``.. image:: dirname/filename.png``. The available format tokens "
-"are:"
+"``{root}.{language}{ext}``.  It will be expanded to ``dirname/"
+"filename.en.png`` from ``.. image:: dirname/filename.png``. The available "
+"format tokens are:"
 msgstr ""
 
 #: ../../../usage/configuration.rst:901
@@ -1436,10 +1438,10 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:945
 msgid ""
-"If ``True``, displayed math equations are numbered across pages when :"
-"confval:`numfig` is enabled.  The :confval:`numfig_secnum_depth` setting is "
-"respected.  The :rst:role:`eq`, not :rst:role:`numref`, role must be used to "
-"reference equation numbers.  Default is ``True``."
+"If ``True``, displayed math equations are numbered across pages "
+"when :confval:`numfig` is enabled.  The :confval:`numfig_secnum_depth` "
+"setting is respected.  The :rst:role:`eq`, not :rst:role:`numref`, role must "
+"be used to reference equation numbers.  Default is ``True``."
 msgstr ""
 
 #: ../../../usage/configuration.rst:956
@@ -1487,15 +1489,15 @@ msgstr ""
 msgid ""
 "The \"title\" for HTML documentation generated with Sphinx's own templates. "
 "This is appended to the ``<title>`` tag of individual pages, and used in the "
-"navigation bar as the \"topmost\" element.  It defaults to :samp:"
-"`'{<project>} v{<revision>} documentation'`."
+"navigation bar as the \"topmost\" element.  It defaults "
+"to :samp:`'{<project>} v{<revision>} documentation'`."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1002
 msgid ""
 "A shorter \"title\" for the HTML docs.  This is used for links in the header "
-"and in the HTML Help docs.  If not given, it defaults to the value of :"
-"confval:`html_title`."
+"and in the HTML Help docs.  If not given, it defaults to the value "
+"of :confval:`html_title`."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1010
@@ -1530,10 +1532,11 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:1042
 msgid ""
-"If given, this must be the name of an image file (path relative to the :term:"
-"`configuration directory`) that is the logo of the docs, or URL that points "
-"an image file for the logo.  It is placed at the top of the sidebar; its "
-"width should therefore not exceed 200 pixels.  Default: ``None``."
+"If given, this must be the name of an image file (path relative to "
+"the :term:`configuration directory`) that is the logo of the docs, or URL "
+"that points an image file for the logo.  It is placed at the top of the "
+"sidebar; its width should therefore not exceed 200 pixels.  Default: "
+"``None``."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1047 ../../../usage/configuration.rst:1062
@@ -1548,11 +1551,11 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:1056
 msgid ""
-"If given, this must be the name of an image file (path relative to the :term:"
-"`configuration directory`) that is the favicon of the docs, or URL that "
-"points an image file for the favicon.  Modern browsers use this as the icon "
-"for tabs, windows and bookmarks.  It should be a Windows-style icon file (``."
-"ico``), which is 16x16 or 32x32 pixels large.  Default: ``None``."
+"If given, this must be the name of an image file (path relative to "
+"the :term:`configuration directory`) that is the favicon of the docs, or URL "
+"that points an image file for the favicon.  Modern browsers use this as the "
+"icon for tabs, windows and bookmarks.  It should be a Windows-style icon "
+"file (``.ico``), which is 16x16 or 32x32 pixels large.  Default: ``None``."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1066
@@ -1578,8 +1581,8 @@ msgstr ""
 #: ../../../usage/configuration.rst:1083 ../../../usage/configuration.rst:1106
 msgid ""
 "As a special attribute, *priority* can be set as an integer to load the CSS "
-"file earlier or lazier step.  For more information, refer :meth:`Sphinx."
-"add_css_files()`."
+"file earlier or lazier step.  For more information, "
+"refer :meth:`Sphinx.add_css_files()`."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1090 ../../../usage/configuration.rst:1113
@@ -1747,8 +1750,8 @@ msgstr ""
 msgid ""
 "The default sidebars (for documents that don't match any pattern) are "
 "defined by theme itself.  Builtin themes are using these templates by "
-"default: ``['localtoc.html', 'relations.html', 'sourcelink.html', 'searchbox."
-"html']``."
+"default: ``['localtoc.html', 'relations.html', 'sourcelink.html', "
+"'searchbox.html']``."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1234
@@ -1832,8 +1835,8 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:1282
 msgid ""
-"This will render the template ``customdownload.html`` as the page ``download."
-"html``."
+"This will render the template ``customdownload.html`` as the page "
+"``download.html``."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1287 ../../../usage/configuration.rst:2140
@@ -1891,15 +1894,15 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:1340
 msgid ""
-"This is the file name suffix for generated HTML files.  The default is ``\"."
-"html\"``."
+"This is the file name suffix for generated HTML files.  The default is "
+"``\".html\"``."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1347
 msgid ""
-"Suffix for generated links to HTML files.  The default is whatever :confval:"
-"`html_file_suffix` is set to; it can be set differently (e.g. to support "
-"different web server setups)."
+"Suffix for generated links to HTML files.  The default is "
+"whatever :confval:`html_file_suffix` is set to; it can be set differently "
+"(e.g. to support different web server setups)."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1355
@@ -2228,9 +2231,10 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:1609
 msgid ""
-"You can disable the use of these tools using :confval:"
-"`applehelp_disable_external_tools`, but the result will not be a valid help "
-"book until the indexer is run over the ``.lproj`` folders within the bundle."
+"You can disable the use of these tools "
+"using :confval:`applehelp_disable_external_tools`, but the result will not "
+"be a valid help book until the indexer is run over the ``.lproj`` folders "
+"within the bundle."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1616
@@ -2266,17 +2270,17 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:1644
 msgid ""
-"The product tag for use with :confval:`applehelp_kb_url`.  Defaults to :samp:"
-"`'{<project>}-{<release>}'`."
+"The product tag for use with :confval:`applehelp_kb_url`.  Defaults "
+"to :samp:`'{<project>}-{<release>}'`."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1649
 msgid ""
-"The URL for your knowledgebase server, e.g. ``https://example.com/kbsearch."
-"py?p='product'&q='query'&l='lang'``. Help Viewer will replace the values "
-"``'product'``, ``'query'`` and ``'lang'`` at runtime with the contents of :"
-"confval:`applehelp_kb_product`, the text entered by the user in the search "
-"box and the user's system language respectively."
+"The URL for your knowledgebase server, e.g. ``https://example.com/"
+"kbsearch.py?p='product'&q='query'&l='lang'``. Help Viewer will replace the "
+"values ``'product'``, ``'query'`` and ``'lang'`` at runtime with the "
+"contents of :confval:`applehelp_kb_product`, the text entered by the user in "
+"the search box and the user's system language respectively."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1656
@@ -2320,9 +2324,9 @@ msgstr ""
 msgid ""
 "Either a language specification (to use the built-in stopwords), or the path "
 "to a stopwords plist, or ``None`` if you do not want to use stopwords. The "
-"default stopwords plist can be found at ``/usr/share/hiutil/Stopwords."
-"plist`` and contains, at time of writing, stopwords for the following "
-"languages:"
+"default stopwords plist can be found at ``/usr/share/hiutil/"
+"Stopwords.plist`` and contains, at time of writing, stopwords for the "
+"following languages:"
 msgstr ""
 
 #: ../../../usage/configuration.rst:1692
@@ -2488,8 +2492,8 @@ msgstr ""
 #: ../../../usage/configuration.rst:1788
 msgid ""
 "The title of the document.  It defaults to the :confval:`html_title` option "
-"but can be set independently for epub creation.  It defaults to the :confval:"
-"`project` option."
+"but can be set independently for epub creation.  It defaults to "
+"the :confval:`project` option."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1792
@@ -2711,8 +2715,9 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:1980
 msgid ""
-"If true, add an index to the epub document.  It defaults to the :confval:"
-"`html_use_index` option but can be set independently for epub creation."
+"If true, add an index to the epub document.  It defaults to "
+"the :confval:`html_use_index` option but can be set independently for epub "
+"creation."
 msgstr ""
 
 #: ../../../usage/configuration.rst:1988
@@ -2848,9 +2853,9 @@ msgstr ""
 #: ../../../usage/configuration.rst:2061
 msgid ""
 "Contrarily to :ref:`MathJaX math rendering in HTML output <math-support>`, "
-"LaTeX requires some extra configuration to support Unicode literals in :rst:"
-"dir:`math`: the only comprehensive solution (as far as we know) is to use "
-"``'xelatex'`` or ``'lualatex'`` *and* to add ``r'\\usepackage{unicode-"
+"LaTeX requires some extra configuration to support Unicode literals "
+"in :rst:dir:`math`: the only comprehensive solution (as far as we know) is "
+"to use ``'xelatex'`` or ``'lualatex'`` *and* to add ``r'\\usepackage{unicode-"
 "math}'`` (e.g. via the :confval:`latex_elements` ``'preamble'`` key).  You "
 "may prefer ``r'\\usepackage[math-style=literal]{unicode-math}'`` to keep a "
 "Unicode literal such as ``α`` (U+03B1) for example as is in output, rather "
@@ -3002,9 +3007,9 @@ msgstr ""
 msgid ""
 "The default is ``False``: it means that Sphinx's own macros are used for "
 "merged cells from grid tables. They allow general contents (literal blocks, "
-"lists, blockquotes, ...) but may have problems if the :rst:dir:"
-"`tabularcolumns` directive was used to inject LaTeX mark-up of the type "
-"``>{..}``, ``<{..}``, ``@{..}`` as column specification."
+"lists, blockquotes, ...) but may have problems if "
+"the :rst:dir:`tabularcolumns` directive was used to inject LaTeX mark-up of "
+"the type ``>{..}``, ``<{..}``, ``@{..}`` as column specification."
 msgstr ""
 
 #: ../../../usage/configuration.rst:2179
@@ -3017,10 +3022,11 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:2188
 msgid ""
-"If ``True``, the PDF build from the LaTeX files created by Sphinx will use :"
-"program:`xindy` (doc__) rather than :program:`makeindex` for preparing the "
-"index of general terms (from :rst:dir:`index` usage).  This means that words "
-"with UTF-8 characters will get ordered correctly for the :confval:`language`."
+"If ``True``, the PDF build from the LaTeX files created by Sphinx will "
+"use :program:`xindy` (doc__) rather than :program:`makeindex` for preparing "
+"the index of general terms (from :rst:dir:`index` usage).  This means that "
+"words with UTF-8 characters will get ordered correctly for "
+"the :confval:`language`."
 msgstr ""
 
 #: ../../../usage/configuration.rst:2196
@@ -3031,10 +3037,10 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:2200
 msgid ""
-"The default is ``True`` for ``'xelatex'`` or ``'lualatex'`` as :program:"
-"`makeindex`, if any indexed term starts with a non-ascii character, creates "
-"``.ind`` files containing invalid bytes for UTF-8 encoding. With "
-"``'lualatex'`` this then breaks the PDF build."
+"The default is ``True`` for ``'xelatex'`` or ``'lualatex'`` "
+"as :program:`makeindex`, if any indexed term starts with a non-ascii "
+"character, creates ``.ind`` files containing invalid bytes for UTF-8 "
+"encoding. With ``'lualatex'`` this then breaks the PDF build."
 msgstr ""
 
 #: ../../../usage/configuration.rst:2206
@@ -3087,8 +3093,8 @@ msgstr ""
 
 #: ../../../usage/configuration.rst:2249
 msgid ""
-"This overrides the files which is provided from Sphinx such as ``sphinx."
-"sty``."
+"This overrides the files which is provided from Sphinx such as "
+"``sphinx.sty``."
 msgstr ""
 
 #: ../../../usage/configuration.rst:2255
@@ -3119,8 +3125,8 @@ msgstr ""
 #: ../../../usage/configuration.rst:2265
 msgid ""
 "A LaTeX theme for writing an article.  It imports the ``article`` document "
-"class (Japanese documents use ``jreport`` rather).  :confval:"
-"`latex_appendices` is available only for this theme."
+"class (Japanese documents use ``jreport`` "
+"rather).  :confval:`latex_appendices` is available only for this theme."
 msgstr ""
 
 #: ../../../usage/configuration.rst:2269
@@ -3491,8 +3497,8 @@ msgid ""
 "linkcheck_allowed_redirects = {\n"
 "    # All HTTP redirections from the source URI to the canonical URI will be "
 "treated as \"working\".\n"
-"    r'https://sphinx-doc\\.org/.*': r'https://sphinx-doc\\.org/en/master/."
-"*'\n"
+"    r'https://sphinx-doc\\.org/.*': r'https://sphinx-doc\\.org/en/"
+"master/.*'\n"
 "}"
 msgstr ""
 
@@ -3913,8 +3919,8 @@ msgid ""
 "here,\n"
 "# relative to this directory. They are copied after the builtin static "
 "files,\n"
-"# so a file named \"default.css\" will overwrite the builtin \"default."
-"css\".\n"
+"# so a file named \"default.css\" will overwrite the builtin "
+"\"default.css\".\n"
 "html_static_path = ['_static']\n"
 "\n"
 "# Add any extra paths that contain custom files (such as robots.txt or\n"
