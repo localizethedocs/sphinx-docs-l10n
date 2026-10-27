@@ -34,8 +34,8 @@ msgstr "角色"
 #: ../../../extdev/markupapi.rst:11
 msgid ""
 "Roles follow the interface described below. They have to be registered by an "
-"extension using :meth:`.Sphinx.add_role` or :meth:`.Sphinx."
-"add_role_to_domain`."
+"extension using :meth:`.Sphinx.add_role` "
+"or :meth:`.Sphinx.add_role_to_domain`."
 msgstr ""
 
 #: ../../../extdev/markupapi.rst:16
@@ -69,18 +69,19 @@ msgstr "建立自訂角色"
 
 #: ../../../extdev/markupapi.rst:40
 msgid ""
-"Sphinx provides two base classes for creating custom roles, :class:`~sphinx."
-"util.docutils.SphinxRole` and :class:`~sphinx.util.docutils.ReferenceRole`."
+"Sphinx provides two base classes for creating custom "
+"roles, :class:`~sphinx.util.docutils.SphinxRole` "
+"and :class:`~sphinx.util.docutils.ReferenceRole`."
 msgstr ""
 
 #: ../../../extdev/markupapi.rst:43
 msgid ""
 "These provide a class-based interface for creating roles, where the main "
 "logic must be implemented in your ``run()`` method. The classes provide a "
-"number of useful methods and attributes, such as ``self.text``, ``self."
-"config``, and ``self.env``. The ``ReferenceRole`` class implements Sphinx's "
-"``title <target>`` logic, exposing ``self.target`` and ``self.title`` "
-"attributes. This is useful for creating cross-reference roles."
+"number of useful methods and attributes, such as ``self.text``, "
+"``self.config``, and ``self.env``. The ``ReferenceRole`` class implements "
+"Sphinx's ``title <target>`` logic, exposing ``self.target`` and "
+"``self.title`` attributes. This is useful for creating cross-reference roles."
 msgstr ""
 
 #: ../../../extdev/markupapi.rst:53
@@ -89,9 +90,10 @@ msgstr "指示詞"
 
 #: ../../../extdev/markupapi.rst:55
 msgid ""
-"Directives are handled by classes derived from ``docutils.parsers.rst."
-"Directive``.  They have to be registered by an extension using :meth:`."
-"Sphinx.add_directive` or :meth:`.Sphinx.add_directive_to_domain`."
+"Directives are handled by classes derived from "
+"``docutils.parsers.rst.Directive``.  They have to be registered by an "
+"extension using :meth:`.Sphinx.add_directive` "
+"or :meth:`.Sphinx.add_directive_to_domain`."
 msgstr ""
 
 #: ../../../extdev/markupapi.rst:63
@@ -129,8 +131,8 @@ msgstr ""
 
 #: ../../../extdev/markupapi.rst:76
 msgid ""
-"There are several predefined and possibly useful validators in the :mod:"
-"`docutils.parsers.rst.directives` module."
+"There are several predefined and possibly useful validators in "
+"the :mod:`docutils.parsers.rst.directives` module."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.13/site-packages/docutils/parsers/rst/__init__.py:docstring
@@ -259,8 +261,8 @@ msgid ""
 "def run(self) -> list[Node]:\n"
 "    container = docutils.nodes.Element()\n"
 "    # either\n"
-"    nested_parse_with_titles(self.state, self.result, container, self."
-"content_offset)\n"
+"    nested_parse_with_titles(self.state, self.result, container, "
+"self.content_offset)\n"
 "    # or\n"
 "    self.state.nested_parse(self.result, self.content_offset, container)\n"
 "    parsed = container.children\n"
@@ -269,10 +271,10 @@ msgstr ""
 
 #: ../../../extdev/markupapi.rst:182
 msgid ""
-"To parse inline markup, use :py:meth:`~sphinx.util.docutils.SphinxDirective."
-"parse_inline()`. This must only be used for text which is a single line or "
-"paragraph, and does not contain any structural elements (headings, "
-"transitions, directives, etc)."
+"To parse inline markup, "
+"use :py:meth:`~sphinx.util.docutils.SphinxDirective.parse_inline()`. This "
+"must only be used for text which is a single line or paragraph, and does not "
+"contain any structural elements (headings, transitions, directives, etc)."
 msgstr ""
 
 #: ../../../extdev/markupapi.rst:190
