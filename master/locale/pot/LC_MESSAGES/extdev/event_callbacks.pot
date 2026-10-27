@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sphinx master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-05 09:05+0000\n"
+"POT-Creation-Date: 2026-10-26 16:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,19 +46,25 @@ msgstr ""
 #: ../../../extdev/event_callbacks.rst:23
 msgid ""
 "Extensions can add their own events by using :meth:`.Sphinx.add_event`, and "
-"calling them them with :meth:`.EventManager.emit` or :meth:`.EventManager."
-"emit_firstresult`."
+"calling them them with :meth:`.EventManager.emit` "
+"or :meth:`.EventManager.emit_firstresult`."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:28
+#: ../../../extdev/event_callbacks.rst:27
+msgid ""
+"Many events pass a :term:`doctree` to their callbacks. See the glossary "
+"entry for where its node types are documented."
+msgstr ""
+
+#: ../../../extdev/event_callbacks.rst:31
 msgid "Core events overview"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:30
+#: ../../../extdev/event_callbacks.rst:33
 msgid "Below is an overview of the core event that happens during a build."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:32
+#: ../../../extdev/event_callbacks.rst:35
 msgid ""
 "1. event.config-inited(app,config)\n"
 "2. event.builder-inited(app)\n"
@@ -74,8 +80,8 @@ msgid ""
 "         - parsers can be added with the app.add_source_parser() API\n"
 "         - event.include-read(app, relative_path, parent_docname, content)\n"
 "           is called for each include directive\n"
-"      8. apply transforms based on priority: docutils.document -> docutils."
-"document\n"
+"      8. apply transforms based on priority: docutils.document -> "
+"docutils.document\n"
 "         - event.doctree-read(app, doctree) is called in the middle of "
 "transforms,\n"
 "           transforms come before/after this event depending on their "
@@ -103,8 +109,8 @@ msgid ""
 "single doctree before post-transforms\n"
 "# or the doctree-resolved event is emitted\n"
 "for docname in updated-docs:\n"
-"   14. apply post-transforms (by priority): docutils.document -> docutils."
-"document\n"
+"   14. apply post-transforms (by priority): docutils.document -> "
+"docutils.document\n"
 "   15. event.doctree-resolved(app, doctree, docname)\n"
 "       - In the event that any reference nodes fail to resolve, the "
 "following may emit:\n"
@@ -115,21 +121,21 @@ msgid ""
 "17. event.build-finished(app, exception)"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:79
+#: ../../../extdev/event_callbacks.rst:82
 msgid ""
 "Here is also a flow diagram of the events, within the context of the Sphinx "
 "build process:"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:82
+#: ../../../extdev/event_callbacks.rst:85
 msgid "Sphinx core events flow"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:86
+#: ../../../extdev/event_callbacks.rst:89
 msgid "Core event details"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:88
+#: ../../../extdev/event_callbacks.rst:91
 msgid "Here is a more detailed list of these events."
 msgstr ""
 
@@ -137,59 +143,59 @@ msgstr ""
 msgid "Parameters"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:92
-#: ../../../extdev/event_callbacks.rst:101
-#: ../../../extdev/event_callbacks.rst:108
-#: ../../../extdev/event_callbacks.rst:125
-#: ../../../extdev/event_callbacks.rst:142
-#: ../../../extdev/event_callbacks.rst:160
-#: ../../../extdev/event_callbacks.rst:179
-#: ../../../extdev/event_callbacks.rst:201
-#: ../../../extdev/event_callbacks.rst:214
-#: ../../../extdev/event_callbacks.rst:223
-#: ../../../extdev/event_callbacks.rst:247
-#: ../../../extdev/event_callbacks.rst:264
-#: ../../../extdev/event_callbacks.rst:277
-#: ../../../extdev/event_callbacks.rst:297
-#: ../../../extdev/event_callbacks.rst:315
-#: ../../../extdev/event_callbacks.rst:325
-#: ../../../extdev/event_callbacks.rst:335
-#: ../../../extdev/event_callbacks.rst:345
-#: ../../../extdev/event_callbacks.rst:364
-#: ../../../extdev/event_callbacks.rst:377
-#: ../../../extdev/event_callbacks.rst:416
+#: ../../../extdev/event_callbacks.rst:95
+#: ../../../extdev/event_callbacks.rst:104
+#: ../../../extdev/event_callbacks.rst:111
+#: ../../../extdev/event_callbacks.rst:128
+#: ../../../extdev/event_callbacks.rst:145
+#: ../../../extdev/event_callbacks.rst:163
+#: ../../../extdev/event_callbacks.rst:182
+#: ../../../extdev/event_callbacks.rst:204
+#: ../../../extdev/event_callbacks.rst:217
+#: ../../../extdev/event_callbacks.rst:226
+#: ../../../extdev/event_callbacks.rst:252
+#: ../../../extdev/event_callbacks.rst:269
+#: ../../../extdev/event_callbacks.rst:282
+#: ../../../extdev/event_callbacks.rst:302
+#: ../../../extdev/event_callbacks.rst:320
+#: ../../../extdev/event_callbacks.rst:330
+#: ../../../extdev/event_callbacks.rst:340
+#: ../../../extdev/event_callbacks.rst:350
+#: ../../../extdev/event_callbacks.rst:369
+#: ../../../extdev/event_callbacks.rst:382
+#: ../../../extdev/event_callbacks.rst:421
 msgid ":class:`.Sphinx`"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:93
+#: ../../../extdev/event_callbacks.rst:96
 msgid ":class:`.Config`"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:95
+#: ../../../extdev/event_callbacks.rst:98
 msgid "Emitted when the config object has been initialized."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:103
+#: ../../../extdev/event_callbacks.rst:106
 msgid ""
-"Emitted when the builder object has been created (available as ``app."
-"builder``)."
+"Emitted when the builder object has been created (available as "
+"``app.builder``)."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:109
-#: ../../../extdev/event_callbacks.rst:126
-#: ../../../extdev/event_callbacks.rst:143
-#: ../../../extdev/event_callbacks.rst:224
-#: ../../../extdev/event_callbacks.rst:278
-#: ../../../extdev/event_callbacks.rst:280
-#: ../../../extdev/event_callbacks.rst:298
-#: ../../../extdev/event_callbacks.rst:316
-#: ../../../extdev/event_callbacks.rst:326
+#: ../../../extdev/event_callbacks.rst:112
+#: ../../../extdev/event_callbacks.rst:129
+#: ../../../extdev/event_callbacks.rst:146
+#: ../../../extdev/event_callbacks.rst:227
+#: ../../../extdev/event_callbacks.rst:283
+#: ../../../extdev/event_callbacks.rst:285
+#: ../../../extdev/event_callbacks.rst:303
+#: ../../../extdev/event_callbacks.rst:321
+#: ../../../extdev/event_callbacks.rst:331
 msgid ":class:`.BuildEnvironment`"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:110
-#: ../../../extdev/event_callbacks.rst:111
-#: ../../../extdev/event_callbacks.rst:112
+#: ../../../extdev/event_callbacks.rst:113
+#: ../../../extdev/event_callbacks.rst:114
+#: ../../../extdev/event_callbacks.rst:115
 msgid "``Set[str]``"
 msgstr ""
 
@@ -197,11 +203,11 @@ msgstr ""
 msgid "returns"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:113
+#: ../../../extdev/event_callbacks.rst:116
 msgid "``Sequence[str]`` of additional docnames to re-read"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:115
+#: ../../../extdev/event_callbacks.rst:118
 msgid ""
 "Emitted when the environment determines which source files have changed and "
 "should be re-read. *added*, *changed* and *removed* are sets of docnames "
@@ -209,17 +215,17 @@ msgid ""
 "read in addition to these."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:127
-#: ../../../extdev/event_callbacks.rst:161
-#: ../../../extdev/event_callbacks.rst:202
-#: ../../../extdev/event_callbacks.rst:203
-#: ../../../extdev/event_callbacks.rst:266
-#: ../../../extdev/event_callbacks.rst:378
-#: ../../../extdev/event_callbacks.rst:379
+#: ../../../extdev/event_callbacks.rst:130
+#: ../../../extdev/event_callbacks.rst:164
+#: ../../../extdev/event_callbacks.rst:205
+#: ../../../extdev/event_callbacks.rst:206
+#: ../../../extdev/event_callbacks.rst:271
+#: ../../../extdev/event_callbacks.rst:383
+#: ../../../extdev/event_callbacks.rst:384
 msgid "``str``"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:129
+#: ../../../extdev/event_callbacks.rst:132
 msgid ""
 "Emitted when all traces of a source file should be cleaned from the "
 "environment, that is, if the source file is removed or before it is freshly "
@@ -227,19 +233,19 @@ msgid ""
 "environment."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:134
+#: ../../../extdev/event_callbacks.rst:137
 msgid ""
 "For example, there is a cache of all modules on the environment. When a "
 "source file has been changed, the cache's entries for the file are cleared, "
 "since the module declarations could have been removed from the file."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:144
-#: ../../../extdev/event_callbacks.rst:279
+#: ../../../extdev/event_callbacks.rst:147
+#: ../../../extdev/event_callbacks.rst:284
 msgid "``list[str]``"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:146
+#: ../../../extdev/event_callbacks.rst:149
 msgid ""
 "Emitted after the environment has determined the list of all added and "
 "changed files and just before it reads them. It allows extension authors to "
@@ -248,108 +254,109 @@ msgid ""
 "that are not in :attr:`.found_docs`)."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:153
+#: ../../../extdev/event_callbacks.rst:156
 msgid ""
 "You can also remove document names; do this with caution since it will make "
 "Sphinx treat changed files as unchanged."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:162
+#: ../../../extdev/event_callbacks.rst:165
 msgid ""
 "``list[str]`` with a single element, representing the content of the source "
 "file."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:166
+#: ../../../extdev/event_callbacks.rst:169
 msgid "Emitted when a source file has been read."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:168
+#: ../../../extdev/event_callbacks.rst:171
 msgid ""
 "You can process the ``content`` and replace this item to implement source-"
 "level transformations."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:171
+#: ../../../extdev/event_callbacks.rst:174
 msgid ""
 "For example, if you want to use ``$`` signs to delimit inline math, like in "
-"LaTeX, you can use a regular expression to replace ``$...$`` by ``:math:`..."
-"```."
-msgstr ""
-
-#: ../../../extdev/event_callbacks.rst:180
-msgid ""
-":class:`~pathlib.Path` representing the included file relative to the :term:"
-"`source directory`."
+"LaTeX, you can use a regular expression to replace ``$...$`` by "
+"``:math:`...```."
 msgstr ""
 
 #: ../../../extdev/event_callbacks.rst:183
 msgid ""
-"``str`` of the document name that contains the :dudir:`include` directive."
+":class:`~pathlib.Path` representing the included file relative to "
+"the :term:`source directory`."
 msgstr ""
 
 #: ../../../extdev/event_callbacks.rst:186
+msgid ""
+"``str`` of the document name that contains the :dudir:`include` directive."
+msgstr ""
+
+#: ../../../extdev/event_callbacks.rst:189
 msgid ""
 "``list[str]`` with a single element, representing the content of the "
 "included file."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:190
+#: ../../../extdev/event_callbacks.rst:193
 msgid "Emitted when a file has been read with the :dudir:`include` directive."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:192
+#: ../../../extdev/event_callbacks.rst:195
 msgid ""
 "You can process the ``content`` and replace this item to transform the "
 "included content, as with the :event:`source-read` event."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:197
+#: ../../../extdev/event_callbacks.rst:200
 msgid "The :dudir:`include` directive and the :event:`source-read` event."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:204
+#: ../../../extdev/event_callbacks.rst:207
 msgid ":class:`.desc_content`"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:206
+#: ../../../extdev/event_callbacks.rst:209
 msgid ""
 "Emitted when an object description directive has run.  The *domain* and "
 "*objtype* arguments are strings indicating object description of the object. "
 "And *contentnode* is a content for the object.  It can be modified in-place."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:215
-#: ../../../extdev/event_callbacks.rst:265
+#: ../../../extdev/event_callbacks.rst:218
+#: ../../../extdev/event_callbacks.rst:270
 msgid ":class:`docutils.nodes.document`"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:217
+#: ../../../extdev/event_callbacks.rst:220
 msgid ""
 "Emitted when a doctree has been parsed and read by the environment, and is "
 "about to be pickled. The ``doctree`` can be modified in-place."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:225
+#: ../../../extdev/event_callbacks.rst:228
 msgid ""
-"The :class:`.pending_xref` node to be resolved. Its ``reftype``, "
-"``reftarget``, ``modname`` and ``classname`` attributes determine the type "
-"and target of the reference."
+"The :class:`.pending_xref` node to be resolved. Its docutils node attributes "
+"``reftype``, ``reftarget``, ``modname``, and ``classname`` determine the "
+"type and target of the reference. These attributes can be accessed using "
+"mapping syntax, such as ``node['reftype']``."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:228
+#: ../../../extdev/event_callbacks.rst:233
 msgid ""
 "The node that carries the text and formatting inside the future reference "
 "and should be a child of the returned reference node."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:230
+#: ../../../extdev/event_callbacks.rst:235
 msgid ""
 "A new node to be inserted in the document tree in place of the node, or "
 "``None`` to let other handlers try."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:233
+#: ../../../extdev/event_callbacks.rst:238
 msgid ""
 "Emitted when a cross-reference to an object cannot be resolved. If the event "
 "handler can resolve the reference, it should return a new docutils node to "
@@ -361,107 +368,107 @@ msgid ""
 "reference being unresolved."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:248
+#: ../../../extdev/event_callbacks.rst:253
 msgid "The :class:`.Domain` of the missing reference."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:249
+#: ../../../extdev/event_callbacks.rst:254
 msgid "The :class:`.pending_xref` node that could not be resolved."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:250
+#: ../../../extdev/event_callbacks.rst:255
 msgid "``True`` if a warning was emitted, else ``None``"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:252
+#: ../../../extdev/event_callbacks.rst:257
 msgid ""
-"Emitted when a cross-reference to an object cannot be resolved even after :"
-"event:`missing-reference`. If the event handler can emit warnings for the "
-"missing reference, it should return ``True``. The configuration variables :"
-"confval:`nitpick_ignore` and :confval:`nitpick_ignore_regex` prevent the "
-"event from being emitted for the corresponding nodes."
+"Emitted when a cross-reference to an object cannot be resolved even "
+"after :event:`missing-reference`. If the event handler can emit warnings for "
+"the missing reference, it should return ``True``. The configuration "
+"variables :confval:`nitpick_ignore` and :confval:`nitpick_ignore_regex` "
+"prevent the event from being emitted for the corresponding nodes."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:268
+#: ../../../extdev/event_callbacks.rst:273
 msgid ""
 "Emitted when a doctree has been \"resolved\" by the environment, that is, "
 "all references have been resolved and TOCs have been inserted.  The "
 "*doctree* can be modified in place."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:272
+#: ../../../extdev/event_callbacks.rst:277
 msgid ""
 "Here is the place to replace custom nodes that don't have visitor methods in "
 "the writers, so that they don't cause errors when the writers encounter them."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:282
+#: ../../../extdev/event_callbacks.rst:287
 msgid ""
 "This event is only emitted when parallel reading of documents is enabled.  "
 "It is emitted once for every subprocess that has read some documents."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:285
+#: ../../../extdev/event_callbacks.rst:290
 msgid ""
 "You must handle this event in an extension that stores data in the "
 "environment in a custom location.  Otherwise the environment in the main "
 "process will not be aware of the information stored in the subprocess."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:289
+#: ../../../extdev/event_callbacks.rst:294
 msgid ""
 "*other* is the environment object from the subprocess, *env* is the "
 "environment from the main process.  *docnames* is a set of document names "
 "that have been read in the subprocess."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:299
-#: ../../../extdev/event_callbacks.rst:317
+#: ../../../extdev/event_callbacks.rst:304
+#: ../../../extdev/event_callbacks.rst:322
 msgid "iterable of ``str``"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:301
+#: ../../../extdev/event_callbacks.rst:306
 msgid ""
 "Emitted after reading all documents, when the environment and all doctrees "
 "are now up-to-date."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:304
+#: ../../../extdev/event_callbacks.rst:309
 msgid ""
 "You can return an iterable of docnames from the handler.  These documents "
 "will then be considered updated, and will be (re-)written during the writing "
 "phase."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:310
+#: ../../../extdev/event_callbacks.rst:315
 msgid "The handlers' return value is now used."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:319
+#: ../../../extdev/event_callbacks.rst:324
 msgid ""
 "Emitted when the environment determines which source files have changed and "
 "should be re-read. You can return an iterable of docnames to re-read."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:328
+#: ../../../extdev/event_callbacks.rst:333
 msgid ""
 "Emitted when Consistency checks phase.  You can check consistency of "
 "metadata for whole of documents."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:336
+#: ../../../extdev/event_callbacks.rst:341
 msgid ":class:`.Builder`"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:338
+#: ../../../extdev/event_callbacks.rst:343
 msgid "Emitted before the builder starts to resolve and write documents."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:346
+#: ../../../extdev/event_callbacks.rst:351
 msgid "``Exception`` or ``None``"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:348
+#: ../../../extdev/event_callbacks.rst:353
 msgid ""
 "Emitted when a build has finished, before Sphinx exits, usually used for "
 "cleanup.  This event is emitted even when the build process raised an "
@@ -471,93 +478,94 @@ msgid ""
 "cleanup actions depending on the exception status."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:358
+#: ../../../extdev/event_callbacks.rst:363
 msgid "Builder specific events"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:360
+#: ../../../extdev/event_callbacks.rst:365
 msgid "These events are emitted by specific builders."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:365
+#: ../../../extdev/event_callbacks.rst:370
 msgid ""
 "iterable of ``(pagename, context, templatename)`` where *pagename* and "
 "*templatename* are strings and *context* is a ``dict[str, Any]``."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:369
+#: ../../../extdev/event_callbacks.rst:374
 msgid "Emitted when the HTML builder is starting to write non-document pages."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:371
+#: ../../../extdev/event_callbacks.rst:376
 msgid "You can add pages to write by returning an iterable from this event."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:380
+#: ../../../extdev/event_callbacks.rst:385
 msgid "``dict[str, Any]``"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:381
+#: ../../../extdev/event_callbacks.rst:386
 msgid ":class:`docutils.nodes.document` or ``None``"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:382
-#: ../../../extdev/event_callbacks.rst:418
+#: ../../../extdev/event_callbacks.rst:387
+#: ../../../extdev/event_callbacks.rst:423
 msgid "``str`` or ``None``"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:384
+#: ../../../extdev/event_callbacks.rst:389
 msgid ""
 "Emitted when the HTML builder has created a context dictionary to render a "
 "template with -- this can be used to add custom elements to the context."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:387
+#: ../../../extdev/event_callbacks.rst:392
 msgid ""
 "The *pagename* argument is the canonical name of the page being rendered, "
 "that is, without ``.html`` suffix and using slashes as path separators. The "
-"*templatename* is the name of the template to render, this will be ``'page."
-"html'`` for all pages from reStructuredText documents."
+"*templatename* is the name of the template to render, this will be "
+"``'page.html'`` for all pages from reStructuredText documents."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:392
+#: ../../../extdev/event_callbacks.rst:397
 msgid ""
 "The *context* argument is a dictionary of values that are given to the "
 "template engine to render the page and can be modified to include custom "
 "values."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:396
+#: ../../../extdev/event_callbacks.rst:401
 msgid ""
 "The *doctree* argument will be a doctree when the page is created from a "
 "reStructuredText documents; it will be ``None`` when the page is created "
 "from an HTML template alone."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:400
-msgid ""
-"You can return a string from the handler, it will then replace ``'page."
-"html'`` as the HTML template for this page."
-msgstr ""
-
 #: ../../../extdev/event_callbacks.rst:405
 msgid ""
-"You can install JS/CSS files for the specific page via :meth:`.Sphinx."
-"add_js_file` and :meth:`.Sphinx.add_css_file` (since v3.5.0)."
+"You can return a string from the handler, it will then replace "
+"``'page.html'`` as the HTML template for this page."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:411
+#: ../../../extdev/event_callbacks.rst:410
+msgid ""
+"You can install JS/CSS files for the specific page "
+"via :meth:`.Sphinx.add_js_file` and :meth:`.Sphinx.add_css_file` (since "
+"v3.5.0)."
+msgstr ""
+
+#: ../../../extdev/event_callbacks.rst:416
 msgid "The return value can now specify a template name."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:417
+#: ../../../extdev/event_callbacks.rst:422
 msgid "``str`` of the collected URI"
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:420
+#: ../../../extdev/event_callbacks.rst:425
 msgid "Emitted when the linkcheck builder collects hyperlinks from document."
 msgstr ""
 
-#: ../../../extdev/event_callbacks.rst:422
+#: ../../../extdev/event_callbacks.rst:427
 msgid "The event handlers can modify the URI by returning a string."
 msgstr ""
