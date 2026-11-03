@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Developing a “Hello world” extension &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/development/tutorials/helloworld.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="Developing a “TODO” extension" href="todo.html" />
+    <link rel="prev" title="Extension tutorials" href="index.html" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../usage/installation.html">Get it</a></li>
+    <li><a href="../../contents.html">Docs</a></li>
+    <li><a href="../index.html">Extend</a></li>
+  </ul>
+  <div>
+    <a href="../../index.html">
+      <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="todo.html" title="Developing a “TODO” extension"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Extension tutorials"
+             accesskey="P">上一页</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Extending Sphinx</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Extension tutorials</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Developing a “Hello world” extension</a></li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../contents.html">目录</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Developing a “Hello world” extension</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#writing-the-extension">Writing the extension</a></li>
+<li><a class="reference internal" href="#using-the-extension">Using the extension</a></li>
+<li><a class="reference internal" href="#further-reading">Further reading</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>上一个主题</h4>
+    <p class="topless"><a href="index.html"
+                          title="上一章">Extension tutorials</a></p>
+  </div>
+  <div>
+    <h4>下一个主题</h4>
+    <p class="topless"><a href="todo.html"
+                          title="下一章">Developing a “TODO” extension</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/development/tutorials/helloworld.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="developing-a-hello-world-extension">
+<h1>Developing a “Hello world” extension<a class="headerlink" href="#developing-a-hello-world-extension" title="永久链接至标题">¶</a></h1>
+<p>The objective of this tutorial is to create a very basic extension that adds a
+new directive. This directive will output a paragraph containing “hello world”.</p>
+<p>Only basic information is provided in this tutorial. For more information, refer
+to the <a class="reference internal" href="index.html"><span class="doc">other tutorials</span></a> that go into more details.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>For this extension, you will need some basic understanding of <a class="reference external" href="https://docutils.sourceforge.io/">docutils</a>
+and Python.</p>
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="永久链接至标题">¶</a></h2>
+<p>We want the extension to add the following to Sphinx:</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">helloworld</span></code> directive, that will simply output the text “hello world”.</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="永久链接至标题">¶</a></h2>
+<p>We will not be distributing this plugin via <a class="reference external" href="https://pypi.org/">PyPI</a> and will instead include it
+as part of an existing project. This means you will need to use an existing
+project or create a new one using <strong class="program">sphinx-quickstart</strong>.</p>
+<p>We assume you are using separate source (<code class="file docutils literal notranslate"><span class="pre">source</span></code>) and build
+(<code class="file docutils literal notranslate"><span class="pre">build</span></code>) folders. Your extension file could be in any folder of your
+project. In our case, let’s do the following:</p>
+<ol class="arabic simple">
+<li><p>Create an <code class="file docutils literal notranslate"><span class="pre">_ext</span></code> folder in <code class="file docutils literal notranslate"><span class="pre">source</span></code></p></li>
+<li><p>Create a new Python file in the <code class="file docutils literal notranslate"><span class="pre">_ext</span></code> folder called
+<code class="file docutils literal notranslate"><span class="pre">helloworld.py</span></code></p></li>
+</ol>
+<p>Here is an example of the folder structure you might obtain:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>└── source
+    ├── _ext
+    │   └── helloworld.py
+    ├── _static
+    ├── conf.py
+    ├── somefolder
+    ├── index.rst
+    ├── somefile.rst
+    └── someotherfile.rst
+</pre></div>
+</div>
+</section>
+<section id="writing-the-extension">
+<h2>Writing the extension<a class="headerlink" href="#writing-the-extension" title="永久链接至标题">¶</a></h2>
+<p>Open <code class="file docutils literal notranslate"><span class="pre">helloworld.py</span></code> and paste the following code in it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">docutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">nodes</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">docutils.parsers.rst</span><span class="w"> </span><span class="kn">import</span> <span class="n">Directive</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">class</span><span class="w"> </span><span class="nc">HelloWorld</span><span class="p">(</span><span class="n">Directive</span><span class="p">):</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="n">paragraph_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="k">return</span> <span class="p">[</span><span class="n">paragraph_node</span><span class="p">]</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="linenos">13</span>    <span class="n">app</span><span class="o">.</span><span class="n">add_directive</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">,</span> <span class="n">HelloWorld</span><span class="p">)</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="k">return</span> <span class="p">{</span>
+<span class="linenos">16</span>        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
+<span class="linenos">17</span>        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">18</span>        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">19</span>    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Some essential things are happening in this example, and you will see them for
+all directives.</p>
+<p class="rubric">The directive class</p>
+<p>Our new directive is declared in the <code class="docutils literal notranslate"><span class="pre">HelloWorld</span></code> class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span><span class="w"> </span><span class="nc">HelloWorld</span><span class="p">(</span><span class="n">Directive</span><span class="p">):</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">4</span>        <span class="n">paragraph_node</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+<span class="linenos">5</span>        <span class="k">return</span> <span class="p">[</span><span class="n">paragraph_node</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This class extends the <a class="reference external" href="https://docutils.sourceforge.io/">docutils</a>’ <code class="docutils literal notranslate"><span class="pre">Directive</span></code> class. All extensions that
+create directives should extend this class.</p>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="https://docutils.sourceforge.io/docs/howto/rst-directives.html">The docutils documentation on creating directives</a></p>
+</div>
+<p>This class contains a <code class="docutils literal notranslate"><span class="pre">run</span></code> method.  This method is a requirement and it is
+part of every directive.  It contains the main logic of the directive and it
+returns a list of docutils nodes to be processed by Sphinx. These nodes are
+docutils’ way of representing the content of a document. There are many types of
+nodes available: text, paragraph, reference, table, etc.</p>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="https://docutils.sourceforge.io/docs/ref/doctree.html">The docutils documentation on nodes</a></p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">nodes.paragraph</span></code> class creates a new paragraph node. A paragraph
+node typically contains some text that we can set during instantiation using
+the <code class="docutils literal notranslate"><span class="pre">text</span></code> parameter.</p>
+<p class="rubric">The <code class="docutils literal notranslate"><span class="pre">setup</span></code> function</p>
+<p>This function is a requirement. We use it to plug our new directive into
+Sphinx.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="linenos">2</span>    <span class="n">app</span><span class="o">.</span><span class="n">add_directive</span><span class="p">(</span><span class="s2">&quot;helloworld&quot;</span><span class="p">,</span> <span class="n">HelloWorld</span><span class="p">)</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span>    <span class="k">return</span> <span class="p">{</span>
+<span class="linenos">5</span>        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
+<span class="linenos">6</span>        <span class="s1">&#39;parallel_read_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">7</span>        <span class="s1">&#39;parallel_write_safe&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">8</span>    <span class="p">}</span>
+</pre></div>
+</div>
+<p>The simplest thing you can do it call the <a class="reference internal" href="../../extdev/appapi.html#sphinx.application.Sphinx.add_directive" title="sphinx.application.Sphinx.add_directive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_directive()</span></code></a> method,
+which is what we’ve done here. For this particular call, the first argument is
+the name of the directive itself as used in a reST file. In this case, we would
+use <code class="docutils literal notranslate"><span class="pre">helloworld</span></code>. For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>Some intro text here...
+
+<span class="p">..</span> <span class="ow">helloworld</span><span class="p">::</span>
+
+Some more text here...
+</pre></div>
+</div>
+<p>We also return the <a class="reference internal" href="../../extdev/index.html#ext-metadata"><span class="std std-ref">extension metadata</span></a> that indicates the
+version of our extension, along with the fact that it is safe to use the
+extension for both parallel reading and writing.</p>
+</section>
+<section id="using-the-extension">
+<h2>Using the extension<a class="headerlink" href="#using-the-extension" title="永久链接至标题">¶</a></h2>
+<p>The extension has to be declared in your <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> file to make Sphinx
+aware of it. There are two steps necessary here:</p>
+<ol class="arabic simple">
+<li><p>Add the <code class="file docutils literal notranslate"><span class="pre">_ext</span></code> directory to the <a class="reference external" href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH">Python path</a> using
+<code class="docutils literal notranslate"><span class="pre">sys.path.append</span></code>. This should be placed at the top of the file.</p></li>
+<li><p>Update or create the <a class="reference internal" href="../../usage/configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">extensions</span></code></a> list and add the extension file
+name to the list</p></li>
+</ol>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;./_ext&quot;</span><span class="p">))</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;helloworld&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>We’re not distributing this extension as a <a class="reference external" href="https://packaging.python.org/">Python package</a>, we need to
+modify the <a class="reference external" href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH">Python path</a> so Sphinx can find our extension. This is why we
+need the call to <code class="docutils literal notranslate"><span class="pre">sys.path.append</span></code>.</p>
+</div>
+<p>You can now use the extension in a file. For example:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>Some intro text here...
+
+<span class="p">..</span> <span class="ow">helloworld</span><span class="p">::</span>
+
+Some more text here...
+</pre></div>
+</div>
+<p>The sample above would generate:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Some intro text here...
+
+Hello World!
+
+Some more text here...
+</pre></div>
+</div>
+</section>
+<section id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="永久链接至标题">¶</a></h2>
+<p>This is the very basic principle of an extension that creates a new directive.</p>
+<p>For a more advanced example, refer to <a class="reference internal" href="todo.html"><span class="doc">Developing a “TODO” extension</span></a>.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="todo.html" title="Developing a “TODO” extension"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Extension tutorials"
+             >上一页</a> |</li>
+        <li><a href="../../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Extending Sphinx</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Extension tutorials</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Developing a “Hello world” extension</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2007-2022, Georg Brandl and the Sphinx team.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0创建。
+    </div>
+  </body>
+</html>

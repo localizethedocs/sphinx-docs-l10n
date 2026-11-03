@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>reStructuredText &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx13.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/restructuredtext/index.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜尋"
+          href="../../_static/opensearch.xml"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜尋" href="../../search.html" />
+    <link rel="next" title="reStructuredText Primer" href="basics.html" />
+    <link rel="prev" title="使用 Sphinx" href="../index.html" />
+
+ 
+
+<script type="text/javascript" src="../../ltd-provenance.js"></script>
+<script type="text/javascript" src="../../ltd-current.js"></script>
+<script type="text/javascript" src="../../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+<a href="../../index.html">
+  <img src="../../_static/sphinxheader.png" alt="SPHINX" />
+</a>
+</div>
+
+<div class="related" role="navigation" aria-label="related navigation">
+  <h3>瀏覽</h3>
+  <ul>
+    <li><a href="../../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">使用 Sphinx</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">reStructuredText</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜尋</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="前往" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+    <div class="sphinxsidebar-navigation__contents">
+      <h3>On this page</h3>
+      <ul>
+<li><a class="reference internal" href="#">reStructuredText</a></li>
+</ul>
+
+    </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <h3>Site navigation</h3>
+      <p class="caption" role="heading"><span class="caption-text">開始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">開始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">安裝 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">使用者指南</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">使用 Sphinx</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">reStructuredText</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basics.html">reStructuredText Primer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="roles.html">角色</a></li>
+<li class="toctree-l3"><a class="reference internal" href="directives.html">指示詞</a></li>
+<li class="toctree-l3"><a class="reference internal" href="field-lists.html">欄位列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="domains.html">領域</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">組態</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../builders/index.html">建置器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/index.html">擴充功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theming.html">HTML Theming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/intl.html">國際化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/setuptools.html">Setuptools integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/websupport/index.html">Sphinx Web Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../templating.html">Templating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../latex.html">LaTeX customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extdev/index.html">Developing extensions for Sphinx</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">社群</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">獲取支援</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../internals/index.html">貢獻 Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Sphinx 常見問題</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">參考手冊</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../man/index.html">命令行工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">詞彙表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">變更日誌</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">使用 Sphinx 的專案</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="restructuredtext">
+<span id="rst-index"></span><h1>reStructuredText<a class="headerlink" href="#restructuredtext" title="本標頭的永久連結">¶</a></h1>
+<p>reStructuredText（reST）是 Docutils 和 Sphinx 都使用的預設純文字標註語言。Docutils 提供基本的 reStructuredText 語法，而 Sphinx 則擴充這些功能以支援額外的功能。</p>
+<p>The below guides go through the most important aspects of reST. For the
+authoritative reStructuredText reference, refer to the <a class="reference external" href="https://docutils.sourceforge.io/rst.html">docutils
+documentation</a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">reStructuredText Primer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#paragraphs">段落</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#inline-markup">內聯標註</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#lists-and-quote-like-blocks">Lists and Quote-like blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#literal-blocks">Literal blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#doctest-blocks">Doctest blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#tables">表格</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#hyperlinks">超連結</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#sections">Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#field-lists">欄位列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#roles">角色</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#explicit-markup">Explicit Markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#directives">指示詞</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#images">Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#footnotes">腳註</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#citations">引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#substitutions">Substitutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#comments">註釋</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#html-metadata">HTML Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#source-encoding">Source encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#gotchas">Gotchas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="roles.html">角色</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="roles.html#cross-referencing-syntax">交叉參照語法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles.html#inline-code-highlighting">Inline code highlighting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles.html#math">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles.html#other-semantic-markup">Other semantic markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles.html#substitutions">Substitutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="directives.html">指示詞</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="directives.html#table-of-contents">目次表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives.html#paragraph-level-markup">Paragraph-level markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives.html#showing-code-examples">顯示程式碼範例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives.html#glossary">詞彙表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives.html#meta-information-markup">Meta-information markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives.html#index-generating-markup">Index-generating markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives.html#including-content-based-on-tags">Including content based on tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives.html#tables">表格</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives.html#math">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directives.html#grammar-production-displays">Grammar production displays</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="field-lists.html">欄位列表</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="field-lists.html#file-wide-metadata">File-wide metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="field-lists.html#special-metadata-fields">Special metadata fields</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="domains.html">領域</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="domains.html#basic-markup">基礎標註</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html#the-python-domain">Python 領域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html#the-c-domain">C 語言領域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html#cpp-domain">C++ 領域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html#the-standard-domain">標準領域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html#the-javascript-domain">JavaScript 領域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html#the-restructuredtext-domain">The reStructuredText domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html#the-math-domain">The Math Domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domains.html#more-domains">More domains</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  &#169; <a href="../../copyright.html">版權所有</a> 2007-2026, the Sphinx developers。
+  使用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0 建立。
+</div>
+  </body>
+</html>
