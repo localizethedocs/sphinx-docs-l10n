@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Organization of the Sphinx project &#8212; Sphinx documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=fb9458d3" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx13.css?v=4e502a7e" />
+    <script src="../_static/documentation_options.js?v=891990c7"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/translations.js?v=beaddf03"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/internals/organization.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx documentation 中搜索"
+          href="../_static/opensearch.xml"/>
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Sphinx Code of Conduct" href="code-of-conduct.html" />
+    <link rel="prev" title="Sphinx’s release process" href="release-process.html" />
+
+ 
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="github" viewBox="0 0 16 16">
+    <title>GitHub</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+      ></path>
+    </svg>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<div class="pageheader">
+  <div class="brand">
+    <a href="../index.html">
+      <img src="../_static/sphinx-logo.svg" alt="logo" />
+    </a>
+    <h1>Sphinx</h1>
+  </div>
+  <div class="icons">
+    <a href="https://github.com/sphinx-doc/sphinx" title="Source Code" target="_blank">
+      <svg><use href="#github"></use></svg>
+    </a>
+  </div>
+</div>
+
+<div class="related" role="navigation" aria-label="Related">
+  <h3>导航</h3>
+  <ul>
+    <li><a href="../index.html">Documentation</a> &raquo;</li>
+      <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Contribute to Sphinx</a> &#187;</li>
+    <li class="nav-item nav-item-this"><a href="">Organization of the Sphinx project</a></li>
+  </ul>
+</div>
+
+<div class="document">
+  <div class="sphinxsidebar" role="navigation" aria-label="Main">
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+      <div class="sphinxsidebar-navigation__contents">
+        <h3>On this page</h3>
+        <ul>
+<li><a class="reference internal" href="#">Organization of the Sphinx project</a><ul>
+<li><a class="reference internal" href="#core-developers">Core developers</a><ul>
+<li><a class="reference internal" href="#guidelines">Guidelines</a></li>
+<li><a class="reference internal" href="#membership">Membership</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-contributors">Other contributors</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    <div class="sphinxsidebar-navigation__pages">
+      <p class="caption" role="heading"><span class="caption-text">The Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installing Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Build your first project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Extending Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extdev/index.html">Sphinx API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../latex.html">LaTeX customization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Get support</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Contribute to Sphinx</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing to Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release-process.html">Sphinx’s release process</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Organization of the Sphinx project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-of-conduct.html">Sphinx Code of Conduct</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Sphinx FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Sphinx authors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../man/index.html">Command-Line Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/extensions/index.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/restructuredtext/index.html">reStructuredText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Projects using Sphinx</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="body" role="main">
+    
+  <section id="organization-of-the-sphinx-project">
+<h1>Organization of the Sphinx project<a class="headerlink" href="#organization-of-the-sphinx-project" title="Link to this heading">¶</a></h1>
+<p>The guide explains how the Sphinx project is organized.</p>
+<section id="core-developers">
+<h2>Core developers<a class="headerlink" href="#core-developers" title="Link to this heading">¶</a></h2>
+<p>The core developers of Sphinx have write access to the main repository.  They
+can commit changes, accept/reject pull requests, and manage items on the issue
+tracker.</p>
+<section id="guidelines">
+<h3>Guidelines<a class="headerlink" href="#guidelines" title="Link to this heading">¶</a></h3>
+<p>The following are some general guidelines for core developers:</p>
+<ul class="simple">
+<li><p>Questionable or extensive changes should be submitted as a pull request
+instead of being committed directly to the main repository.  The pull
+request should be reviewed by another core developer before it is merged.</p></li>
+<li><p>Trivial changes can be committed directly but be sure to keep the repository
+in a good working state and that all tests pass before pushing your changes.</p></li>
+<li><p>When committing code written by someone else, please attribute the original
+author in the commit message and any relevant <code class="file docutils literal notranslate"><span class="pre">CHANGES.rst</span></code> entry.</p></li>
+</ul>
+</section>
+<section id="membership">
+<h3>Membership<a class="headerlink" href="#membership" title="Link to this heading">¶</a></h3>
+<p>Core membership is predicated on continued active contribution to the project.
+In general, prospective cores should demonstrate:</p>
+<ul class="simple">
+<li><p>a good understanding of one of more components of Sphinx</p></li>
+<li><p>a history of helpful, constructive contributions</p></li>
+<li><p>a willingness to invest time improving Sphinx</p></li>
+</ul>
+<p>Refer to <a class="reference internal" href="contributing.html"><span class="doc">Contributing to Sphinx</span></a> for more information on how you can get started.</p>
+</section>
+</section>
+<section id="other-contributors">
+<h2>Other contributors<a class="headerlink" href="#other-contributors" title="Link to this heading">¶</a></h2>
+<p>You do not need to be a core developer or have write access to be involved in
+the development of Sphinx.  You can submit patches or create pull requests
+from forked repositories and have a core developer add the changes for you.</p>
+<p>Similarly, contributions are not limited to code patches. We also welcome help
+triaging bugs, input on design decisions, reviews of existing patches and
+documentation improvements. More information can be found in
+<a class="reference internal" href="contributing.html"><span class="doc">Contributing to Sphinx</span></a>.</p>
+<p>A list of people that have contributed to Sphinx can be found in
+<a class="reference internal" href="../authors.html"><span class="doc">Sphinx authors</span></a>.</p>
+</section>
+</section>
+
+
+    
+  <div class="related-pages" role="navigation" aria-label="Related">
+    <a class="prev-page" href="release-process.html">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+          <div class="context">
+            <span>Previous</span>
+          </div>
+          
+          <div class="title">Sphinx’s release process</div>
+          
+        </div>
+      </a>
+    <a class="next-page" href="code-of-conduct.html">
+        <div class="page-info">
+          <div class="context">
+            <span>Next</span>
+          </div>
+          <div class="title">Sphinx Code of Conduct</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+      </a>
+  </div>
+
+  </div>
+</div>
+<div class="footer" role="contentinfo">
+  
+    &#169; 版权所有 2007-2026, the Sphinx developers.
+  由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7创建。
+</div>
+  </body>
+</html>

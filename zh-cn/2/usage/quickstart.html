@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Getting Started &#8212; Sphinx 2.4.5 文档</title>
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/usage/quickstart.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx 2.4.5 文档 中搜索"
+          href="../_static/opensearch.xml"/>
+
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="reStructuredText" href="restructuredtext/index.html" />
+    <link rel="prev" title="Installing Sphinx" href="installation.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/usage/quickstart.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="restructuredtext/index.html" title="reStructuredText"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installing Sphinx"
+             accesskey="P">上一页</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#setting-up-the-documentation-sources">Setting up the documentation sources</a></li>
+<li><a class="reference internal" href="#defining-document-structure">Defining document structure</a></li>
+<li><a class="reference internal" href="#adding-content">Adding content</a></li>
+<li><a class="reference internal" href="#running-the-build">Running the build</a></li>
+<li><a class="reference internal" href="#documenting-objects">Documenting objects</a></li>
+<li><a class="reference internal" href="#basic-configuration">Basic configuration</a></li>
+<li><a class="reference internal" href="#autodoc">Autodoc</a></li>
+<li><a class="reference internal" href="#intersphinx">Intersphinx</a></li>
+<li><a class="reference internal" href="#more-topics-to-be-covered">More topics to be covered</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="installation.html"
+                        title="上一章">Installing Sphinx</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="restructuredtext/index.html"
+                        title="下一章">reStructuredText</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/usage/quickstart.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="永久链接至标题">¶</a></h1>
+<p>Once Sphinx is <a class="reference internal" href="installation.html"><span class="doc">installed</span></a>, you can proceed with
+setting up your first Sphinx project. To ease the process of getting started,
+Sphinx provides a tool, <strong class="program">sphinx-quickstart</strong>, which will generate a
+documentation source directory and populate it with some defaults. We’re going
+to use the <strong class="program">sphinx-quickstart</strong> tool here, though it’s use by no means
+necessary.</p>
+<section id="setting-up-the-documentation-sources">
+<h2>Setting up the documentation sources<a class="headerlink" href="#setting-up-the-documentation-sources" title="永久链接至标题">¶</a></h2>
+<p>The root directory of a Sphinx collection of <a class="reference internal" href="../glossary.html#term-restructuredtext"><span class="xref std std-term">reStructuredText</span></a> document
+sources is called the <a class="reference internal" href="../glossary.html#term-source-directory"><span class="xref std std-term">source directory</span></a>.  This directory also contains
+the Sphinx configuration file <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>, where you can configure all
+aspects of how Sphinx reads your sources and builds your documentation.  <a class="footnote-reference brackets" href="#id6" id="id1">1</a></p>
+<p>Sphinx comes with a script called <strong class="program">sphinx-quickstart</strong> that sets up a
+source directory and creates a default <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> with the most useful
+configuration values from a few questions it asks you. To use this, run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sphinx-quickstart
+</pre></div>
+</div>
+<p>Answer each question asked. Be sure to say yes to the <code class="docutils literal notranslate"><span class="pre">autodoc</span></code> extension, as
+we will use this later.</p>
+<p>There is also an automatic “API documentation” generator called
+<strong class="program">sphinx-apidoc</strong>; see <a class="reference internal" href="../man/sphinx-apidoc.html"><span class="doc">sphinx-apidoc</span></a> for details.</p>
+</section>
+<section id="defining-document-structure">
+<h2>Defining document structure<a class="headerlink" href="#defining-document-structure" title="永久链接至标题">¶</a></h2>
+<p>Let’s assume you’ve run <strong class="program">sphinx-quickstart</strong>.  It created a source
+directory with <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> and a master document, <code class="file docutils literal notranslate"><span class="pre">index.rst</span></code> (if you
+accepted the defaults).  The main function of the <a class="reference internal" href="../glossary.html#term-master-document"><span class="xref std std-term">master document</span></a> is to
+serve as a welcome page, and to contain the root of the “table of contents
+tree” (or <em>toctree</em>).  This is one of the main things that Sphinx adds to
+reStructuredText, a way to connect multiple files to a single hierarchy of
+documents.</p>
+<aside class="sidebar">
+<p class="sidebar-title">reStructuredText directives</p>
+<p><code class="docutils literal notranslate"><span class="pre">toctree</span></code> is a reStructuredText <em class="dfn">directive</em>, a very versatile piece
+of markup.  Directives can have arguments, options and content.</p>
+<p><em>Arguments</em> are given directly after the double colon following the
+directive’s name.  Each directive decides whether it can have arguments, and
+how many.</p>
+<p><em>Options</em> are given after the arguments, in form of a “field list”.  The
+<code class="docutils literal notranslate"><span class="pre">maxdepth</span></code> is such an option for the <code class="docutils literal notranslate"><span class="pre">toctree</span></code> directive.</p>
+<p><em>Content</em> follows the options or arguments after a blank line.  Each
+directive decides whether to allow content, and what to do with it.</p>
+<p>A common gotcha with directives is that <strong>the first line of the content must
+be indented to the same level as the options are</strong>.</p>
+</aside>
+<p>The <code class="docutils literal notranslate"><span class="pre">toctree</span></code> directive initially is empty, and looks like so:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:maxdepth:</span> 2
+</pre></div>
+</div>
+<p>You add documents listing them in the <em>content</em> of the directive:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:maxdepth:</span> 2
+
+   usage/installation
+   usage/quickstart
+<span class="cp">   ...</span>
+</pre></div>
+</div>
+<p>This is exactly how the <code class="docutils literal notranslate"><span class="pre">toctree</span></code> for this documentation looks.  The
+documents to include are given as <a class="reference internal" href="../glossary.html#term-document-name"><span class="xref std std-term">document name</span></a>s, which in short
+means that you leave off the file name extension and use forward slashes
+(<code class="docutils literal notranslate"><span class="pre">/</span></code>) as directory separators.</p>
+<p><img alt="more info" class="align-middle" src="../_images/more.png" /> Read more about <a class="reference internal" href="restructuredtext/directives.html#toctree-directive"><span class="std std-ref">the toctree directive</span></a>.</p>
+<p>You can now create the files you listed in the <code class="docutils literal notranslate"><span class="pre">toctree</span></code> and add content, and
+their section titles will be inserted (up to the <code class="docutils literal notranslate"><span class="pre">maxdepth</span></code> level) at the
+place where the <code class="docutils literal notranslate"><span class="pre">toctree</span></code> directive is placed.  Also, Sphinx now knows about
+the order and hierarchy of your documents.  (They may contain <code class="docutils literal notranslate"><span class="pre">toctree</span></code>
+directives themselves, which means you can create deeply nested hierarchies if
+necessary.)</p>
+</section>
+<section id="adding-content">
+<h2>Adding content<a class="headerlink" href="#adding-content" title="永久链接至标题">¶</a></h2>
+<p>In Sphinx source files, you can use most features of standard
+<a class="reference internal" href="../glossary.html#term-restructuredtext"><span class="xref std std-term">reStructuredText</span></a>.  There are also several features added by Sphinx.
+For example, you can add cross-file references in a portable way (which works
+for all output types) using the <a class="reference internal" href="restructuredtext/roles.html#role-ref" title="ref role"><code class="xref rst rst-role docutils literal notranslate"><span class="pre">ref</span></code></a> role.</p>
+<p>For an example, if you are viewing the HTML version you can look at the source
+for this document – use the “Show Source” link in the sidebar.</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">待处理</p>
+<p>Update the below link when we add new guides on these.</p>
+</div>
+<p><img alt="more info" class="align-middle" src="../_images/more.png" /> See <a class="reference internal" href="restructuredtext/index.html"><span class="doc">reStructuredText</span></a> for a more in-depth
+introduction to reStructuredText, including markup added by Sphinx.</p>
+</section>
+<section id="running-the-build">
+<h2>Running the build<a class="headerlink" href="#running-the-build" title="永久链接至标题">¶</a></h2>
+<p>Now that you have added some files and content, let’s make a first build of the
+docs.  A build is started with the <strong class="program">sphinx-build</strong> program:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>sourcedir<span class="w"> </span>builddir
+</pre></div>
+</div>
+<p>where <em>sourcedir</em> is the <a class="reference internal" href="../glossary.html#term-source-directory"><span class="xref std std-term">source directory</span></a>, and <em>builddir</em> is the
+directory in which you want to place the built documentation.
+The <a class="reference internal" href="../man/sphinx-build.html#cmdoption-sphinx-build-b"><code class="xref std std-option docutils literal notranslate"><span class="pre">-b</span></code></a> option selects a builder; in this example
+Sphinx will build HTML files.</p>
+<p><img alt="more info" class="align-middle" src="../_images/more.png" /> Refer to the <a class="reference internal" href="../man/sphinx-build.html"><span class="doc">sphinx-build man page</span></a> for all
+options that <strong class="program">sphinx-build</strong> supports.</p>
+<p>However, <strong class="program">sphinx-quickstart</strong> script creates a <code class="file docutils literal notranslate"><span class="pre">Makefile</span></code> and a
+<code class="file docutils literal notranslate"><span class="pre">make.bat</span></code> which make life even easier for you. These can be executed by
+running <strong class="command">make</strong> with the name of the builder. For example.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span>html
+</pre></div>
+</div>
+<p>This will build HTML docs in the build directory you chose. Execute
+<strong class="command">make</strong> without an argument to see which targets are available.</p>
+<div class="admonition-how-do-i-generate-pdf-documents admonition">
+<p class="admonition-title">How do I generate PDF documents?</p>
+<p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">latexpdf</span></code> runs the <a class="reference internal" href="builders/index.html#sphinx.builders.latex.LaTeXBuilder" title="sphinx.builders.latex.LaTeXBuilder"><code class="xref py py-mod docutils literal notranslate"><span class="pre">LaTeX</span> <span class="pre">builder</span></code></a> and readily invokes the pdfTeX
+toolchain for you.</p>
+</div>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">待处理</p>
+<p>Move this whole section into a guide on rST or directives</p>
+</div>
+</section>
+<section id="documenting-objects">
+<h2>Documenting objects<a class="headerlink" href="#documenting-objects" title="永久链接至标题">¶</a></h2>
+<p>One of Sphinx’s main objectives is easy documentation of <em class="dfn">objects</em> (in a
+very general sense) in any <em class="dfn">domain</em>.  A domain is a collection of object
+types that belong together, complete with markup to create and reference
+descriptions of these objects.</p>
+<p>The most prominent domain is the Python domain. For example, to document
+Python’s built-in function <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code>, you would add this to one of your
+source files.</p>
+<div class="highlight-restructuredtext notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> enumerate(sequence[, start=0])
+
+   Return an iterator that yields tuples of an index and an item of the
+   <span class="ge">*sequence*</span>. (And so on.)
+</pre></div>
+</div>
+<p>This is rendered like this:</p>
+<dl class="function">
+<dt id="enumerate">
+<code class="sig-name descname">enumerate</code><span class="sig-paren">(</span><em class="sig-param">sequence</em><span class="optional">[</span>, <em class="sig-param">start=0</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#enumerate" title="永久链接至目标">¶</a></dt>
+<dd><p>Return an iterator that yields tuples of an index and an item of the
+<em>sequence</em>. (And so on.)</p>
+</dd></dl>
+
+<p>The argument of the directive is the <em class="dfn">signature</em> of the object you
+describe, the content is the documentation for it.  Multiple signatures can be
+given, each in its own line.</p>
+<p>The Python domain also happens to be the default domain, so you don’t need to
+prefix the markup with the domain name.</p>
+<div class="highlight-restructuredtext notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">function</span><span class="p">::</span> enumerate(sequence[, start=0])
+
+<span class="cp">   ...</span>
+</pre></div>
+</div>
+<p>does the same job if you keep the default setting for the default domain.</p>
+<p>There are several more directives for documenting other types of Python
+objects, for example <a class="reference internal" href="restructuredtext/domains.html#directive-py:class" title="py:class directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:class</span></code></a> or <a class="reference internal" href="restructuredtext/domains.html#directive-py:method" title="py:method directive"><code class="xref rst rst-dir docutils literal notranslate"><span class="pre">py:method</span></code></a>.  There is
+also a cross-referencing <em class="dfn">role</em> for each of these object types.  This
+markup will create a link to the documentation of <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The :py:func:`enumerate` function can be used for ...
+</pre></div>
+</div>
+<p>And here is the proof: A link to <a class="reference internal" href="#enumerate" title="enumerate"><code class="xref py py-func docutils literal notranslate"><span class="pre">enumerate()</span></code></a>.</p>
+<p>Again, the <code class="docutils literal notranslate"><span class="pre">py:</span></code> can be left out if the Python domain is the default one.  It
+doesn’t matter which file contains the actual documentation for
+<code class="docutils literal notranslate"><span class="pre">enumerate()</span></code>; Sphinx will find it and create a link to it.</p>
+<p>Each domain will have special rules for how the signatures can look like, and
+make the formatted output look pretty, or add specific features like links to
+parameter types, e.g. in the C/C++ domains.</p>
+<p><img alt="more info" class="align-middle" src="../_images/more.png" /> See <a class="reference internal" href="restructuredtext/domains.html"><span class="doc">Domains</span></a> for all the available domains
+and their directives/roles.</p>
+</section>
+<section id="basic-configuration">
+<h2>Basic configuration<a class="headerlink" href="#basic-configuration" title="永久链接至标题">¶</a></h2>
+<p>Earlier we mentioned that the <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> file controls how Sphinx
+processes your documents.  In that file, which is executed as a Python source
+file, you assign configuration values.  For advanced users: since it is
+executed by Sphinx, you can do non-trivial tasks in it, like extending
+<code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code> or importing a module to find out the version you are
+documenting.</p>
+<p>The config values that you probably want to change are already put into the
+<code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> by <strong class="program">sphinx-quickstart</strong> and initially commented out
+(with standard Python syntax: a <code class="docutils literal notranslate"><span class="pre">#</span></code> comments the rest of the line).  To
+change the default value, remove the hash sign and modify the value.  To
+customize a config value that is not automatically added by
+<strong class="program">sphinx-quickstart</strong>, just add an additional assignment.</p>
+<p>Keep in mind that the file uses Python syntax for strings, numbers, lists and
+so on.  The file is saved in UTF-8 by default, as indicated by the encoding
+declaration in the first line.  If you use non-ASCII characters in any string
+value, you need to use Python Unicode strings (like <code class="docutils literal notranslate"><span class="pre">project</span> <span class="pre">=</span> <span class="pre">u'Exposé'</span></code>).</p>
+<p><img alt="more info" class="align-middle" src="../_images/more.png" /> See <a class="reference internal" href="configuration.html"><span class="doc">Configuration</span></a> for documentation of all available
+config values.</p>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">待处理</p>
+<p>Move this entire doc to a different section</p>
+</div>
+</section>
+<section id="autodoc">
+<h2>Autodoc<a class="headerlink" href="#autodoc" title="永久链接至标题">¶</a></h2>
+<p>When documenting Python code, it is common to put a lot of documentation in the
+source files, in documentation strings.  Sphinx supports the inclusion of
+docstrings from your modules with an <em class="dfn">extension</em> (an extension is a Python
+module that provides additional features for Sphinx projects) called <em>autodoc</em>.</p>
+<p>In order to use <em>autodoc</em>, you need to activate it in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> by
+putting the string <code class="docutils literal notranslate"><span class="pre">'sphinx.ext.autodoc'</span></code> into the list assigned to the
+<a class="reference internal" href="configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">extensions</span></code></a> config value.  Then, you have a few additional directives
+at your disposal.</p>
+<p>For example, to document the function <code class="docutils literal notranslate"><span class="pre">io.open()</span></code>, reading its signature and
+docstring from the source file, you’d write this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">autofunction</span><span class="p">::</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span>
+</pre></div>
+</div>
+<p>You can also document whole classes or even modules automatically, using member
+options for the auto directives, like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">automodule</span><span class="p">::</span> <span class="n">io</span>
+   <span class="p">:</span><span class="n">members</span><span class="p">:</span>
+</pre></div>
+</div>
+<p><em>autodoc</em> needs to import your modules in order to extract the docstrings.
+Therefore, you must add the appropriate path to <code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code> in your
+<code class="file docutils literal notranslate"><span class="pre">conf.py</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p><a class="reference internal" href="extensions/autodoc.html#module-sphinx.ext.autodoc" title="sphinx.ext.autodoc: Include documentation from docstrings."><code class="xref py py-mod docutils literal notranslate"><span class="pre">autodoc</span></code></a> <strong>imports</strong> the modules to be documented.  If any
+modules have side effects on import, these will be executed by <code class="docutils literal notranslate"><span class="pre">autodoc</span></code>
+when <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> is run.</p>
+<p>If you document scripts (as opposed to library modules), make sure their
+main routine is protected by a <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> condition.</p>
+</div>
+<p><img alt="more info" class="align-middle" src="../_images/more.png" /> See <a class="reference internal" href="extensions/autodoc.html#module-sphinx.ext.autodoc" title="sphinx.ext.autodoc: Include documentation from docstrings."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.autodoc</span></code></a> for the complete description of the
+features of autodoc.</p>
+<div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">待处理</p>
+<p>Move this doc to another section</p>
+</div>
+</section>
+<section id="intersphinx">
+<h2>Intersphinx<a class="headerlink" href="#intersphinx" title="永久链接至标题">¶</a></h2>
+<p>Many Sphinx documents including the <a class="reference external" href="https://docs.python.org/3">Python documentation</a> are published on
+the Internet.  When you want to make links to such documents from your
+documentation, you can do it with <a class="reference internal" href="extensions/intersphinx.html#module-sphinx.ext.intersphinx" title="sphinx.ext.intersphinx: Link to other Sphinx documentation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code></a>.</p>
+<p>In order to use intersphinx, you need to activate it in <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> by
+putting the string <code class="docutils literal notranslate"><span class="pre">'sphinx.ext.intersphinx'</span></code> into the <a class="reference internal" href="configuration.html#confval-extensions"><code class="xref std std-confval docutils literal notranslate"><span class="pre">extensions</span></code></a>
+list and set up the <a class="reference internal" href="extensions/intersphinx.html#confval-intersphinx_mapping"><code class="xref std std-confval docutils literal notranslate"><span class="pre">intersphinx_mapping</span></code></a> config value.</p>
+<p>For example, to link to <code class="docutils literal notranslate"><span class="pre">io.open()</span></code> in the Python library manual, you need to
+setup your <a class="reference internal" href="extensions/intersphinx.html#confval-intersphinx_mapping"><code class="xref std std-confval docutils literal notranslate"><span class="pre">intersphinx_mapping</span></code></a> like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;python&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://docs.python.org/3&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>And now, you can write a cross-reference like <code class="docutils literal notranslate"><span class="pre">:py:func:`io.open`</span></code>.  Any
+cross-reference that has no matching target in the current documentation set,
+will be looked up in the documentation sets configured in
+<a class="reference internal" href="extensions/intersphinx.html#confval-intersphinx_mapping"><code class="xref std std-confval docutils literal notranslate"><span class="pre">intersphinx_mapping</span></code></a> (this needs access to the URL in order to
+download the list of valid targets).  Intersphinx also works for some other
+<a class="reference internal" href="../glossary.html#term-domain"><span class="xref std std-term">domain</span></a>’s roles including <code class="docutils literal notranslate"><span class="pre">:ref:</span></code>, however it doesn’t work for
+<code class="docutils literal notranslate"><span class="pre">:doc:</span></code> as that is non-domain role.</p>
+<p><img alt="more info" class="align-middle" src="../_images/more.png" /> See <a class="reference internal" href="extensions/intersphinx.html#module-sphinx.ext.intersphinx" title="sphinx.ext.intersphinx: Link to other Sphinx documentation."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sphinx.ext.intersphinx</span></code></a> for the complete description of the
+features of intersphinx.</p>
+</section>
+<section id="more-topics-to-be-covered">
+<h2>More topics to be covered<a class="headerlink" href="#more-topics-to-be-covered" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="extensions/index.html"><span class="doc">Other extensions</span></a>:</p></li>
+<li><p>Static files</p></li>
+<li><p><a class="reference internal" href="theming.html"><span class="doc">Selecting a theme</span></a></p></li>
+<li><p><a class="reference internal" href="advanced/setuptools.html"><span class="doc">Setuptools integration</span></a></p></li>
+<li><p><a class="reference internal" href="../templating.html#templating"><span class="std std-ref">Templating</span></a></p></li>
+<li><p>Using extensions</p></li>
+<li><p><a class="reference internal" href="../extdev/index.html#dev-extensions"><span class="std std-ref">Writing extensions</span></a></p></li>
+</ul>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>This is the usual layout.  However, <code class="file docutils literal notranslate"><span class="pre">conf.py</span></code> can also live in
+another directory, the <a class="reference internal" href="../glossary.html#term-configuration-directory"><span class="xref std std-term">configuration directory</span></a>.  Refer to the
+<a class="reference internal" href="../man/sphinx-build.html"><span class="doc">sphinx-build man page</span></a> for more information.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="restructuredtext/index.html" title="reStructuredText"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installing Sphinx"
+             >上一页</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2007-2019, Georg Brandl and the Sphinx team.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5 创建。
+    </div>
+  </body>
+</html>
