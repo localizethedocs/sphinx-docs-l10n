@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Build environment API &#8212; Sphinx 2.4.5 文档</title>
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/extdev/envapi.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx 2.4.5 文档 中搜索"
+          href="../_static/opensearch.xml"/>
+
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Builder API" href="builderapi.html" />
+    <link rel="prev" title="Project API" href="projectapi.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/extdev/envapi.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script>
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="builderapi.html" title="Builder API"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="projectapi.html" title="Project API"
+             accesskey="P">上一页</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Developing extensions for Sphinx</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="projectapi.html"
+                        title="上一章">Project API</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="builderapi.html"
+                        title="下一章">Builder API</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/extdev/envapi.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-sphinx.environment">
+<span id="build-environment-api"></span><h1>Build environment API<a class="headerlink" href="#module-sphinx.environment" title="永久链接至标题">¶</a></h1>
+<dl class="class">
+<dt id="sphinx.environment.BuildEnvironment">
+<em class="property">class </em><code class="sig-prename descclassname">sphinx.environment.</code><code class="sig-name descname">BuildEnvironment</code><a class="reference internal" href="../_modules/sphinx/environment.html#BuildEnvironment"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#sphinx.environment.BuildEnvironment" title="永久链接至目标">¶</a></dt>
+<dd><p><strong>Attributes</strong></p>
+<dl class="attribute">
+<dt id="sphinx.environment.BuildEnvironment.app">
+<code class="sig-name descname">app</code><a class="headerlink" href="#sphinx.environment.BuildEnvironment.app" title="永久链接至目标">¶</a></dt>
+<dd><p>Reference to the <a class="reference internal" href="appapi.html#sphinx.application.Sphinx" title="sphinx.application.Sphinx"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphinx</span></code></a> (application) object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sphinx.environment.BuildEnvironment.config">
+<code class="sig-name descname">config</code><a class="headerlink" href="#sphinx.environment.BuildEnvironment.config" title="永久链接至目标">¶</a></dt>
+<dd><p>Reference to the <a class="reference internal" href="appapi.html#sphinx.config.Config" title="sphinx.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sphinx.environment.BuildEnvironment.project">
+<code class="sig-name descname">project</code><a class="headerlink" href="#sphinx.environment.BuildEnvironment.project" title="永久链接至目标">¶</a></dt>
+<dd><p>Target project.  See <a class="reference internal" href="projectapi.html#sphinx.project.Project" title="sphinx.project.Project"><code class="xref py py-class docutils literal notranslate"><span class="pre">Project</span></code></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sphinx.environment.BuildEnvironment.srcdir">
+<code class="sig-name descname">srcdir</code><a class="headerlink" href="#sphinx.environment.BuildEnvironment.srcdir" title="永久链接至目标">¶</a></dt>
+<dd><p>Source directory.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sphinx.environment.BuildEnvironment.doctreedir">
+<code class="sig-name descname">doctreedir</code><a class="headerlink" href="#sphinx.environment.BuildEnvironment.doctreedir" title="永久链接至目标">¶</a></dt>
+<dd><p>Directory for storing pickled doctrees.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sphinx.environment.BuildEnvironment.events">
+<code class="sig-name descname">events</code><a class="headerlink" href="#sphinx.environment.BuildEnvironment.events" title="永久链接至目标">¶</a></dt>
+<dd><p>An <a class="reference internal" href="utils.html#sphinx.events.EventManager" title="sphinx.events.EventManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventManager</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sphinx.environment.BuildEnvironment.found_docs">
+<code class="sig-name descname">found_docs</code><a class="headerlink" href="#sphinx.environment.BuildEnvironment.found_docs" title="永久链接至目标">¶</a></dt>
+<dd><p>A set of all existing docnames.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sphinx.environment.BuildEnvironment.metadata">
+<code class="sig-name descname">metadata</code><a class="headerlink" href="#sphinx.environment.BuildEnvironment.metadata" title="永久链接至目标">¶</a></dt>
+<dd><p>Dictionary mapping docnames to “metadata” (see <a class="reference internal" href="../usage/restructuredtext/field-lists.html#metadata"><span class="std std-ref">File-wide metadata</span></a>).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sphinx.environment.BuildEnvironment.titles">
+<code class="sig-name descname">titles</code><a class="headerlink" href="#sphinx.environment.BuildEnvironment.titles" title="永久链接至目标">¶</a></dt>
+<dd><p>Dictionary mapping docnames to the docutils node for their main title.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sphinx.environment.BuildEnvironment.docname">
+<code class="sig-name descname">docname</code><a class="headerlink" href="#sphinx.environment.BuildEnvironment.docname" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns the docname of the document currently being parsed.</p>
+</dd></dl>
+
+<p><strong>Utility methods</strong></p>
+<dl class="method">
+<dt id="sphinx.environment.BuildEnvironment.doc2path">
+<code class="sig-name descname">doc2path</code><span class="sig-paren">(</span><em class="sig-param">docname: str</em>, <em class="sig-param">base: Union[bool</em>, <em class="sig-param">str] = True</em>, <em class="sig-param">suffix: str = None</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/sphinx/environment.html#BuildEnvironment.doc2path"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#sphinx.environment.BuildEnvironment.doc2path" title="永久链接至目标">¶</a></dt>
+<dd><p>Return the filename for the document name.</p>
+<p>If <em>base</em> is True, return absolute path under self.srcdir.
+If <em>base</em> is None, return relative path to self.srcdir.
+If <em>base</em> is a path string, return absolute path under that.
+If <em>suffix</em> is not None, add it instead of config.source_suffix.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sphinx.environment.BuildEnvironment.relfn2path">
+<code class="sig-name descname">relfn2path</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">docname: str = None</em><span class="sig-paren">)</span> &#x2192; Tuple[str, str]<a class="reference internal" href="../_modules/sphinx/environment.html#BuildEnvironment.relfn2path"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#sphinx.environment.BuildEnvironment.relfn2path" title="永久链接至目标">¶</a></dt>
+<dd><p>Return paths to a file referenced from a document, relative to
+documentation root and absolute.</p>
+<p>In the input “filename”, absolute filenames are taken as relative to the
+source dir, while relative filenames are relative to the dir of the
+containing document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sphinx.environment.BuildEnvironment.note_dependency">
+<code class="sig-name descname">note_dependency</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/sphinx/environment.html#BuildEnvironment.note_dependency"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#sphinx.environment.BuildEnvironment.note_dependency" title="永久链接至目标">¶</a></dt>
+<dd><p>Add <em>filename</em> as a dependency of the current document.</p>
+<p>This means that the document will be rebuilt if this file changes.</p>
+<p><em>filename</em> should be absolute or relative to the source directory.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sphinx.environment.BuildEnvironment.new_serialno">
+<code class="sig-name descname">new_serialno</code><span class="sig-paren">(</span><em class="sig-param">category: str = ''</em><span class="sig-paren">)</span> &#x2192; int<a class="reference internal" href="../_modules/sphinx/environment.html#BuildEnvironment.new_serialno"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#sphinx.environment.BuildEnvironment.new_serialno" title="永久链接至目标">¶</a></dt>
+<dd><p>Return a serial number, e.g. for index entry targets.</p>
+<p>The number is guaranteed to be unique in the current document.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sphinx.environment.BuildEnvironment.note_reread">
+<code class="sig-name descname">note_reread</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="../_modules/sphinx/environment.html#BuildEnvironment.note_reread"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#sphinx.environment.BuildEnvironment.note_reread" title="永久链接至目标">¶</a></dt>
+<dd><p>Add the current document to the list of documents that will
+automatically be re-read at the next build.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="builderapi.html" title="Builder API"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="projectapi.html" title="Project API"
+             >上一页</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Developing extensions for Sphinx</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2007-2019, Georg Brandl and the Sphinx team.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.5 创建。
+    </div>
+  </body>
+</html>
