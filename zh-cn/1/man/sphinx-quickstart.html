@@ -1,0 +1,403 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>sphinx-quickstart &#8212; Sphinx 1.8.6 文档</title>
+    <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="canonical" href="https://projects.localizethedocs.org/sphinx-docs-l10n/man/sphinx-quickstart.html" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Sphinx 1.8.6 文档 中搜索"
+          href="../_static/opensearch.xml"/>
+
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="sphinx-build" href="sphinx-build.html" />
+    <link rel="prev" title="Man Pages" href="index.html" />
+    <link rel="canonical" href="http://www.sphinx-doc.org/en/master/man/sphinx-quickstart.html" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script type="text/javascript">
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+
+  </head><body>
+<div class="pageheader">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../usage/installation.html">Get it</a></li>
+    <li><a href="../contents.html">Docs</a></li>
+    <li><a href="../develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="../index.html">
+      <img src="../_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="sphinx-build.html" title="sphinx-build"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Man Pages"
+             accesskey="P">上一页</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Man Pages</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">sphinx-quickstart</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#see-also">See also</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="index.html"
+                        title="上一章">Man Pages</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="sphinx-build.html"
+                        title="下一章">sphinx-build</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/man/sphinx-quickstart.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sphinx-quickstart">
+<h1>sphinx-quickstart<a class="headerlink" href="#sphinx-quickstart" title="永久链接至标题">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="永久链接至标题">¶</a></h2>
+<p><strong>sphinx-quickstart</strong></p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="永久链接至标题">¶</a></h2>
+<p><strong class="program">sphinx-quickstart</strong> is an interactive tool that asks some questions
+about your project and then generates a complete documentation directory and
+sample Makefile to be used with <em class="manpage">sphinx-build(1)</em>.</p>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="永久链接至标题">¶</a></h2>
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-q">
+<code class="descname">-q</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--quiet</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-q" title="永久链接至目标">¶</a></dt>
+<dd><p>Quiet mode that will skip interactive wizard to specify options.
+This option requires <cite>-p</cite>, <cite>-a</cite> and <cite>-v</cite> options.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-h">
+<code class="descname">-h</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--help</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--version</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-h" title="永久链接至目标">¶</a></dt>
+<dd><p>Display usage summary or Sphinx version.</p>
+</dd></dl>
+
+<p class="rubric">Structure Options</p>
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-sep">
+<code class="descname">--sep</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-sep" title="永久链接至目标">¶</a></dt>
+<dd><p>If specified, separate source and build directories.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-dot">
+<code class="descname">--dot</code><code class="descclassname">=DOT</code><a class="headerlink" href="#cmdoption-sphinx-quickstart-dot" title="永久链接至目标">¶</a></dt>
+<dd><p>Inside the root directory, two more directories will be created;
+“_templates” for custom HTML templates and “_static” for custom stylesheets
+and other static files. You can enter another prefix (such as “.”) to
+replace the underscore.</p>
+</dd></dl>
+
+<p class="rubric">Project Basic Options</p>
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-p">
+<code class="descname">-p</code><code class="descclassname"> PROJECT</code><code class="descclassname">, </code><code class="descname">--project</code><code class="descclassname">=PROJECT</code><a class="headerlink" href="#cmdoption-sphinx-quickstart-p" title="永久链接至目标">¶</a></dt>
+<dd><p>Project name will be set. (see <a class="reference internal" href="../usage/configuration.html#confval-project"><code class="xref std std-confval docutils literal notranslate"><span class="pre">project</span></code></a>).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-a">
+<code class="descname">-a</code><code class="descclassname"> AUTHOR</code><code class="descclassname">, </code><code class="descname">--author</code><code class="descclassname">=AUTHOR</code><a class="headerlink" href="#cmdoption-sphinx-quickstart-a" title="永久链接至目标">¶</a></dt>
+<dd><p>Author names. (see <a class="reference internal" href="../usage/configuration.html#confval-copyright"><code class="xref std std-confval docutils literal notranslate"><span class="pre">copyright</span></code></a>).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-v">
+<code class="descname">-v</code><code class="descclassname"> VERSION</code><a class="headerlink" href="#cmdoption-sphinx-quickstart-v" title="永久链接至目标">¶</a></dt>
+<dd><p>Version of project. (see <a class="reference internal" href="../usage/configuration.html#confval-version"><code class="xref std std-confval docutils literal notranslate"><span class="pre">version</span></code></a>).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-r">
+<code class="descname">-r</code><code class="descclassname"> RELEASE</code><code class="descclassname">, </code><code class="descname">--release</code><code class="descclassname">=RELEASE</code><a class="headerlink" href="#cmdoption-sphinx-quickstart-r" title="永久链接至目标">¶</a></dt>
+<dd><p>Release of project. (see <a class="reference internal" href="../usage/configuration.html#confval-release"><code class="xref std std-confval docutils literal notranslate"><span class="pre">release</span></code></a>).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-l">
+<code class="descname">-l</code><code class="descclassname"> LANGUAGE</code><code class="descclassname">, </code><code class="descname">--language</code><code class="descclassname">=LANGUAGE</code><a class="headerlink" href="#cmdoption-sphinx-quickstart-l" title="永久链接至目标">¶</a></dt>
+<dd><p>Document language. (see <a class="reference internal" href="../usage/configuration.html#confval-language"><code class="xref std std-confval docutils literal notranslate"><span class="pre">language</span></code></a>).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-suffix">
+<code class="descname">--suffix</code><code class="descclassname">=SUFFIX</code><a class="headerlink" href="#cmdoption-sphinx-quickstart-suffix" title="永久链接至目标">¶</a></dt>
+<dd><p>Source file suffix. (see <a class="reference internal" href="../usage/configuration.html#confval-source_suffix"><code class="xref std std-confval docutils literal notranslate"><span class="pre">source_suffix</span></code></a>).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-master">
+<code class="descname">--master</code><code class="descclassname">=MASTER</code><a class="headerlink" href="#cmdoption-sphinx-quickstart-master" title="永久链接至目标">¶</a></dt>
+<dd><p>Master document name. (see <a class="reference internal" href="../usage/configuration.html#confval-master_doc"><code class="xref std std-confval docutils literal notranslate"><span class="pre">master_doc</span></code></a>).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-epub">
+<code class="descname">--epub</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-epub" title="永久链接至目标">¶</a></dt>
+<dd><p>Use epub.</p>
+</dd></dl>
+
+<p class="rubric">Extension Options</p>
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-ext-autodoc">
+<code class="descname">--ext-autodoc</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-ext-autodoc" title="永久链接至目标">¶</a></dt>
+<dd><p>Enable <cite>sphinx.ext.autodoc</cite> extension.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-ext-doctest">
+<code class="descname">--ext-doctest</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-ext-doctest" title="永久链接至目标">¶</a></dt>
+<dd><p>Enable <cite>sphinx.ext.doctest</cite> extension.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-ext-intersphinx">
+<code class="descname">--ext-intersphinx</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-ext-intersphinx" title="永久链接至目标">¶</a></dt>
+<dd><p>Enable <cite>sphinx.ext.intersphinx</cite> extension.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-ext-todo">
+<code class="descname">--ext-todo</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-ext-todo" title="永久链接至目标">¶</a></dt>
+<dd><p>Enable <cite>sphinx.ext.todo</cite> extension.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-ext-coverage">
+<code class="descname">--ext-coverage</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-ext-coverage" title="永久链接至目标">¶</a></dt>
+<dd><p>Enable <cite>sphinx.ext.coverage</cite> extension.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-ext-imgmath">
+<code class="descname">--ext-imgmath</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-ext-imgmath" title="永久链接至目标">¶</a></dt>
+<dd><p>Enable <cite>sphinx.ext.imgmath</cite> extension.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-ext-mathjax">
+<code class="descname">--ext-mathjax</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-ext-mathjax" title="永久链接至目标">¶</a></dt>
+<dd><p>Enable <cite>sphinx.ext.mathjax</cite> extension.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-ext-ifconfig">
+<code class="descname">--ext-ifconfig</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-ext-ifconfig" title="永久链接至目标">¶</a></dt>
+<dd><p>Enable <cite>sphinx.ext.ifconfig</cite> extension.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-ext-viewcode">
+<code class="descname">--ext-viewcode</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-ext-viewcode" title="永久链接至目标">¶</a></dt>
+<dd><p>Enable <cite>sphinx.ext.viewcode</cite> extension.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-ext-githubpages">
+<code class="descname">--ext-githubpages</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-ext-githubpages" title="永久链接至目标">¶</a></dt>
+<dd><p>Enable <cite>sphinx.ext.githubpages</cite> extension.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-extensions">
+<code class="descname">--extensions</code><code class="descclassname">=EXTENSIONS</code><a class="headerlink" href="#cmdoption-sphinx-quickstart-extensions" title="永久链接至目标">¶</a></dt>
+<dd><p>Enable arbitrary extensions.</p>
+</dd></dl>
+
+<p class="rubric">Makefile and Batchfile Creation Options</p>
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-use-make-mode">
+<code class="descname">--use-make-mode</code><code class="descclassname"> (-m)</code><code class="descclassname">, </code><code class="descname">--no-use-make-mode</code><code class="descclassname"> (-M)</code><a class="headerlink" href="#cmdoption-sphinx-quickstart-use-make-mode" title="永久链接至目标">¶</a></dt>
+<dd><p><code class="file docutils literal notranslate"><span class="pre">Makefile/make.bat</span></code> uses (or doesn’t use) <a class="reference internal" href="sphinx-build.html#make-mode"><span class="std std-ref">make-mode</span></a>.
+Default is <code class="docutils literal notranslate"><span class="pre">use</span></code>, which generates a more concise <code class="file docutils literal notranslate"><span class="pre">Makefile/make.bat</span></code>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified">在 1.5 版更改: </span>make-mode is default.</p>
+</div>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-makefile">
+<code class="descname">--makefile</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--no-makefile</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-makefile" title="永久链接至目标">¶</a></dt>
+<dd><p>Create (or not create) makefile.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-batchfile">
+<code class="descname">--batchfile</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--no-batchfile</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-quickstart-batchfile" title="永久链接至目标">¶</a></dt>
+<dd><p>Create (or not create) batchfile</p>
+</dd></dl>
+
+<p class="rubric">Project templating</p>
+<div class="versionadded">
+<p><span class="versionmodified">1.5 新版功能: </span>Project templating options for sphinx-quickstart</p>
+</div>
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-t">
+<code class="descname">-t</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--templatedir</code><code class="descclassname">=TEMPLATEDIR</code><a class="headerlink" href="#cmdoption-sphinx-quickstart-t" title="永久链接至目标">¶</a></dt>
+<dd><p>Template directory for template files.  You can modify the templates of
+sphinx project files generated by quickstart.  Following Jinja2 template
+files are allowed:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">master_doc.rst_t</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">conf.py_t</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Makefile_t</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Makefile.new_t</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">make.bat_t</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">make.bat.new_t</span></code></li>
+</ul>
+<p>In detail, please refer the system template files Sphinx provides.
+(<code class="docutils literal notranslate"><span class="pre">sphinx/templates/quickstart</span></code>)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-sphinx-quickstart-d">
+<code class="descname">-d</code><code class="descclassname"> NAME=VALUE</code><a class="headerlink" href="#cmdoption-sphinx-quickstart-d" title="永久链接至目标">¶</a></dt>
+<dd><p>Define a template variable</p>
+</dd></dl>
+
+</div>
+<div class="section" id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="永久链接至标题">¶</a></h2>
+<p><em class="manpage">sphinx-build(1)</em></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="sphinx-build.html" title="sphinx-build"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Man Pages"
+             >上一页</a> |</li>
+        <li><a href="../index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="../contents.html">Documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Man Pages</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2007-2019, Georg Brandl and the Sphinx team.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.6 创建。
+    </div>
+  </body>
+</html>
